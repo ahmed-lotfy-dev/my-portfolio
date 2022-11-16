@@ -1,7 +1,7 @@
 # Dockerfile
 
 # base image
-FROM --platform=arm64-platform=arm64 node:19-alpine3.15 AS node
+FROM --platform=arm64 node:19-alpine3.15 AS node
 # FROM --platform=linux/amd64 node:19-alpine3.15 AS node
 
 # create & set working directory
