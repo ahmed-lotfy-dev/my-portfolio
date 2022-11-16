@@ -1,7 +1,8 @@
 # Dockerfile
 
 # base image
-FROM node:19-alpine3.15 AS node
+
+FROM --platform=linux/amd64 node:19-alpine3.15 AS node
 
 # create & set working directory
 RUN mkdir -p /app/src
