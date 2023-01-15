@@ -364,6 +364,8 @@ module.exports = {
       DEFAULT: '1',
     },
     fontFamily: {
+      "main": "var(--main-font)",
+      "heading": "var(--heading-font)",
       sans: [
         'ui-sans-serif',
         'system-ui',
