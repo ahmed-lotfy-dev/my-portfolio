@@ -1,24 +1,37 @@
+import Link from "next/link";
 import Image from "next/image";
-import HeroImage from "../public/AShouman_3d_vectorhuman_with_glasses_developer_programmer_lapto_0f0c5488-59b0-49da-a7cd-204a7f4c7fd8.png";
-Image;
+import HeroImage from "../public/images/alotfy_Programmer_coding_on_laptop_sitting_on_desk_-_-_v4_styli_9fb2f0c6-7665-4891-b42c-89e8e4c6274b.png";
+
 function Hero() {
   return (
-    <div className="container mx-auto flex justify-between items-center w-full px-7">
-      <div className="py-[12rem]">
-        <h2 className=" text-4xl font-extrabold font-main">Ahmed Lotfy</h2>
-        <h3 className="  text-2xl font-bold font-heading mt-5">Front-End</h3>
-        <h3 className=" text-2xl font-bold font-heading ">
-          Software Developer
-        </h3>
-      </div>
-      <div className="rounded-full ">
-        <Image
-          className="rounded-full w-[200px] w-[200px]"
-          src={HeroImage}
-          alt="Hero Image Developer Illustration"
-          width={250}
-          height={250}
-        ></Image>
+    <div className="bg-gray-700 border-b-2 border-gray-900">
+      <div className="container mx-auto flex flex-col gap-5 sm:flex-row mb-10 justify-between items-center w-full">
+        <div className="constainer text-gray-300 flex flex-col gap-2 my-24 ml-3 text-center sm:text-start">
+          <h4 className="text-1xl mb-4 sm:text-xl md:text-3xl">
+            Hello this is,
+          </h4>
+          <h2 className="text-5xl md:text-6xl font-extrabold uppercase font-main flex-1 sm:truncate">
+            Ahmed Lotfy
+          </h2>
+          <h3 className="text-2xl sm:text-2xl md:text-3xl font-extrabold font-heading">
+            Full-stack software engineer
+          </h3>
+          <Link
+            href="/"
+            className="py-3 px-8 mt-10 w-60 self-center text-center sm:self-start bg-yellow-600 rounded-md hover:bg-yellow-500 text-gray-800 hover:text-gray-700 font-bold transition-all hover:rounded-lg border-[3px] border-solid border-gray-800 sm:text-xl"
+          >
+            Resume
+          </Link>
+        </div>
+        <div className="bg-cover rounded-full">
+          <Image
+            className=" flex-1 rounded-full w-[250] h-[250] sm:w-[250] sm:h-[250] bg-cover"
+            src={HeroImage}
+            alt="Hero Image Developer Illustration"
+            width={300}
+            height={300}
+          ></Image>
+        </div>
       </div>
     </div>
   );
