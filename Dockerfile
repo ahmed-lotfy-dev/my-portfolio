@@ -47,7 +47,8 @@ COPY . .
 # Uncomment the following line in case you want to disable telemetry during the build.
 # ENV NEXT_TELEMETRY_DISABLED 1
 
-RUN pnpm run build
+RUN CI='' pnpm run build
+
 
 # If using npm comment out above and use below instead
 # RUN npm run build
