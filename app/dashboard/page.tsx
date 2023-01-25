@@ -1,5 +1,4 @@
 import React from "react";
-import Aside from "./aside";
 
 function DashboardIndex() {
   return (
