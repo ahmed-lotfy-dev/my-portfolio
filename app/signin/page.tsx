@@ -1,34 +1,26 @@
 "use client";
 import React from "react";
-import z from "zod";
 
 function SignUp() {
-  const User = z.object({
-    email: z.string().trim().email(),
-    password: z.string().min(6).max(16),
-    confirmPassword: z.string().min(6).max(16),
-  });
 
-  const signupHandler = async (e: any) => {
+  const signInHandler = async (e: any) => {
     const email = e.target.email.value;
     const password = e.target.password.value;
-    const confirmPassword = e.target.confirmPassword.value;
-    console.log(email, password);
-    // User.parse({ email, password, confirmPassword });
-    fetch("/api/signup", {
+    fetch("/api/signin", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ email, password }),
     });
   };
-
+  
   return (
     <div className="flex flex-col items-center mt-20 w-screen h-screen">
       <form
         action="/api/signin"
+        method="POST"
         className="flex flex-col gap-5"
         onSubmit={() => {
-          signupHandler;
+          signInHandler;
         }}
       >
         <input
@@ -45,14 +37,7 @@ function SignUp() {
           placeholder="Password"
           className="px-5 py-4"
         />
-        <input
-          type="password"
-          id="confirmPassword"
-          name="confirmPassword"
-          placeholder="Confirm Password"
-          className="px-5 py-4"
-        />
-        <button type="submit">Sign Up</button>
+        <button type="submit">Sign In</button>
       </form>
     </div>
   );

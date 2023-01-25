@@ -33,4 +33,8 @@ model User {
 
 model Project {
   id String @id @default(auto()) @map("_id") @db.ObjectId
+  slug String @unique
+  title String 
+  desc String
+  imageUrl String
 }

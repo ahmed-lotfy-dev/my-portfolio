@@ -1,7 +1,11 @@
 import React from "react";
+import Aside from "./aside";
 
 function DashboardIndex() {
-  return <div>Dashboard Index</div>;
+  return (
+    <div className="flex">
+    </div>
+  );
 }
 
 export default DashboardIndex;
