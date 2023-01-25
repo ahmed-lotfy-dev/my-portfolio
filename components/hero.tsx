@@ -4,7 +4,7 @@ import HeroImage from "../public/images/alotfy_Programmer_coding_on_laptop_sitti
 
 function Hero() {
   return (
-    <div className="bg-gray-700 border-b-2 border-gray-900  p-5 ">
+    <section className="bg-gray-700 border-b-2 border-gray-900  p-5 ">
       <div className="container mx-auto flex flex-col gap-5 p-5 sm:flex-row mb-10 justify-between items-center max-w-screen-xl">
         <div className="constainer text-gray-300 flex flex-col gap-2 my-24  text-center sm:text-start">
           <h4 className="text-1xl mb-4 sm:text-xl md:text-3xl">
@@ -33,7 +33,7 @@ function Hero() {
           ></Image>
         </div>
       </div>
-    </div>
+    </section>
   );
 }
 

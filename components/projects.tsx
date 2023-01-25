@@ -4,7 +4,7 @@ import image1 from "../public/images/skills/docker.svg";
 
 function Projects() {
   return (
-    <div className="container mx-auto flex flex-col justify-center items-center sm:items-start p-6 max-w-screen-xl mb-10">
+    <section className="container mx-auto flex flex-col justify-center items-center sm:items-start p-6 max-w-screen-xl mb-10">
       <div className="flex flex-col justify-center items-center">
         <h2 className="text-3xl font-bold">Projects</h2>
       </div>
@@ -26,7 +26,7 @@ function Projects() {
           ></Image>
         </div>
       </div>
-    </div>
+    </section>
   );
 }
 

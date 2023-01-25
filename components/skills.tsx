@@ -14,7 +14,7 @@ import docker from "../public/images/skills/docker.svg";
 console.log();
 function Skills() {
   return (
-    <div className="flex mx-auto justify-center items-center p-5 bg-gray-400 ">
+    <section className="flex mx-auto justify-center items-center p-5 bg-gray-400 ">
       <div className="flex flex-col justify-center items-center sm:items-start gap-5">
         <h2 className="pt-5 pb-2 text-3xl font-bold">Skills</h2>
         <div className="flex  container mx-auto justify-around max-w-screen-xl sm:space-x-9 sm:pb-7 ">
@@ -90,7 +90,7 @@ function Skills() {
           />
         </div>
       </div>
-    </div>
+    </section>
   );
 }
 
