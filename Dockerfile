@@ -1,22 +1,23 @@
-FROM node:16-alpine AS builder
-# Check https://github.com/nodejs/docker-node/tree/b4117f9333da4138b03a546ec926ef50a31506c3#nodealpine to understand why libc6-compat might be needed.
-RUN apk add --no-cache libc6-compat
-WORKDIR /app
+FROM node:19-alpine as dependencies
+WORKDIR /my-portofolio
+COPY package.json yarn.lock ./
+RUN yarn install --frozen-lockfile
+
+FROM node:19-alpine as builder
+WORKDIR /my-portofolio
 COPY . .
-RUN npm ci
-ENV NEXT_TELEMETRY_DISABLED 1
-RUN npx prisma migrate deploy
-RUN npx prisma generate
-RUN npm run build
-RUN mkdir -p /app/.next/cache/images
-# Production image, copy all the files and run next
-FROM node:16-alpine AS runner
-WORKDIR /app
+COPY --from=dependencies /my-portofolio/node_modules ./node_modules
+RUN yarn build
+
+FROM node:19-alpine as runner
+WORKDIR /my-portofolio
 ENV NODE_ENV production
-ENV NEXT_TELEMETRY_DISABLED 1
-RUN addgroup --system --gid 1001 nodejs
-RUN adduser --system --uid 1001 nextjs
-COPY --chown=nextjs:nodejs --from=builder /app/ ./
-USER nextjs
-ENV PORT 3000
-CMD ["npm", "run","start"]
+# If you are using a custom next.config.js file, uncomment this line.
+COPY --from=builder /my-portofolio/next.config.js ./
+COPY --from=builder /my-portofolio/public ./public
+COPY --from=builder /my-portofolio/.next ./.next
+COPY --from=builder /my-portofolio/node_modules ./node_modules
+COPY --from=builder /my-portofolio/package.json ./package.json
+
+EXPOSE 3000
+CMD ["yarn", "start"]
