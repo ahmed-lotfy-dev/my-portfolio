@@ -1,5 +1,4 @@
 import type { NextApiRequest, NextApiResponse } from "next";
-import connectToDb from "@/utils/db.";
 import sgMail from "@sendgrid/mail";
 sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
@@ -31,14 +30,17 @@ export default async function Contact(
   };
   try {
     await sgMail.send(msg);
-    res
-      .status(200)
-      .json({
-        message: "Email Has Been Sent Successfully",
-        toastMessage:
-          "Thanks For Contacting Me,i'll Get Back To You As Fast As I Can",
-      });
+    res.status(200).json({
+      message: "Email Has Been Sent Successfully",
+      toastMessage:
+        "Thanks For Contacting Me,i'll Get Back To You As Fast As I Can",
+    });
   } catch (error) {
-    res.status(400).json({message:'Email Cannot Be Sent',toastMessage:"Email Has Not Been Sent,Try Again Later Please"})
+    res
+      .status(400)
+      .json({
+        message: "Email Cannot Be Sent",
+        toastMessage: "Email Has Not Been Sent,Try Again Later Please",
+      });
   }
 }

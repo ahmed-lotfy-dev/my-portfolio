@@ -1,5 +1,4 @@
 import bcrypt from "bcryptjs";
-import connectToDb from "@/utils/db.";
 import type { NextApiRequest, NextApiResponse } from "next";
 
 type Data = {
@@ -12,7 +11,6 @@ export default async function signup(
 ) {
   try {
     console.log(req.body);
-    const db = await connectToDb();
     let { email, password, confirmPassword } = req.body;
     console.log(password);
     console.log(confirmPassword);

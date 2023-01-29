@@ -1,6 +1,5 @@
 import bcrypt from "bcryptjs";
 import type { NextApiRequest, NextApiResponse } from "next";
-import connectToDb from "@/utils/db.";
 
 type Data = {
   message: string;
