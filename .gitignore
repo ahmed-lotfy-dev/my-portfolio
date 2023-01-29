@@ -31,10 +31,15 @@ yarn-error.log*
 .env
 .env.development.local
 .env.production.local
-
+sendgrid.env
 # vercel
 .vercel
 
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+sendgrid.env
+sendgrid.env
+sendgrid.env
+sendgrid.env
+sendgrid.env

@@ -16,7 +16,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${josefinsans.variable} ${josefinslab.variable} h-screen`}
+      className={`${josefinsans.variable} ${josefinslab.variable} min-h-[100dvh]`}
     >
       {/*
         <head /> will contain the components returned by the nearest parent

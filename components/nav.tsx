@@ -18,7 +18,7 @@ function Nav() {
     <header className=" bg-gray-700 border-b-2 border-gray-900 dark:bg-slate-700 relative sm:static text-gray-300 ">
       <div className="flex container mx-auto px-5 items-center justify-between max-w-screen-xl">
         <Link href={"/"}>
-          <h1 className="text-3xl font-bold py-7 font-main cursor-pointer">
+          <h1 className="text-3xl font-bold ml-3 py-7 font-main cursor-pointer">
             &#123;AL&#125;
           </h1>
         </Link>
@@ -80,7 +80,7 @@ function Nav() {
         </nav>
 
         <IoMenu
-          className="text-3xl font-bold sm:hidden mx-9 cursor-pointer z-50"
+          className="text-3xl font-bold sm:hidden mr-3 cursor-pointer z-50 items-end"
           onClick={toggle}
           onBlur={close}
         />

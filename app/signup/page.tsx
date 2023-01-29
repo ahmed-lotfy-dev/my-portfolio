@@ -15,7 +15,7 @@ function SignUp() {
     const confirmPassword = e.target.confirmPassword.value;
     console.log(email, password);
     // User.parse({ email, password, confirmPassword });
-    fetch("/api/signup", {
+    fetch("/api/signin", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ email, password }),

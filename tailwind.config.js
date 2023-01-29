@@ -945,8 +945,12 @@ module.exports = {
       contents: 'contents',
       transform: 'transform',
     },
+    transformOrigin: {
+      0: "0%",
+    },
     zIndex: {
       auto: 'auto',
+      "-1": "-1",
       0: '0',
       10: '10',
       20: '20',
