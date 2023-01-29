@@ -1,6 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import connectToDb from "@/utils/db.";
-import nodemailer from "nodemailer";
 import sgMail from "@sendgrid/mail";
 sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
