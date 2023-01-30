@@ -4,14 +4,16 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { IoLogoLinkedin, IoLogoGithub, IoLogoFacebook } from "react-icons/io5";
+import z from "zod";
 
-type FormValues = {
-  name: string;
-  email: string;
-  subject: string;
-  message: string;
-};
-const notify = (message: string) => toast(message);
+const formData = z.object({
+  name: z.string().trim(),
+  email: z.string().email(),
+  subject: z.string().min(5),
+  message: z.string().min(5),
+});
+
+type FormValues = z.infer<typeof formData>;
 
 const Contact = () => {
   const {
@@ -19,11 +21,11 @@ const Contact = () => {
     handleSubmit,
     formState: { errors },
   } = useForm<FormValues>();
+
   const onSubmit: SubmitHandler<FormValues> = (data, e) => {
     e?.preventDefault();
     console.log("submitted");
 
-    notify("Thank You For Contacting Me");
     fetch("/api/contact", {
       method: "POST",
       headers: {
@@ -36,7 +38,9 @@ const Contact = () => {
       })
       .then((data) => {
         console.log(data);
-        // notify(data.toastMessage);
+        data.error
+          ? toast.error(data.error[0].path + data.error[0].message.slice(6))
+          : toast.success(data.toastMessage);
       });
     console.log(data);
   };
@@ -97,6 +101,9 @@ const Contact = () => {
                 maxLength: 80,
               })}
             />
+            <div className="text-md lightbold text-red-500">
+              {errors.name?.message && <p>{errors.name?.message}</p>}
+            </div>
             <input
               className="py-2 px-3 rounded-md placeholder:opacity-60 text-blue-900 border-[2px] border-blue-500 focus:border-blue-900 focus:border-[2px] outline-none placeholder:text-blue-700"
               type="text"
@@ -106,6 +113,9 @@ const Contact = () => {
                 pattern: /^\S+@\S+$/i,
               })}
             />
+            <div className="text-md lightbold text-red-500">
+              {errors.email?.message && <p>{errors.email?.message}</p>}
+            </div>
             <input
               className="py-2 px-3 rounded-md placeholder:opacity-60 text-blue-900 border-[2px] border-blue-500 focus:border-blue-900 focus:border-[2px] outline-none placeholder:text-blue-700"
               type="text"
@@ -115,6 +125,9 @@ const Contact = () => {
                 min: 5,
               })}
             />
+            <div className="text-md lightbold text-red-500">
+              {errors.subject?.message && <p>{errors.subject?.message}</p>}
+            </div>{" "}
             <textarea
               className="py-2 px-3 rounded-md h-[10em] placeholder:opacity-60 text-blue-900 border-[2px] border-blue-500 focus:border-blue-900 focus:border-[2px] outline-none placeholder:text-blue-700"
               placeholder="Your Message"
@@ -124,6 +137,9 @@ const Contact = () => {
                 min: 5,
               })}
             />
+            <div className="text-md lightbold text-red-500">
+              {errors.message?.message && <p>{errors.message?.message}</p>}
+            </div>
             <input
               className="mx-auto w-[10rem] py-2 sm:self-start bg-blue-700 rounded-md hover:bg-blue-900 text-blue-100 hover:text-blue-100 font-bold transition-all hover:rounded-lg border-[3px] border-solid border-gray-800 sm:text-md"
               type="submit"

@@ -1,0 +1,9 @@
+"Hello, I'm Ahmed Lotfy, a customer support,hardware maintenance specialist shifting my carrer into full-stack software engineer. I have a passion for technology and a strong desire to continuously learn and grow in my field. I've spent several years providing exceptional customer support, and now I'm ready to take my skills to the next level by pursuing a career as a full-stack software engineer.
+
+With experience in hardware PC maintenance , I bring a unique perspective to software development. My strong problem-solving skills, technical knowledge, and commitment to customer satisfaction make me an ideal candidate for a software engineering role.
+
+I am currently working on building my skills in full-stack web development, and I am eager to apply my knowledge to real-world projects. I am proficient in HTML, CSS, JavaScript, React, Nextjs, Mongodb, NodeJs, ExpressJS. I am also passionate about finding creative solutions to complex problems and delivering high-quality, user-friendly products.
+
+If you are looking for a full-stack software engineer with a background in customer support and a passion for technology, I would love the opportunity to connect with you. Please feel free to reach out to me via LinkedIn or check out my projects on GitHub. I am excited about the future and look forward to what opportunities lie ahead."
+
+
