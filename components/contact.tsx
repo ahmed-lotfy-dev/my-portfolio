@@ -22,7 +22,7 @@ const Contact = () => {
     formState: { errors },
   } = useForm<FormValues>();
 
-  const onSubmit: SubmitHandler<FormValues> = (data, e) => {
+  const onSubmit: SubmitHandler<FormValues> = async (data, e) => {
     e?.preventDefault();
     console.log("submitted");
 
