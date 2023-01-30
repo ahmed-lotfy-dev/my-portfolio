@@ -17,13 +17,13 @@ function Skills() {
     <section className="flex mx-auto justify-center items-center p-5 bg-gray-400 ">
       <div className="flex flex-col justify-center items-center sm:items-start gap-5">
         <h2 className="pt-5 pb-2 text-3xl font-bold">Skills</h2>
-        <div className="flex  container mx-auto justify-around max-w-screen-xl sm:space-x-9 sm:pb-7 ">
+        <div className="flex flex-wrap container mx-auto justify-around max-w-screen-xl sm:space-x-9 sm:pb-7 ">
           <Image
             src={html}
             alt="html"
             width={90}
             height={90}
-            className="bg-transparent opacity-[0.5] hover:opacity-[0.7] "
+            className="bg-transparent opacity-[0.5] hover:opacity-[0.7] bg-white  "
           />
           <Image
             src={css}

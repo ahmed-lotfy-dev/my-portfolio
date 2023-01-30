@@ -1,8 +1,9 @@
 "use client";
-import React from "react";
+import Link from "next/link";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { IoLogoLinkedin, IoLogoGithub, IoLogoFacebook } from "react-icons/io5";
 
 type FormValues = {
   name: string;
@@ -41,21 +42,53 @@ const Contact = () => {
   };
 
   return (
-    <section className="bg-slate-300 ">
-      <div className="container mx-auto max-w-screen-xl grid grid-cols-2 grid-row-3 p-6">
-        <h1 className="font-bold text-3xl text-center col-span-full row-start-1 p-3">
-          Contact Section
-        </h1>
+    // outer container for bg
+    <section className=" ">
+      {/* // inner container */}
+      <div className="container mx-auto max-w-screen-xl sm:place-items-center grid grid-cols-6 grid-row-3 p-6">
+        {/* // section heading */}
+        <div className="col-start-1 col-end-7 row-start-1 row-end-2 sm:col-start-1 sm:col-end-7 justify-self-center sm:justify-self-start">
+          <h1 className="font-bold text-3xl">Contact Me</h1>
+        </div>
+        {/* // toaster for notifications */}
         <ToastContainer />
-        <div className="col-start-1 row-start-2 col-span-full w-full">
+        {/* //contact me links and number */}
+        <div className="h-full pt-16 col-start-1 col-end-7 sm:row-start-2 sm:row-end-3 sm:col-start-5 sm:col-end-4 flex md:col-start-6 w-full  justify-center sm:justify-start md:justify-center">
+          <div className="flex flex-col text-center gap-4 text-xl font-lightbold text-blue-800 items-start">
+            <span className="mx-auto sm:mx-0">+201016037479</span>
+            <span className="mb-4">contact@ahmedlotfy.me</span>
+            <div className="flex flex-row space-x-10 justify-between">
+              <Link
+                href={"https://www.linkedin.com/in/ahmed-lotfy-dev/"}
+                target={"_blank"}
+              >
+                <IoLogoLinkedin className="w-10 h-10 fill-[#557aca] hover:fill-[#3b5998] hover:scale-110 transition-all duration-300" />
+              </Link>
+              <Link
+                href={"https://github.com/ahmed-lotfy-dev"}
+                target={"_blank"}
+              >
+                <IoLogoGithub className="w-10 h-10 fill-gray-500 hover:fill-black hover:scale-110 transition-all duration-300" />
+              </Link>
+              <Link
+                href={"https://www.facebook.com/ahmed.lotfy00"}
+                target={"_blank"}
+              >
+                <IoLogoFacebook className="w-10 h-10 fill-[#557aca] hover:fill-[#3b5998] hover:scale-110 transition-all duration-300" />
+              </Link>
+            </div>
+          </div>
+        </div>
+        {/* //contact form container */}
+        <div className="col-start-1 col-end-7 sm:col-start-1 sm:col-end-4 sm:row-start-2 sm:row-end-3 py-10 w-full  place-self-start">
           <form
-            className="flex flex-col w-[50%] mx-auto space-y-5"
+            className="flex flex-col space-y-5 mt-6 w-[75%] sm:w-[85%] mx-auto sm:mx-0 "
             action="/api/contact"
             method="POST"
             onSubmit={handleSubmit(onSubmit)}
           >
             <input
-              className=""
+              className="py-2 px-3 rounded-md placeholder:opacity-60 text-blue-900 border-[2px] border-blue-500 focus:border-blue-900 focus:border-[2px] outline-none placeholder:text-blue-700"
               type="text"
               placeholder="Name"
               {...register("name", {
@@ -65,6 +98,7 @@ const Contact = () => {
               })}
             />
             <input
+              className="py-2 px-3 rounded-md placeholder:opacity-60 text-blue-900 border-[2px] border-blue-500 focus:border-blue-900 focus:border-[2px] outline-none placeholder:text-blue-700"
               type="text"
               placeholder="Email"
               {...register("email", {
@@ -73,6 +107,7 @@ const Contact = () => {
               })}
             />
             <input
+              className="py-2 px-3 rounded-md placeholder:opacity-60 text-blue-900 border-[2px] border-blue-500 focus:border-blue-900 focus:border-[2px] outline-none placeholder:text-blue-700"
               type="text"
               placeholder="Subject"
               {...register("subject", {
@@ -81,18 +116,19 @@ const Contact = () => {
               })}
             />
             <textarea
+              className="py-2 px-3 rounded-md h-[10em] placeholder:opacity-60 text-blue-900 border-[2px] border-blue-500 focus:border-blue-900 focus:border-[2px] outline-none placeholder:text-blue-700"
+              placeholder="Your Message"
               {...register("message", {
                 required:
                   "message is missing pleaser enter a valid message (min:5 char)",
                 min: 5,
               })}
             />
-            <input className="cursor-pointer" type="submit" />
+            <input
+              className="mx-auto w-[10rem] py-2 sm:self-start bg-blue-700 rounded-md hover:bg-blue-900 text-blue-100 hover:text-blue-100 font-bold transition-all hover:rounded-lg border-[3px] border-solid border-gray-800 sm:text-md"
+              type="submit"
+            />
           </form>
-        </div>
-        <div className="col-start-1 col-end-3 col-span-full flex">
-          Hello World
-          {}
         </div>
       </div>
     </section>

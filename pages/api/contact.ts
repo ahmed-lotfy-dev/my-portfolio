@@ -29,7 +29,7 @@ export default async function Contact(
     And This Is His Message :${message}</strong>`,
   };
   try {
-    await sgMail.send(msg);
+    await sgMail.sendMultiple(msg);
     res.status(200).json({
       message: "Email Has Been Sent Successfully",
       toastMessage:

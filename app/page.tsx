@@ -10,9 +10,9 @@ const Homepage = () => {
     <main className="font-main">
       <Hero />
       <About />
-      <Contact />
       <Projects />
       <Certificates />
+      <Contact />
       <Skills />
     </main>
   );
