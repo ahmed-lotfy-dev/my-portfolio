@@ -19,5 +19,11 @@ COPY --from=builder /my-portofolio/.next ./.next
 COPY --from=builder /my-portofolio/node_modules ./node_modules
 COPY --from=builder /my-portofolio/package.json ./package.json
 
+RUN --mount=type=secret,id=MONGO_URI \
+  --mount=type=secret,id=SENDGRID_API_KEY \
+  --mount=type=secret,id=BCRYPT_SALT \
+   export MONGO_URI=$(cat /run/secrets/MONGO_URI) && \
+   export SENDGRID_API_KEY=$(cat /run/secrets/SENDGRID_API_KEY) && \
+   export BCRYPT_SALT=$(cat /run/secrets/BCRYPT_SALT) && \
 EXPOSE 3000
 CMD ["yarn", "start"]
