@@ -39,7 +39,12 @@ jobs:
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_PASSWORD }}
-
+      - name: Create .env file
+        uses: ozaytsev86/create-env-file@v1
+        with:
+          ENV_SENDGRID_API_KEY: ${{secrets.SENDGRID_API_KEY}}
+          ENV_MONGO_URI: ${{secrets.MONGO_URI}}
+          ENV_BCRYPT_SALT: ${{secrets.BCRYPT_SALT}}
       - name: Build and push
         uses: docker/build-push-action@v3
         with:
@@ -47,9 +52,3 @@ jobs:
           platforms: linux/amd64,linux/arm64
           push: true
           tags: alotfy2019/my-portofolio
-          run: |
-            touch .env.local
-            echo SENDGRID_API_KEY= ${{secrets.SENDGRID_API_KEY}} .env.local
-            echo MONGO_URI= ${{secrets.MONGO_URI}} .env.local
-            echo BCRYPT_SALT= ${{secrets.BCRYPT_SALT}} .env.local
-            yarn build
