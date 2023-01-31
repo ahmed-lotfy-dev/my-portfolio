@@ -38,16 +38,14 @@ RUN yarn install --immutable
 # Rebuild the source code only when needed
 FROM node:alpine AS builder
 # add environment variables to client code
-ARG NEXT_PUBLIC_MONGO_URI
-ARG NEXT_PUBLIC_BCRYPT_SALT
-ARG NEXT_PUBLIC_SENDGRID_API_KEY
+ARG MONGO_URI
+ARG BCRYPT_SALT
+ARG SENDGRID_API_KEY
 
-RUN --mount=type=secret,id=SENDGRID_API_KEY \
-    --mount=type=secret,id=MONGO_URI \
-    --mount=type=secret,id=BCRYPT_SALT \
-    export SENDGRID_API_KEY = \ 
-    export  MONGO_URI  \
-    export BCRYPT_SALT  \
+RUN export SENDGRID_API_KEY=$(cat /run/secrets/SENDGRID_API_KEY) \
+    && export MONGO_URI=$(cat /run/secrets/MONGO_URI) \
+    && export BCRYPT_SALT=$(cat /run/secrets/BCRYPT_SALT)
+
 
 WORKDIR /app
 COPY . .
