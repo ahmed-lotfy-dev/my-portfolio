@@ -18,9 +18,18 @@ jobs:
           platforms: linux/amd64,linux/arm64
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_PASSWORD }}
-          context: .
-          cache-from: type=gha
-          cache-to: type=gha,mode=max
+      - name: Create .env file
+        run: |
+          echo "SENDGRID_API_KEY=${{ secrets.SENDGRID_API_KEY }}" > .env
+          echo "MONGO_URI=${{ secrets.MONGO_URI }}" >> .env
+          echo "BCRYPT_SALT=${{ secrets.BCRYPT_SALT }}" >> .env
+      - name: Cache node_modules
+        uses: actions/cache@v2
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
           repository: alotfy2019/my-portofolio
 
     # #or
