@@ -24,5 +24,11 @@ jobs:
           context: .
           cache-from: type=gha
           cache-to: type=gha,mode=max
+      - uses: actions/cache@v2
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
       - run: yarn install --frozen-lockfile # optional, --immutable
       - run: yarn build
