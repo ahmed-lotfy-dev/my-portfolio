@@ -38,6 +38,10 @@ jobs:
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_PASSWORD }}
+          SENDGRID_API_KEY: ${{secrets.SENDGRID_API_KEY}}
+          MONGO_URI: ${{MONGO_URI}}
+          BCRYPT_SALT: ${{BCRYPT_SALT}}
+
       - name: Build and push
         uses: docker/build-push-action@v3
         with:
