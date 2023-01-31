@@ -1,0 +1,24 @@
+name: Release To Docker
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+
+jobs:
+  buildDocker:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Build image and push to docker
+        uses: whoan/docker-build-with-cache-action@v5
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_PASSWORD }}
+          registry: docker.pkg.github.com
+          platforms: linux/amd64,linux/arm64
+
+    #or
+    #registry: ghcr.io
+          image_name: my-portofolio
+          build_extra_args: '{"--build-arg": ["          SENDGRID_API_KEY= ${{ secrets.SENDGRID_API_KEY }},MONGO_URI= ${{ secrets.MONGO_URI }},BCRYPT_SALT= ${{ secrets.BCRYPT_SALT }} ]}'
