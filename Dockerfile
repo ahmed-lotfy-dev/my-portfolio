@@ -60,9 +60,6 @@ WORKDIR /app
 RUN addgroup -g 1001 -S nodejs
 RUN adduser -S nextjs -u 1001
 
-RUN echo "export NEXT_PUBLIC_MONGO_URI=$NEXT_PUBLIC_MONGO_URI" >> /.env
-RUN echo "export NEXT_PUBLIC_BCRYPT_SALT=$NEXT_PUBLIC_BCRYPT_SALT" >> /.env
-RUN echo "export NEXT_PUBLIC_SENDGRID_API_KEY=$NEXT_PUBLIC_SENDGRID_API_KEY" >> /.env
 # You only need to copy next.config.js if you are NOT using the default configuration. 
 # Copy all necessary files used by nex.config as well otherwise the build will fail.
 COPY --from=builder /app/next.config.js ./next.config.js
