@@ -23,13 +23,17 @@ jobs:
           echo "SENDGRID_API_KEY=${{ secrets.SENDGRID_API_KEY }}" > .env
           echo "MONGO_URI=${{ secrets.MONGO_URI }}" >> .env
           echo "BCRYPT_SALT=${{ secrets.BCRYPT_SALT }}" >> .env
-      - name: Cache node_modules
-        uses: actions/cache@v2
+      - name: Get yarn cache directory path
+        id: yarn-cache-dir-path
+        run: echo "dir=$(yarn config get cacheFolder)" >> $GITHUB_OUTPUT
+
+      - uses: actions/cache@v3
+        id: yarn-cache # use this to check for `cache-hit` (`steps.yarn-cache.outputs.cache-hit != 'true'`)
         with:
-          path: node_modules
-          key: ${{ runner.os }}-node-${{ hashFiles('yarn.lock') }}
+          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
           restore-keys: |
-            ${{ runner.os }}-node-
+            ${{ runner.os }}-yarn-
           repository: alotfy2019/my-portofolio
 
     # #or
