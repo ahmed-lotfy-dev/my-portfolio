@@ -48,8 +48,8 @@ jobs:
           push: true
           tags: alotfy2019/my-portofolio
           run: |
-            touch .env.development
-            echo SENDGRID_API_KEY= ${{secrets.SENDGRID_API_KEY}} .env.development
-            echo MONGO_URI= ${{secrets.MONGO_URI}} .env.development
-            echo BCRYPT_SALT= ${{secrets.BCRYPT_SALT}} .env.development
+            touch .env.local
+            echo SENDGRID_API_KEY= ${{secrets.SENDGRID_API_KEY}} .env.local
+            echo MONGO_URI= ${{secrets.MONGO_URI}} .env.local
+            echo BCRYPT_SALT= ${{secrets.BCRYPT_SALT}} .env.local
             yarn build
