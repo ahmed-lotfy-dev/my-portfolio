@@ -20,6 +20,9 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
-          cache: 'yarn'
+          cache: "yarn"
+          context: .
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
       - run: yarn install --frozen-lockfile # optional, --immutable
       - run: yarn build
