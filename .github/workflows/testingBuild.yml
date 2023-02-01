@@ -35,4 +35,4 @@
 #             ${{ runner.os }}-build-
 #             ${{ runner.os }}-
 #       - run: yarn install --frozen-lockfile # optional, --immutable
-#       - run: yarn build
+        - run: yarn build
