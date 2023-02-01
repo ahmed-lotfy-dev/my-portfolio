@@ -8,6 +8,8 @@ FROM node:lts as builder
 WORKDIR /app
 COPY . .
 COPY --from=dependencies /app/node_modules ./node_modules
+RUN npm i -g pnpm
+
 RUN pnpm build
 
 FROM node:lts as runner
