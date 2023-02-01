@@ -39,14 +39,6 @@ RUN --mount=type=cache,target=~/.npm NPM_CACHE_FOLDER=~/.npm ci="" npm install
 FROM node:alpine AS builder
 # add environment variables to client code
 
-RUN --mount=type=secret,id=SENDGRID_API_KEY \
-  --mount=type=secret,id=MONGO_URI \
-  --mount=type=secret,id=BCRYPT_SALT \
-  export SENDGRID_API_KEY=$(cat /run/secrets/SENDGRID_API_KEY) && \
-  export MONGO_URI=$(cat /run/secrets/MONGO_URI) && \
-  export BCRYPT_SALT=$(cat /run/secrets/BCRYPT_SALT) && \
-  touch.env
-
 WORKDIR /app
 COPY . .
 COPY --from=deps /app/node_modules ./node_modules
