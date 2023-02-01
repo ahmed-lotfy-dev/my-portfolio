@@ -27,8 +27,6 @@ RUN NODE_ENV=${NODE_ENV} yarn build
 # Production image, copy all the files and run next
 FROM node:19-alpine AS runner
 WORKDIR /app
-RUN addgroup -g 1001 -S nodejs
-RUN adduser -S nextjs -u 1001
 
 # You only need to copy next.config.js if you are NOT using the default configuration. 
 # Copy all necessary files used by nex.config as well otherwise the build will fail.
