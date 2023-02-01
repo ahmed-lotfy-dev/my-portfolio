@@ -13,7 +13,7 @@ COPY package.json yarn.lock* package-lock.json* pnpm-lock.yaml* ./
 #   else echo "Lockfile not found." && exit 1; \
 #   fi
 
-COPY --from=deps /app/node_modules ./node_modules
+COPY /app/node_modules ./node_modules
 COPY . .
 
 ENV NEXT_TELEMETRY_DISABLED 1
