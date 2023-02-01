@@ -10,6 +10,16 @@ jobs:
   docker:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v3
+      - uses: pnpm/action-setup@v2
+        with:
+          version: 6.32.9
+      - uses: actions/setup-node@v3
+        with:
+          node-version: "19"
+          cache: "pnpm"
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm build
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v2
       - name: Set up Docker Buildx
@@ -25,15 +35,14 @@ jobs:
           push: true
           tags: alotfy2019/my-portofolio:latest
           platforms: linux/amd64,linux/arm64
-
-          secrets: |
-            "SENDGRID_API_KEY=${{ secrets.SENDGRID_API_KEY }}"
-            "MONGO_URI=${{ secrets.MONGO_URI }}"
-            "BCRYPT_SALT=${{ secrets.BCRYPT_SALT }}"
           cache: "pnpm"
           cache-from: type=gha
           cache-to: type=gha,mode=max
           repository: alotfy2019/my-portofolio
+          secrets: |
+            "SENDGRID_API_KEY=${{ secrets.SENDGRID_API_KEY }}"
+            "MONGO_URI=${{ secrets.MONGO_URI }}"
+            "BCRYPT_SALT=${{ secrets.BCRYPT_SALT }}"
 
     # #or
     # #registry: ghcr.io
