@@ -1,5 +1,5 @@
 # Install dependencies only when needed
-FROM --platform=arm64 node:alpine AS deps
+FROM arm64v8 AS deps
 # Check https://github.com/nodejs/docker-node/tree/b4117f9333da4138b03a546ec926ef50a31506c3#nodealpine to understand why libc6-compat might be needed.
 RUN apk update && apk add --no-cache libc6-compat && apk add git
 WORKDIR /app
@@ -8,7 +8,7 @@ RUN yarn install --immutable
 
 
 # Rebuild the source code only when needed
-FROM --platform=arm64 node:alpine AS builder
+FROM arm64v8 AS builder
 # add environment variables to client code
 # ARG NEXT_PUBLIC_BACKEND_URL
 # ARG NEXT_PUBLIC_META_API_KEY
@@ -25,7 +25,7 @@ RUN echo ${NODE_ENV}
 RUN NODE_ENV=${NODE_ENV} yarn build
 
 # Production image, copy all the files and run next
-FROM --platform=arm64 node:alpine AS runner
+FROM arm64v8 AS runner
 WORKDIR /app
 RUN addgroup -g 1001 -S nodejs
 RUN adduser -S nextjs -u 1001
