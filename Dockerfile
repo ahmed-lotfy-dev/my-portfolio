@@ -32,7 +32,7 @@ FROM node:alpine AS deps
 RUN apk update && apk add --no-cache libc6-compat && apk add git
 WORKDIR /app
 COPY package.json yarn.lock ./
-RUN yarn install --immutable
+RUN --mount=type=cache,target=/root/.yarn YARN_CACHE_FOLDER=/root/.yarn yarn install
 
 
 # Rebuild the source code only when needed
