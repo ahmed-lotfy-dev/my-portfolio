@@ -31,8 +31,8 @@ FROM node:alpine AS deps
 # Check https://github.com/nodejs/docker-node/tree/b4117f9333da4138b03a546ec926ef50a31506c3#nodealpine to understand why libc6-compat might be needed.
 RUN apk update && apk add --no-cache libc6-compat && apk add git
 WORKDIR /app
-COPY package.json yarn.lock ./
-RUN --mount=type=cache,target=~/.yarn YARN_CACHE_FOLDER=~/.yarn yarn install
+COPY package.json ./
+RUN --mount=type=cache,target=~/.npm NPM_CACHE_FOLDER=~/.npm ci="" npm install
 
 
 # Rebuild the source code only when needed
