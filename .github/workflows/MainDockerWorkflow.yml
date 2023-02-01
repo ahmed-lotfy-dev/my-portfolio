@@ -14,11 +14,11 @@ jobs:
     steps:
       - name: Checkout master
         uses: actions/checkout@v3
+        with:
+          platforms: linux/amd64,linux/arm64
       - name: Log in to docker hub
         run: docker login -u ${{ secrets.DOCKERHUB_USERNAME }} -p ${{ secrets.DOCKERHUB_PASSWORD }}
       - name: Build from dockerfile
-        with:
-          platforms: linux/amd64,linux/arm64
         run: |
           docker build \
             --cache-from alotfy2019/my-portofolio:latest \
