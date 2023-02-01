@@ -31,6 +31,7 @@ jobs:
           password: ${{ secrets.DOCKERHUB_PASSWORD }}
       - name: Create .env file
         run: |
+          touch .env
           echo "SENDGRID_API_KEY=${{ secrets.SENDGRID_API_KEY }}" > .env
           echo "MONGO_URI=${{ secrets.MONGO_URI }}" >> .env
           echo "BCRYPT_SALT=${{ secrets.BCRYPT_SALT }}" >> .env
