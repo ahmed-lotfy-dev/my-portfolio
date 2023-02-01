@@ -24,18 +24,9 @@ jobs:
             "SENDGRID_API_KEY=${{ secrets.SENDGRID_API_KEY }}"
             "MONGO_URI=${{ secrets.MONGO_URI }}"
             "BCRYPT_SALT=${{ secrets.BCRYPT_SALT }}"
+          cache: "pnpm"
           cache-from: type=gha
           cache-to: type=gha,mode=max
-      - name: Cache pnpm modules
-        uses: actions/cache@v3
-        env:
-          cache-name: cache-pnpm-modules
-        with:
-          # pnpm cache files are stored in `~/.pnpm-store` on Linux/macOS
-          path: ~/.pnpm-store
-          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ matrix.node-version }}
-          restore-keys: |
-            {{ runner.os }}-build-${{ env.cache-name }}-${{ matrix.node-version }}
           repository: alotfy2019/my-portofolio
 
     # #or
