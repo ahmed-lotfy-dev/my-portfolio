@@ -44,9 +44,7 @@ FROM node:19-alpine AS builder
 WORKDIR /app
 COPY . .
 COPY --from=deps /app/node_modules ./node_modules
-ARG NODE_ENV=production
-RUN echo ${NODE_ENV}
-RUN NODE_ENV=${NODE_ENV} pnpm run build
+RUN pnpm run build
 
 # Production image, copy all the files and run next
 FROM node:19-alpine AS runner
