@@ -52,7 +52,7 @@ COPY . .
 COPY --from=deps /app/node_modules ./node_modules
 ARG NODE_ENV=production
 RUN echo ${NODE_ENV}
-RUN NODE_ENV=${NODE_ENV} yarn build
+RUN NODE_ENV=${NODE_ENV} npm build
 
 # Production image, copy all the files and run next
 FROM node:alpine AS runner
@@ -78,4 +78,4 @@ EXPOSE 3000
 # Learn more here: https://nextjs.org/telemetry
 # Uncomment the following line in case you want to disable telemetry.
 ENV NEXT_TELEMETRY_DISABLED 1
-CMD ["yarn", "start"]
+CMD ["npm", "start"]
