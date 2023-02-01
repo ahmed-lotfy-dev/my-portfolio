@@ -19,7 +19,7 @@ jobs:
       - name: Build from dockerfile
         run: |
           docker build \
-            --platform=linux/arm64 \
+            --platform=linux/amd64,linux/arm64 \
             --cache-from alotfy2019/my-portofolio:latest \
             --tag alotfy2019/my-portofolio:latest \
             --build-arg BUILDKIT_INLINE_CACHE=1 \
