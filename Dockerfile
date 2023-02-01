@@ -29,27 +29,24 @@
 # Install dependencies only when needed
 FROM node:19-alpine AS deps
 # Check https://github.com/nodejs/docker-node/tree/b4117f9333da4138b03a546ec926ef50a31506c3#nodealpine to understand why libc6-compat might be needed.
-RUN apk update && apk add --no-cache libc6-compat && apk add git
+# RUN apk update && apk add --no-cache libc6-compat && apk add git
 WORKDIR /app
 COPY package.json yarn.lock* package-lock.json* pnpm-lock.yaml* ./
 RUN \
     if [ -f yarn.lock ]; then yarn --frozen-lockfile; \
     elif [ -f package-lock.json ]; then npm ci; \
-    elif [ -f pnpm-lock.yaml ]; then yarn global add pnpm && pnpm i; \
+    elif [ -f pnpm-lock.yaml ]; then npm i -g pnpm && pnpm i; \
     else echo "Lockfile not found." && exit 1; \
     fi
 
-
-# Rebuild the source code only when needed
 FROM node:19-alpine AS builder
-# add environment variables to client code
 
 WORKDIR /app
 COPY . .
 COPY --from=deps /app/node_modules ./node_modules
 ARG NODE_ENV=production
 RUN echo ${NODE_ENV}
-RUN NODE_ENV=${NODE_ENV} pnpm build
+RUN NODE_ENV=${NODE_ENV} pnpm run build
 
 # Production image, copy all the files and run next
 FROM node:19-alpine AS runner
