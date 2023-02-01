@@ -45,7 +45,13 @@ ARG SENDGRID_API_KEY
 RUN export SENDGRID_API_KEY=$(cat /run/secrets/SENDGRID_API_KEY) \
     && export MONGO_URI=$(cat /run/secrets/MONGO_URI) \
     && export BCRYPT_SALT=$(cat /run/secrets/BCRYPT_SALT)
-
+RUN --mount=type=secret,id=SENDGRID_API_KEY \
+  --mount=type=secret,id=MONGO_URI \
+  --mount=type=secret,id=BCRYPT_SALT \
+  export SENDGRID_API_KEY=$(cat /run/secrets/SENDGRID_API_KEY) && \
+  export MONGO_URI=$(cat /run/secrets/MONGO_URI) && \
+  export BCRYPT_SALT=$(cat /run/secrets/BCRYPT_SALT) && \
+  touch.env
 
 WORKDIR /app
 COPY . .
