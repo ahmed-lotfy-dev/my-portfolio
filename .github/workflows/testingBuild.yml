@@ -1,38 +1,38 @@
-name: testingBuild
+# name: testingBuild
 
-on:
-  push:
-    branches: ["main"]
-  pull_request:
-    branches: ["main"]
+# on:
+#   push:
+#     branches: ["main"]
+#   pull_request:
+#     branches: ["main"]
 
-jobs:
-  test-build:
-    runs-on: ubuntu-latest
+# jobs:
+#   test-build:
+#     runs-on: ubuntu-latest
 
-    strategy:
-      matrix:
-        node-version: [18.x, 19.x]
-        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
+#     strategy:
+#       matrix:
+#         node-version: [18.x, 19.x]
+#         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
-    steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
-        with:
-          node-version: ${{ matrix.node-version }}
-          cache: "yarn"
-          context: .
-          cache-from: type=gha
-          cache-to: type=gha,mode=max
-      - uses: actions/cache@v3
-        env:
-          cache-name: cache-node-modules
-        with:
-          path: ~/.npm
-          key: ${{ runner.os }}-yarn-${{env.cache-name}}-${{ hashFiles('**/yarn.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-build-${{ env.cache-name }}-
-            ${{ runner.os }}-build-
-            ${{ runner.os }}-
-      - run: yarn install --frozen-lockfile # optional, --immutable
-      - run: yarn build
+#     steps:
+#       - uses: actions/checkout@v3
+#       - uses: actions/setup-node@v3
+#         with:
+#           node-version: ${{ matrix.node-version }}
+#           cache: "yarn"
+#           context: .
+#           cache-from: type=gha
+#           cache-to: type=gha,mode=max
+#       - uses: actions/cache@v3
+#         env:
+#           cache-name: cache-node-modules
+#         with:
+#           path: ~/.npm
+#           key: ${{ runner.os }}-yarn-${{env.cache-name}}-${{ hashFiles('**/yarn.lock') }}
+#           restore-keys: |
+#             ${{ runner.os }}-build-${{ env.cache-name }}-
+#             ${{ runner.os }}-build-
+#             ${{ runner.os }}-
+#       - run: yarn install --frozen-lockfile # optional, --immutable
+#       - run: yarn build

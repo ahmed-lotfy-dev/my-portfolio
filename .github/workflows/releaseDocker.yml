@@ -26,16 +26,16 @@ jobs:
             "BCRYPT_SALT=${{ secrets.BCRYPT_SALT }}"
           cache-from: type=gha
           cache-to: type=gha,mode=max
-      - uses: actions/cache@v3
+      - name: Cache pnpm modules
+        uses: actions/cache@v3
         env:
-          cache-name: cache-node-modules
+          cache-name: cache-pnpm-modules
         with:
-          path: ~/.yarn
-          key: ${{ runner.os }}-yarn-${{env.cache-name}}-${{ hashFiles('**/yarn.lock') }}
+          # pnpm cache files are stored in `~/.pnpm-store` on Linux/macOS
+          path: ~/.pnpm-store
+          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ matrix.node-version }}
           restore-keys: |
-            ${{ runner.os }}-build-${{ env.cache-name }}-
-            ${{ runner.os }}-build-
-            ${{ runner.os }}-
+            {{ runner.os }}-build-${{ env.cache-name }}-${{ matrix.node-version }}
           repository: alotfy2019/my-portofolio
 
     # #or
