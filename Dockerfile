@@ -32,7 +32,7 @@ FROM node:alpine AS deps
 RUN apk update && apk add --no-cache libc6-compat && apk add git
 WORKDIR /app
 COPY package.json ./
-RUN --mount=type=cache,target=~/.npm NPM_CACHE_FOLDER=~/.npm ci="" npm install
+RUN npm ci
 
 
 # Rebuild the source code only when needed
