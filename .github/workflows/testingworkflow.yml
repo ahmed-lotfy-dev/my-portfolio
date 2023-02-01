@@ -1,0 +1,26 @@
+name: Docker Build
+
+on: [push]
+
+env:
+  CACHE_IMAGE: mjhea0/docker-ci-cache
+  DOCKER_BUILDKIT: 1
+
+jobs:
+  build:
+    name: Build Docker Image
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout master
+        uses: actions/checkout@v3
+      - name: Log in to docker hub
+        run: docker login -u ${{ secrets.DOCKERHUB_USERNAME }} -p ${{ secrets.DOCKERHUB_PASSWORD }}
+      - name: Build from dockerfile
+        run: |
+          docker build \
+            --cache-from alotfy2019/my-portofolio:latest \
+            --tag alotfy2019/my-portofolio:latest \
+            --build-arg BUILDKIT_INLINE_CACHE=1 \
+            "."
+      - name: Push to docker hub
+        run: docker push alotfy2019/my-portofolio:latest
