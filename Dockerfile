@@ -1,6 +1,6 @@
 FROM node:lts as dependencies
 WORKDIR /app
-COPY package.json pnpm-lock.yaml ./
+COPY package.json ./
 RUN yarn install
 
 
