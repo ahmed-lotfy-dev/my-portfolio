@@ -1,7 +1,7 @@
 # Install dependencies only when needed
 FROM --platform=linux/arm64 node:alpine AS deps
 # Check https://github.com/nodejs/docker-node/tree/b4117f9333da4138b03a546ec926ef50a31506c3#nodealpine to understand why libc6-compat might be needed.
-RUN apk update && apk add --no-cache libc6-compat && apk add git
+RUN apk update && apk add --no-cache libc6-compat && apk add git nano 
 WORKDIR /app
 COPY package.json ./
 RUN yarn install --frozen-lockfile
@@ -10,12 +10,13 @@ RUN yarn install --frozen-lockfile
 # Rebuild the source code only when needed
 FROM --platform=linux/arm64 node:alpine AS builder
 # add environment variables to client code
-# ARG NEXT_PUBLIC_BACKEND_URL
-# ARG NEXT_PUBLIC_META_API_KEY
+ARG NEXT_PUBLIC_BACKEND_URL
+ARG NEXT_PUBLIC_META_API_KEY
 
+ENV MONGO_URI=$MONGO_URI
+ENV BCRYPT_SALT=$BCRYPT_SALT
+ENV SENDGRID_API_KEY=$SENDGRID_API_KEY
 
-# ENV NEXT_PUBLIC_BACKEND_URL=$NEXT_PUBLIC_BACKEND_URL
-# ENV NEXT_PUBLIC_META_API_KEY=$NEXT_PUBLIC_META_API_KEY
 
 WORKDIR /app
 COPY . .
