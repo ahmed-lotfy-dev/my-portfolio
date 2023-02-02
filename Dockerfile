@@ -4,7 +4,7 @@ FROM --platform=linux/arm64 node:alpine AS deps
 RUN apk update && apk add --no-cache libc6-compat && apk add git
 WORKDIR /app
 COPY package.json ./
-RUN yarn install --immutable
+RUN yarn install --frozen-lockfile
 
 
 # Rebuild the source code only when needed
@@ -20,9 +20,12 @@ FROM --platform=linux/arm64 node:alpine AS builder
 WORKDIR /app
 COPY . .
 COPY --from=deps /app/node_modules ./node_modules
-ARG NODE_ENV=production
-RUN echo ${NODE_ENV}
-RUN NODE_ENV=${NODE_ENV} yarn build
+
+# ARG NODE_ENV=production
+# RUN echo ${NODE_ENV}
+# RUN NODE_ENV=${NODE_ENV} yarn build
+
+RUN yarn build && yarn install --production --ignore-scripts --prefer-offline
 
 # Production image, copy all the files and run next
 FROM --platform=linux/arm64 node:alpine AS runner

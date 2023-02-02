@@ -4,9 +4,6 @@ on:
   push:
     branches:
       - 'main'
-env:
-  CACHE_IMAGE: mjhea0/docker-ci-cache
-  DOCKER_BUILDKIT: 1
 jobs:
   docker:
     runs-on: ubuntu-latest
