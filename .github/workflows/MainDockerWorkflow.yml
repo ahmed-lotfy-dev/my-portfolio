@@ -32,6 +32,10 @@ jobs:
       -
         name: Build and push
         uses: docker/build-push-action@v4
+        env:
+          MONGO_URI: ${{secrets.MONGO_URI}}
+          BCRYPT_SALT: ${{secrets.BCRYPT_SALT}}
+          SENDGRID_API_KEY: ${{secrets.SENDGRID_API_KEY}}
 
         with:
           platforms: linux/arm64

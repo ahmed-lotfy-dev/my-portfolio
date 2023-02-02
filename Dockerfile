@@ -26,7 +26,7 @@ COPY --from=deps /app/node_modules ./node_modules
 # RUN echo ${NODE_ENV}
 # RUN NODE_ENV=${NODE_ENV} yarn build
 
-RUN yarn build && yarn install --production --ignore-scripts --prefer-offline
+RUN yarn build 
 
 # Production image, copy all the files and run next
 FROM --platform=linux/arm64 node:alpine AS runner
