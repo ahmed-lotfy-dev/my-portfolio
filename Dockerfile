@@ -10,8 +10,9 @@ RUN yarn install --frozen-lockfile
 # Rebuild the source code only when needed
 FROM --platform=linux/arm64 node:alpine AS builder
 # add environment variables to client code
-ARG NEXT_PUBLIC_BACKEND_URL
-ARG NEXT_PUBLIC_META_API_KEY
+ARG MONGO_URI
+ARG BCRYPT_SALT
+ARG _META_API_KEY
 
 ENV MONGO_URI=$MONGO_URI
 ENV BCRYPT_SALT=$BCRYPT_SALT
