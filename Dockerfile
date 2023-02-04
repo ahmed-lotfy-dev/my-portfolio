@@ -18,22 +18,21 @@ ENV MONGO_URI=${MONGO_URI}
 ENV BCRYPT_SALT=${BCRYPT_SALT}
 ENV SENDGRID_API_KEY=${SENDGRID_API_KEY}
 
+WORKDIR /app
+
 RUN echo "MONGO_URI=$MONGO_URI\nBCRYPT_SALT=$BCRYPT_SALT\nSENDGRID_API_KEY=$SENDGRID_API_KEY" > /.env
 
-
-WORKDIR /app
 COPY . .
+
 COPY --from=deps /app/node_modules ./node_modules
 
-# ARG NODE_ENV=production
-# RUN echo ${NODE_ENV}
-# RUN NODE_ENV=${NODE_ENV} yarn build
+ARG NODE_ENV=production
+RUN echo ${NODE_ENV}
+RUN NODE_ENV=${NODE_ENV} yarn build
 
-RUN yarn build 
 
 # Production image, copy all the files and run next
 FROM --platform=linux/arm64 node:alpine AS runner
-COPY --from=builder /.env .
 WORKDIR /app
 RUN addgroup -g 1001 -S nodejs
 RUN adduser -S nextjs -u 1001
@@ -41,6 +40,7 @@ RUN adduser -S nextjs -u 1001
 # You only need to copy next.config.js if you are NOT using the default configuration. 
 # Copy all necessary files used by nex.config as well otherwise the build will fail.
 COPY --from=builder /app/next.config.js ./next.config.js
+COPY --from=builder /.env ./
 COPY --from=builder /app/public ./public
 COPY --from=builder --chown=nextjs:nodejs /app/.next ./.next
 COPY --from=builder /app/node_modules ./node_modules
