@@ -11,20 +11,14 @@ RUN yarn install --frozen-lockfile
 FROM --platform=linux/arm64 node:alpine AS builder
 # add environment variables to client code
 ARG MONGO_URI
-ENV MONGO_URI=${MONGO_URI}
-
 ARG BCRYPT_SALT
-ENV BCRYPT_SALT=${BCRYPT_SALT}
-
 ARG SENDGRID_API_KEY
+
+ENV MONGO_URI=${MONGO_URI}
+ENV BCRYPT_SALT=${BCRYPT_SALT}
 ENV SENDGRID_API_KEY=${SENDGRID_API_KEY}
-RUN touch .env
-RUN echo "MONGO_URI=$MONGO_URI \n\
-          "BCRYPT_SALT=$BCRYPT_SALT \n\
-          "SENDGRID_API_KEY=$SENDGRID_API_KEY \n\
-          MONGO_URI=$MONGO_URI" >> ./.env \n\
-          BCRYPT_SALT=$BCRYPT_SALT" >> ./.env \n\
-          SENDGRID_API_KEY=$SENDGRID_API_KEY" >> ./.env
+
+RUN echo "MONGO_URI=$MONGO_URI\nBCRYPT_SALT=$BCRYPT_SALT\nSENDGRID_API_KEY=$SENDGRID_API_KEY" > /.env
 
 
 WORKDIR /app
