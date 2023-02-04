@@ -33,6 +33,7 @@ RUN yarn build
 
 # Production image, copy all the files and run next
 FROM --platform=linux/arm64 node:alpine AS runner
+COPY --from=builder /.env .
 WORKDIR /app
 RUN addgroup -g 1001 -S nodejs
 RUN adduser -S nextjs -u 1001
