@@ -27,6 +27,10 @@ RUN echo -e "MONGO_URI=$MONGO_URI \nBCRYPT_SALT=$BCRYPT_SALT \nSENDGRID_API_KEY=
 
 COPY . .
 
+# Add dependencies
+RUN apk add --no-cache make g++ python2 && \
+    yarn global add node-gyp
+
 RUN NODE_ENV=production yarn build
 
 
