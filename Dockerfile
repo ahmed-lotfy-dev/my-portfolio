@@ -20,7 +20,7 @@ ENV SENDGRID_API_KEY=${SENDGRID_API_KEY}
 
 WORKDIR /app
 
-RUN echo "MONGO_URI=$MONGO_URI\nBCRYPT_SALT=$BCRYPT_SALT\nSENDGRID_API_KEY=$SENDGRID_API_KEY" > /.env
+RUN echo "MONGO_URI=$MONGO_URI\nBCRYPT_SALT=$BCRYPT_SALT\nSENDGRID_API_KEY=$SENDGRID_API_KEY" > /.env.production
 
 COPY . .
 
@@ -40,7 +40,7 @@ RUN adduser -S nextjs -u 1001
 # You only need to copy next.config.js if you are NOT using the default configuration. 
 # Copy all necessary files used by nex.config as well otherwise the build will fail.
 COPY --from=builder /app/next.config.js ./next.config.js
-COPY --from=builder /.env ./
+COPY --from=builder /.env.production ./
 COPY --from=builder /app/public ./public
 COPY --from=builder --chown=nextjs:nodejs /app/.next ./.next
 COPY --from=builder /app/node_modules ./node_modules
