@@ -27,10 +27,7 @@ RUN echo -e "MONGO_URI=$MONGO_URI \nBCRYPT_SALT=$BCRYPT_SALT \nSENDGRID_API_KEY=
 
 COPY . .
 
-
-ARG NODE_ENV=production
-RUN echo ${NODE_ENV}
-RUN NODE_ENV=${NODE_ENV} yarn build
+RUN NODE_ENV=production yarn build
 
 
 # Production image, copy all the files and run next
