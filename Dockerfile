@@ -9,6 +9,9 @@ RUN yarn install --frozen-lockfile
 
 # Rebuild the source code only when needed
 FROM --platform=linux/arm64 node:alpine AS builder
+
+COPY --from=deps /app/node_modules ./node_modules
+
 # add environment variables to client code
 ARG MONGO_URI
 ARG BCRYPT_SALT
@@ -24,7 +27,6 @@ RUN echo -e "MONGO_URI=$MONGO_URI \nBCRYPT_SALT=$BCRYPT_SALT \nSENDGRID_API_KEY=
 
 COPY . .
 
-COPY --from=deps /app/node_modules ./node_modules
 
 ARG NODE_ENV=production
 RUN echo ${NODE_ENV}
