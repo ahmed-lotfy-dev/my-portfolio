@@ -5,6 +5,18 @@ const nextConfig = {
   //   bcryptSalt: process.env.BCRYPT_SALT,
   //   sendGrid: process.env.SENDGRID_API_KEY,
   // },
+  // webpack(config) {
+  //   config.module.rules.push({
+  //     test: /\.svg$/i,
+  //     issuer: /\.[jt]sx?$/,
+  //     use: ['@svgr/webpack'],
+  //   })
+
+  //   return config
+  // },
+  api: {
+    bodyParser: false,
+  },
   experimental: {
     appDir: true,
     output: 'standalone',
@@ -14,5 +26,6 @@ const nextConfig = {
   },
   output: 'standalone',
 }
+
 
 module.exports = nextConfig
