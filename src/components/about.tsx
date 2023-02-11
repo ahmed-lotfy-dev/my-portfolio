@@ -12,8 +12,8 @@ const About = () => {
           {/* inside container grid for the text */}
           <div className="w-full md:w-5/6 sm:text-start text-md col-start-1 col-end-7 md:col-start-1 md:col-end-6 md:row-start-1 mt-12 leading-8 font-semibold mb-12">
             <h2 className="px-5 py-1 text-center md:text-start mt-6">
-              Hello, I'm Ahmed Lotfy, Full stack software developer coming from
-              PC maintenance background & shifting my carrer.
+              Hello, I&apos;m Ahmed Lotfy, Full stack software developer coming
+              from PC maintenance background & shifting my career.
             </h2>
             <h2 className="px-5 py-1 text-center md:text-start mt-6">
               I have a passion for technology and a strong desire to
