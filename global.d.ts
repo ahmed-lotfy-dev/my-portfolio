@@ -18,6 +18,8 @@ declare global {
       SENDINBLUE_APIKEY: string;
       MAIN_EMAIL: string;
       SECONDARY_EMAIL: string;
+      GOOGLE_CLIENT_ID: string;
+      GOOGLE_CLIENT_SECRET: string;
     }
   }
 }

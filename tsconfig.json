@@ -31,7 +31,8 @@
     ".next/types/**/*.ts",
     "src/app/dashboard/aside.jsx",
     "src/components/skills.tsx",
-    "pages/api/contact.ts"
+    "pages/api/contact.ts",
+    "src/app/actions/page.tsx"
   ],
   "exclude": ["node_modules"]
 }

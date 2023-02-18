@@ -3,7 +3,7 @@
 import "./globals.css";
 import { Josefin_Sans, Josefin_Slab } from "@next/font/google";
 import Nav from "../components/nav";
-import { usePathname } from "next/navigation";
+import Providers from "@/src/components/providers";
 
 const josefinsans = Josefin_Sans({
   variable: "--main-font",
@@ -13,11 +13,11 @@ const josefinslab = Josefin_Slab({
   variable: "--heading-font",
 });
 
-export default function RootLayout({
-  children,
-}: {
+export interface RootLayoutProps {
   children: React.ReactNode;
-}) {
+}
+
+export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html
       lang="en"
@@ -29,8 +29,10 @@ export default function RootLayout({
       */}
       <head />
       <body className="h-screen">
+        <Providers>
           <Nav />
           {children}
+        </Providers>
       </body>
     </html>
   );

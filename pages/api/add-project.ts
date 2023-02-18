@@ -1,7 +1,7 @@
 import type { NextApiRequest, NextApiResponse, PageConfig } from "next";
 import z from "zod";
 import multer from "multer";
-import { prisma } from "@/utils/connectDB";
+import prisma from "@/src/lib/prismadb";
 
 interface NextApiRequestExtended extends NextApiRequest {
   file: any;

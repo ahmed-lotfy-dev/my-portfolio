@@ -4,6 +4,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
+import { redirect } from "next/navigation";
 
 const contextClass = {
   success: "bg-blue-600",
@@ -16,15 +17,17 @@ const contextClass = {
 
 const UserSchema = z
   .object({
-    email: z.string().email("Email is invalid"),
+    email: z.string().email("Email is invalid").trim(),
     password: z
       .string()
       .min(8, "Password must be more than 8 characters")
-      .max(32, "Password must be less than 32 characters"),
+      .max(32, "Password must be less than 32 characters")
+      .trim(),
     confirmPassword: z
       .string()
       .min(8, "Password must be more than 8 characters")
-      .max(32, "Password must be less than 32 characters"),
+      .max(32, "Password must be less than 32 characters")
+      .trim(),
   })
   .refine((data) => data.password === data.confirmPassword, {
     path: ["confirmPassword"],
@@ -56,6 +59,7 @@ function SignUp() {
       if (res.status === 401) {
         const data = await res.json();
         toast.warning(data.message);
+        redirect("/api/auth/signin");
       }
       if (res.status === 201) {
         const data = await res.json();
@@ -75,6 +79,7 @@ function SignUp() {
           </label>
           <input
             type="email"
+            autoComplete="email"
             id="email"
             placeholder="Email"
             className="px-5 py-4"
@@ -91,6 +96,7 @@ function SignUp() {
           </label>
           <input
             type="password"
+            autoComplete="password"
             id="password"
             placeholder="Password"
             className="px-5 py-4"
@@ -109,6 +115,7 @@ function SignUp() {
           </label>
           <input
             type="password"
+            autoComplete="password"
             id="confirmPassword"
             placeholder="Confirm Password"
             className="px-5 py-4"

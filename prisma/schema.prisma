@@ -1,57 +1,91 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-generator client {
-  provider = "prisma-client-js"
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+  // shadowDatabaseUrl = env("SHADOW_DATABASE_URL") // Only needed when using a cloud provider that doesn't support the creation of new databases, like Heroku. Learn more: https://pris.ly/migrate-shadow
 }
 
-datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
+generator client {
+  provider        = "prisma-client-js"
+}
+
+model Account {
+  id                 String  @id @default(cuid()) @map("_id")
+  userId             String
+  type               String
+  provider           String
+  providerAccountId  String
+  refresh_token      String?
+  access_token       String?
+  expires_at         Int?
+  token_type         String?
+  scope              String?
+  id_token           String?
+  session_state      String?
+  oauth_token_secret String?
+  oauth_token        String?
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  @@unique([provider, providerAccountId])
+}
+
+model Session {
+  id           String   @id @default(cuid()) @map("_id")
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
 model User {
-  id    Int     @id @default(autoincrement())
-  email String  @unique @db.VarChar(256)
-  password String
-  role    Role     @default(USER)
-  @@map("users")
+  id            String    @id @default(cuid()) @map("_id")
+  name          String?
+  email         String?   @unique
+  emailVerified DateTime?
+  password      String?
+  image         String?
+  role          Role      @default(USER)
+  Account       Account[]
+  Session       Session[]
+}
+
+model VerificationToken {
+  identifier String   @id @default(auto()) @map("_id") @db.ObjectId
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
+  @@map("verificationtokens")
+}
+
+model Blog {
+  id       String    @id @default(auto()) @map("_id") @db.ObjectId
+  blogTitle String   
+  blogDesc  String
+  blogImage String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Project {
+  id       String    @id @default(auto()) @map("_id") @db.ObjectId
+  projectTitle       String   
+  projectImage       String
+  projectDescription String
+  createdAt          DateTime @default(now())
+  updatedAt          DateTime @updatedAt
+}
+
+model Certificate {
+  id       String    @id @default(auto()) @map("_id") @db.ObjectId
+  certTitle    String   
+  certDesc     String
+  courseLink   String
+  certProfLink String
+  certImage    String
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
 }
 
 enum Role {
   USER
   ADMIN
-}
-
-model Blog {
-  id Int @id @default(autoincrement())
-  blogTitle String @db.VarChar(256)
-
-  blogDesc String
-  blogImage String
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  @@map("blogs")
-}
-model Project {
-  id Int @id @default(autoincrement())
-  projectTitle String @db.VarChar(256)
-  projectImage String
-  projectDescription String
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  @@map("projects")
-}
-
-model Certificate {
-  id Int @id @default(autoincrement())
-  certTitle String @db.VarChar(256)
-  certDesc String
-  courseLink String
-  certProfLink String
-  certImage String
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  @@map("certificates")
 }

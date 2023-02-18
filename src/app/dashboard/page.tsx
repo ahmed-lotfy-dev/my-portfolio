@@ -3,9 +3,7 @@ import Aside from "./components/aside";
 
 const DashboardIndex = () => {
   return (
-    <div className="flex">
-      <div className="h-[calc(100vh-92px)] w-full basis-6/7">hello</div>
-    </div>
+    <div className="flex flex-col w-full h-full justify-center items-center"></div>
   );
 };
 

@@ -4,6 +4,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
+import { useRouter } from "next/navigation";
 
 const contextClass = {
   success: "bg-blue-600",
@@ -25,6 +26,8 @@ const UserSchema = z.object({
 type userSchemaType = z.infer<typeof UserSchema>;
 
 function SignIn() {
+  const router = useRouter();
+
   const {
     register,
     formState: { errors },
@@ -38,20 +41,14 @@ function SignIn() {
     event?.preventDefault();
     const validatedForm = UserSchema.parse(data);
     try {
-      console.log(data);
-      const res = await fetch("/api/signin", {
+      const res = await fetch("/api/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),
       });
-      if (res.status === 401) {
-        const data = await res.json();
-        toast.warning(data.message);
-      }
-      if (res.status === 201) {
-        const data = await res.json();
-        toast.success(data.message);
-      }
+      const resData: any = await res.json();
+      console.log(resData);
+      router.push("/dashboard");
     } catch (error) {
       console.log(error);
     }
