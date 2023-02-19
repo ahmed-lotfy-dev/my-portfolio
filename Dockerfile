@@ -51,7 +51,7 @@ COPY . .
 # 	elif [ -f pnpm-lock.yaml ]; then yarn global add pnpm && SKIP_ENV_VALIDATION=1 pnpm run build; \
 # 	else echo "Lockfile not found." && exit 1; \
 # 	fi
-RUN NODE_ENV=production npm i
+RUN NODE_ENV=production npm run build
 ##### RUNNER
 
 # Production image, copy all the files and run next
@@ -67,7 +67,6 @@ RUN adduser --system --uid 1001 nextjs
 # Copy all necessary files used by nex.config as well otherwise the build will fail.
 
 COPY --from=builder /app/next.config.js ./next.config.js
-COPY --from=builder /.env.production ./
 COPY --from=builder /app/public ./public
 COPY --from=builder --chown=nextjs:nodejs /app/.next ./.next
 COPY --from=builder /app/node_modules ./node_modules
