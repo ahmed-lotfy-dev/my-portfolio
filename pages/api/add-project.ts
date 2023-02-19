@@ -1,51 +1,48 @@
-import type { NextApiRequest, NextApiResponse, PageConfig } from "next";
-import z from "zod";
+import nc from "next-connect";
 import multer from "multer";
-import prisma from "@/src/lib/prismadb";
+import path from "path";
 
-interface NextApiRequestExtended extends NextApiRequest {
-  file: any;
-  files: any;
-}
-export const config = {
-  api: {
-    bodyParser: false,
-  },
-};
-const storage = multer.diskStorage({
+// export const config = {
+//   api: {
+//     bodyParser: false,
+//   },
+// };
+
+const handler = nc();
+
+let storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, "images/");
+    cb(null, "public");
   },
   filename: function (req, file, cb) {
-    const uniqueSuffix = Date.now() + "-" + crypto.randomUUID();
-    cb(null, file.fieldname + "-" + uniqueSuffix);
+    cb(
+      null,
+      file.fieldname + "-" + Date.now() + path.extname(file.originalname)
+    );
   },
 });
 
-const upload = multer({ storage: storage });
-
-const formSchema = z.object({
-  projectTitle: z.string(),
-  description: z.string(),
-  // file: z.instanceof(File),
+let upload = multer({
+  storage: storage,
 });
 
-type FormData = z.infer<typeof formSchema>;
-
-type responseData = {
-  message: string;
-};
-
-export default async function addProject(
-  req: NextApiRequestExtended,
-  res: NextApiResponse<responseData>
-) {
-  const body = req.body;
-  const file = req.file;
-  console.log(body);
-  console.log(file);
-
-  res.status(200).json({
-    message: "Project Created",
+let uploadFile = upload.single("file");
+handler.use(uploadFile);
+handler.post(async (req, res) => {
+  console.log("req.file", req.file);
+  console.log("req.body", req.body);
+  let url = "http://" + req.headers.host;
+  let filename = req.file.filename;
+  let result = await executeQuery("insert into upload(pic) values(?)", [
+    filename,
+  ]);
+  result = await executeQuery(
+    `select * from upload where pic_id=${result.insertId}`
+  );
+  res.status(200).send({
+    result: result,
+    url: url + "/public/" + req.file.filename,
   });
-}
+});
+
+export default handler;

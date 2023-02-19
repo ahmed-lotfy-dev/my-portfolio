@@ -25,10 +25,8 @@ const AddProject = () => {
       const formData = new FormData(event!.target);
 
       const res = await fetch("/api/add-project", {
-        body: formData,        headers: {
-          "Content-Type": "multipart/form-data",
-      },
-        method: "post",
+        body: formData,
+        method: "POST",
       });
       console.log(res.json());
     } catch (error) {
