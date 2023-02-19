@@ -13,7 +13,7 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 18
-          cache: "pnpm" # or 'npm' | 'pnpm'
+          cache: "npm" # or 'npm' | 'pnpm'
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v2
       - name: Set up Docker Buildx
