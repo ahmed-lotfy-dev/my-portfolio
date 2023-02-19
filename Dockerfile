@@ -42,7 +42,7 @@ COPY --from=deps /app/node_modules ./node_modules
 
 COPY . .
 
-RUN npm run build
+RUN CI=false npm run build
 
 ##    RUNNER STEP
 

@@ -1,48 +1,66 @@
-import nc from "next-connect";
+import type { NextApiRequest, NextApiResponse, PageConfig } from "next";
+import z from "zod";
 import multer from "multer";
-import path from "path";
+import prisma from "@/src/lib/prismadb";
+import nextConnect from "next-connect";
 
-// export const config = {
-//   api: {
-//     bodyParser: false,
-//   },
-// };
+interface NextApiRequestExtended extends NextApiRequest {
+  file: any;
+  files: any;
+}
 
-const handler = nc();
+const formSchema = z.object({
+  projectTitle: z.string(),
+  description: z.string(),
+  // file: z.instanceof(File),
+});
 
-let storage = multer.diskStorage({
+type FormData = z.infer<typeof formSchema>;
+
+type responseData = {
+  message: string;
+};
+
+const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, "public");
+    cb(null, "/images/projects  ");
   },
   filename: function (req, file, cb) {
-    cb(
-      null,
-      file.fieldname + "-" + Date.now() + path.extname(file.originalname)
-    );
+    const uniqueSuffix = Date.now() + "-" + crypto.randomUUID();
+    cb(null, file.fieldname + "-" + uniqueSuffix);
   },
 });
 
-let upload = multer({
-  storage: storage,
+const upload = multer({ storage: storage });
+
+const apiRoute = nextConnect({
+  onError(error, req: NextApiRequestExtended, res: NextApiResponse) {
+    res
+      .status(501)
+      .json({ error: `Sorry something Happened! ${error.message}` });
+  },
+  onNoMatch(req, res) {
+    res.status(405).json({ error: `Method '${req.method}' Not Allowed` });
+  },
 });
 
-let uploadFile = upload.single("file");
-handler.use(uploadFile);
-handler.post(async (req, res) => {
-  console.log("req.file", req.file);
-  console.log("req.body", req.body);
-  let url = "http://" + req.headers.host;
-  let filename = req.file.filename;
-  let result = await executeQuery("insert into upload(pic) values(?)", [
-    filename,
-  ]);
-  result = await executeQuery(
-    `select * from upload where pic_id=${result.insertId}`
-  );
-  res.status(200).send({
-    result: result,
-    url: url + "/public/" + req.file.filename,
-  });
+// Returns middleware that processes multiple files sharing the same field name.
+const uploadMiddleware = upload.single("file");
+
+// Adds the middleware to Next-Connect
+apiRoute.use(uploadMiddleware);
+
+// Process a POST request
+apiRoute.post((req, res) => {
+  console.log(req.file);
+  console.log(req.body);
+  return res.status(200).json({ message: "success" });
 });
 
-export default handler;
+export default apiRoute;
+
+export const config = {
+  api: {
+    bodyParser: false,
+  },
+};

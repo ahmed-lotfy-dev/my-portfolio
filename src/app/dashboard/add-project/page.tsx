@@ -22,13 +22,15 @@ const AddProject = () => {
   const onSubmit = handleSubmit(async (data, event) => {
     event?.preventDefault();
     try {
-      const formData = new FormData(event!.target);
+      const formData = new FormData();
+      formData.append("projectTitle", data.projectTitle);
+      formData.append("projectDescription", data.projectDescription);
+      formData.append("file", data.file);
 
       const res = await fetch("/api/add-project", {
         body: formData,
         method: "POST",
       });
-      console.log(res.json());
     } catch (error) {
       console.log(error);
     }
