@@ -25,7 +25,7 @@ const AddProject = () => {
       const formData = new FormData();
       formData.append("projectTitle", data.projectTitle);
       formData.append("projectDescription", data.projectDescription);
-      formData.append("file", file);
+      formData.append("file", event!.target.files);
 
       const res = await fetch("/api/add-project", {
         body: formData,
