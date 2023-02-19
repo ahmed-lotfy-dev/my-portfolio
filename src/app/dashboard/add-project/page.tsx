@@ -32,6 +32,7 @@ const AddProject = () => {
         method: "post",
       });
       console.log(res.json());
+      console.log(formData.get('file'));
     } catch (error) {
       console.log(error);
     }
@@ -65,9 +66,7 @@ const AddProject = () => {
           setPreviewUrl(URL.createObjectURL(e.target.files![0]));
         }}
       />
-      <button type="submit" onClick={() => {}}>
-        Submit
-      </button>
+      <button type="submit">Submit</button>
     </form>
   );
 };
