@@ -18,7 +18,7 @@ RUN npm install
 
 ##    BUILDER STEP
 FROM --platform=linux/arm64 node  AS builder
-add environment variables to client code
+# add environment variables to client code
 ARG BCRYPT_SALT
 ARG SENDGRID_API_KEY
 ARG DATABASE_URL
