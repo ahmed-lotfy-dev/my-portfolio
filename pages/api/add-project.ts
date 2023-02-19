@@ -7,7 +7,11 @@ interface NextApiRequestExtended extends NextApiRequest {
   file: any;
   files: any;
 }
-
+export const config = {
+  api: {
+    bodyParser: false,
+  },
+};
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
     cb(null, "images/");
@@ -40,7 +44,7 @@ export default async function addProject(
   const file = req.file;
   console.log(body);
   console.log(file);
-  
+
   res.status(200).json({
     message: "Project Created",
   });
