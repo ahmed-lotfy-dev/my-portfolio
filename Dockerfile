@@ -54,6 +54,7 @@ COPY . .
 # 	elif [ -f pnpm-lock.yaml ]; then yarn global add pnpm && SKIP_ENV_VALIDATION=1 pnpm run build; \
 # 	else echo "Lockfile not found." && exit 1; \
 # 	fi
+RUN npm install
 RUN npm run build
 
 
