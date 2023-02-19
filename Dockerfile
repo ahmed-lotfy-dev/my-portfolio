@@ -1,4 +1,6 @@
 # Install dependencies only when needed
+##    DEPS INSTALL STEP
+
 FROM  node:16-alpine3.17 AS deps
 # Check https://github.com/nodejs/docker-node/tree/b4117f9333da4138b03a546ec926ef50a31506c3#nodealpine to understand why libc6-compat might be needed.
 # RUN apk update && apk add --no-cache libc6-compat && apk add git && apk add nano 
@@ -19,7 +21,8 @@ COPY package.json yarn.lock* package-lock.json* pnpm-lock.yaml\* ./
 # 	else echo "Lockfile not found." && exit 1; \
 # 	fi
 RUN npm ci
-# Rebuild the source code only when needed
+
+##    BUILDER STEP
 FROM  node:16-alpine3.17 AS builder
 # add environment variables to client code
 ARG BCRYPT_SALT
@@ -52,7 +55,9 @@ COPY . .
 # 	else echo "Lockfile not found." && exit 1; \
 # 	fi
 RUN npm run build
-##### RUNNER
+
+
+##    RUNNER STEP
 
 # Production image, copy all the files and run next
 FROM  node:16-alpine3.17 AS runner
