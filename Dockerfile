@@ -51,7 +51,7 @@ COPY . .
 # 	elif [ -f pnpm-lock.yaml ]; then yarn global add pnpm && SKIP_ENV_VALIDATION=1 pnpm run build; \
 # 	else echo "Lockfile not found." && exit 1; \
 # 	fi
-RUN NODE_ENV=production npm run build
+RUN npm run build
 ##### RUNNER
 
 # Production image, copy all the files and run next
