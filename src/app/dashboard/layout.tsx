@@ -11,7 +11,6 @@ const DashboardLayout = ({
   children: React.ReactNode;
 }) => {
   const { data: session } = useSession();
-  console.log(session);
   if (!session) {
     return (
       <div className="flex flex-col gap-5 justify-center items-center h-[calc(100vh-92px)] w-full basis-6/7">
