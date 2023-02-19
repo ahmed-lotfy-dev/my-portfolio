@@ -1,35 +1,47 @@
-import formidable from "formidable";
-import fs from "fs";
+import type { NextApiRequest, NextApiResponse, PageConfig } from "next";
+import z from "zod";
+import multer from "multer";
+import prisma from "@/src/lib/prismadb";
 
-export const config = {
-  api: {
-    bodyParser: false
-  }
+interface NextApiRequestExtended extends NextApiRequest {
+  file: any;
+  files: any;
+}
+
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, "images/");
+  },
+  filename: function (req, file, cb) {
+    const uniqueSuffix = Date.now() + "-" + crypto.randomUUID();
+    cb(null, file.fieldname + "-" + uniqueSuffix);
+  },
+});
+
+const upload = multer({ storage: storage });
+
+const formSchema = z.object({
+  projectTitle: z.string(),
+  description: z.string(),
+  // file: z.instanceof(File),
+});
+
+type FormData = z.infer<typeof formSchema>;
+
+type responseData = {
+  message: string;
 };
 
-const post = async (req, res) => {
-  const form = new formidable.IncomingForm();
-  form.parse(req, async function (err, fields, files) {
-    console.log("files", files);
-    console.log("files", fields);
+export default async function addProject(
+  req: NextApiRequestExtended,
+  res: NextApiResponse<responseData>
+) {
+  const body = req.body;
+  const file = req.file;
+  console.log("body", body);
+  console.log("file", file);
+  upload.single(req.file);
+  res.status(200).json({
+    message: "Project Created",
   });
-};
-
-const saveFile = async (file) => {
-  const data = fs.readFileSync(file.path);
-  fs.writeFileSync(`./public/${file.name}`, data);
-  await fs.unlinkSync(file.path);
-  return;
-};
-
-export default (req, res) => {
-  req.method === "POST"
-    ? post(req, res)
-    : req.method === "PUT"
-    ? console.log("PUT")
-    : req.method === "DELETE"
-    ? console.log("DELETE")
-    : req.method === "GET"
-    ? console.log("GET")
-    : res.status(404).send("");
-};
+}

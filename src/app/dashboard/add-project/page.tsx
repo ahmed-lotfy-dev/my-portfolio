@@ -10,7 +10,7 @@ type FormData = {
 };
 
 const AddProject = () => {
-  const [file, setFile] = useState<File | null>(null);
+  const [file, setFile] = useState<string | Blob>("");
   const [previewUrl, setPreviewUrl] = useState<string>("");
 
   const {
@@ -24,15 +24,11 @@ const AddProject = () => {
     try {
       const formData = new FormData();
       formData.append("projectTitle", data.projectTitle);
-      formData.append("projectTitle", data.projectDescription);
-      formData.append("projectTitle", data.file);
+      formData.append("projectDescription", data.projectDescription);
+      formData.append("file", file);
 
       const res = await fetch("/api/add-project", {
         body: formData,
-        // headers: {
-        //   "Content-Type": "application/x-www-form-urlencoded",
-        //   // "Content-Type": "multipart/form-data",
-        // },
         method: "post",
       });
       console.log(res.json());
@@ -45,6 +41,7 @@ const AddProject = () => {
     <form
       className="flex flex-col justify-center items-center w-full gap-10 bg-gray-300 text-black"
       onSubmit={onSubmit}
+      encType="multipart/form-data"
     >
       <label>Project Title</label>
       <input {...register("projectTitle")} />
@@ -68,13 +65,7 @@ const AddProject = () => {
           setPreviewUrl(URL.createObjectURL(e.target.files![0]));
         }}
       />
-      <button
-        type="submit"
-        onClick={() => {
-          console.log("submitted");
-          console.log(previewUrl);
-        }}
-      >
+      <button type="submit" onClick={() => {}}>
         Submit
       </button>
     </form>
