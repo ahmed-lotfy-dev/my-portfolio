@@ -30,8 +30,8 @@ jobs:
           platforms: linux/arm64
           context: .
           push: true
-          cache-from: type=gha
-          cache-to: type=gha,mode=max
+          # cache-from: type=gha
+          # cache-to: type=gha,mode=max
           tags: alotfy2019/my-portofolio:latest
           build-args: |
             MONGO_URI= ${{secrets.MONGO_URI}}

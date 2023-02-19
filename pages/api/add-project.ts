@@ -38,9 +38,9 @@ export default async function addProject(
 ) {
   const body = req.body;
   const file = req.file;
-  console.log("body", body);
-  console.log("file", file);
-  upload.single(req.file);
+  console.log(body);
+  console.log(file);
+  
   res.status(200).json({
     message: "Project Created",
   });

@@ -22,17 +22,15 @@ const AddProject = () => {
   const onSubmit = handleSubmit(async (data, event) => {
     event?.preventDefault();
     try {
-      const formData = new FormData();
-      formData.append("projectTitle", data.projectTitle);
-      formData.append("projectDescription", data.projectDescription);
-      formData.append("file", event!.target.files);
+      const formData = new FormData(event!.target);
 
       const res = await fetch("/api/add-project", {
-        body: formData,
+        body: formData,        headers: {
+          "Content-Type": "multipart/form-data",
+      },
         method: "post",
       });
       console.log(res.json());
-      console.log(formData.get('file'));
     } catch (error) {
       console.log(error);
     }
