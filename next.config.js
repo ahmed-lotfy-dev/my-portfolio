@@ -17,6 +17,7 @@ const nextConfig = {
   api: {
     bodyParser: false,
   },
+
   experimental: {
     appDir: true,
     output: 'standalone',

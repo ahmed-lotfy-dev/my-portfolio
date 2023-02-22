@@ -45,6 +45,8 @@ model User {
   role          Role      @default(USER)
   Account       Account[]
   Session       Session[]
+  @@map("users")
+
 }
 
 model VerificationToken {
@@ -63,6 +65,7 @@ model Blog {
   blogImage String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+  @@map("blogs")
 }
 
 model Project {
@@ -72,6 +75,7 @@ model Project {
   projectDescription String
   createdAt          DateTime @default(now())
   updatedAt          DateTime @updatedAt
+  @@map("projects")
 }
 
 model Certificate {
@@ -83,6 +87,7 @@ model Certificate {
   certImage    String
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt
+  @@map("certificates")
 }
 
 enum Role {

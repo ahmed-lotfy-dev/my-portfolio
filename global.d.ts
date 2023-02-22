@@ -3,6 +3,7 @@ import { string } from "zod";
 declare module "nodemailer-sendinblue-transport";
 declare module "nodemailer-sendgrid";
 declare module "@sendgrid/mail";
+declare module "fs";
 
 declare global {
   namespace NodeJS {
@@ -14,12 +15,13 @@ declare global {
       MONGO_URI: string;
       BCRYPT_SALT: string;
       SENDGRID_API_KEY: string;
-      SENDINBLUE_USER: string;
-      SENDINBLUE_APIKEY: string;
       MAIN_EMAIL: string;
       SECONDARY_EMAIL: string;
       GOOGLE_CLIENT_ID: string;
       GOOGLE_CLIENT_SECRET: string;
+      CF_ACCOUNT_ID: string;
+      CF_ACCESSKEY_ID: string;
+      CF_SECRET_ACCESS_KEY: string;
     }
   }
 }
