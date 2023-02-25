@@ -14,7 +14,8 @@ jobs:
         with:
           node-version: 19
           cache: "yarn"
-          run: corepack prepare yarn@stable --activate
+      - name: setup yarn
+        run: npm install -g yarn; corepack prepare yarn@stable --activate
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v2
       - name: Set up Docker Buildx
