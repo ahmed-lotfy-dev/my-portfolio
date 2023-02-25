@@ -28,7 +28,6 @@ jobs:
           password: ${{ secrets.DOCKERHUB_PASSWORD }}
       - name: Build and push
         uses: docker/build-push-action@v4
-        run: docker build
         with:
           platforms: linux/arm64
           context: .
