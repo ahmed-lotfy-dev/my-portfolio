@@ -13,6 +13,7 @@ WORKDIR /app
 # Install dependencies based on the preferred package manager
 
 COPY package.json pnpm-lock.yaml ./
+RUN npm install -g pnpm 
 RUN pnpm install
 
 
@@ -42,6 +43,7 @@ COPY --from=deps /app/node_modules ./node_modules
 
 COPY . .
 
+RUN npm install -g pnpm 
 RUN pnpm run build
 
 ##    RUNNER STEP
