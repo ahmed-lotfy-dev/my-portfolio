@@ -14,7 +14,8 @@ jobs:
         with:
           node-version: 19
           cache: "pnpm"
-          cache-dependency-path: /pnpm-lock.yaml
+      - name: Install & Build
+        run: npm i -g pnpm
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v2
       - name: Set up Docker Buildx
