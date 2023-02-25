@@ -39,8 +39,8 @@ RUN echo -e "BCRYPT_SALT=$BCRYPT_SALT \n SENDGRID_API_KEY=$SENDGRID_API_KEY\n GO
 RUN echo -e "DATABASE_URL=$DATABASE_URL\n NEXTAUTH_URL=$NEXTAUTH_URL" > /.env
 
 # COPY --from=deps /app/node_modules ./node_modules
-# <--- Copying yarn 3 cache.
-COPY --from=dep /app/.yarn ./.yarn 
+COPY --from=deps /app/.yarn .yarn # <--- Copying yarn 3 cache.
+
 
 COPY . .
 
