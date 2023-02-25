@@ -12,9 +12,8 @@ WORKDIR /app
 
 # Install dependencies based on the preferred package manager
 
-COPY package.json pnpm-lock.yaml ./
-RUN npm install -g pnpm 
-RUN pnpm install
+COPY package.json package-lock.json ./
+RUN npm install
 
 
 ##    BUILDER STEP
@@ -43,8 +42,7 @@ COPY --from=deps /app/node_modules ./node_modules
 
 COPY . .
 
-RUN npm install -g pnpm 
-RUN pnpm run build
+RUN npm run build
 
 ##    RUNNER STEP
 
@@ -53,8 +51,8 @@ FROM --platform=linux/arm64 node AS runner
 WORKDIR /app
 ENV NODE_ENV production
 
-RUN addgroup --system --gid 1001 nodejs
-RUN adduser --system --uid 1001 nextjs
+# RUN addgroup --system --gid 1001 nodejs
+# RUN adduser --system --uid 1001 nextjs
 
 
 # You only need to copy next.config.js if you are NOT using the default configuration. 
@@ -76,4 +74,4 @@ EXPOSE 3000
 # Learn more here: https://nextjs.org/telemetry
 # Uncomment the following line in case you want to disable telemetry.
 ENV NEXT_TELEMETRY_DISABLED 1
-CMD ["pnpm", "start"]
+CMD ["npm", "start"]

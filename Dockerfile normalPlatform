@@ -1,7 +1,7 @@
 # Install dependencies only when needed
 ##    DEPS INSTALL STEP
 
-FROM --platform=linux/arm64 node AS deps
+FROM  node AS deps
 # Check https://github.com/nodejs/docker-node/tree/b4117f9333da4138b03a546ec926ef50a31506c3#nodealpine to understand why libc6-compat might be needed.
 # RUN apk update && apk add --no-cache libc6-compat && apk add git && apk add nano 
 WORKDIR /app
@@ -12,12 +12,13 @@ WORKDIR /app
 
 # Install dependencies based on the preferred package manager
 
-COPY package.json package-lock.json ./
-RUN yarn install
+COPY package.json pnpm-lock.yaml ./
+RUN npm install -g pnpm 
+RUN pnpm install
 
 
 ##    BUILDER STEP
-FROM --platform=linux/arm64 node  AS builder
+FROM  node  AS builder
 # add environment variables to client code
 ARG BCRYPT_SALT
 ARG SENDGRID_API_KEY
@@ -32,6 +33,7 @@ ENV NEXTAUTH_URL=${NEXTAUTH_URL}
 ENV GOOGLE_CLIENT_ID=${GOOGLE_CLIENT_ID}
 ENV GOOGLE_CLIENT_SECRET=${GOOGLE_CLIENT_SECRET}
 
+
 WORKDIR /app
 
 RUN echo -e "BCRYPT_SALT=$BCRYPT_SALT \n SENDGRID_API_KEY=$SENDGRID_API_KEY\n GOOGLE_CLIENT_ID=$GOOGLE_CLIENT_ID\n GOOGLE_CLIENT_SECRET=$GOOGLE_CLIENT_SECRET\n" > /.env.production
@@ -41,12 +43,13 @@ COPY --from=deps /app/node_modules ./node_modules
 
 COPY . .
 
-RUN CI=false yarn run build
+# RUN npm install -g pnpm 
+RUN pnpm run build
 
 ##    RUNNER STEP
 
 # Production image, copy all the files and run next
-FROM --platform=linux/arm64 node AS runner
+FROM  node AS runner
 WORKDIR /app
 ENV NODE_ENV production
 
@@ -73,11 +76,4 @@ EXPOSE 3000
 # Learn more here: https://nextjs.org/telemetry
 # Uncomment the following line in case you want to disable telemetry.
 ENV NEXT_TELEMETRY_DISABLED 1
-CMD ["yarn", "start"]
-
-
-
-
-
-
-
+CMD ["pnpm", "start"]
