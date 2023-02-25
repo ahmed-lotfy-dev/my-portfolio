@@ -8,23 +8,25 @@ export const authOptions: AuthOptions = {
       clientSecret: String(process.env.GOOGLE_CLIENT_SECRET),
     }),
   ],
+  session: {
+    strategy: "jwt",
+    maxAge: 30 * 24 * 60 * 60, // 30 days
+    updateAge: 24 * 60 * 60, // 24 hours
+  },
   callbacks: {
-    async jwt({ token, user }) {
-      /* Step 1: update the token based on the user object */
-      if (user) {
-        token.role = user.role;
-      }
-      return token;
+    async signIn({ user, account, profile, email, credentials }) {
+      return true;
     },
-    session({ session, token }) {
-      /* Step 2: update the session.user based on the token object */
-      if (token && session.user) {
-        session.user.role = token.role;
-      }
+    async redirect({ url, baseUrl }) {
+      return baseUrl;
+    },
+    async session({ session, token, user }) {
       return session;
     },
+    async jwt({ token, user, account, profile, isNewUser   }) {
+      return token;
+    },
   },
-  
 };
 
 export default NextAuth(authOptions);

@@ -16,7 +16,6 @@ jobs:
         with:
           node-version: 19
           cache: "pnpm"
-
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v2
       - name: Set up Docker Buildx
@@ -29,12 +28,13 @@ jobs:
           password: ${{ secrets.DOCKERHUB_PASSWORD }}
       - name: Build and push
         uses: docker/build-push-action@v4
+        run: docker build
         with:
           platforms: linux/arm64
           context: .
           push: true
-          cache-from: type=gha
-          cache-to: type=gha,mode=max
+          cache-from: type=local,src=/tmp/.buildx-cache
+          cache-to: type=local,dest=/tmp/.buildx-cache,mode=max
           tags: alotfy2019/my-portofolio:latest
           build-args: |
             MONGO_URI= ${{secrets.MONGO_URI}}
