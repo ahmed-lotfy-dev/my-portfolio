@@ -2,6 +2,25 @@
 import { useState } from "react";
 import Image from "next/image";
 
+interface FormData extends EventTarget {
+  certTitle: {
+    value: string;
+  };
+  certDesc: {
+    value: string;
+  };
+  courseLink: {
+    value: string;
+  };
+  certProfLink: {
+    value: string;
+  };
+  certImage: {
+    value: string;
+  };
+  file: File;
+}
+
 const AddCertificate = () => {
   const [image, setImage] = useState<string | Blob>("");
   const [previewUrl, setPreviewUrl] = useState<string>("");
@@ -17,19 +36,15 @@ const AddCertificate = () => {
   const submitHandler = async (event: React.FormEvent<EventTarget>) => {
     console.log(image);
     console.log(previewUrl);
+    const target = event.target as FormData;
 
     event.preventDefault();
     const body = new FormData();
-    // @ts-ignore
-    body.append("certTitle", event.target.certTitle.value);
-    // @ts-ignore
-    body.append("certDesc", event.target.certDesc.value);
-    // @ts-ignore
-    body.append("courseLink", event.target.courseLink.value);
-    // @ts-ignore
-    body.append("certProfLink", event.target.certProfLink.value);
-    // @ts-ignore
-    body.append("certImage", event.target.certImage.value);
+    body.append("certTitle", target.certTitle.value);
+    body.append("certDesc", target.certDesc.value);
+    body.append("courseLink", target.courseLink.value);
+    body.append("certProfLink", target.certProfLink.value);
+    body.append("certImage", target.certImage.value);
     body.append("file", image);
     const response = await fetch("/api/certificates/add-certificate", {
       method: "POST",

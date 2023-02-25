@@ -1,18 +1,30 @@
-import NextAuth from "next-auth";
+import NextAuth, { AuthOptions } from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
-import { PrismaAdapter } from "@next-auth/prisma-adapter";
-import prisma from "@/src/lib/prismadb";
-
-export const authOptions = {
-  adapter: PrismaAdapter(prisma),
-
+export const authOptions: AuthOptions = {
   // Configure one or more authentication providers
   providers: [
     GoogleProvider({
-      clientId: process.env.GOOGLE_CLIENT_ID,
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+      clientId: String(process.env.GOOGLE_CLIENT_ID),
+      clientSecret: String(process.env.GOOGLE_CLIENT_SECRET),
     }),
-    // ...add more providers here
   ],
+  callbacks: {
+    async jwt({ token, user }) {
+      /* Step 1: update the token based on the user object */
+      if (user) {
+        token.role = user.role;
+      }
+      return token;
+    },
+    session({ session, token }) {
+      /* Step 2: update the session.user based on the token object */
+      if (token && session.user) {
+        session.user.role = token.role;
+      }
+      return session;
+    },
+  },
+  
 };
+
 export default NextAuth(authOptions);

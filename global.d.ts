@@ -4,6 +4,7 @@ declare module "nodemailer-sendinblue-transport";
 declare module "nodemailer-sendgrid";
 declare module "@sendgrid/mail";
 declare module "fs";
+declare module 'next-auth/client';
 
 declare global {
   namespace NodeJS {

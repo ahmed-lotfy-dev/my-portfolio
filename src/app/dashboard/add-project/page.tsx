@@ -2,11 +2,15 @@
 import { useState } from "react";
 import Image from "next/image";
 
-type FormData = {
-  projectTitle: string;
-  projectDescription: string;
+interface FormData extends EventTarget {
+  projectTitle: {
+    value: string;
+  };
+  projectDescription: {
+    value: string;
+  };
   file: File;
-};
+}
 
 const AddProject = () => {
   const [image, setImage] = useState<string | Blob>("");
@@ -21,13 +25,14 @@ const AddProject = () => {
     }
   };
 
-  const submitHandler = async (event: React.FormEvent<HTMLFormElement>) => {
+  const submitHandler = async (
+    event: React.FormEvent<HTMLFormElement> & Event
+  ) => {
+    const target = event.target as FormData;
     event.preventDefault();
     const body = new FormData();
-    // @ts-ignore
-    body.append("projectTitle", event.target.projectTitle.value);
-    // @ts-ignore
-    body.append("projectDescription", event.target.projectDescription.value);
+    body.append("projectTitle", target.projectTitle.value);
+    body.append("projectDescription", target.projectDescription.value);
     body.append("file", image);
     const response = await fetch("/api/projects/add-project", {
       method: "POST",
