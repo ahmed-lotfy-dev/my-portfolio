@@ -13,6 +13,7 @@ COPY prisma ./
 # Install dependencies based on the preferred package manager
 
 COPY package.json yarn.lock ./
+RUN corepack enable
 RUN yarn install
 
 
