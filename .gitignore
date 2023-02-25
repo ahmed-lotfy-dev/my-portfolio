@@ -35,6 +35,10 @@ sendgrid.env
 # vercel
 .vercel
 
+#yarn 
+.yarn
+.pnp.cjs
+.pnp.loader.mjs
 # typescript
 *.tsbuildinfo
 next-env.d.ts

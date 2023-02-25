@@ -23,10 +23,11 @@ export const authOptions: AuthOptions = {
     async session({ session, token, user }) {
       return session;
     },
-    async jwt({ token, user, account, profile, isNewUser   }) {
+    async jwt({ token, user, account, profile, isNewUser }) {
       return token;
     },
   },
+  secret: process.env.NEXTAUTH_SECRET,
 };
 
 export default NextAuth(authOptions);

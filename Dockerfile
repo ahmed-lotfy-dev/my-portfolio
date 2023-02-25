@@ -8,12 +8,12 @@ WORKDIR /app
 
 # Install Prisma Client - remove if not using Prisma
 
-# COPY prisma ./
+COPY prisma ./
 
 # Install dependencies based on the preferred package manager
 
-COPY package.json package-lock.json ./
-RUN npm install
+COPY package.json yarn.lock ./
+RUN yarn install
 
 
 ##    BUILDER STEP
@@ -42,7 +42,7 @@ COPY --from=deps /app/node_modules ./node_modules
 
 COPY . .
 
-RUN npm run build
+RUN yarn run build
 
 ##    RUNNER STEP
 
@@ -74,4 +74,4 @@ EXPOSE 3000
 # Learn more here: https://nextjs.org/telemetry
 # Uncomment the following line in case you want to disable telemetry.
 ENV NEXT_TELEMETRY_DISABLED 1
-CMD ["npm", "start"]
+CMD ["yarn", "start"]
