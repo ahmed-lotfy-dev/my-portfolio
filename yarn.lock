@@ -5,6 +5,12 @@ __metadata:
   version: 6
   cacheKey: 8
 
+".prisma@link:node-modules/.prisma::locator=my-portfolio%40workspace%3A.":
+  version: 0.0.0-use.local
+  resolution: ".prisma@link:node-modules/.prisma::locator=my-portfolio%40workspace%3A."
+  languageName: node
+  linkType: soft
+
 "@babel/runtime@npm:^7.16.3, @babel/runtime@npm:^7.20.7":
   version: 7.21.0
   resolution: "@babel/runtime@npm:7.21.0"
