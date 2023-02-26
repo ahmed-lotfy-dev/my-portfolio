@@ -42,7 +42,7 @@ RUN echo -e "DATABASE_URL=$DATABASE_URL\n NEXTAUTH_URL=$NEXTAUTH_URL" > /.env
 COPY --from=deps /app/node_modules ./node_modules
 
 COPY . .
-
+RUN corepack enable
 RUN pnpm run build
 
 ##    RUNNER STEP
