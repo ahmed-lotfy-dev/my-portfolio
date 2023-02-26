@@ -35,10 +35,9 @@ WORKDIR /app
 RUN echo -e "BCRYPT_SALT=$BCRYPT_SALT \n SENDGRID_API_KEY=$SENDGRID_API_KEY\n GOOGLE_CLIENT_ID=$GOOGLE_CLIENT_ID\n GOOGLE_CLIENT_SECRET=$GOOGLE_CLIENT_SECRET\n" > /.env.production
 RUN echo -e "DATABASE_URL=$DATABASE_URL\n NEXTAUTH_URL=$NEXTAUTH_URL" > /.env
 
+COPY --from=deps /app/package.json package-lock.json ./
 COPY --from=deps /app/node_modules ./node_modules
-
 COPY . .
-RUN corepack enable
 RUN npm run build
 
 ##    RUNNER STEP
