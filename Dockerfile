@@ -12,9 +12,9 @@ COPY prisma ./
 
 # Install dependencies based on the preferred package manager
 
-COPY package.json yarn.lock ./
+COPY package.json pnpm-lock.yaml ./
 RUN corepack enable
-RUN yarn install
+RUN pnpm install
 
 
 ##    BUILDER STEP
@@ -46,7 +46,7 @@ COPY --from=deps /app/.yarn .yarn
 
 COPY . .
 
-RUN yarn run build
+RUN pnpm run build
 
 ##    RUNNER STEP
 
@@ -78,4 +78,4 @@ EXPOSE 3000
 # Learn more here: https://nextjs.org/telemetry
 # Uncomment the following line in case you want to disable telemetry.
 ENV NEXT_TELEMETRY_DISABLED 1
-CMD ["yarn", "start"]
+CMD ["pnpm", "start"]
