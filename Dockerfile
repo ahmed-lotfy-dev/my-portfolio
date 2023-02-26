@@ -6,9 +6,6 @@ FROM --platform=linux/arm64 node AS deps
 # RUN apk update && apk add --no-cache libc6-compat && apk add git && apk add nano 
 WORKDIR /app
 
-# Install Prisma Client - remove if not using Prisma
-
-COPY prisma ./
 
 # Install dependencies based on the preferred package manager
 

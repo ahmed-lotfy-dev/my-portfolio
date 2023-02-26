@@ -21,6 +21,7 @@ async function getSession(cookie: string): Promise<Session> {
   });
 
   const session = await response.json();
+  console.log(session);
 
   return Object.keys(session).length > 0 ? session : null;
 }
