@@ -9,7 +9,7 @@ WORKDIR /app
 
 # Install dependencies based on the preferred package manager
 
-COPY package.json pnpm-lock.yaml ./
+COPY package.json package-lock.json ./
 RUN npm install
 
 
