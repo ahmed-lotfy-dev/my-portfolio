@@ -10,8 +10,7 @@ WORKDIR /app
 # Install dependencies based on the preferred package manager
 
 COPY package.json pnpm-lock.yaml ./
-RUN corepack enable
-RUN pnpm install
+RUN npm install
 
 
 ##    BUILDER STEP
@@ -40,7 +39,7 @@ COPY --from=deps /app/node_modules ./node_modules
 
 COPY . .
 RUN corepack enable
-RUN pnpm run build
+RUN npm run build
 
 ##    RUNNER STEP
 
@@ -72,4 +71,4 @@ EXPOSE 3000
 # Learn more here: https://nextjs.org/telemetry
 # Uncomment the following line in case you want to disable telemetry.
 ENV NEXT_TELEMETRY_DISABLED 1
-CMD ["pnpm", "start"]
+CMD ["npm", "start"]
