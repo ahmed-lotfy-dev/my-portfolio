@@ -1,6 +1,5 @@
 import nextConnect from "next-connect";
 import multer from "multer";
-import prisma from "@/src/lib/prismadb";
 import { NextApiRequest, NextApiResponse } from "next";
 
 const upload = multer({
@@ -30,30 +29,20 @@ const apiRoute = nextConnect({
 });
 
 apiRoute.use(upload.single("file"));
-apiRoute.delete(async (req, res) => {
-  console.log("Hello from delete ");
-  return res.send(200).json({ message: "not yet implemented" });
-});
-
-apiRoute.get(async (req, res) => {
-  const projects = await prisma.project.findMany();
-  console.log(projects);
-  return res.send(200).json({ message: "Projects Found", projects: projects });
-});
 
 apiRoute.post(async (req, res) => {
   try {
     console.log(req.body);
     console.log(req.file);
 
-    const project = await prisma.project.create({
-      data: {
-        projectTitle: req.body.projectTitle,
-        projectDescription: req.body.projectDescription,
-        projectImage: `${req.file.destination}/${req.file.filename}`,
-      },
-    });
-    console.log(project);
+    // const project = await prisma.project.create({
+    //   data: {
+    //     projectTitle: req.body.projectTitle,
+    //     projectDescription: req.body.projectDescription,
+    //     projectImage: `${req.file.destination}/${req.file.filename}`,
+    //   },
+    // });
+    // console.log(project);
   } catch (error) {
     console.log(error);
   }
