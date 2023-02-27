@@ -12,7 +12,7 @@ WORKDIR /app
 COPY package.json package-lock.json ./
 COPY prisma ./prisma/
 RUN npx prisma generate
-RUN npm ci
+RUN npm install
 
 
 ##    BUILDER STEP
