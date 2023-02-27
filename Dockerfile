@@ -21,7 +21,7 @@ WORKDIR /app
 
 COPY --from=deps /app/package.json /app/package-lock.json ./
 COPY --from=deps /app/node_modules ./node_modules
-COPY --from=deps /app/prisma ./prisma
+COPY --from=deps /app/prisma ./
 RUN prisma generate
 
 COPY . .
