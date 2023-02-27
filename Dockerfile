@@ -10,7 +10,8 @@ WORKDIR /app
 # Install dependencies based on the preferred package manager
 
 COPY package.json package-lock.json ./
-COPY prisma ./
+COPY prisma ./prisma/
+RUN npx prisma generate
 RUN npm ci
 
 
@@ -21,8 +22,6 @@ WORKDIR /app
 
 COPY --from=deps /app/package.json /app/package-lock.json ./
 COPY --from=deps /app/node_modules ./
-COPY --from=deps /app/prisma ./
-RUN prisma generate
 
 COPY . .
 
