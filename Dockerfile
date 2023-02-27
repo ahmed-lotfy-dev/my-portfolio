@@ -67,8 +67,8 @@ COPY --from=builder --chown=nextjs:nodejs /app/.next ./.next
 COPY --from=builder /app/node_modules ./node_modules
 COPY --from=builder /app/package.json ./package.json
 COPY --from=builder /app/ ./app
-COPY --from=builder /app/.env  ./app
-COPY --from=builder /app/.env.production ./app
+COPY --from=builder /.env  ./app
+COPY --from=builder /.env.production ./app
 
 
 USER nextjs
