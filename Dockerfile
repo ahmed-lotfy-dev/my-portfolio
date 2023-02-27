@@ -1,7 +1,7 @@
 # Install dependencies only when needed
 ##    DEPS INSTALL STEP
 
-FROM --platform=linux/arm64 node AS deps
+FROM --platform=linux/arm64 node:alpine AS deps
 # Check https://github.com/nodejs/docker-node/tree/b4117f9333da4138b03a546ec926ef50a31506c3#nodealpine to understand why libc6-compat might be needed.
 # RUN apk update && apk add --no-cache libc6-compat && apk add git && apk add nano 
 WORKDIR /app
@@ -14,12 +14,12 @@ RUN npm config set registry http://registry.npmjs.org/ && npm install --no-optio
 
 
 ##    BUILDER STEP
-FROM --platform=linux/arm64 node  AS builder
+FROM --platform=linux/arm64 node:alpine  AS builder
 # add environment variables to client code
-ARG BCRYPT_SALT
 ARG SENDGRID_API_KEY
 ARG DATABASE_URL
 ARG NEXTAUTH_URL
+ARG NEXTAUTH_SECRET
 ARG GOOGLE_CLIENT_ID
 ARG GOOGLE_CLIENT_SECRET
 ENV BCRYPT_SALT=${BCRYPT_SALT}
@@ -32,8 +32,8 @@ ENV GOOGLE_CLIENT_SECRET=${GOOGLE_CLIENT_SECRET}
 
 WORKDIR /app
 
-RUN echo -e "BCRYPT_SALT=$BCRYPT_SALT \n SENDGRID_API_KEY=$SENDGRID_API_KEY\n GOOGLE_CLIENT_ID=$GOOGLE_CLIENT_ID\n GOOGLE_CLIENT_SECRET=$GOOGLE_CLIENT_SECRET\n" > /.env.production
-RUN echo -e "DATABASE_URL=$DATABASE_URL\n NEXTAUTH_URL=$NEXTAUTH_URL" > /.env
+RUN echo -e "SENDGRID_API_KEY=$SENDGRID_API_KEY\n GOOGLE_CLIENT_ID=$GOOGLE_CLIENT_ID\n GOOGLE_CLIENT_SECRET=$GOOGLE_CLIENT_SECRET\n" > /.env.production
+RUN echo -e "DATABASE_URL=$DATABASE_URL\n NEXTAUTH_URL=$NEXTAUTH_URL"\n NEXTAUTH_SECRET=$NEXTAUTH_SECRET> /.env
 
 COPY --from=deps /app/package.json /app/package-lock.json ./
 COPY --from=deps /app/node_modules ./node_modules
@@ -43,7 +43,7 @@ RUN npm run build
 ##    RUNNER STEP
 
 # Production image, copy all the files and run next
-FROM --platform=linux/arm64 node AS runner
+FROM --platform=linux/arm64 node:alpine AS runner
 WORKDIR /app
 ENV NODE_ENV production
 
