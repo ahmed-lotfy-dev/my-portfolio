@@ -10,7 +10,7 @@ WORKDIR /app
 # Install dependencies based on the preferred package manager
 
 COPY package.json package-lock.json ./
-RUN npm install
+RUN npm config set registry http://registry.npmjs.org/ && npm install --no-optional --verbose
 
 
 ##    BUILDER STEP
