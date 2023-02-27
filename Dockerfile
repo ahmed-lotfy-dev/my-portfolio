@@ -10,9 +10,7 @@ WORKDIR /app
 # Install dependencies based on the preferred package manager
 
 COPY package.json package-lock.json ./
-RUN npm config set registry http://registry.npmjs.org/ && npm install --no-optional --verbose
-
-
+RUN npm config set registry http://registry.npmjs.org/ && npm install
 ##    BUILDER STEP
 FROM --platform=linux/arm64 node:alpine  AS builder
 # add environment variables to client code
