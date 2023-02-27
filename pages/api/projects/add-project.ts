@@ -1,3 +1,4 @@
+import { prisma } from "@/src/lib/prismadb";
 import nextConnect from "next-connect";
 import multer from "multer";
 import { NextApiRequest, NextApiResponse } from "next";
@@ -35,14 +36,14 @@ apiRoute.post(async (req, res) => {
     console.log(req.body);
     console.log(req.file);
 
-    // const project = await prisma.project.create({
-    //   data: {
-    //     projectTitle: req.body.projectTitle,
-    //     projectDescription: req.body.projectDescription,
-    //     projectImage: `${req.file.destination}/${req.file.filename}`,
-    //   },
-    // });
-    // console.log(project);
+    const project = await prisma.project.create({
+      data: {
+        projectTitle: req.body.projectTitle,
+        projectDesc: req.body.projectDescription,
+        projectImage: `${req.file.destination}/${req.file.filename}`,
+      },
+    });
+    console.log(project);
   } catch (error) {
     console.log(error);
   }

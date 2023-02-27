@@ -5,6 +5,10 @@ import { headers } from "next/headers";
 import AuthContext from "@/src/app/AuthContext";
 import Nav from "../components/nav";
 
+export const metadata = {
+  title: "Ahmed Lotfy ",
+};
+
 const josefinsans = Josefin_Sans({
   variable: "--main-font",
 });
@@ -21,7 +25,6 @@ async function getSession(cookie: string): Promise<Session> {
   });
 
   const session = await response.json();
-  console.log(session);
 
   return Object.keys(session).length > 0 ? session : null;
 }

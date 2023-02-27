@@ -1,7 +1,6 @@
 import nextConnect from "next-connect";
 import multer from "multer";
-import prisma from "@/src/lib/prismadb";
-import { NextApiRequest, NextApiResponse } from "next";
+import { prisma } from "@/src/lib/prismadb";
 
 const upload = multer({
   // Disk Storage option
@@ -17,8 +16,8 @@ const upload = multer({
   }),
 });
 
-//const storage = multer.memoryStorage() // Memory Storage option pass along as stream
-//const upload = multer({ storage: storage })
+// const storage = multer.memoryStorage() // Memory Storage option pass along as stream
+// const upload = multer({ storage: storage })
 
 const apiRoute = nextConnect({
   onError(error, req: any, res: any) {

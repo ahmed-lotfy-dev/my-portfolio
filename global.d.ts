@@ -4,7 +4,7 @@ declare module "nodemailer-sendinblue-transport";
 declare module "nodemailer-sendgrid";
 declare module "@sendgrid/mail";
 declare module "fs";
-declare module 'next-auth/client';
+declare module "next-auth/client";
 
 declare global {
   namespace NodeJS {
@@ -20,9 +20,8 @@ declare global {
       SECONDARY_EMAIL: string;
       GOOGLE_CLIENT_ID: string;
       GOOGLE_CLIENT_SECRET: string;
-      CF_ACCOUNT_ID: string;
-      CF_ACCESSKEY_ID: string;
-      CF_SECRET_ACCESS_KEY: string;
+      GITHUB_ID: string;
+      GITHUB_SECRET: string;
     }
   }
 }
