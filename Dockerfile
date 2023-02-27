@@ -11,7 +11,7 @@ WORKDIR /app
 
 COPY package.json package-lock.json ./
 COPY prisma ./
-RUN npm install
+RUN npm ci
 
 
 ##    BUILDER STEP
