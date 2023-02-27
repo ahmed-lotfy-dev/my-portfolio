@@ -1,3 +1,4 @@
+"use client";
 import Aside from "./components/aside";
 
 export default function DashboardLayout({

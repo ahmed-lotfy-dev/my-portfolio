@@ -75,4 +75,5 @@ model Project {
 enum Role {
   USER
   ADMIN
+  GUEST
 }

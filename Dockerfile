@@ -23,17 +23,6 @@ COPY --from=deps /app/package.json /app/package-lock.json ./
 COPY --from=deps /app/node_modules ./node_modules
 COPY --from=deps /app/prisma ./prisma
 
-COPY . .
-COPY prisma ./prisma/
-RUN npx prisma generate
-RUN npm run build
-
-##    RUNNER STEP
-
-# Production image, copy all the files and run next
-FROM --platform=linux/arm64 node:alpine AS runner
-WORKDIR /app
-
 # add environment variables to client code
 ARG SENDGRID_API_KEY
 ARG NEXTAUTH_URL
@@ -48,14 +37,26 @@ ENV DATABASE_URL=${DATABASE_URL}
 ENV NEXTAUTH_URL=${NEXTAUTH_URL}
 ENV NEXTAUTH_SECRET=${NEXTAUTH_SECRET}
 
+RUN echo -e "SENDGRID_API_KEY=$SENDGRID_API_KEY\n GOOGLE_CLIENT_ID=$GOOGLE_CLIENT_ID\n GOOGLE_CLIENT_SECRET=$GOOGLE_CLIENT_SECRET\n" > /.env.production
+RUN echo -e "DATABASE_URL=$DATABASE_URL\n NEXTAUTH_URL=$NEXTAUTH_URL\n NEXTAUTH_SECRET=$NEXTAUTH_SECRET"> /.env
+
+COPY . .
+COPY prisma ./prisma/
+RUN npx prisma generate
+RUN npm run build
+
+##    RUNNER STEP
+
+# Production image, copy all the files and run next
+FROM --platform=linux/arm64 node:alpine AS runner
+WORKDIR /app
+
 
 ENV NODE_ENV production
 
 RUN addgroup --system --gid 1001 nodejs
 RUN adduser --system --uid 1001 nextjs
 
-RUN echo -e "SENDGRID_API_KEY=$SENDGRID_API_KEY\n GOOGLE_CLIENT_ID=$GOOGLE_CLIENT_ID\n GOOGLE_CLIENT_SECRET=$GOOGLE_CLIENT_SECRET\n" > /.env.production
-RUN echo -e "DATABASE_URL=$DATABASE_URL\n NEXTAUTH_URL=$NEXTAUTH_URL\n NEXTAUTH_SECRET=$NEXTAUTH_SECRET"> /.env
 
 # You only need to copy next.config.js if you are NOT using the default configuration. 
 # Copy all necessary files used by nex.config as well otherwise the build will fail.
@@ -66,6 +67,9 @@ COPY --from=builder --chown=nextjs:nodejs /app/.next ./.next
 COPY --from=builder /app/node_modules ./node_modules
 COPY --from=builder /app/package.json ./package.json
 COPY --from=builder /app/ ./app
+COPY --from=builder /app/.env  ./app
+COPY --from=builder /app/.env.production ./app
+
 
 USER nextjs
 
