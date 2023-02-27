@@ -44,14 +44,14 @@ ENV DATABASE_URL=${DATABASE_URL}
 ENV NEXTAUTH_URL=${NEXTAUTH_URL}
 ENV NEXTAUTH_SECRET=${NEXTAUTH_SECRET}
 
-RUN echo -e "SENDGRID_API_KEY=$SENDGRID_API_KEY\n GOOGLE_CLIENT_ID=$GOOGLE_CLIENT_ID\n GOOGLE_CLIENT_SECRET=$GOOGLE_CLIENT_SECRET\n" > /.env.production
-RUN echo -e "DATABASE_URL=$DATABASE_URL\n NEXTAUTH_URL=$NEXTAUTH_URL\n NEXTAUTH_SECRET=$NEXTAUTH_SECRET"> /.env
 
 ENV NODE_ENV production
 
 RUN addgroup --system --gid 1001 nodejs
 RUN adduser --system --uid 1001 nextjs
 
+RUN echo -e "SENDGRID_API_KEY=$SENDGRID_API_KEY\n GOOGLE_CLIENT_ID=$GOOGLE_CLIENT_ID\n GOOGLE_CLIENT_SECRET=$GOOGLE_CLIENT_SECRET\n" > /.env.production
+RUN echo -e "DATABASE_URL=$DATABASE_URL\n NEXTAUTH_URL=$NEXTAUTH_URL\n NEXTAUTH_SECRET=$NEXTAUTH_SECRET"> /.env
 
 # You only need to copy next.config.js if you are NOT using the default configuration. 
 # Copy all necessary files used by nex.config as well otherwise the build will fail.
