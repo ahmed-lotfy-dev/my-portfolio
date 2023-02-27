@@ -10,6 +10,7 @@ WORKDIR /app
 # Install dependencies based on the preferred package manager
 
 COPY package.json package-lock.json ./
+COPY prisma ./
 RUN npm install
 
 
@@ -20,8 +21,10 @@ WORKDIR /app
 
 COPY --from=deps /app/package.json /app/package-lock.json ./
 COPY --from=deps /app/node_modules ./node_modules
+COPY --from=deps /app/prisma ./prisma
 
 COPY . .
+RUN prisma
 RUN npm run build
 
 ##    RUNNER STEP
