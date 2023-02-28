@@ -40,7 +40,7 @@ jobs:
           cache-to: type=local,dest=/tmp/.buildx-cache-new,mode=max
           tags: alotfy2019/my-portofolio:latest
           build-args: |
-            DATABASE_URL= ${{secrets.DATABASE_URL=}}
+            DATABASE_URL= ${{secrets.DATABASE_URL}}
             NEXTAUTH_URL= ${{secrets.NEXTAUTH_URL }}
             NEXTAUTH_SECRET= ${{secrets.NEXTAUTH_SECRET }}
             SECRET= ${{secrets.SECRET }}
