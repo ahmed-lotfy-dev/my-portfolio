@@ -10,7 +10,7 @@ WORKDIR /app
 # Install dependencies based on the preferred package manager
 
 COPY package.json package-lock.json ./
-COPY prisma ./prisma
+COPY prisma ./
 RUN npm install
 
 
@@ -20,8 +20,8 @@ FROM  node:alpine  AS builder
 WORKDIR /app
 
 COPY --from=deps /app/package.json /app/package-lock.json ./
-COPY --from=deps /app/node_modules ./node_modules
-COPY --from=deps /app/prisma ./prisma
+COPY --from=deps /app/node_modules ./
+COPY --from=deps /app/prisma ./
 
 # add environment variables to client code
 ARG GOOGLE_CLIENT_ID
@@ -33,8 +33,6 @@ ARG DATABASE_URL
 ARG NEXTAUTH_SECRET
 ARG SECRET
 ARG NEXTAUTH_URL
-
-RUN echo -e "" > ./env
 
 ENV GOOGLE_CLIENT_ID=${GOOGLE_CLIENT_ID}
 ENV GOOGLE_CLIENT_SECRET=${GOOGLE_CLIENT_SECRET}
@@ -60,8 +58,8 @@ RUN echo -e "SECRET=$SECRET"> ./.env
 RUN echo -e "GOOGLE_CLIENT_ID=$GOOGLE_CLIENT_ID\n GOOGLE_CLIENT_SECRET=$GOOGLE_CLIENT_SECRET\n  ID_GITHUB=$GITHUB_ID\n SECRET_GITHUB=$GITHUB_SECRET\n SENDGRID_API_KEY=$SENDGRID_API_KEY\n DATABASE_URL=$DATABASE_URL\n NEXTAUTH_URL=$NEXTAUTH_URL\n NEXTAUTH_SECRET=$NEXTAUTH_SECRET\n SECRET=$SECRET"> ./.env
 
 COPY . .
-COPY prisma ./prisma/
 RUN npx prisma generate
+RUN npx prisma db push
 RUN npm run build
 
 ##    RUNNER STEP
