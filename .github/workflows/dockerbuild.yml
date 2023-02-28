@@ -44,11 +44,11 @@ jobs:
             NEXTAUTH_URL= ${{secrets.NEXTAUTH_URL }}
             NEXTAUTH_SECRET= ${{secrets.NEXTAUTH_SECRET }}
             SECRET= ${{secrets.SECRET }}
-            GITHUB_ID= ${secrets.GITHUB_ID}
-            GITHUB_SECRET= ${secrets.GITHUB_SECRET}
             SENDGRID_API_KEY= ${{secrets.SENDGRID_API_KEY}}
             GOOGLE_CLIENT_ID= ${{secrets.GOOGLE_CLIENT_ID}}
             GOOGLE_CLIENT_SECRET= ${{secrets.GOOGLE_CLIENT_SECRET}}
+            ID_GITHUB= ${secrets.GITHUB_ID}
+            SECRET_GITHUB= ${secrets.GITHUB_SECRET}
       - name: Move cache
         run: |
           rm -rf /tmp/.buildx-cache
