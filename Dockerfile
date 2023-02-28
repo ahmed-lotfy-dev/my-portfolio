@@ -20,8 +20,8 @@ FROM  node:alpine  AS builder
 WORKDIR /app
 
 COPY --from=deps /app/package.json /app/package-lock.json ./
-COPY --from=deps /app/node_modules ./
-COPY --from=deps /app/prisma ./
+COPY --from=deps /app/node_modules ./node_modules
+COPY --from=deps /app/prisma ./prisma
 
 # add environment variables to client code
 ARG GOOGLE_CLIENT_ID
