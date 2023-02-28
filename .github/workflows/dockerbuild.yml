@@ -22,7 +22,7 @@ jobs:
         uses: actions/cache@v3
         with:
           path: /tmp/.buildx-cache
-          key: ${{ runner.os }}-buildx-${{ github.sha }}
+          key: ${{ runner.OS }}-buildx-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
             ${{ runner.os }}-buildx-
       - name: Login to Docker Hub
