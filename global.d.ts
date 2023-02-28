@@ -13,15 +13,17 @@ declare global {
       NODE_ENV: "development" | "production";
       PORT?: string;
       PWD: string;
-      MONGO_URI: string;
-      BCRYPT_SALT: string;
-      SENDGRID_API_KEY: string;
       MAIN_EMAIL: string;
       SECONDARY_EMAIL: string;
+      DATABASE_URL;
+      NEXTAUTH_URL: string;
+      NEXTAUTH_SECRET: string;
+      SECRET: string;
       GOOGLE_CLIENT_ID: string;
       GOOGLE_CLIENT_SECRET: string;
       GITHUB_ID: string;
       GITHUB_SECRET: string;
+      SENDGRID_API_KEY: string;
     }
   }
 }
