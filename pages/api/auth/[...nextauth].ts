@@ -8,10 +8,8 @@ import { type NextAuthOptions } from "next-auth";
 export const authOptions: NextAuthOptions = {
   callbacks: {
     session({ session, user }) {
-      if (session.user) {
-        session.user.id = user.id;
-        session.user.role = user.role; //<-- put other properties on the session here
-      }
+      session.user!.id = user.id;
+      session.user!.role = user.role; 
       return session;
     },
   },
@@ -24,7 +22,6 @@ export const authOptions: NextAuthOptions = {
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
       // allowDangerousEmailAccountLinking: true,
     }),
-
     GithubProvider({
       clientId: process.env.GITHUB_ID,
       clientSecret: process.env.GITHUB_SECRET,
