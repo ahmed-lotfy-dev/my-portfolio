@@ -47,8 +47,8 @@ jobs:
             SENDGRID_API_KEY= ${{secrets.SENDGRID_API_KEY}}
             GOOGLE_CLIENT_ID= ${{secrets.GOOGLE_CLIENT_ID}}
             GOOGLE_CLIENT_SECRET= ${{secrets.GOOGLE_CLIENT_SECRET}}
-            ID_GITHUB= ${secrets.GITHUB_ID}
-            SECRET_GITHUB= ${secrets.GITHUB_SECRET}
+            ID_GITHUB= ${secrets.ID_GITHUB}
+            SECRET_GITHUB= ${secrets.SECRET_GITHUB}
       - name: Move cache
         run: |
           rm -rf /tmp/.buildx-cache
