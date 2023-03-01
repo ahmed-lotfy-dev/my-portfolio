@@ -59,6 +59,7 @@ RUN echo -e "GOOGLE_CLIENT_ID=$GOOGLE_CLIENT_ID\n GOOGLE_CLIENT_SECRET=$GOOGLE_C
 
 COPY . .
 RUN npx prisma generate
+RUN npx prisma migrate dev
 RUN npm run build
 
 ##    RUNNER STEP
