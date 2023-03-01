@@ -33,6 +33,6 @@
     "src/components/skills.tsx",
     "pages/api/contact.ts",
     "src/app/actions/page.tsx"
-  ],
+, "src/components/accordion.tsx"  ],
   "exclude": ["node_modules"]
 }

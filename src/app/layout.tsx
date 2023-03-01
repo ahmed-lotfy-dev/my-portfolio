@@ -5,10 +5,6 @@ import { headers } from "next/headers";
 import AuthContext from "@/src/app/AuthContext";
 import Nav from "../components/nav";
 
-export const metadata = {
-  title: "Ahmed Lotfy ",
-};
-
 const josefinsans = Josefin_Sans({
   variable: "--main-font",
 });
