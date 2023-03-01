@@ -21,8 +21,8 @@ declare global {
       SECRET: string;
       GOOGLE_CLIENT_ID: string;
       GOOGLE_CLIENT_SECRET: string;
-      GITHUB_ID: string;
-      GITHUB_SECRET: string;
+      ID_GITHUB: string;
+      SECRET_GITHUB: string;
       SENDGRID_API_KEY: string;
     }
   }

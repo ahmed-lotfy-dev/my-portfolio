@@ -9,7 +9,7 @@ export const authOptions: NextAuthOptions = {
   callbacks: {
     session({ session, user }) {
       session.user!.id = user.id;
-      session.user!.role = user.role; 
+      session.user!.role = user.role;
       return session;
     },
   },
@@ -23,8 +23,8 @@ export const authOptions: NextAuthOptions = {
       // allowDangerousEmailAccountLinking: true,
     }),
     GithubProvider({
-      clientId: process.env.GITHUB_ID,
-      clientSecret: process.env.GITHUB_SECRET,
+      clientId: process.env.ID_GITHUB,
+      clientSecret: process.env.SECRET_GITHUB,
       // allowDangerousEmailAccountLinking: true,
     }),
     // ...add more providers here

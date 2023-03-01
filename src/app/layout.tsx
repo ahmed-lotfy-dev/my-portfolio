@@ -1,5 +1,5 @@
 import "./globals.css";
-import { Josefin_Sans, Josefin_Slab } from "@next/font/google";
+import { Josefin_Sans, Josefin_Slab } from "next/font/google";
 import { Session } from "next-auth";
 import { headers } from "next/headers";
 import AuthContext from "@/src/app/AuthContext";
