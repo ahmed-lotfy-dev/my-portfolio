@@ -1,6 +1,5 @@
 import { string } from "zod";
 
-declare module "nodemailer-sendinblue-transport";
 declare module "nodemailer-sendgrid";
 declare module "@sendgrid/mail";
 declare module "fs";
