@@ -69,6 +69,8 @@ model Project {
   id            String    @id @default(cuid())
   projectTitle    String
   projectDesc     String
+  projectRepoLink String
+  projectLiveLink String
   projectImage    String
 }
 

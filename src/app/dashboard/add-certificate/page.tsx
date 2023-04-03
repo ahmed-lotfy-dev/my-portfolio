@@ -1,6 +1,8 @@
 "use client";
 import { useState } from "react";
 import Image from "next/image";
+import { useSession } from "next-auth/react";
+import Toast from "../components/Toast";
 
 interface FormData extends EventTarget {
   certTitle: {
@@ -22,6 +24,9 @@ interface FormData extends EventTarget {
 }
 
 const AddCertificate = () => {
+  const { data: session, status } = useSession();
+  const role = session?.user?.role;
+
   const [image, setImage] = useState<string | Blob>("");
   const [previewUrl, setPreviewUrl] = useState<string>("");
 
@@ -34,24 +39,29 @@ const AddCertificate = () => {
   };
 
   const submitHandler = async (event: React.FormEvent<EventTarget>) => {
-    console.log(image);
-    console.log(previewUrl);
-    const target = event.target as FormData;
+    if (role === "USER") {
+      event.preventDefault();
+    }
+    if (role === "ADMIN") {
+      console.log(image);
+      console.log(previewUrl);
+      const target = event.target as FormData;
 
-    event.preventDefault();
-    const body = new FormData();
-    body.append("certTitle", target.certTitle.value);
-    body.append("certDesc", target.certDesc.value);
-    body.append("courseLink", target.courseLink.value);
-    body.append("certProfLink", target.certProfLink.value);
-    body.append("certImage", target.certImage.value);
-    body.append("file", image);
-    const response = await fetch("/api/certificates/add-certificate", {
-      method: "POST",
-      body,
-    });
-    const res = await response.json();
-    console.log(res);
+      event.preventDefault();
+      const body = new FormData();
+      body.append("certTitle", target.certTitle.value);
+      body.append("certDesc", target.certDesc.value);
+      body.append("courseLink", target.courseLink.value);
+      body.append("certProfLink", target.certProfLink.value);
+      body.append("certImage", target.certImage.value);
+      body.append("file", image);
+      const response = await fetch("/api/certificates/add-certificate", {
+        method: "POST",
+        body,
+      });
+      const res = await response.json();
+      console.log(res);
+    }
   };
 
   return (
@@ -77,6 +87,7 @@ const AddCertificate = () => {
       ) : (
         <Image src={previewUrl} alt={previewUrl} width={100} height={100} />
       )}
+      <Toast message={"message"} />
 
       <input type="file" name="image" onChange={changeHandler} />
       <button type="submit">Submit</button>

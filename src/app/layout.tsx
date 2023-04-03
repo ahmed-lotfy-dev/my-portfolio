@@ -4,6 +4,7 @@ import { Session } from "next-auth";
 import { headers } from "next/headers";
 import AuthContext from "@/src/app/AuthContext";
 import Nav from "../components/nav";
+import type { Metadata } from "next";
 
 const josefinsans = Josefin_Sans({
   variable: "--main-font",
@@ -12,6 +13,11 @@ const josefinsans = Josefin_Sans({
 const josefinslab = Josefin_Slab({
   variable: "--heading-font",
 });
+
+export const metadata: Metadata = {
+  title: "Ahmed Lotfy",
+  description: "Portfolio of Ahmed Lotfy The Full Stack Developer",
+};
 
 async function getSession(cookie: string): Promise<Session> {
   const response = await fetch(`${process.env.NEXTAUTH_URL}/api/auth/session`, {

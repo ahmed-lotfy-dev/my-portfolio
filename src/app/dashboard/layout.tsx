@@ -1,7 +1,9 @@
 "use client";
 import Aside from "./components/aside";
-import { useSession } from "next-auth/react";
-import Link from "next/link";
+import Loading from "./components/loading";
+import Notauth from "./components/notauth";
+
+import { useSession, signIn } from "next-auth/react";
 
 export default function DashboardLayout({
   children, // will be a page or nested layout
@@ -11,27 +13,15 @@ export default function DashboardLayout({
   const { data: session, status } = useSession();
   const role = session?.user?.role;
   if (status === "loading") {
-    return (
-      <div className="flex h-screen w-full justify-center items-start mt-10">
-        <p>Loading...</p>
-      </div>
-    );
+    return <Loading />;
   }
   if (status === "unauthenticated") {
-    return (
-      <div className="flex">
-        <Aside />
-        <div className="flex flex-col gap-3 h-screen w-full justify-start items-center mt-10">
-          <p>Access Denied</p>
-          <Link href={"/api/auth/signin"}>Sign In</Link>
-        </div>
-      </div>
-    );
+    return <Notauth />;
   }
   console.log(session);
   if (role === "ADMIN" || role === "USER") {
     return (
-      <div className="flex h-screen w-full">
+      <div className="flex h-[calc(100vh_-_10vh)] w-full">
         <Aside />
         {children}
       </div>

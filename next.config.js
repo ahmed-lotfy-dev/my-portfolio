@@ -20,6 +20,7 @@ const nextConfig = {
     ],
   },
   output: 'standalone',
+  enableUndici: true,
 }
 
 

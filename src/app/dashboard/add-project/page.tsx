@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import Image from "next/image";
+import { useSession } from "next-auth/react";
 
 interface FormData extends EventTarget {
   projectTitle: {
@@ -13,6 +14,9 @@ interface FormData extends EventTarget {
 }
 
 const AddProject = () => {
+  const { data: session, status } = useSession();
+  const role = session?.user?.role;
+
   const [image, setImage] = useState<string | Blob>("");
   const [previewUrl, setPreviewUrl] = useState<string>("");
 
@@ -28,18 +32,23 @@ const AddProject = () => {
   const submitHandler = async (
     event: React.FormEvent<HTMLFormElement> & Event
   ) => {
-    const target = event.target as FormData;
-    event.preventDefault();
-    const body = new FormData();
-    body.append("projectTitle", target.projectTitle.value);
-    body.append("projectDescription", target.projectDescription.value);
-    body.append("file", image);
-    const response = await fetch("/api/projects/add-project", {
-      method: "POST",
-      body,
-    });
-    const res = await response.json();
-    console.log(res);
+    if (role === "USER") {
+      event.preventDefault();
+    }
+    if (role === "ADMIN") {
+      const target = event.target as FormData;
+      event.preventDefault();
+      const body = new FormData();
+      body.append("projectTitle", target.projectTitle.value);
+      body.append("projectDescription", target.projectDescription.value);
+      body.append("file", image);
+      const response = await fetch("/api/projects/add-project", {
+        method: "POST",
+        body,
+      });
+      const res = await response.json();
+      console.log(res);
+    }
   };
 
   return (

@@ -41,6 +41,8 @@ apiRoute.post(async (req, res) => {
         projectTitle: req.body.projectTitle,
         projectDesc: req.body.projectDescription,
         projectImage: `${req.file.destination}/${req.file.filename}`,
+        projectLiveLink: req.body.projectLiveLink,
+        projectRepoLink: req.body.projectRepoLink,
       },
     });
     console.log(project);

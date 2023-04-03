@@ -1,7 +1,7 @@
 import {prisma} from "@/src/lib/prismadb";
 import type { NextApiRequest, NextApiResponse } from "next";
 
-export default async function SignUp(
+export default async function GetProjects(
   req: NextApiRequest & { body: User },
   res: NextApiResponse
 ) {

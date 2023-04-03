@@ -9,6 +9,7 @@ CREATE TABLE "Account" (
     "provider" TEXT NOT NULL,
     "providerAccountId" TEXT NOT NULL,
     "refresh_token" TEXT,
+    "refresh_token_expires_in" INTEGER,
     "access_token" TEXT,
     "expires_at" INTEGER,
     "token_type" TEXT,
@@ -66,6 +67,8 @@ CREATE TABLE "Project" (
     "id" TEXT NOT NULL,
     "projectTitle" TEXT NOT NULL,
     "projectDesc" TEXT NOT NULL,
+    "projectRepoLink" TEXT NOT NULL,
+    "projectLiveLink" TEXT NOT NULL,
     "projectImage" TEXT NOT NULL,
 
     CONSTRAINT "Project_pkey" PRIMARY KEY ("id")
