@@ -2,8 +2,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import { useSession } from "next-auth/react";
-import Toast from "../components/Toast";
-
+import { ToastContainer, toast } from "react-toastify";
 interface FormData extends EventTarget {
   certTitle: {
     value: string;
@@ -22,6 +21,8 @@ interface FormData extends EventTarget {
   };
   file: File;
 }
+
+const notify = () => toast.success("Wow so easy!");
 
 const AddCertificate = () => {
   const { data: session, status } = useSession();
@@ -87,7 +88,7 @@ const AddCertificate = () => {
       ) : (
         <Image src={previewUrl} alt={previewUrl} width={100} height={100} />
       )}
-      <Toast message={"message"} />
+      <ToastContainer />
 
       <input type="file" name="image" onChange={changeHandler} />
       <button type="submit">Submit</button>
