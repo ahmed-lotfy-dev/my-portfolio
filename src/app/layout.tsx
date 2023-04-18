@@ -7,10 +7,12 @@ import Nav from "../components/nav";
 import type { Metadata } from "next";
 
 const josefinsans = Josefin_Sans({
+  subsets: ["latin"],
   variable: "--main-font",
 });
 
 const josefinslab = Josefin_Slab({
+  subsets: ["latin"],
   variable: "--heading-font",
 });
 
