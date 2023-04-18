@@ -65,7 +65,6 @@ RUN npm run build
 
 # Production image, copy all the files and run next
 FROM  node:alpine AS runner
-RUN apk update & apk upgrade & apk add nano 
 WORKDIR /app
 
 
