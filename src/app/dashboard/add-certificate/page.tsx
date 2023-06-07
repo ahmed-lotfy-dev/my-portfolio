@@ -1,6 +1,6 @@
 "use client"
 import Image from "next/image"
-import { AddCertificateAction } from "@/src/app/actions"
+import { AddCertificateAction } from "@/src/app/_actions"
 import toast, { Toaster } from "react-hot-toast"
 import { useEffect, useState } from "react"
 
@@ -8,13 +8,15 @@ import "@uploadthing/react/styles.css"
 import { UploadButton } from "@uploadthing/react"
 //@ts-ignore
 import { OurFileRouter } from "./api/uploadthing/core"
+import { TagsInput } from "react-tag-input-component"
 
 const notify = (message: string) => toast.success(message)
 
 const AddCertificate = () => {
   const [image, setImage] = useState<string>("")
   const [previewUrl, setPreviewUrl] = useState<string>("")
-  const [isSubmitted, setIsSubmitted] = useState<boolean>(false)
+  const [selected, setSelected] = useState(["react"])
+
   useEffect(() => {}, [isSubmitted])
   return (
     <form
@@ -71,12 +73,21 @@ const AddCertificate = () => {
         }}
       />
       <Toaster />
+      <div>
+        <h1>Add Fruits</h1>
+        <TagsInput
+          value={selected}
+          onChange={setSelected}
+          name='tags'
+          placeHolder='enter fruits'
+        />
+        <em>press enter or comma to add new tag</em>
+      </div>
       <button
         type='submit'
         onClick={() => {
           setImage("")
           setPreviewUrl("")
-          setIsSubmitted(true)
         }}
       >
         Submit

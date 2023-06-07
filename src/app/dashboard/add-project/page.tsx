@@ -4,7 +4,7 @@ import Image from "next/image"
 import toast, { Toaster } from "react-hot-toast"
 import { TagsInput } from "react-tag-input-component"
 
-import { AddProjectAction } from "../../actions"
+import { AddProjectAction } from "../../_actions"
 
 import "@uploadthing/react/styles.css"
 import { UploadButton } from "@uploadthing/react"
