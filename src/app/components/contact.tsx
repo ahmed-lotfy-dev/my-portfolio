@@ -1,51 +1,11 @@
-"use client"
 import Link from "next/link"
-import { useForm, SubmitHandler } from "react-hook-form"
 import toast, { Toaster } from "react-hot-toast"
 import { IoLogoLinkedin, IoLogoGithub, IoLogoFacebook } from "react-icons/io5"
-import z from "zod"
-
-const formData = z.object({
-  name: z.string().trim(),
-  email: z.string().email(),
-  subject: z.string().min(5),
-  message: z.string().min(5),
-})
-
-type FormValues = z.infer<typeof formData>
+import { contactAction } from "../_actions"
 
 type Props = {}
 
-export default function Contact({}: Props) {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<FormValues>()
-
-  const onSubmit: SubmitHandler<FormValues> = async (data, e) => {
-    e?.preventDefault()
-    console.log("submitted")
-
-    fetch("/api/contact", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    })
-      .then((response) => {
-        return response.json()
-      })
-      .then((data) => {
-        console.log(data)
-        data.error
-          ? toast.error(data.error[0].path + data.error[0].message.slice(6))
-          : toast.success(data.toastMessage)
-      })
-    console.log(data)
-  }
-
+export default async function Contact({}: Props) {
   return (
     // outer container for bg
     <section className='p-6'>
@@ -88,59 +48,39 @@ export default function Contact({}: Props) {
         <div className='col-start-1 col-end-7 sm:col-start-1 sm:col-end-4 sm:row-start-2 sm:row-end-3 py-10 w-full  place-self-start'>
           <form
             className='flex flex-col space-y-5 mt-6 w-[75%] sm:w-[85%] mx-auto sm:mx-0 '
-            action='/api/contact'
-            method='POST'
-            onSubmit={handleSubmit(onSubmit)}
+            action={contactAction}
           >
             <input
               className='py-2 px-3 rounded-md placeholder:opacity-60 text-blue-900 border-[2px] border-blue-500 focus:border-blue-900 focus:border-[2px] outline-none placeholder:text-blue-700'
               type='text'
               placeholder='Name'
-              {...register("name", {
-                required: "please enter a valid name",
-                min: 5,
-                maxLength: 80,
-              })}
+              name='name'
+              min={5}
+              max={80}
             />
-            <div className='text-md lightbold text-red-500'>
-              {errors.name?.message && <p>{errors.name?.message}</p>}
-            </div>
+            <div className='text-md lightbold text-red-500'></div>
             <input
               className='py-2 px-3 rounded-md placeholder:opacity-60 text-blue-900 border-[2px] border-blue-500 focus:border-blue-900 focus:border-[2px] outline-none placeholder:text-blue-700'
               type='text'
               placeholder='Email'
-              {...register("email", {
-                required: "please enter a valid email",
-                pattern: /^\S+@\S+$/i,
-              })}
+              name='email'
             />
-            <div className='text-md lightbold text-red-500'>
-              {errors.email?.message && <p>{errors.email?.message}</p>}
-            </div>
+            <div className='text-md lightbold text-red-500'></div>
             <input
               className='py-2 px-3 rounded-md placeholder:opacity-60 text-blue-900 border-[2px] border-blue-500 focus:border-blue-900 focus:border-[2px] outline-none placeholder:text-blue-700'
               type='text'
               placeholder='Subject'
-              {...register("subject", {
-                required: "subject is missing please enter it",
-                min: 5,
-              })}
+              name='subject'
+              min={6}
             />
-            <div className='text-md lightbold text-red-500'>
-              {errors.subject?.message && <p>{errors.subject?.message}</p>}
-            </div>{" "}
+            <div className='text-md lightbold text-red-500'></div>
             <textarea
               className='py-2 px-3 rounded-md h-[10em] placeholder:opacity-60 text-blue-900 border-[2px] border-blue-500 focus:border-blue-900 focus:border-[2px] outline-none placeholder:text-blue-700'
               placeholder='Your Message'
-              {...register("message", {
-                required:
-                  "message is missing pleaser enter a valid message (min:5 char)",
-                min: 5,
-              })}
+              name='message'
+              minLength={10}
             />
-            <div className='text-md lightbold text-red-500'>
-              {errors.message?.message && <p>{errors.message?.message}</p>}
-            </div>
+            <div className='text-md lightbold text-red-500'></div>
             <input
               className='mx-auto w-[10rem] py-2 sm:self-start bg-blue-700 rounded-md hover:bg-blue-900 text-blue-100 hover:text-blue-100 font-bold transition-all hover:rounded-lg border-[3px] border-solid border-gray-800 sm:text-md'
               type='submit'
@@ -151,4 +91,3 @@ export default function Contact({}: Props) {
     </section>
   )
 }
-
