@@ -10,7 +10,6 @@ WORKDIR /app
 # Install dependencies based on the preferred package manager
 
 COPY package.json package-lock.json ./
-COPY ./prisma ./prisma
 RUN npm install
 
 
@@ -58,8 +57,6 @@ RUN echo -e "SECRET=$SECRET"> ./.env
 RUN echo -e "GOOGLE_CLIENT_ID=$GOOGLE_CLIENT_ID\n GOOGLE_CLIENT_SECRET=$GOOGLE_CLIENT_SECRET\n  ID_GITHUB=$ID_GITHUB_\n SECRET_GITHUB=$SECRET_GITHUB\n SENDGRID_API_KEY=$SENDGRID_API_KEY\n DATABASE_URL=$DATABASE_URL\n NEXTAUTH_URL=$NEXTAUTH_URL\n NEXTAUTH_SECRET=$NEXTAUTH_SECRET\n SECRET=$SECRET"> ./.env
 
 COPY . .
-RUN npx prisma generate
-RUN npx prisma db push
 RUN npm run build
 
 ##    RUNNER STEP
