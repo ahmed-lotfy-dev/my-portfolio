@@ -17,7 +17,6 @@ const AddCertificate = () => {
   const [previewUrl, setPreviewUrl] = useState<string>("")
   const [selected, setSelected] = useState(["react"])
 
-  useEffect(() => {}, [isSubmitted])
   return (
     <form
       action={AddCertificateAction}
