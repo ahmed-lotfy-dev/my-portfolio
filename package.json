@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    ".prisma/client": "link:prisma/prisma-client",
     "@auth/prisma-adapter": "^1.0.0",
     "@aws-sdk/client-s3": "^3.345.0",
     "@aws-sdk/s3-request-presigner": "^3.345.0",

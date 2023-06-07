@@ -1,4 +1,4 @@
-import prisma from "./prismadb"
+import { prisma } from "./prismadb"
 
 export async function getProjects() {
   try {

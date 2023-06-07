@@ -5,6 +5,9 @@ settings:
   excludeLinksFromLockfile: false
 
 dependencies:
+  .prisma/client:
+    specifier: link:prisma/prisma-client
+    version: link:prisma/prisma-client
   '@auth/prisma-adapter':
     specifier: ^1.0.0
     version: 1.0.0(@prisma/client@4.15.0)

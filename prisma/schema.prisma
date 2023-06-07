@@ -1,40 +1,41 @@
 datasource db {
   provider = "mongodb"
   url      = env("DATABASE_URL")
-  // shadowDatabaseUrl = env("SHADOW_DATABASE_URL") // Only needed when using a cloud provider that doesn't support the creation of new databases, like Heroku. Learn more: https://pris.ly/migrate-shadow
 }
 
+// generator client {
+//   provider = "prisma-client-js"
+// }
 generator client {
   provider = "prisma-client-js"
+  // output   = "./prisma-client" //the value to adjust or add if you dont have it
 }
 
 model Account {
-id  String  @id @default(auto()) @map("_id") @db.ObjectId
-
-
-  userId             String  @map("user_id")
+  id                String  @id @default(auto()) @map("_id") @db.ObjectId
+  userId            String? @db.ObjectId
   type              String
   provider          String
   providerAccountId String  @map("provider_account_id")
-  refresh_token      String? @db.String
-  access_token       String? @db.String
+  refresh_token     String? @db.String
+  access_token      String? @db.String
   expires_at        Int?
   token_type        String?
   scope             String?
   id_token          String? @db.String
   session_state     String?
 
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  user User? @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@unique([provider, providerAccountId])
   @@map("accounts")
 }
 
 model Session {
-id  String  @id @default(auto()) @map("_id") @db.ObjectId
+  id String @id @default(auto()) @map("_id") @db.ObjectId
 
   sessionToken String   @unique @map("session_token")
-  userId       String   @map("user_id")
+  userId       String   @db.ObjectId
   expires      DateTime
   user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 
@@ -42,7 +43,7 @@ id  String  @id @default(auto()) @map("_id") @db.ObjectId
 }
 
 model User {
-id  String  @id @default(auto()) @map("_id") @db.ObjectId
+  id String @id @default(auto()) @map("_id") @db.ObjectId
 
   name          String?
   email         String?   @unique
@@ -55,33 +56,37 @@ id  String  @id @default(auto()) @map("_id") @db.ObjectId
   @@map("users")
 }
 
-
 model VerificationToken {
-  identifier String @id @default(auto()) @map("_id") @db.ObjectId
+  identifier String   @id @default(auto()) @map("_id") @db.ObjectId
   token      String   @unique
   expires    DateTime
 
   @@unique([identifier, token])
+  @@map("verificationtokens")
 }
 
 model Certificate {
-id  String  @id @default(auto()) @map("_id") @db.ObjectId
+  id String @id @default(auto()) @map("_id") @db.ObjectId
 
   certTitle     String
   certDesc      String
   certImageLink String
   courseLink    String
   certProfLink  String
+
+  @@map("certificates")
 }
 
 model Project {
-id  String  @id @default(auto()) @map("_id") @db.ObjectId
+  id String @id @default(auto()) @map("_id") @db.ObjectId
 
   projectTitle     String
   projectDesc      String
   projectRepoLink  String
   projectLiveLink  String
   projectImageLink String
+
+  @@map("projects")
 }
 
 enum Role {

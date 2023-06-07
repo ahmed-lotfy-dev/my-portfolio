@@ -11,6 +11,7 @@
 # next.js
 /.next/
 /out/
+prisma/prisma-client
 
 # production
 /build
