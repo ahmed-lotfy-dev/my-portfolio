@@ -1,58 +1,58 @@
-"use client";
-import React from "react";
-import Link from "next/link";
-import Image from "next/image";
+"use client"
+import React from "react"
+import Link from "next/link"
+import Image from "next/image"
 import {
   IoHomeOutline,
   IoGridOutline,
   IoCodeWorkingSharp,
   IoTrophyOutline,
-} from "react-icons/io5";
+} from "react-icons/io5"
 
 const Aside = () => {
   return (
-    <aside className="p-3 group ">
-      <div className="container mx-auto bg-gray-600 h-full p-6 rounded-md space-y-5">
-        <div className="flex gap-5 items-center mx-auto first:mt-2 ">
-          <IoHomeOutline className="text-blue-300 w-[2rem] h-[2rem]" />
+    <aside className='min-h-full p-3 group '>
+      <div className='container mx-auto bg-gray-600 h-full p-6 rounded-md space-y-5'>
+        <div className='flex gap-5 items-center mx-auto first:mt-2 '>
+          <IoHomeOutline className='text-blue-300 w-[2rem] h-[2rem]' />
           <Link
-            className="text-gray-100 hidden group-hover:flex transition-hover  duration-300 sm:flex"
-            href="/"
+            className='text-gray-100 hidden group-hover:flex transition-hover  duration-300 sm:flex'
+            href='/'
           >
             Home Page
           </Link>
         </div>
-        <div className="flex gap-5 items-center mx-auto">
-          <IoGridOutline className="text-blue-300 w-[2rem] h-[2rem]" />
+        <div className='flex gap-5 items-center mx-auto'>
+          <IoGridOutline className='text-blue-300 w-[2rem] h-[2rem]' />
 
           <Link
-            className="text-gray-100 hidden group-hover:flex  sm:flex"
-            href="/dashboard"
+            className='text-gray-100 hidden group-hover:flex  sm:flex'
+            href='/dashboard'
           >
             Dashboard
           </Link>
         </div>
-        <div className="flex gap-5 items-center mx-auto">
-          <IoCodeWorkingSharp className="text-blue-300 w-[2rem] h-[2rem]" />
+        <div className='flex gap-5 items-center mx-auto'>
+          <IoCodeWorkingSharp className='text-blue-300 w-[2rem] h-[2rem]' />
           <Link
-            className="text-gray-100 hidden group-hover:flex  sm:flex"
-            href="/dashboard/add-project"
+            className='text-gray-100 hidden group-hover:flex  sm:flex'
+            href='/dashboard/add-project'
           >
             Projects
           </Link>
         </div>
-        <div className="flex gap-5 items-center mx-auto">
-          <IoTrophyOutline className="text-blue-300 w-[2rem] h-[2rem]" />
+        <div className='flex gap-5 items-center mx-auto'>
+          <IoTrophyOutline className='text-blue-300 w-[2rem] h-[2rem]' />
           <Link
-            className="text-gray-100 hidden group-hover:flex  sm:flex"
-            href="/dashboard/add-certificate"
+            className='text-gray-100 hidden group-hover:flex  sm:flex'
+            href='/dashboard/add-certificate'
           >
             Certificates
           </Link>
         </div>
       </div>
     </aside>
-  );
-};
+  )
+}
 
-export default Aside;
+export default Aside

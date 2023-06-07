@@ -1,78 +1,98 @@
-"use client";
-import { useState } from "react";
-import Image from "next/image";
-import { useSession } from "next-auth/react";
+"use client"
+import { useState } from "react"
+import Image from "next/image"
+import toast, { Toaster } from "react-hot-toast"
+import { TagsInput } from "react-tag-input-component"
 
-interface FormData extends EventTarget {
-  projectTitle: {
-    value: string;
-  };
-  projectDescription: {
-    value: string;
-  };
-  file: File;
-}
+import { AddProjectAction } from "../../actions"
+
+import "@uploadthing/react/styles.css"
+import { UploadButton } from "@uploadthing/react"
+//@ts-ignore
+import { OurFileRouter } from "./api/uploadthing/core"
 
 const AddProject = () => {
-  const { data: session, status } = useSession();
-  const role = session?.user?.role;
-
-  const [image, setImage] = useState<string | Blob>("");
-  const [previewUrl, setPreviewUrl] = useState<string>("");
-
-  const changeHandler = async (event: any) => {
-    if (event.target.files && event.target.files[0]) {
-      const i = event.target.files[0];
-
-      setImage(i);
-      setPreviewUrl(URL.createObjectURL(i));
-    }
-  };
-
-  const submitHandler = async (
-    event: React.FormEvent<HTMLFormElement> & Event
-  ) => {
-    if (role === "USER") {
-      event.preventDefault();
-    }
-    if (role === "ADMIN") {
-      const target = event.target as FormData;
-      event.preventDefault();
-      const body = new FormData();
-      body.append("projectTitle", target.projectTitle.value);
-      body.append("projectDescription", target.projectDescription.value);
-      body.append("file", image);
-      const response = await fetch("/api/projects/add-project", {
-        method: "POST",
-        body,
-      });
-      const res = await response.json();
-      console.log(res);
-    }
-  };
+  const [image, setImage] = useState<string>("")
+  const [previewUrl, setPreviewUrl] = useState<string>("")
+  const [selected, setSelected] = useState(["react"])
 
   return (
-    <form
-      className="flex flex-col justify-center items-center w-full gap-5 bg-gray-300 text-black"
-      onSubmit={submitHandler}
-      encType="multipart/form-data"
-    >
-      <label htmlFor="projectTitle">Project Title</label>
-      <input type="text" name="projectTitle" />
-      <label htmlFor="projectDescription">Project Description</label>
-      <input type="text" name="projectDescription" />
-      <label htmlFor="upload">Image Upload</label>
+    <div className='flex w-full min-h-full'>
+      <form
+        className='flex flex-col justify-center items-center w-full gap-5 bg-gray-300 text-black '
+        action={AddProjectAction}
+      >
+        <div className='flex flex-col items-center'>
+          <label className='mb-5' htmlFor='projectTitle'>
+            Project Title
+          </label>
+          <input type='text' name='projectTitle' />
+        </div>
+        <div className='flex flex-col items-center'>
+          <label className='mb-5' htmlFor='projectDesc'>
+            Project Description
+          </label>
+          <input type='text' name='projectDesc' />
+        </div>
+        <div className='flex flex-col items-center'>
+          <label className='mb-5' htmlFor='projectRepoLink'>
+            Project Repo Link
+          </label>
+          <input type='text' name='projectRepoLink' />
+        </div>
+        <div className='flex flex-col items-center'>
+          <label className='mb-5' htmlFor='projectLiveLink'>
+            Project Live Link
+          </label>
+          <input type='text' name='projectLiveLink' />
+        </div>
+        <input type='hidden' name='projectImageLink' value={previewUrl} />
+        {previewUrl ? (
+          <Image src={image!} width={300} height={300} alt={`${previewUrl}`} />
+        ) : (
+          ""
+        )}
 
-      {!image ? (
-        <div className="hidden"></div>
-      ) : (
-        <Image src={previewUrl} alt={previewUrl} width={100} height={100} />
-      )}
+        <UploadButton<OurFileRouter>
+          //@ts-ignore
+          endpoint='imageUploader'
+          onClientUploadComplete={(res) => {
+            // Do something with the response
+            console.log("Files: ", res)
+            setPreviewUrl(res![0].fileUrl)
+            setImage(res![0].fileUrl)
+            toast.success("poject image uploaded successfully", {
+              position: "top-right",
+            })
+          }}
+          onUploadError={(error: Error) => {
+            // Do something with the error.
+            alert(`ERROR! ${error.message}`)
+          }}
+        />
+        <Toaster />
+        <div>
+          <h1>Add Fruits</h1>
+          <TagsInput
+            value={selected}
+            onChange={setSelected}
+            name='tags'
+            placeHolder='enter fruits'
+          />
+          <em>press enter or comma to add new tag</em>
+        </div>
+        <button
+          type='submit'
+          onSubmit={() => {
+            setImage("")
+            setPreviewUrl("")
+          }}
+        >
+          Submit
+        </button>
+      </form>
+    </div>
+  )
+}
 
-      <input type="file" name="image" onChange={changeHandler} />
-      <button type="submit">Submit</button>
-    </form>
-  );
-};
-
-export default AddProject;
+export default AddProject

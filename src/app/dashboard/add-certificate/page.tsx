@@ -1,99 +1,88 @@
-"use client";
-import { useState } from "react";
-import Image from "next/image";
-import { useSession } from "next-auth/react";
-import { ToastContainer, toast } from "react-toastify";
-interface FormData extends EventTarget {
-  certTitle: {
-    value: string;
-  };
-  certDesc: {
-    value: string;
-  };
-  courseLink: {
-    value: string;
-  };
-  certProfLink: {
-    value: string;
-  };
-  certImage: {
-    value: string;
-  };
-  file: File;
-}
+"use client"
+import Image from "next/image"
+import { AddCertificateAction } from "@/src/app/actions"
+import toast, { Toaster } from "react-hot-toast"
+import { useEffect, useState } from "react"
 
-const notify = () => toast.success("Wow so easy!");
+import "@uploadthing/react/styles.css"
+import { UploadButton } from "@uploadthing/react"
+//@ts-ignore
+import { OurFileRouter } from "./api/uploadthing/core"
+
+const notify = (message: string) => toast.success(message)
 
 const AddCertificate = () => {
-  const { data: session, status } = useSession();
-  const role = session?.user?.role;
-
-  const [image, setImage] = useState<string | Blob>("");
-  const [previewUrl, setPreviewUrl] = useState<string>("");
-
-  const changeHandler = async (event: any) => {
-    if (event.target.files && event.target.files[0]) {
-      const i = event.target.files[0];
-      setImage(i);
-      setPreviewUrl(URL.createObjectURL(i));
-    }
-  };
-
-  const submitHandler = async (event: React.FormEvent<EventTarget>) => {
-    if (role === "USER") {
-      event.preventDefault();
-    }
-    if (role === "ADMIN") {
-      console.log(image);
-      console.log(previewUrl);
-      const target = event.target as FormData;
-
-      event.preventDefault();
-      const body = new FormData();
-      body.append("certTitle", target.certTitle.value);
-      body.append("certDesc", target.certDesc.value);
-      body.append("courseLink", target.courseLink.value);
-      body.append("certProfLink", target.certProfLink.value);
-      body.append("certImage", target.certImage.value);
-      body.append("file", image);
-      const response = await fetch("/api/certificates/add-certificate", {
-        method: "POST",
-        body,
-      });
-      const res = await response.json();
-      console.log(res);
-    }
-  };
-
+  const [image, setImage] = useState<string>("")
+  const [previewUrl, setPreviewUrl] = useState<string>("")
+  const [isSubmitted, setIsSubmitted] = useState<boolean>(false)
+  useEffect(() => {}, [isSubmitted])
   return (
     <form
-      className="flex flex-col justify-center items-center w-full gap-5 bg-gray-300 text-black"
-      onSubmit={submitHandler}
-      encType="multipart/form-data"
+      action={AddCertificateAction}
+      className='min-h-full flex flex-col justify-center items-center w-full gap-5 bg-gray-300 text-black'
     >
-      <label htmlFor="certTitle">Certificate Title</label>
-      <input type="text" name="certTitle" />
-      <label htmlFor="certDesc">Certificate Description</label>
-      <input type="textarea" name="certDesc" />
-      <label htmlFor="courseLink">Course Link</label>
-      <input type="text" name="courseLink" />
-      <label htmlFor="certProfLink">Certificate Proof</label>
-      <input type="text" name="certProfLink" />
-      <label htmlFor="certImage">Certificate Image</label>
-      <input type="text" name="certImage" />
-
-      <label htmlFor="upload">Image Upload</label>
-      {!image ? (
-        <div className="hidden"></div>
+      <div className='flex flex-col items-center'>
+        <label className='mb-5' htmlFor='certTitle'>
+          Certificate Title
+        </label>
+        <input className='editable' type='text' name='certTitle' />
+      </div>
+      <div className='flex flex-col items-center'>
+        <label className='mb-5' htmlFor='certDesc'>
+          Certificate Description
+        </label>
+        <input type='textarea' name='certDesc' />
+      </div>
+      <div className='flex flex-col items-center'>
+        <label className='mb-5' htmlFor='courseLink'>
+          Course Link
+        </label>
+        <input type='text' name='courseLink' />
+      </div>
+      <div className='flex flex-col items-center'>
+        <label className='mb-5' htmlFor='certProfLink'>
+          Certificate Proof
+        </label>
+        <input type='text' name='certProfLink' />
+      </div>
+      <label htmlFor='upload'>Image Upload</label>
+      <input type='hidden' name='certImageLink' value={previewUrl} />
+      {previewUrl ? (
+        <Image src={image!} width={300} height={300} alt={`${previewUrl}`} />
       ) : (
-        <Image src={previewUrl} alt={previewUrl} width={100} height={100} />
+        ""
       )}
-      <ToastContainer />
 
-      <input type="file" name="image" onChange={changeHandler} />
-      <button type="submit">Submit</button>
+      <UploadButton<OurFileRouter>
+        //@ts-ignore
+        endpoint='imageUploader'
+        onClientUploadComplete={(res) => {
+          // Do something with the response
+          console.log("Files: ", res)
+          setPreviewUrl(res![0].fileUrl)
+          setImage(res![0].fileUrl)
+          toast("certificate image uploaded successfully", {
+            position: "top-right",
+          })
+        }}
+        onUploadError={(error: Error) => {
+          // Do something with the error.
+          alert(`ERROR! ${error.message}`)
+        }}
+      />
+      <Toaster />
+      <button
+        type='submit'
+        onClick={() => {
+          setImage("")
+          setPreviewUrl("")
+          setIsSubmitted(true)
+        }}
+      >
+        Submit
+      </button>
     </form>
-  );
-};
+  )
+}
 
-export default AddCertificate;
+export default AddCertificate

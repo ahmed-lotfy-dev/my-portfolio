@@ -30,9 +30,10 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     "src/app/dashboard/aside.jsx",
-    "src/components/skills.tsx",
-    "pages/api/contact.ts",
-    "src/app/actions/page.tsx"
-, "src/components/accordion.tsx"  ],
+    "src/app/components/skills.tsx",
+    ".pagesOld/api/contact.ts",
+    "src/app/actions/page.tsx",
+    "src/app/components/accordion.tsx"
+, "src/app/page.jsx"  ],
   "exclude": ["node_modules"]
 }

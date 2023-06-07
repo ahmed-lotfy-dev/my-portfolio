@@ -1,55 +1,63 @@
 datasource db {
-  provider = "postgresql"
+  provider = "mongodb"
   url      = env("DATABASE_URL")
   // shadowDatabaseUrl = env("SHADOW_DATABASE_URL") // Only needed when using a cloud provider that doesn't support the creation of new databases, like Heroku. Learn more: https://pris.ly/migrate-shadow
 }
 
 generator client {
-  provider        = "prisma-client-js"
+  provider = "prisma-client-js"
 }
 
 model Account {
-  id                 String  @id @default(cuid())
-  userId             String
-  type               String
-  provider           String
-  providerAccountId  String
-  refresh_token      String?  @db.Text
-  refresh_token_expires_in        Int?
-  access_token       String?  @db.Text
-  expires_at         Int?
-  token_type         String?
-  scope              String?
-  id_token           String?  @db.Text
-  session_state      String?
+id  String  @id @default(auto()) @map("_id") @db.ObjectId
+
+
+  userId             String  @map("user_id")
+  type              String
+  provider          String
+  providerAccountId String  @map("provider_account_id")
+  refresh_token      String? @db.String
+  access_token       String? @db.String
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String? @db.String
+  session_state     String?
 
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@unique([provider, providerAccountId])
+  @@map("accounts")
 }
 
 model Session {
-  id           String   @id @default(cuid())
-  sessionToken String   @unique
-  userId       String
+id  String  @id @default(auto()) @map("_id") @db.ObjectId
+
+  sessionToken String   @unique @map("session_token")
+  userId       String   @map("user_id")
   expires      DateTime
   user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("sessions")
 }
 
 model User {
-  id            String    @id @default(cuid())
+id  String  @id @default(auto()) @map("_id") @db.ObjectId
+
   name          String?
   email         String?   @unique
-  emailVerified DateTime?
-  password      String?
-  role          Role      @default(USER)
+  emailVerified DateTime? @map("email_verified")
   image         String?
   accounts      Account[]
   sessions      Session[]
+  role          Role      @default(USER)
+
+  @@map("users")
 }
 
+
 model VerificationToken {
-  identifier String
+  identifier String @id @default(auto()) @map("_id") @db.ObjectId
   token      String   @unique
   expires    DateTime
 
@@ -57,23 +65,24 @@ model VerificationToken {
 }
 
 model Certificate {
-  id            String    @id @default(cuid())
+id  String  @id @default(auto()) @map("_id") @db.ObjectId
+
   certTitle     String
   certDesc      String
-  certImage     String
+  certImageLink String
   courseLink    String
   certProfLink  String
 }
 
 model Project {
-  id            String    @id @default(cuid())
-  projectTitle    String
-  projectDesc     String
-  projectRepoLink String
-  projectLiveLink String
-  projectImage    String
-}
+id  String  @id @default(auto()) @map("_id") @db.ObjectId
 
+  projectTitle     String
+  projectDesc      String
+  projectRepoLink  String
+  projectLiveLink  String
+  projectImageLink String
+}
 
 enum Role {
   USER
