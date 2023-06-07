@@ -12,7 +12,9 @@ import { TagsInput } from "react-tag-input-component"
 
 const notify = (message: string) => toast.success(message)
 
-const AddCertificate = () => {
+type Props = {}
+
+export default function AddCertificate({}: Props) {
   const [image, setImage] = useState<string>("")
   const [previewUrl, setPreviewUrl] = useState<string>("")
   const [selected, setSelected] = useState(["react"])
@@ -94,5 +96,3 @@ const AddCertificate = () => {
     </form>
   )
 }
-
-export default AddCertificate

@@ -35,7 +35,8 @@ const UserSchema = z
 
 type userSchemaType = z.infer<typeof UserSchema>
 
-function SignUp() {
+type Props = {}
+export default function SignUp({}: Props) {
   const {
     register,
     formState: { errors },
@@ -132,5 +133,3 @@ function SignUp() {
     </div>
   )
 }
-
-export default SignUp

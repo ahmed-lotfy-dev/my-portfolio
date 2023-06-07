@@ -11,8 +11,9 @@ import graphql from "@/public/images/skills/graphql.svg"
 import linux from "@/public/images/skills/linux.svg"
 import docker from "@/public/images/skills/docker.svg"
 
-console.log()
-function Skills() {
+type Props = {}
+
+export default function Skills({}: Props) {
   return (
     <section className='flex mx-auto justify-center items-center p-6 bg-gray-400 '>
       <div className='flex flex-col justify-center items-center sm:items-start gap-5 p-6 '>
@@ -93,5 +94,3 @@ function Skills() {
     </section>
   )
 }
-
-export default Skills

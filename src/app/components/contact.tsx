@@ -14,7 +14,9 @@ const formData = z.object({
 
 type FormValues = z.infer<typeof formData>
 
-const Contact = () => {
+type Props = {}
+
+export default function Contact({}: Props) {
   const {
     register,
     handleSubmit,
@@ -150,4 +152,3 @@ const Contact = () => {
   )
 }
 
-export default Contact

@@ -2,7 +2,9 @@
 import Link from "next/link"
 import { useSession, signOut } from "next-auth/react"
 
-const Page = () => {
+type Props = {}
+
+export default function Page({}: Props) {
   const { data: session, status } = useSession()
 
   return (
@@ -20,5 +22,3 @@ const Page = () => {
     </div>
   )
 }
-
-export default Page

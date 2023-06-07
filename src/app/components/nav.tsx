@@ -5,7 +5,11 @@ import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { IoMenu, IoClose } from "react-icons/io5"
 
-function Nav() {
+import React from "react"
+
+type Props = {}
+
+export default function Nav({}: Props) {
   const path = usePathname()
   const [isOpened, setIsOpened] = useState(false)
   const toggle = (e: any) => {
@@ -96,5 +100,3 @@ function Nav() {
     </header>
   )
 }
-
-export default Nav

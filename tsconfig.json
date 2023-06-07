@@ -34,6 +34,6 @@
     ".pagesOld/api/contact.ts",
     "src/app/actions/page.tsx",
     "src/app/components/accordion.tsx"
-, "src/app/page.jsx"  ],
+, "src/app/page.tsx"  ],
   "exclude": ["node_modules"]
 }

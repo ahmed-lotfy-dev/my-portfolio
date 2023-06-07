@@ -5,8 +5,9 @@ import Skills from "@/src/app/components/skills"
 import About from "@/src/app/components/about"
 import Contact from "@/src/app/components/contact"
 
+type Props = {}
 
-const Homepage = () => {
+export default function HomePage({}: Props) {
   return (
     <main className='font-main'>
       <Hero />
@@ -18,5 +19,3 @@ const Homepage = () => {
     </main>
   )
 }
-
-export default Homepage

@@ -1,7 +1,7 @@
-import React from "react";
+import React from "react"
 
-function BlogIndex() {
-  return <div>Blog Index</div>;
+type Props = {}
+
+export default function page({}: Props) {
+  return <div>page</div>
 }
-
-export default BlogIndex;

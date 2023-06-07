@@ -9,7 +9,10 @@ import {
   IoTrophyOutline,
 } from "react-icons/io5"
 
-const Aside = () => {
+
+type Props = {}
+
+export default function Aside({}: Props) {
   return (
     <aside className='min-h-full p-3 group '>
       <div className='container mx-auto bg-gray-600 h-full p-6 rounded-md space-y-5'>
@@ -55,4 +58,3 @@ const Aside = () => {
   )
 }
 
-export default Aside

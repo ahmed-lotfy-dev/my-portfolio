@@ -10,8 +10,11 @@ import "@uploadthing/react/styles.css"
 import { UploadButton } from "@uploadthing/react"
 //@ts-ignore
 import { OurFileRouter } from "./api/uploadthing/core"
+import React from "react"
 
-const AddProject = () => {
+type Props = {}
+
+export default function AddProject({}: Props) {
   const [image, setImage] = useState<string>("")
   const [previewUrl, setPreviewUrl] = useState<string>("")
   const [selected, setSelected] = useState(["react"])
@@ -94,5 +97,3 @@ const AddProject = () => {
     </div>
   )
 }
-
-export default AddProject
