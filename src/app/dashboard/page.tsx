@@ -38,35 +38,41 @@ export default async function Page({}: Props) {
             </CardContent>
           </CardHeader>
         </Card>
-        <div>
+      </div>
+      <div className=''>
+        <div className='grid grid-cols-2'>
           {allCertificates?.length ? (
             allCertificates.map((cert) => (
-              <>
+              <div className=''>
                 <h1>{cert.certTitle}</h1>
                 <img
+                  className='w-[500px]'
                   src={cert.certImageLink}
                   alt=''
                   key={cert.id}
                   content='Content-Disposition: inline'
                 />
-              </>
+              </div>
             ))
           ) : (
             <>
               <p>No certificates available.</p>
             </>
           )}
+        </div>
+        <div className='grid grid-cols-2'>
           {allProjects?.length ? (
             allProjects.map((cert) => (
-              <>
+              <div>
                 <h1>{cert.projTitle}</h1>
                 <img
+                  className='w-[500px]'
                   src={cert.projImageLink}
                   alt=''
                   key={cert.id}
                   content='Content-Disposition: inline'
                 />
-              </>
+              </div>
             ))
           ) : (
             <>
