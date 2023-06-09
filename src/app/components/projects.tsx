@@ -1,7 +1,7 @@
 import React from "react"
 import Image from "next/image"
 import image1 from "@/public/images/skills/docker.svg"
-import { getProjects } from "../lib/projects"
+import getAllProjects from "../lib/getProjects"
 export const dynamic = "force-dynamic"
 
 export type project = {
@@ -16,7 +16,8 @@ export type project = {
 type Props = {}
 
 export default async function projects({}: Props) {
-  const { projects } = await getProjects()
+  const allCertificates = await getAllProjects()
+
   return (
     <section className='container mx-auto flex flex-col justify-center items-center sm:items-start p-6 max-w-screen-xl mb-10'>
       <div className='flex flex-col justify-center items-center mx-auto py-10'>
@@ -43,4 +44,3 @@ export default async function projects({}: Props) {
     </section>
   )
 }
-

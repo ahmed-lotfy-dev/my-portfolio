@@ -10,60 +10,6 @@ generator client {
   provider = "prisma-client-js"
 }
 
-model Account {
-  id                String  @id @default(auto()) @map("_id") @db.ObjectId
-  userId            String? @db.ObjectId
-  type              String
-  provider          String
-  providerAccountId String  @map("provider_account_id")
-  refresh_token     String? @db.String
-  access_token      String? @db.String
-  expires_at        Int?
-  token_type        String?
-  scope             String?
-  id_token          String? @db.String
-  session_state     String?
-
-  user User? @relation(fields: [userId], references: [id], onDelete: Cascade)
-
-  @@unique([provider, providerAccountId])
-  @@map("accounts")
-}
-
-model Session {
-  id String @id @default(auto()) @map("_id") @db.ObjectId
-
-  sessionToken String   @unique @map("session_token")
-  userId       String   @db.ObjectId
-  expires      DateTime
-  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-
-  @@map("sessions")
-}
-
-model User {
-  id String @id @default(auto()) @map("_id") @db.ObjectId
-
-  name          String?
-  email         String?   @unique
-  emailVerified DateTime? @map("email_verified")
-  image         String?
-  accounts      Account[]
-  sessions      Session[]
-  role          Role      @default(USER)
-
-  @@map("users")
-}
-
-model VerificationToken {
-  identifier String   @id @default(auto()) @map("_id") @db.ObjectId
-  token      String   @unique
-  expires    DateTime
-
-  @@unique([identifier, token])
-  @@map("verificationtokens")
-}
-
 model Certificate {
   id String @id @default(auto()) @map("_id") @db.ObjectId
 
@@ -72,6 +18,7 @@ model Certificate {
   certImageLink String
   courseLink    String
   certProfLink  String
+  tags          String[]
 
   @@map("certificates")
 }
@@ -79,17 +26,13 @@ model Certificate {
 model Project {
   id String @id @default(auto()) @map("_id") @db.ObjectId
 
-  projectTitle     String
-  projectDesc      String
-  projectRepoLink  String
-  projectLiveLink  String
-  projectImageLink String
+  projTitle     String
+  projDesc      String
+  projRepoLink  String
+  projLiveLink  String
+  projImageLink String
+  tags          String[]
 
   @@map("projects")
 }
 
-enum Role {
-  USER
-  ADMIN
-  GUEST
-}

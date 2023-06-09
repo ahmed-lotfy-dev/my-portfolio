@@ -9,7 +9,6 @@ import {
   IoTrophyOutline,
 } from "react-icons/io5"
 
-
 type Props = {}
 
 export default function Aside({}: Props) {
@@ -57,4 +56,3 @@ export default function Aside({}: Props) {
     </aside>
   )
 }
-

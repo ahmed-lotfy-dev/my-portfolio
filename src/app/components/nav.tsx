@@ -6,10 +6,12 @@ import { usePathname } from "next/navigation"
 import { IoMenu, IoClose } from "react-icons/io5"
 
 import React from "react"
+import { Session } from "next-auth"
 
-type Props = {}
+// type Props = { session: Session }
 
-export default function Nav({}: Props) {
+// export default function Nav({ session }: Props) {
+export default function Nav() {
   const path = usePathname()
   const [isOpened, setIsOpened] = useState(false)
   const toggle = (e: any) => {
@@ -81,14 +83,42 @@ export default function Nav({}: Props) {
           >
             Contact
           </Link>
-          <Link
-            href='/dashboard'
-            className={`hover:text-red-700 hover:border-b-4 hover:border-b-red-800 transition-all delay-75 duration-250 rounded-sm ${
-              path === "/contact" ? "active" : ""
-            }`}
-          >
-            DASHBOARD
-          </Link>
+          {/* {path === "/dashboard" && !session ? (
+            <Link
+              href='/api/auth/signin'
+              className={`hover:text-red-700 hover:border-b-4 hover:border-b-red-800 transition-all delay-75 duration-250 rounded-sm ${
+                path === "/dashboard" ? "active" : ""
+              }`}
+            >
+              Sign In
+            </Link>
+          ) : (
+            ""
+          )}
+          {path === "/dashboard" && session ? (
+            <Link
+              href='/api/auth/signout'
+              className={`hover:text-red-700 hover:border-b-4 hover:border-b-red-800 transition-all delay-75 duration-250 rounded-sm ${
+                path === "/dashboard" ? "active" : ""
+              }`}
+            >
+              Sign Out
+            </Link>
+          ) : (
+            ""
+          )}
+          {path === "/" ? (
+            <Link
+              href='/dashboard'
+              className={`hover:text-red-700 hover:border-b-4 hover:border-b-red-800 transition-all delay-75 duration-250 rounded-sm ${
+                path === "/" ? "active" : ""
+              }`}
+            >
+              DASHBOARD
+            </Link>
+          ) : (
+            ""
+          )} */}
         </nav>
 
         <IoMenu

@@ -1,7 +1,9 @@
 import React from "react"
 import Aside from "./aside"
 
-const loading = () => {
+type Props = {}
+
+export default function Loading({}: Props) {
   return (
     <div className='flex h-full w-full '>
       <Aside />
@@ -30,5 +32,3 @@ const loading = () => {
     </div>
   )
 }
-
-export default loading

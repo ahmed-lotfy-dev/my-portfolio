@@ -1,4 +1,4 @@
-import { getCertificates } from "../lib/certificates"
+import getAllCertificates from "../lib/getCertificates"
 export const dynamic = "force-dynamic"
 
 export type Certificate = {
@@ -15,7 +15,7 @@ type Props = {}
 import { type ReactNode } from "react"
 
 export default async function certificates({}: Props) {
-  const { certificates } = await getCertificates()
+  const allCertificates = await getAllCertificates()
   return (
     <section className='bg-blue-200 flex justify-center items-center text-center sm:text-start p-6 '>
       <div className='container max-w-screen-xl justify-center items-center p-6'>

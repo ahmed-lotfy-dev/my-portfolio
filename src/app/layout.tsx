@@ -1,8 +1,7 @@
 import "./globals.css"
 import { Josefin_Sans, Josefin_Slab } from "next/font/google"
-import AuthContext from "@/src/app/AuthContext"
-import { getServerSession } from "next-auth/next"
-import { authOptions } from "./api/auth/[...nextauth]/route"
+// import AuthContext from "@/src/app/AuthContext"
+import { ClerkProvider } from "@clerk/nextjs"
 
 import Nav from "./components/nav"
 import type { Metadata } from "next"
@@ -27,17 +26,17 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode
 }) {
-  const session = await getServerSession(authOptions)
-
   return (
-    <html lang='en'>
-      <body className={`${josefinsans.variable}${josefinslab.variable}`}>
-        {/* @ts-ignore */}
-        <AuthContext session={session}>
+    <ClerkProvider>
+      <html lang='en'>
+        <body className={`${josefinsans.variable}${josefinslab.variable}`}>
+          {/* @ts-ignore */}
+          {/* <AuthContext session={session}> */}
           <Nav />
           {children}
-        </AuthContext>
-      </body>
-    </html>
+          {/* </AuthContext> */}
+        </body>
+      </html>
+    </ClerkProvider>
   )
 }

@@ -1,53 +1,131 @@
 "use server"
 import { revalidatePath } from "next/cache"
-import { prisma } from "./lib/prismadb"
+import { prisma } from "@/src//app/lib/prisma"
 import sgMail from "@sendgrid/mail"
 sgMail.setApiKey(process.env.SENDGRID_API_KEY)
+
+import {
+  S3Client,
+  ListBucketsCommand,
+  ListObjectsV2Command,
+  GetObjectCommand,
+  PutObjectCommand,
+} from "@aws-sdk/client-s3"
+import { getSignedUrl } from "@aws-sdk/s3-request-presigner"
+
+const S3 = new S3Client({
+  region: "auto",
+  endpoint: `https://${process.env.CF_ACCOUNT_ID}.r2.cloudflarestorage.com`,
+  credentials: {
+    accessKeyId: process.env.CF_ACCESS_KEY_ID,
+    secretAccessKey: process.env.CF_SECRET_ACCESS_KEY,
+  },
+})
+
+function sliceStringByQuestionX(str: string) {
+  var slicedArray = str.split("?X")
+  return slicedArray[0]
+}
+
 export async function AddCertificateAction(data: FormData) {
   const certTitle = data.get("certTitle") as string
   const certDesc = data.get("certDesc") as string
   const courseLink = data.get("courseLink") as string
   const certProfLink = data.get("certProfLink") as string
-  const certImageLink = data.get("certImageLink") as string
+  const tags = data.get("tags") as any
 
-  //@ts-ignore
-  if (!certImageLink) return
-  const certificate = await prisma.certificate.create({
-    data: { certTitle, certDesc, courseLink, certProfLink, certImageLink },
+  const certImageFile = data.get("certImageLink") as File
+  const certImageBuffer = await certImageFile.arrayBuffer()
+  const certImageContent = new Uint8Array(certImageBuffer)
+  const certImageType = certImageFile?.type
+  console.log(certImageType)
+
+  const uploadImage = await S3.send(
+    new PutObjectCommand({
+      Bucket: "portfolio",
+      //@ts-ignore
+      Key: certImageFile?.name,
+      Body: certImageContent,
+      ContentType: certImageType,
+      ACL: "public-read", // Add this line to set the ACL
+    })
+  )
+
+  // Create a GetObjectCommand
+  const command = new GetObjectCommand({
+    Bucket: "portfolio",
+    Key: certImageFile?.name,
   })
+  // Generate a pre-signed URL with a validity period
+  const preSignedUrl = await getSignedUrl(
+    S3,
+    command
+    // { expiresIn: 3600 }
+  )
+
+  // if (!certImageLink) return
+  const certificate = await prisma.certificate.create({
+    data: {
+      certTitle,
+      certDesc,
+      courseLink,
+      certProfLink,
+      certImageLink: preSignedUrl,
+    },
+  })
+
   console.log("certificate added successfully")
   revalidatePath("/dashboard/add-certificate")
 }
 
 export async function AddProjectAction(data: FormData) {
-  const projectTitle = data.get("projectTitle") as string
-  const projectDesc = data.get("projectDesc") as string
-  const projectRepoLink = data.get("projectRepoLink") as string
-  const projectLiveLink = data.get("projectLiveLink") as string
-  const projectImageLink = data.get("projectImageLink") as string
-  const tags = data.get("tags")
-  console.log(tags)
+  const projTitle = data.get("projTitle") as string
+  const projDesc = data.get("projDesc") as string
+  const projRepoLink = data.get("projRepoLink") as string
+  const projLiveLink = data.get("projLiveLink") as string
+  const tags = data.get("tags") as any
 
+  const projImageFile = data.get("projImageLink") as File
+  const projImageBuffer = await projImageFile.arrayBuffer()
+  const projImageContent = new Uint8Array(projImageBuffer)
+  const projImageType = projImageFile?.type
+  console.log(projImageType)
+
+  const uploadImage = await S3.send(
+    new PutObjectCommand({
+      Bucket: "portfolio",
+      //@ts-ignore
+      Key: projImageFile?.name,
+      Body: projImageContent,
+      ContentType: projImageType,
+      ACL: "public-read", // Add this line to set the ACL
+    })
+  )
+
+  // Create a GetObjectCommand
+  const command = new GetObjectCommand({
+    Bucket: "portfolio",
+    Key: projImageFile?.name,
+  })
+  // Generate a pre-signed URL with a validity period
+  const preSignedUrl = await getSignedUrl(
+    S3,
+    command
+    // { expiresIn: 3600 }
+  )
   // if (!projectImageLink) return
   const project = await prisma.project.create({
     data: {
-      projectTitle,
-      projectDesc,
-      projectRepoLink,
-      projectLiveLink,
-      projectImageLink,
+      projTitle,
+      projDesc,
+      projRepoLink,
+      projLiveLink,
+      projImageLink: preSignedUrl,
+      tags,
     },
   })
   console.log("project added successfully")
   revalidatePath("/dashboard/add-project")
-}
-
-type Message = {
-  to: string[]
-  from: string
-  subject: FormDataEntryValue | null
-  text: FormDataEntryValue | null
-  html: string
 }
 
 export async function contactAction(data: FormData) {

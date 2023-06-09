@@ -2,9 +2,10 @@ import Link from "next/link"
 import Image from "next/image"
 import HeroImage from "@/public/images/alotfy_Programmer_coding_on_laptop_sitting_on_desk_-_-_v4_styli_9fb2f0c6-7665-4891-b42c-89e8e4c6274b.png"
 
+
 type Props = {}
 
-export default function Hero({}: Props) {
+export default async function Hero({}: Props) {
   return (
     <section className='bg-gray-700 border-b-2 border-gray-900 p-6'>
       <div className='container mx-auto flex flex-col gap-5 p-5 sm:flex-row mb-10 justify-between items-center max-w-screen-xl'>

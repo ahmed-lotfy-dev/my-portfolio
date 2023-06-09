@@ -1,94 +1,78 @@
 "use client"
-import { useState } from "react"
+import { useRef, useState } from "react"
 import Image from "next/image"
 import toast, { Toaster } from "react-hot-toast"
 import { TagsInput } from "react-tag-input-component"
 
-import { AddProjectAction } from "@/src/app/_actions"
+import { AddProjectAction } from "../../_actions"
 
-import "@uploadthing/react/styles.css"
-import { UploadButton } from "@uploadthing/react"
-//@ts-ignore
-import { OurFileRouter } from "./api/uploadthing/core"
-import React from "react"
+import { Input } from "@/src/app/components/ui/input"
+import { Label } from "@/src/app/components/ui/label"
 
 type Props = {}
 
 export default function AddProject({}: Props) {
+  const imageLink = useRef()
   const [image, setImage] = useState<string>("")
   const [previewUrl, setPreviewUrl] = useState<string>("")
   const [selected, setSelected] = useState(["react"])
+  const imageLinkRef = useRef<string | undefined>()
 
   return (
     <div className='flex w-full min-h-full'>
       <form
-        className='flex flex-col justify-center items-center w-full gap-5 bg-gray-300 text-black '
+        className='flex flex-col justify-center items-center w-full gap-5 bg-gray-100 text-black '
         action={AddProjectAction}
       >
         <div className='flex flex-col items-center'>
-          <label className='mb-5' htmlFor='projectTitle'>
+          <label className='mb-5' htmlFor='projTitle'>
             Project Title
           </label>
-          <input type='text' name='projectTitle' />
+          <input type='text' name='projTitle' />
         </div>
         <div className='flex flex-col items-center'>
-          <label className='mb-5' htmlFor='projectDesc'>
+          <label className='mb-5' htmlFor='projDesc'>
             Project Description
           </label>
-          <input type='text' name='projectDesc' />
+          <input type='text' name='projDesc' />
         </div>
         <div className='flex flex-col items-center'>
-          <label className='mb-5' htmlFor='projectRepoLink'>
+          <label className='mb-5' htmlFor='projRepoLink'>
             Project Repo Link
           </label>
-          <input type='text' name='projectRepoLink' />
+          <input type='text' name='projRepoLink' />
         </div>
         <div className='flex flex-col items-center'>
-          <label className='mb-5' htmlFor='projectLiveLink'>
+          <label className='mb-5' htmlFor='projLiveLink'>
             Project Live Link
           </label>
-          <input type='text' name='projectLiveLink' />
+          <input type='text' name='projLiveLink' />
         </div>
-        <input type='hidden' name='projectImageLink' value={previewUrl} />
+        <Label htmlFor='picture'>Picture</Label>
+        <Input className='w-1/4' type='file' name='projImageLink' />
+        <input type='hidden' name='tags' value={selected} />
         {previewUrl ? (
           <Image src={image!} width={300} height={300} alt={`${previewUrl}`} />
         ) : (
           ""
         )}
 
-        <UploadButton<OurFileRouter>
-          //@ts-ignore
-          endpoint='imageUploader'
-          onClientUploadComplete={(res) => {
-            // Do something with the response
-            console.log("Files: ", res)
-            setPreviewUrl(res![0].fileUrl)
-            setImage(res![0].fileUrl)
-            toast.success("poject image uploaded successfully", {
-              position: "top-right",
-            })
-          }}
-          onUploadError={(error: Error) => {
-            // Do something with the error.
-            alert(`ERROR! ${error.message}`)
-          }}
-        />
         <Toaster />
         <div>
-          <h1>Add Fruits</h1>
+          <h1>Project Tags</h1>
           <TagsInput
             value={selected}
             onChange={setSelected}
             name='tags'
             placeHolder='enter fruits'
           />
-          <em>press enter or comma to add new tag</em>
         </div>
         <button
           type='submit'
-          onSubmit={() => {
+          onClick={() => {
             setImage("")
             setPreviewUrl("")
+            console.log("hello world frontend")
           }}
         >
           Submit

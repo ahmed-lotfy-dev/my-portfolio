@@ -27,6 +27,10 @@ declare global {
       UPLOADTHING_APP_ID: string
       NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY: string
       CLERK_SECRET_KEY: string
+      ADMIN_EMAIL: string
+      CF_ACCOUNT_ID: string
+      CF_ACCESS_KEY_ID: string
+      CF_SECRET_ACCESS_KEY: string
     }
   }
 }
