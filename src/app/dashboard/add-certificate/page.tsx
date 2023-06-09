@@ -2,17 +2,21 @@
 import { useState } from "react"
 import Image from "next/image"
 import toast, { Toaster } from "react-hot-toast"
-import { TagsInput } from "react-tag-input-component"
 
 import { AddCertificateAction } from "../../_actions"
 import { Input } from "@/src/app/components/ui/input"
 import { Label } from "@/src/app/components/ui/label"
+import { useUser } from "@clerk/nextjs"
 
 type Props = {}
+
+const notify = (message: string, status: boolean) =>
+  status ? toast.success(message) : toast.error(message)
 
 export default function AddProject({}: Props) {
   const [image, setImage] = useState<string>("")
   const [previewUrl, setPreviewUrl] = useState<string>("")
+  const emailAddress = useUser().user?.emailAddresses[0].emailAddress as any
 
   return (
     <div className='flex w-full min-h-full'>
@@ -46,38 +50,30 @@ export default function AddProject({}: Props) {
         </div>
         <Label htmlFor='picture'>Picture</Label>
         <Input className='w-1/4' type='file' name='certImageLink' />
+        <Input
+          className='w-1/4'
+          type='hidden'
+          name='emailAddress'
+          value={emailAddress}
+        />
+
         {previewUrl ? (
           <Image src={image!} width={300} height={300} alt={`${previewUrl}`} />
         ) : (
           ""
         )}
 
-        {/* <UploadButton<OurFileRouter>
-          //@ts-ignore
-          endpoint='imageUploader'
-          onClientUploadComplete={(res) => {
-            // Do something with the response
-            console.log("Files: ", res)
-            const imageUrl = res![0].fileUrl
-            setPreviewUrl(imageUrl)
-            setImage(imageUrl)
-            imageLinkRef.current = imageUrl
-            toast.success("poject image uploaded successfully", {
-              position: "top-right",
-            })
-          }}
-          onUploadError={(error: Error) => {
-            // Do something with the error.
-            alert(`ERROR! ${error.message}`)
-          }}
-        /> */}
-        <Toaster />
+        <Toaster position='top-right' />
         <button
           type='submit'
           onClick={() => {
-            setImage("")
-            setPreviewUrl("")
-            console.log("hello world frontend")
+            if (emailAddress !== process.env.NEXT_PUBLIC_ADMIN_EMAIL) {
+              console.log(emailAddress)
+              console.log(process.env.NEXT_PUBLIC_ADMIN_EMAIL)
+              notify("sorry you don't have admin priviliges", false)
+            } else {
+              notify("Adding Completed Successfully", true)
+            }
           }}
         >
           Submit

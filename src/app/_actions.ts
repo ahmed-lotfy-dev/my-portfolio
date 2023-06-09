@@ -33,12 +33,15 @@ export async function AddCertificateAction(data: FormData) {
   const courseLink = data.get("courseLink") as string
   const certProfLink = data.get("certProfLink") as string
   const tags = data.get("tags") as any
+  const emailAddress = data.get("emailAddress")
 
   const certImageFile = data.get("certImageLink") as File
   const certImageBuffer = await certImageFile.arrayBuffer()
   const certImageContent = new Uint8Array(certImageBuffer)
   const certImageType = certImageFile?.type
   console.log(certImageType)
+  console.log(process.env.ADMIN_EMAIL)
+  console.log(emailAddress)
 
   const uploadImage = await S3.send(
     new PutObjectCommand({
@@ -63,7 +66,8 @@ export async function AddCertificateAction(data: FormData) {
     // { expiresIn: 3600 }
   )
 
-  // if (!certImageLink) return
+  //@ts-ignore
+  if (emailAddress !== process.env.ADMIN_EMAIL) return
   const certificate = await prisma.certificate.create({
     data: {
       certTitle,
@@ -84,6 +88,7 @@ export async function AddProjectAction(data: FormData) {
   const projRepoLink = data.get("projRepoLink") as string
   const projLiveLink = data.get("projLiveLink") as string
   const tags = data.get("tags") as any
+  const emailAddress = data.get("emailAddress")
 
   const projImageFile = data.get("projImageLink") as File
   const projImageBuffer = await projImageFile.arrayBuffer()
@@ -113,7 +118,8 @@ export async function AddProjectAction(data: FormData) {
     command
     // { expiresIn: 3600 }
   )
-  // if (!projectImageLink) return
+  //@ts-ignore
+  if (emailAddress !== process.env.ADMIN_EMAIL) return
   const project = await prisma.project.create({
     data: {
       projTitle,

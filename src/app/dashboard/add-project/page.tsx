@@ -8,15 +8,19 @@ import { AddProjectAction } from "../../_actions"
 
 import { Input } from "@/src/app/components/ui/input"
 import { Label } from "@/src/app/components/ui/label"
+import { useUser } from "@clerk/nextjs"
 
 type Props = {}
+
+const notify = (message: string, status: boolean) =>
+  status ? toast.success(message) : toast.error(message)
 
 export default function AddProject({}: Props) {
   const imageLink = useRef()
   const [image, setImage] = useState<string>("")
   const [previewUrl, setPreviewUrl] = useState<string>("")
   const [selected, setSelected] = useState(["react"])
-  const imageLinkRef = useRef<string | undefined>()
+  const emailAddress = useUser().user?.emailAddresses[0].emailAddress as any
 
   return (
     <div className='flex w-full min-h-full'>
@@ -50,6 +54,13 @@ export default function AddProject({}: Props) {
         </div>
         <Label htmlFor='picture'>Picture</Label>
         <Input className='w-1/4' type='file' name='projImageLink' />
+        <Input
+          className='w-1/4'
+          type='hidden'
+          name='emailAddress'
+          value={emailAddress}
+        />
+
         <input type='hidden' name='tags' value={selected} />
         {previewUrl ? (
           <Image src={image!} width={300} height={300} alt={`${previewUrl}`} />
@@ -57,7 +68,7 @@ export default function AddProject({}: Props) {
           ""
         )}
 
-        <Toaster />
+        <Toaster position='top-right' />
         <div>
           <h1>Project Tags</h1>
           <TagsInput
@@ -70,9 +81,13 @@ export default function AddProject({}: Props) {
         <button
           type='submit'
           onClick={() => {
-            setImage("")
-            setPreviewUrl("")
-            console.log("hello world frontend")
+            if (emailAddress !== process.env.NEXT_PUBLIC_ADMIN_EMAIL) {
+              console.log(emailAddress)
+              console.log(process.env.NEXT_PUBLIC_ADMIN_EMAIL)
+              notify("sorry you don't have admin priviliges", false)
+            } else {
+              notify("Adding Completed Successfully", true)
+            }
           }}
         >
           Submit

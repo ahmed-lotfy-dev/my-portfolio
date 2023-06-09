@@ -4,13 +4,9 @@ import { useState } from "react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { IoMenu, IoClose } from "react-icons/io5"
+import { useUser } from "@clerk/nextjs"
+import { useClerk } from "@clerk/clerk-react"
 
-import React from "react"
-import { Session } from "next-auth"
-
-// type Props = { session: Session }
-
-// export default function Nav({ session }: Props) {
 export default function Nav() {
   const path = usePathname()
   const [isOpened, setIsOpened] = useState(false)
@@ -19,6 +15,8 @@ export default function Nav() {
     console.log(path)
   }
   const close = () => setIsOpened(false)
+  const { isLoaded, isSignedIn, user } = useUser()
+  const { signOut } = useClerk()
 
   return (
     <header className=' bg-gray-700 border-b-2 border-gray-900 dark:bg-slate-700 relative sm:static text-gray-300 '>
@@ -83,6 +81,18 @@ export default function Nav() {
           >
             Contact
           </Link>
+          {isSignedIn ? (
+            <button
+              onClick={() => signOut()}
+              className={`hover:text-red-700 hover:border-b-4 hover:border-b-red-800 transition-all delay-75 duration-250 rounded-sm ${
+                path === "/dashboard" ? "active" : ""
+              }`}
+            >
+              Sign out
+            </button>
+          ) : (
+            ""
+          )}
           {/* {path === "/dashboard" && !session ? (
             <Link
               href='/api/auth/signin'
@@ -96,14 +106,7 @@ export default function Nav() {
             ""
           )}
           {path === "/dashboard" && session ? (
-            <Link
-              href='/api/auth/signout'
-              className={`hover:text-red-700 hover:border-b-4 hover:border-b-red-800 transition-all delay-75 duration-250 rounded-sm ${
-                path === "/dashboard" ? "active" : ""
-              }`}
-            >
-              Sign Out
-            </Link>
+
           ) : (
             ""
           )}

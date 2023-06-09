@@ -15,13 +15,11 @@ type Props = {}
 export default async function Page({}: Props) {
   const { allCertificates } = await getAllCertificates()
   const { allProjects } = await getAllProjects()
-  console.log(allCertificates)
-  console.log(allProjects)
 
   return (
     <div className='min-h-full flex flex-col gap-3 w-full justify-start items-center mt-10'>
       <Welcome />
-      <div className='flex gap-5'>
+      <div className='flex gap-5 w-full justify-center items-center'>
         <Card className='w-[350px] flex flex-col justify-center items-center'>
           <CardHeader>
             <CardTitle className='text-3xl'>Projects Count</CardTitle>
@@ -39,11 +37,11 @@ export default async function Page({}: Props) {
           </CardHeader>
         </Card>
       </div>
-      <div className=''>
-        <div className='grid grid-cols-2'>
+      <div className='grid grid-cols-1 gap-20'>
+        <div className='w-full'>
           {allCertificates?.length ? (
             allCertificates.map((cert) => (
-              <div className=''>
+              <div key={cert.id} className=''>
                 <h1>{cert.certTitle}</h1>
                 <img
                   className='w-[500px]'
@@ -60,16 +58,16 @@ export default async function Page({}: Props) {
             </>
           )}
         </div>
-        <div className='grid grid-cols-2'>
+        <div className='w-full'>
           {allProjects?.length ? (
-            allProjects.map((cert) => (
-              <div>
-                <h1>{cert.projTitle}</h1>
+            allProjects.map((proj) => (
+              <div key={proj.id}>
+                <h1>{proj.projTitle}</h1>
                 <img
                   className='w-[500px]'
-                  src={cert.projImageLink}
+                  src={proj.projImageLink}
                   alt=''
-                  key={cert.id}
+                  key={proj.id}
                   content='Content-Disposition: inline'
                 />
               </div>
