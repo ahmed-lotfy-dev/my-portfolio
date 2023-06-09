@@ -4,8 +4,8 @@ import { useState } from "react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { IoMenu, IoClose } from "react-icons/io5"
-import { useUser } from "@clerk/nextjs"
 import { useClerk } from "@clerk/clerk-react"
+import { useUser } from "@clerk/nextjs"
 
 export default function Nav() {
   const path = usePathname()

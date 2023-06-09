@@ -15,10 +15,9 @@ model Certificate {
 
   certTitle     String
   certDesc      String
-  certImageLink String
   courseLink    String
   certProfLink  String
-  tags          String[]
+  certImageLink String
 
   @@map("certificates")
 }

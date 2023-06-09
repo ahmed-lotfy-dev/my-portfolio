@@ -1,5 +1,6 @@
 import getAllCertificates from "../lib/getCertificates"
 import getAllProjects from "../lib/getProjects"
+import Image from "next/image"
 
 import {
   Card,
@@ -17,7 +18,7 @@ export default async function Page({}: Props) {
   const { allProjects } = await getAllProjects()
 
   return (
-    <div className='min-h-full flex flex-col gap-3 w-full justify-start items-center mt-10'>
+    <div className='min-h-screen flex flex-col gap-3 w-full justify-start items-center mt-10'>
       <Welcome />
       <div className='flex gap-5 w-full justify-center items-center'>
         <Card className='w-[350px] flex flex-col justify-center items-center'>
@@ -43,8 +44,9 @@ export default async function Page({}: Props) {
             allCertificates.map((cert) => (
               <div key={cert.id} className=''>
                 <h1>{cert.certTitle}</h1>
-                <img
-                  className='w-[500px]'
+                <Image
+                  width={500}
+                  height={300}
                   src={cert.certImageLink}
                   alt=''
                   key={cert.id}
@@ -63,8 +65,9 @@ export default async function Page({}: Props) {
             allProjects.map((proj) => (
               <div key={proj.id}>
                 <h1>{proj.projTitle}</h1>
-                <img
-                  className='w-[500px]'
+                <Image
+                  width={500}
+                  height={300}
                   src={proj.projImageLink}
                   alt=''
                   key={proj.id}

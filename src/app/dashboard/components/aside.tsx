@@ -13,7 +13,7 @@ type Props = {}
 
 export default function Aside({}: Props) {
   return (
-    <aside className='min-h-full p-3 group '>
+    <aside className='min-h-full h-full p-3 group '>
       <div className='container mx-auto bg-gray-600 h-full p-6 rounded-md space-y-5'>
         <div className='flex gap-5 items-center mx-auto first:mt-2 '>
           <IoHomeOutline className='text-blue-300 w-[2rem] h-[2rem]' />
@@ -38,7 +38,7 @@ export default function Aside({}: Props) {
           <IoCodeWorkingSharp className='text-blue-300 w-[2rem] h-[2rem]' />
           <Link
             className='text-gray-100 hidden group-hover:flex  sm:flex'
-            href='/dashboard/add-project'
+            href='/dashboard/projects'
           >
             Projects
           </Link>
@@ -47,7 +47,7 @@ export default function Aside({}: Props) {
           <IoTrophyOutline className='text-blue-300 w-[2rem] h-[2rem]' />
           <Link
             className='text-gray-100 hidden group-hover:flex  sm:flex'
-            href='/dashboard/add-certificate'
+            href='/dashboard/certificates'
           >
             Certificates
           </Link>
