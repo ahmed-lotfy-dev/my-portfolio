@@ -81,35 +81,6 @@ export default function Nav() {
           >
             Contact
           </Link>
-          {isSignedIn ? (
-            <button
-              onClick={() => signOut()}
-              className={`hover:text-red-700 hover:border-b-4 hover:border-b-red-800 transition-all delay-75 duration-250 rounded-sm ${
-                path === "/dashboard" ? "active" : ""
-              }`}
-            >
-              Sign out
-            </button>
-          ) : (
-            ""
-          )}
-          {/* {path === "/dashboard" && !session ? (
-            <Link
-              href='/api/auth/signin'
-              className={`hover:text-red-700 hover:border-b-4 hover:border-b-red-800 transition-all delay-75 duration-250 rounded-sm ${
-                path === "/dashboard" ? "active" : ""
-              }`}
-            >
-              Sign In
-            </Link>
-          ) : (
-            ""
-          )}
-          {path === "/dashboard" && session ? (
-
-          ) : (
-            ""
-          )}
           {path === "/" ? (
             <Link
               href='/dashboard'
@@ -121,7 +92,19 @@ export default function Nav() {
             </Link>
           ) : (
             ""
-          )} */}
+          )}
+          {isSignedIn && path === "/dashboard" ? (
+            <button
+              onClick={() => signOut()}
+              className={`hover:text-red-700 hover:border-b-4 hover:border-b-red-800 transition-all delay-75 duration-250 rounded-sm ${
+                path === "/dashboard" ? "active" : ""
+              }`}
+            >
+              Sign out
+            </button>
+          ) : (
+            ""
+          )}
         </nav>
 
         <IoMenu

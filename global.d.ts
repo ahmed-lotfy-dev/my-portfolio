@@ -31,6 +31,7 @@ declare global {
       CF_ACCOUNT_ID: string
       CF_ACCESS_KEY_ID: string
       CF_SECRET_ACCESS_KEY: string
+      CF_IMAGES_SUBDOMAIN: string
     }
   }
 }

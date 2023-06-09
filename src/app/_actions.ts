@@ -39,9 +39,6 @@ export async function AddCertificateAction(data: FormData) {
   const certImageBuffer = await certImageFile.arrayBuffer()
   const certImageContent = new Uint8Array(certImageBuffer)
   const certImageType = certImageFile?.type
-  console.log(certImageType)
-  console.log(process.env.ADMIN_EMAIL)
-  console.log(emailAddress)
 
   const uploadImage = await S3.send(
     new PutObjectCommand({
@@ -74,7 +71,7 @@ export async function AddCertificateAction(data: FormData) {
       certDesc,
       courseLink,
       certProfLink,
-      certImageLink: preSignedUrl,
+      certImageLink: `${process.env.CF_IMAGES_SUBDOMAIN}/${certImageFile?.name}`,
     },
   })
 
@@ -94,7 +91,6 @@ export async function AddProjectAction(data: FormData) {
   const projImageBuffer = await projImageFile.arrayBuffer()
   const projImageContent = new Uint8Array(projImageBuffer)
   const projImageType = projImageFile?.type
-  console.log(projImageType)
 
   const uploadImage = await S3.send(
     new PutObjectCommand({
@@ -126,7 +122,7 @@ export async function AddProjectAction(data: FormData) {
       projDesc,
       projRepoLink,
       projLiveLink,
-      projImageLink: preSignedUrl,
+      projImageLink: `${process.env.CF_IMAGES_SUBDOMAIN}/${projImageFile?.name}`,
       tags,
     },
   })
