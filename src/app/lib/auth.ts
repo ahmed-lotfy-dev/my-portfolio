@@ -8,16 +8,21 @@ import { PrismaClient } from "@prisma/client"
 const prisma = new PrismaClient()
 
 export const authOptions: NextAuthOptions = {
+  session: {
+    strategy: "jwt",
+  },
   //@ts-ignore
   adapter: PrismaAdapter(prisma),
   providers: [
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+      allowDangerousEmailAccountLinking: true,
     }),
     GithubProvider({
       clientId: process.env.ID_GITHUB,
       clientSecret: process.env.SECRET_GITHUB,
+      allowDangerousEmailAccountLinking: true,
     }),
     // ...add more providers here
   ],
@@ -33,4 +38,5 @@ export const authOptions: NextAuthOptions = {
       return session // The return type will match the one returned in `useSession()`
     },
   },
+  secret: process.env.NEXTAUTH_SECRET,
 }
