@@ -1,24 +1,3 @@
-// nextauth.d.ts
-import { DefaultSession, DefaultUser } from "next-auth"
-// Define a role enum
-export enum Role {
-  user = "USER",
-  admin = "ADMIN",
-}
-// common interface for JWT and Session
-interface IUser extends DefaultUser {
-  role?: Role
-}
-declare module "next-auth" {
-  interface User extends IUser {}
-  interface Session {
-    user?: User
-  }
-}
-declare module "next-auth/jwt" {
-  interface JWT extends IUser {}
-}
-
 import NextAuth from "next-auth"
 
 declare module "next-auth" {
@@ -28,28 +7,11 @@ declare module "next-auth" {
   interface Session {
     user: {
       /** The user's postal address. */
+      id: string
+      email: string
       role: string
-    }
+    } & DefaultSession["user"]
   }
-}
-
-import NextAuth from "next-auth"
-
-declare module "next-auth" {
-  /**
-   * Returned by `useSession`, `getSession` and received as a prop on the `SessionProvider` React Context
-   */
-  interface Session {
-    user: {
-      /** The user's postal address. */
-      address: string
-    }
-  }
-}
-
-import NextAuth, { DefaultSession } from "next-auth"
-
-declare module "next-auth" {
   /**
    * Returned by `useSession`, `getSession` and received as a prop on the `SessionProvider` React Context
    */
@@ -58,5 +20,28 @@ declare module "next-auth" {
       /** The user's postal address. */
       address: string
     } & DefaultSession["user"]
+  }
+}
+
+/**
+ * The shape of the user object returned in the OAuth providers' `profile` callback,
+ * or the second parameter of the `session` callback, when using a database.
+ */
+interface User {}
+/**
+ * Usually contains information about the provider being used
+ * and also extends `TokenSet`, which is different tokens returned by OAuth Providers.
+ */
+interface Account {}
+/** The OAuth profile returned from your provider */
+interface Profile {}
+
+import { JWT } from "next-auth/jwt"
+
+declare module "next-auth/jwt" {
+  /** Returned by the `jwt` callback and `getToken`, when using JWT sessions */
+  interface JWT {
+    /** OpenID ID Token */
+    idToken?: string
   }
 }

@@ -1,7 +1,7 @@
 import React from "react"
 import Image from "next/image"
 import image1 from "@/public/images/skills/docker.svg"
-import getAllProjects from "../lib/getProjects"
+import getAllProjects from "@/src/app/lib/getProjects"
 export const dynamic = "force-dynamic"
 
 export type project = {

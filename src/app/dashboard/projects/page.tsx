@@ -6,12 +6,12 @@ import {
   Dialog,
   DialogContent,
   DialogTrigger,
-} from "@/src/app/components/ui/dialog"
-import { Input } from "@/src/app/components/ui/input"
-import { Label } from "@/src/app/components/ui/label"
-import { AddProjectAction } from "../../_actions"
+} from "@/src/components/ui/dialog"
 
-import { useUser } from "@clerk/nextjs"
+import { Input } from "@/src/components/ui/input"
+import { Label } from "@/src/components/ui/label"
+import { AddProjectAction } from "../../_actions"
+// import { useUser } from "@clerk/nextjs"
 
 import { TagsInput } from "react-tag-input-component"
 
@@ -20,7 +20,7 @@ const notify = (message: string, status: boolean) =>
 
 export default function AddProject({}) {
   const [selected, setSelected] = useState(["react"])
-  const emailAddress = useUser().user?.emailAddresses[0].emailAddress as any
+  // const emailAddress = useUser().user?.emailAddresses[0].emailAddress as any
 
   return (
     <div className='flex w-full min-h-full'>
@@ -58,12 +58,12 @@ export default function AddProject({}) {
               </div>
               <Label htmlFor='picture'>Project Image</Label>
               <Input className='w-1/4' type='file' name='projImageLink' />
-              <Input
+              {/* <Input
                 className='w-1/4'
                 type='hidden'
                 name='emailAddress'
                 value={emailAddress}
-              />
+              /> */}
 
               <input type='hidden' name='tags' value={selected} />
 
@@ -80,15 +80,15 @@ export default function AddProject({}) {
               <button
                 className='m-10'
                 type='submit'
-                onClick={() => {
-                  if (emailAddress !== process.env.NEXT_PUBLIC_ADMIN_EMAIL) {
-                    console.log(emailAddress)
-                    console.log(process.env.NEXT_PUBLIC_ADMIN_EMAIL)
-                    notify("sorry you don't have admin priviliges", false)
-                  } else {
-                    notify("Adding Completed Successfully", true)
-                  }
-                }}
+                // onClick={() => {
+                //   if (emailAddress !== process.env.NEXT_PUBLIC_ADMIN_EMAIL) {
+                //     console.log(emailAddress)
+                //     console.log(process.env.NEXT_PUBLIC_ADMIN_EMAIL)
+                //     notify("sorry you don't have admin priviliges", false)
+                //   } else {
+                //     notify("Adding Completed Successfully", true)
+                //   }
+                // }}
               >
                 Submit
               </button>

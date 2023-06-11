@@ -1,4 +1,4 @@
-import getAllCertificates from "../lib/getCertificates"
+import getAllCertificates from "@/src/app/lib/getCertificates"
 export const dynamic = "force-dynamic"
 
 export type Certificate = {
@@ -9,7 +9,6 @@ export type Certificate = {
   courseLink: string
   certProfLink: string
 }
-
 
 import { type ReactNode } from "react"
 

@@ -1,7 +1,7 @@
 import getAllCertificates from "../lib/getCertificates"
 import getAllProjects from "../lib/getProjects"
 
-import Welcome from "./components/Welcome"
+import Welcome from "../../components/dashboardcomponents/Welcome"
 
 export default async function Page({}) {
   const { allCertificates } = await getAllCertificates()

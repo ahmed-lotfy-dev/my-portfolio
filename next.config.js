@@ -3,6 +3,7 @@ const nextConfig = {
   // output: 'standalone',
   experimental: {
     serverActions: true,
+    serverComponentsExternalPackages: ["@prisma/client", "aws-sdk"]
   },
   images: {
     remotePatterns: [

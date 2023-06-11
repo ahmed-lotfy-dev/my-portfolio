@@ -1,7 +1,7 @@
 import Link from "next/link"
 import toast, { Toaster } from "react-hot-toast"
 import { IoLogoLinkedin, IoLogoGithub, IoLogoFacebook } from "react-icons/io5"
-import { contactAction } from "../_actions"
+import { contactAction } from "@/src/app/_actions"
 
 export default async function Contact() {
   return (

@@ -1,10 +1,3 @@
-declare module "nodemailer-sendgrid"
-declare module "@sendgrid/mail"
-declare module "fs"
-declare module "next-auth/client"
-declare module "@chakra-ui/next-js"
-
-declare global {
 declare namespace NodeJS {
   export interface ProcessEnv {
     GITHUB_AUTH_TOKEN: string
@@ -32,12 +25,4 @@ declare namespace NodeJS {
     CF_SECRET_ACCESS_KEY: string
     CF_IMAGES_SUBDOMAIN: string
   }
-}
-}
-
-declare module "*.svg" {
-  import React = require("react")
-  export const ReactComponent: React.FC<React.SVGProps<SVGSVGElement>>
-  const src: string
-  export default src
 }
