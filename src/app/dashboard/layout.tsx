@@ -1,4 +1,4 @@
-import Aside from "./components/Aside"
+import Aside from "../../components/dashboardcomponents/Aside"
 
 export default async function DashboardLayout({
   children,

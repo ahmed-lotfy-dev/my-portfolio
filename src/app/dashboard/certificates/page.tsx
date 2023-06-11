@@ -6,20 +6,20 @@ import {
   Dialog,
   DialogContent,
   DialogTrigger,
-} from "@/src/app/components/ui/dialog"
+} from "@/src/components/ui/dialog"
 
-import { Input } from "@/src/app/components/ui/input"
-import { Label } from "@/src/app/components/ui/label"
+import { Input } from "@/src/components/ui/input"
+import { Label } from "@/src/components/ui/label"
 
 import { AddCertificateAction } from "../../_actions"
 
-import { useUser } from "@clerk/nextjs"
+// import { useUser } from "@clerk/nextjs"
 
 const notify = (message: string, status: boolean) =>
   status ? toast.success(message) : toast.error(message)
 
 export default function AddProject({}) {
-  const emailAddress = useUser().user?.emailAddresses[0].emailAddress
+  // const emailAddress = useUser().user?.emailAddresses[0].emailAddress
 
   return (
     <div className='flex w-full min-h-full'>
@@ -57,26 +57,26 @@ export default function AddProject({}) {
               </div>
               <Label htmlFor='picture'>Certificate Image</Label>
               <Input className='w-1/4' type='file' name='certImageLink' />
-              <Input
+              {/* <Input
                 className='w-1/4'
                 type='hidden'
                 name='emailAddress'
                 value={emailAddress}
-              />
+              /> */}
 
               <Toaster position='top-right' />
               <button
                 className='m-10'
                 type='submit'
-                onClick={() => {
-                  if (emailAddress !== process.env.NEXT_PUBLIC_ADMIN_EMAIL) {
-                    console.log(emailAddress)
-                    console.log(process.env.NEXT_PUBLIC_ADMIN_EMAIL)
-                    notify("sorry you don't have admin priviliges", false)
-                  } else {
-                    notify("Adding Completed Successfully", true)
-                  }
-                }}
+                // onClick={() => {
+                //   if (emailAddress !== process.env.NEXT_PUBLIC_ADMIN_EMAIL) {
+                //     console.log(emailAddress)
+                //     console.log(process.env.NEXT_PUBLIC_ADMIN_EMAIL)
+                //     notify("sorry you don't have admin priviliges", false)
+                //   } else {
+                //     notify("Adding Completed Successfully", true)
+                //   }
+                // }}
               >
                 Submit
               </button>

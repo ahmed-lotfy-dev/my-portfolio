@@ -4,14 +4,6 @@ import { useState } from "react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { IoMenu, IoClose } from "react-icons/io5"
-import { useUser } from "@clerk/clerk-react"
-import {
-  ClerkProvider,
-  SignedIn,
-  SignedOut,
-  SignInButton,
-  UserButton,
-} from "@clerk/nextjs"
 
 export default function Nav() {
   const path = usePathname()
@@ -21,7 +13,6 @@ export default function Nav() {
     console.log(path)
   }
   const close = () => setIsOpened(false)
-  const isSignedIn = useUser().isSignedIn
 
   return (
     <header className=' bg-gray-700 border-b-2 border-gray-900 dark:bg-slate-700 relative sm:static text-gray-300 '>
@@ -99,11 +90,11 @@ export default function Nav() {
             ""
           )}
 
-          {isSignedIn && path === "/dashboard" ? (
+          {/* {isSignedIn && path === "/dashboard" ? (
             <UserButton afterSignOutUrl='/' />
           ) : (
             ""
-          )}
+          )} */}
         </nav>
 
         <IoMenu
