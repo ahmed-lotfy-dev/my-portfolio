@@ -5,7 +5,13 @@ import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { IoMenu, IoClose } from "react-icons/io5"
 import { useUser } from "@clerk/clerk-react"
-import { SignedOut } from "@clerk/clerk-react"
+import {
+  ClerkProvider,
+  SignedIn,
+  SignedOut,
+  SignInButton,
+  UserButton,
+} from "@clerk/nextjs"
 
 export default function Nav() {
   const path = usePathname()
@@ -28,7 +34,7 @@ export default function Nav() {
         <nav
           className={`flex flex-0  gap-7 sm:relative sm:flex-row sm:border-none sm:h-auto sm:space-x-0 sm:self-center  font-main text-cyan-50 justify-center items-center bg-gray-700 border-8 border-gray-400 flex-col inset-0 h-[400px] ${
             isOpened
-              ? "flex animate-openmenu duration-500 translate-y-[6.4rem] absolute opacity-1 "
+              ? "flex animate-   duration-500 translate-y-[6.4rem] absolute opacity-1 "
               : "hidden opacity-0 transition-all duration-500 sm:relative sm:flex sm:opacity-100"
           }`}
         >
@@ -92,12 +98,9 @@ export default function Nav() {
           ) : (
             ""
           )}
-          {!isSignedIn ? (
-            <>
-              <div>
-                <SignedOut />
-              </div>
-            </>
+
+          {isSignedIn && path === "/dashboard" ? (
+            <UserButton afterSignOutUrl='/' />
           ) : (
             ""
           )}
