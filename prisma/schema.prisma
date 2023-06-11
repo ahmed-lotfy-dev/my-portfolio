@@ -76,12 +76,12 @@ model Certificate {
 model Project {
   id String @id @default(auto()) @map("_id") @db.ObjectId
 
-  projectTitle     String
-  projectDesc      String
-  projectRepoLink  String
-  projectLiveLink  String
-  projectImageLink String
-
+  projTitle     String
+  projDesc      String
+  projRepoLink  String
+  projLiveLink  String
+  projImageLink String
+  tags          String[]
   @@map("projects")
 }
 
