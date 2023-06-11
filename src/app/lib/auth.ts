@@ -8,9 +8,9 @@ import { PrismaClient } from "@prisma/client"
 const prisma = new PrismaClient()
 
 export const authOptions: NextAuthOptions = {
-  session: {
-    strategy: "jwt",
-  },
+  // session: {
+  //   strategy: "jwt",
+  // },
   //@ts-ignore
   adapter: PrismaAdapter(prisma),
   providers: [
@@ -27,15 +27,19 @@ export const authOptions: NextAuthOptions = {
     // ...add more providers here
   ],
   callbacks: {
-    async jwt({ token, account }) {
-      // Persist the OAuth access_token to the token right after signin
-      if (account) {
-        token.accessToken = account.access_token
-      }
-      return token
-    },
+    // async jwt({ token, account }) {
+    //   // Persist the OAuth access_token to the token right after signin
+    //   if (account) {
+    //     token.accessToken = account.access_token
+    //   }
+    //   return token
+    // },
     session({ session, token, user }) {
-      return session // The return type will match the one returned in `useSession()`
+      if (session?.user) {
+        session.user.id = user.id
+        session.user.role = user.role
+      }
+      return session
     },
   },
   secret: process.env.NEXTAUTH_SECRET,

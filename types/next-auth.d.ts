@@ -21,6 +21,9 @@ declare module "next-auth" {
       address: string
     } & DefaultSession["user"]
   }
+  interface User extends DefaultUser {
+    role: string
+  }
 }
 
 /**

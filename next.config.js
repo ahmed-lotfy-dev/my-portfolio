@@ -3,7 +3,7 @@ const nextConfig = {
   // output: 'standalone',
   experimental: {
     serverActions: true,
-    serverComponentsExternalPackages: ["@prisma/client", "aws-sdk"]
+    // serverComponentsExternalPackages: ["@prisma/client"],
   },
   images: {
     remotePatterns: [
@@ -15,9 +15,9 @@ const nextConfig = {
       },
       {
         protocol: 'https',
-        hostname: 'https://img.clerk.com/',
+        hostname: 'lh3.googleusercontent.com',
         port: '',
-        pathname: '/*',
+        pathname: '/a/**',
       },
     ],
   },

@@ -13,6 +13,9 @@ import {
 } from "@aws-sdk/client-s3"
 import { getSignedUrl } from "@aws-sdk/s3-request-presigner"
 
+import { authOptions } from "./lib/auth"
+import { getServerSession } from "next-auth/next"
+
 const S3 = new S3Client({
   region: "auto",
   endpoint: `https://${process.env.CF_ACCOUNT_ID}.r2.cloudflarestorage.com`,
@@ -49,7 +52,6 @@ export async function AddCertificateAction(data: FormData) {
       ACL: "public-read", // Add this line to set the ACL
     })
   )
-
   // Create a GetObjectCommand
   const command = new GetObjectCommand({
     Bucket: "portfolio",
@@ -62,8 +64,8 @@ export async function AddCertificateAction(data: FormData) {
     // { expiresIn: 3600 }
   )
 
-  //@ts-ignore
   if (emailAddress !== process.env.ADMIN_EMAIL) return
+
   const certificate = await prisma.certificate.create({
     data: {
       certTitle,
@@ -115,6 +117,7 @@ export async function AddProjectAction(data: FormData) {
   )
   //@ts-ignore
   if (emailAddress !== process.env.ADMIN_EMAIL) return
+
   const project = await prisma.project.create({
     data: {
       projTitle,

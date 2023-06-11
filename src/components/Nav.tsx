@@ -4,14 +4,22 @@ import { useState } from "react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { IoMenu, IoClose } from "react-icons/io5"
+import { useSession } from "next-auth/react"
+import Image from "next/image"
 
 export default function Nav() {
+  const { data: session } = useSession()
+  const user = session?.user
+  console.log(user)
   const path = usePathname()
+
   const [isOpened, setIsOpened] = useState(false)
+
   const toggle = (e: any) => {
     setIsOpened((prev) => !prev)
     console.log(path)
   }
+
   const close = () => setIsOpened(false)
 
   return (
@@ -89,12 +97,17 @@ export default function Nav() {
           ) : (
             ""
           )}
-
-          {/* {isSignedIn && path === "/dashboard" ? (
-            <UserButton afterSignOutUrl='/' />
+          {user && path === "/dashboard" ? (
+            <Image
+              className='rounded-full'
+              src={user.image}
+              width={50}
+              height={100}
+              alt={`${user.name} profile picture`}
+            />
           ) : (
             ""
-          )} */}
+          )}
         </nav>
 
         <IoMenu

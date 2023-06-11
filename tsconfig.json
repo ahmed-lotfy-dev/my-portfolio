@@ -36,6 +36,6 @@
     "src/app/components/accordion.tsx",
     "src/app/page.tsx",
     "src/db/migrate.ts"
-  ],
+, "src/app/redux/features/Projects"  ],
   "exclude": ["node_modules"]
 }
