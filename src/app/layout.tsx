@@ -1,8 +1,11 @@
+import { getServerSession } from "next-auth"
+import { authOptions } from "@/src/app/lib/auth"
+
 import "./globals.css"
 import { Josefin_Sans, Josefin_Slab } from "next/font/google"
 import { NextAuthProvider } from "@/src/app/provider"
 
-import Nav from "@/src/components/Nav"
+import Nav from "@/src/app/components/Nav"
 import type { Metadata } from "next"
 
 const josefinsans = Josefin_Sans({
@@ -24,11 +27,12 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode
 }) {
+  const session = await getServerSession(authOptions)
   return (
     <NextAuthProvider>
       <html lang='en'>
         <body className={`${josefinsans.variable}${josefinslab.variable}`}>
-          <Nav />
+          <Nav session={session} />
           {children}
         </body>
       </html>

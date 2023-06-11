@@ -1,32 +1,14 @@
-"use client"
-import toast, { Toaster } from "react-hot-toast"
+import { getServerSession } from "next-auth"
+import { authOptions } from "../../lib/auth"
 
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/src/components/ui/popover"
+import NotAuthenticated from "@/src/app/components/dashboardcomponents/NotAuthenticated"
+import AddCertificateComponent from "@/src/app/components/dashboardcomponents/AddCertificateComponent"
+import CertificatesList from "@/src/app/components/dashboardcomponents/CertificatesList"
+import getAllCertificates from "../../lib/getCertificates"
 
-import { useSession } from "next-auth/react"
-
-import { Input } from "@/src/components/ui/input"
-import { Label } from "@/src/components/ui/label"
-
-import { AddCertificateAction } from "../../_actions"
-
-import NotAuthenticated from "@/src/components/dashboardcomponents/NotAuthenticated"
-import AddCertificateComponent from "@/src/components/dashboardcomponents/AddCertificateComponent"
-import CertificatesList from "@/src/components/dashboardcomponents/CertificatesList"
-
-const notify = (message: string, status: boolean) =>
-  status ? toast.success(message) : toast.error(message)
-
-
-export default function AddProject({}) {
-  const { data: session } = useSession()
-  const emailAddress = session?.user.email
-  const user = session?.user
-  console.log(emailAddress)
+export default async function AddProject({}) {
+  const user = await getServerSession(authOptions)
+  const { allCertificates } = await getAllCertificates()
 
   return (
     <div className='w-full flex justify-center items-start'>
@@ -34,7 +16,7 @@ export default function AddProject({}) {
       {user && (
         <div className='flex flex-col justify-center items-center'>
           <AddCertificateComponent />
-          <CertificatesList />
+          <CertificatesList allCertificates={allCertificates} />
         </div>
       )}
     </div>

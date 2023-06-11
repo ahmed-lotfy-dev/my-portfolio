@@ -6,13 +6,15 @@ import { usePathname } from "next/navigation"
 import { IoMenu, IoClose } from "react-icons/io5"
 import { useSession } from "next-auth/react"
 import Image from "next/image"
+import { Session } from "next-auth"
 
-export default function Nav() {
-  const { data: session } = useSession()
-  const user = session?.user
-  console.log(user)
+type Props = {
+  session: Session | null
+}
+
+export default function Nav({ session }: Props) {
   const path = usePathname()
-
+  const user = session?.user
   const [isOpened, setIsOpened] = useState(false)
 
   const toggle = (e: any) => {
@@ -97,7 +99,7 @@ export default function Nav() {
           ) : (
             ""
           )}
-          {user && path === "/dashboard" ? (
+          {user ? (
             <Image
               className='rounded-full'
               src={user.image}

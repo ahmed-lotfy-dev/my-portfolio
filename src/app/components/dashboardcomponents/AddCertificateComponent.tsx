@@ -1,20 +1,19 @@
+"use client"
 import { useState } from "react"
 
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
-} from "@/src/components/ui/popover"
+} from "@/src/app/components/ui/popover"
 
-import { Input } from "@/src/components/ui/input"
-import { Label } from "@/src/components/ui/label"
+import { Input } from "@/src/app/components/ui/input"
+import { Label } from "@/src/app/components/ui/label"
 import { AddCertificateAction } from "@/src/app/_actions"
 
 import toast, { Toaster } from "react-hot-toast"
 
 import { useSession } from "next-auth/react"
-
-import { TagsInput } from "react-tag-input-component"
 
 const notify = (message: string, status: boolean) =>
   status ? toast.success(message) : toast.error(message)
@@ -22,7 +21,6 @@ const notify = (message: string, status: boolean) =>
 export default function AddCertificateComponent() {
   const { data: session } = useSession()
   const emailAddress = session?.user.email
-  console.log(emailAddress)
 
   return (
     <div className='flex flex-col justify-center items-center'>

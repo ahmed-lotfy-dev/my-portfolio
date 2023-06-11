@@ -1,13 +1,14 @@
+'use client'
 import { useState } from "react"
 
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
-} from "@/src/components/ui/popover"
+} from "@/src/app/components/ui/popover"
 
-import { Input } from "@/src/components/ui/input"
-import { Label } from "@/src/components/ui/label"
+import { Input } from "@/src/app/components/ui/input"
+import { Label } from "@/src/app/components/ui/label"
 import { AddProjectAction } from "@/src/app/_actions"
 
 import toast, { Toaster } from "react-hot-toast"

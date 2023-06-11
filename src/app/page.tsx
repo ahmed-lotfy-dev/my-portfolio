@@ -1,9 +1,9 @@
-import Certificates from "@/src/components/Certificates"
-import Hero from "@/src/components/Hero"
-import Projects from "@/src/components/Projects"
-import Skills from "@/src/components/Skills"
-import About from "@/src/components/About"
-import Contact from "@/src/components/Contact"
+import Certificates from "@/src/app/components/Certificates"
+import Hero from "@/src/app/components/Hero"
+import Projects from "@/src/app/components/Projects"
+import Skills from "@/src/app/components/Skills"
+import About from "@/src/app/components/About"
+import Contact from "@/src/app/components/Contact"
 
 export default function HomePage() {
   return (

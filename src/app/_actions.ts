@@ -77,7 +77,7 @@ export async function AddCertificateAction(data: FormData) {
   })
 
   console.log("certificate added successfully")
-  revalidatePath("/dashboard/add-certificate")
+  revalidatePath("/dashboard/certificates")
 }
 
 export async function AddProjectAction(data: FormData) {
@@ -129,7 +129,7 @@ export async function AddProjectAction(data: FormData) {
     },
   })
   console.log("project added successfully")
-  revalidatePath("/dashboard/add-project")
+  revalidatePath("/dashboard/projects")
 }
 
 export async function contactAction(data: FormData) {
