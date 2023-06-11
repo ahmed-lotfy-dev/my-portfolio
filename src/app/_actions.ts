@@ -32,7 +32,6 @@ export async function AddCertificateAction(data: FormData) {
   const certDesc = data.get("certDesc") as string
   const courseLink = data.get("courseLink") as string
   const certProfLink = data.get("certProfLink") as string
-  const tags = data.get("tags") as any
   const emailAddress = data.get("emailAddress")
 
   const certImageFile = data.get("certImageLink") as File

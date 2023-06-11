@@ -13,9 +13,7 @@ export type project = {
   certProfLink: string
 }
 
-type Props = {}
-
-export default async function projects({}: Props) {
+export default async function projects() {
   const allCertificates = await getAllProjects()
 
   return (

@@ -12,6 +12,7 @@ import { Label } from "@/src/app/components/ui/label"
 import { AddProjectAction } from "../../_actions"
 
 import { useUser } from "@clerk/nextjs"
+
 import { TagsInput } from "react-tag-input-component"
 
 const notify = (message: string, status: boolean) =>
@@ -32,7 +33,7 @@ export default function AddProject({}) {
               action={AddProjectAction}
             >
               <div className='flex flex-col items-center'>
-                <label className='mb-5' htmlFor='projTitle'>
+                <label className='mb-5 m-10' htmlFor='projTitle'>
                   Project Title
                 </label>
                 <input type='text' name='projTitle' />
@@ -77,6 +78,7 @@ export default function AddProject({}) {
                 />
               </div>
               <button
+                className='m-10'
                 type='submit'
                 onClick={() => {
                   if (emailAddress !== process.env.NEXT_PUBLIC_ADMIN_EMAIL) {

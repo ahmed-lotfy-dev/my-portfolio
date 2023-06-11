@@ -3,9 +3,7 @@ import toast, { Toaster } from "react-hot-toast"
 import { IoLogoLinkedin, IoLogoGithub, IoLogoFacebook } from "react-icons/io5"
 import { contactAction } from "../_actions"
 
-type Props = {}
-
-export default async function Contact({}: Props) {
+export default async function Contact() {
   return (
     // outer container for bg
     <section className='p-6'>

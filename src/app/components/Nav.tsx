@@ -4,19 +4,18 @@ import { useState } from "react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { IoMenu, IoClose } from "react-icons/io5"
-import { useClerk } from "@clerk/clerk-react"
-import { useUser } from "@clerk/nextjs"
+import { useUser } from "@clerk/clerk-react"
+import { SignedOut } from "@clerk/clerk-react"
 
 export default function Nav() {
   const path = usePathname()
   const [isOpened, setIsOpened] = useState(false)
   const toggle = (e: any) => {
-    setIsOpened(!isOpened)
+    setIsOpened((prev) => !prev)
     console.log(path)
   }
   const close = () => setIsOpened(false)
-  const { isLoaded, isSignedIn, user } = useUser()
-  const { signOut } = useClerk()
+  const isSignedIn = useUser().isSignedIn
 
   return (
     <header className=' bg-gray-700 border-b-2 border-gray-900 dark:bg-slate-700 relative sm:static text-gray-300 '>
@@ -93,15 +92,12 @@ export default function Nav() {
           ) : (
             ""
           )}
-          {isSignedIn && path === "/dashboard" ? (
-            <button
-              onClick={() => signOut()}
-              className={`hover:text-red-700 hover:border-b-4 hover:border-b-red-800 transition-all delay-75 duration-250 rounded-sm ${
-                path === "/dashboard" ? "active" : ""
-              }`}
-            >
-              Sign out
-            </button>
+          {!isSignedIn ? (
+            <>
+              <div>
+                <SignedOut />
+              </div>
+            </>
           ) : (
             ""
           )}

@@ -10,11 +10,10 @@ export type Certificate = {
   certProfLink: string
 }
 
-type Props = {}
 
 import { type ReactNode } from "react"
 
-export default async function certificates({}: Props) {
+export default async function certificates() {
   const allCertificates = await getAllCertificates()
   return (
     <section className='bg-blue-200 flex justify-center items-center text-center sm:text-start p-6 '>

@@ -1,8 +1,9 @@
+"use client"
 import React from "react"
-import { currentUser } from "@clerk/nextjs"
+import { useUser } from "@clerk/nextjs"
 
 export default async function Welcome() {
-  const user = await currentUser()
+  const user = useUser().user
   console.log(user)
   return (
     <h2 className='mb-7'>

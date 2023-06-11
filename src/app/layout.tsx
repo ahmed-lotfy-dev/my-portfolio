@@ -2,7 +2,7 @@ import "./globals.css"
 import { Josefin_Sans, Josefin_Slab } from "next/font/google"
 import { ClerkProvider } from "@clerk/nextjs"
 
-import Nav from "./components/nav"
+import Nav from "./components/Nav"
 import type { Metadata } from "next"
 
 const josefinsans = Josefin_Sans({

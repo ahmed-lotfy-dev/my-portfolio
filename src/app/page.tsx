@@ -1,13 +1,11 @@
-import Certificates from "./components/certificates"
-import Hero from "@/src/app/components/hero"
-import Projects from "./components/projects"
-import Skills from "@/src/app/components/skills"
-import About from "@/src/app/components/about"
-import Contact from "@/src/app/components/contact"
+import Certificates from "./components/Certificates"
+import Hero from "@/src/app/components/Hero"
+import Projects from "./components/Projects"
+import Skills from "@/src/app/components/Skills"
+import About from "@/src/app/components/About"
+import Contact from "@/src/app/components/Contact"
 
-type Props = {}
-
-export default function HomePage({}: Props) {
+export default function HomePage() {
   return (
     <main className='font-main'>
       <Hero />

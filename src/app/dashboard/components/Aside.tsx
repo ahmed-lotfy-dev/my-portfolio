@@ -1,7 +1,5 @@
 "use client"
-import React from "react"
 import Link from "next/link"
-import Image from "next/image"
 import {
   IoHomeOutline,
   IoGridOutline,
@@ -9,9 +7,7 @@ import {
   IoTrophyOutline,
 } from "react-icons/io5"
 
-type Props = {}
-
-export default function Aside({}: Props) {
+export default function Aside() {
   return (
     <aside className='min-h-full h-full p-3 group '>
       <div className='container mx-auto bg-gray-600 h-full p-6 rounded-md space-y-5'>

@@ -2,9 +2,8 @@ import Image from "next/image"
 import myImage from "@/public/images/skills/css3.svg"
 import React from "react"
 
-type Props = {}
 
-export default function About({}: Props) {
+export default function About() {
   return (
     <section className='bg-blue-300'>
       <div className='container mx-auto max-w-screen-xl p-6'>
