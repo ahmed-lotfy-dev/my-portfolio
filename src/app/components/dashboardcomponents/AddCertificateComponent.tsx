@@ -28,9 +28,9 @@ export default function AddCertificateComponent() {
     <div className='flex flex-col justify-center items-center'>
       <div className='flex w-full min-h-full justify-center items-center mt-6'>
         <Popover>
-          <Button>
-            <PopoverTrigger>Add New Certificate</PopoverTrigger>
-          </Button>
+          <PopoverTrigger className='bg-primary text-primary-foreground hover:bg-primary/90 h-10 py-2 px-4 inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none ring-offset-background'>
+            Add New Certificate
+          </PopoverTrigger>
           <PopoverContent className='w-[500px] mt-7'>
             <form
               className='flex flex-col justify-center items-center w-full gap-5 bg-gray-100 text-black'

@@ -16,7 +16,7 @@ import {
 type Props = {
   allCertificates: Certificate[] | undefined
 }
-export default function ProjectList({ allCertificates }: Props) {
+export default function CertificateList({ allCertificates }: Props) {
   console.log(allCertificates)
   return (
     <div className='mt-16 w-full'>
