@@ -1,8 +1,7 @@
 "use client"
 
 import Link from "next/link"
-
-import { Certificate } from "../Certificates"
+import { Certificate } from "@prisma/client"
 
 import {
   Table,
@@ -37,7 +36,7 @@ export default function ProjectList({ allCertificates }: Props) {
           </TableHeader>
           <TableBody>
             {allCertificates?.map((cert) => (
-              <TableRow>
+              <TableRow key={cert.id}>
                 <TableCell className='font-medium'>{cert.certTitle}</TableCell>
                 <TableCell>{cert.certDesc}</TableCell>
                 <TableCell>
