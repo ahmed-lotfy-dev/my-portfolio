@@ -1,5 +1,5 @@
 "use client"
-import { useState } from "react"
+import { useState, useRef } from "react"
 
 import {
   Popover,
@@ -7,6 +7,7 @@ import {
   PopoverTrigger,
 } from "@/src/app/components/ui/popover"
 
+import { Button } from "../ui/button"
 import { Input } from "@/src/app/components/ui/input"
 import { Label } from "@/src/app/components/ui/label"
 import { AddCertificateAction } from "@/src/app/_actions"
@@ -19,6 +20,7 @@ const notify = (message: string, status: boolean) =>
   status ? toast.success(message) : toast.error(message)
 
 export default function AddCertificateComponent() {
+  const formRef = useRef<HTMLFormElement>(null)
   const { data: session } = useSession()
   const emailAddress = session?.user.email
 
@@ -26,8 +28,10 @@ export default function AddCertificateComponent() {
     <div className='flex flex-col justify-center items-center'>
       <div className='flex w-full min-h-full justify-center items-center mt-6'>
         <Popover>
-          <PopoverTrigger>Add New Certificate</PopoverTrigger>
-          <PopoverContent className='w-[500px]'>
+          <Button>
+            <PopoverTrigger>Add New Certificate</PopoverTrigger>
+          </Button>
+          <PopoverContent className='w-[500px] mt-7'>
             <form
               className='flex flex-col justify-center items-center w-full gap-5 bg-gray-100 text-black'
               action={AddCertificateAction}
@@ -46,13 +50,13 @@ export default function AddCertificateComponent() {
               </div>
               <div className='flex flex-col items-center'>
                 <Label className='mb-5' htmlFor='courseLink'>
-                  Certificate Repo Link
+                  Course Link
                 </Label>
                 <Input type='text' name='courseLink' />
               </div>
               <div className='flex flex-col items-center'>
                 <Label className='mb-5' htmlFor='certProfLink'>
-                  Certificate Live Link
+                  Certificate Proof
                 </Label>
                 <Input type='text' name='certProfLink' />
               </div>

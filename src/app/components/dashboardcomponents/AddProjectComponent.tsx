@@ -1,5 +1,5 @@
-'use client'
-import { useState } from "react"
+"use client"
+import { useState, useRef } from "react"
 
 import {
   Popover,
@@ -7,6 +7,7 @@ import {
   PopoverTrigger,
 } from "@/src/app/components/ui/popover"
 
+import { Button } from "../ui/button"
 import { Input } from "@/src/app/components/ui/input"
 import { Label } from "@/src/app/components/ui/label"
 import { AddProjectAction } from "@/src/app/_actions"
@@ -22,6 +23,7 @@ const notify = (message: string, status: boolean) =>
 
 export default function AddProject() {
   const [selected, setSelected] = useState(["featured"])
+  const formRef = useRef<HTMLFormElement>(null)
   const { data: session } = useSession()
   const emailAddress = session?.user.email
 
@@ -29,7 +31,9 @@ export default function AddProject() {
     <div className='flex flex-col justify-center items-center'>
       <div className='flex w-full min-h-full justify-center items-start mt-6'>
         <Popover>
-          <PopoverTrigger>Add New Project</PopoverTrigger>
+          <Button>
+            <PopoverTrigger>Add New Project</PopoverTrigger>
+          </Button>
           <PopoverContent className='w-[500px]'>
             <form
               className='flex flex-col justify-center items-center w-full gap-5  text-black '
@@ -83,6 +87,7 @@ export default function AddProject() {
                     notify("sorry you don't have admin priviliges", false)
                   } else {
                     notify("Adding Completed Successfully", true)
+                    formRef.current?.reset()
                   }
                 }}
               >

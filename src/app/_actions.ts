@@ -30,6 +30,23 @@ function sliceStringByQuestionX(str: string) {
   return slicedArray[0]
 }
 
+export async function UploadToS3(imageFile: File) {
+  const imageBuffer = await imageFile.arrayBuffer()
+  const imageContent = new Uint8Array(imageBuffer)
+  const imageType = imageFile?.type
+  const uploadImage = await S3.send(
+    new PutObjectCommand({
+      Bucket: "portfolio",
+      //@ts-ignore
+      Key: imageFile?.name,
+      Body: imageContent,
+      ContentType: imageType,
+      ACL: "public-read", // Add this line to set the ACL
+    })
+  )
+  return uploadImage
+}
+
 export async function AddCertificateAction(data: FormData) {
   const certTitle = data.get("certTitle") as string
   const certDesc = data.get("certDesc") as string
@@ -38,31 +55,9 @@ export async function AddCertificateAction(data: FormData) {
   const emailAddress = data.get("emailAddress")
 
   const certImageFile = data.get("certImageLink") as File
-  const certImageBuffer = await certImageFile.arrayBuffer()
-  const certImageContent = new Uint8Array(certImageBuffer)
-  const certImageType = certImageFile?.type
 
-  const uploadImage = await S3.send(
-    new PutObjectCommand({
-      Bucket: "portfolio",
-      //@ts-ignore
-      Key: certImageFile?.name,
-      Body: certImageContent,
-      ContentType: certImageType,
-      ACL: "public-read", // Add this line to set the ACL
-    })
-  )
-  // Create a GetObjectCommand
-  const command = new GetObjectCommand({
-    Bucket: "portfolio",
-    Key: certImageFile?.name,
-  })
-  // Generate a pre-signed URL with a validity period
-  const preSignedUrl = await getSignedUrl(
-    S3,
-    command
-    // { expiresIn: 3600 }
-  )
+  const uploadedImage = UploadToS3(certImageFile)
+  console.log(uploadedImage)
 
   if (emailAddress !== process.env.ADMIN_EMAIL) return
 
@@ -89,32 +84,9 @@ export async function AddProjectAction(data: FormData) {
   const emailAddress = data.get("emailAddress")
 
   const projImageFile = data.get("projImageLink") as File
-  const projImageBuffer = await projImageFile.arrayBuffer()
-  const projImageContent = new Uint8Array(projImageBuffer)
-  const projImageType = projImageFile?.type
 
-  const uploadImage = await S3.send(
-    new PutObjectCommand({
-      Bucket: "portfolio",
-      //@ts-ignore
-      Key: projImageFile?.name,
-      Body: projImageContent,
-      ContentType: projImageType,
-      ACL: "public-read", // Add this line to set the ACL
-    })
-  )
+  const uploadedImage = UploadToS3(projImageFile)
 
-  // Create a GetObjectCommand
-  const command = new GetObjectCommand({
-    Bucket: "portfolio",
-    Key: projImageFile?.name,
-  })
-  // Generate a pre-signed URL with a validity period
-  const preSignedUrl = await getSignedUrl(
-    S3,
-    command
-    // { expiresIn: 3600 }
-  )
   //@ts-ignore
   if (emailAddress !== process.env.ADMIN_EMAIL) return
 

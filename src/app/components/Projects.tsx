@@ -4,13 +4,13 @@ import image1 from "@/public/images/skills/docker.svg"
 import getAllProjects from "@/src/app/lib/getProjects"
 export const dynamic = "force-dynamic"
 
-export type project = {
+export type Project = {
   id: string
-  certTitle: string
-  certDesc: string
-  certImage: string
+  projTitle: string
+  projDesc: string
+  projImage: string
   courseLink: string
-  certProfLink: string
+  projProfLink: string
 }
 
 export default async function projects() {

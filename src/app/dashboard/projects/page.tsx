@@ -13,7 +13,7 @@ export default async function AddProject({}) {
     <div className='w-full flex justify-center items-start'>
       {!user && <NotAuthenticated />}
       {user && (
-        <div className='flex flex-col justify-center items-center'>
+        <div className='flex flex-col justify-center items-center w-full'>
           <AddProjectComponent />
           <ProjectList allProjects={allProjects} />
         </div>

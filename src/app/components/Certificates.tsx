@@ -5,12 +5,10 @@ export type Certificate = {
   id: string
   certTitle: string
   certDesc: string
-  certImage: string
+  certImageLink: string
   courseLink: string
   certProfLink: string
 }
-
-import { type ReactNode } from "react"
 
 export default async function certificates() {
   const allCertificates = await getAllCertificates()

@@ -1,6 +1,6 @@
 "use client"
 
-import { Project } from "@prisma/client"
+import { Project } from "../Projects"
 
 type Props = {
   allProjects: Project[] | undefined
