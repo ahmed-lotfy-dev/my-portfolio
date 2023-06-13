@@ -5,12 +5,13 @@ import {
   Popover,
   PopoverContent,
   PopoverTrigger,
-} from "@/src/app/components/ui/popover"
+} from "@/components/ui/popover"
 
-import { Button } from "../ui/button"
 import { Input } from "@/src/app/components/ui/input"
 import { Label } from "@/src/app/components/ui/label"
 import { AddCertificateAction } from "@/src/app/_actions"
+
+import { TagsInput } from "react-tag-input-component"
 
 import toast, { Toaster } from "react-hot-toast"
 

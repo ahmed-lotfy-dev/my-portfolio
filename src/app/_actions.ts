@@ -15,6 +15,7 @@ import { getSignedUrl } from "@aws-sdk/s3-request-presigner"
 
 import { authOptions } from "./lib/auth"
 import { getServerSession } from "next-auth/next"
+import { Project } from "@prisma/client"
 
 const S3 = new S3Client({
   region: "auto",

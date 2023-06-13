@@ -55,6 +55,7 @@ export default async function Contact() {
               name='name'
               min={5}
               max={80}
+              required
             />
             <div className='text-md lightbold text-red-500'></div>
             <input
@@ -62,6 +63,7 @@ export default async function Contact() {
               type='text'
               placeholder='Email'
               name='email'
+              required
             />
             <div className='text-md lightbold text-red-500'></div>
             <input
@@ -70,6 +72,7 @@ export default async function Contact() {
               placeholder='Subject'
               name='subject'
               min={6}
+              required
             />
             <div className='text-md lightbold text-red-500'></div>
             <textarea
@@ -77,6 +80,7 @@ export default async function Contact() {
               placeholder='Your Message'
               name='message'
               minLength={10}
+              required
             />
             <div className='text-md lightbold text-red-500'></div>
             <input

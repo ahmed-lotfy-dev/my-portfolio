@@ -7,9 +7,8 @@ import {
   PopoverTrigger,
 } from "@/src/app/components/ui/popover"
 
-import { Button } from "../ui/button"
-import { Input } from "@/src/app/components/ui/input"
-import { Label } from "@/src/app/components/ui/label"
+import { Input } from "@/components/ui/input"
+import { Label } from "@/components/ui/label"
 import { AddProjectAction } from "@/src/app/_actions"
 
 import toast, { Toaster } from "react-hot-toast"
@@ -22,7 +21,7 @@ const notify = (message: string, status: boolean) =>
   status ? toast.success(message) : toast.error(message)
 
 export default function AddProject() {
-  const [selected, setSelected] = useState(["featured"])
+  const [selected, setSelected] = useState<string[]>(["featured"])
   const formRef = useRef<HTMLFormElement>(null)
   const { data: session } = useSession()
   const emailAddress = session?.user.email
@@ -76,7 +75,7 @@ export default function AddProject() {
                   value={selected}
                   onChange={setSelected}
                   name='tags'
-                  placeHolder='enter fruits'
+                  placeHolder='Select Tech'
                 />
               </div>
               <button

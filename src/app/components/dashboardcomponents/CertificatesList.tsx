@@ -20,8 +20,8 @@ export default function CertificateList({ allCertificates }: Props) {
   console.log(allCertificates)
   return (
     <div className='mt-16 w-full'>
-      <div className='w-1/2 m-auto'>
-        <Table className=''>
+      <div className='m-auto w-full lg:w-2/3'>
+        <Table>
           <TableHeader>
             <TableRow>
               <TableHead className='font-extrabold'>

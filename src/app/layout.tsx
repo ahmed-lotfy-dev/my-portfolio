@@ -1,5 +1,5 @@
 import { getServerSession } from "next-auth"
-import { authOptions } from "@/src/app/lib/auth"
+import { authOptions } from "@/lib/auth"
 
 import "./globals.css"
 import { Josefin_Sans, Josefin_Slab } from "next/font/google"

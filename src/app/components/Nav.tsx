@@ -4,7 +4,6 @@ import { useState } from "react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { IoMenu, IoClose } from "react-icons/io5"
-import { useSession } from "next-auth/react"
 import Image from "next/image"
 import { Session } from "next-auth"
 
@@ -17,7 +16,7 @@ export default function Nav({ session }: Props) {
   const user = session?.user
   const [isOpened, setIsOpened] = useState(false)
 
-  const toggle = (e: any) => {
+  const open = (e: any) => {
     setIsOpened((prev) => !prev)
     console.log(path)
   }
@@ -25,7 +24,7 @@ export default function Nav({ session }: Props) {
   const close = () => setIsOpened(false)
 
   return (
-    <header className=' bg-gray-700 border-b-2 border-gray-900 dark:bg-slate-700 relative sm:static text-gray-300 '>
+    <header className=' bg-gray-700 border-b-2 border-gray-900 dark:bg-slate-700 relative sm:static text-gray-300'>
       <div className='flex container mx-auto px-5 items-center justify-between max-w-screen-xl'>
         <Link href={"/"}>
           <h1 className='text-3xl font-bold ml-3 py-7 font-main cursor-pointer'>
@@ -33,9 +32,9 @@ export default function Nav({ session }: Props) {
           </h1>
         </Link>
         <nav
-          className={`flex flex-0  gap-7 sm:relative sm:flex-row sm:border-none sm:h-auto sm:space-x-0 sm:self-center  font-main text-cyan-50 justify-center items-center bg-gray-700 border-8 border-gray-400 flex-col inset-0 h-[400px] ${
+          className={`flex gap-7 sm:relative sm:flex-row sm:border-none sm:h-auto sm:space-x-0 sm:self-center  font-main text-cyan-50 justify-center items-center bg-gray-700 border-8 border-gray-400 flex-col inset-0 h-[400px] ${
             isOpened
-              ? "flex animate-   duration-500 translate-y-[6.4rem] absolute opacity-1 "
+              ? "flex animate-duration-500 translate-y-[6.4rem] absolute opacity-1 "
               : "hidden opacity-0 transition-all duration-500 sm:relative sm:flex sm:opacity-100"
           }`}
         >
@@ -114,7 +113,7 @@ export default function Nav({ session }: Props) {
 
         <IoMenu
           className='text-3xl font-bold sm:hidden mr-3 cursor-pointer z-50 items-end'
-          onClick={toggle}
+          onClick={open}
           onBlur={close}
         />
       </div>

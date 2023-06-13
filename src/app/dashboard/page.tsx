@@ -4,8 +4,8 @@ import getAllProjects from "../lib/getProjects"
 import Welcome from "../components/dashboardcomponents/Welcome"
 
 export default async function Page({}) {
-  const { allCertificates } = await getAllCertificates()
-  const { allProjects } = await getAllProjects()
+    // const { allCertificates } = await getAllCertificates()
+    // const { allProjects } = await getAllProjects()
 
   return (
     <div className='min-h-screen flex flex-col gap-3 w-full justify-start items-center mt-10'>
