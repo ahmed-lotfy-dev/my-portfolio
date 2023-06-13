@@ -35,10 +35,10 @@ export default async function projects() {
               </p>
               <div className='mt-12 space-x-6 '>
                 <Link href={proj.projLiveLink} target='_blank'>
-                  <Button>Course Link</Button>
+                  <Button>Project Live</Button>
                 </Link>
                 <Link href={proj.projRepoLink} target='_blank'>
-                  <Button>Cerification Proof</Button>
+                  <Button>Project Repo</Button>
                 </Link>
               </div>{" "}
             </div>
