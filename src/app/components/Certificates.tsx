@@ -46,8 +46,8 @@ export default async function certificates() {
                 <AccordionContent className="">
                   <Image
                     className="m-auto my-6 aspect-auto object-cover"
-                    src={cert.certImageLink}
                     loading="lazy"
+                    src={cert.certImageLink}
                     width={500}
                     height={500}
                     alt={`${cert.certTitle} certification image`}
