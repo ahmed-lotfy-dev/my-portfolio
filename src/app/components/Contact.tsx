@@ -2,37 +2,20 @@
 import Link from "next/link";
 import toast, { Toaster } from "react-hot-toast";
 import { IoLogoLinkedin, IoLogoGithub, IoLogoFacebook } from "react-icons/io5";
-import { contactAction } from "@/src/app/_actions";
+import { contactAction } from "@/src/app/actions";
 
 import { Button } from "./ui/button";
-import { useState } from "react";
 
-import { useForm, SubmitHandler } from "react-hook-form";
+import { useFormState } from "react-dom";
 
-import { z } from "zod";
-import { zodResolver } from "@hookform/resolvers/zod";
-
-import { contactSchema, ContactInputs } from "../lib/contactSchema";
 import { notify } from "../lib/utils/toast";
-
+import Submit from "./ui/formSubmitBtn";
 
 export default function Contact() {
-  const {
-    register,
-    handleSubmit,
-    watch,
-    reset,
-    formState: { errors },
-  } = useForm<ContactInputs>({
-    resolver: zodResolver(contactSchema),
-  });
-  const processForm: SubmitHandler<ContactInputs> = async (data) => {
-    const result = await contactAction(data);
-    console.log(result);
-    notify("Email sent successfully will contact you soon", true);
-    reset();
-  };
+  const [state, formAction] = useFormState(contactAction, null);
 
+  if (state?.success)
+    notify("Email sent successfully, i'll contact you soon ", true);
   return (
     // outer container for bg
     <section className="p-6">
@@ -72,48 +55,45 @@ export default function Contact() {
         {/* //contact form container */}
         <div className="col-start-1 col-end-7 sm:col-start-1 sm:col-end-4 sm:row-start-2 sm:row-end-3 py-10 w-full  place-self-start">
           <form
+            action={formAction}
             className="flex flex-col space-y-5 mt-6 w-[75%] sm:w-[85%] mx-auto sm:mx-0"
-            onSubmit={handleSubmit(processForm)}
           >
             <input
               className="py-2 px-3 rounded-md placeholder:opacity-60 text-blue-900 border-[2px] border-blue-500 focus:border-blue-900 focus:border-[2px] outline-none placeholder:text-blue-700"
               type="text"
-              {...register("name")}
+              name="name"
               placeholder="Name"
             />
-            {errors.name?.message && (
-              <p className="text-sm text-red-400">{errors.name.message}</p>
-            )}
+            <p className="text-sm text-red-400">
+              {state?.error?.name && state?.error?.name?._errors}
+            </p>
             <input
               className="py-2 px-3 rounded-md placeholder:opacity-60 text-blue-900 border-[2px] border-blue-500 focus:border-blue-900 focus:border-[2px] outline-none placeholder:text-blue-700"
-              type="text"
-              {...register("email")}
+              type="email"
+              name="email"
               placeholder="Email"
             />
-            {errors.email?.message && (
-              <p className="text-sm text-red-400">{errors.email.message}</p>
-            )}{" "}
+            <p className="text-sm text-red-400">
+              {state?.error?.email && state?.error?.email?._errors}
+            </p>
             <input
               className="py-2 px-3 rounded-md placeholder:opacity-60 text-blue-900 border-[2px] border-blue-500 focus:border-blue-900 focus:border-[2px] outline-none placeholder:text-blue-700"
               type="text"
-              {...register("subject")}
+              name="subject"
               placeholder="Subject"
             />
-            {errors.subject?.message && (
-              <p className="text-sm text-red-400">{errors.subject.message}</p>
-            )}{" "}
+            <p className="text-sm text-red-400">
+              {state?.error?.subject && state?.error?.subject?._errors}
+            </p>
             <textarea
               className="py-2 px-3 rounded-md h-[10em] placeholder:opacity-60 text-blue-900 border-[2px] border-blue-500 focus:border-blue-900 focus:border-[2px] outline-none placeholder:text-blue-700"
-              {...register("message")}
               placeholder="Your Message"
               name="message"
             />
-            {errors.message?.message && (
-              <p className="text-sm text-red-400">{errors.message.message}</p>
-            )}{" "}
-            <Button className="mx-auto w-2/3 py-2 sm:self-start bg-blue-700 rounded-md hover:bg-blue-900 text-blue-100 hover:text-blue-100 font-bold transition-all hover:rounded-lg border-[3px] border-solid border-gray-800 sm:text-md">
-              <input type="submit" />
-            </Button>
+            <p className="text-sm text-red-400">
+              {state?.error?.message && state?.error?.message?._errors}
+            </p>
+            <Submit />
           </form>
         </div>
       </div>

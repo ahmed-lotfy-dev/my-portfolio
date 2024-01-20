@@ -106,29 +106,27 @@ export async function AddProjectAction(data: FormData) {
   revalidatePath("/dashboard/projects");
 }
 
-export async function contactAction(data: ContactInputs) {
-  const { name, email, subject, message } = data;
-  const result = contactSchema.safeParse(data);
+export async function contactAction(state: any, formData: FormData) {
+  const name = formData.get("name");
+  const email = formData.get("email");
+  const subject = formData.get("subject");
+  const message = formData.get("message");
+  const result = contactSchema.safeParse({ name, email, subject, message });
 
   if (result.success) {
-    try {
-      const msg = {
-        to: ["elshenawy19@gmail.com", "contact@ahmedlotfy.me"], // Change to your recipient
-        from: "contact@ahmedlotfy.me", // Change to your verified sender
-        subject: subject,
-        text: message,
-        html: `<strong>This Email Is From: ${name},<br>
+    const msg = {
+      to: ["elshenawy19@gmail.com", "contact@ahmedlotfy.me"], // Change to your recipient
+      from: "contact@ahmedlotfy.me", // Change to your verified sender
+      subject: subject,
+      text: message,
+      html: `<strong>This Email Is From: ${name},<br>
       His Email Is: ${email}<br>
       And This Is His Message :${message}</strong>`,
-      };
-      const sent = await sgMail.sendMultiple(msg);
-      return { success: true, data: result.data };
-    } catch (err: any) {
-      return { success: false, error: "Email Cannot Be Sent" };
-      console.log("");
-    }
+    };
+    const sent = await sgMail.sendMultiple(msg);
+    return { success: true, data: result.data };
   }
-  if (!result.success) {
-    return { success: false, error: "Email Cannot Be Sent" };
+  if (result.error) {
+    return { success: false, error: result.error.format() };
   }
 }

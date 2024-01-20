@@ -12,7 +12,7 @@ import {
 
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { AddProjectAction } from "@/src/app/_actions";
+import { AddProjectAction } from "@/src/app/actions";
 
 import { Toaster } from "react-hot-toast";
 import { notify } from "../../lib/utils/toast";
