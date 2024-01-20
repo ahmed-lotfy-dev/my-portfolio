@@ -17,6 +17,8 @@ import { getSignedUrl } from "@aws-sdk/s3-request-presigner";
 import { authOptions } from "./lib/auth";
 import { getServerSession } from "next-auth/next";
 import { Project } from "@prisma/client";
+import { ProjectSchema } from "./lib/projectSchema";
+import { certificateSchema } from "./lib/certificateSchma";
 
 const S3 = new S3Client({
   region: "auto",
@@ -49,7 +51,7 @@ export async function UploadToS3(imageFile: File) {
   return uploadImage;
 }
 
-export async function AddCertificateAction(data: FormData) {
+export async function AddCertificateAction(state: any, data: FormData) {
   const certTitle = data.get("certTitle") as string;
   const certDesc = data.get("certDesc") as string;
   const courseLink = data.get("courseLink") as string;
@@ -57,27 +59,42 @@ export async function AddCertificateAction(data: FormData) {
   const emailAddress = data.get("emailAddress");
 
   const certImageFile = data.get("certImageLink") as File;
-
+  const certImageLink = `${process.env.CF_IMAGES_SUBDOMAIN}/${certImageFile?.name}`;
   const uploadedImage = UploadToS3(certImageFile);
-  console.log(uploadedImage);
 
-  if (emailAddress !== process.env.ADMIN_EMAIL) return;
+  if (emailAddress !== process.env.ADMIN_EMAIL)
+    return {
+      success: false,
+      message: "You Don't Have Privilige To Add Certificate",
+    };
 
-  const certificate = await prisma.certificate.create({
-    data: {
-      certTitle,
-      certDesc,
-      courseLink,
-      certProfLink,
-      certImageLink: `${process.env.CF_IMAGES_SUBDOMAIN}/${certImageFile?.name}`,
-    },
+  const result = certificateSchema.safeParse({
+    certTitle,
+    certDesc,
+    courseLink,
+    certProfLink,
+    certImageLink,
   });
-
-  console.log("certificate added successfully");
-  revalidatePath("/dashboard/certificates");
+  if (result.success) {
+    const certificate = await prisma.certificate.create({
+      data: {
+        certTitle,
+        certDesc,
+        courseLink,
+        certProfLink,
+        certImageLink,
+      },
+    });
+    console.log("certificate added successfully");
+    revalidatePath("/dashboard/certificates");
+    return { success: true, message: result.data };
+  }
+  if (result.error) {
+    return { success: false, error: result.error.format() };
+  }
 }
 
-export async function AddProjectAction(data: FormData) {
+export async function AddProjectAction(state: any, data: FormData) {
   const projTitle = data.get("projTitle") as string;
   const projDesc = data.get("projDesc") as string;
   const projRepoLink = data.get("projRepoLink") as string;
@@ -86,24 +103,41 @@ export async function AddProjectAction(data: FormData) {
   const emailAddress = data.get("emailAddress");
 
   const projImageFile = data.get("projImageLink") as File;
-
   const uploadedImage = UploadToS3(projImageFile);
+  const projImageLink = `${process.env.CF_IMAGES_SUBDOMAIN}/${projImageFile?.name}`;
 
   //@ts-ignore
-  if (emailAddress !== process.env.ADMIN_EMAIL) return;
-
-  const project = await prisma.project.create({
-    data: {
-      projTitle,
-      projDesc,
-      projRepoLink,
-      projLiveLink,
-      projImageLink: `${process.env.CF_IMAGES_SUBDOMAIN}/${projImageFile?.name}`,
-      tags,
-    },
+  if (emailAddress !== process.env.ADMIN_EMAIL)
+    return {
+      success: false,
+      message: "You Don't Have Privilige To Add Project",
+    };
+  const result = ProjectSchema.safeParse({
+    projTitle,
+    projDesc,
+    projRepoLink,
+    projLiveLink,
+    projImageLink,
+    tags,
   });
-  console.log("project added successfully");
-  revalidatePath("/dashboard/projects");
+  if (result.success) {
+    const project = await prisma.project.create({
+      data: {
+        projTitle,
+        projDesc,
+        projRepoLink,
+        projLiveLink,
+        projImageLink,
+        tags,
+      },
+    });
+    console.log("project added successfully");
+    revalidatePath("/dashboard/projects");
+    return { success: true, data: result.data };
+  }
+  if (result.error) {
+    return { success: false, error: result.error.format() };
+  }
 }
 
 export async function contactAction(state: any, formData: FormData) {
@@ -129,4 +163,18 @@ export async function contactAction(state: any, formData: FormData) {
   if (result.error) {
     return { success: false, error: result.error.format() };
   }
+}
+
+export async function deleteProjectAction(projId: string) {
+  const deleteProjct = await prisma.project.delete({ where: { id: projId } });
+  console.log("projct deleted", projId);
+  revalidatePath("/dashboard/projects");
+}
+
+export async function deleteCertificateAction(certId: string) {
+  const deleteProjct = await prisma.certificate.delete({
+    where: { id: certId },
+  });
+  console.log("projct deleted", certId);
+  revalidatePath("/dashboard/certificates");
 }

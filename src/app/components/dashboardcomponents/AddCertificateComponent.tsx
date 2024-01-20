@@ -13,14 +13,17 @@ import { AddCertificateAction } from "@/src/app/actions";
 
 import { TagsInput } from "react-tag-input-component";
 
-import toast, { Toaster } from "react-hot-toast";
+import { Toaster } from "react-hot-toast";
+import { notify } from "../../lib/utils/toast";
 
 import { useSession } from "next-auth/react";
-
-const notify = (message: string, status: boolean) =>
-  status ? toast.success(message) : toast.error(message);
+import { useFormState } from "react-dom";
+import Submit from "../ui/formSubmitBtn";
+import { Dialog, DialogContent, DialogTrigger } from "../ui/dialog";
 
 export default function AddCertificateComponent() {
+  const [state, formAction] = useFormState(AddCertificateAction, null);
+
   const formRef = useRef<HTMLFormElement>(null);
   const { data: session } = useSession();
   const emailAddress = session?.user.email;
@@ -28,45 +31,56 @@ export default function AddCertificateComponent() {
   return (
     <div className="flex flex-col justify-center items-center">
       <div className="flex w-full min-h-full justify-center items-center mt-6">
-        <Popover>
-          <PopoverTrigger className="bg-primary text-primary-foreground hover:bg-primary/90 h-10 py-2 px-4 inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none ring-offset-background">
+        <Dialog>
+          <DialogTrigger className="bg-primary text-primary-foreground hover:bg-primary/90 h-10 py-2 px-4 inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none ring-offset-background">
             Add New Certificate
-          </PopoverTrigger>
-          <PopoverContent className="w-[500px] mt-7">
+          </DialogTrigger>
+          <DialogContent className="w-[500px]">
             <form
-              className="flex flex-col justify-center items-center w-full gap-5 bg-gray-100 text-black"
-              action={AddCertificateAction}
+              action={formAction}
+              className="flex flex-col gap-5 justify-center items-center w-full  bg-gray-100 text-black"
             >
-              <div className="flex flex-col items-center">
-                <Label className="mb-5 m-10" htmlFor="certTitle">
-                  Certificate Title
-                </Label>
-                <Input type="text" name="certTitle" />
-              </div>
-              <div className="flex flex-col items-center">
-                <Label className="mb-5" htmlFor="certDesc">
-                  Certificate Description
-                </Label>
-                <Input type="text" name="certDesc" />
-              </div>
-              <div className="flex flex-col items-center">
-                <Label className="mb-5" htmlFor="courseLink">
-                  Course Link
-                </Label>
-                <Input type="text" name="courseLink" />
-              </div>
-              <div className="flex flex-col items-center">
-                <Label className="mb-5" htmlFor="certProfLink">
-                  Certificate Proof
-                </Label>
-                <Input type="text" name="certProfLink" />
-              </div>
+              <Label className="mt-5 flex justify-center" htmlFor="certTitle">
+                Certificate Title
+              </Label>
+              <Input className="w-2/3" type="text" name="certTitle" />
+              <p className="text-sm text-red-400">
+                {state?.error?.certTitle && state?.error?.certTitle?._errors[0]}
+              </p>
+
+              <Label className="flex justify-center" htmlFor="certDesc">
+                Certificate Description
+              </Label>
+              <Input className="w-2/3" type="text" name="certDesc" />
+              <p className="text-sm text-red-400">
+                {state?.error?.certDesc && state?.error?.certDesc?._errors[0]}
+              </p>
+
+              <Label className="flex justify-center" htmlFor="courseLink">
+                Course Link
+              </Label>
+              <Input className="w-2/3" type="url" name="courseLink" />
+              <p className="text-sm text-red-400">
+                {state?.error?.courseLink &&
+                  state?.error?.courseLink?._errors[0]}
+              </p>
+
+              <Label className="flex justify-center" htmlFor="certProfLink">
+                Certificate Proof
+              </Label>
+              <Input className="w-2/3" type="url" name="certProfLink" />
+              <p className="text-sm text-red-400">
+                {state?.error?.certProfLink &&
+                  state?.error?.certProfLink?._errors[0]}
+              </p>
+
               <Label htmlFor="picture">Certificate Image</Label>
-              <Input className="w-1/4" type="file" name="certImageLink" />
+              <Input className="w-2/3" type="file" name="certImageLink" />
 
               <Input type="hidden" name="emailAddress" value={emailAddress} />
 
-              <button
+              <Submit
+                btnText="Add Certificate"
                 className="m-10"
                 type="submit"
                 onClick={() => {
@@ -79,10 +93,10 @@ export default function AddCertificateComponent() {
                 }}
               >
                 Submit
-              </button>
+              </Submit>
             </form>
-          </PopoverContent>
-        </Popover>
+          </DialogContent>
+        </Dialog>
         <Toaster position="top-right" />
       </div>
     </div>

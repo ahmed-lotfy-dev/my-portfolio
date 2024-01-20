@@ -16,6 +16,7 @@ export default function Contact() {
 
   if (state?.success)
     notify("Email sent successfully, i'll contact you soon ", true);
+  
   return (
     // outer container for bg
     <section className="p-6">
@@ -93,7 +94,7 @@ export default function Contact() {
             <p className="text-sm text-red-400">
               {state?.error?.message && state?.error?.message?._errors}
             </p>
-            <Submit />
+            <Submit btnText="Send"/>
           </form>
         </div>
       </div>

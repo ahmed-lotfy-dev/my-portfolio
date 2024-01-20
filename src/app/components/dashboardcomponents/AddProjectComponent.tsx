@@ -20,25 +20,19 @@ import { notify } from "../../lib/utils/toast";
 import { useSession } from "next-auth/react";
 
 import { TagsInput } from "react-tag-input-component";
-import { Button } from "../ui/button";
 
-import { Form } from "react-hook-form";
-import {
-  FormControl,
-  FormDescription,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "../ui/form";
 import { Textarea } from "../ui/textarea";
+import { useFormState } from "react-dom";
+import Submit from "../ui/formSubmitBtn";
 
 export default function AddProject() {
+  const [state, formAction] = useFormState(AddProjectAction, null);
   const [selected, setSelected] = useState<string[]>(["featured"]);
   const formRef = useRef<HTMLFormElement>(null);
   const { data: session } = useSession();
   const emailAddress = session?.user.email;
-  console.log(emailAddress);
+  // console.log(emailAddress);
+  console.log(state);
 
   return (
     <div className="flex flex-col justify-center items-center">
@@ -49,31 +43,49 @@ export default function AddProject() {
           </DialogTrigger>
           <DialogContent className="w-[500px]">
             <form
-              className="flex flex-col justify-center items-center w-full gap-5  text-black "
-              action={AddProjectAction}
+              action={formAction}
+              className="flex flex-col justify-center items-center w-full gap-5 text-black "
             >
               <Label className="mt-5 flex justify-center" htmlFor="projTitle">
                 Project Title
               </Label>
               <Input className="w-2/3" type="text" name="projTitle" />
+              <p className="text-sm text-red-400">
+                {state?.error?.projTitle && state?.error?.projTitle?._errors}
+              </p>
 
-              <Textarea className="flex justify-center w-2/3" name="projDesc">
-                Project Description
-              </Textarea>
-              <Input className="w-2/3" type="text" name="projDesc" />
+              <Textarea
+                className="flex justify-center w-2/3"
+                name="projDesc"
+              ></Textarea>
+              <p className="text-sm text-red-400">
+                {state?.error?.projDesc && state?.error?.projDesc?._errors}
+              </p>
 
               <Label className="flex justify-center" htmlFor="projRepoLink">
                 Project Repo Link
               </Label>
               <Input className="w-2/3" type="text" name="projRepoLink" />
+              <p className="text-sm text-red-400">
+                {state?.error?.projRepoLink &&
+                  state?.error?.projRepoLink?._errors}{" "}
+              </p>
 
               <Label className="flex justify-center" htmlFor="projLiveLink">
                 Project Live Link
               </Label>
               <Input className="w-2/3" type="text" name="projLiveLink" />
+              <p className="text-sm text-red-400">
+                {state?.error?.projLiveLink &&
+                  state?.error?.projLiveLink?._errors}
+              </p>
 
               <Label htmlFor="picture">Project Image</Label>
               <Input className="w-2/3" type="file" name="projImageLink" />
+              <p className="text-sm text-red-400">
+                {state?.error?.projImageLink &&
+                  state?.error?.projImageLink?._errors}
+              </p>
 
               <Input type="hidden" name="tags" value={selected} />
               <Input type="hidden" name="emailAddress" value={emailAddress} />
@@ -86,21 +98,20 @@ export default function AddProject() {
                 placeHolder="Select Tech"
               />
 
-              <Button
+              <Submit
+                btnText="Add Project"
                 className="m-10 w-2/3"
                 type="submit"
                 onClick={() => {
                   if (emailAddress !== process.env.NEXT_PUBLIC_ADMIN_EMAIL) {
                     console.log(emailAddress);
-                    notify("sorry you don't have admin priviliges", false);
+                    notify("Sorry, you don't have admin privileges", false);
                   } else {
                     notify("Adding Completed Successfully", true);
                     formRef.current?.reset();
                   }
                 }}
-              >
-                Submit
-              </Button>
+              />
             </form>
           </DialogContent>
         </Dialog>
