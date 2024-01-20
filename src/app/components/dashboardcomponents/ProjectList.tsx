@@ -1,6 +1,7 @@
-"use client"
-import Image from "next/image"
-import { Project } from "@prisma/client"
+"use client";
+import Image from "next/image";
+import { Project } from "@prisma/client";
+import { FiEdit2 } from "react-icons/fi";
 
 import {
   Card,
@@ -9,36 +10,37 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "@/src/app/components/ui/card"
-import { Button } from "../ui/button"
-import Link from "next/link"
+} from "@/src/app/components/ui/card";
+import { Button } from "../ui/button";
+import Link from "next/link";
 type Props = {
-  allProjects: Project[] | undefined
-}
+  allProjects: Project[] | undefined;
+};
 export default function ProjectList({ allProjects }: Props) {
   return (
-    <div className='mt-16 w-full grid grid-cols-3 gap-x-6'>
+    <div className="mt-16 w-full grid grid-cols-3 gap-x-6">
       {allProjects?.map((proj) => (
-        <div key={proj.id} className='mt-10 text-center'>
-          <Card className=''>
-            <CardHeader>
-              <CardTitle className='text-3xl'>
+        <div key={proj.id} className="mt-10 text-center">
+          <Card className="">
+            <CardHeader className="flex">
+              <CardTitle className="text-3xl">
                 {proj.projTitle.toUpperCase()}
               </CardTitle>
-              <CardDescription className='text-1xl font-bold mt-6'>
+              <FiEdit2 className="absolute left-[35%]" />
+              <CardDescription className="text-1xl font-bold mt-6">
                 {proj.projDesc}
               </CardDescription>
             </CardHeader>
             <CardContent>
               <Image
-                className='m-auto object-cover'
+                className="m-auto object-cover"
                 src={proj.projImageLink}
                 width={350}
                 height={350}
                 alt={`${proj.projTitle} Image`}
               />
             </CardContent>
-            <CardFooter className='space-x-10 flex justify-center'>
+            <CardFooter className="space-x-10 flex justify-center">
               <Link href={proj.projLiveLink}>
                 <Button>Project Live Link</Button>
               </Link>
@@ -50,5 +52,5 @@ export default function ProjectList({ allProjects }: Props) {
         </div>
       ))}
     </div>
-  )
+  );
 }

@@ -1,33 +1,33 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import Link from "next/link"
-import { usePathname } from "next/navigation"
-import { IoMenu, IoClose } from "react-icons/io5"
-import Image from "next/image"
-import { Session } from "next-auth"
+import { useState } from "react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { IoMenu, IoClose } from "react-icons/io5";
+import Image from "next/image";
+import { Session } from "next-auth";
 
 type Props = {
-  session: Session | null
-}
+  session: Session | null;
+};
 
 export default function Nav({ session }: Props) {
-  const path = usePathname()
-  const user = session?.user
-  const [isOpened, setIsOpened] = useState(false)
+  const path = usePathname();
+  const user = session?.user;
+  const [isOpened, setIsOpened] = useState(false);
 
   const open = (e: any) => {
-    setIsOpened((prev) => !prev)
-    console.log(path)
-  }
+    setIsOpened((prev) => !prev);
+    console.log(path);
+  };
 
-  const close = () => setIsOpened(false)
+  const close = () => setIsOpened(false);
 
   return (
-    <header className=' bg-gray-700 border-b-2 border-gray-900 dark:bg-slate-700 relative sm:static text-gray-300'>
-      <div className='flex container mx-auto px-5 items-center justify-between max-w-screen-xl'>
+    <header className=" bg-gray-700 border-b-1 border-gray-900 dark:bg-slate-700 relative sm:static text-gray-300">
+      <div className="flex container mx-auto px-5 items-center justify-between max-w-screen-xl">
         <Link href={"/"}>
-          <h1 className='text-3xl font-bold ml-3 py-7 font-main cursor-pointer'>
+          <h1 className="text-3xl font-bold ml-3 py-7 font-main cursor-pointer">
             &#123;AL&#125;
           </h1>
         </Link>
@@ -39,7 +39,7 @@ export default function Nav({ session }: Props) {
           }`}
         >
           <Link
-            href='/'
+            href="/"
             className={`hover:text-red-700 hover:border-b-4 hover:border-b-red-800 transition-all delay-75 duration-250 rounded-sm ${
               path === "/" ? "active" : ""
             }`}
@@ -47,7 +47,7 @@ export default function Nav({ session }: Props) {
             Home
           </Link>
           <Link
-            href='/projects'
+            href="/projects"
             className={`hover:text-red-700 hover:border-b-4 hover:border-b-red-800 transition-all delay-75 duration-250 rounded-sm ${
               path === "/projects" ? "active" : ""
             }`}
@@ -55,7 +55,7 @@ export default function Nav({ session }: Props) {
             Projects
           </Link>
           <Link
-            href='/blog'
+            href="/blog"
             className={`hover:text-red-700 hover:border-b-4 hover:border-b-red-800 transition-all delay-75 duration-250 rounded-sm ${
               path === "/blog" ? "active" : ""
             }`}
@@ -63,7 +63,7 @@ export default function Nav({ session }: Props) {
             Blog
           </Link>
           <Link
-            href='/certificates'
+            href="/certificates"
             className={`hover:text-red-700 hover:border-b-4 hover:border-b-red-800 transition-all delay-75 duration-250 rounded-sm ${
               path === "/certificates" ? "active" : ""
             }`}
@@ -71,7 +71,7 @@ export default function Nav({ session }: Props) {
             Certificates
           </Link>
           <Link
-            href='/about'
+            href="/about"
             className={`hover:text-red-700 hover:border-b-4 hover:border-b-red-800 transition-all delay-75 duration-250 rounded-sm ${
               path === "/about" ? "active" : ""
             }`}
@@ -79,7 +79,7 @@ export default function Nav({ session }: Props) {
             About
           </Link>
           <Link
-            href='/contact'
+            href="/contact"
             className={`hover:text-red-700 hover:border-b-4 hover:border-b-red-800 transition-all delay-75 duration-250 rounded-sm ${
               path === "/contact" ? "active" : ""
             }`}
@@ -88,7 +88,7 @@ export default function Nav({ session }: Props) {
           </Link>
           {path === "/" ? (
             <Link
-              href='/dashboard'
+              href="/dashboard"
               className={`hover:text-red-700 hover:border-b-4 hover:border-b-red-800 transition-all delay-75 duration-250 rounded-sm ${
                 path === "/" ? "active" : ""
               }`}
@@ -100,7 +100,7 @@ export default function Nav({ session }: Props) {
           )}
           {user ? (
             <Image
-              className='rounded-full'
+              className="rounded-full"
               src={user.image}
               width={50}
               height={100}
@@ -112,11 +112,11 @@ export default function Nav({ session }: Props) {
         </nav>
 
         <IoMenu
-          className='text-3xl font-bold sm:hidden mr-3 cursor-pointer z-50 items-end'
+          className="text-3xl font-bold sm:hidden mr-3 cursor-pointer z-50 items-end"
           onClick={open}
           onBlur={close}
         />
       </div>
     </header>
-  )
+  );
 }
