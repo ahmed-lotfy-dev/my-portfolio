@@ -1,0 +1,19 @@
+------------------------------------------------------------------------------------------------------------------
+Books App
+-------------------
+
+This Project Was Part Of The 6 Weeks Internship With Chingu.Io I Worked With A Team Of 4 People On The Project Project Is Built On Vite As The Front-End And Express On The Backend, The Authentication Part Is Built With Passportjs Practiced Much And Learned How To Work On Team Based Projects And Practice On (Agile) Methodoligy
+
+https://chingu-v43-team14f.ahmedlotfy.dev/
+
+https://github.com/chingu-voyages/v43-tier2-team-14
+
+------------------------------------------------------------------------------------------------------------------
+Pos System App
+-------------------
+
+It is a full stack applciation POS System that serve any on their work with customers and maybe multiple custmers if needed worked on the backend with nestjs with authenticaion and authorisatio roles and jwt and everything and on the front end the projct uses Vite App , routing is built on react router v6 i did it to practice more on all what i learned and practice on Nestjs Also
+
+https://github.com/ahmed-lotfy-dev/POS-System
+
+https://pos-system-f.ahmedlotfy.dev/

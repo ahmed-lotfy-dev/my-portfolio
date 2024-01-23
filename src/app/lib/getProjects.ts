@@ -1,12 +1,11 @@
-import { prisma } from "./prisma"
-
-import { Project } from "@prisma/client"
+import { prisma } from "./prisma";
 
 export default async function getAllProjects() {
   try {
-    const allProjects = await prisma.project.findMany()
-    return { allProjects }
+    const allProjects = await prisma.project.findMany();
+
+    return { allProjects };
   } catch (error) {
-    return { error }
+    return { error };
   }
 }

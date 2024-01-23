@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Suspense } from "react";
 import Image from "next/image";
 import getAllProjects from "@/lib/getProjects";
 export const dynamic = "force-dynamic";
@@ -42,13 +42,13 @@ export default async function projects() {
                 </Link>
               </div>
             </div>
-            <Image
-              className=""
-              src={proj.projImageLink}
-              alt={"Project Title"}
-              height={350}
-              width={350}
-            ></Image>
+              <Image
+                className=""
+                src={proj.projImageLink}
+                alt={"Project Title"}
+                height={350}
+                width={350}
+              ></Image>
           </div>
         ))}
       </div>
