@@ -21,7 +21,7 @@ import { Card } from "../ui/card";
 import { deleteCertificateAction } from "../../actions";
 import { Button } from "../ui/button";
 import { EditCertificate } from "./EditCertificate";
-import { EditPopover } from "./EditPopover";
+import { EditPopover } from "../ui/EditPopover";
 
 type Props = {
   allCertificates: Certificate[] | undefined;

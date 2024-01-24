@@ -1,14 +1,14 @@
 import React from "react";
 import { HiEllipsisVertical } from "react-icons/hi2";
-import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover";
-import { Button } from "../ui/button";
-import { EditCertificate } from "./EditCertificate";
+import { Popover, PopoverContent, PopoverTrigger } from "./popover";
+import { Button } from "./button";
+import { EditCertificate } from "../dashboardcomponents/EditCertificate";
 import { Certificate, Project } from "@prisma/client";
-import { EditProject } from "./EditProject";
+import { EditProject } from "../dashboardcomponents/EditProject";
 
 interface EditPopoverProps {
   onDeleteClick: () => void;
-  EditedObject: Certificate | Project; // Ensure that EditedObject is of type Certificate
+  EditedObject: Certificate | Project
 }
 
 function EditPopover({ onDeleteClick, EditedObject }: EditPopoverProps) {

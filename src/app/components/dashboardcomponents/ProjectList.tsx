@@ -19,7 +19,7 @@ import { PopoverContent, PopoverTrigger } from "@radix-ui/react-popover";
 
 import { deleteProjectAction } from "../../actions";
 import { EditProject } from "./EditProject";
-import { EditPopover } from "./EditPopover";
+import { EditPopover } from "../ui/EditPopover";
 
 type Props = {
   allProjects: Project[] | undefined;
