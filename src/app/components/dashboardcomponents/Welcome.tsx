@@ -1,7 +1,7 @@
 "use client"
 import React from "react"
 import { useSession } from "next-auth/react"
-import NotAuthenticated from "./NotAuthenticated"
+import {NotAuthenticated} from "./NotAuthenticated"
 import { LogoutButton } from "./auth-buttons"
 
 export default function Welcome() {

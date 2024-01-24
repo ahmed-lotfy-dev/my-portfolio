@@ -18,6 +18,8 @@ import { Popover } from "../ui/popover";
 import { PopoverContent, PopoverTrigger } from "@radix-ui/react-popover";
 
 import { deleteProjectAction } from "../../actions";
+import { EditProject } from "./EditProject";
+import { EditPopover } from "./EditPopover";
 
 type Props = {
   allProjects: Project[] | undefined;
@@ -33,29 +35,10 @@ export default function ProjectList({ allProjects }: Props) {
                 <CardTitle className="text-3xl">
                   {proj.projTitle.toUpperCase()}
                 </CardTitle>
-                <Popover>
-                  <PopoverTrigger>
-                    <HiEllipsisVertical size={22} />
-                  </PopoverTrigger>
-                  <PopoverContent>
-                    <Card className="p-5">
-                      <div
-                        className="flex justify-start items-center cursor-pointer"
-                        // onClick={() => editProjectAction(proj.id)}
-                      >
-                        <AiTwotoneEdit className="mr-3" size={20} />
-                        <p>Edit Project</p>
-                      </div>
-                      <div
-                        className="flex justify-start items-center mt-4 cursor-pointer"
-                        onClick={() => deleteProjectAction(proj.id)}
-                      >
-                        <HiMiniTrash className="mr-3" size={20} />
-                        <p>Delete Project</p>
-                      </div>
-                    </Card>
-                  </PopoverContent>
-                </Popover>
+                <EditPopover
+                  EditedObject={proj}
+                  onDeleteClick={() => deleteProjectAction(proj.id)}
+                />
               </div>
               <CardDescription className="text-1xl font-bold mt-6">
                 {proj.projDesc}

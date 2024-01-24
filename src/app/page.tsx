@@ -7,7 +7,7 @@ import Contact from "@/src/app/components/Contact";
 import { wait } from "./lib/wait";
 
 export default async function HomePage() {
-  await wait(3000);
+  // await wait(3000);
   return (
     <main className="font-main">
       <Hero />

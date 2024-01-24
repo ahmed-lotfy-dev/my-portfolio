@@ -1,0 +1,40 @@
+import React from "react";
+import { HiEllipsisVertical } from "react-icons/hi2";
+import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover";
+import { Button } from "../ui/button";
+import { EditCertificate } from "./EditCertificate";
+import { Certificate, Project } from "@prisma/client";
+import { EditProject } from "./EditProject";
+
+interface EditPopoverProps {
+  onDeleteClick: () => void;
+  EditedObject: Certificate | Project; // Ensure that EditedObject is of type Certificate
+}
+
+function EditPopover({ onDeleteClick, EditedObject }: EditPopoverProps) {
+  const isCertificate = "certTitle" in EditedObject;
+
+  return (
+    <Popover>
+      <PopoverTrigger>
+        <HiEllipsisVertical size={22} />
+      </PopoverTrigger>
+      <PopoverContent className="w-full">
+        <div className="cursor-pointer">
+          <div className="w-full">
+            {isCertificate ? (
+              <EditCertificate EditedObject={EditedObject as Certificate} />
+            ) : (
+              <EditProject EditedObject={EditedObject as Project} />
+            )}
+            <Button className="w-full mt-2" onClick={onDeleteClick}>
+              Delete
+            </Button>
+          </div>
+        </div>
+      </PopoverContent>
+    </Popover>
+  );
+}
+
+export { EditPopover };

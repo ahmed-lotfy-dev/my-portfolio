@@ -19,11 +19,14 @@ import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover";
 import { Card } from "../ui/card";
 
 import { deleteCertificateAction } from "../../actions";
+import { Button } from "../ui/button";
+import { EditCertificate } from "./EditCertificate";
+import { EditPopover } from "./EditPopover";
 
 type Props = {
   allCertificates: Certificate[] | undefined;
 };
-export default function CertificateList({ allCertificates }: Props) {
+function CertificateList({ allCertificates }: Props) {
   console.log(allCertificates);
   return (
     <div className="mt-16 w-full">
@@ -53,36 +56,15 @@ export default function CertificateList({ allCertificates }: Props) {
                   </Link>
                 </TableCell>
                 <TableCell className="text-right">
-                  {" "}
                   <Link href={cert.certProfLink} target="_blank">
                     Certificate Proof
                   </Link>
                 </TableCell>
                 <TableCell>
-                  {" "}
-                  <Popover>
-                    <PopoverTrigger>
-                      <HiEllipsisVertical size={22} />
-                    </PopoverTrigger>
-                    <PopoverContent>
-                      <div className="p-5 cursor-pointer">
-                        <div
-                          className="flex justify-start items-center"
-                          // onClick={() => editProjectAction(proj.id)}
-                        >
-                          <AiTwotoneEdit className="mr-3" size={20} />
-                          <p>Edit Project</p>
-                        </div>
-                        <div
-                          className="flex justify-start items-center mt-4 cursor-pointer"
-                          onClick={() => deleteCertificateAction(cert.id)}
-                        >
-                          <HiMiniTrash className="mr-3" size={20} />
-                          <p>Delete Project</p>
-                        </div>
-                      </div>
-                    </PopoverContent>
-                  </Popover>
+                  <EditPopover
+                    EditedObject={cert}
+                    onDeleteClick={() => deleteCertificateAction(cert.id)}
+                  />
                 </TableCell>
               </TableRow>
             ))}
@@ -92,3 +74,5 @@ export default function CertificateList({ allCertificates }: Props) {
     </div>
   );
 }
+
+export { CertificateList };

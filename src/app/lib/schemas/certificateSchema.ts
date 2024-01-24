@@ -1,8 +1,8 @@
 import { z } from "zod";
 
-export type CertificateSchema = z.infer<typeof certificateSchema>;
+export type CertificateSchema = z.infer<typeof CertificateSchema>;
 
-export const certificateSchema = z.object({
+export const CertificateSchema = z.object({
   certTitle: z
     .string()
     .min(6, { message: "Certificate title link is required" }),

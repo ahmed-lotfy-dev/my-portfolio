@@ -7,7 +7,6 @@ import { NextAuthProvider } from "@/src/app/provider";
 
 import Nav from "@/src/app/components/Nav";
 import type { Metadata } from "next";
-import Loading from "./components/Loading";
 import { Suspense } from "react";
 
 const josefinsans = Josefin_Sans({
@@ -35,10 +34,8 @@ export default async function RootLayout({
     <NextAuthProvider>
       <html lang="en">
         <body className={`${josefinsans.variable}${josefinslab.variable}`}>
-          <Suspense fallback={<div>Loading...</div>}>
-            <Nav session={session} />
-            {children}
-          </Suspense>
+          <Nav session={session} />
+          {children}
         </body>
       </html>
     </NextAuthProvider>
