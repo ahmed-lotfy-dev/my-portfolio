@@ -12,13 +12,14 @@ import {
   GetObjectCommand,
   DeleteObjectCommand,
   PutObjectCommand,
+  HeadObjectCommand,
+  S3,
 } from "@aws-sdk/client-s3";
-import { getSignedUrl } from "@aws-sdk/s3-request-presigner";
 
 import { ProjectSchema } from "./lib/schemas/projectSchema";
 import { CertificateSchema } from "./lib/schemas/certificateSchema";
 
-const S3 = new S3Client({
+const s3Client = new S3Client({
   region: "auto",
   endpoint: `https://${process.env.CF_ACCOUNT_ID}.r2.cloudflarestorage.com`,
   credentials: {
@@ -26,23 +27,6 @@ const S3 = new S3Client({
     secretAccessKey: process.env.CF_SECRET_ACCESS_KEY,
   },
 });
-
-export async function UploadToS3(imageFile: File) {
-  const imageBuffer = await imageFile.arrayBuffer();
-  const imageContent = new Uint8Array(imageBuffer);
-  const imageType = imageFile?.type;
-  const uploadImage = await S3.send(
-    new PutObjectCommand({
-      Bucket: "portfolio",
-      //@ts-ignore
-      Key: imageFile?.name,
-      Body: imageContent,
-      ContentType: imageType,
-      ACL: "public-read", // Add this line to set the ACL
-    })
-  );
-  return uploadImage;
-}
 
 export async function DeleteFromS3(imageLink: string | undefined) {
   if (!imageLink) {
@@ -58,7 +42,7 @@ export async function DeleteFromS3(imageLink: string | undefined) {
   }
 
   try {
-    await S3.send(
+    await s3Client.send(
       new DeleteObjectCommand({
         Bucket: "portfolio",
         Key: objectKey,
@@ -75,11 +59,8 @@ export async function AddCertificateAction(state: any, data: FormData) {
   const certDesc = data.get("certDesc") as string;
   const courseLink = data.get("courseLink") as string;
   const certProfLink = data.get("certProfLink") as string;
+  const certImageLink = data.get("certImageLink") as string;
   const emailAddress = data.get("emailAddress");
-
-  const certImageFile = data.get("certImageLink") as File;
-  const certImageLink = `${process.env.CF_IMAGES_SUBDOMAIN}/${certImageFile?.name}`;
-  const uploadedImage = UploadToS3(certImageFile);
 
   if (emailAddress !== process.env.ADMIN_EMAIL)
     return {
@@ -121,9 +102,7 @@ export async function EditCertificateAction(state: any, data: FormData) {
   const certProfLink = data.get("certProfLink") as string;
   const emailAddress = data.get("emailAddress");
 
-  const certImageFile = data.get("certImageLink") as File;
-  const certImageLink = `${process.env.CF_IMAGES_SUBDOMAIN}/${certImageFile?.name}`;
-  const uploadedImage = UploadToS3(certImageFile);
+  const certImageLink = data.get("certImageLink") as string;
 
   if (emailAddress !== process.env.ADMIN_EMAIL)
     return {
@@ -178,12 +157,9 @@ export async function AddProjectAction(state: any, data: FormData) {
   const projDesc = data.get("projDesc") as string;
   const projRepoLink = data.get("projRepoLink") as string;
   const projLiveLink = data.get("projLiveLink") as string;
+  const projImageLink = data.get("projImageLink") as string;
   const tags = data.get("tags") as any;
   const emailAddress = data.get("emailAddress");
-
-  const projImageFile = data.get("projImageLink") as File;
-  const uploadedImage = UploadToS3(projImageFile);
-  const projImageLink = `${process.env.CF_IMAGES_SUBDOMAIN}/${projImageFile?.name}`;
 
   //@ts-ignore
   if (emailAddress !== process.env.ADMIN_EMAIL)
@@ -225,14 +201,10 @@ export async function EditProjectAction(state: any, data: FormData) {
   const projDesc = data.get("projDesc") as string;
   const projRepoLink = data.get("projRepoLink") as string;
   const projLiveLink = data.get("projLiveLink") as string;
+  const projImageLink = data.get("projImageLink") as string;
   const tags = data.get("tags") as any;
   const emailAddress = data.get("emailAddress");
 
-  const projImageFile = data.get("projImageLink") as File;
-  const uploadedImage = UploadToS3(projImageFile);
-  const projImageLink = `${process.env.CF_IMAGES_SUBDOMAIN}/${projImageFile?.name}`;
-
-  //@ts-ignore
   if (emailAddress !== process.env.ADMIN_EMAIL)
     return {
       success: false,

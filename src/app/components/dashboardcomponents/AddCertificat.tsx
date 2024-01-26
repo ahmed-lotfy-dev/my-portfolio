@@ -83,9 +83,7 @@ function AddCertificateComponent() {
                     notify("Adding Completed Successfully", true);
                   }
                 }}
-              >
-                Submit
-              </Submit>
+              />
             </form>
           </DialogContent>
         </Dialog>
