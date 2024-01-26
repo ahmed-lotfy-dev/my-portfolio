@@ -8,7 +8,7 @@ import { EditProject } from "../dashboardcomponents/EditProject";
 
 interface EditPopoverProps {
   onDeleteClick: () => void;
-  EditedObject: Certificate | Project
+  EditedObject: Certificate | Project;
 }
 
 function EditPopover({ onDeleteClick, EditedObject }: EditPopoverProps) {

@@ -18,6 +18,7 @@ import { AiTwotoneEdit } from "react-icons/ai";
 import { Textarea } from "../ui/textarea";
 import { TagsInput } from "react-tag-input-component";
 import { DialogClose } from "@radix-ui/react-dialog";
+import { Upload } from "../ui/Upload";
 
 type EditProjectProp = {
   EditedObject: Project;
@@ -27,6 +28,8 @@ function EditProject({ EditedObject }: EditProjectProp) {
   const { id } = EditedObject;
   const [state, formAction] = useFormState(EditProjectAction, null);
   const [editedProj, setEditedProj] = useState(EditedObject);
+  const [imageUrl, setImageUrl] = useState("");
+
   const [selected, setSelected] = useState<string[]>(["featured"]);
   console.log(id);
 
@@ -57,48 +60,63 @@ function EditProject({ EditedObject }: EditProjectProp) {
               action={formAction}
               className="flex flex-col justify-center items-center w-full gap-5 text-black "
             >
-              <Label className="mt-5 flex justify-center" htmlFor="projTitle">
-                Project Title
-              </Label>
-              <Input className="w-2/3" type="text" name="projTitle" />
+              <Input
+                className="w-2/3"
+                type="text"
+                name="projTitle"
+                placeholder="Project Title"
+                value={editedProj.projTitle}
+                onChange={InputHandler}
+              />
               <p className="text-sm text-red-400">
                 {state?.error?.projTitle && state?.error?.projTitle?._errors}
               </p>
 
-              <Textarea
+              <Input
                 className="flex justify-center w-2/3"
                 name="projDesc"
-              ></Textarea>
+                placeholder="Project Description"
+                value={editedProj.projDesc}
+                onChange={InputHandler}
+              />
               <p className="text-sm text-red-400">
                 {state?.error?.projDesc && state?.error?.projDesc?._errors}
               </p>
 
-              <Label className="flex justify-center" htmlFor="projRepoLink">
-                Project Repo Link
-              </Label>
-              <Input className="w-2/3" type="text" name="projRepoLink" />
+              <Input
+                className="w-2/3"
+                type="text"
+                name="projRepoLink"
+                placeholder="Project Repo Link"
+                value={editedProj.projRepoLink}
+                onChange={InputHandler}
+              />
               <p className="text-sm text-red-400">
                 {state?.error?.projRepoLink &&
                   state?.error?.projRepoLink?._errors}{" "}
               </p>
 
-              <Label className="flex justify-center" htmlFor="projLiveLink">
-                Project Live Link
-              </Label>
-              <Input className="w-2/3" type="text" name="projLiveLink" />
+              <Input
+                className="w-2/3"
+                type="text"
+                name="projLiveLink"
+                placeholder="Project Live Link"
+                value={editedProj.projLiveLink}
+                onChange={InputHandler}
+              />
               <p className="text-sm text-red-400">
                 {state?.error?.projLiveLink &&
                   state?.error?.projLiveLink?._errors}
               </p>
 
-              <Label htmlFor="picture">Project Image</Label>
-              <Input className="w-2/3" type="file" name="projImageLink" />
+              <Upload setImageUrl={setImageUrl} />
               <p className="text-sm text-red-400">
                 {state?.error?.projImageLink &&
                   state?.error?.projImageLink?._errors}
               </p>
 
               <Input type="hidden" name="tags" value={selected} />
+              <Input type="hidden" name="projImageLink" value={imageUrl} />
               <Input type="hidden" name="emailAddress" value={emailAddress} />
 
               <Label className="flex justify-center">Project Tags</Label>

@@ -3,6 +3,7 @@ import { useState, useRef } from "react";
 
 import {
   Dialog,
+  DialogClose,
   DialogContent,
   DialogDescription,
   DialogHeader,
@@ -24,15 +25,17 @@ import { TagsInput } from "react-tag-input-component";
 import { Textarea } from "../ui/textarea";
 import { useFormState } from "react-dom";
 import Submit from "../ui/formSubmitBtn";
+import { Upload } from "../ui/Upload";
 
 function AddProjectComponent() {
   const [state, formAction] = useFormState(AddProjectAction, null);
   const [selected, setSelected] = useState<string[]>(["featured"]);
+  const [imageUrl, setImageUrl] = useState("");
   const formRef = useRef<HTMLFormElement>(null);
   const { data: session } = useSession();
   const emailAddress = session?.user.email;
-  // console.log(emailAddress);
   console.log(state);
+  console.log(imageUrl);
 
   return (
     <div className="flex flex-col justify-center items-center">
@@ -46,10 +49,12 @@ function AddProjectComponent() {
               action={formAction}
               className="flex flex-col justify-center items-center w-full gap-5 text-black "
             >
-              <Label className="mt-5 flex justify-center" htmlFor="projTitle">
-                Project Title
-              </Label>
-              <Input className="w-2/3" type="text" name="projTitle" />
+              <Input
+                className="w-2/3 mt-10"
+                type="text"
+                name="projTitle"
+                placeholder="Project Title"
+              />
               <p className="text-sm text-red-400">
                 {state?.error?.projTitle && state?.error?.projTitle?._errors}
               </p>
@@ -57,36 +62,40 @@ function AddProjectComponent() {
               <Textarea
                 className="flex justify-center w-2/3"
                 name="projDesc"
+                placeholder="Project Description"
               ></Textarea>
               <p className="text-sm text-red-400">
                 {state?.error?.projDesc && state?.error?.projDesc?._errors}
               </p>
 
-              <Label className="flex justify-center" htmlFor="projRepoLink">
-                Project Repo Link
-              </Label>
-              <Input className="w-2/3" type="text" name="projRepoLink" />
+              <Input
+                className="w-2/3"
+                type="text"
+                name="projRepoLink"
+                placeholder="Project Repo Link"
+              />
               <p className="text-sm text-red-400">
                 {state?.error?.projRepoLink &&
                   state?.error?.projRepoLink?._errors}{" "}
               </p>
 
-              <Label className="flex justify-center" htmlFor="projLiveLink">
-                Project Live Link
-              </Label>
-              <Input className="w-2/3" type="text" name="projLiveLink" />
+              <Input
+                className="w-2/3"
+                type="text"
+                name="projLiveLink"
+                placeholder="Project Live Link"
+              />
               <p className="text-sm text-red-400">
                 {state?.error?.projLiveLink &&
                   state?.error?.projLiveLink?._errors}
               </p>
 
-              <Label htmlFor="picture">Project Image</Label>
-              <Input className="w-2/3" type="file" name="projImageLink" />
+              <Upload setImageUrl={setImageUrl} />
               <p className="text-sm text-red-400">
                 {state?.error?.projImageLink &&
                   state?.error?.projImageLink?._errors}
               </p>
-
+              <Input type="hidden" name="projImageLink" value={imageUrl} />
               <Input type="hidden" name="tags" value={selected} />
               <Input type="hidden" name="emailAddress" value={emailAddress} />
 
@@ -97,21 +106,23 @@ function AddProjectComponent() {
                 name="tags"
                 placeHolder="Select Tech"
               />
-
-              <Submit
-                btnText="Add Project"
-                className="m-10 w-2/3"
-                type="submit"
-                onClick={() => {
-                  if (emailAddress !== process.env.NEXT_PUBLIC_ADMIN_EMAIL) {
-                    console.log(emailAddress);
-                    notify("Sorry, you don't have admin privileges", false);
-                  } else {
-                    notify("Adding Completed Successfully", true);
-                    formRef.current?.reset();
-                  }
-                }}
-              />
+              
+              <DialogClose>
+                <Submit
+                  btnText="Add Project"
+                  className="m-10 w-2/3"
+                  type="submit"
+                  onClick={() => {
+                    if (emailAddress !== process.env.NEXT_PUBLIC_ADMIN_EMAIL) {
+                      console.log(emailAddress);
+                      notify("Sorry, you don't have admin privileges", false);
+                    } else {
+                      notify("Adding Completed Successfully", true);
+                      formRef.current?.reset();
+                    }
+                  }}
+                />
+              </DialogClose>
             </form>
           </DialogContent>
         </Dialog>
