@@ -38,7 +38,6 @@ function Upload() {
       };
       console.log(progress);
       const { data } = await axios.post("/api/upload", formData, options);
-      console.log(data);
       data.success ? notify(data.message, true) : notify(data.message, false);
     } catch (error) {
       console.error("Error uploading file:", error);
