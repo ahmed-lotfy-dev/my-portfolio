@@ -1,16 +1,16 @@
 import React, { ChangeEvent, useRef, useState } from "react";
-import { Input } from "./ui/input";
-import Submit from "./ui/formSubmitBtn";
-import { useFormState } from "react-dom";
+import { Input } from "./input";
 import { useSession } from "next-auth/react";
 import { Toaster } from "react-hot-toast";
-import { notify } from "../lib/utils/toast";
-import axios from "axios";
-import { Button } from "./ui/button";
+import { notify } from "../../lib/utils/toast";
+import axios, { AxiosRequestConfig } from "axios";
+import { Button } from "./button";
+import { Progress } from "./progress";
 
 function Upload() {
   const { data: session } = useSession();
   const emailAddress = session?.user.email;
+  const [progress, setProgress] = useState(0);
   const fileInputRef = useRef<HTMLInputElement | null>(null);
 
   const handleFileUpload = async () => {
@@ -29,15 +29,24 @@ function Upload() {
     formData.append("emailAddress", emailAddress);
 
     try {
-      const { data } = await axios.post("/api/upload", formData);
+      const options: AxiosRequestConfig = {
+        headers: { "Content-Type": "multipart/form-data" },
+        onUploadProgress: (progressEvent: any) => {
+          const percentage = (progressEvent.loaded * 100) / progressEvent.total;
+          setProgress(+percentage.toFixed(2));
+        },
+      };
+      console.log(progress);
+      const { data } = await axios.post("/api/upload", formData, options);
+      console.log(data);
       data.success ? notify(data.message, true) : notify(data.message, false);
     } catch (error) {
       console.error("Error uploading file:", error);
     }
   };
-
   return (
     <div>
+      <Progress value={progress} />
       <Button onClick={handleFileUpload}>Upload Image</Button>
       <Input
         type="file"

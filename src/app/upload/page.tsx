@@ -1,10 +1,9 @@
 "use client";
-import { Upload } from "../components/Upload";
+import { Upload } from "../components/ui/Upload";
 
 function page() {
   return (
     <div className="w-full min-h-screen flex flex-col justify-center items-center">
-      <h1>Upload Page</h1>
       <Upload />
     </div>
   );
