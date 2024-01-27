@@ -16,10 +16,10 @@ export default function Contact() {
 
   if (state?.success)
     notify("Email sent successfully, i'll contact you soon ", true);
-  
+
   return (
     // outer container for bg
-    <section className="p-6">
+    <section className="p-6" id="contact">
       {/* // inner container */}
       <div className="container mx-auto max-w-screen-xl sm:place-items-center grid grid-cols-6 grid-row-3 p-6">
         {/* // section heading */}
@@ -94,7 +94,7 @@ export default function Contact() {
             <p className="text-sm text-red-400">
               {state?.error?.message && state?.error?.message?._errors}
             </p>
-            <Submit btnText="Send"/>
+            <Submit btnText="Send" />
           </form>
         </div>
       </div>

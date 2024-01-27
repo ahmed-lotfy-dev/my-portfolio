@@ -17,6 +17,7 @@ import { PopoverContent, PopoverTrigger } from "@radix-ui/react-popover";
 
 import { deleteProjectAction } from "../../actions";
 import { EditPopover } from "../ui/EditPopover";
+import { AspectRatio } from "../ui/aspect-ratio";
 
 type Props = {
   allProjects: Project[] | undefined;
@@ -42,12 +43,15 @@ export default function ProjectList({ allProjects }: Props) {
               </CardDescription>
             </CardHeader>
             <CardContent>
-              <Image
-                src={proj.projImageLink}
-                width={300}
-                height={200}
-                alt={`${proj.projTitle} Image`}
-              />
+              <div className="w-[350px]">
+                <AspectRatio ratio={16 / 9}>
+                  <Image
+                    src={proj.projImageLink}
+                    alt={`${proj.projTitle} Image`}
+                    fill
+                  />
+                </AspectRatio>
+              </div>
             </CardContent>
             <CardFooter className="space-x-10 flex">
               <Link href={proj.projLiveLink}>

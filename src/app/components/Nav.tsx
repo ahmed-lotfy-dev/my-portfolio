@@ -47,7 +47,7 @@ export default function Nav({ session }: Props) {
             Home
           </Link>
           <Link
-            href="/projects"
+            href="/#projects"
             className={`hover:text-red-700 hover:border-b-4 hover:border-b-red-800 transition-all delay-75 duration-250 rounded-sm ${
               path === "/projects" ? "active" : ""
             }`}
@@ -63,7 +63,7 @@ export default function Nav({ session }: Props) {
             Blog
           </Link>
           <Link
-            href="/certificates"
+            href="/#certificates"
             className={`hover:text-red-700 hover:border-b-4 hover:border-b-red-800 transition-all delay-75 duration-250 rounded-sm ${
               path === "/certificates" ? "active" : ""
             }`}
@@ -71,7 +71,7 @@ export default function Nav({ session }: Props) {
             Certificates
           </Link>
           <Link
-            href="/about"
+            href="/#about"
             className={`hover:text-red-700 hover:border-b-4 hover:border-b-red-800 transition-all delay-75 duration-250 rounded-sm ${
               path === "/about" ? "active" : ""
             }`}
@@ -79,7 +79,7 @@ export default function Nav({ session }: Props) {
             About
           </Link>
           <Link
-            href="/contact"
+            href="/#contact"
             className={`hover:text-red-700 hover:border-b-4 hover:border-b-red-800 transition-all delay-75 duration-250 rounded-sm ${
               path === "/contact" ? "active" : ""
             }`}

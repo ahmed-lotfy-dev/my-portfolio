@@ -9,7 +9,7 @@ import {
 
 export default function Aside() {
   return (
-    <aside className="min-h-full h-full group ">
+    <aside className="flex flex-grow group ">
       <div className="container mx-auto bg-gray-600 h-full p-6  space-y-5">
         <div className="flex gap-5 items-center mx-auto first:mt-2 ">
           <IoHomeOutline className="text-blue-300 w-[2rem] h-[2rem]" />

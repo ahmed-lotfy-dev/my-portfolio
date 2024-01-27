@@ -19,7 +19,10 @@ export default async function projects() {
   const { allProjects } = await getAllProjects();
 
   return (
-    <section className="container mx-auto flex flex-col justify-center items-center sm:items-start p-6 max-w-screen-xl mb-10">
+    <section
+      className="container mx-auto flex flex-col justify-center items-center sm:items-start p-6 max-w-screen-xl mb-10"
+      id="projects"
+    >
       <div className="flex flex-col justify-center items-center mx-auto py-10">
         <h2 className="text-3xl font-bold ">Projects</h2>
       </div>
@@ -42,13 +45,13 @@ export default async function projects() {
                 </Link>
               </div>
             </div>
-              <Image
-                className=""
-                src={proj.projImageLink}
-                alt={"Project Title"}
-                height={350}
-                width={350}
-              ></Image>
+            <Image
+              className=""
+              src={proj.projImageLink}
+              alt={"Project Title"}
+              height={600}
+              width={400}
+            ></Image>
           </div>
         ))}
       </div>

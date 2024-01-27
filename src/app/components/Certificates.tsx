@@ -26,7 +26,10 @@ export default async function certificates() {
   const { allCertificates } = await getAllCertificates();
   console.log(allCertificates);
   return (
-    <section className="bg-blue-200 flex justify-center items-center text-center sm:text-start p-6 ">
+    <section
+      className="bg-blue-200 flex justify-center items-center text-center sm:text-start p-6"
+      id="certificates"
+    >
       <div className="container max-w-screen-xl justify-center items-center p-6">
         <div className="p-6">
           <h2 className="text-3xl font-bold text-center">Certificates</h2>
