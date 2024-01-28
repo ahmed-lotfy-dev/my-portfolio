@@ -6,6 +6,9 @@ import { usePathname } from "next/navigation";
 import { IoMenu, IoClose } from "react-icons/io5";
 import Image from "next/image";
 import { Session } from "next-auth";
+import { Avatar, AvatarFallback } from "./ui/avatar";
+import { AvatarImage } from "@radix-ui/react-avatar";
+import UserProfile from "./ui/UserProfile";
 
 type Props = {
   session: Session | null;
@@ -99,13 +102,14 @@ export default function Nav({ session }: Props) {
             ""
           )}
           {user ? (
-            <Image
-              className="rounded-full"
-              src={user.image}
-              width={50}
-              height={100}
-              alt={`${user.name} profile picture`}
-            />
+            <Avatar>
+              <UserProfile user={user} />
+              <AvatarImage
+                src={user.image}
+                alt={`${user.name} profile picture`}
+              />
+              <AvatarFallback>User Image</AvatarFallback>
+            </Avatar>
           ) : (
             ""
           )}

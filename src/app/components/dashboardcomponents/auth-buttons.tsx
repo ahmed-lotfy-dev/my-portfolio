@@ -1,19 +1,23 @@
-"use client"
+"use client";
 
-import { signIn, signOut } from "next-auth/react"
+import { signIn, signOut } from "next-auth/react";
+import { Button } from "../ui/button";
 
-export const LoginButton = () => {
+type ButtonProps = {
+  className: string;
+};
+export const LoginButton = ({ className, ...rest }: ButtonProps) => {
   return (
-    <button className='mt-6' onClick={() => signIn()}>
+    <Button className={className} onClick={() => signIn()}>
       Sign in
-    </button>
-  )
-}
+    </Button>
+  );
+};
 
-export const LogoutButton = () => {
+export const LogoutButton = ({ className, ...rest }: ButtonProps) => {
   return (
-    <button className='mt-6' onClick={() => signOut()}>
+    <Button className={className} onClick={() => signOut()}>
       Sign Out
-    </button>
-  )
-}
+    </Button>
+  );
+};
