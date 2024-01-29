@@ -1,9 +1,9 @@
 import { getServerSession } from "next-auth";
 import { authOptions } from "../../lib/auth";
 
-import { NotAuthenticated } from "@/src/app/components/dashboardcomponents/NotAuthenticated";
-import { AddProjectComponent } from "@/src/app/components/dashboardcomponents/AddProject";
-import ProjectList from "@/src/app/components/dashboardcomponents/ProjectList";
+import { NotAuthenticated } from "@/src/components/dashboardcomponents/NotAuthenticated";
+import { AddProjectComponent } from "@/src/components/dashboardcomponents/AddProject";
+import ProjectList from "@/src/components/dashboardcomponents/ProjectList";
 import getAllProjects from "../../lib/getProjects";
 
 export default async function AddProject({}) {
