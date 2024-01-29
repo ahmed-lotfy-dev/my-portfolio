@@ -5,9 +5,8 @@ import "./globals.css";
 import { Josefin_Sans, Josefin_Slab } from "next/font/google";
 import { NextAuthProvider } from "@/src/app/provider";
 
-import Header from "@/src/components/Header";
+import { Nav } from "@/src/components/Nav";
 import type { Metadata } from "next";
-import { Suspense } from "react";
 
 const josefinsans = Josefin_Sans({
   subsets: ["latin"],
@@ -34,7 +33,7 @@ export default async function RootLayout({
     <NextAuthProvider>
       <html lang="en" className="scroll-smooth">
         <body className={`${josefinsans.variable}${josefinslab.variable}`}>
-          <Header session={session} />
+          <Nav session={session} />
           {children}
         </body>
       </html>
