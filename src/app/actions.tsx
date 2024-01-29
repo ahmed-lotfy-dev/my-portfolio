@@ -261,13 +261,13 @@ export async function contactAction(state: any, formData: FormData) {
 
   if (result.success) {
     const msg = {
-      to: ["elshenawy19@gmail.com", "contact@ahmedlotfy.me"], // Change to your recipient
-      from: "contact@ahmedlotfy.me", // Change to your verified sender
-      subject: subject,
-      text: message,
+      to: ["elshenawy19@gmail.com", "contact@ahmedlotfy.me"],
+      from: "contact@ahmedlotfy.me",
+      subject: subject as string,
+      text: message as string,
       html: `<strong>This Email Is From: ${name},<br>
-      His Email Is: ${email}<br>
-      And This Is His Message :${message}</strong>`,
+        His Email Is: ${email}<br>
+        And This Is His Message :${message}</strong>`,
     };
     const sent = await sgMail.sendMultiple(msg);
     return { success: true, data: result.data };

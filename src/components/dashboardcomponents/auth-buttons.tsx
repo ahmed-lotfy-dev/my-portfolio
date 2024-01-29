@@ -4,7 +4,7 @@ import { signIn, signOut } from "next-auth/react";
 import { Button } from "../ui/button";
 
 type ButtonProps = {
-  className: string;
+  className?: string;
 };
 export const LoginButton = ({ className, ...rest }: ButtonProps) => {
   return (
