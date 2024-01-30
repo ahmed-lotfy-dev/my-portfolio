@@ -12,7 +12,7 @@ export default function Welcome() {
     <div className="">
       {!user && <NotAuthenticated />}
       {user && (
-        <div className="flex flex-col justify-center items-center w-full h-full">
+        <div className="w-full flex justify-center items-center">
           <h2 className="mb-6">
             Welcome {user?.name?.split(" ")[0]} {user?.name?.split(" ")[1]} to
             the dashboard.

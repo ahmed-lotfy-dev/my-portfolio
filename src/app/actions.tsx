@@ -261,8 +261,8 @@ export async function contactAction(state: any, formData: FormData) {
 
   if (result.success) {
     const msg = {
-      to: ["elshenawy19@gmail.com", "contact@ahmedlotfy.me"],
-      from: "contact@ahmedlotfy.me",
+      to: ["elshenawy19@gmail.com", "contact@ahmedlotfy.dev"],
+      from: "contact@ahmedlotfy.dev",
       subject: subject as string,
       text: message as string,
       html: `<strong>This Email Is From: ${name},<br>
