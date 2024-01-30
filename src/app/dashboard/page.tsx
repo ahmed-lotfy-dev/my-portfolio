@@ -8,7 +8,7 @@ export default async function Page({}) {
   // const { allProjects } = await getAllProjects()
 
   return (
-    <div className="min-h-screen flex flex-col gap-3 w-full justify-start items-center mt-10">
+    <div className="flex flex-col gap-3 w-full justify-start items-center mt-10">
       <Welcome />
     </div>
   );

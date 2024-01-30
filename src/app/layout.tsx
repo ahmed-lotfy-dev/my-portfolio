@@ -31,7 +31,7 @@ export default async function RootLayout({
 
   return (
     <NextAuthProvider>
-      <html lang="en" className="scroll-smooth">
+      <html lang="en" className="scroll-smooth max-h-svh">
         <body className={`${josefinsans.variable}${josefinslab.variable}`}>
           <Nav session={session} />
           {children}

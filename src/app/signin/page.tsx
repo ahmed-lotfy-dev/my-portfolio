@@ -5,7 +5,7 @@ import { signIn } from "next-auth/react";
 
 function page() {
   return (
-    <div className="flex h-[calc(100vh_-_10vh)] w-full">
+    <div className="flex h-[calc(100vh_-_10vh)] w-full pt-14">
       <div
         className="flex flex-col justify-start items-center w-full mt-20"
         suppressHydrationWarning

@@ -6,7 +6,7 @@ export default async function DashboardLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="flex h-[calc(100vh_-_11vh)] w-full">
+    <div className="flex h-svh w-full pt-20">
       <Aside />
       {children}
     </div>
