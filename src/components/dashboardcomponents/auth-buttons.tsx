@@ -17,7 +17,7 @@ export const LoginButton = ({ className, ...rest }: ButtonProps) => {
 export const LogoutButton = ({ className, ...rest }: ButtonProps) => {
   return (
     <Button className={className} onClick={() => signOut()}>
-      Sign Out
+      Log Out
     </Button>
   );
 };
