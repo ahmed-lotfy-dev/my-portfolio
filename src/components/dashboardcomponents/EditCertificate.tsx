@@ -3,7 +3,7 @@ import { ChangeEvent, useRef, useState } from "react";
 
 import { Input } from "@/src/components/ui/input";
 import { EditCertificateAction } from "@/src/app/actions";
-
+import Image from "next/image";
 import { Toaster } from "react-hot-toast";
 import { notify } from "@/src/app/lib/utils/toast";
 
@@ -56,7 +56,7 @@ function EditCertificate({ EditedObject }: EditCertificateProp) {
           <AiTwotoneEdit className="mr-3" size={20} />
           Edit Certificate
         </DialogTrigger>
-        <DialogContent className="w-[500px]">
+        <DialogContent className="max-w-[700px]">
           <form
             action={formAction}
             className="flex flex-col gap-5 justify-center items-center w-full  bg-gray-100 text-black"
@@ -115,7 +115,14 @@ function EditCertificate({ EditedObject }: EditCertificateProp) {
               {state?.error?.certImageLink &&
                 state?.error?.certImageLink?._errors}
             </p>
-
+            {imageUrl && (
+              <Image
+                src={imageUrl}
+                width={300}
+                height={300}
+                alt="Certificate Image"
+              />
+            )}
             <Input type="hidden" name="certImageLink" value={imageUrl} />
             <Input type="hidden" name="emailAddress" value={emailAddress} />
 

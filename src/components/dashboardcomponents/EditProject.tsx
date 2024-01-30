@@ -1,6 +1,7 @@
 "use client";
 import { ChangeEvent, useRef, useState } from "react";
 
+import Image from "next/image";
 import { Input } from "@/src/components/ui/input";
 import { Label } from "@/src/components/ui/label";
 import { EditCertificateAction, EditProjectAction } from "@/src/app/actions";
@@ -55,7 +56,7 @@ function EditProject({ EditedObject }: EditProjectProp) {
             <AiTwotoneEdit className="mr-3" size={20} />
             Edit Project
           </DialogTrigger>
-          <DialogContent className="w-[500px]">
+          <DialogContent className="w-[700px]">
             <form
               action={formAction}
               className="flex flex-col justify-center items-center w-full gap-5 text-black "
@@ -114,7 +115,14 @@ function EditProject({ EditedObject }: EditProjectProp) {
                 {state?.error?.projImageLink &&
                   state?.error?.projImageLink?._errors}
               </p>
-
+              {imageUrl && (
+                <Image
+                  src={imageUrl}
+                  width={300}
+                  height={300}
+                  alt="Certificate Image"
+                />
+              )}
               <Input type="hidden" name="tags" value={selected} />
               <Input type="hidden" name="projImageLink" value={imageUrl} />
               <Input type="hidden" name="emailAddress" value={emailAddress} />
