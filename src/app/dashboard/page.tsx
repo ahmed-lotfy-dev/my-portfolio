@@ -2,7 +2,7 @@ import { Card } from "@/src/components/ui/card";
 import { getAllCertificates } from "../lib/getCertificates";
 import { getAllProjects } from "../lib/getProjects";
 
-import Welcome from "@/src/components/dashboardcomponents/Welcome";
+import Welcome from "@/src/components/dashboard-components/Welcome";
 import Link from "next/link";
 
 export default async function Page({}) {

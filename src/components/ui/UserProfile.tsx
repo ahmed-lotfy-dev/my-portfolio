@@ -9,7 +9,10 @@ import {
   DropdownMenuContent,
   DropdownMenuTrigger,
 } from "@radix-ui/react-dropdown-menu";
-import { LoginButton, LogoutButton } from "../dashboardcomponents/auth-buttons";
+import {
+  LoginButton,
+  LogoutButton,
+} from "../dashboard-components/auth-buttons";
 
 type UserProps = {
   className?: string;

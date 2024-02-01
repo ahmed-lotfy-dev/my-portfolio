@@ -60,28 +60,28 @@ model VerificationToken {
 }
 
 model Certificate {
-  id            String    @id @default(auto()) @map("_id") @db.ObjectId
-  title     String
-  desc      String
-  imageLink String
-  courseLink    String
-  profLink  String
-  createdAt     DateTime? @default(now())
-  updatedAt     DateTime?
+  id         String    @id @default(auto()) @map("_id") @db.ObjectId
+  title      String
+  desc       String
+  imageLink  String
+  courseLink String
+  profLink   String
+  createdAt  DateTime? @default(now())
+  updatedAt  DateTime?
 
   @@map("certificates")
 }
 
 model Project {
-  id            String    @id @default(auto()) @map("_id") @db.ObjectId
+  id        String    @id @default(auto()) @map("_id") @db.ObjectId
   title     String
   desc      String
   repoLink  String
   liveLink  String
   imageLink String
-  tags          String[]
-  createdAt     DateTime? @default(now())
-  updatedAt     DateTime?
+  tags      String[]
+  createdAt DateTime? @default(now())
+  updatedAt DateTime?
 
   @@map("projects")
 }

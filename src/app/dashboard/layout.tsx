@@ -1,4 +1,4 @@
-import Aside from "@/src/components/dashboardcomponents/Aside";
+import Aside from "@/src/components/dashboard-components/Aside";
 
 export default async function DashboardLayout({
   children,
@@ -6,7 +6,7 @@ export default async function DashboardLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="flex h-svh w-full pt-20">
+    <div className="flex h-svh w-full">
       <Aside />
       {children}
     </div>

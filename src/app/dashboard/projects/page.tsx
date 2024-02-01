@@ -1,8 +1,8 @@
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/src/app/lib/auth";
 
-import { NotAuthenticated } from "@/src/components/dashboardcomponents/NotAuthenticated";
-import ProjectList from "@/src/components/dashboardcomponents/ProjectList";
+import { NotAuthenticated } from "@/src/components/dashboard-components/NotAuthenticated";
+import ProjectList from "@/src/components/dashboard-components/ProjectList";
 import { getAllProjects } from "../../lib/getProjects";
 import Link from "next/link";
 import { Button } from "@/src/components/ui/button";

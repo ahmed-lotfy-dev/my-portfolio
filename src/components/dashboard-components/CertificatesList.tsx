@@ -19,6 +19,7 @@ import { EditPopover } from "../ui/EditPopover";
 type Props = {
   allCertificates: Certificate[] | undefined;
 };
+
 function CertificateList({ allCertificates }: Props) {
   console.log(allCertificates);
   return (
@@ -55,6 +56,7 @@ function CertificateList({ allCertificates }: Props) {
                     Certificate Proof
                   </Link>
                 </TableCell>
+      
                 <TableCell>
                   <EditPopover
                     EditedObject={cert}

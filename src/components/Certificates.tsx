@@ -44,22 +44,22 @@ export default async function certificates() {
             >
               <AccordionItem value={cert.id} className="">
                 <AccordionTrigger className="font-bold text-1xl m-auto text-center">
-                  {cert.certTitle}
+                  {cert.title}
                 </AccordionTrigger>
                 <AccordionContent className="">
                   <Image
                     className="m-auto my-6 aspect-auto object-cover"
                     loading="lazy"
-                    src={cert.certImageLink}
+                    src={cert.imageLink}
                     width={500}
                     height={500}
-                    alt={`${cert.certTitle} certification image`}
+                    alt={`${cert.title} certification image`}
                   />
                   <div className="text-center space-x-5">
                     <Link href={cert.courseLink} target="_blank">
                       <Button>Course Link</Button>
                     </Link>
-                    <Link href={cert.certProfLink} target="_blank">
+                    <Link href={cert.profLink} target="_blank">
                       <Button>Cerification Proof</Button>
                     </Link>
                   </div>

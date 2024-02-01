@@ -27,9 +27,9 @@ function Nav({ session }: Props) {
   const toggleMenu = () => {
     setIsOpened(!isOpened);
   };
-
+  console.log(isOpened);
   return (
-    <nav className="fixed w-full h-24 shadow-xl bg-gray-700 border-b-1 border-gray-900 dark:bg-slate-700  text-gray-300">
+    <nav className="relative w-full h-24 shadow-xl bg-gray-700 border-b-1 border-gray-900 dark:bg-slate-700  text-gray-300">
       <div className="container flex justify-between w-full h-full">
         {/* Logo */}
         <div>
@@ -85,12 +85,12 @@ function Nav({ session }: Props) {
       <div
         className={`${
           isOpened
-            ? "fixed left-0 top-0  w-full h-screen bg-gray-600 md:hidden ease-in duration-500"
-            : "fixed left-[-100%] top-0 w-full h-screen bg-gray-600 ease-in duration-500"
+            ? "fixed left-[0%] top-0  w-full h-svh bg-gray-600 md:hidden ease-in duration-500"
+            : "fixed left-[100%] top-0 w-full h-svh bg-gray-600 ease-in duration-500"
         }`}
       >
         <div className="flex w-full justify-between items-start">
-          <ul className="w-full flex flex-col justify-center items-center mt-14 ml-10">
+          <ul className="w-full flex flex-col justify-start items-center h-screen mt-14 ml-20">
             {navLinks.map((link) => (
               <Link key={link.label} href={link.href}>
                 <li

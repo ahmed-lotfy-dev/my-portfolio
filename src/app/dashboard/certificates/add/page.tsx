@@ -28,7 +28,7 @@ export default function AddCertificateComponent() {
   console.log(imageUrl);
 
   return (
-    <div className="flex flex-col justify-center items-center pt-10 w-full relative">
+    <div className="flex flex-col justify-center items-center w-full relative">
       <div className="pt-10 left-5 top-5 absolute">
         <Button onClick={() => router.back()}>
           <AiOutlineArrowLeft />

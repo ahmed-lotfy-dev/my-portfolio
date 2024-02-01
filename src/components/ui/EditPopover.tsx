@@ -2,9 +2,9 @@ import React from "react";
 import { HiEllipsisVertical } from "react-icons/hi2";
 import { Popover, PopoverContent, PopoverTrigger } from "./popover";
 import { Button } from "./button";
-import { EditCertificate } from "../dashboardcomponents/EditCertificate";
+import { EditCertificate } from "../dashboard-components/EditCertificate";
 import { Certificate, Project } from "@prisma/client";
-import { EditProject } from "../dashboardcomponents/EditProject";
+import { EditProject } from "../dashboard-components/EditProject";
 
 interface EditPopoverProps {
   onDeleteClick: () => void;
