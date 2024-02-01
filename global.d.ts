@@ -4,7 +4,7 @@ declare module "fs";
 declare module "@chakra-ui/next-js";
 
 declare global {
-  declare namespace NodeJS {
+  namespace NodeJS {
     export interface ProcessEnv {
       GITHUB_AUTH_TOKEN: string;
       NODE_ENV: "development" | "production";
@@ -31,7 +31,7 @@ declare global {
       CF_SECRET_ACCESS_KEY: string;
       CF_IMAGES_SUBDOMAIN: string;
       CF_BUCKET_NAME: string;
-      G_TAG_KEY: string;
+      GA_ID: string;
     }
   }
 }
