@@ -15,7 +15,7 @@ export default function Submit({ btnText, className, ...rest }: SubmitProps) {
     <Button
       disabled={pending}
       {...rest}
-      className={`mx-auto w-full py-2 ${className}`}
+      className={`mx-auto w-[200px] py-2 ${className}`}
     >
       {btnText}
     </Button>

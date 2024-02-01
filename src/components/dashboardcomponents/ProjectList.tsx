@@ -24,7 +24,7 @@ type Props = {
 };
 export default function ProjectList({ allProjects }: Props) {
   return (
-    <div className="mt-16 w-full h-full flex gap-x-6">
+    <div className="w-full h-full flex gap-x-6">
       {allProjects?.map((proj) => (
         <div key={proj.id} className="mt-10 ml-6 h-full">
           <Card className="">

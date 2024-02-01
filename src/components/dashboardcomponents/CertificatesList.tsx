@@ -13,14 +13,7 @@ import {
   TableRow,
 } from "@/src/components/ui/table";
 
-import { HiEllipsisVertical, HiMiniTrash } from "react-icons/hi2";
-import { AiTwotoneEdit } from "react-icons/ai";
-import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover";
-import { Card } from "../ui/card";
-
 import { deleteCertificateAction } from "@/src/app/actions";
-import { Button } from "../ui/button";
-import { EditCertificate } from "./EditCertificate";
 import { EditPopover } from "../ui/EditPopover";
 
 type Props = {
@@ -29,7 +22,7 @@ type Props = {
 function CertificateList({ allCertificates }: Props) {
   console.log(allCertificates);
   return (
-    <div className="mt-16 w-full">
+    <div className="w-full">
       <div className="m-auto w-full lg:w-2/3">
         <Table>
           <TableHeader>
@@ -48,7 +41,11 @@ function CertificateList({ allCertificates }: Props) {
           <TableBody>
             {allCertificates?.map((cert) => (
               <TableRow key={cert.id}>
-                <TableCell className="font-medium">{cert.certTitle}</TableCell>
+                <TableCell className="font-medium">
+                  <Link href={`/certificates/${cert.certTitle}`}>
+                    {cert.certTitle}
+                  </Link>
+                </TableCell>
                 <TableCell>{cert.certDesc}</TableCell>
                 <TableCell>
                   <Link href={cert.certProfLink} target="_blank">

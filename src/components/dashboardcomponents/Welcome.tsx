@@ -1,12 +1,9 @@
-"use client";
-import React from "react";
-import { useSession } from "next-auth/react";
 import { NotAuthenticated } from "./NotAuthenticated";
 import { LogoutButton } from "./auth-buttons";
+import { getUser } from "@/src/app/lib/getUser";
 
-export default function Welcome() {
-  const { data: session } = useSession();
-  const user = session?.user;
+export default async function Welcome() {
+  const user = await getUser();
   console.log(user);
   return (
     <div className="">

@@ -1,6 +1,6 @@
 import React, { Suspense } from "react";
 import Image from "next/image";
-import getAllProjects from "@/lib/getProjects";
+import { getAllProjects } from "@/lib/getProjects";
 export const dynamic = "force-dynamic";
 import Link from "next/link";
 import { Button } from "./ui/button";

@@ -1,4 +1,4 @@
-import getAllCertificates from "@/lib/getCertificates";
+import {getAllCertificates} from "@/lib/getCertificates";
 import Link from "next/link";
 import Image from "next/image";
 
