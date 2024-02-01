@@ -31,6 +31,7 @@ declare global {
       CF_SECRET_ACCESS_KEY: string;
       CF_IMAGES_SUBDOMAIN: string;
       CF_BUCKET_NAME: string;
+      G_TAG_KEY: string;
     }
   }
 }
