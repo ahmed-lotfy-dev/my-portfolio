@@ -9,7 +9,7 @@ import { Session } from "next-auth";
 const navLinks = [
   { href: "/", label: "Home" },
   { href: "/#projects", label: "Projects" },
-  { href: "/blog", label: "Blog" },
+  { href: "/blogs", label: "Blog" },
   { href: "/#certificates", label: "Certificates" },
   { href: "/#about", label: "About" },
   { href: "/#contact", label: "Contact" },
@@ -27,8 +27,6 @@ function Nav({ session }: Props) {
   const toggleMenu = () => {
     setIsOpened(!isOpened);
   };
-
-  console.log(isOpened);
 
   return (
     <nav className="fixed w-full h-24 shadow-xl bg-gray-700 border-b-1 border-gray-900 dark:bg-slate-700  text-gray-300">

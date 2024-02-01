@@ -1,20 +1,8 @@
-import React, { Suspense } from "react";
 import Image from "next/image";
 import { getAllProjects } from "@/lib/getProjects";
 export const dynamic = "force-dynamic";
 import Link from "next/link";
 import { Button } from "./ui/button";
-import { Card } from "./ui/card";
-
-export type Project = {
-  id: string;
-  projTitle: string;
-  projDesc: string;
-  projImage: string;
-  courseLink: string;
-  projProfLink: string;
-  tags: string[];
-};
 
 export default async function projects() {
   const { allProjects } = await getAllProjects();
@@ -35,18 +23,18 @@ export default async function projects() {
           >
             <div className="order-1 text-center md:text-start">
               <h2 className="capitalize text-2xl font-semibold">
-                {proj.projTitle}
+                {proj.title}
               </h2>
               <p className="w-full mt-6 text-1xl font-light capitalize m-auto text-wrap md:mt-10 md:m-0 max-w-sm">
-                {proj.projDesc}
+                {proj.desc}
               </p>
             </div>
             <div className="order-3 m-auto md:m-0">
               <div className="mt-12 space-x-6">
-                <Link href={proj.projLiveLink} target="_blank">
+                <Link href={proj.liveLink} target="_blank">
                   <Button>Project Live</Button>
                 </Link>
-                <Link href={proj.projRepoLink} target="_blank">
+                <Link href={proj.repoLink} target="_blank">
                   <Button>Project Repo</Button>
                 </Link>
               </div>
@@ -55,7 +43,7 @@ export default async function projects() {
             <div className="order-2 m-auto mt-8 md:m-0 md:p-0">
               <Image
                 className="shadow-sm shadow-primary"
-                src={proj.projImageLink}
+                src={proj.imageLink}
                 alt={"Project Title"}
                 height={600}
                 width={400}

@@ -12,7 +12,7 @@ interface EditPopoverProps {
 }
 
 function EditPopover({ onDeleteClick, EditedObject }: EditPopoverProps) {
-  const isCertificate = "certTitle" in EditedObject;
+  const isCertificate = "courseLink" in EditedObject;
 
   return (
     <Popover>

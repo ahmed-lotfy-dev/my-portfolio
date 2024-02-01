@@ -42,18 +42,16 @@ function CertificateList({ allCertificates }: Props) {
             {allCertificates?.map((cert) => (
               <TableRow key={cert.id}>
                 <TableCell className="font-medium">
-                  <Link href={`/certificates/${cert.certTitle}`}>
-                    {cert.certTitle}
-                  </Link>
+                  <Link href={`/certificates/${cert.title}`}>{cert.title}</Link>
                 </TableCell>
-                <TableCell>{cert.certDesc}</TableCell>
+                <TableCell>{cert.desc}</TableCell>
                 <TableCell>
-                  <Link href={cert.certProfLink} target="_blank">
+                  <Link href={cert.profLink} target="_blank">
                     Course Link
                   </Link>
                 </TableCell>
                 <TableCell className="text-right">
-                  <Link href={cert.certProfLink} target="_blank">
+                  <Link href={cert.profLink} target="_blank">
                     Certificate Proof
                   </Link>
                 </TableCell>

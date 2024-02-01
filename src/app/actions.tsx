@@ -55,11 +55,11 @@ export async function DeleteFromS3(imageLink: string | undefined) {
 }
 
 export async function AddCertificateAction(state: any, data: FormData) {
-  const certTitle = data.get("certTitle") as string;
-  const certDesc = data.get("certDesc") as string;
+  const title = data.get("title") as string;
+  const desc = data.get("desc") as string;
   const courseLink = data.get("courseLink") as string;
-  const certProfLink = data.get("certProfLink") as string;
-  const certImageLink = data.get("certImageLink") as string;
+  const profLink = data.get("profLink") as string;
+  const imageLink = data.get("imageLink") as string;
   const emailAddress = data.get("emailAddress");
 
   if (emailAddress !== process.env.ADMIN_EMAIL)
@@ -69,20 +69,20 @@ export async function AddCertificateAction(state: any, data: FormData) {
     };
 
   const result = CertificateSchema.safeParse({
-    certTitle,
-    certDesc,
+    title,
+    desc,
     courseLink,
-    certProfLink,
-    certImageLink,
+    profLink,
+    imageLink,
   });
   if (result.success) {
     const certificate = await prisma.certificate.create({
       data: {
-        certTitle,
-        certDesc,
+        title,
+        desc,
         courseLink,
-        certProfLink,
-        certImageLink,
+        profLink,
+        imageLink,
       },
     });
     console.log("certificate added successfully");
@@ -95,14 +95,14 @@ export async function AddCertificateAction(state: any, data: FormData) {
 }
 
 export async function EditCertificateAction(state: any, data: FormData) {
-  const certId = data.get("id") as string;
-  const certTitle = data.get("certTitle") as string;
-  const certDesc = data.get("certDesc") as string;
+  const id = data.get("id") as string;
+  const title = data.get("title") as string;
+  const desc = data.get("desc") as string;
   const courseLink = data.get("courseLink") as string;
-  const certProfLink = data.get("certProfLink") as string;
+  const profLink = data.get("profLink") as string;
   const emailAddress = data.get("emailAddress");
 
-  const certImageLink = data.get("certImageLink") as string;
+  const imageLink = data.get("imageLink") as string;
 
   if (emailAddress !== process.env.ADMIN_EMAIL)
     return {
@@ -111,53 +111,58 @@ export async function EditCertificateAction(state: any, data: FormData) {
     };
 
   const result = CertificateSchema.safeParse({
-    certTitle,
-    certDesc,
+    title,
+    desc,
     courseLink,
-    certProfLink,
-    certImageLink,
+    profLink,
+    imageLink,
   });
   if (result.success) {
     const oldCertificate = await prisma.certificate.findUnique({
-      where: { id: certId },
+      where: { id: id },
     });
-    if (oldCertificate?.certImageLink !== certImageLink) {
+    if (oldCertificate?.imageLink !== imageLink) {
       console.log("New Image");
-      DeleteFromS3(oldCertificate?.certImageLink);
+      DeleteFromS3(oldCertificate?.imageLink);
     }
     const certificate = await prisma.certificate.update({
-      where: { id: certId },
+      where: { id: id },
       data: {
-        certTitle,
-        certDesc,
+        title,
+        desc,
         courseLink,
-        certProfLink,
-        certImageLink,
+        profLink,
+        imageLink,
       },
     });
     console.log("certificate added successfully");
     revalidatePath("/dashboard/certificates");
-    return { success: true, message: result.data };
+    return {
+      success: true,
+      message: "Certificate Added Successfully",
+      certificate,
+    };
   }
   if (result.error) {
     return { success: false, error: result.error.format() };
   }
 }
 
-export async function deleteCertificateAction(certId: string) {
+export async function deleteCertificateAction(certificateId: string) {
   const deleteProjct = await prisma.certificate.delete({
-    where: { id: certId },
+    where: { id: certificateId },
   });
-  console.log("projct deleted", certId);
+  console.log("projct deleted", certificateId);
   revalidatePath("/dashboard/certificates");
+  return { success: true, message: "Certificate Deleted Successfully" };
 }
 
 export async function AddProjectAction(state: any, data: FormData) {
-  const projTitle = data.get("projTitle") as string;
-  const projDesc = data.get("projDesc") as string;
-  const projRepoLink = data.get("projRepoLink") as string;
-  const projLiveLink = data.get("projLiveLink") as string;
-  const projImageLink = data.get("projImageLink") as string;
+  const title = data.get("title") as string;
+  const desc = data.get("desc") as string;
+  const repoLink = data.get("repoLink") as string;
+  const liveLink = data.get("liveLink") as string;
+  const imageLink = data.get("imageLink") as string;
   const tags = data.get("tags") as any;
   const emailAddress = data.get("emailAddress");
 
@@ -168,21 +173,21 @@ export async function AddProjectAction(state: any, data: FormData) {
       message: "You Don't Have Privilige To Add Project",
     };
   const result = ProjectSchema.safeParse({
-    projTitle,
-    projDesc,
-    projRepoLink,
-    projLiveLink,
-    projImageLink,
+    title,
+    desc,
+    repoLink,
+    liveLink,
+    imageLink,
     tags,
   });
   if (result.success) {
     const project = await prisma.project.create({
       data: {
-        projTitle,
-        projDesc,
-        projRepoLink,
-        projLiveLink,
-        projImageLink,
+        title,
+        desc,
+        repoLink,
+        liveLink,
+        imageLink,
         tags,
       },
     });
@@ -196,12 +201,12 @@ export async function AddProjectAction(state: any, data: FormData) {
 }
 
 export async function EditProjectAction(state: any, data: FormData) {
-  const projId = data.get("id") as string;
-  const projTitle = data.get("projTitle") as string;
-  const projDesc = data.get("projDesc") as string;
-  const projRepoLink = data.get("projRepoLink") as string;
-  const projLiveLink = data.get("projLiveLink") as string;
-  const projImageLink = data.get("projImageLink") as string;
+  const id = data.get("id") as string;
+  const title = data.get("title") as string;
+  const desc = data.get("desc") as string;
+  const repoLink = data.get("repoLink") as string;
+  const liveLink = data.get("liveLink") as string;
+  const imageLink = data.get("imageLink") as string;
   const tags = data.get("tags") as any;
   const emailAddress = data.get("emailAddress");
 
@@ -211,29 +216,29 @@ export async function EditProjectAction(state: any, data: FormData) {
       message: "You Don't Have Privilige To Add Project",
     };
   const result = ProjectSchema.safeParse({
-    projTitle,
-    projDesc,
-    projRepoLink,
-    projLiveLink,
-    projImageLink,
+    title,
+    desc,
+    repoLink,
+    liveLink,
+    imageLink,
     tags,
   });
   if (result.success) {
     const oldProject = await prisma.project.findUnique({
-      where: { id: projId },
+      where: { id: id },
     });
-    if (oldProject?.projImageLink !== projImageLink) {
+    if (oldProject?.imageLink !== imageLink) {
       console.log("New Image");
-      DeleteFromS3(oldProject?.projImageLink);
+      DeleteFromS3(oldProject?.imageLink);
     }
     const project = await prisma.project.update({
-      where: { id: projId },
+      where: { id: id },
       data: {
-        projTitle,
-        projDesc,
-        projRepoLink,
-        projLiveLink,
-        projImageLink,
+        title,
+        desc,
+        repoLink,
+        liveLink,
+        imageLink,
         tags,
       },
     });
@@ -246,10 +251,13 @@ export async function EditProjectAction(state: any, data: FormData) {
   }
 }
 
-export async function deleteProjectAction(projId: string) {
-  const deleteProjct = await prisma.project.delete({ where: { id: projId } });
-  console.log("projct deleted", projId);
+export async function deleteProjectAction(projectId: string) {
+  const deleteProjct = await prisma.project.delete({
+    where: { id: projectId },
+  });
+  console.log("projct deleted", projectId);
   revalidatePath("/dashboard/projects");
+  return { success: true, message: "Project Deleted Successfully" };
 }
 
 export async function contactAction(state: any, formData: FormData) {

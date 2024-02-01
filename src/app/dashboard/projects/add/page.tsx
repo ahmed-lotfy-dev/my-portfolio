@@ -48,46 +48,45 @@ export default function AddProjectComponent() {
           <Input
             className="w-2/3 mt-10"
             type="text"
-            name="projTitle"
+            name="title"
             placeholder="Project Title"
           />
           <p className="text-sm text-red-400">
-            {state?.error?.projTitle && state?.error?.projTitle?._errors}
+            {state?.error?.title && state?.error?.title?._errors}
           </p>
 
           <Textarea
             className="flex justify-center w-2/3"
-            name="projDesc"
+            name="desc"
             placeholder="Project Description"
           ></Textarea>
           <p className="text-sm text-red-400">
-            {state?.error?.projDesc && state?.error?.projDesc?._errors}
+            {state?.error?.desc && state?.error?.desc?._errors}
           </p>
 
           <Input
             className="w-2/3"
             type="text"
-            name="projRepoLink"
+            name="repoLink"
             placeholder="Project Repo Link"
           />
           <p className="text-sm text-red-400">
-            {state?.error?.projRepoLink && state?.error?.projRepoLink?._errors}{" "}
+            {state?.error?.repoLink && state?.error?.repoLink?._errors}{" "}
           </p>
 
           <Input
             className="w-2/3"
             type="text"
-            name="projLiveLink"
+            name="liveLink"
             placeholder="Project Live Link"
           />
           <p className="text-sm text-red-400">
-            {state?.error?.projLiveLink && state?.error?.projLiveLink?._errors}
+            {state?.error?.liveLink && state?.error?.liveLink?._errors}
           </p>
 
           <Upload setImageUrl={setImageUrl} />
           <p className="text-sm text-red-400">
-            {state?.error?.projImageLink &&
-              state?.error?.projImageLink?._errors}
+            {state?.error?.imageLink && state?.error?.imageLink?._errors}
           </p>
           {imageUrl && (
             <Image
@@ -97,7 +96,7 @@ export default function AddProjectComponent() {
               alt="Certificate Image"
             />
           )}
-          <Input type="hidden" name="projImageLink" value={imageUrl} />
+          <Input type="hidden" name="imageLink" value={imageUrl} />
           <Input type="hidden" name="tags" value={selected} />
           <Input type="hidden" name="emailAddress" value={emailAddress} />
 

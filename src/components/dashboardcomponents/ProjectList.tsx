@@ -31,7 +31,7 @@ export default function ProjectList({ allProjects }: Props) {
             <CardHeader className="flex justify-start">
               <div className="flex justify-between items-center">
                 <CardTitle className="text-3xl">
-                  {proj.projTitle.toUpperCase()}
+                  {proj.title.toUpperCase()}
                 </CardTitle>
                 <EditPopover
                   EditedObject={proj}
@@ -39,25 +39,25 @@ export default function ProjectList({ allProjects }: Props) {
                 />
               </div>
               <CardDescription className="text-1xl font-bold mt-6 w-[350px]">
-                {proj.projDesc}
+                {proj.desc}
               </CardDescription>
             </CardHeader>
             <CardContent>
               <div className="w-[350px]">
                 <AspectRatio ratio={16 / 9}>
                   <Image
-                    src={proj.projImageLink}
-                    alt={`${proj.projTitle} Image`}
+                    src={proj.imageLink}
+                    alt={`${proj.title} Image`}
                     fill
                   />
                 </AspectRatio>
               </div>
             </CardContent>
             <CardFooter className="space-x-10 flex">
-              <Link href={proj.projLiveLink}>
+              <Link href={proj.liveLink}>
                 <Button>Project Live Link</Button>
               </Link>
-              <Link href={proj.projRepoLink}>
+              <Link href={proj.repoLink}>
                 <Button>Project Repo Link</Button>
               </Link>
             </CardFooter>

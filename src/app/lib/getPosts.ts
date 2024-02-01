@@ -1,19 +1,19 @@
 import { prisma } from "./prisma";
 
-import { BlogPost } from "@prisma/client";
+import { Blogpost } from "@prisma/client";
 
 export async function getAllPosts() {
-  const allPosts = await prisma.blogPost.findMany();
+  const allPosts = await prisma.blogpost.findMany();
   return { success: true, message: "All Blog Posts Found", allPosts };
 }
 
 export async function getSinglePosts(id: string) {
-  const singlePost = await prisma.blogPost.findFirst({ where: { id: id } });
+  const singlePost = await prisma.blogpost.findFirst({ where: { id: id } });
   return { success: true, message: "Single Blog Post Found", singlePost };
 }
 
-export async function updateSinglePosts(post: BlogPost) {
-  const updateBlogPost = await prisma.blogPost.update({
+export async function updateSinglePosts(post: Blogpost) {
+  const updateBlogPost = await prisma.blogpost.update({
     where: { id: post.id },
     data: { ...post },
   });
@@ -25,7 +25,7 @@ export async function updateSinglePosts(post: BlogPost) {
 }
 
 export async function deleteSinglePosts(id: string) {
-  const deletedPost = await prisma.blogPost.delete({ where: { id: id } });
+  const deletedPost = await prisma.blogpost.delete({ where: { id: id } });
   return {
     success: true,
     message: "Blog Post Deleted Successfully",

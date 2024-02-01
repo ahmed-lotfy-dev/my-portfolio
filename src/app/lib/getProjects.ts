@@ -10,10 +10,10 @@ async function getAllProjects() {
   }
 }
 
-async function getSingleProject(projTitle: string) {
+async function getSingleProject(projectTitle: string) {
   try {
     const project = await prisma.project.findFirst({
-      where: { projTitle: projTitle },
+      where: { title: projectTitle },
     });
     console.log(project);
 

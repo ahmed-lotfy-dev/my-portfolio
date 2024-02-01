@@ -64,25 +64,25 @@ function EditCertificate({ EditedObject }: EditCertificateProp) {
             <Input
               className="w-2/3 mt-10"
               type="text"
-              name="certTitle"
+              name="title"
               placeholder="Certificate Title"
-              value={editedCert.certTitle}
+              value={editedCert.title}
               onChange={InputHandler}
             />
             <p className="text-sm text-red-400">
-              {state?.error?.certTitle && state?.error?.certTitle?._errors[0]}
+              {state?.error?.title && state?.error?.title?._errors[0]}
             </p>
 
             <Input
               className="w-2/3"
               type="text"
-              name="certDesc"
+              name="desc"
               placeholder="Certificate Description"
-              value={editedCert.certDesc}
+              value={editedCert.desc}
               onBlur={InputHandler}
             />
             <p className="text-sm text-red-400">
-              {state?.error?.certDesc && state?.error?.certDesc?._errors[0]}
+              {state?.error?.desc && state?.error?.desc?._errors[0]}
             </p>
 
             <Input
@@ -102,18 +102,16 @@ function EditCertificate({ EditedObject }: EditCertificateProp) {
               type="url"
               name="certProfLink"
               placeholder="Certificate Proof"
-              value={editedCert.certProfLink}
+              value={editedCert.profLink}
               onChange={InputHandler}
             />
             <p className="text-sm text-red-400">
-              {state?.error?.certProfLink &&
-                state?.error?.certProfLink?._errors[0]}
+              {state?.error?.profLink && state?.error?.profLink?._errors[0]}
             </p>
 
             <Upload setImageUrl={setImageUrl} />
             <p className="text-sm text-red-400">
-              {state?.error?.certImageLink &&
-                state?.error?.certImageLink?._errors}
+              {state?.error?.imageLink && state?.error?.imageLink?._errors}
             </p>
             {imageUrl && (
               <Image
@@ -123,7 +121,7 @@ function EditCertificate({ EditedObject }: EditCertificateProp) {
                 alt="Certificate Image"
               />
             )}
-            <Input type="hidden" name="certImageLink" value={imageUrl} />
+            <Input type="hidden" name="imageLink" value={imageUrl} />
             <Input type="hidden" name="emailAddress" value={emailAddress} />
 
             <DialogClose>
