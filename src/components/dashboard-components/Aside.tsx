@@ -51,10 +51,10 @@ export default function Aside() {
         <div className="flex gap-5 items-center mx-auto">
           <IoTrophyOutline className="text-blue-300 w-[2rem] h-[2rem]" />
           <Link
-            className="text-gray-100 hidden group-hover:flex  sm:flex"
-            href="/dashboard/blogs"
+            className="text-gray-100 hidden group-hover:flex sm:flex"
+            href="/dashboard/add-post"
           >
-            Blogs Dashboard
+            Add Blog Post
           </Link>
         </div>
       </div>

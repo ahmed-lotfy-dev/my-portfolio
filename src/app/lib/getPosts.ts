@@ -3,7 +3,9 @@ import { prisma } from "./prisma";
 import { Blogpost } from "@prisma/client";
 
 export async function getAllPosts() {
-  const allPosts = await prisma.blogpost.findMany();
+  const allPosts = await prisma.blogpost.findMany({
+    include: { author: true },
+  });
   return { success: true, message: "All Blog Posts Found", allPosts };
 }
 

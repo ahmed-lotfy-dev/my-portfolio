@@ -284,3 +284,25 @@ export async function contactAction(state: any, formData: FormData) {
     return { success: false, error: result.error.format() };
   }
 }
+
+export async function AddNewPost(state: any, formData: FormData) {
+  const title = formData.get("title") as string;
+  const content = formData.get("content") as string;
+  const published = formData.get("published");
+  const userName = formData.get("name") as string;
+  const userId = formData.get("userId") as string;
+  const tags = formData.get("tags") as any;
+  const isPublished = published === "true" ? true : false;
+
+  console.log({ title, content, isPublished, userName, userId, tags });
+
+  const newPost = await prisma.blogpost.create({
+    data: {
+      title,
+      content,
+      published: isPublished,
+      author: { connect: { id: userId } },
+      tags: [tags],
+    },
+  });
+}

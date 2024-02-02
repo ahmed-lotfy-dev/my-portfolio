@@ -4,13 +4,12 @@ import { ChangeEvent, useRef, useState } from "react";
 import { Input } from "@/src/components/ui/input";
 import { EditCertificateAction } from "@/src/app/actions";
 import Image from "next/image";
-import { Toaster } from "react-hot-toast";
 import { notify } from "@/src/app/lib/utils/toast";
 
 import { useSession } from "next-auth/react";
 import { useFormState } from "react-dom";
 
-import Submit from "../ui/formSubmitBtn";
+import Submit from "@/src/components/ui/formSubmitBtn";
 import {
   Dialog,
   DialogContent,
@@ -75,11 +74,10 @@ function EditCertificate({ EditedObject }: EditCertificateProp) {
 
             <Input
               className="w-2/3"
-              type="text"
               name="desc"
               placeholder="Certificate Description"
               value={editedCert.desc}
-              onBlur={InputHandler}
+              onChange={InputHandler}
             />
             <p className="text-sm text-red-400">
               {state?.error?.desc && state?.error?.desc?._errors[0]}

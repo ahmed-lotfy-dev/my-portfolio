@@ -1,6 +1,6 @@
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
-import { GoogleAnalytics, GoogleTagManager } from "@next/third-parties/google";
+import { GoogleAnalytics } from "@next/third-parties/google";
 
 import "./globals.css";
 import { Josefin_Sans, Josefin_Slab } from "next/font/google";
@@ -36,7 +36,7 @@ export default async function RootLayout({
         <body className={`${josefinsans.variable}${josefinslab.variable}`}>
           <Nav session={session} />
           {children}
-          <GoogleTagManager gtmId={process.env.GA_ID} />
+          <GoogleAnalytics gaId={process.env.GA_ID} />
         </body>
       </html>
     </NextAuthProvider>

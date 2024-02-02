@@ -38,8 +38,10 @@ function EditProject({ EditedObject }: EditProjectProp) {
   const { data: session } = useSession();
   const emailAddress = session?.user.email;
 
-  const InputHandler = (e: ChangeEvent<HTMLInputElement>) => {
-    const { name, value, files } = e.target;
+  const InputHandler = (
+    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    const { name, value } = e.target;
     setEditedProj((prevEditedProj) => {
       return {
         ...prevEditedProj,
@@ -73,7 +75,7 @@ function EditProject({ EditedObject }: EditProjectProp) {
                 {state?.error?.title && state?.error?.title?._errors}
               </p>
 
-              <Input
+              <Textarea
                 className="flex justify-center w-2/3"
                 name="desc"
                 placeholder="Project Description"
