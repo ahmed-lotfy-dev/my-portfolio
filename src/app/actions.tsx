@@ -302,7 +302,7 @@ export async function AddNewPost(state: any, formData: FormData) {
       content,
       published: isPublished,
       author: { connect: { id: userId } },
-      tags: [tags],
+      tags: [...tags.split(",")],
     },
   });
 }

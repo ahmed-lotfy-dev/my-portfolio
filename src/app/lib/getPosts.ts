@@ -9,8 +9,10 @@ export async function getAllPosts() {
   return { success: true, message: "All Blog Posts Found", allPosts };
 }
 
-export async function getSinglePosts(id: string) {
-  const singlePost = await prisma.blogpost.findFirst({ where: { id: id } });
+export async function getSinglePosts(postTitle: string) {
+  const singlePost = await prisma.blogpost.findFirst({
+    where: { title: postTitle },
+  });
   return { success: true, message: "Single Blog Post Found", singlePost };
 }
 
