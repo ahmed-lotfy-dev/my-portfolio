@@ -83,7 +83,7 @@ export default function AddProjectComponent() {
             {state?.error?.liveLink && state?.error?.liveLink?._errors}
           </p>
 
-          <Upload setImageUrl={setImageUrl} />
+          <Upload setImageUrl={setImageUrl} imageType="Projects" />
           <p className="text-sm text-red-400">
             {state?.error?.imageLink && state?.error?.imageLink?._errors}
           </p>
@@ -97,7 +97,6 @@ export default function AddProjectComponent() {
           )}
           <Input type="hidden" name="imageLink" value={imageUrl} />
           <Input type="hidden" name="tags" value={selected} />
-          <Input type="hidden" name="emailAddress" value={emailAddress} />
 
           <Label className="flex justify-center">Project Tags</Label>
           <TagsInput

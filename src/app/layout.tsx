@@ -36,7 +36,7 @@ export default async function RootLayout({
       <html lang="en" className="scroll-smooth max-h-svh">
         <body className={`${josefinsans.variable}${josefinslab.variable}`}>
           <main className="font-main">
-            <Nav session={session} />
+            <Nav session={session}></Nav>
             {children}
             <GoogleAnalytics gaId={process.env.GA_ID} />
             <Toaster />

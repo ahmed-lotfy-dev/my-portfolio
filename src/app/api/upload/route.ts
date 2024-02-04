@@ -1,4 +1,5 @@
 import { S3Client, PutObjectCommand } from "@aws-sdk/client-s3";
+import { getUser } from "../../lib/getUser";
 
 const config = {
   region: "auto",
@@ -11,11 +12,17 @@ const config = {
 
 const s3Client = new S3Client(config);
 
-async function uploadFileToS3(file: Buffer, fileName: string, type: string) {
+async function uploadFileToS3(
+  file: Buffer,
+  fileName: string,
+  type: string,
+  imageType: string
+) {
   const fileBuffer = file;
+  console.log(fileBuffer);
   const params = {
     Bucket: process.env.CF_BUCKET_NAME,
-    Key: fileName,
+    Key: `${imageType}-${fileName}`,
     Body: fileBuffer,
     ContentType: type,
   };
@@ -33,16 +40,24 @@ async function uploadFileToS3(file: Buffer, fileName: string, type: string) {
 export async function POST(request: Request): Promise<Response> {
   const formData = await request.formData();
   const file = formData.get("file") as File;
-  const emailAddress = formData.get("emailAddress");
+  const imageType = formData.get("image-type") as string;
   const fileData = await file.arrayBuffer();
   const buffer = Buffer.from(fileData);
-  if (emailAddress === process.env.ADMIN_EMAIL) {
-    const uploaded = await uploadFileToS3(buffer, file.name, file.type);
+
+  const user = await getUser();
+
+  if (user?.email === process.env.ADMIN_EMAIL) {
+    const uploaded = await uploadFileToS3(
+      buffer,
+      file.name,
+      file.type,
+      imageType
+    );
     return new Response(
       JSON.stringify({
         success: true,
         message: "File uploaded successfully",
-        imageLink: `${process.env.CF_IMAGES_SUBDOMAIN}/${file.name}`,
+        imageLink: `${process.env.CF_IMAGES_SUBDOMAIN}/${imageType}-${file.name}`,
       })
     );
   } else {

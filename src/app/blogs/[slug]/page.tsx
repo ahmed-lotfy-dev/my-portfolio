@@ -1,5 +1,7 @@
+import { Upload } from "@/src/components/ui/Upload";
 import { deleteSinglePosts, getSinglePosts } from "../../lib/getPosts";
 import { Button } from "@/src/components/ui/button";
+// import { useState } from "react";
 
 export default async function SinglePost({
   params,
@@ -9,6 +11,7 @@ export default async function SinglePost({
   const { slug } = params;
   const postTitle = slug.replace("%20", " ");
   const { singlePost } = await getSinglePosts(postTitle);
+  // const [imageUrl, setImageUrl] = useState("");
 
   const handleDelete = async () => {
     if (singlePost?.id) {
@@ -18,6 +21,7 @@ export default async function SinglePost({
 
   return (
     <div className="p-9 w-full h-svh flex flex-col gap-7">
+      {/* <Upload setImageUrl={setImageUrl} imageType="Blogs" /> */}
       <h2>{singlePost?.title}</h2>
       <p>{singlePost?.content}</p>
       <p>

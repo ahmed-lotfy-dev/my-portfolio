@@ -33,7 +33,7 @@ function AddProjectComponent() {
   const [imageUrl, setImageUrl] = useState("");
   const formRef = useRef<HTMLFormElement>(null);
   const { data: session } = useSession();
-  const emailAddress = session?.user.email;
+  const emailAddress = session?.user?.email;
   console.log(state);
   console.log(imageUrl);
 
@@ -88,7 +88,7 @@ function AddProjectComponent() {
                 {state?.error?.liveLink && state?.error?.liveLink?._errors}
               </p>
 
-              <Upload setImageUrl={setImageUrl} />
+              <Upload setImageUrl={setImageUrl} imageType={"Projects"} />
               <p className="text-sm text-red-400">
                 {state?.error?.imageLink && state?.error?.imageLink?._errors}
               </p>
@@ -102,7 +102,6 @@ function AddProjectComponent() {
               )}
               <Input type="hidden" name="imageLink" value={imageUrl} />
               <Input type="hidden" name="tags" value={selected} />
-              <Input type="hidden" name="emailAddress" value={emailAddress} />
 
               <Label className="flex justify-center">Project Tags</Label>
               <TagsInput

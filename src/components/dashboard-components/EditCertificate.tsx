@@ -107,7 +107,7 @@ function EditCertificate({ EditedObject }: EditCertificateProp) {
               {state?.error?.profLink && state?.error?.profLink?._errors[0]}
             </p>
 
-            <Upload setImageUrl={setImageUrl} />
+            <Upload setImageUrl={setImageUrl} imageType={"Certificates"} />
             <p className="text-sm text-red-400">
               {state?.error?.imageLink && state?.error?.imageLink?._errors}
             </p>
@@ -120,7 +120,6 @@ function EditCertificate({ EditedObject }: EditCertificateProp) {
               />
             )}
             <Input type="hidden" name="imageLink" value={imageUrl} />
-            <Input type="hidden" name="emailAddress" value={emailAddress} />
 
             <DialogClose>
               <Submit

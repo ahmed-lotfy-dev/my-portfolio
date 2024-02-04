@@ -78,7 +78,7 @@ export default function AddCertificateComponent() {
             {state?.error?.profLink && state?.error?.profLink?._errors[0]}
           </p>
 
-          <Upload setImageUrl={setImageUrl} />
+          <Upload setImageUrl={setImageUrl} imageType={"Certificates"} />
           <p className="text-sm text-red-400">
             {state?.error?.imageLink && state?.error?.imageLink?._errors}
           </p>
@@ -91,8 +91,6 @@ export default function AddCertificateComponent() {
             />
           )}
           <Input type="hidden" name="imageLink" value={imageUrl} />
-          <Input type="hidden" name="emailAddress" value={emailAddress} />
-
           <Submit
             btnText="Add Certificate"
             type="submit"

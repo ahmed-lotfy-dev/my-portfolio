@@ -13,11 +13,12 @@ import { Button } from "./button";
 
 type UploadProps = {
   setImageUrl: React.Dispatch<React.SetStateAction<string>>;
+  imageType: string;
 };
 
-function Upload({ setImageUrl }: UploadProps) {
+function Upload({ setImageUrl, imageType }: UploadProps) {
   const { data: session } = useSession();
-  const emailAddress = session?.user.email;
+  const emailAddress = session?.user?.email;
   const [pending, setPending] = useState(false);
   const fileInputRef = useRef<HTMLInputElement | null>(null);
 
@@ -36,7 +37,7 @@ function Upload({ setImageUrl }: UploadProps) {
     const file = e.target.files[0];
     const formData = new FormData();
     formData.append("file", file);
-    formData.append("emailAddress", emailAddress);
+    formData.append("image-type", imageType);
 
     try {
       const options: AxiosRequestConfig = {

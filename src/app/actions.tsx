@@ -4,6 +4,7 @@ import { prisma } from "@/src//app/lib/prisma";
 import sgMail from "@sendgrid/mail";
 sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 import { ContactInputs, contactSchema } from "./lib/schemas/contactSchema";
+import { getServerSession } from "next-auth";
 
 import {
   S3Client,
@@ -18,6 +19,7 @@ import {
 
 import { ProjectSchema } from "./lib/schemas/projectSchema";
 import { CertificateSchema } from "./lib/schemas/certificateSchema";
+import { getUser } from "./lib/getUser";
 
 const s3Client = new S3Client({
   region: "auto",
@@ -60,9 +62,10 @@ export async function AddCertificateAction(state: any, data: FormData) {
   const courseLink = data.get("courseLink") as string;
   const profLink = data.get("profLink") as string;
   const imageLink = data.get("imageLink") as string;
-  const emailAddress = data.get("emailAddress");
 
-  if (emailAddress !== process.env.ADMIN_EMAIL)
+  const user = await getUser();
+
+  if (user?.email !== process.env.ADMIN_EMAIL)
     return {
       success: false,
       message: "You Don't Have Privilige To Add Certificate",
@@ -100,11 +103,12 @@ export async function EditCertificateAction(state: any, data: FormData) {
   const desc = data.get("desc") as string;
   const courseLink = data.get("courseLink") as string;
   const profLink = data.get("profLink") as string;
-  const emailAddress = data.get("emailAddress");
 
   const imageLink = data.get("imageLink") as string;
 
-  if (emailAddress !== process.env.ADMIN_EMAIL)
+  const user = await getUser();
+
+  if (user?.email !== process.env.ADMIN_EMAIL)
     return {
       success: false,
       message: "You Don't Have Privilige To Add Certificate",
@@ -149,6 +153,13 @@ export async function EditCertificateAction(state: any, data: FormData) {
 }
 
 export async function deleteCertificateAction(certificateId: string) {
+  const user = await getUser();
+
+  if (user?.email !== process.env.ADMIN_EMAIL)
+    return {
+      success: false,
+      message: "You Don't Have Privilige To Delete Project",
+    };
   const deleteProjct = await prisma.certificate.delete({
     where: { id: certificateId },
   });
@@ -164,14 +175,15 @@ export async function AddProjectAction(state: any, data: FormData) {
   const liveLink = data.get("liveLink") as string;
   const imageLink = data.get("imageLink") as string;
   const tags = data.get("tags") as any;
-  const emailAddress = data.get("emailAddress");
 
-  //@ts-ignore
-  if (emailAddress !== process.env.ADMIN_EMAIL)
+  const user = await getUser();
+
+  if (user?.email !== process.env.ADMIN_EMAIL)
     return {
       success: false,
       message: "You Don't Have Privilige To Add Project",
     };
+
   const result = ProjectSchema.safeParse({
     title,
     desc,
@@ -210,11 +222,15 @@ export async function EditProjectAction(state: any, data: FormData) {
   const tags = data.get("tags") as any;
   const emailAddress = data.get("emailAddress");
 
-  if (emailAddress !== process.env.ADMIN_EMAIL)
+  const user = await getUser();
+
+  if (user?.email !== process.env.ADMIN_EMAIL) {
     return {
       success: false,
       message: "You Don't Have Privilige To Add Project",
     };
+  }
+
   const result = ProjectSchema.safeParse({
     title,
     desc,
@@ -252,6 +268,13 @@ export async function EditProjectAction(state: any, data: FormData) {
 }
 
 export async function deleteProjectAction(projectId: string) {
+  const user = await getUser();
+
+  if (user?.email !== process.env.ADMIN_EMAIL)
+    return {
+      success: false,
+      message: "You Don't Have Privilige To Delete Project",
+    };
   const deleteProjct = await prisma.project.delete({
     where: { id: projectId },
   });
@@ -289,20 +312,47 @@ export async function AddNewPost(state: any, formData: FormData) {
   const title = formData.get("title") as string;
   const content = formData.get("content") as string;
   const published = formData.get("published");
-  const userName = formData.get("name") as string;
-  const userId = formData.get("userId") as string;
   const tags = formData.get("tags") as any;
   const isPublished = published === "true" ? true : false;
 
-  console.log({ title, content, isPublished, userName, userId, tags });
+  const user = await getUser();
 
-  const newPost = await prisma.blogpost.create({
-    data: {
-      title,
-      content,
-      published: isPublished,
-      author: { connect: { id: userId } },
-      tags: [...tags.split(",")],
-    },
+  console.log({
+    title,
+    content,
+    isPublished,
+    name: user?.name,
+    id: user?.id,
+    tags,
   });
+
+  if (user?.email !== process.env.ADMIN_EMAIL)
+    return {
+      success: false,
+      message: "You Don't Have Privilige To Add Project",
+    };
+
+  const result = ProjectSchema.safeParse({
+    title,
+    content,
+    published: isPublished,
+    tags,
+  });
+  if (result.success) {
+    const newPost = await prisma.blogpost.create({
+      data: {
+        title,
+        content,
+        published: isPublished,
+        author: { connect: { id: user.id } },
+        tags: [...tags.split(",")],
+      },
+    });
+    console.log("Post added successfully");
+    revalidatePath("/dashboard/blogs/new");
+    return { success: true, data: result.data };
+  }
+  if (result.error) {
+    return { success: false, error: result.error.format() };
+  }
 }
