@@ -1,12 +1,5 @@
-import { EditPopover } from "@/src/components/ui/EditPopover";
 import { deleteSinglePosts, getSinglePosts } from "../../lib/getPosts";
 import { Button } from "@/src/components/ui/button";
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/src/components/ui/popover";
-import { HiEllipsisVertical } from "react-icons/hi2";
 
 export default async function SinglePost({
   params,
@@ -25,7 +18,6 @@ export default async function SinglePost({
 
   return (
     <div className="p-9 w-full h-svh flex flex-col gap-7">
-      <EditPopover onDeleteClick={handleDelete} />
       <h2>{singlePost?.title}</h2>
       <p>{singlePost?.content}</p>
       <p>
@@ -39,9 +31,6 @@ export default async function SinglePost({
         {singlePost?.tags?.map((tag) => (
           <Button key={tag}>{tag}</Button>
         ))}
-        {/* {singlePost?.tags.map((tag) => (
-          <Button>tag.</Button>
-        ))} */}
       </h4>
     </div>
   );

@@ -1,4 +1,3 @@
-import React from "react";
 import { HiEllipsisVertical } from "react-icons/hi2";
 import { Popover, PopoverContent, PopoverTrigger } from "./popover";
 import { Button } from "./button";
@@ -8,11 +7,11 @@ import { EditProject } from "../dashboard-components/EditProject";
 
 interface EditPopoverProps {
   onDeleteClick: () => void;
-  EditedObject?: Certificate | Project;
+  EditedObject: Certificate | Project;
 }
 
 function EditPopover({ onDeleteClick, EditedObject }: EditPopoverProps) {
-  const isCertificate = "courseLink" in EditedObject!;
+  const isCertificate = "courseLink" in EditedObject;
 
   return (
     <Popover>
