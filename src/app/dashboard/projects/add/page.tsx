@@ -6,7 +6,6 @@ import { Input } from "@/src/components/ui/input";
 import { Label } from "@/src/components/ui/label";
 import { AddProjectAction } from "@/src/app/actions";
 
-import { Toaster } from "react-hot-toast";
 import { notify } from "@/src/app/lib/utils/toast";
 
 import { useSession } from "next-auth/react";
@@ -122,7 +121,6 @@ export default function AddProjectComponent() {
             }}
           />
         </form>
-        <Toaster position="top-right" />
       </div>
     </div>
   );

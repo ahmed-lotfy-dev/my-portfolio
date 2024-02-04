@@ -9,13 +9,13 @@ import { wait } from "./lib/wait";
 export default async function HomePage() {
   // await wait(3000);
   return (
-    <main className="font-main">
+    <div className="font-main">
       <Hero />
       <Skills />
       <Projects />
       <Certificates />
       <About />
       <Contact />
-    </main>
+    </div>
   );
 }

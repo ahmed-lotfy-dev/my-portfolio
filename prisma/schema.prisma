@@ -90,6 +90,7 @@ model Blogpost {
   id        String   @id @default(auto()) @map("_id") @db.ObjectId
   title     String
   content   String
+  slug      String
   published Boolean  @default(false)
   author    User     @relation(fields: [authorId], references: [id], onDelete: Cascade)
   authorId  String   @db.ObjectId

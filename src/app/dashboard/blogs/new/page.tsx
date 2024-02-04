@@ -3,7 +3,7 @@ import { Input } from "@/src/components/ui/input";
 import { Textarea } from "@/src/components/ui/textarea";
 import Submit from "@/src/components/ui/formSubmitBtn";
 import { useFormState } from "react-dom";
-import { AddNewPost } from "../../actions";
+import { AddNewPost } from "../../../actions";
 import { TagsInput } from "react-tag-input-component";
 import { useState } from "react";
 import {

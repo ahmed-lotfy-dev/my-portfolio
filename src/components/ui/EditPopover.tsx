@@ -8,11 +8,11 @@ import { EditProject } from "../dashboard-components/EditProject";
 
 interface EditPopoverProps {
   onDeleteClick: () => void;
-  EditedObject: Certificate | Project;
+  EditedObject?: Certificate | Project;
 }
 
 function EditPopover({ onDeleteClick, EditedObject }: EditPopoverProps) {
-  const isCertificate = "courseLink" in EditedObject;
+  const isCertificate = "courseLink" in EditedObject!;
 
   return (
     <Popover>

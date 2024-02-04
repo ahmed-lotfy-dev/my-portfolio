@@ -50,26 +50,22 @@ function Nav({ session }: Props) {
               } `}
             >
               {navLinks.map((link) => (
-                <Link key={link.label} href={link.href}>
-                  <li
-                    className={` hover:text-blue-400 hover:border-b-4 hover:border-b-blue-600 transition-all delay-75 duration-250 ${
-                      path === "/" ? "active" : ""
-                    }`}
-                  >
-                    {link.label}
-                  </li>
-                </Link>
+                <li key={link.label}>
+                  className=
+                  {` hover:text-blue-400 hover:border-b-4 hover:border-b-blue-600 transition-all delay-75 duration-250 ${
+                    path === "/" ? "active" : ""
+                  }`}
+                  <Link href={link.href}>{link.label}</Link>
+                </li>
               ))}
               {path && (
-                <Link href="/dashboard">
-                  <li
-                    className={`hover:text-blue-400 hover:border-b-4 hover:border-b-blue-600 transition-all delay-75 duration-250 ${
-                      path === "/" ? "active" : ""
-                    }`}
-                  >
-                    Dashboard
-                  </li>
-                </Link>
+                <li
+                  className={`hover:text-blue-400 hover:border-b-4 hover:border-b-blue-600 transition-all delay-75 duration-250 ${
+                    path === "/" ? "active" : ""
+                  }`}
+                >
+                  <Link href="/dashboard">Dashboard</Link>
+                </li>
               )}
 
               {user && <UserProfile user={user} className="block" />}
@@ -92,26 +88,26 @@ function Nav({ session }: Props) {
         <div className="flex w-full justify-between items-start">
           <ul className="w-full flex flex-col justify-start items-center h-screen mt-14 ml-20">
             {navLinks.map((link) => (
-              <Link key={link.label} href={link.href}>
-                <li
-                  className={`py-4 cursor-pointer hover:text-blue-400 hover:border-b-4 hover:border-b-blue-600 transition-all delay-75 duration-250 ${
+              <li key={link.label}>
+                <Link href={link.href}>
+                  className=
+                  {`py-4 cursor-pointer hover:text-blue-400 hover:border-b-4 hover:border-b-blue-600 transition-all delay-75 duration-250 ${
                     path === "/" ? "active" : ""
                   }`}
-                >
                   {link.label}
-                </li>
-              </Link>
+                </Link>
+              </li>
             ))}
             {path && (
-              <Link href="/dashboard">
-                <li
-                  className={`py-4 cursor-pointerhover:text-blue-400 hover:border-b-4 hover:border-b-blue-600 transition-all delay-75 duration-250 ${
+              <li>
+                <Link href="/dashboard">
+                  className=
+                  {`py-4 cursor-pointerhover:text-blue-400 hover:border-b-4 hover:border-b-blue-600 transition-all delay-75 duration-250 ${
                     path === "/" ? "active" : ""
                   }`}
-                >
                   Dashboard
-                </li>
-              </Link>
+                </Link>
+              </li>
             )}
 
             {user && <UserProfile user={user} className="block" />}

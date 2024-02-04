@@ -1,9 +1,7 @@
 "use client";
 import Link from "next/link";
-import toast, { Toaster } from "react-hot-toast";
 import { IoLogoLinkedin, IoLogoGithub, IoLogoFacebook } from "react-icons/io5";
 import { contactAction } from "@/src/app/actions";
-
 
 import { useFormState } from "react-dom";
 
@@ -31,24 +29,35 @@ export default function Contact() {
             <span className="mx-auto sm:mx-0">+201016037479</span>
             <span className="mb-4">contact@ahmedlotfy.dev</span>
             <div className="flex flex-row space-x-10 justify-between">
-              <Link
-                href={"https://www.linkedin.com/in/ahmed-lotfy-dev/"}
-                target={"_blank"}
-              >
-                <IoLogoLinkedin className="w-10 h-10 fill-[#557aca] hover:fill-[#3b5998] hover:scale-110 transition-all duration-300" />
-              </Link>
-              <Link
-                href={"https://github.com/ahmed-lotfy-dev"}
-                target={"_blank"}
-              >
-                <IoLogoGithub className="w-10 h-10 fill-gray-500 hover:fill-black hover:scale-110 transition-all duration-300" />
-              </Link>
-              <Link
-                href={"https://www.facebook.com/ahmed.lotfy00"}
-                target={"_blank"}
-              >
-                <IoLogoFacebook className="w-10 h-10 fill-[#557aca] hover:fill-[#3b5998] hover:scale-110 transition-all duration-300" />
-              </Link>
+              <ul>
+                <li>
+                  <Link
+                    href={"https://www.linkedin.com/in/ahmed-lotfy-dev/"}
+                    target={"_blank"}
+                    aria-label="Take alook or contact me at my linkedin account"
+                  >
+                    <IoLogoLinkedin className="w-10 h-10 fill-[#557aca] hover:fill-[#3b5998] hover:scale-110 transition-all duration-300" />
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href={"https://github.com/ahmed-lotfy-dev"}
+                    aria-label="Take alook or contact me at my github profile"
+                    target={"_blank"}
+                  >
+                    <IoLogoGithub className="w-10 h-10 fill-gray-500 hover:fill-black hover:scale-110 transition-all duration-300" />
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href={"https://www.facebook.com/ahmed.lotfy00"}
+                    aria-label="Take alook or contact me at my facebook account"
+                    target={"_blank"}
+                  >
+                    <IoLogoFacebook className="w-10 h-10 fill-[#557aca] hover:fill-[#3b5998] hover:scale-110 transition-all duration-300" />
+                  </Link>
+                </li>
+              </ul>
             </div>
           </div>
         </div>
@@ -97,7 +106,6 @@ export default function Contact() {
           </form>
         </div>
       </div>
-      <Toaster position="top-right" />
     </section>
   );
 }

@@ -52,7 +52,7 @@ export default function Aside() {
           <IoTrophyOutline className="text-blue-300 w-[2rem] h-[2rem]" />
           <Link
             className="text-gray-100 hidden group-hover:flex sm:flex"
-            href="/dashboard/add-post"
+            href="/dashboard/blogs/new"
           >
             Add Blog Post
           </Link>

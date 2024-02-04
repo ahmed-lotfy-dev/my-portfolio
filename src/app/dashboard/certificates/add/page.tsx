@@ -5,7 +5,6 @@ import Image from "next/image";
 import { Input } from "@/src/components/ui/input";
 import { AddCertificateAction } from "@/src/app/actions";
 
-import { Toaster } from "react-hot-toast";
 import { notify } from "@/src/app/lib/utils/toast";
 
 import { useSession } from "next-auth/react";
@@ -108,7 +107,6 @@ export default function AddCertificateComponent() {
           />
         </form>
       </div>
-      <Toaster position="top-right" />
     </div>
   );
 }

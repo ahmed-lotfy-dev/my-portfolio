@@ -7,15 +7,13 @@ export default async function Hero() {
     <section className="bg-gray-700 border-b-2 border-gray-900 p-6" id="hero">
       <div className="container mx-auto flex flex-col gap-5 p-5 sm:flex-row mb-10 justify-between items-center max-w-screen-xl">
         <div className=" text-gray-300 flex flex-col gap-2 my-24  text-center sm:text-start">
-          <h4 className="text-1xl mb-4 sm:text-xl md:text-3xl">
-            Hello this is,
-          </h4>
-          <h2 className="text-5xl md:text-6xl font-extrabold uppercase font-main flex-1 sm:truncate">
+          <p className="text-1xl mb-4 sm:text-xl md:text-3xl">Hello this is,</p>
+          <h1 className="text-5xl md:text-6xl font-extrabold uppercase font-main flex-1 sm:truncate">
             Ahmed Lotfy
-          </h2>
-          <h3 className="text-2xl sm:text-2xl md:text-3xl font-extrabold font-heading">
+          </h1>
+          <h2 className="text-2xl sm:text-2xl md:text-3xl font-extrabold font-heading">
             Full-stack software engineer
-          </h3>
+          </h2>
           <Link
             href="/"
             className="py-3 px-8 mt-10 w-60 self-center text-center sm:self-start bg-yellow-600 rounded-md hover:bg-yellow-500 text-gray-800 hover:text-gray-700 font-bold transition-all hover:rounded-lg border-[3px] border-solid border-gray-800 sm:text-xl"
@@ -27,6 +25,7 @@ export default async function Hero() {
           <Image
             className=" flex-1 rounded-full w-[250] h-[250] sm:w-[250] sm:h-[250] bg-cover"
             src={HeroImage}
+            priority={true}
             alt="Hero Image Developer Illustration"
             width={300}
             height={300}
