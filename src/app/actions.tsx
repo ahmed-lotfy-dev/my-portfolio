@@ -4,7 +4,6 @@ import { prisma } from "@/src//app/lib/prisma";
 import sgMail from "@sendgrid/mail";
 sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 import { ContactInputs, contactSchema } from "./lib/schemas/contactSchema";
-import { getServerSession } from "next-auth";
 
 import {
   S3Client,
@@ -19,6 +18,7 @@ import {
 
 import { ProjectSchema } from "./lib/schemas/projectSchema";
 import { CertificateSchema } from "./lib/schemas/certificateSchema";
+import { BlogPostSchema } from "./lib/schemas/blogpostSchema";
 import { getUser } from "./lib/getUser";
 
 const s3Client = new S3Client({
@@ -332,7 +332,7 @@ export async function AddNewPost(state: any, formData: FormData) {
       message: "You Don't Have Privilige To Add Project",
     };
 
-  const result = ProjectSchema.safeParse({
+  const result = BlogPostSchema.safeParse({
     title,
     content,
     published: isPublished,
