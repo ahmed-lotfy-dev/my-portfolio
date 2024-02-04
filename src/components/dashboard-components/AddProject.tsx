@@ -33,8 +33,7 @@ function AddProjectComponent() {
   const [imageUrl, setImageUrl] = useState("");
   const formRef = useRef<HTMLFormElement>(null);
   const { data: session } = useSession();
-  const emailAddress = session?.user?.email;
-
+  const role = session?.user?.role;
 
   return (
     <div className="flex flex-col justify-center items-center">
@@ -116,8 +115,7 @@ function AddProjectComponent() {
                   btnText="Add Project"
                   type="submit"
                   onClick={() => {
-                    if (emailAddress !== process.env.NEXT_PUBLIC_ADMIN_EMAIL) {
-                      console.log(emailAddress);
+                    if (role !== "ADMIN") {
                       notify("Sorry, you don't have admin privileges", false);
                     } else {
                       notify("Adding Completed Successfully", true);

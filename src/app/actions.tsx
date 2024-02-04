@@ -80,7 +80,7 @@ export async function AddCertificateAction(state: any, data: FormData) {
     profLink,
     imageLink,
   });
-  
+
   if (result.success) {
     const certificate = await prisma.certificate.create({
       data: {
@@ -159,8 +159,8 @@ export async function EditCertificateAction(state: any, data: FormData) {
 
 export async function deleteCertificateAction(certificateId: string) {
   const user = await getUser();
-
-  if (user?.email !== process.env.ADMIN_EMAIL)
+  const role = user?.role;
+  if (role !== "ADMIN")
     return {
       success: false,
       message: "You Don't Have Privilige To Delete Project",

@@ -35,7 +35,7 @@ function EditProject({ EditedObject }: EditProjectProp) {
   const formRef = useRef<HTMLFormElement>(null);
   const { data: session } = useSession();
   const emailAddress = session?.user?.email;
-
+  const role = session?.user?.role;
   const InputHandler = (
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
@@ -137,8 +137,7 @@ function EditProject({ EditedObject }: EditProjectProp) {
                   className="m-10 w-2/3"
                   type="submit"
                   onClick={() => {
-                    if (emailAddress !== process.env.NEXT_PUBLIC_ADMIN_EMAIL) {
-                      console.log(emailAddress);
+                    if (role !== "ADMIN") {
                       notify("Sorry, you don't have admin privileges", false);
                     } else {
                       notify("Adding Completed Successfully", true);
