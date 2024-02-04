@@ -1,4 +1,3 @@
-import React from "react";
 import { getSingleProject } from "@/src/app/lib/getProjects";
 
 const page = async ({ params }: { params: { slug: string } }) => {

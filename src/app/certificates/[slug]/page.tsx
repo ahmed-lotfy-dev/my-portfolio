@@ -1,4 +1,3 @@
-import React from "react";
 import { getSingleCertificate } from "@/src/app/lib/getCertificates";
 
 const page = async ({ params }: { params: { slug: string } }) => {

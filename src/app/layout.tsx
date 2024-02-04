@@ -9,6 +9,7 @@ import { NextAuthProvider } from "@/src/app/provider";
 import { Nav } from "@/src/components/Nav";
 import type { Metadata } from "next";
 import { Toaster } from "@/src/components/ui/sonner";
+import { ReactNode } from "react";
 
 const josefinsans = Josefin_Sans({
   subsets: ["latin"],
@@ -27,7 +28,7 @@ export const metadata: Metadata = {
 export default async function RootLayout({
   children,
 }: {
-  children: React.ReactNode;
+  children: ReactNode;
 }) {
   const session = await getServerSession(authOptions);
 

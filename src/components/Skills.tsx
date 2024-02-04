@@ -1,4 +1,3 @@
-import React, { ReactHTMLElement, ReactNode } from "react";
 import Image from "next/image";
 import html from "@/public/images/skills/html.svg";
 import css from "@/public/images/skills/css3.svg";

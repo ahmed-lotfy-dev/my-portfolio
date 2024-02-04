@@ -1,4 +1,3 @@
-import React from "react";
 import { Avatar, AvatarFallback, AvatarImage } from "./avatar";
 import { User } from "@/global";
 import { Card } from "./card";

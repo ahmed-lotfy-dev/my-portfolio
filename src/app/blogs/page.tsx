@@ -1,4 +1,3 @@
-import React from "react";
 import { getAllPosts } from "@/src/app/lib/getPosts";
 import { Card } from "@/src/components/ui/card";
 import { Button } from "@/src/components/ui/button";

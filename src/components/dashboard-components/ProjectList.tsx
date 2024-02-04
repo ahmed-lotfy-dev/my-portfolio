@@ -12,9 +12,6 @@ import {
 } from "@/src/components/ui/card";
 import { Button } from "../ui/button";
 import Link from "next/link";
-import { Popover } from "../ui/popover";
-import { PopoverContent, PopoverTrigger } from "@radix-ui/react-popover";
-
 import { deleteProjectAction } from "@/src/app/actions";
 import { EditPopover } from "../ui/EditPopover";
 import { AspectRatio } from "../ui/aspect-ratio";

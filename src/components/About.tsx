@@ -1,6 +1,5 @@
 import Image from "next/image";
 import myImage from "@/public/images/skills/css3.svg";
-import React from "react";
 
 export default function About() {
   return (

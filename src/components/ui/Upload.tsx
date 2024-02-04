@@ -1,4 +1,4 @@
-import React, {
+import  {
   ChangeEvent,
   Dispatch,
   SetStateAction,
@@ -18,7 +18,6 @@ type UploadProps = {
 
 function Upload({ setImageUrl, imageType }: UploadProps) {
   const { data: session } = useSession();
-  const emailAddress = session?.user?.email;
   const [pending, setPending] = useState(false);
   const fileInputRef = useRef<HTMLInputElement | null>(null);
 
