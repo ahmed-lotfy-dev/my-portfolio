@@ -50,11 +50,12 @@ function Nav({ session }: Props) {
               } `}
             >
               {navLinks.map((link) => (
-                <li key={link.label}>
-                  className=
-                  {` hover:text-blue-400 hover:border-b-4 hover:border-b-blue-600 transition-all delay-75 duration-250 ${
+                <li
+                  key={link.label}
+                  className={` hover:text-blue-400 hover:border-b-4 hover:border-b-blue-600 transition-all delay-75 duration-250 ${
                     path === "/" ? "active" : ""
                   }`}
+                >
                   <Link href={link.href}>{link.label}</Link>
                 </li>
               ))}
@@ -88,25 +89,18 @@ function Nav({ session }: Props) {
         <div className="flex w-full justify-between items-start">
           <ul className="w-full flex flex-col justify-start items-center h-screen mt-14 ml-20">
             {navLinks.map((link) => (
-              <li key={link.label}>
-                <Link href={link.href}>
-                  className=
-                  {`py-4 cursor-pointer hover:text-blue-400 hover:border-b-4 hover:border-b-blue-600 transition-all delay-75 duration-250 ${
-                    path === "/" ? "active" : ""
-                  }`}
-                  {link.label}
-                </Link>
+              <li
+                key={link.label}
+                className={`py-4 cursor-pointer hover:text-blue-400 hover:border-b-4 hover:border-b-blue-600 transition-all delay-75 duration-250 ${
+                  path === "/" ? "active" : ""
+                }`}
+              >
+                <Link href={link.href}>{link.label}</Link>
               </li>
             ))}
             {path && (
               <li>
-                <Link href="/dashboard">
-                  className=
-                  {`py-4 cursor-pointerhover:text-blue-400 hover:border-b-4 hover:border-b-blue-600 transition-all delay-75 duration-250 ${
-                    path === "/" ? "active" : ""
-                  }`}
-                  Dashboard
-                </Link>
+                <Link href="/dashboard">Dashboard</Link>
               </li>
             )}
 
