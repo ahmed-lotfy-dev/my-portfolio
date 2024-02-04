@@ -68,8 +68,7 @@ function Nav({ session }: Props) {
                   <Link href="/dashboard">Dashboard</Link>
                 </li>
               )}
-
-              {user && <UserProfile user={user} className="block" />}
+              <li>{user && <UserProfile user={user} className="block" />}</li>
             </ul>
           </nav>
         </div>
@@ -103,8 +102,7 @@ function Nav({ session }: Props) {
                 <Link href="/dashboard">Dashboard</Link>
               </li>
             )}
-
-            {user && <UserProfile user={user} className="block" />}
+            <li>{user && <UserProfile user={user} className="block" />}</li>
           </ul>
           <div className="mt-9 mr-9 cursor-pointer" onClick={toggleMenu}>
             <AiOutlineClose size={25} className="fill-gray-500" />
