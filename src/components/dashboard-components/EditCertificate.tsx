@@ -113,6 +113,7 @@ function EditCertificate({ EditedObject }: EditCertificateProp) {
             </p>
             {imageUrl && (
               <Image
+                className="m-auto"
                 src={imageUrl}
                 width={300}
                 height={300}

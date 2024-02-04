@@ -31,7 +31,6 @@ function EditProject({ EditedObject }: EditProjectProp) {
   const [imageUrl, setImageUrl] = useState("");
 
   const [selected, setSelected] = useState<string[]>(["featured"]);
-  console.log(id);
 
   const formRef = useRef<HTMLFormElement>(null);
   const { data: session } = useSession();
@@ -115,6 +114,7 @@ function EditProject({ EditedObject }: EditProjectProp) {
               </p>
               {imageUrl && (
                 <Image
+                  className="m-auto"
                   src={imageUrl}
                   width={300}
                   height={300}

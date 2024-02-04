@@ -29,6 +29,7 @@ export const authOptions: NextAuthOptions = {
       }
       if (user) {
         token.sub = user.id; // token.uid or token.sub both work
+        token.role = user.role;
       }
       return token;
     },
@@ -37,6 +38,7 @@ export const authOptions: NextAuthOptions = {
       session.accessToken = token.accessToken;
       if (session?.user) {
         session.user.id = token.sub;
+        session.user.role = token.role;
       }
       return session;
     },

@@ -21,10 +21,8 @@ export default function AddCertificateComponent() {
   const [imageUrl, setImageUrl] = useState("");
   const formRef = useRef<HTMLFormElement>(null);
   const { data: session } = useSession();
-  const emailAddress = session?.user?.email;
+  const user = session?.user;
   const router = useRouter();
-  console.log(state);
-  console.log(imageUrl);
 
   return (
     <div className="flex flex-col justify-center items-center w-full relative">
@@ -84,6 +82,7 @@ export default function AddCertificateComponent() {
           </p>
           {imageUrl && (
             <Image
+              className="m-auto"
               src={imageUrl}
               width={300}
               height={300}
@@ -95,8 +94,7 @@ export default function AddCertificateComponent() {
             btnText="Add Certificate"
             type="submit"
             onClick={() => {
-              if (emailAddress !== process.env.NEXT_PUBLIC_ADMIN_EMAIL) {
-                console.log(emailAddress);
+              if (user.role !== "ADMIN") {
                 notify("sorry you don't have admin priviliges", false);
               } else {
                 notify("Adding Completed Successfully", true);

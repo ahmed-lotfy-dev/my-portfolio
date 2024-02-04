@@ -64,12 +64,14 @@ export async function AddCertificateAction(state: any, data: FormData) {
   const imageLink = data.get("imageLink") as string;
 
   const user = await getUser();
+  const role = user?.role;
 
-  if (user?.email !== process.env.ADMIN_EMAIL)
+  if (role !== "ADMIN") {
     return {
       success: false,
       message: "You Don't Have Privilige To Add Certificate",
     };
+  }
 
   const result = CertificateSchema.safeParse({
     title,
@@ -78,6 +80,7 @@ export async function AddCertificateAction(state: any, data: FormData) {
     profLink,
     imageLink,
   });
+  
   if (result.success) {
     const certificate = await prisma.certificate.create({
       data: {
@@ -107,12 +110,14 @@ export async function EditCertificateAction(state: any, data: FormData) {
   const imageLink = data.get("imageLink") as string;
 
   const user = await getUser();
+  const role = user?.role;
 
-  if (user?.email !== process.env.ADMIN_EMAIL)
+  if (role !== "ADMIN") {
     return {
       success: false,
       message: "You Don't Have Privilige To Add Certificate",
     };
+  }
 
   const result = CertificateSchema.safeParse({
     title,
@@ -175,14 +180,15 @@ export async function AddProjectAction(state: any, data: FormData) {
   const liveLink = data.get("liveLink") as string;
   const imageLink = data.get("imageLink") as string;
   const tags = data.get("tags") as any;
-
   const user = await getUser();
+  const role = user?.role;
 
-  if (user?.email !== process.env.ADMIN_EMAIL)
+  if (role !== "ADMIN") {
     return {
       success: false,
       message: "You Don't Have Privilige To Add Project",
     };
+  }
 
   const result = ProjectSchema.safeParse({
     title,
@@ -192,6 +198,7 @@ export async function AddProjectAction(state: any, data: FormData) {
     imageLink,
     tags,
   });
+
   if (result.success) {
     const project = await prisma.project.create({
       data: {
@@ -220,11 +227,11 @@ export async function EditProjectAction(state: any, data: FormData) {
   const liveLink = data.get("liveLink") as string;
   const imageLink = data.get("imageLink") as string;
   const tags = data.get("tags") as any;
-  const emailAddress = data.get("emailAddress");
 
   const user = await getUser();
+  const role = user?.role;
 
-  if (user?.email !== process.env.ADMIN_EMAIL) {
+  if (role !== "ADMIN") {
     return {
       success: false,
       message: "You Don't Have Privilige To Add Project",
@@ -269,8 +276,9 @@ export async function EditProjectAction(state: any, data: FormData) {
 
 export async function deleteProjectAction(projectId: string) {
   const user = await getUser();
+  const role = user?.role;
 
-  if (user?.email !== process.env.ADMIN_EMAIL)
+  if (role !== "ADMIN")
     return {
       success: false,
       message: "You Don't Have Privilige To Delete Project",
@@ -308,49 +316,54 @@ export async function contactAction(state: any, formData: FormData) {
   }
 }
 
-export async function AddNewPost(state: any, formData: FormData) {
-  const title = formData.get("title") as string;
-  const content = formData.get("content") as string;
-  const published = formData.get("published");
-  const tags = formData.get("tags") as any;
-  const isPublished = published === "true" ? true : false;
-
+export async function AddNewPost(state: any, data: FormData) {
   const user = await getUser();
+  const title = data.get("title") as string;
+  const content = data.get("content") as string;
+  const published = data.get("published");
+  const tags = data.get("tags") as any;
+  const isPublished = published === "true" ? true : false;
+  const imageLink = data.get("imageLink") as string;
+  const slug = title.split(" ").join("-");
+  const id = user?.id;
+  const role = user?.role;
+  const categories = tags.split(",");
 
-  console.log({
-    title,
-    content,
-    isPublished,
-    name: user?.name,
-    id: user?.id,
-    tags,
-  });
-
-  if (user?.email !== process.env.ADMIN_EMAIL)
+  if (role !== "ADMIN") {
     return {
       success: false,
-      message: "You Don't Have Privilige To Add Project",
+      message: "You Don't Have Privilige To Add Blog Post",
     };
+  }
 
   const result = BlogPostSchema.safeParse({
     title,
     content,
+    slug,
     published: isPublished,
-    tags,
+    imageLink,
+    tags: categories,
   });
+
   if (result.success) {
     const newPost = await prisma.blogpost.create({
       data: {
         title,
         content,
+        slug,
         published: isPublished,
-        author: { connect: { id: user.id } },
-        tags: [...tags.split(",")],
+        imageLink,
+        author: { connect: { id: id } },
+        tags: categories,
       },
     });
+
+    console.log(newPost);
+    console.log(result);
+
     console.log("Post added successfully");
-    revalidatePath("/dashboard/blogs/new");
-    return { success: true, data: result.data };
+    revalidatePath("/blogs/");
+    return { success: true, newPost };
   }
   if (result.error) {
     return { success: false, error: result.error.format() };

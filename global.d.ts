@@ -48,4 +48,5 @@ export type User = {
   email: string;
   image: string;
   id: string;
+  role: string;
 };

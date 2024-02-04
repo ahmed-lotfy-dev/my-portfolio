@@ -26,11 +26,8 @@ export default function AddProjectComponent() {
   const [imageUrl, setImageUrl] = useState("");
   const formRef = useRef<HTMLFormElement>(null);
   const { data: session } = useSession();
-  const emailAddress = session?.user?.email;
+  const user = session?.user;
   const router = useRouter();
-
-  console.log(state);
-  console.log(imageUrl);
 
   return (
     <div className="flex flex-col justify-center items-center w-full relative">
@@ -89,6 +86,7 @@ export default function AddProjectComponent() {
           </p>
           {imageUrl && (
             <Image
+              className="m-auto"
               src={imageUrl}
               width={300}
               height={300}
@@ -110,12 +108,10 @@ export default function AddProjectComponent() {
             btnText="Add Project"
             type="submit"
             onClick={() => {
-              if (emailAddress !== process.env.NEXT_PUBLIC_ADMIN_EMAIL) {
-                console.log(emailAddress);
-                notify("Sorry, you don't have admin privileges", false);
+              if (user.role !== "ADMIN") {
+                notify("You don't have privilige to do this", false);
               } else {
-                notify("Adding Completed Successfully", true);
-                formRef.current?.reset();
+                notify("Blog Post Completed Successfully", true);
               }
             }}
           />

@@ -9,10 +9,10 @@ export default async function projects() {
 
   return (
     <section
-      className="container mx-auto flex flex-col justify-center items-center sm:items-start p-6 max-w-screen-xl mb-10"
+      className="flex flex-col mx-auto justify-center items-center sm:items-start p-6 max-w-screen-xl mb-10"
       id="projects"
     >
-      <div className="flex flex-col py-10 md:m-0 md:ml-2 text-center md:text-start">
+      <div className="container flex flex-col py-10 md:m-0 md:ml-2 text-center md:text-start">
         <h2 className="text-3xl font-bold">Projects</h2>
       </div>
       <div className="flex flex-col justify-between items-center w-full p-6 lg:flex-row md:justify-start">

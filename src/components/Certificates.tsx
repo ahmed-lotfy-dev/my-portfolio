@@ -1,4 +1,4 @@
-import {getAllCertificates} from "@/lib/getCertificates";
+import { getAllCertificates } from "@/lib/getCertificates";
 import Link from "next/link";
 import Image from "next/image";
 
@@ -24,10 +24,9 @@ export type Certificate = {
 
 export default async function certificates() {
   const { allCertificates } = await getAllCertificates();
-  console.log(allCertificates);
   return (
     <section
-      className="bg-blue-200 flex justify-center items-center text-center sm:text-start p-6"
+      className="bg-blue-200 flex flex-col mx-auto justify-center items-center sm:items-start p-6 max-w-screen-xl mb-10"
       id="certificates"
     >
       <div className="container max-w-screen-xl justify-center items-center p-6">

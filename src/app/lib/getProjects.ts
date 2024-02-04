@@ -15,7 +15,6 @@ async function getSingleProject(projectTitle: string) {
     const project = await prisma.project.findFirst({
       where: { title: projectTitle },
     });
-    console.log(project);
 
     return { sucess: true, message: "Project Found", project };
   } catch (error) {

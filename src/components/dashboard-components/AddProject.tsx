@@ -34,8 +34,7 @@ function AddProjectComponent() {
   const formRef = useRef<HTMLFormElement>(null);
   const { data: session } = useSession();
   const emailAddress = session?.user?.email;
-  console.log(state);
-  console.log(imageUrl);
+
 
   return (
     <div className="flex flex-col justify-center items-center">
@@ -94,6 +93,7 @@ function AddProjectComponent() {
               </p>
               {imageUrl && (
                 <Image
+                  className="m-auto"
                   src={imageUrl}
                   width={300}
                   height={300}

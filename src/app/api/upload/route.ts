@@ -19,7 +19,6 @@ async function uploadFileToS3(
   imageType: string
 ) {
   const fileBuffer = file;
-  console.log(fileBuffer);
   const params = {
     Bucket: process.env.CF_BUCKET_NAME,
     Key: `${imageType}-${fileName}`,

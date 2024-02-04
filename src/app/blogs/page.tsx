@@ -5,7 +5,6 @@ import Link from "next/link";
 
 export default async function Page() {
   const { allPosts } = await getAllPosts();
-  console.log(allPosts);
 
   return allPosts.length > 0 ? (
     <div className="w-full h-svh grid grid-cols-3 mt-10 px-20 py-10">

@@ -4,7 +4,7 @@ import { getUser } from "@/src/app/lib/getUser";
 
 export default async function Welcome() {
   const user = await getUser();
-  console.log(user);
+
   return (
     <div className="w-full">
       {!user && <NotAuthenticated />}

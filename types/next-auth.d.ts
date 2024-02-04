@@ -1,15 +1,17 @@
-import NextAuth from "next-auth"
+import NextAuth from "next-auth";
 
 declare module "next-auth" {
   interface Session {
-    accessToken: unknown
-    /** This is an example. You can find me in types/next-auth.d.ts */
+    accessToken: unknown;
     user: {
       /** The user's postal address. */
-      id: string
-      email: string
-      role: string
-    } & DefaultSession["user"]
+      id: string;
+      email: string;
+      role: string;
+    } & DefaultSession["user"];
+  }
+  interface User extends DefaultUser {
+    role: Role;
   }
 }
 
@@ -26,12 +28,12 @@ interface Account {}
 /** The OAuth profile returned from your provider */
 interface Profile {}
 
-import { JWT } from "next-auth/jwt"
+import { JWT } from "next-auth/jwt";
 
 /** Example on how to extend the built-in types for JWT */
 declare module "next-auth/jwt" {
   interface JWT {
-    /** This is an example. You can find me in types/next-auth.d.ts */
-    idToken?: string
+    id: string;
+    role: number;
   }
 }

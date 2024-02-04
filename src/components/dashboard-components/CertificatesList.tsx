@@ -21,7 +21,6 @@ type Props = {
 };
 
 function CertificateList({ allCertificates }: Props) {
-  console.log(allCertificates);
   return (
     <div className="w-full">
       <div className="m-auto w-full lg:w-2/3">

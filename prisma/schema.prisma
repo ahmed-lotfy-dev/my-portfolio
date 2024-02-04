@@ -44,7 +44,7 @@ model User {
   image         String?
   accounts      Account[]
   sessions      Session[]
-  blogposts     Blogpost[]  
+  blogposts     Blogpost[]
   role          Role       @default(USER)
 
   @@map("users")
@@ -91,6 +91,7 @@ model Blogpost {
   title     String
   content   String
   slug      String
+  imageLink String
   published Boolean  @default(false)
   author    User     @relation(fields: [authorId], references: [id], onDelete: Cascade)
   authorId  String   @db.ObjectId

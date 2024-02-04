@@ -14,7 +14,6 @@ async function getSingleCertificate(certificateTitle: string) {
     const certificate = await prisma.certificate.findFirst({
       where: { title: certificateTitle },
     });
-    console.log(certificate);
     return { sucess: true, message: "Certificate Found", certificate };
   } catch (error) {
     return { success: false, message: "Certificate Not Found" };

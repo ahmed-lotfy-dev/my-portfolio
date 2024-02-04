@@ -1,5 +1,5 @@
 "use client";
-import  {  useState } from "react";
+import { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import UserProfile from "@/src/components/ui/UserProfile";
@@ -27,7 +27,7 @@ function Nav({ session }: Props) {
   const toggleMenu = () => {
     setIsOpened(!isOpened);
   };
-  console.log(isOpened);
+
   return (
     <nav className="relative w-full h-24 shadow-xl bg-gray-700 border-b-1 border-gray-900 dark:bg-slate-700  text-gray-300">
       <div className="container flex justify-between w-full h-full">

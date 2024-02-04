@@ -13,12 +13,14 @@ import docker from "@/public/images/skills/docker.svg";
 export default function Skills() {
   return (
     <section
-      className="flex mx-auto justify-center items-center p-6 bg-gray-400"
+      className="flex flex-col justify-center items-center sm:items-start mx-auto  p-6 bg-gray-400"
       id="skills"
     >
-      <div className="flex flex-col justify-center items-center sm:items-start gap-5 p-6 ">
-        <h2 className="text-3xl font-bold mx-auto mt-2">Skills</h2>
-        <div className="flex flex-wrap basis-1/2 container mx-auto justify-around max-w-screen-xl gap-10">
+      <div className="container">
+        <div className=" flex flex-col py-10 md:m-0 md:ml-2">
+          <h2 className=" text-3xl font-bold">Skills</h2>
+        </div>
+        <div className="flex flex-wrap mx-auto justify-around max-w-screen-xl gap-10">
           <Image
             src={html}
             alt="html"
