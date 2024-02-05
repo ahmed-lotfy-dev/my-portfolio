@@ -1,18 +1,17 @@
 "use client";
 import Link from "next/link";
-import {
-  IoHomeOutline,
-  IoGridOutline,
-  IoCodeWorkingSharp,
-  IoTrophyOutline,
-} from "react-icons/io5";
+import { IoCodeWorkingSharp, IoTrophyOutline } from "react-icons/io5";
+import { AiFillPlusCircle, AiFillHome } from "react-icons/ai";
+import { RiDashboardFill } from "react-icons/ri";
+import { FaFileCode } from "react-icons/fa6";
+import { PiCertificateFill } from "react-icons/pi";
 
 export default function Aside() {
   return (
     <aside className="flex flex-initial flex-grow group h-full">
       <div className="container mx-auto bg-gray-600 h-full p-6  space-y-5">
         <div className="flex gap-5 items-center mx-auto first:mt-2 ">
-          <IoHomeOutline className="text-blue-300 w-[2rem] h-[2rem]" />
+          <AiFillHome className="text-gray-300 w-[2rem] h-[2rem]" />
           <Link
             className="text-gray-100 hidden group-hover:flex transition-hover  duration-300 sm:flex"
             href="/"
@@ -21,7 +20,7 @@ export default function Aside() {
           </Link>
         </div>
         <div className="flex gap-5 items-center mx-auto">
-          <IoGridOutline className="text-blue-300 w-[2rem] h-[2rem]" />
+          <RiDashboardFill className="text-gray-300 w-[2rem] h-[2rem]" />
 
           <Link
             className="text-gray-100 hidden group-hover:flex  sm:flex"
@@ -31,7 +30,7 @@ export default function Aside() {
           </Link>
         </div>
         <div className="flex gap-5 items-center mx-auto">
-          <IoCodeWorkingSharp className="text-blue-300 w-[2rem] h-[2rem]" />
+          <FaFileCode className="text-gray-300 w-[2rem] h-[2rem]" />
           <Link
             className="text-gray-100 hidden group-hover:flex  sm:flex"
             href="/dashboard/projects"
@@ -40,7 +39,7 @@ export default function Aside() {
           </Link>
         </div>
         <div className="flex gap-5 items-center mx-auto">
-          <IoTrophyOutline className="text-blue-300 w-[2rem] h-[2rem]" />
+          <PiCertificateFill className="text-gray-300 w-[2rem] h-[2rem]" />
           <Link
             className="text-gray-100 hidden group-hover:flex  sm:flex"
             href="/dashboard/certificates"
@@ -49,7 +48,7 @@ export default function Aside() {
           </Link>
         </div>
         <div className="flex gap-5 items-center mx-auto">
-          <IoTrophyOutline className="text-blue-300 w-[2rem] h-[2rem]" />
+          <AiFillPlusCircle className="text-gray-300 w-[2rem] h-[2rem]" />
           <Link
             className="text-gray-100 hidden group-hover:flex sm:flex"
             href="/dashboard/blogs/new"
