@@ -45,27 +45,28 @@ export async function POST(request: Request): Promise<Response> {
 
   const user = await getUser();
   const role = user?.role;
+
   if (user) console.log(role);
-  // if (role !== "ADMIN") {
-  const uploaded = await uploadFileToS3(
-    buffer,
-    file.name,
-    file.type,
-    imageType
-  );
-  return new Response(
-    JSON.stringify({
-      success: true,
-      message: "File uploaded successfully",
-      imageLink: `${process.env.CF_IMAGES_SUBDOMAIN}/${imageType}-${file.name}`,
-    })
-  );
-  // } else {
-  //   return new Response(
-  //     JSON.stringify({
-  //       success: false,
-  //       message: "File upload failed you don't have enough priviliges",
-  //     })
-  //   );
-  // }
+  if (role !== "ADMIN") {
+    const uploaded = await uploadFileToS3(
+      buffer,
+      file.name,
+      file.type,
+      imageType
+    );
+    return new Response(
+      JSON.stringify({
+        success: true,
+        message: "File uploaded successfully",
+        imageLink: `${process.env.CF_IMAGES_SUBDOMAIN}/${imageType}-${file.name}`,
+      })
+    );
+  } else {
+    return new Response(
+      JSON.stringify({
+        success: false,
+        message: "File upload failed you don't have enough priviliges",
+      })
+    );
+  }
 }
