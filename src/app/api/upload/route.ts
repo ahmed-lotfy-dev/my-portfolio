@@ -47,7 +47,7 @@ export async function POST(request: Request): Promise<Response> {
   const role = user?.role;
 
   if (user) console.log(role);
-  if (role !== "ADMIN") {
+  if (role === "ADMIN") {
     const uploaded = await uploadFileToS3(
       buffer,
       file.name,

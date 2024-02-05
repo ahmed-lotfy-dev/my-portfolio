@@ -29,6 +29,7 @@ export default function AddProjectComponent() {
   const role = session?.user?.role;
   const router = useRouter();
   console.log(role);
+  
   return (
     <div className="flex flex-col justify-center items-center w-full relative">
       <div className="pt-10 left-5 top-5 absolute">
