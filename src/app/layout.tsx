@@ -3,7 +3,7 @@ import { authOptions } from "@/lib/auth";
 import { GoogleAnalytics } from "@next/third-parties/google";
 
 import "./globals.css";
-import { Josefin_Sans, Josefin_Slab } from "next/font/google";
+import { Josefin_Sans, Josefin_Slab, ABeeZee } from "next/font/google";
 import { NextAuthProvider } from "@/src/app/provider";
 
 import { Nav } from "@/src/components/Nav";
@@ -35,7 +35,7 @@ export default async function RootLayout({
   return (
     <NextAuthProvider>
       <html lang="en" className="scroll-smooth max-h-svh">
-        <body className={`${josefinsans.variable}${josefinslab.variable}`}>
+        <body className={`${josefinsans.variable} ${josefinslab.variable}`}>
           <main className="font-main">
             <Nav session={session}></Nav>
             {children}

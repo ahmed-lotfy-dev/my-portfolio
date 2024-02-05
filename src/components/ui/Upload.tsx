@@ -1,10 +1,4 @@
-import  {
-  ChangeEvent,
-  Dispatch,
-  SetStateAction,
-  useRef,
-  useState,
-} from "react";
+import { ChangeEvent, Dispatch, SetStateAction, useRef, useState } from "react";
 import { Input } from "./input";
 import { useSession } from "next-auth/react";
 import { notify } from "@/src/app/lib/utils/toast";
@@ -45,6 +39,7 @@ function Upload({ setImageUrl, imageType }: UploadProps) {
 
       const { data } = await axios.post("/api/upload", formData, options);
       data.success ? notify(data.message, true) : notify(data.message, false);
+      console.log(data);
       setImageUrl(data.imageLink);
       setPending(false);
     } catch (error) {
