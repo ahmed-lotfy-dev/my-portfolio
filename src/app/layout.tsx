@@ -3,7 +3,7 @@ import { authOptions } from "@/lib/auth";
 import { GoogleAnalytics } from "@next/third-parties/google";
 
 import "./globals.css";
-import { Josefin_Sans, Josefin_Slab, ABeeZee } from "next/font/google";
+import { Roboto_Serif, Roboto_Slab } from "next/font/google";
 import { NextAuthProvider } from "@/src/app/provider";
 
 import { Nav } from "@/src/components/Nav";
@@ -11,12 +11,12 @@ import type { Metadata } from "next";
 import { Toaster } from "@/src/components/ui/sonner";
 import { ReactNode } from "react";
 
-const josefinsans = Josefin_Sans({
+const josefinsans = Roboto_Serif({
   subsets: ["latin"],
   variable: "--main-font",
 });
 
-const josefinslab = Josefin_Slab({
+const josefinslab = Roboto_Slab({
   subsets: ["latin"],
   variable: "--heading-font",
 });

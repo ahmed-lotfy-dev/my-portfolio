@@ -11,7 +11,7 @@ import { useSession } from "next-auth/react";
 import { useFormState } from "react-dom";
 import Submit from "@/src/components/ui/formSubmitBtn";
 
-import { Upload } from "@/src/components/ui/Upload";
+import { Upload } from "@/src/components/dashboard-components/Upload";
 import { Button } from "@/src/components/ui/button";
 import { AiOutlineArrowLeft } from "react-icons/ai";
 import { useRouter } from "next/navigation";

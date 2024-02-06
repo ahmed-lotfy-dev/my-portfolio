@@ -15,7 +15,7 @@ import {
   SelectValue,
 } from "@/src/components/ui/select";
 import { useSession } from "next-auth/react";
-import { Upload } from "@/src/components/ui/Upload";
+import { Upload } from "@/src/components/dashboard-components/Upload";
 import Image from "next/image";
 import { redirect } from "next/navigation";
 import { notify } from "@/src/app/lib/utils/toast";

@@ -1,4 +1,4 @@
-import { Upload } from "@/src/components/ui/Upload";
+import { Upload } from "@/src/components/dashboard-components/Upload";
 import { deleteSinglePosts, getSinglePosts } from "../../lib/getPosts";
 import { Button } from "@/src/components/ui/button";
 // import { useState } from "react";

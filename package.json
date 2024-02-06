@@ -48,6 +48,7 @@
     "next-auth": "^4.24.5",
     "next-themes": "^0.2.1",
     "npm-check-updates": "^16.14.12",
+    "optional": "^0.1.4",
     "postcss": "8.4.33",
     "react": "18.2.0",
     "react-dom": "18.2.0",
@@ -66,5 +67,18 @@
   "devDependencies": {
     "prisma": "^5.9.1",
     "react-icons": "^5.0.1"
+  },
+  "pnpm": {
+    "supportedArchitectures": {
+      "os": [
+        "win32",
+        "darwin",
+        "current"
+      ],
+      "cpu": [
+        "x64",
+        "arm64"
+      ]
+    }
   }
 }

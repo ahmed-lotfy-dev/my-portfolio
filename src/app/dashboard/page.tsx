@@ -13,16 +13,16 @@ export default async function Page({}) {
   return (
     <div className="group flex flex-col gap-3 w-full justify-start items-start mt-10">
       <Welcome />
-      <div className="flex gap-10 justify-start text-center w-full">
+      <div className="flex flex-wrap gap-10 justify-start text-center w-full">
         <Link href={"/dashboard/projects"}>
           <Card className="hover:bg-gray-500 hover:text-gray-200 cursor-pointer ml-10 mt-10 p-10 bg-gray-200 w-[200px]">
-            <h2>Projects</h2>
+            <h2 className="mb-4">Projects</h2>
             <p>{projectsCount}</p>
           </Card>
         </Link>
         <Link href={"/dashboard/certificates"}>
           <Card className="hover:bg-gray-500 hover:text-gray-200 cursor-pointer ml-10 mt-10 p-10 bg-gray-200 w-[200px] ">
-            <h2>Certificates</h2>
+            <h2 className="mb-4">Certificates</h2>
             <p>{certificatesCount}</p>
           </Card>
         </Link>

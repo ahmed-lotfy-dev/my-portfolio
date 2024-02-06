@@ -2,10 +2,12 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "@/src/app/lib/auth";
 
 import { NotAuthenticated } from "@/src/components/dashboard-components/NotAuthenticated";
-import { CertificateList } from "@/src/components/dashboard-components/CertificatesList";
+import { CertificateList } from "@/src/components/dashboard-components/certificate/CertificatesList";
 import { getAllCertificates } from "@/src/app/lib/getCertificates";
 import Link from "next/link";
 import { Button } from "@/src/components/ui/button";
+import { Suspense } from "react";
+import { Loading } from "@/src/components/ui/Loading";
 
 export default async function AddProject({}) {
   const user = await getServerSession(authOptions);
@@ -21,7 +23,9 @@ export default async function AddProject({}) {
               Add Certificate
             </Button>
           </Link>
-          <CertificateList allCertificates={allCertificates} />
+          <Suspense fallback={<Loading />}>
+            <CertificateList allCertificates={allCertificates} />
+          </Suspense>
         </div>
       )}
     </div>

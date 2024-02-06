@@ -119,6 +119,9 @@ dependencies:
   npm-check-updates:
     specifier: ^16.14.12
     version: 16.14.12
+  optional:
+    specifier: ^0.1.4
+    version: 0.1.4
   postcss:
     specifier: 8.4.33
     version: 8.4.33
@@ -6004,6 +6007,10 @@ packages:
       lru-cache: 6.0.0
       object-hash: 2.2.0
       oidc-token-hash: 5.0.3
+    dev: false
+
+  /optional@0.1.4:
+    resolution: {integrity: sha512-gtvrrCfkE08wKcgXaVwQVgwEQ8vel2dc5DDBn9RLQZ3YtmtkBss6A2HY6BnJH4N/4Ku97Ri/SF8sNWE2225WJw==}
     dev: false
 
   /optionator@0.9.3:

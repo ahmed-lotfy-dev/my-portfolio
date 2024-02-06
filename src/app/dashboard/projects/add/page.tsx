@@ -15,7 +15,7 @@ import { TagsInput } from "react-tag-input-component";
 import { Textarea } from "@/src/components/ui/textarea";
 import { useFormState } from "react-dom";
 import Submit from "@/src/components/ui/formSubmitBtn";
-import { Upload } from "@/src/components/ui/Upload";
+import { Upload } from "@/src/components/dashboard-components/Upload";
 import { AiOutlineArrowLeft } from "react-icons/ai";
 import { Button } from "@/src/components/ui/button";
 import { useRouter } from "next/navigation";
@@ -29,7 +29,7 @@ export default function AddProjectComponent() {
   const role = session?.user?.role;
   const router = useRouter();
   console.log(role);
-  
+
   return (
     <div className="flex flex-col justify-center items-center w-full relative">
       <div className="pt-10 left-5 top-5 absolute">

@@ -2,7 +2,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import UserProfile from "@/src/components/ui/UserProfile";
+import UserProfile from "@/src/components/dashboard-components/UserProfile";
 import { AiOutlineMenu, AiOutlineClose } from "react-icons/ai";
 import { Session } from "next-auth";
 
@@ -15,6 +15,9 @@ const navLinks = [
   { href: "/#contact", label: "Contact" },
 ];
 
+const active =
+  "text-blue-400 hover:text-blue-400 hover:border-b-4 hover:border-b-blue-600";
+
 type Props = {
   session: Session | null;
 };
@@ -23,7 +26,7 @@ function Nav({ session }: Props) {
   const path = usePathname();
   const user = session?.user;
   const [isOpened, setIsOpened] = useState(false);
-
+  console.log(path);
   const toggleMenu = () => {
     setIsOpened(!isOpened);
   };
@@ -53,7 +56,7 @@ function Nav({ session }: Props) {
                 <li
                   key={link.label}
                   className={` hover:text-blue-400 hover:border-b-4 hover:border-b-blue-600 transition-all delay-75 duration-250 ${
-                    path === "/" ? "active" : ""
+                    path === `${link.href}` ? active : ""
                   }`}
                 >
                   <Link href={link.href}>{link.label}</Link>
@@ -62,7 +65,7 @@ function Nav({ session }: Props) {
               {path && (
                 <li
                   className={`hover:text-blue-400 hover:border-b-4 hover:border-b-blue-600 transition-all delay-75 duration-250 ${
-                    path === "/" ? "active" : ""
+                    path === "/dashboard" ? active : ""
                   }`}
                 >
                   <Link href="/dashboard">Dashboard</Link>
@@ -91,14 +94,18 @@ function Nav({ session }: Props) {
               <li
                 key={link.label}
                 className={`py-4 cursor-pointer hover:text-blue-400 hover:border-b-4 hover:border-b-blue-600 transition-all delay-75 duration-250 ${
-                  path === "/" ? "active" : ""
+                  path === `${link.href}` ? active : ""
                 }`}
               >
                 <Link href={link.href}>{link.label}</Link>
               </li>
             ))}
             {path && (
-              <li>
+              <li
+                className={`hover:text-blue-400 hover:border-b-4 hover:border-b-blue-600 transition-all delay-75 duration-250 ${
+                  path === "/dashboard" ? active : ""
+                }`}
+              >
                 <Link href="/dashboard">Dashboard</Link>
               </li>
             )}
