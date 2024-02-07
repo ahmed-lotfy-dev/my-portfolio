@@ -1,6 +1,4 @@
-import { getServerSession } from "next-auth";
-import { authOptions } from "@/src/app/lib/auth";
-
+import { auth } from "@/src/auth";
 import { NotAuthenticated } from "@/src/components/dashboard-components/NotAuthenticated";
 import { CertificateList } from "@/src/components/dashboard-components/CertificatesList";
 import { getAllCertificates } from "@/src/app/lib/getCertificates";
@@ -8,7 +6,7 @@ import Link from "next/link";
 import { Button } from "@/src/components/ui/button";
 
 export default async function AddProject({}) {
-  const user = await getServerSession(authOptions);
+  const user = await auth();
   const { allCertificates } = await getAllCertificates();
 
   return (

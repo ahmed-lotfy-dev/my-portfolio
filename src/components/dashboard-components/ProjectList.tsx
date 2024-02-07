@@ -1,6 +1,5 @@
 "use client";
 import Image from "next/image";
-import { Project } from "@prisma/client";
 
 import {
   Card,
@@ -16,13 +15,12 @@ import { deleteProjectAction } from "@/src/app/actions";
 import { EditPopover } from "../ui/EditPopover";
 import { AspectRatio } from "../ui/aspect-ratio";
 
-type Props = {
-  allProjects: Project[] | undefined;
-};
-export default function ProjectList({ allProjects }: Props) {
+type projectListProps = {};
+
+export default function ProjectList({ allProjects }: any) {
   return (
     <div className="w-full h-full flex gap-x-6">
-      {allProjects?.map((proj) => (
+      {allProjects?.map((proj: any) => (
         <div key={proj.id} className="mt-10 ml-6 h-full">
           <Card className="">
             <CardHeader className="flex justify-start">

@@ -1,8 +1,8 @@
-import { prisma } from "./prisma";
+import { db } from "@/src/app/lib/db";
 
 async function getAllCertificates() {
   try {
-    const allCertificates = await prisma.certificate.findMany();
+    const allCertificates = await db.query.certificates.findMany();
     return { allCertificates };
   } catch (error) {
     return { error };
@@ -11,8 +11,8 @@ async function getAllCertificates() {
 
 async function getSingleCertificate(certificateTitle: string) {
   try {
-    const certificate = await prisma.certificate.findFirst({
-      where: { title: certificateTitle },
+    const certificate = await db.query.certificates.findFirst({
+      with: { title: certificateTitle },
     });
     return { sucess: true, message: "Certificate Found", certificate };
   } catch (error) {

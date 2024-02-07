@@ -1,23 +1,25 @@
-"use client";
+import { Button } from "@/src/components/ui/button";
+import { SignInAction, SignOutAction } from "@/src/app/actions";
 
-import { signIn, signOut } from "next-auth/react";
-import { Button } from "../ui/button";
-
-type ButtonProps = {
-  className?: string;
-};
-export const LoginButton = ({ className, ...rest }: ButtonProps) => {
+export function SignIn({
+  provider,
+  ...props
+}: { provider?: string } & React.ComponentPropsWithRef<typeof Button>) {
   return (
-    <Button className={className} onClick={() => signIn()}>
-      Sign in
-    </Button>
+    <form action={SignInAction}>
+      <Button {...props}>Sign In</Button>
+    </form>
   );
-};
+}
 
-export const LogoutButton = ({ className, ...rest }: ButtonProps) => {
+export async function SignOut(
+  props: React.ComponentPropsWithRef<typeof Button>
+) {
   return (
-    <Button className={className} onClick={() => signOut()}>
-      Log Out
-    </Button>
+    <form action={SignOutAction} className="w-full">
+      <Button variant="ghost" className="w-full p-0" {...props}>
+        Sign Out
+      </Button>
+    </form>
   );
-};
+}

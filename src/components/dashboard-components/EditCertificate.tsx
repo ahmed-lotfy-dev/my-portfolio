@@ -16,16 +16,11 @@ import {
   DialogTrigger,
   DialogClose,
 } from "../ui/dialog";
-import { Certificate, Project } from "@prisma/client";
-import { AiTwotoneEdit } from "react-icons/ai";
 import { Upload } from "../ui/Upload";
 import { Textarea } from "../ui/textarea";
+import { Pencil } from "lucide-react";
 
-type EditCertificateProp = {
-  EditedObject: Certificate;
-};
-
-function EditCertificate({ EditedObject }: EditCertificateProp) {
+function EditCertificate({ EditedObject }: any) {
   const { id } = EditedObject;
   const [state, formAction] = useFormState(EditCertificateAction, null);
   const [editedCert, setEditedCert] = useState(EditedObject);
@@ -33,11 +28,11 @@ function EditCertificate({ EditedObject }: EditCertificateProp) {
 
   const formRef = useRef<HTMLFormElement>(null);
   const { data: session } = useSession();
-  const emailAddress = session?.user.email;
+  const role = session?.user?.role;
 
   const InputHandler = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    setEditedCert((prevEditedCert) => {
+    setEditedCert((prevEditedCert: any) => {
       return {
         ...prevEditedCert,
         [name]: value,
@@ -52,7 +47,7 @@ function EditCertificate({ EditedObject }: EditCertificateProp) {
     >
       <Dialog>
         <DialogTrigger className="w-full bg-primary text-primary-foreground hover:bg-primary/90 h-10 py-2 px-4 inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none ring-offset-background">
-          <AiTwotoneEdit className="mr-3" size={20} />
+          <Pencil className="mr-3" size={20} />
           Edit Certificate
         </DialogTrigger>
         <DialogContent className="max-w-[700px]">
@@ -128,11 +123,11 @@ function EditCertificate({ EditedObject }: EditCertificateProp) {
                 className="m-10"
                 type="submit"
                 onClick={() => {
-                  if (emailAddress !== process.env.NEXT_PUBLIC_ADMIN_EMAIL) {
-                    console.log(emailAddress);
-                    notify("sorry you don't have admin priviliges", false);
+                  if (role !== "ADMIN") {
+                    notify("Sorry, you don't have admin privileges", false);
                   } else {
                     notify("Adding Completed Successfully", true);
+                    formRef.current?.reset();
                   }
                 }}
               />

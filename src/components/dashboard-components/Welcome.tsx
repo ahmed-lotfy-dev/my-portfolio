@@ -1,9 +1,9 @@
+import { auth } from "@/src/auth";
 import { NotAuthenticated } from "./NotAuthenticated";
-import { LogoutButton } from "./auth-buttons";
-import { getUser } from "@/src/app/lib/getUser";
 
 export default async function Welcome() {
-  const user = await getUser();
+  const session = await auth();
+  const user = session?.user;
 
   return (
     <div className="w-full">

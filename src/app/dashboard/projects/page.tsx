@@ -1,15 +1,12 @@
-import { getServerSession } from "next-auth";
-import { authOptions } from "@/src/app/lib/auth";
-
 import { NotAuthenticated } from "@/src/components/dashboard-components/NotAuthenticated";
 import ProjectList from "@/src/components/dashboard-components/ProjectList";
 import { getAllProjects } from "../../lib/getProjects";
 import Link from "next/link";
 import { Button } from "@/src/components/ui/button";
-import { getUser } from "../../lib/getUser";
+import { auth } from "@/src/auth";
 
 export default async function AddProject({}) {
-  const user = await getUser();
+  const user = await auth();
   const { allProjects } = await getAllProjects();
 
   return (

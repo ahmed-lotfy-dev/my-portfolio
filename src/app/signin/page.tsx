@@ -1,7 +1,8 @@
 "use client";
 import { Button } from "@/src/components/ui/button";
-import { IoLogoGoogle, IoLogoGithub } from "react-icons/io5";
-import { signIn } from "next-auth/react";
+import { signIn } from "@/src/auth";
+import googleIcon from "../../../public/google-icon.svg";
+import { Github } from "lucide-react";
 
 function page() {
   return (
@@ -11,14 +12,14 @@ function page() {
         suppressHydrationWarning
       >
         <Button onClick={() => signIn("google", { callbackUrl: "/dashboard" })}>
-          <IoLogoGoogle className="text-2xl"></IoLogoGoogle>
+          <img src={googleIcon} className="text-2xl" />
           <span className="ml-3">Sign in with Google</span>
         </Button>
         <Button
           className="mt-6"
           onClick={() => signIn("github", { callbackUrl: "/dashboard" })}
         >
-          <IoLogoGithub className="text-3xl"></IoLogoGithub>
+          <Github className="text-3xl" />
           <span className="ml-3">Sign in with Github</span>
         </Button>
       </div>

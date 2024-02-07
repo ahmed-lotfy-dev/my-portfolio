@@ -13,7 +13,7 @@ import Submit from "@/src/components/ui/formSubmitBtn";
 
 import { Upload } from "@/src/components/ui/Upload";
 import { Button } from "@/src/components/ui/button";
-import { AiOutlineArrowLeft } from "react-icons/ai";
+import { ArrowLeft } from "lucide-react";
 import { useRouter } from "next/navigation";
 
 export default function AddCertificateComponent() {
@@ -28,7 +28,7 @@ export default function AddCertificateComponent() {
     <div className="flex flex-col justify-center items-center w-full relative">
       <div className="pt-10 left-5 top-5 absolute">
         <Button onClick={() => router.back()}>
-          <AiOutlineArrowLeft />
+          <ArrowLeft />
         </Button>
       </div>
       <div className="flex w-full min-h-full justify-center items-start p-10 mt-6">
@@ -93,13 +93,13 @@ export default function AddCertificateComponent() {
           <Submit
             btnText="Add Certificate"
             type="submit"
-            onClick={() => {
-              if (user.role !== "ADMIN") {
-                notify("sorry you don't have admin priviliges", false);
-              } else {
-                notify("Adding Completed Successfully", true);
-              }
-            }}
+            // onClick={() => {
+            //   if (user.role !== "ADMIN") {
+            //     notify("sorry you don't have admin priviliges", false);
+            //   } else {
+            //     notify("Adding Completed Successfully", true);
+            //   }
+            // }}
           />
         </form>
       </div>

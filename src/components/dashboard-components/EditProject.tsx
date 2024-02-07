@@ -13,18 +13,13 @@ import { useFormState } from "react-dom";
 
 import Submit from "../ui/formSubmitBtn";
 import { Dialog, DialogContent, DialogTrigger } from "../ui/dialog";
-import { Project } from "@prisma/client";
-import { AiTwotoneEdit } from "react-icons/ai";
 import { Textarea } from "../ui/textarea";
 import { TagsInput } from "react-tag-input-component";
 import { DialogClose } from "@radix-ui/react-dialog";
 import { Upload } from "../ui/Upload";
+import { Pencil } from "lucide-react";
 
-type EditProjectProp = {
-  EditedObject: Project;
-};
-
-function EditProject({ EditedObject }: EditProjectProp) {
+function EditProject({ EditedObject }: any) {
   const { id } = EditedObject;
   const [state, formAction] = useFormState(EditProjectAction, null);
   const [editedProj, setEditedProj] = useState(EditedObject);
@@ -36,11 +31,12 @@ function EditProject({ EditedObject }: EditProjectProp) {
   const { data: session } = useSession();
   const emailAddress = session?.user?.email;
   const role = session?.user?.role;
+
   const InputHandler = (
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
     const { name, value } = e.target;
-    setEditedProj((prevEditedProj) => {
+    setEditedProj((prevEditedProj: any) => {
       return {
         ...prevEditedProj,
         [name]: value,
@@ -53,7 +49,7 @@ function EditProject({ EditedObject }: EditProjectProp) {
       <div className="flex w-full min-h-full justify-center items-start mt-6">
         <Dialog>
           <DialogTrigger className="bg-primary text-primary-foreground hover:bg-primary/90 h-10 py-2 px-4 inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none ring-offset-background">
-            <AiTwotoneEdit className="mr-3" size={20} />
+            <Pencil className="mr-3" size={20} />
             Edit Project
           </DialogTrigger>
           <DialogContent className="w-[700px]">

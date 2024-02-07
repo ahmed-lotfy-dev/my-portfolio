@@ -16,7 +16,7 @@ import { Textarea } from "@/src/components/ui/textarea";
 import { useFormState } from "react-dom";
 import Submit from "@/src/components/ui/formSubmitBtn";
 import { Upload } from "@/src/components/ui/Upload";
-import { AiOutlineArrowLeft } from "react-icons/ai";
+import { ArrowLeft } from "lucide-react";
 import { Button } from "@/src/components/ui/button";
 import { useRouter } from "next/navigation";
 
@@ -34,7 +34,7 @@ export default function AddProjectComponent() {
     <div className="flex flex-col justify-center items-center w-full relative">
       <div className="pt-10 left-5 top-5 absolute">
         <Button onClick={() => router.back()}>
-          <AiOutlineArrowLeft />
+          <ArrowLeft />
         </Button>
       </div>
       <div className="flex w-full min-h-full justify-center items-start mt-6">
@@ -108,13 +108,13 @@ export default function AddProjectComponent() {
           <Submit
             btnText="Add Project"
             type="submit"
-            onClick={() => {
-              if (role !== "ADMIN") {
-                notify("You don't have privilige to do this", false);
-              } else {
-                notify("Blog Post Completed Successfully", true);
-              }
-            }}
+            // onClick={() => {
+            //   if (role !== "ADMIN") {
+            //     notify("You don't have privilige to do this", false);
+            //   } else {
+            //     notify("Blog Post Completed Successfully", true);
+            //   }
+            // }}
           />
         </form>
       </div>

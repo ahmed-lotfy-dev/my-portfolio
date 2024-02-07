@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import { Certificate } from "@prisma/client";
 
 import {
   Table,
@@ -16,11 +15,7 @@ import {
 import { deleteCertificateAction } from "@/src/app/actions";
 import { EditPopover } from "../ui/EditPopover";
 
-type Props = {
-  allCertificates: Certificate[] | undefined;
-};
-
-function CertificateList({ allCertificates }: Props) {
+function CertificateList({ allCertificates }: any) {
   return (
     <div className="w-full">
       <div className="m-auto w-full lg:w-2/3">
@@ -39,7 +34,7 @@ function CertificateList({ allCertificates }: Props) {
             </TableRow>
           </TableHeader>
           <TableBody>
-            {allCertificates?.map((cert) => (
+            {allCertificates?.map((cert: any) => (
               <TableRow key={cert.id}>
                 <TableCell className="font-medium">
                   <Link href={`/certificates/${cert.title}`}>{cert.title}</Link>
@@ -55,7 +50,7 @@ function CertificateList({ allCertificates }: Props) {
                     Certificate Proof
                   </Link>
                 </TableCell>
-      
+
                 <TableCell>
                   <EditPopover
                     EditedObject={cert}

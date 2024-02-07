@@ -1,10 +1,20 @@
 "use client";
-import { useState } from "react";
+import { ReactNode, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import UserProfile from "@/src/components/ui/UserProfile";
-import { AiOutlineMenu, AiOutlineClose } from "react-icons/ai";
-import { Session } from "next-auth";
+import { Menu, SidebarClose } from "lucide-react";
+import { useSession } from "next-auth/react";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuTrigger,
+} from "./ui/dropdown-menu";
+import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
+import { Card } from "./ui/card";
+import Image from "next/image";
+import { SignOut } from "./dashboard-components/auth-buttons";
+import { Dialog } from "./ui/dialog";
+import { DialogContent, DialogTrigger } from "@radix-ui/react-dialog";
 
 const navLinks = [
   { href: "/", label: "Home" },
@@ -15,12 +25,9 @@ const navLinks = [
   { href: "/#contact", label: "Contact" },
 ];
 
-type Props = {
-  session: Session | null;
-};
-
-function Nav({ session }: Props) {
+function Nav() {
   const path = usePathname();
+  const { data: session } = useSession();
   const user = session?.user;
   const [isOpened, setIsOpened] = useState(false);
 
@@ -68,13 +75,12 @@ function Nav({ session }: Props) {
                   <Link href="/dashboard">Dashboard</Link>
                 </li>
               )}
-              <li>{user && <UserProfile user={user} className="block" />}</li>
             </ul>
           </nav>
         </div>
         {/* Menu Icon */}
         <div className="md:hidden flex justify-center items-center cursor-pointer">
-          <AiOutlineMenu size={25} onClick={toggleMenu} />
+          <Menu size={25} onClick={toggleMenu} />
         </div>
       </div>
       {/* Responsive Menu*/}
@@ -102,10 +108,9 @@ function Nav({ session }: Props) {
                 <Link href="/dashboard">Dashboard</Link>
               </li>
             )}
-            <li>{user && <UserProfile user={user} className="block" />}</li>
           </ul>
           <div className="mt-9 mr-9 cursor-pointer" onClick={toggleMenu}>
-            <AiOutlineClose size={25} className="fill-gray-500" />
+            <SidebarClose size={25} className="fill-gray-500" />
           </div>
         </div>
       </div>

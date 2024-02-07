@@ -1,9 +1,6 @@
 import { getAllCertificates } from "@/lib/getCertificates";
 import Link from "next/link";
 import Image from "next/image";
-
-export const dynamic = "force-dynamic";
-
 import { Button } from "./ui/button";
 
 import {
@@ -41,7 +38,7 @@ export default async function certificates() {
               type="single"
               collapsible
             >
-              <AccordionItem value={cert.id} className="">
+              <AccordionItem value={cert.title} className="">
                 <AccordionTrigger className="font-bold text-1xl m-auto text-center">
                   {cert.title}
                 </AccordionTrigger>

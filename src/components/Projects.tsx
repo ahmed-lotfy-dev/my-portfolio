@@ -1,6 +1,5 @@
 import Image from "next/image";
 import { getAllProjects } from "@/lib/getProjects";
-export const dynamic = "force-dynamic";
 import Link from "next/link";
 import { Button } from "./ui/button";
 

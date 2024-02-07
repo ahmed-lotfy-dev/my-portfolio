@@ -1,5 +1,3 @@
-import { getServerSession } from "next-auth";
-import { authOptions } from "@/lib/auth";
 import { GoogleAnalytics } from "@next/third-parties/google";
 
 import "./globals.css";
@@ -30,14 +28,12 @@ export default async function RootLayout({
 }: {
   children: ReactNode;
 }) {
-  const session = await getServerSession(authOptions);
-
   return (
     <NextAuthProvider>
       <html lang="en" className="scroll-smooth max-h-svh">
         <body className={`${josefinsans.variable} ${josefinslab.variable}`}>
           <main className="font-main">
-            <Nav session={session}></Nav>
+            <Nav />
             {children}
             <GoogleAnalytics gaId={process.env.GA_ID} />
             <Toaster />
