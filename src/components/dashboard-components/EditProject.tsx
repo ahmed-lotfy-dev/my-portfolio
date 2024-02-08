@@ -8,7 +8,6 @@ import { EditCertificateAction, EditProjectAction } from "@/src/app/actions";
 
 import { notify } from "@/src/app/lib/utils/toast";
 
-import { useSession } from "next-auth/react";
 import { useFormState } from "react-dom";
 
 import Submit from "../ui/formSubmitBtn";
@@ -18,6 +17,7 @@ import { TagsInput } from "react-tag-input-component";
 import { DialogClose } from "@radix-ui/react-dialog";
 import { Upload } from "../ui/Upload";
 import { Pencil } from "lucide-react";
+import { useKindeBrowserClient } from "@kinde-oss/kinde-auth-nextjs";
 
 function EditProject({ EditedObject }: any) {
   const { id } = EditedObject;
@@ -28,9 +28,7 @@ function EditProject({ EditedObject }: any) {
   const [selected, setSelected] = useState<string[]>(["featured"]);
 
   const formRef = useRef<HTMLFormElement>(null);
-  const { data: session } = useSession();
-  const emailAddress = session?.user?.email;
-  const role = session?.user?.role;
+  const { user } = useKindeBrowserClient();
 
   const InputHandler = (
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -133,7 +131,7 @@ function EditProject({ EditedObject }: any) {
                   className="m-10 w-2/3"
                   type="submit"
                   onClick={() => {
-                    if (role !== "admin") {
+                    if (user?.email !== process.env.ADMIN_EMAIL) {
                       notify("Sorry, you don't have admin privileges", false);
                     } else {
                       notify("Adding Completed Successfully", true);

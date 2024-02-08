@@ -2,7 +2,6 @@ import { GoogleAnalytics } from "@next/third-parties/google";
 
 import "./globals.css";
 import { Josefin_Sans, Josefin_Slab, ABeeZee } from "next/font/google";
-import { NextAuthProvider } from "@/src/app/provider";
 
 import { Nav } from "@/src/components/Nav";
 import type { Metadata } from "next";
@@ -30,7 +29,6 @@ export default async function RootLayout({
   children: ReactNode;
 }) {
   return (
-    <NextAuthProvider>
       <html lang="en" className="scroll-smooth max-h-svh">
         <body className={`${josefinsans.variable} ${josefinslab.variable}`}>
           <main className="font-main">
@@ -42,6 +40,5 @@ export default async function RootLayout({
           </main>
         </body>
       </html>
-    </NextAuthProvider>
   );
 }

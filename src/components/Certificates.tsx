@@ -10,15 +10,6 @@ import {
   AccordionTrigger,
 } from "@/src/components/ui/accordion";
 
-export type Certificate = {
-  id: string;
-  certTitle: string;
-  certDesc: string;
-  certImageLink: string;
-  courseLink: string;
-  certProfLink: string;
-};
-
 export default async function certificates() {
   const { allCertificates } = await getAllCertificates();
   return (

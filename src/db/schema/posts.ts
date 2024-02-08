@@ -7,26 +7,17 @@ import {
   text,
   timestamp,
 } from "drizzle-orm/pg-core";
-import { users } from "./users";
 
 export const posts = pgTable("post", {
   id: serial("id").primaryKey(),
-  title: text("title").notNull(),
-  content: text("content").notNull(),
+  postTitle: text("postTitle").notNull(),
+  postContent: text("postContent").notNull(),
   slug: text("slug").notNull(),
-  imageLink: text("imageLink").notNull(),
+  postImageLink: text("postImageLink").notNull(),
   published: boolean("published").notNull(),
-  categories: text("categories").array().notNull(),
-  authorId: integer("author_id"),
+  postsCategories: text("postsCategories").array().notNull(),
   createdAt: timestamp("createdAt", { mode: "date" }).defaultNow().notNull(),
 });
-
-export const postsRelations = relations(posts, ({ one }) => ({
-  author: one(users, {
-    fields: [posts.authorId],
-    references: [users.id],
-  }),
-}));
 
 export type Post = InferSelectModel<typeof posts>;
 export type NewPost = InferInsertModel<typeof posts>;

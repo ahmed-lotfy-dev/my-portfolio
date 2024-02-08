@@ -3,18 +3,7 @@ import { ReactNode, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Menu, SidebarClose } from "lucide-react";
-import { useSession } from "next-auth/react";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuTrigger,
-} from "./ui/dropdown-menu";
-import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
-import { Card } from "./ui/card";
-import Image from "next/image";
-import { SignOut } from "./dashboard-components/auth-buttons";
-import { Dialog } from "./ui/dialog";
-import { DialogContent, DialogTrigger } from "@radix-ui/react-dialog";
+import { useKindeBrowserClient } from "@kinde-oss/kinde-auth-nextjs";
 
 const navLinks = [
   { href: "/", label: "Home" },
@@ -27,8 +16,7 @@ const navLinks = [
 
 function Nav() {
   const path = usePathname();
-  const { data: session } = useSession();
-  const user = session?.user;
+  const { user } = useKindeBrowserClient();
   const [isOpened, setIsOpened] = useState(false);
 
   const toggleMenu = () => {

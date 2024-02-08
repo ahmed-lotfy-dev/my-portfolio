@@ -3,10 +3,11 @@ import ProjectList from "@/src/components/dashboard-components/ProjectList";
 import { getAllProjects } from "../../lib/getProjects";
 import Link from "next/link";
 import { Button } from "@/src/components/ui/button";
-import { auth } from "@/src/auth";
+import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 
 export default async function AddProject({}) {
-  const user = await auth();
+  const { getUser } = getKindeServerSession();
+  const user = await getUser();
   const { allProjects } = await getAllProjects();
 
   return (

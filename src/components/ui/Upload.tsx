@@ -1,9 +1,9 @@
 import { ChangeEvent, Dispatch, SetStateAction, useRef, useState } from "react";
 import { Input } from "./input";
-import { useSession } from "next-auth/react";
 import { notify } from "@/src/app/lib/utils/toast";
 import axios, { AxiosRequestConfig } from "axios";
 import { Button } from "./button";
+import { useKindeBrowserClient } from "@kinde-oss/kinde-auth-nextjs";
 
 type UploadProps = {
   setImageUrl: React.Dispatch<React.SetStateAction<string>>;
@@ -11,7 +11,7 @@ type UploadProps = {
 };
 
 function Upload({ setImageUrl, imageType }: UploadProps) {
-  const { data: session } = useSession();
+  const { user } = useKindeBrowserClient();
   const [pending, setPending] = useState(false);
   const fileInputRef = useRef<HTMLInputElement | null>(null);
 

@@ -19,13 +19,12 @@ import {
 
 import { ProjectSchema } from "./lib/schemas/projectSchema";
 import { CertificateSchema } from "./lib/schemas/certificateSchema";
-import { auth, signIn, signOut } from "@/src/auth";
 import { certificates } from "@/src/db/schema/certificates";
 import { posts } from "@/src/db/schema/posts";
 import { projects } from "@/src/db/schema/projects";
 import { eq } from "drizzle-orm";
 import { postSchema } from "./lib/schemas/postSchema";
-import { AuthError } from "next-auth";
+import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 
 const s3Client = new S3Client({
   region: "auto",
@@ -35,20 +34,6 @@ const s3Client = new S3Client({
     secretAccessKey: process.env.CF_SECRET_ACCESS_KEY,
   },
 });
-
-export async function SignInAction() {
-  try {
-    await signIn();
-  } catch (error) {
-    if (error instanceof AuthError)
-      // Handle auth errors
-      throw error; // Rethrow all other errors
-  }
-}
-
-export async function SignOutAction(formData: FormData) {
-  await signOut();
-}
 
 export async function DeleteFromS3(imageLink: string | undefined) {
   if (!imageLink) {
@@ -83,10 +68,9 @@ export async function AddCertificateAction(state: any, data: FormData) {
   const profLink = data.get("profLink") as string;
   const imageLink = data.get("imageLink") as string;
 
-  const session = await auth();
-  const role = session?.user?.role;
-
-  if (role !== "admin") {
+  const { getUser } = getKindeServerSession();
+  const user = await getUser();
+  if (user?.email === process.env.ADMIN_EMAIL) {
     return {
       success: false,
       message: "You Don't Have Privilige To Add Certificate",
@@ -103,7 +87,7 @@ export async function AddCertificateAction(state: any, data: FormData) {
 
   if (result.success) {
     const certificate = await db.insert(certificates).values({
-      title,
+      title: title,
       desc,
       imageLink,
       courseLink,
@@ -127,10 +111,9 @@ export async function EditCertificateAction(state: any, data: FormData) {
 
   const imageLink = data.get("imageLink") as string;
 
-  const session = await auth();
-  const role = session?.user?.role;
-
-  if (role !== "admin") {
+  const { getUser } = getKindeServerSession();
+  const user = await getUser();
+  if (user?.email === process.env.ADMIN_EMAIL) {
     return {
       success: false,
       message: "You Don't Have Privilige To Add Certificate",
@@ -170,10 +153,9 @@ export async function EditCertificateAction(state: any, data: FormData) {
 }
 
 export async function deleteCertificateAction(certificateId: number) {
-  const session = await auth();
-  const role = session?.user?.role;
-
-  if (role !== "admin") {
+  const { getUser } = getKindeServerSession();
+  const user = await getUser();
+  if (user?.email === process.env.ADMIN_EMAIL) {
     return {
       success: false,
       message: "You Don't Have Privilige To Delete Project",
@@ -194,12 +176,12 @@ export async function AddProjectAction(state: any, data: FormData) {
   const repoLink = data.get("repoLink") as string;
   const liveLink = data.get("liveLink") as string;
   const imageLink = data.get("imageLink") as string;
-  const tags = data.get("tags") as any;
+  const categories = data.get("tags") as any;
+  const categoriesArray = categories.slice(",");
 
-  const session = await auth();
-  const role = session?.user?.role;
-
-  if (role !== "admin") {
+  const { getUser } = getKindeServerSession();
+  const user = await getUser();
+  if (user?.email !== process.env.ADMIN_EMAIL) {
     return {
       success: false,
       message: "You Don't Have Privilige To Add Project",
@@ -212,18 +194,22 @@ export async function AddProjectAction(state: any, data: FormData) {
     repoLink,
     liveLink,
     imageLink,
-    tags,
+    categories,
   });
 
   if (result.success) {
-    const project = await db.insert(projects).values({
-      title,
-      desc,
-      repoLink,
-      liveLink,
-      imageLink,
-      categories: tags,
-    });
+    const project = await db
+      .insert(projects)
+      .values({
+        title,
+        desc,
+        repoLink,
+        liveLink,
+        imageLink,
+        categories: [categories.slice(",")],
+      })
+      .returning();
+
     console.log("project added successfully");
     revalidatePath("/dashboard/projects");
     return { success: true, data: result.data };
@@ -242,10 +228,9 @@ export async function EditProjectAction(state: any, data: FormData) {
   const imageLink = data.get("imageLink") as string;
   const tags = data.get("tags") as any;
 
-  const session = await auth();
-  const role = session?.user?.role;
-
-  if (role !== "admin") {
+  const { getUser } = getKindeServerSession();
+  const user = await getUser();
+  if (user?.email === process.env.ADMIN_EMAIL) {
     return {
       success: false,
       message: "You Don't Have Privilige To Add Project",
@@ -286,10 +271,9 @@ export async function EditProjectAction(state: any, data: FormData) {
 }
 
 export async function deleteProjectAction(projectId: number) {
-  const session = await auth();
-  const role = session?.user?.role;
-
-  if (role !== "admin") {
+  const { getUser } = getKindeServerSession();
+  const user = await getUser();
+  if (user?.email === process.env.ADMIN_EMAIL) {
     return {
       success: false,
       message: "You Don't Have Privilige To Delete Project",
@@ -339,10 +323,8 @@ export async function AddNewPost(state: any, data: FormData) {
   const slug = title.split(" ").join("-");
   const categories = tags.split(",");
 
-  const session = await auth();
-  const user = session?.user;
-  const id = user?.role;
-  const role = user?.role;
+  const { getUser } = getKindeServerSession();
+  const user = await getUser();
 
   console.log({
     title,
@@ -351,11 +333,9 @@ export async function AddNewPost(state: any, data: FormData) {
     imageLink,
     tags,
     categories,
-    role,
-    id,
   });
 
-  if (role !== "admin") {
+  if (user?.email === process.env.ADMIN_EMAIL) {
     return {
       success: false,
       message: "You Don't Have Privilige To Add Blog Post",

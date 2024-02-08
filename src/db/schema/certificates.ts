@@ -3,9 +3,9 @@ import { InferInsertModel, InferSelectModel } from "drizzle-orm";
 
 export const certificates = pgTable("certificate", {
   id: serial("id").primaryKey(),
-  title: text("title").notNull(),
-  desc: text("desc").notNull(),
-  imageLink: text("imageLink").notNull(),
+  certTitle: text("certTitle").notNull(),
+  certDesc: text("certDesc").notNull(),
+  certImageLink: text("imageLink").notNull(),
   courseLink: text("courseLink").notNull(),
   profLink: text("profLink").notNull(),
   createdAt: timestamp("createdAt", { mode: "date" }).defaultNow().notNull(),

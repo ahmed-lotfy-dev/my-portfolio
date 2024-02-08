@@ -3,12 +3,12 @@ import { timestamp, pgTable, text, serial } from "drizzle-orm/pg-core";
 
 export const projects = pgTable("project", {
   id: serial("id").primaryKey(),
-  title: text("title").notNull(),
-  desc: text("title").notNull(),
+  projTitle: text("projTitle").notNull(),
+  projDesc: text("projDesc").notNull(),
   repoLink: text("repoLink").notNull(),
   liveLink: text("liveLink").notNull(),
-  imageLink: text("imageLink").notNull(),
-  categories: text("categories").array().notNull(),
+  projImageLink: text("projImageLink").notNull(),
+  projCategories: text("projCategories").array().notNull(),
   createdAt: timestamp("createdAt", { mode: "date" }).defaultNow().notNull(),
 });
 

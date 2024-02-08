@@ -1,12 +1,13 @@
-import { auth } from "@/src/auth";
 import { NotAuthenticated } from "@/src/components/dashboard-components/NotAuthenticated";
 import { CertificateList } from "@/src/components/dashboard-components/CertificatesList";
 import { getAllCertificates } from "@/src/app/lib/getCertificates";
 import Link from "next/link";
 import { Button } from "@/src/components/ui/button";
+import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 
 export default async function AddProject({}) {
-  const user = await auth();
+  const { getUser } = getKindeServerSession();
+  const user = await getUser();
   const { allCertificates } = await getAllCertificates();
 
   return (

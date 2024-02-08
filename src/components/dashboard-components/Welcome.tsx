@@ -1,9 +1,9 @@
-import { auth } from "@/src/auth";
+import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import { NotAuthenticated } from "./NotAuthenticated";
 
 export default async function Welcome() {
-  const session = await auth();
-  const user = session?.user;
+  const { getUser } = getKindeServerSession();
+  const user = await getUser();
 
   return (
     <div className="w-full">
@@ -11,10 +11,9 @@ export default async function Welcome() {
       {user && (
         <div className="w-full flex justify-between items-start flex-col pl-10">
           <h2 className="mb-6">
-            Welcome {user?.name?.split(" ")[0]} {user?.name?.split(" ")[1]} to
-            the dashboard.
+            Welcome {user?.given_name} {user?.family_name} to the dashboard.
           </h2>
-          {user.role === "admin" ? (
+          {user.email === process.env.ADMIN_EMAIL ? (
             <p>You are admin, welcome!</p>
           ) : (
             <p>

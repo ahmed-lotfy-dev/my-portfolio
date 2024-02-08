@@ -4,7 +4,6 @@ import {
   AvatarImage,
 } from "@/src/components/ui/avatar";
 import { Button } from "@/src/components/ui/button";
-import { auth } from "@/src/auth";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -13,24 +12,28 @@ import {
   DropdownMenuTrigger,
 } from "@/src/components/ui/dropdown-menu";
 import {
-  SignIn,
-  SignOut,
-} from "@/src/components/dashboard-components/auth-componets";
+  LogoutLink,
+  RegisterLink,
+} from "@kinde-oss/kinde-auth-nextjs/components";
+import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
+import { LoginLink } from "@kinde-oss/kinde-auth-nextjs/components";
 
 export default async function UserButton() {
-  const session = await auth();
-  return session ? (
+  const { getUser } = getKindeServerSession();
+  const user = await getUser();
+
+  return user ? (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Button variant="ghost" className="relative w-8 h-8 rounded-full">
           <Avatar className="w-8 h-8">
-            {session.user.image && (
+            {user.picture && (
               <AvatarImage
-                src={session.user?.image}
-                alt={session.user?.name ?? ""}
+                src={user?.picture}
+                alt={`${user?.given_name} ${user?.family_name}` ?? ``}
               />
             )}
-            <AvatarFallback>{session.user?.email}</AvatarFallback>
+            <AvatarFallback>{user?.email}</AvatarFallback>
           </Avatar>
         </Button>
       </DropdownMenuTrigger>
@@ -38,19 +41,23 @@ export default async function UserButton() {
         <DropdownMenuLabel className="font-normal">
           <div className="flex flex-col space-y-1">
             <p className="text-sm font-medium leading-none">
-              {session.user?.name}
+              {" "}
+              {user?.given_name} {user?.family_name}
             </p>
             <p className="text-xs leading-none text-muted-foreground">
-              {session.user?.email}
+              {user?.email}
             </p>
           </div>
         </DropdownMenuLabel>
         <DropdownMenuItem>
-          <SignOut />
+          <LogoutLink>Log out</LogoutLink>
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
   ) : (
-    <SignIn />
+    <>
+      <LoginLink>Sign in</LoginLink>
+      <RegisterLink>Sign up</RegisterLink>
+    </>
   );
 }

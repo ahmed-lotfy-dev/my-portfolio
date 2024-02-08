@@ -14,7 +14,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/src/components/ui/select";
-import { useSession } from "next-auth/react";
+import { useKindeBrowserClient } from "@kinde-oss/kinde-auth-nextjs";
 import { Upload } from "@/src/components/ui/Upload";
 import Image from "next/image";
 import { redirect } from "next/navigation";
@@ -29,8 +29,8 @@ export default function AddPost() {
     notify(state?.message!, true);
     redirect("/blogs");
   }
-  const { data: session } = useSession();
-  const role = session?.user?.role;
+  const { user } = useKindeBrowserClient();
+
   return (
     <div className="w-full h-svh flex flex-col justify-start items-center text-center mt-10 gap-5">
       <h2 className="mb-3">Add New Post</h2>
@@ -86,7 +86,7 @@ export default function AddPost() {
           btnText={"Add Post"}
           className="w-2/3 mt-6"
           onClick={() => {
-            if (role !== "admin") {
+            if (user?.email !== process.env.NEXT_PUBLIC_ADMIN_EMAIL) {
               notify("You don't have privilige to do this", false);
             } else {
               notify("Blog Post Completed Successfully", true);

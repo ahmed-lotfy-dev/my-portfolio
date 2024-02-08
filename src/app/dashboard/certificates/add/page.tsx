@@ -7,7 +7,6 @@ import { AddCertificateAction } from "@/src/app/actions";
 
 import { notify } from "@/src/app/lib/utils/toast";
 
-import { useSession } from "next-auth/react";
 import { useFormState } from "react-dom";
 import Submit from "@/src/components/ui/formSubmitBtn";
 
@@ -15,14 +14,14 @@ import { Upload } from "@/src/components/ui/Upload";
 import { Button } from "@/src/components/ui/button";
 import { ArrowLeft } from "lucide-react";
 import { useRouter } from "next/navigation";
+import { useKindeBrowserClient } from "@kinde-oss/kinde-auth-nextjs";
 
 export default function AddCertificateComponent() {
   const [state, formAction] = useFormState(AddCertificateAction, null);
   const [imageUrl, setImageUrl] = useState("");
   const formRef = useRef<HTMLFormElement>(null);
-  const { data: session } = useSession();
-  const role = session?.user?.role;
   const router = useRouter();
+  const { user } = useKindeBrowserClient();
 
   return (
     <div className="flex flex-col justify-center items-center w-full relative">
@@ -94,7 +93,7 @@ export default function AddCertificateComponent() {
             btnText="Add Certificate"
             type="submit"
             onClick={() => {
-              if (role !== "admin") {
+              if (user?.email !== process.env.NEXT_PUBLIC_ADMIN_EMAIL) {
                 notify("sorry you don't have admin priviliges", false);
               } else {
                 notify("Adding Completed Successfully", true);

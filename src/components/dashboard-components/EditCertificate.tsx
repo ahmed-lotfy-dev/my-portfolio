@@ -6,7 +6,6 @@ import { EditCertificateAction } from "@/src/app/actions";
 import Image from "next/image";
 import { notify } from "@/src/app/lib/utils/toast";
 
-import { useSession } from "next-auth/react";
 import { useFormState } from "react-dom";
 
 import Submit from "@/src/components/ui/formSubmitBtn";
@@ -19,6 +18,7 @@ import {
 import { Upload } from "../ui/Upload";
 import { Textarea } from "../ui/textarea";
 import { Pencil } from "lucide-react";
+import { useKindeBrowserClient } from "@kinde-oss/kinde-auth-nextjs";
 
 function EditCertificate({ EditedObject }: any) {
   const { id } = EditedObject;
@@ -27,8 +27,7 @@ function EditCertificate({ EditedObject }: any) {
   const [imageUrl, setImageUrl] = useState("");
 
   const formRef = useRef<HTMLFormElement>(null);
-  const { data: session } = useSession();
-  const role = session?.user?.role;
+  const { user } = useKindeBrowserClient();
 
   const InputHandler = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -124,7 +123,7 @@ function EditCertificate({ EditedObject }: any) {
                 className="m-10"
                 type="submit"
                 onClick={() => {
-                  if (role !== "admin") {
+                  if (user?.email!== process.env.ADMIN_EMAIL) {
                     notify("Sorry, you don't have admin privileges", false);
                   } else {
                     notify("Adding Completed Successfully", true);

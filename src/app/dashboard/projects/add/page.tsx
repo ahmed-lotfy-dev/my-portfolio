@@ -8,8 +8,6 @@ import { AddProjectAction } from "@/src/app/actions";
 
 import { notify } from "@/src/app/lib/utils/toast";
 
-import { useSession } from "next-auth/react";
-
 import { TagsInput } from "react-tag-input-component";
 
 import { Textarea } from "@/src/components/ui/textarea";
@@ -19,16 +17,16 @@ import { Upload } from "@/src/components/ui/Upload";
 import { ArrowLeft } from "lucide-react";
 import { Button } from "@/src/components/ui/button";
 import { useRouter } from "next/navigation";
+import { useKindeBrowserClient } from "@kinde-oss/kinde-auth-nextjs";
 
 export default function AddProjectComponent() {
   const [state, formAction] = useFormState(AddProjectAction, null);
   const [selected, setSelected] = useState<string[]>(["featured"]);
   const [imageUrl, setImageUrl] = useState("");
   const formRef = useRef<HTMLFormElement>(null);
-  const { data: session } = useSession();
-  const role = session?.user?.role;
   const router = useRouter();
-  console.log(session?.user);
+  const { user } = useKindeBrowserClient();
+
   return (
     <div className="flex flex-col justify-center items-center w-full relative">
       <div className="pt-10 left-5 top-5 absolute">
@@ -108,7 +106,7 @@ export default function AddProjectComponent() {
             btnText="Add Project"
             type="submit"
             onClick={() => {
-              if (role !== "admin") {
+              if (user?.email !== process.env.NEXT_PUBLIC_ADMIN_EMAIL) {
                 notify("You don't have privilige to do this", false);
               } else {
                 notify("Blog Post Completed Successfully", true);
