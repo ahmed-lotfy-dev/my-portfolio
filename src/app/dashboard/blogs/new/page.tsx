@@ -25,13 +25,12 @@ export default function AddPost() {
   const [selected, setSelected] = useState(["frontend"]);
   const [imageUrl, setImageUrl] = useState("");
 
-  // if (state?.success) {
-  //   notify(state?.message!, true);
-  //   redirect("/blogs");
-  // }
-  const { data: session, status } = useSession();
-  const user = session?.user;
-
+  if (state?.success) {
+    notify(state?.message!, true);
+    redirect("/blogs");
+  }
+  const { data: session } = useSession();
+  const role = session?.user?.role;
   return (
     <div className="w-full h-svh flex flex-col justify-start items-center text-center mt-10 gap-5">
       <h2 className="mb-3">Add New Post</h2>
@@ -86,13 +85,13 @@ export default function AddPost() {
         <Submit
           btnText={"Add Post"}
           className="w-2/3 mt-6"
-          // onClick={() => {
-          //   if (user.role !== "ADMIN") {
-          //     notify("You don't have privilige to do this", false);
-          //   } else {
-          //     notify("Blog Post Completed Successfully", true);
-          //   }
-          // }}
+          onClick={() => {
+            if (role !== "admin") {
+              notify("You don't have privilige to do this", false);
+            } else {
+              notify("Blog Post Completed Successfully", true);
+            }
+          }}
         />
       </form>
     </div>

@@ -15,8 +15,8 @@ export default async function PostsList() {
               <Card className="p-10" key={post.id}>
                 <h2 className="">Tite : {post.title}</h2>
                 <p className="">Content : {post.content}</p>
-                <h3 className="">Author : {post.author}</h3>
-                <Button className="mt-5 w-1/3" variant={"secondary"}>
+                <h3 className="">Author : {post.authorId}</h3>
+                <Button className="mt-5 w-1/3" >
                   <Link href={`/blogs/${post.title}`}>read more</Link>
                 </Button>
               </Card>

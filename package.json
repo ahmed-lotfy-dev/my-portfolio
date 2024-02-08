@@ -9,11 +9,12 @@
     "lint": "next lint",
     "migrate:generate": "drizzle-kit generate:pg",
     "migrate:push": "drizzle-kit push:pg",
+    "migrate:introspect": "drizzle-kit introspect:pg",
     "migrate": "drizzle-kit generate:pg && drizzle-kit push:pg"
   },
   "dependencies": {
     "@auth/core": "^0.26.2",
-    "@auth/drizzle-adapter": "^0.6.2",
+    "@auth/drizzle-adapter": "^0.6.3",
     "@aws-sdk/client-s3": "^3.507.0",
     "@aws-sdk/s3-request-presigner": "^3.507.0",
     "@aws-sdk/signature-v4-crt": "^3.502.0",

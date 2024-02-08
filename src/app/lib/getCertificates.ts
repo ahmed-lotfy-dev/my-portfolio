@@ -1,4 +1,6 @@
-import { db } from "@/src/app/lib/db";
+import { db } from "@/src/db";
+import { eq } from "drizzle-orm";
+import { certificates } from "@/src/db/schema/certificates";
 
 async function getAllCertificates() {
   try {
@@ -12,7 +14,7 @@ async function getAllCertificates() {
 async function getSingleCertificate(certificateTitle: string) {
   try {
     const certificate = await db.query.certificates.findFirst({
-      with: { title: certificateTitle },
+      where: eq(certificates, certificateTitle),
     });
     return { sucess: true, message: "Certificate Found", certificate };
   } catch (error) {

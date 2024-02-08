@@ -1,5 +1,5 @@
-import { projects } from "@/src/db/schema";
-import { db } from "@/src/app/lib/db";
+import { projects } from "@/src/db/schema/projects";
+import { db } from "@/src/db";
 import { eq } from "drizzle-orm";
 
 async function getAllProjects() {
@@ -15,7 +15,7 @@ async function getAllProjects() {
 async function getSingleProject(projectTitle: string) {
   try {
     const singleProject = await db.query.projects.findFirst({
-      with: { title: projectTitle },
+      where: eq(projects.title, projectTitle),
     });
     return { sucess: true, message: "Project Found", singleProject };
   } catch (error) {

@@ -35,7 +35,6 @@ async function uploadFileToS3(
     throw error;
   }
 }
-
 export async function POST(request: Request): Promise<Response> {
   const formData = await request.formData();
   const file = formData.get("file") as File;
@@ -43,30 +42,29 @@ export async function POST(request: Request): Promise<Response> {
   const fileData = await file.arrayBuffer();
   const buffer = Buffer.from(fileData);
 
-  const user = await auth();
-  // const role = user?.role;
+  const session = await auth();
+  const user = session?.user;
 
-  // if (user) console.log(role);
-  // if (role === "ADMIN") {
-  const uploaded = await uploadFileToS3(
-    buffer,
-    file.name,
-    file.type,
-    imageType
-  );
-  return new Response(
-    JSON.stringify({
-      success: true,
-      message: "File uploaded successfully",
-      imageLink: `${process.env.CF_IMAGES_SUBDOMAIN}/${imageType}-${file.name}`,
-    })
-  );
-  // } else {
-  return new Response(
-    JSON.stringify({
-      success: false,
-      message: "File upload failed you don't have enough priviliges",
-    })
-  );
+  if (user?.role === "admin") {
+    const uploaded = await uploadFileToS3(
+      buffer,
+      file.name,
+      file.type,
+      imageType
+    );
+    return new Response(
+      JSON.stringify({
+        success: true,
+        message: "File uploaded successfully",
+        imageLink: `${process.env.CF_IMAGES_SUBDOMAIN}/${imageType}-${file.name}`,
+      })
+    );
+  } else {
+    return new Response(
+      JSON.stringify({
+        success: false,
+        message: "File upload failed you don't have enough priviliges",
+      })
+    );
+  }
 }
-// }

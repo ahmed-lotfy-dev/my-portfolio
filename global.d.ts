@@ -17,6 +17,7 @@ declare global {
       AUTH_SECRET: string;
       SECRET: string;
       GOOGLE_CLIENT_ID: string;
+      GOOGLE_CLIENT_SECRET: string;
       GITHUB_CLIENT_ID: string;
       GITHUB_CLIENT_SECRET: string;
       SENDGRID_API_KEY: string;

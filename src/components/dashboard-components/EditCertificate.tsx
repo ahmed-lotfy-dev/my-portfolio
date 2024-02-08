@@ -115,6 +115,7 @@ function EditCertificate({ EditedObject }: any) {
                 alt="Certificate Image"
               />
             )}
+            <Input type="hidden" name="id" value={editedCert.id} />
             <Input type="hidden" name="imageLink" value={imageUrl} />
 
             <DialogClose>
@@ -123,7 +124,7 @@ function EditCertificate({ EditedObject }: any) {
                 className="m-10"
                 type="submit"
                 onClick={() => {
-                  if (role !== "ADMIN") {
+                  if (role !== "admin") {
                     notify("Sorry, you don't have admin privileges", false);
                   } else {
                     notify("Adding Completed Successfully", true);

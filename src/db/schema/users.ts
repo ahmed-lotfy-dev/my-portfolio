@@ -4,19 +4,18 @@ import {
   text,
   primaryKey,
   integer,
-  boolean,
-  date,
-  serial,
 } from "drizzle-orm/pg-core";
 import type { AdapterAccount } from "@auth/core/adapters";
-import { relations } from "drizzle-orm";
+import { InferSelectModel, relations } from "drizzle-orm";
+import { posts } from "./posts";
 
 export const users = pgTable("user", {
   id: text("id").notNull().primaryKey(),
   name: text("name"),
   email: text("email").notNull(),
   emailVerified: timestamp("emailVerified", { mode: "date" }),
-  image: text("image"),
+  image: text("image").notNull(),
+  role: text("role").notNull().default("user"),
 });
 
 export const usersRelations = relations(users, ({ many }) => ({
@@ -67,45 +66,4 @@ export const verificationTokens = pgTable(
   })
 );
 
-export const certificates = pgTable("certificate", {
-  id: serial("id").primaryKey(),
-  title: text("title").notNull(),
-  desc: text("desc").notNull(),
-  imageLink: text("imageLink").notNull(),
-  courseLink: text("courseLink").notNull(),
-  profLink: text("profLink").notNull(),
-  createdAt: timestamp("createdAt").defaultNow().notNull(),
-  updatedAt: timestamp("updatedAt").defaultNow().notNull(),
-});
-
-export const projects = pgTable("project", {
-  id: serial("id").primaryKey(),
-  title: text("title").notNull(),
-  desc: text("title").notNull(),
-  repoLink: text("repoLink").notNull(),
-  liveLink: text("liveLink").notNull(),
-  imageLink: text("imageLink").notNull(),
-  categories: text("categories").array().notNull(),
-  createdAt: timestamp("createdAt").defaultNow().notNull(),
-  updatedAt: timestamp("updatedAt").defaultNow().notNull(),
-});
-
-export const posts = pgTable("post", {
-  id: serial("id").primaryKey(),
-  title: text("title").notNull(),
-  content: text("content").notNull(),
-  slug: text("slug").notNull(),
-  imageLink: text("imageLink").notNull(),
-  published: boolean("published").notNull(),
-  categories: text("categories").array().notNull(),
-  authorId: integer("author_id"),
-  createdAt: timestamp("createdAt").defaultNow().notNull(),
-  updatedAt: timestamp("updatedAt").defaultNow().notNull(),
-});
-
-export const postsRelations = relations(posts, ({ one }) => ({
-  author: one(users, {
-    fields: [posts.authorId],
-    references: [users.id],
-  }),
-}));
+export type User = InferSelectModel<typeof users>;

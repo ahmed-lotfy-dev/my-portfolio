@@ -1,7 +1,7 @@
 import { Button } from "@/src/components/ui/button";
 import { SignInAction, SignOutAction } from "@/src/app/actions";
 
-export function SignIn({
+export async function SignIn({
   provider,
   ...props
 }: { provider?: string } & React.ComponentPropsWithRef<typeof Button>) {

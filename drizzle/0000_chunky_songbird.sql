@@ -1,3 +1,35 @@
+CREATE TABLE IF NOT EXISTS "certificate" (
+	"id" serial PRIMARY KEY NOT NULL,
+	"title" text NOT NULL,
+	"desc" text NOT NULL,
+	"imageLink" text NOT NULL,
+	"courseLink" text NOT NULL,
+	"profLink" text NOT NULL,
+	"createdAt" timestamp DEFAULT now() NOT NULL
+);
+--> statement-breakpoint
+CREATE TABLE IF NOT EXISTS "post" (
+	"id" serial PRIMARY KEY NOT NULL,
+	"title" text NOT NULL,
+	"content" text NOT NULL,
+	"slug" text NOT NULL,
+	"imageLink" text NOT NULL,
+	"published" boolean NOT NULL,
+	"categories" text[] NOT NULL,
+	"author_id" integer,
+	"createdAt" timestamp DEFAULT now() NOT NULL
+);
+--> statement-breakpoint
+CREATE TABLE IF NOT EXISTS "project" (
+	"id" serial PRIMARY KEY NOT NULL,
+	"title" text NOT NULL,
+	"repoLink" text NOT NULL,
+	"liveLink" text NOT NULL,
+	"imageLink" text NOT NULL,
+	"categories" text[] NOT NULL,
+	"createdAt" timestamp DEFAULT now() NOT NULL
+);
+--> statement-breakpoint
 CREATE TABLE IF NOT EXISTS "account" (
 	"userId" text NOT NULL,
 	"type" text NOT NULL,
@@ -13,41 +45,6 @@ CREATE TABLE IF NOT EXISTS "account" (
 	CONSTRAINT "account_provider_providerAccountId_pk" PRIMARY KEY("provider","providerAccountId")
 );
 --> statement-breakpoint
-CREATE TABLE IF NOT EXISTS "certificate" (
-	"id" serial PRIMARY KEY NOT NULL,
-	"title" text NOT NULL,
-	"desc" text NOT NULL,
-	"imageLink" text NOT NULL,
-	"courseLink" text NOT NULL,
-	"profLink" text NOT NULL,
-	"createdAt" timestamp DEFAULT now() NOT NULL,
-	"updatedAt" timestamp DEFAULT now() NOT NULL
-);
---> statement-breakpoint
-CREATE TABLE IF NOT EXISTS "post" (
-	"id" serial PRIMARY KEY NOT NULL,
-	"title" text NOT NULL,
-	"content" text NOT NULL,
-	"slug" text NOT NULL,
-	"imageLink" text NOT NULL,
-	"published" boolean NOT NULL,
-	"categories" text[] NOT NULL,
-	"author_id" integer,
-	"createdAt" timestamp DEFAULT now() NOT NULL,
-	"updatedAt" timestamp DEFAULT now() NOT NULL
-);
---> statement-breakpoint
-CREATE TABLE IF NOT EXISTS "project" (
-	"id" serial PRIMARY KEY NOT NULL,
-	"title" text NOT NULL,
-	"repoLink" text NOT NULL,
-	"liveLink" text NOT NULL,
-	"imageLink" text NOT NULL,
-	"categories" text[] NOT NULL,
-	"createdAt" timestamp DEFAULT now() NOT NULL,
-	"updatedAt" timestamp DEFAULT now() NOT NULL
-);
---> statement-breakpoint
 CREATE TABLE IF NOT EXISTS "session" (
 	"sessionToken" text PRIMARY KEY NOT NULL,
 	"userId" text NOT NULL,
@@ -59,7 +56,8 @@ CREATE TABLE IF NOT EXISTS "user" (
 	"name" text,
 	"email" text NOT NULL,
 	"emailVerified" timestamp,
-	"image" text
+	"image" text NOT NULL,
+	"role" text DEFAULT 'user' NOT NULL
 );
 --> statement-breakpoint
 CREATE TABLE IF NOT EXISTS "verificationToken" (

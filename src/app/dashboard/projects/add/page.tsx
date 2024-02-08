@@ -28,8 +28,7 @@ export default function AddProjectComponent() {
   const { data: session } = useSession();
   const role = session?.user?.role;
   const router = useRouter();
-  console.log(role);
-  
+  console.log(session?.user);
   return (
     <div className="flex flex-col justify-center items-center w-full relative">
       <div className="pt-10 left-5 top-5 absolute">
@@ -108,13 +107,13 @@ export default function AddProjectComponent() {
           <Submit
             btnText="Add Project"
             type="submit"
-            // onClick={() => {
-            //   if (role !== "ADMIN") {
-            //     notify("You don't have privilige to do this", false);
-            //   } else {
-            //     notify("Blog Post Completed Successfully", true);
-            //   }
-            // }}
+            onClick={() => {
+              if (role !== "admin") {
+                notify("You don't have privilige to do this", false);
+              } else {
+                notify("Blog Post Completed Successfully", true);
+              }
+            }}
           />
         </form>
       </div>

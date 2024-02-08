@@ -34,7 +34,7 @@ function AddProjectComponent() {
   const formRef = useRef<HTMLFormElement>(null);
   const { data: session } = useSession();
   const role = session?.user?.role;
-
+  console.log(session);
   return (
     <div className="flex flex-col justify-center items-center">
       <div className="flex w-full min-h-full justify-center items-start mt-6">
@@ -115,7 +115,7 @@ function AddProjectComponent() {
                   btnText="Add Project"
                   type="submit"
                   onClick={() => {
-                    if (role !== "ADMIN") {
+                    if (role !== "admin") {
                       notify("Sorry, you don't have admin privileges", false);
                     } else {
                       notify("Adding Completed Successfully", true);

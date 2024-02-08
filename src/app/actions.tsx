@@ -1,6 +1,6 @@
 "use server";
 import { revalidatePath } from "next/cache";
-import { db } from "@/src/app/lib/db";
+import { db } from "@/src/db";
 
 import sgMail from "@sendgrid/mail";
 sgMail.setApiKey(process.env.SENDGRID_API_KEY);
@@ -20,11 +20,12 @@ import {
 import { ProjectSchema } from "./lib/schemas/projectSchema";
 import { CertificateSchema } from "./lib/schemas/certificateSchema";
 import { auth, signIn, signOut } from "@/src/auth";
-import { certificates, posts, projects } from "@/src/db/schema";
+import { certificates } from "@/src/db/schema/certificates";
+import { posts } from "@/src/db/schema/posts";
+import { projects } from "@/src/db/schema/projects";
 import { eq } from "drizzle-orm";
 import { postSchema } from "./lib/schemas/postSchema";
 import { AuthError } from "next-auth";
-import { uuid } from "drizzle-orm/pg-core";
 
 const s3Client = new S3Client({
   region: "auto",
@@ -82,15 +83,15 @@ export async function AddCertificateAction(state: any, data: FormData) {
   const profLink = data.get("profLink") as string;
   const imageLink = data.get("imageLink") as string;
 
-  const user = await auth();
-  // const role = user?.role;
+  const session = await auth();
+  const role = session?.user?.role;
 
-  // if (role !== "ADMIN") {
-  // return {
-  //   success: false,
-  //   message: "You Don't Have Privilige To Add Certificate",
-  // };
-  // }
+  if (role !== "admin") {
+    return {
+      success: false,
+      message: "You Don't Have Privilige To Add Certificate",
+    };
+  }
 
   const result = CertificateSchema.safeParse({
     title,
@@ -107,8 +108,6 @@ export async function AddCertificateAction(state: any, data: FormData) {
       imageLink,
       courseLink,
       profLink,
-      createdAt: new Date(),
-      updatedAt: new Date(),
     });
     console.log("certificate added successfully");
     revalidatePath("/dashboard/certificates");
@@ -120,7 +119,7 @@ export async function AddCertificateAction(state: any, data: FormData) {
 }
 
 export async function EditCertificateAction(state: any, data: FormData) {
-  const id = data.get("id") as string;
+  const certificateId = data.get("id") as unknown as number;
   const title = data.get("title") as string;
   const desc = data.get("desc") as string;
   const courseLink = data.get("courseLink") as string;
@@ -128,15 +127,15 @@ export async function EditCertificateAction(state: any, data: FormData) {
 
   const imageLink = data.get("imageLink") as string;
 
-  // const user = await auth();
-  // const role = user?.role;
+  const session = await auth();
+  const role = session?.user?.role;
 
-  // if (role !== "ADMIN") {
-  //   return {
-  //     success: false,
-  //     message: "You Don't Have Privilige To Add Certificate",
-  //   };
-  // }
+  if (role !== "admin") {
+    return {
+      success: false,
+      message: "You Don't Have Privilige To Add Certificate",
+    };
+  }
 
   const result = CertificateSchema.safeParse({
     title,
@@ -147,7 +146,7 @@ export async function EditCertificateAction(state: any, data: FormData) {
   });
   if (result.success) {
     const oldCertificate = await db.query.certificates.findFirst({
-      with: { id: id },
+      where: eq(certificates.id, certificateId),
     });
     const updatedCertificate = await db
       .update(certificates)
@@ -171,13 +170,15 @@ export async function EditCertificateAction(state: any, data: FormData) {
 }
 
 export async function deleteCertificateAction(certificateId: number) {
-  // const user = await auth();
-  // const role = user?.role;
-  // if (role !== "ADMIN")
-  //   return {
-  //     success: false,
-  //     message: "You Don't Have Privilige To Delete Project",
-  //   };
+  const session = await auth();
+  const role = session?.user?.role;
+
+  if (role !== "admin") {
+    return {
+      success: false,
+      message: "You Don't Have Privilige To Delete Project",
+    };
+  }
   const deletCertificate = await db
     .delete(certificates)
     .where(eq(certificates.id, certificateId))
@@ -195,15 +196,15 @@ export async function AddProjectAction(state: any, data: FormData) {
   const imageLink = data.get("imageLink") as string;
   const tags = data.get("tags") as any;
 
-  // const user = await auth();
-  // const role = user?.role;
+  const session = await auth();
+  const role = session?.user?.role;
 
-  // if (role !== "ADMIN") {
-  //   return {
-  //     success: false,
-  //     message: "You Don't Have Privilige To Add Project",
-  //   };
-  // }
+  if (role !== "admin") {
+    return {
+      success: false,
+      message: "You Don't Have Privilige To Add Project",
+    };
+  }
 
   const result = ProjectSchema.safeParse({
     title,
@@ -222,8 +223,6 @@ export async function AddProjectAction(state: any, data: FormData) {
       liveLink,
       imageLink,
       categories: tags,
-      createdAt: new Date(),
-      updatedAt: new Date(),
     });
     console.log("project added successfully");
     revalidatePath("/dashboard/projects");
@@ -235,7 +234,7 @@ export async function AddProjectAction(state: any, data: FormData) {
 }
 
 export async function EditProjectAction(state: any, data: FormData) {
-  const id = data.get("id") as string;
+  const projectId = data.get("id") as unknown as number;
   const title = data.get("title") as string;
   const desc = data.get("desc") as string;
   const repoLink = data.get("repoLink") as string;
@@ -243,15 +242,15 @@ export async function EditProjectAction(state: any, data: FormData) {
   const imageLink = data.get("imageLink") as string;
   const tags = data.get("tags") as any;
 
-  // const user = await auth();
-  // const role = user?.role;
+  const session = await auth();
+  const role = session?.user?.role;
 
-  // if (role !== "ADMIN") {
-  //   return {
-  //     success: false,
-  //     message: "You Don't Have Privilige To Add Project",
-  //   };
-  // }
+  if (role !== "admin") {
+    return {
+      success: false,
+      message: "You Don't Have Privilige To Add Project",
+    };
+  }
 
   const result = ProjectSchema.safeParse({
     title,
@@ -262,7 +261,9 @@ export async function EditProjectAction(state: any, data: FormData) {
     tags,
   });
   if (result.success) {
-    const oldProject = await db.query.projects.findFirst({ with: { id: id } });
+    const oldProject = await db.query.projects.findFirst({
+      where: eq(projects.id, projectId),
+    });
     if (oldProject?.imageLink !== imageLink) {
       console.log("New Image");
       DeleteFromS3(oldProject?.imageLink);
@@ -274,8 +275,6 @@ export async function EditProjectAction(state: any, data: FormData) {
       liveLink,
       imageLink,
       categories: tags,
-      createdAt: new Date(),
-      updatedAt: new Date(),
     });
     console.log("project updated successfully");
     revalidatePath("/dashboard/projects");
@@ -287,14 +286,15 @@ export async function EditProjectAction(state: any, data: FormData) {
 }
 
 export async function deleteProjectAction(projectId: number) {
-  // const user = await auth();
-  // const role = user?.role;
+  const session = await auth();
+  const role = session?.user?.role;
 
-  // if (role !== "ADMIN")
-  //   return {
-  //     success: false,
-  //     message: "You Don't Have Privilige To Delete Project",
-  //   };
+  if (role !== "admin") {
+    return {
+      success: false,
+      message: "You Don't Have Privilige To Delete Project",
+    };
+  }
   const deleteProjct = await db
     .delete(certificates)
     .where(eq(certificates.id, projectId))
@@ -330,7 +330,6 @@ export async function contactAction(state: any, formData: FormData) {
 }
 
 export async function AddNewPost(state: any, data: FormData) {
-  const user = await auth();
   const title = data.get("title") as string;
   const content = data.get("content") as string;
   const published = data.get("published");
@@ -340,15 +339,28 @@ export async function AddNewPost(state: any, data: FormData) {
   const slug = title.split(" ").join("-");
   const categories = tags.split(",");
 
-  // const id = user?.id;
-  // const role = user?.role;
+  const session = await auth();
+  const user = session?.user;
+  const id = user?.role;
+  const role = user?.role;
 
-  // if (role !== "ADMIN") {
-  //   return {
-  //     success: false,
-  //     message: "You Don't Have Privilige To Add Blog Post",
-  //   };
-  // }
+  console.log({
+    title,
+    content,
+    published,
+    imageLink,
+    tags,
+    categories,
+    role,
+    id,
+  });
+
+  if (role !== "admin") {
+    return {
+      success: false,
+      message: "You Don't Have Privilige To Add Blog Post",
+    };
+  }
   console.log({ title, content, slug, isPublished, imageLink, categories });
   const result = postSchema.safeParse({
     title,
@@ -367,13 +379,8 @@ export async function AddNewPost(state: any, data: FormData) {
       published: isPublished,
       imageLink,
       categories: tags,
-      author: "Ahmed Lotfy",
-      createdAt: new Date(),
-      updatedAt: new Date(),
+      authorId: Number(user?.id),
     });
-
-    console.log(newPost);
-    console.log(result);
 
     console.log("Post added successfully");
     revalidatePath("/blogs/");

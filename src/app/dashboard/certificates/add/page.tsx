@@ -21,7 +21,7 @@ export default function AddCertificateComponent() {
   const [imageUrl, setImageUrl] = useState("");
   const formRef = useRef<HTMLFormElement>(null);
   const { data: session } = useSession();
-  const user = session?.user;
+  const role = session?.user?.role;
   const router = useRouter();
 
   return (
@@ -93,13 +93,13 @@ export default function AddCertificateComponent() {
           <Submit
             btnText="Add Certificate"
             type="submit"
-            // onClick={() => {
-            //   if (user.role !== "ADMIN") {
-            //     notify("sorry you don't have admin priviliges", false);
-            //   } else {
-            //     notify("Adding Completed Successfully", true);
-            //   }
-            // }}
+            onClick={() => {
+              if (role !== "admin") {
+                notify("sorry you don't have admin priviliges", false);
+              } else {
+                notify("Adding Completed Successfully", true);
+              }
+            }}
           />
         </form>
       </div>

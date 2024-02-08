@@ -1,5 +1,5 @@
-import { posts } from "@/src/db/schema";
-import { db } from "@/src/app/lib/db";
+import { posts } from "@/src/db/schema/posts";
+import { db } from "@/src/db";
 import { eq } from "drizzle-orm";
 
 async function getAllPosts() {
@@ -13,7 +13,7 @@ async function getAllPosts() {
 
 async function getSinglePosts(postTitle: string) {
   const singlePost = await db.query.posts.findFirst({
-    with: { title: postTitle },
+    where: eq(posts.title, postTitle),
   });
 
   return { success: true, message: "Single Blog Post Found", singlePost };

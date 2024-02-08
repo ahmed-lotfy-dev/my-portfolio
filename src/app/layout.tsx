@@ -8,6 +8,7 @@ import { Nav } from "@/src/components/Nav";
 import type { Metadata } from "next";
 import { Toaster } from "@/src/components/ui/sonner";
 import { ReactNode } from "react";
+import UserButton from "../components/dashboard-components/UserButton";
 
 const josefinsans = Josefin_Sans({
   subsets: ["latin"],
@@ -34,6 +35,7 @@ export default async function RootLayout({
         <body className={`${josefinsans.variable} ${josefinslab.variable}`}>
           <main className="font-main">
             <Nav />
+            <UserButton/>
             {children}
             <GoogleAnalytics gaId={process.env.GA_ID} />
             <Toaster />
