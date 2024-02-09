@@ -33,7 +33,6 @@ export default async function RootLayout({
         <body className={`${josefinsans.variable} ${josefinslab.variable}`}>
           <main className="font-main">
             <Nav />
-            <UserButton/>
             {children}
             <GoogleAnalytics gaId={process.env.GA_ID} />
             <Toaster />

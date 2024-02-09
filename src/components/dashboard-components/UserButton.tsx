@@ -1,3 +1,4 @@
+"use client";
 import {
   Avatar,
   AvatarFallback,
@@ -17,43 +18,44 @@ import {
 } from "@kinde-oss/kinde-auth-nextjs/components";
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import { LoginLink } from "@kinde-oss/kinde-auth-nextjs/components";
+import { useKindeBrowserClient } from "@kinde-oss/kinde-auth-nextjs";
 
-export default async function UserButton() {
-  const { getUser } = getKindeServerSession();
-  const user = await getUser();
+export default function UserButton({ className }: { className?: string }) {
+  const { user } = useKindeBrowserClient();
 
   return user ? (
-    <DropdownMenu>
-      <DropdownMenuTrigger asChild>
-        <Button variant="ghost" className="relative w-8 h-8 rounded-full">
-          <Avatar className="w-8 h-8">
-            {user.picture && (
-              <AvatarImage
-                src={user?.picture}
-                alt={`${user?.given_name} ${user?.family_name}` ?? ``}
-              />
-            )}
-            <AvatarFallback>{user?.email}</AvatarFallback>
-          </Avatar>
-        </Button>
-      </DropdownMenuTrigger>
-      <DropdownMenuContent className="w-56" align="end" forceMount>
-        <DropdownMenuLabel className="font-normal">
-          <div className="flex flex-col space-y-1">
-            <p className="text-sm font-medium leading-none">
-              {" "}
-              {user?.given_name} {user?.family_name}
-            </p>
-            <p className="text-xs leading-none text-muted-foreground">
-              {user?.email}
-            </p>
-          </div>
-        </DropdownMenuLabel>
-        <DropdownMenuItem>
-          <LogoutLink>Log out</LogoutLink>
-        </DropdownMenuItem>
-      </DropdownMenuContent>
-    </DropdownMenu>
+    <div className={className}>
+      <DropdownMenu>
+        <DropdownMenuTrigger asChild>
+          <Button variant="ghost" className="relative w-8 h-8 rounded-full">
+            <Avatar className="w-8 h-8">
+              {user.picture && (
+                <AvatarImage
+                  src={user?.picture}
+                  alt={`${user?.given_name} ${user?.family_name}` ?? ``}
+                />
+              )}
+              <AvatarFallback>{user?.email}</AvatarFallback>
+            </Avatar>
+          </Button>
+        </DropdownMenuTrigger>
+        <DropdownMenuContent className="w-56 mt-1" align="end" forceMount>
+          <DropdownMenuLabel className="font-normal">
+            <div className="flex flex-col space-y-1">
+              <p className="text-sm font-medium leading-none">
+                {user?.given_name} {user?.family_name}
+              </p>
+              <p className="text-xs leading-none text-muted-foreground">
+                {user?.email}
+              </p>
+            </div>
+          </DropdownMenuLabel>
+          <DropdownMenuItem>
+            <LogoutLink>Log out</LogoutLink>
+          </DropdownMenuItem>
+        </DropdownMenuContent>
+      </DropdownMenu>
+    </div>
   ) : (
     <>
       <LoginLink>Sign in</LoginLink>

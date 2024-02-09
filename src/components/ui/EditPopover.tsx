@@ -14,7 +14,7 @@ function EditPopover({ onDeleteClick, EditedObject }: EditPopoverProps) {
   return (
     <Popover>
       <PopoverTrigger>
-        <MoreVertical size={22} />;
+        <MoreVertical size={22} />
       </PopoverTrigger>
       <PopoverContent className="w-full">
         <div className="cursor-pointer">

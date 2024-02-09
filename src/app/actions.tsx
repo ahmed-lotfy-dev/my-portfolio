@@ -159,12 +159,13 @@ export async function EditCertificateAction(state: any, data: FormData) {
 export async function deleteCertificateAction(certificateId: number) {
   const { getUser } = getKindeServerSession();
   const user = await getUser();
-  if (user?.email === process.env.ADMIN_EMAIL) {
+  if (user?.email !== process.env.ADMIN_EMAIL) {
     return {
       success: false,
       message: "You Don't Have Privilige To Delete Project",
     };
   }
+  console.log(certificateId);
   const deletCertificate = await db
     .delete(certificates)
     .where(eq(certificates.id, certificateId))
@@ -289,18 +290,19 @@ export async function EditProjectAction(state: any, data: FormData) {
 export async function deleteProjectAction(projectId: number) {
   const { getUser } = getKindeServerSession();
   const user = await getUser();
-  if (user?.email === process.env.ADMIN_EMAIL) {
+  if (user?.email !== process.env.ADMIN_EMAIL) {
     return {
       success: false,
       message: "You Don't Have Privilige To Delete Project",
     };
   }
   const deleteProjct = await db
-    .delete(certificates)
-    .where(eq(certificates.id, projectId))
+    .delete(projects)
+    .where(eq(projects.id, projectId))
     .returning();
   console.log("projct deleted", projectId);
   revalidatePath("/dashboard/projects");
+  console.log(deleteProjct);
   return { success: true, message: "Project Deleted Successfully" };
 }
 

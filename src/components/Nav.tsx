@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Menu, SidebarClose } from "lucide-react";
 import { useKindeBrowserClient } from "@kinde-oss/kinde-auth-nextjs";
+import UserButton from "./dashboard-components/UserButton";
 
 const navLinks = [
   { href: "/", label: "Home" },
@@ -65,6 +66,9 @@ function Nav() {
               )}
             </ul>
           </nav>
+          {user && (
+            <UserButton className="absolute right-20 md:ml-5 md:static" />
+          )}
         </div>
         {/* Menu Icon */}
         <div className="md:hidden flex justify-center items-center cursor-pointer">
