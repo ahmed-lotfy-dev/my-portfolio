@@ -42,7 +42,7 @@ export default function AddCertificateComponent() {
             placeholder="Certificate Title"
           />
           <p className="text-sm text-red-400">
-            {state?.error?.title && state?.error?.title?._errors[0]}
+            {state?.error?.certTitle && state?.error?.certTitle?._errors[0]}
           </p>
 
           <Input
@@ -52,7 +52,7 @@ export default function AddCertificateComponent() {
             placeholder="Certificate Description"
           />
           <p className="text-sm text-red-400">
-            {state?.error?.desc && state?.error?.desc?._errors[0]}
+            {state?.error?.certDesc && state?.error?.certDesc?._errors[0]}
           </p>
 
           <Input
@@ -77,7 +77,8 @@ export default function AddCertificateComponent() {
 
           <Upload setImageUrl={setImageUrl} imageType={"Certificates"} />
           <p className="text-sm text-red-400">
-            {state?.error?.imageLink && state?.error?.imageLink?._errors}
+            {state?.error?.certImageLink &&
+              state?.error?.certImageLink?._errors}
           </p>
           {imageUrl && (
             <Image

@@ -22,10 +22,10 @@ export default async function projects() {
           >
             <div className="order-1 text-center md:text-start">
               <h2 className="capitalize text-2xl font-semibold">
-                {proj.title}
+                {proj.projTitle}
               </h2>
               <p className="w-full mt-6 text-1xl font-light capitalize m-auto text-wrap md:mt-10 md:m-0 max-w-sm">
-                {proj.desc}
+                {proj.projDesc}
               </p>
             </div>
             <div className="order-3 m-auto md:m-0">
@@ -42,7 +42,7 @@ export default async function projects() {
             <div className="order-2 m-auto mt-8 md:m-0 md:p-0">
               <Image
                 className="shadow-sm shadow-primary"
-                src={proj.imageLink}
+                src={proj.projImageLink}
                 alt={"Project Title"}
                 height={600}
                 width={400}

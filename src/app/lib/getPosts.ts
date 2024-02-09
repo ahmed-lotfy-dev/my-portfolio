@@ -13,7 +13,7 @@ async function getAllPosts() {
 
 async function getSinglePosts(postTitle: string) {
   const singlePost = await db.query.posts.findFirst({
-    where: eq(posts.title, postTitle),
+    where: eq(posts.postTitle, postTitle),
   });
 
   return { success: true, message: "Single Blog Post Found", singlePost };

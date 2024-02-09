@@ -63,7 +63,7 @@ function EditCertificate({ EditedObject }: any) {
               onChange={InputHandler}
             />
             <p className="text-sm text-red-400">
-              {state?.error?.title && state?.error?.title?._errors[0]}
+              {state?.error?.certTitle && state?.error?.certTitle?._errors[0]}
             </p>
 
             <Input
@@ -74,7 +74,7 @@ function EditCertificate({ EditedObject }: any) {
               onChange={InputHandler}
             />
             <p className="text-sm text-red-400">
-              {state?.error?.desc && state?.error?.desc?._errors[0]}
+              {state?.error?.certDesc && state?.error?.certDesc?._errors[0]}
             </p>
 
             <Input
@@ -103,7 +103,8 @@ function EditCertificate({ EditedObject }: any) {
 
             <Upload setImageUrl={setImageUrl} imageType={"Certificates"} />
             <p className="text-sm text-red-400">
-              {state?.error?.imageLink && state?.error?.imageLink?._errors}
+              {state?.error?.certImageLink &&
+                state?.error?.certImageLink?._errors}
             </p>
             {imageUrl && (
               <Image
@@ -123,7 +124,7 @@ function EditCertificate({ EditedObject }: any) {
                 className="m-10"
                 type="submit"
                 onClick={() => {
-                  if (user?.email!== process.env.ADMIN_EMAIL) {
+                  if (user?.email !== process.env.ADMIN_EMAIL) {
                     notify("Sorry, you don't have admin privileges", false);
                   } else {
                     notify("Adding Completed Successfully", true);

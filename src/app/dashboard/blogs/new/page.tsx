@@ -42,7 +42,7 @@ export default function AddPost() {
           className="mx-auto"
         />
         <p className="text-sm text-red-400">
-          {state?.error?.title && state?.error?.title?._errors}
+          {state?.error?.postTitle && state?.error?.postTitle?._errors}
         </p>
         <Textarea
           name="content"
@@ -50,7 +50,7 @@ export default function AddPost() {
           placeholder="Post Content"
         />
         <p className="text-sm text-red-400">
-          {state?.error?.content && state?.error?.content?._errors}
+          {state?.error?.postContent && state?.error?.postContent?._errors}
         </p>
         <TagsInput
           value={selected}

@@ -64,7 +64,7 @@ function EditProject({ EditedObject }: any) {
                 onChange={InputHandler}
               />
               <p className="text-sm text-red-400">
-                {state?.error?.title && state?.error?.title?._errors}
+                {state?.error?.projTitle && state?.error?.projTitle?._errors}
               </p>
 
               <Textarea
@@ -75,7 +75,7 @@ function EditProject({ EditedObject }: any) {
                 onChange={InputHandler}
               />
               <p className="text-sm text-red-400">
-                {state?.error?.desc && state?.error?.desc?._errors}
+                {state?.error?.projDesc && state?.error?.projDesc?._errors}
               </p>
 
               <Input
@@ -104,7 +104,8 @@ function EditProject({ EditedObject }: any) {
 
               <Upload setImageUrl={setImageUrl} imageType="Projects" />
               <p className="text-sm text-red-400">
-                {state?.error?.imageLink && state?.error?.imageLink?._errors}
+                {state?.error?.projImageLink &&
+                  state?.error?.projImageLink?._errors}
               </p>
               {imageUrl && (
                 <Image

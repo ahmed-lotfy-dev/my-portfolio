@@ -46,7 +46,7 @@ export default function AddProjectComponent() {
             placeholder="Project Title"
           />
           <p className="text-sm text-red-400">
-            {state?.error?.title && state?.error?.title?._errors}
+            {state?.error?.projTitle && state?.error?.projTitle?._errors}
           </p>
 
           <Textarea
@@ -55,7 +55,7 @@ export default function AddProjectComponent() {
             placeholder="Project Description"
           ></Textarea>
           <p className="text-sm text-red-400">
-            {state?.error?.desc && state?.error?.desc?._errors}
+            {state?.error?.projDesc && state?.error?.projDesc?._errors}
           </p>
 
           <Input
@@ -80,7 +80,8 @@ export default function AddProjectComponent() {
 
           <Upload setImageUrl={setImageUrl} imageType="Projects" />
           <p className="text-sm text-red-400">
-            {state?.error?.imageLink && state?.error?.imageLink?._errors}
+            {state?.error?.projImageLink &&
+              state?.error?.projImageLink?._errors}
           </p>
           {imageUrl && (
             <Image

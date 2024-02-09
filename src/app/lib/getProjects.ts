@@ -15,7 +15,7 @@ async function getAllProjects() {
 async function getSingleProject(projectTitle: string) {
   try {
     const singleProject = await db.query.projects.findFirst({
-      where: eq(projects.title, projectTitle),
+      where: eq(projects.projTitle, projectTitle),
     });
     return { sucess: true, message: "Project Found", singleProject };
   } catch (error) {

@@ -19,8 +19,8 @@ export default async function SinglePost({
 
   return (
     <div className="p-9 w-full h-svh flex flex-col gap-7">
-      <h2>{singlePost?.title}</h2>
-      <p>{singlePost?.content}</p>
+      <h2>{singlePost?.postTitle}</h2>
+      <p>{singlePost?.postContent}</p>
       <p>
         {singlePost?.createdAt?.toLocaleDateString("en-GB", {
           year: "numeric",
@@ -29,7 +29,7 @@ export default async function SinglePost({
         })}
       </p>
       <h4>
-        {singlePost?.categories?.map((category) => (
+        {singlePost?.postsCategories?.map((category) => (
           <Button key={category}>{category}</Button>
         ))}
       </h4>

@@ -14,7 +14,7 @@ async function getAllCertificates() {
 async function getSingleCertificate(certificateTitle: string) {
   try {
     const certificate = await db.query.certificates.findFirst({
-      where: eq(certificates.title, certificateTitle),
+      where: eq(certificates.certTitle, certificateTitle),
     });
     return { sucess: true, message: "Certificate Found", certificate };
   } catch (error) {

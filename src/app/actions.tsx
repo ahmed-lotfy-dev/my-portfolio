@@ -62,15 +62,15 @@ export async function DeleteFromS3(imageLink: string | undefined) {
 }
 
 export async function AddCertificateAction(state: any, data: FormData) {
-  const title = data.get("title") as string;
-  const desc = data.get("desc") as string;
+  const certTitle = data.get("title") as string;
+  const certDesc = data.get("desc") as string;
   const courseLink = data.get("courseLink") as string;
   const profLink = data.get("profLink") as string;
-  const imageLink = data.get("imageLink") as string;
+  const certImageLink = data.get("imageLink") as string;
 
   const { getUser } = getKindeServerSession();
   const user = await getUser();
-  if (user?.email === process.env.ADMIN_EMAIL) {
+  if (user?.email !== process.env.ADMIN_EMAIL) {
     return {
       success: false,
       message: "You Don't Have Privilige To Add Certificate",
@@ -78,20 +78,21 @@ export async function AddCertificateAction(state: any, data: FormData) {
   }
 
   const result = CertificateSchema.safeParse({
-    title,
-    desc,
+    certTitle,
+    certDesc,
     courseLink,
     profLink,
-    imageLink,
+    certImageLink,
   });
-
+  console.log(result);
   if (result.success) {
+    console.log({ certTitle, certDesc, courseLink, profLink, certImageLink });
     const certificate = await db.insert(certificates).values({
-      title: title,
-      desc,
-      imageLink,
+      certTitle,
+      certDesc,
       courseLink,
       profLink,
+      certImageLink,
     });
     console.log("certificate added successfully");
     revalidatePath("/dashboard/certificates");
@@ -104,12 +105,11 @@ export async function AddCertificateAction(state: any, data: FormData) {
 
 export async function EditCertificateAction(state: any, data: FormData) {
   const certificateId = data.get("id") as unknown as number;
-  const title = data.get("title") as string;
-  const desc = data.get("desc") as string;
+  const certTitle = data.get("title") as string;
+  const certDesc = data.get("desc") as string;
   const courseLink = data.get("courseLink") as string;
   const profLink = data.get("profLink") as string;
-
-  const imageLink = data.get("imageLink") as string;
+  const certImageLink = data.get("imageLink") as string;
 
   const { getUser } = getKindeServerSession();
   const user = await getUser();
@@ -121,22 +121,26 @@ export async function EditCertificateAction(state: any, data: FormData) {
   }
 
   const result = CertificateSchema.safeParse({
-    title,
-    desc,
+    certTitle,
+    certDesc,
     courseLink,
     profLink,
-    imageLink,
+    certImageLink,
   });
   if (result.success) {
     const oldCertificate = await db.query.certificates.findFirst({
       where: eq(certificates.id, certificateId),
     });
-    const updatedCertificate = await db
-      .update(certificates)
-      .set({ title, desc, courseLink, profLink, imageLink });
-    if (oldCertificate?.imageLink !== imageLink) {
+    const updatedCertificate = await db.update(certificates).set({
+      certTitle,
+      certDesc,
+      courseLink,
+      profLink,
+      certImageLink,
+    });
+    if (oldCertificate?.certImageLink !== certImageLink) {
       console.log("New Image");
-      DeleteFromS3(oldCertificate?.imageLink);
+      DeleteFromS3(oldCertificate?.certImageLink);
     }
 
     console.log("certificate added successfully");
@@ -171,13 +175,13 @@ export async function deleteCertificateAction(certificateId: number) {
 }
 
 export async function AddProjectAction(state: any, data: FormData) {
-  const title = data.get("title") as string;
-  const desc = data.get("desc") as string;
+  const projTitle = data.get("title") as string;
+  const projDesc = data.get("desc") as string;
   const repoLink = data.get("repoLink") as string;
   const liveLink = data.get("liveLink") as string;
-  const imageLink = data.get("imageLink") as string;
+  const projImageLink = data.get("imageLink") as string;
   const categories = data.get("tags") as any;
-  const categoriesArray = categories.slice(",");
+  const projCategories = [categories.slice(",")];
 
   const { getUser } = getKindeServerSession();
   const user = await getUser();
@@ -189,24 +193,31 @@ export async function AddProjectAction(state: any, data: FormData) {
   }
 
   const result = ProjectSchema.safeParse({
-    title,
-    desc,
+    projTitle,
+    projDesc,
     repoLink,
     liveLink,
-    imageLink,
-    categories,
+    projImageLink,
+    projCategories,
   });
-
   if (result.success) {
+    console.log({
+      projTitle,
+      projDesc,
+      repoLink,
+      liveLink,
+      projImageLink,
+      projCategories,
+    });
     const project = await db
       .insert(projects)
       .values({
-        title,
-        desc,
+        projTitle,
+        projDesc,
         repoLink,
         liveLink,
-        imageLink,
-        categories: [categories.slice(",")],
+        projImageLink,
+        projCategories,
       })
       .returning();
 
@@ -221,11 +232,11 @@ export async function AddProjectAction(state: any, data: FormData) {
 
 export async function EditProjectAction(state: any, data: FormData) {
   const projectId = data.get("id") as unknown as number;
-  const title = data.get("title") as string;
-  const desc = data.get("desc") as string;
+  const projTitle = data.get("title") as string;
+  const projDesc = data.get("desc") as string;
   const repoLink = data.get("repoLink") as string;
   const liveLink = data.get("liveLink") as string;
-  const imageLink = data.get("imageLink") as string;
+  const projImageLink = data.get("imageLink") as string;
   const tags = data.get("tags") as any;
 
   const { getUser } = getKindeServerSession();
@@ -238,29 +249,34 @@ export async function EditProjectAction(state: any, data: FormData) {
   }
 
   const result = ProjectSchema.safeParse({
-    title,
-    desc,
+    projTitle,
+    projDesc,
     repoLink,
     liveLink,
-    imageLink,
-    tags,
+    projImageLink,
+    projCategories: tags,
   });
   if (result.success) {
     const oldProject = await db.query.projects.findFirst({
       where: eq(projects.id, projectId),
     });
-    if (oldProject?.imageLink !== imageLink) {
+    if (oldProject?.projImageLink !== projImageLink) {
       console.log("New Image");
-      DeleteFromS3(oldProject?.imageLink);
+      DeleteFromS3(oldProject?.projImageLink);
     }
-    const project = await db.insert(projects).values({
-      title,
-      desc,
-      repoLink,
-      liveLink,
-      imageLink,
-      categories: tags,
-    });
+    const project = await db
+      .update(projects)
+      .set({
+        projTitle,
+        projDesc,
+        repoLink,
+        liveLink,
+        projImageLink,
+        projCategories: tags,
+      })
+      .where(eq(projects.id, projectId))
+      .returning();
+
     console.log("project updated successfully");
     revalidatePath("/dashboard/projects");
     return { success: true, data: result.data };
@@ -314,52 +330,51 @@ export async function contactAction(state: any, formData: FormData) {
 }
 
 export async function AddNewPost(state: any, data: FormData) {
-  const title = data.get("title") as string;
-  const content = data.get("content") as string;
+  const postTitle = data.get("title") as string;
+  const postContent = data.get("content") as string;
   const published = data.get("published");
   const tags = data.get("tags") as any;
   const isPublished = published === "true" ? true : false;
-  const imageLink = data.get("imageLink") as string;
-  const slug = title.split(" ").join("-");
-  const categories = tags.split(",");
+  const postImageLink = data.get("imageLink") as string;
+  const slug = postTitle.split(" ").join("-");
+  const categories = data.get("tags") as any;
+  const postsCategories = [categories.slice(",")];
 
   const { getUser } = getKindeServerSession();
   const user = await getUser();
 
   console.log({
-    title,
-    content,
+    postTitle,
+    postContent,
     published,
-    imageLink,
-    tags,
-    categories,
+    postImageLink,
+    postsCategories,
   });
 
-  if (user?.email === process.env.ADMIN_EMAIL) {
+  if (user?.email !== process.env.ADMIN_EMAIL) {
     return {
       success: false,
       message: "You Don't Have Privilige To Add Blog Post",
     };
   }
-  console.log({ title, content, slug, isPublished, imageLink, categories });
+
   const result = postSchema.safeParse({
-    title,
-    content,
+    postTitle,
+    postContent,
     slug,
     published: isPublished,
-    imageLink,
-    tags: categories,
+    postImageLink,
+    postsCategories,
   });
-
+  console.log(result);
   if (result.success) {
     const newPost = await db.insert(posts).values({
-      title,
-      content,
+      postTitle,
+      postContent,
       slug,
       published: isPublished,
-      imageLink,
-      categories: tags,
-      authorId: Number(user?.id),
+      postImageLink,
+      postsCategories,
     });
 
     console.log("Post added successfully");
