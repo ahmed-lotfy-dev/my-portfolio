@@ -343,14 +343,6 @@ export async function AddNewPost(state: any, data: FormData) {
   const { getUser } = getKindeServerSession();
   const user = await getUser();
 
-  console.log({
-    postTitle,
-    postContent,
-    published,
-    postImageLink,
-    postsCategories,
-  });
-
   if (user?.email !== process.env.ADMIN_EMAIL) {
     return {
       success: false,
@@ -366,16 +358,26 @@ export async function AddNewPost(state: any, data: FormData) {
     postImageLink,
     postsCategories,
   });
-  console.log(result);
   if (result.success) {
-    const newPost = await db.insert(posts).values({
+    console.log({
       postTitle,
       postContent,
+      isPublished,
       slug,
-      published: isPublished,
       postImageLink,
       postsCategories,
     });
+    const newPost = await db
+      .insert(posts)
+      .values({
+        postTitle,
+        postContent,
+        slug,
+        published: isPublished,
+        postImageLink,
+        postsCategories,
+      })
+      .returning();
 
     console.log("Post added successfully");
     revalidatePath("/blogs/");

@@ -25,10 +25,10 @@ export default function AddPost() {
   const [selected, setSelected] = useState(["frontend"]);
   const [imageUrl, setImageUrl] = useState("");
 
-  if (state?.success) {
-    notify(state?.message!, true);
-    redirect("/blogs");
-  }
+  // if (state?.success) {
+  //   notify(state?.message!, true);
+  //   redirect("/blogs");
+  // }
   const { user } = useKindeBrowserClient();
 
   return (
@@ -71,14 +71,16 @@ export default function AddPost() {
         </Select>
 
         <Upload setImageUrl={setImageUrl} imageType="Posts" />
-
+        <p className="text-sm text-red-400">
+          {state?.error?.postImageLink && state?.error?.postImageLink?._errors}
+        </p>
         {imageUrl && (
           <Image
             className="m-auto"
             src={imageUrl}
             width={300}
             height={300}
-            alt="Certificate Image"
+            alt="Blog Post Image"
           />
         )}
 
