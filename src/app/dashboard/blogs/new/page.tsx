@@ -14,22 +14,22 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/src/components/ui/select";
-import { useSession } from "next-auth/react";
 import { Upload } from "@/src/components/dashboard-components/Upload";
 import Image from "next/image";
 import { redirect } from "next/navigation";
 import { notify } from "@/src/app/lib/utils/toast";
+import { useSession } from "next-auth/react";
 
 export default function AddPost() {
   const [state, formAction] = useFormState(AddNewPost, null);
   const [selected, setSelected] = useState(["frontend"]);
   const [imageUrl, setImageUrl] = useState("");
 
-  if (state?.success) {
-    notify(state?.message!, true);
-    redirect("/blogs");
-  }
-  const { data: session, status } = useSession();
+  // if (state?.success) {
+  //   notify(state?.message!, true);
+  //   redirect("/blogs");
+  // }
+  const { data: session } = useSession();
   const user = session?.user;
 
   return (
@@ -43,7 +43,7 @@ export default function AddPost() {
           className="mx-auto"
         />
         <p className="text-sm text-red-400">
-          {state?.error?.title && state?.error?.title?._errors}
+          {state?.error?.postTitle && state?.error?.postTitle?._errors}
         </p>
         <Textarea
           name="content"
@@ -51,7 +51,7 @@ export default function AddPost() {
           placeholder="Post Content"
         />
         <p className="text-sm text-red-400">
-          {state?.error?.content && state?.error?.content?._errors}
+          {state?.error?.postContent && state?.error?.postContent?._errors}
         </p>
         <TagsInput
           value={selected}
@@ -72,14 +72,16 @@ export default function AddPost() {
         </Select>
 
         <Upload setImageUrl={setImageUrl} imageType="Posts" />
-
+        <p className="text-sm text-red-400">
+          {state?.error?.postImageLink && state?.error?.postImageLink?._errors}
+        </p>
         {imageUrl && (
           <Image
             className="m-auto"
             src={imageUrl}
             width={300}
             height={300}
-            alt="Certificate Image"
+            alt="Blog Post Image"
           />
         )}
 
@@ -87,7 +89,7 @@ export default function AddPost() {
           btnText={"Add Post"}
           className="w-2/3 mt-6"
           onClick={() => {
-            if (user.role !== "ADMIN") {
+            if (user?.email !== process.env.NEXT_PUBLIC_ADMIN_EMAIL) {
               notify("You don't have privilige to do this", false);
             } else {
               notify("Blog Post Completed Successfully", true);

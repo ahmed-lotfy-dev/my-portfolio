@@ -6,7 +6,6 @@ import { EditCertificateAction } from "@/src/app/actions";
 import Image from "next/image";
 import { notify } from "@/src/app/lib/utils/toast";
 
-import { useSession } from "next-auth/react";
 import { useFormState } from "react-dom";
 
 import Submit from "@/src/components/ui/formSubmitBtn";
@@ -15,44 +14,39 @@ import {
   DialogContent,
   DialogTrigger,
   DialogClose,
-} from "../../ui/dialog";
-import { Certificate, Project } from "@prisma/client";
-import { AiTwotoneEdit } from "react-icons/ai";
+} from "@/src/components/ui/dialog";
 import { Upload } from "../Upload";
-import { Textarea } from "../../ui/textarea";
+import { Textarea } from "@/src/components/ui/textarea";
+import { Pencil } from "lucide-react";
+import { useSession } from "next-auth/react";
 
-type EditCertificateProp = {
-  EditedObject: Certificate;
-};
-
-function EditCertificate({ EditedObject }: EditCertificateProp) {
+function EditCertificate({ EditedObject }: any) {
   const { id } = EditedObject;
   const [state, formAction] = useFormState(EditCertificateAction, null);
   const [editedCert, setEditedCert] = useState(EditedObject);
   const [imageUrl, setImageUrl] = useState("");
-
   const formRef = useRef<HTMLFormElement>(null);
   const { data: session } = useSession();
-  const emailAddress = session?.user.email;
-
+  const role = session?.user?.role;
+  console.log(role);
   const InputHandler = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    setEditedCert((prevEditedCert) => {
+    setEditedCert((prevEditedCert: any) => {
       return {
         ...prevEditedCert,
         [name]: value,
       };
     });
   };
-
+  console.log("from client", { imageUrl });
   return (
     <div
-      key={id}
+      key={editedCert.id}
       className="flex w-full min-h-full justify-center items-center mt-6"
     >
       <Dialog>
         <DialogTrigger className="w-full bg-primary text-primary-foreground hover:bg-primary/90 h-10 py-2 px-4 inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none ring-offset-background">
-          <AiTwotoneEdit className="mr-3" size={20} />
+          <Pencil className="mr-3" size={20} />
           Edit Certificate
         </DialogTrigger>
         <DialogContent className="max-w-[700px]">
@@ -63,24 +57,24 @@ function EditCertificate({ EditedObject }: EditCertificateProp) {
             <Input
               className="w-2/3 mt-10"
               type="text"
-              name="title"
+              name="certTitle"
               placeholder="Certificate Title"
-              value={editedCert.title}
+              value={editedCert.certTitle}
               onChange={InputHandler}
             />
             <p className="text-sm text-red-400">
-              {state?.error?.title && state?.error?.title?._errors[0]}
+              {state?.error?.certTitle && state?.error?.certTitle?._errors[0]}
             </p>
 
             <Input
               className="w-2/3"
-              name="desc"
+              name="certDesc"
               placeholder="Certificate Description"
-              value={editedCert.desc}
+              value={editedCert.certDesc}
               onChange={InputHandler}
             />
             <p className="text-sm text-red-400">
-              {state?.error?.desc && state?.error?.desc?._errors[0]}
+              {state?.error?.certDesc && state?.error?.certDesc?._errors[0]}
             </p>
 
             <Input
@@ -98,7 +92,7 @@ function EditCertificate({ EditedObject }: EditCertificateProp) {
             <Input
               className="w-2/3"
               type="url"
-              name="certProfLink"
+              name="profLink"
               placeholder="Certificate Proof"
               value={editedCert.profLink}
               onChange={InputHandler}
@@ -109,30 +103,43 @@ function EditCertificate({ EditedObject }: EditCertificateProp) {
 
             <Upload setImageUrl={setImageUrl} imageType={"Certificates"} />
             <p className="text-sm text-red-400">
-              {state?.error?.imageLink && state?.error?.imageLink?._errors}
+              {state?.error?.certImageLink &&
+                state?.error?.certImageLink?._errors}
             </p>
-            {imageUrl && (
+            {editedCert.certImageLink ? (
+              <Image
+                className="m-auto"
+                src={editedCert.certImageLink}
+                width={200}
+                height={200}
+                alt="Certificate Image"
+              />
+            ) : (
               <Image
                 className="m-auto"
                 src={imageUrl}
-                width={300}
-                height={300}
+                width={200}
+                height={200}
                 alt="Certificate Image"
               />
             )}
-            <Input type="hidden" name="imageLink" value={imageUrl} />
+            <Input type="hidden" name="id" value={editedCert.id} />
+            <Input type="hidden" name="certImageLink" value={imageUrl} />
 
-            <DialogClose>
+            <DialogClose asChild>
               <Submit
                 btnText="Edit Certificate"
                 className="m-10"
                 type="submit"
                 onClick={() => {
-                  if (emailAddress !== process.env.NEXT_PUBLIC_ADMIN_EMAIL) {
-                    console.log(emailAddress);
-                    notify("sorry you don't have admin priviliges", false);
-                  } else {
-                    notify("Adding Completed Successfully", true);
+                  if (role !== "admin") {
+                    notify("You don't have privilige to do this", false);
+                    const submitTimeOut = setTimeout(() => {
+                      notify("Adding Completed Successfully", true);
+                      setImageUrl("");
+                      formRef.current?.reset();
+                    }, 200);
+                    clearTimeout(submitTimeOut);
                   }
                 }}
               />

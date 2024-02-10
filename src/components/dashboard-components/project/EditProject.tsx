@@ -8,16 +8,20 @@ import { EditCertificateAction, EditProjectAction } from "@/src/app/actions";
 
 import { notify } from "@/src/app/lib/utils/toast";
 
-import { useSession } from "next-auth/react";
 import { useFormState } from "react-dom";
 
-import Submit from "../../ui/formSubmitBtn";
-import { Dialog, DialogContent, DialogTrigger } from "../../ui/dialog";
-import EditIcon from "@/public/icons/create-outline.svg";
-import { Textarea } from "../../ui/textarea";
+import Submit from "@/src/components/ui/formSubmitBtn";
+import {
+  Dialog,
+  DialogContent,
+  DialogTrigger,
+} from "@/src/components/ui/dialog";
+import { Textarea } from "@/src/components/ui/textarea";
 import { TagsInput } from "react-tag-input-component";
 import { DialogClose } from "@radix-ui/react-dialog";
 import { Upload } from "../Upload";
+import { Pencil } from "lucide-react";
+import { useSession } from "next-auth/react";
 
 function EditProject({ EditedObject }: any) {
   const { id } = EditedObject;
@@ -29,8 +33,8 @@ function EditProject({ EditedObject }: any) {
 
   const formRef = useRef<HTMLFormElement>(null);
   const { data: session } = useSession();
-  const emailAddress = session?.user?.email;
   const role = session?.user?.role;
+
   const InputHandler = (
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
@@ -42,13 +46,14 @@ function EditProject({ EditedObject }: any) {
       };
     });
   };
-
+  console.log(editedProj);
+  console.log(imageUrl);
   return (
     <div className="flex flex-col justify-center items-center">
       <div className="flex w-full min-h-full justify-center items-start mt-6">
         <Dialog>
           <DialogTrigger className="bg-primary text-primary-foreground hover:bg-primary/90 h-10 py-2 px-4 inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none ring-offset-background">
-            <EditIcon className="mr-3" size={20} />
+            <Pencil className="mr-3" size={20} />
             Edit Project
           </DialogTrigger>
           <DialogContent className="w-[700px]">
@@ -59,24 +64,24 @@ function EditProject({ EditedObject }: any) {
               <Input
                 className="w-2/3"
                 type="text"
-                name="title"
+                name="projTitle"
                 placeholder="Project Title"
-                value={editedProj.title}
+                value={editedProj.projTitle}
                 onChange={InputHandler}
               />
               <p className="text-sm text-red-400">
-                {state?.error?.title && state?.error?.title?._errors}
+                {state?.error?.projTitle && state?.error?.projTitle?._errors}
               </p>
 
               <Textarea
                 className="flex justify-center w-2/3"
-                name="desc"
+                name="projDesc"
                 placeholder="Project Description"
-                value={editedProj.desc}
+                value={editedProj.projDesc}
                 onChange={InputHandler}
               />
               <p className="text-sm text-red-400">
-                {state?.error?.desc && state?.error?.desc?._errors}
+                {state?.error?.projDesc && state?.error?.projDesc?._errors}
               </p>
 
               <Input
@@ -105,19 +110,30 @@ function EditProject({ EditedObject }: any) {
 
               <Upload setImageUrl={setImageUrl} imageType="Projects" />
               <p className="text-sm text-red-400">
-                {state?.error?.imageLink && state?.error?.imageLink?._errors}
+                {state?.error?.projImageLink &&
+                  state?.error?.projImageLink?._errors}
               </p>
-              {imageUrl && (
+              {editedProj.projImageLink ? (
+                <Image
+                  className="m-auto"
+                  src={editedProj.projImageLink}
+                  width={200}
+                  height={200}
+                  alt="Certificate Image"
+                />
+              ) : (
                 <Image
                   className="m-auto"
                   src={imageUrl}
-                  width={300}
-                  height={300}
+                  width={200}
+                  height={200}
                   alt="Certificate Image"
                 />
               )}
               <Input type="hidden" name="tags" value={selected} />
-              <Input type="hidden" name="imageLink" value={imageUrl} />
+              <Input type="hidden" name="id" value={editedProj.id} />
+
+              <Input type="hidden" name="projImageLink" value={imageUrl} />
 
               <Label className="flex justify-center">Project Tags</Label>
               <TagsInput
@@ -126,13 +142,13 @@ function EditProject({ EditedObject }: any) {
                 name="tags"
                 placeHolder="Select Tech"
               />
-              <DialogClose>
+              <DialogClose asChild>
                 <Submit
                   btnText="Edit Project"
                   className="m-10 w-2/3"
                   type="submit"
                   onClick={() => {
-                    if (role !== "ADMIN") {
+                    if (role !== "admin") {
                       notify("Sorry, you don't have admin privileges", false);
                     } else {
                       notify("Adding Completed Successfully", true);

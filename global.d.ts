@@ -6,20 +6,19 @@ declare module "@chakra-ui/next-js";
 declare global {
   namespace NodeJS {
     export interface ProcessEnv {
-      GITHUB_AUTH_TOKEN: string;
       NODE_ENV: "development" | "production";
       PORT: string | undefined;
       PWD: string;
       MAIN_EMAIL: string;
       SECONDARY_EMAIL: string;
       DATABASE_URL: string | undefined;
-      NEXTAUTH_URL: string;
-      NEXTAUTH_SECRET: string;
+      AUTH_URL: string;
+      AUTH_SECRET: string;
       SECRET: string;
       GOOGLE_CLIENT_ID: string;
       GOOGLE_CLIENT_SECRET: string;
-      ID_GITHUB: string;
-      SECRET_GITHUB: string;
+      GITHUB_CLIENT_ID: string;
+      GITHUB_CLIENT_SECRET: string;
       SENDGRID_API_KEY: string;
       UPLOADTHING_SECRET: string;
       UPLOADTHING_APP_ID: string;
@@ -49,4 +48,41 @@ export type User = {
   image: string;
   id: string;
   role: string;
+  id: number;
+};
+
+export type certificateType = {
+  id: string;
+  title: string;
+  desc: string;
+  imageLink: string;
+  courseLink: string;
+  profLink: string;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type projectsType = {
+  id: string;
+  title: string;
+  desc: string;
+  repoLink: string;
+  liveLink: string;
+  imageLink: string;
+  categories: string[];
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type postType = {
+  id: string;
+  title: string;
+  content: string;
+  slug: string;
+  imageLink: string;
+  published: boolean;
+  categories: string[];
+  author?: string;
+  createdAt: string;
+  updatedAt: string;
 };

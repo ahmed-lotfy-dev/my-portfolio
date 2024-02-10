@@ -1,14 +1,13 @@
 "use client";
 import Link from "next/link";
 import { contactAction } from "@/src/app/actions";
-import LinkedinIcon from "@/public/icons/logo-linkedin.svg";
-import FacebookIcon from "@/public/icons/logo-facebook.svg";
-import GithubIcon from "@/public/icons/logo-github.svg";
 import { useFormState } from "react-dom";
-import Image from "next/image";
-
 import { notify } from "@/src/app/lib/utils/toast";
 import Submit from "./ui/formSubmitBtn";
+import LinkedinIcon from "@/public/icons/logo-linkedin.svg";
+import GithubIcon from "@/public/icons/logo-github.svg";
+import FacebookIcon from "@/public/icons/logo-facebook.svg";
+import Image from "next/image";
 
 export default function Contact() {
   const [state, formAction] = useFormState(contactAction, null);
@@ -31,7 +30,7 @@ export default function Contact() {
             <span className="mx-auto sm:mx-0">+201016037479</span>
             <span className="mb-4">contact@ahmedlotfy.dev</span>
             <div className="flex flex-row space-x-10 justify-between">
-              <ul>
+              <ul className="flex space-x-10">
                 <li>
                   <Link
                     href={"https://www.linkedin.com/in/ahmed-lotfy-dev/"}
@@ -57,7 +56,7 @@ export default function Contact() {
                       src={GithubIcon}
                       width={25}
                       height={25}
-                      alt="LinkedIn Icon"
+                      alt="Github Icon"
                       className="w-10 h-10 fill-[#557aca] hover:fill-[#3b5998] hover:scale-110 transition-all duration-300"
                     />
                   </Link>
@@ -72,9 +71,9 @@ export default function Contact() {
                       src={FacebookIcon}
                       width={25}
                       height={25}
-                      alt="LinkedIn Icon"
+                      alt="Facebook Icon"
                       className="w-10 h-10 fill-[#557aca] hover:fill-[#3b5998] hover:scale-110 transition-all duration-300"
-                    />
+                    />{" "}
                   </Link>
                 </li>
               </ul>
@@ -122,7 +121,10 @@ export default function Contact() {
             <p className="text-sm text-red-400">
               {state?.error?.message && state?.error?.message?._errors}
             </p>
-            <Submit btnText="Send" />
+            <Submit
+              btnText="Send"
+              className="w-[11rem] sm:w-[13rem] md:w-[19rem] xl:w-[27rem]"
+            />
           </form>
         </div>
       </div>

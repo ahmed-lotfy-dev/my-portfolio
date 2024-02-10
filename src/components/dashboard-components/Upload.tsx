@@ -1,9 +1,9 @@
 import { ChangeEvent, Dispatch, SetStateAction, useRef, useState } from "react";
-import { Input } from "../ui/input";
-import { useSession } from "next-auth/react";
+import { Input } from "@/src/components/ui/input";
 import { notify } from "@/src/app/lib/utils/toast";
 import axios, { AxiosRequestConfig } from "axios";
-import { Button } from "../ui/button";
+import { Button } from "@/src/components/ui/button";
+import { useSession } from "next-auth/react";
 
 type UploadProps = {
   setImageUrl: React.Dispatch<React.SetStateAction<string>>;
@@ -12,6 +12,7 @@ type UploadProps = {
 
 function Upload({ setImageUrl, imageType }: UploadProps) {
   const { data: session } = useSession();
+  const user = session?.user;
   const [pending, setPending] = useState(false);
   const fileInputRef = useRef<HTMLInputElement | null>(null);
 
@@ -33,14 +34,16 @@ function Upload({ setImageUrl, imageType }: UploadProps) {
     formData.append("image-type", imageType);
 
     try {
-      const options: AxiosRequestConfig = {
-        headers: { "Content-Type": "multipart/form-data" },
-      };
-
-      const { data } = await axios.post("/api/upload", formData, options);
-      data.success ? notify(data.message, true) : notify(data.message, false);
-      console.log(data);
-      setImageUrl(data.imageLink);
+      const data = await fetch("/api/upload", {
+        method: "POST",
+        // headers: { "Content-Type": "multipart/form-data" },
+        body: formData,
+      });
+      const response = await data.json();
+      response.success
+        ? notify(response.message, true)
+        : notify(response.message, false);
+      setImageUrl(response.imageLink);
       setPending(false);
     } catch (error) {
       console.error("Error uploading file:", error);

@@ -1,9 +1,9 @@
 import { NotAuthenticated } from "./NotAuthenticated";
-import { LogoutButton } from "./auth-buttons";
-import { getUser } from "@/src/app/lib/getUser";
+import { auth } from "@/src/auth";
 
 export default async function Welcome() {
-  const user = await getUser();
+  const session = await auth();
+  const user = session?.user;
 
   return (
     <div className="w-full">
@@ -11,14 +11,14 @@ export default async function Welcome() {
       {user && (
         <div className="w-full flex justify-between items-start flex-col pl-10">
           <h2 className="mb-6">
-            Welcome {user?.name?.split(" ")[0]} {user?.name?.split(" ")[1]} to
-            the dashboard.
+            Welcome {user?.given_name} {user?.family_name} to the dashboard.
           </h2>
-          {user.role === "ADMIN" ? (
-            <p>You are an admin, welcome!</p>
+
+          {user.email === process.env.NEXT_PUBLIC_ADMIN_EMAIL ? (
+            <p>You are admin, welcome!</p>
           ) : (
             <p>
-              You are not admin . eventhough you can view the site but not
+              You are not admin, eventhough you can view the site but not
               interact with action that demand priviliges
             </p>
           )}

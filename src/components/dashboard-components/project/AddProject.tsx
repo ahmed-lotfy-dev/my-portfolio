@@ -18,14 +18,13 @@ import { AddProjectAction } from "@/src/app/actions";
 
 import { notify } from "@/src/app/lib/utils/toast";
 
-import { useSession } from "next-auth/react";
-
 import { TagsInput } from "react-tag-input-component";
 
-import { Textarea } from "../../ui/textarea";
+import { Textarea } from "@/src/components/ui/textarea";
 import { useFormState } from "react-dom";
-import Submit from "../../ui/formSubmitBtn";
+import Submit from "@/src/components/ui/formSubmitBtn";
 import { Upload } from "../Upload";
+import { useSession } from "next-auth/react";
 
 function AddProjectComponent() {
   const [state, formAction] = useFormState(AddProjectAction, null);
@@ -33,7 +32,7 @@ function AddProjectComponent() {
   const [imageUrl, setImageUrl] = useState("");
   const formRef = useRef<HTMLFormElement>(null);
   const { data: session } = useSession();
-  const role = session?.user?.role;
+  const user = session?.user;
 
   return (
     <div className="flex flex-col justify-center items-center">
@@ -54,7 +53,7 @@ function AddProjectComponent() {
                 placeholder="Project Title"
               />
               <p className="text-sm text-red-400">
-                {state?.error?.title && state?.error?.title?._errors}
+                {state?.error?.projTitle && state?.error?.projTitle?._errors}
               </p>
 
               <Textarea
@@ -63,7 +62,7 @@ function AddProjectComponent() {
                 placeholder="Project Description"
               ></Textarea>
               <p className="text-sm text-red-400">
-                {state?.error?.desc && state?.error?.desc?._errors}
+                {state?.error?.projDesc && state?.error?.projDesc?._errors}
               </p>
 
               <Input
@@ -86,9 +85,10 @@ function AddProjectComponent() {
                 {state?.error?.liveLink && state?.error?.liveLink?._errors}
               </p>
 
-              <Upload setImageUrl={setImageUrl} imageType={"Projects"} />
+              <Upload setImageUrl={setImageUrl} imageType="Projects" />
               <p className="text-sm text-red-400">
-                {state?.error?.imageLink && state?.error?.imageLink?._errors}
+                {state?.error?.projImageLink &&
+                  state?.error?.projImageLink?._errors}
               </p>
               {imageUrl && (
                 <Image
@@ -110,16 +110,19 @@ function AddProjectComponent() {
                 placeHolder="Select Tech"
               />
 
-              <DialogClose>
+              <DialogClose asChild>
                 <Submit
                   btnText="Add Project"
                   type="submit"
                   onClick={() => {
-                    if (role !== "ADMIN") {
-                      notify("Sorry, you don't have admin privileges", false);
-                    } else {
-                      notify("Adding Completed Successfully", true);
-                      formRef.current?.reset();
+                    if (user?.email !== process.env.NEXT_PUBLIC_ADMIN_EMAIL) {
+                      notify("You don't have privilige to do this", false);
+                      const submitTimeOut = setTimeout(() => {
+                        notify("Adding Completed Successfully", true);
+                        setImageUrl("");
+                        formRef.current?.reset();
+                      }, 200);
+                      clearTimeout(submitTimeOut);
                     }
                   }}
                 />

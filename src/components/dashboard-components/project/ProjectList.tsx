@@ -1,6 +1,5 @@
 "use client";
 import Image from "next/image";
-import { Project } from "@prisma/client";
 
 import {
   Card,
@@ -10,25 +9,24 @@ import {
   CardHeader,
   CardTitle,
 } from "@/src/components/ui/card";
-import { Button } from "../../ui/button";
+import { Button } from "@/src/components/ui/button";
 import Link from "next/link";
 import { deleteProjectAction } from "@/src/app/actions";
 import { EditPopover } from "../EditPopover";
-import { AspectRatio } from "../../ui/aspect-ratio";
+import { AspectRatio } from "@/src/components/ui/aspect-ratio";
 
-type Props = {
-  allProjects: Project[] | undefined;
-};
-export default function ProjectList({ allProjects }: Props) {
+type projectListProps = {};
+
+export default function ProjectList({ allProjects }: any) {
   return (
     <div className="w-full h-full flex gap-x-6">
-      {allProjects?.map((proj) => (
+      {allProjects?.map((proj: any) => (
         <div key={proj.id} className="mt-10 ml-6 h-full">
           <Card className="">
             <CardHeader className="flex justify-start">
               <div className="flex justify-between items-center">
                 <CardTitle className="text-3xl">
-                  {proj.title.toUpperCase()}
+                  {proj.projTitle.toUpperCase()}
                 </CardTitle>
                 <EditPopover
                   EditedObject={proj}
@@ -36,15 +34,15 @@ export default function ProjectList({ allProjects }: Props) {
                 />
               </div>
               <CardDescription className="text-1xl font-bold mt-6 w-[350px]">
-                {proj.desc}
+                {proj.projDesc}
               </CardDescription>
             </CardHeader>
             <CardContent>
               <div className="w-[350px]">
                 <AspectRatio ratio={16 / 9}>
                   <Image
-                    src={proj.imageLink}
-                    alt={`${proj.title} Image`}
+                    src={proj.projImageLink}
+                    alt={`${proj.projTitle} Image`}
                     fill
                   />
                 </AspectRatio>

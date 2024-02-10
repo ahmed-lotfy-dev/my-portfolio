@@ -3,10 +3,12 @@ import ProjectList from "@/src/components/dashboard-components/project/ProjectLi
 import { getAllProjects } from "../../lib/getProjects";
 import Link from "next/link";
 import { Button } from "@/src/components/ui/button";
-import { getUser } from "../../lib/getUser";
+import { auth } from "@/src/auth";
+import { AddProjectComponent } from "@/src/components/dashboard-components/AddProject";
 
 export default async function AddProject({}) {
-  const user = await getUser();
+  const session = await auth();
+  const user = session?.user;
   const { allProjects } = await getAllProjects();
 
   return (
@@ -14,11 +16,12 @@ export default async function AddProject({}) {
       {!user && <NotAuthenticated />}
       {user && (
         <div className="flex flex-col justify-center items-center w-full">
-          <Link href={`/dashboard/projects/add`}>
+          <AddProjectComponent />
+          {/* <Link href={`/dashboard/projects/add`}>
             <Button className="bg-primary text-primary-foreground hover:bg-primary/90 h-10 py-2 px-4 inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none ring-offset-background">
               Add Certificate
             </Button>
-          </Link>
+          </Link> */}
           <ProjectList allProjects={allProjects} />
         </div>
       )}

@@ -1,8 +1,10 @@
-import { prisma } from "./prisma";
+import { db } from "@/src/db";
+import { eq } from "drizzle-orm";
+import { certificates } from "@/src/db/schema/certificates";
 
 async function getAllCertificates() {
   try {
-    const allCertificates = await prisma.certificate.findMany();
+    const allCertificates = await db.query.certificates.findMany();
     return { allCertificates };
   } catch (error) {
     return { error };
@@ -11,8 +13,8 @@ async function getAllCertificates() {
 
 async function getSingleCertificate(certificateTitle: string) {
   try {
-    const certificate = await prisma.certificate.findFirst({
-      where: { title: certificateTitle },
+    const certificate = await db.query.certificates.findFirst({
+      where: eq(certificates.certTitle, certificateTitle),
     });
     return { sucess: true, message: "Certificate Found", certificate };
   } catch (error) {

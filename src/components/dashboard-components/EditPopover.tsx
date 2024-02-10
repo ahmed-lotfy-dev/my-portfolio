@@ -1,30 +1,31 @@
-import { HiEllipsisVertical } from "react-icons/hi2";
-import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover";
-import { Button } from "../ui/button";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/src/components/ui/popover";
+import { Button } from "@/src/components/ui/button";
+import { MoreVertical } from "lucide-react";
 import { EditCertificate } from "./certificate/EditCertificate";
-import { Certificate, Project } from "@prisma/client";
 import { EditProject } from "./project/EditProject";
-
 interface EditPopoverProps {
   onDeleteClick: () => void;
-  EditedObject: Certificate | Project;
+  EditedObject: any;
 }
-
 function EditPopover({ onDeleteClick, EditedObject }: EditPopoverProps) {
   const isCertificate = "courseLink" in EditedObject;
 
   return (
     <Popover>
       <PopoverTrigger>
-        <HiEllipsisVertical size={22} />
+        <MoreVertical size={22} />
       </PopoverTrigger>
       <PopoverContent className="w-full">
         <div className="cursor-pointer">
           <div className="w-full">
             {isCertificate ? (
-              <EditCertificate EditedObject={EditedObject as Certificate} />
+              <EditCertificate EditedObject={EditedObject} />
             ) : (
-              <EditProject EditedObject={EditedObject as Project} />
+              <EditProject EditedObject={EditedObject} />
             )}
             <Button className="w-full mt-2" onClick={onDeleteClick}>
               Delete

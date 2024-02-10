@@ -1,12 +1,10 @@
 "use client";
-import { useState } from "react";
+import { ReactNode, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import UserProfile from "@/src/components/dashboard-components/UserProfile";
-import { Session } from "next-auth";
-import Image from "next/image";
-import MenuIcon from "@/public/icons/menu-outline.svg";
-import CloseIcon from "@/public/icons/close-outline.svg";
+import { Menu, SidebarClose } from "lucide-react";
+import { useSession } from "next-auth/react";
+import UserButton from "./dashboard-components/UserButton";
 
 const navLinks = [
   { href: "/", label: "Home" },
@@ -17,18 +15,12 @@ const navLinks = [
   { href: "/#contact", label: "Contact" },
 ];
 
-const active =
-  "text-blue-400 hover:text-blue-400 hover:border-b-4 hover:border-b-blue-600";
-
-type Props = {
-  session: Session | null;
-};
-
-function Nav({ session }: Props) {
+function Nav() {
   const path = usePathname();
+  const { data: session } = useSession();
   const user = session?.user;
   const [isOpened, setIsOpened] = useState(false);
-  console.log(path);
+
   const toggleMenu = () => {
     setIsOpened(!isOpened);
   };
@@ -58,7 +50,7 @@ function Nav({ session }: Props) {
                 <li
                   key={link.label}
                   className={` hover:text-blue-400 hover:border-b-4 hover:border-b-blue-600 transition-all delay-75 duration-250 ${
-                    path === `${link.href}` ? active : ""
+                    path === "/" ? "active" : ""
                   }`}
                 >
                   <Link href={link.href}>{link.label}</Link>
@@ -67,25 +59,21 @@ function Nav({ session }: Props) {
               {path && (
                 <li
                   className={`hover:text-blue-400 hover:border-b-4 hover:border-b-blue-600 transition-all delay-75 duration-250 ${
-                    path === "/dashboard" ? active : ""
+                    path === "/" ? "active" : ""
                   }`}
                 >
                   <Link href="/dashboard">Dashboard</Link>
                 </li>
               )}
-              <li>{user && <UserProfile user={user} className="block" />}</li>
             </ul>
           </nav>
+          {user && (
+            <UserButton className="absolute right-20 md:ml-5 md:static" />
+          )}
         </div>
         {/* Menu Icon */}
         <div className="md:hidden flex justify-center items-center cursor-pointer">
-          <Image
-            src={MenuIcon}
-            width={25}
-            height={25}
-            onClick={toggleMenu}
-            alt={"Menu Icon"}
-          />
+          <Menu size={25} onClick={toggleMenu} />
         </div>
       </div>
       {/* Responsive Menu*/}
@@ -102,31 +90,20 @@ function Nav({ session }: Props) {
               <li
                 key={link.label}
                 className={`py-4 cursor-pointer hover:text-blue-400 hover:border-b-4 hover:border-b-blue-600 transition-all delay-75 duration-250 ${
-                  path === `${link.href}` ? active : ""
+                  path === "/" ? "active" : ""
                 }`}
               >
                 <Link href={link.href}>{link.label}</Link>
               </li>
             ))}
             {path && (
-              <li
-                className={`hover:text-blue-400 hover:border-b-4 hover:border-b-blue-600 transition-all delay-75 duration-250 ${
-                  path === "/dashboard" ? active : ""
-                }`}
-              >
+              <li>
                 <Link href="/dashboard">Dashboard</Link>
               </li>
             )}
-            <li>{user && <UserProfile user={user} className="block" />}</li>
           </ul>
           <div className="mt-9 mr-9 cursor-pointer" onClick={toggleMenu}>
-            <Image
-              src={CloseIcon}
-              width={25}
-              height={25}
-              alt="Close Icon"
-              className="fill-gray-500"
-            />
+            <SidebarClose size={25} className="fill-gray-500" />
           </div>
         </div>
       </div>

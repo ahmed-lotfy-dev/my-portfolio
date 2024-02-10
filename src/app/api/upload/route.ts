@@ -1,5 +1,5 @@
 import { S3Client, PutObjectCommand } from "@aws-sdk/client-s3";
-import { getUser } from "../../lib/getUser";
+import { auth } from "@/src/auth";
 
 const config = {
   region: "auto",
@@ -21,7 +21,7 @@ async function uploadFileToS3(
   const fileBuffer = file;
   const params = {
     Bucket: process.env.CF_BUCKET_NAME,
-    Key: `${imageType}-${fileName}`,
+    Key: fileName,
     Body: fileBuffer,
     ContentType: type,
   };
@@ -30,12 +30,11 @@ async function uploadFileToS3(
   try {
     const response = await s3Client.send(command);
     console.log("File uploaded successfully", response);
-    return fileName;
+    return response;
   } catch (error) {
     throw error;
   }
 }
-
 export async function POST(request: Request): Promise<Response> {
   const formData = await request.formData();
   const file = formData.get("file") as File;
@@ -43,14 +42,12 @@ export async function POST(request: Request): Promise<Response> {
   const fileData = await file.arrayBuffer();
   const buffer = Buffer.from(fileData);
 
-  const user = await getUser();
-  const role = user?.role;
-
-  if (user) console.log(role);
-  if (role === "ADMIN") {
+  const session = await auth();
+  const user = session?.user;
+  if (user?.email === process.env.ADMIN_EMAIL) {
     const uploaded = await uploadFileToS3(
       buffer,
-      file.name,
+      `${imageType}-${file.name}`,
       file.type,
       imageType
     );

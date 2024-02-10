@@ -7,28 +7,28 @@ import { AddCertificateAction } from "@/src/app/actions";
 
 import { notify } from "@/src/app/lib/utils/toast";
 
-import { useSession } from "next-auth/react";
 import { useFormState } from "react-dom";
 import Submit from "@/src/components/ui/formSubmitBtn";
 
 import { Upload } from "@/src/components/dashboard-components/Upload";
 import { Button } from "@/src/components/ui/button";
-import { AiOutlineArrowLeft } from "react-icons/ai";
+import { ArrowLeft } from "lucide-react";
 import { useRouter } from "next/navigation";
+import { useSession } from "next-auth/react";
 
 export default function AddCertificateComponent() {
   const [state, formAction] = useFormState(AddCertificateAction, null);
   const [imageUrl, setImageUrl] = useState("");
   const formRef = useRef<HTMLFormElement>(null);
+  const router = useRouter();
   const { data: session } = useSession();
   const user = session?.user;
-  const router = useRouter();
 
   return (
     <div className="flex flex-col justify-center items-center w-full relative">
       <div className="pt-10 left-5 top-5 absolute">
         <Button onClick={() => router.back()}>
-          <AiOutlineArrowLeft />
+          <ArrowLeft />
         </Button>
       </div>
       <div className="flex w-full min-h-full justify-center items-start p-10 mt-6">
@@ -43,7 +43,7 @@ export default function AddCertificateComponent() {
             placeholder="Certificate Title"
           />
           <p className="text-sm text-red-400">
-            {state?.error?.title && state?.error?.title?._errors[0]}
+            {state?.error?.certTitle && state?.error?.certTitle?._errors[0]}
           </p>
 
           <Input
@@ -53,7 +53,7 @@ export default function AddCertificateComponent() {
             placeholder="Certificate Description"
           />
           <p className="text-sm text-red-400">
-            {state?.error?.desc && state?.error?.desc?._errors[0]}
+            {state?.error?.certDesc && state?.error?.certDesc?._errors[0]}
           </p>
 
           <Input
@@ -78,7 +78,8 @@ export default function AddCertificateComponent() {
 
           <Upload setImageUrl={setImageUrl} imageType={"Certificates"} />
           <p className="text-sm text-red-400">
-            {state?.error?.imageLink && state?.error?.imageLink?._errors}
+            {state?.error?.certImageLink &&
+              state?.error?.certImageLink?._errors}
           </p>
           {imageUrl && (
             <Image
@@ -94,7 +95,7 @@ export default function AddCertificateComponent() {
             btnText="Add Certificate"
             type="submit"
             onClick={() => {
-              if (user.role !== "ADMIN") {
+              if (user?.email !== process.env.NEXT_PUBLIC_ADMIN_EMAIL) {
                 notify("sorry you don't have admin priviliges", false);
               } else {
                 notify("Adding Completed Successfully", true);

@@ -1,9 +1,6 @@
 import { getAllCertificates } from "@/lib/getCertificates";
 import Link from "next/link";
 import Image from "next/image";
-
-export const dynamic = "force-dynamic";
-
 import { Button } from "./ui/button";
 
 import {
@@ -12,15 +9,6 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/src/components/ui/accordion";
-
-export type Certificate = {
-  id: string;
-  certTitle: string;
-  certDesc: string;
-  certImageLink: string;
-  courseLink: string;
-  certProfLink: string;
-};
 
 export default async function certificates() {
   const { allCertificates } = await getAllCertificates();
@@ -41,18 +29,18 @@ export default async function certificates() {
               type="single"
               collapsible
             >
-              <AccordionItem value={cert.id} className="">
+              <AccordionItem value={cert.certTitle} className="">
                 <AccordionTrigger className="font-bold text-1xl m-auto text-center">
-                  {cert.title}
+                  {cert.certTitle}
                 </AccordionTrigger>
                 <AccordionContent className="">
                   <Image
                     className="m-auto my-6 aspect-auto object-cover"
                     loading="lazy"
-                    src={cert.imageLink}
+                    src={cert.certImageLink}
                     width={500}
                     height={500}
-                    alt={`${cert.title} certification image`}
+                    alt={`${cert.certTitle} certification image`}
                   />
                   <div className="text-center space-x-5">
                     <Link href={cert.courseLink} target="_blank">

@@ -1,6 +1,8 @@
 "use server";
 import { revalidatePath } from "next/cache";
-import { prisma } from "@/src//app/lib/prisma";
+import { db } from "@/src/db";
+import { unstable_noStore as noStore } from "next/cache";
+
 import sgMail from "@sendgrid/mail";
 sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 import { ContactInputs, contactSchema } from "./lib/schemas/contactSchema";
@@ -18,8 +20,13 @@ import {
 
 import { ProjectSchema } from "./lib/schemas/projectSchema";
 import { CertificateSchema } from "./lib/schemas/certificateSchema";
-import { BlogPostSchema } from "./lib/schemas/blogpostSchema";
-import { getUser } from "./lib/getUser";
+import { certificates } from "@/src/db/schema/certificates";
+import { posts } from "@/src/db/schema/posts";
+import { projects } from "@/src/db/schema/projects";
+import { eq } from "drizzle-orm";
+import { postSchema } from "./lib/schemas/postSchema";
+import { auth } from "@/src/auth";
+import { signIn, signOut } from "@/src/auth";
 
 const s3Client = new S3Client({
   region: "auto",
@@ -29,6 +36,15 @@ const s3Client = new S3Client({
     secretAccessKey: process.env.CF_SECRET_ACCESS_KEY,
   },
 });
+
+export async function SignInAction(data: FormData) {
+  const provider = data.get("provider") as string;
+  await signIn(provider);
+}
+
+export async function SignOutAction() {
+  await signOut();
+}
 
 export async function DeleteFromS3(imageLink: string | undefined) {
   if (!imageLink) {
@@ -57,16 +73,15 @@ export async function DeleteFromS3(imageLink: string | undefined) {
 }
 
 export async function AddCertificateAction(state: any, data: FormData) {
-  const title = data.get("title") as string;
-  const desc = data.get("desc") as string;
+  const certTitle = data.get("certTitle") as string;
+  const certDesc = data.get("certDesc") as string;
   const courseLink = data.get("courseLink") as string;
   const profLink = data.get("profLink") as string;
-  const imageLink = data.get("imageLink") as string;
+  const certImageLink = data.get("certImageLink") as string;
 
-  const user = await getUser();
-  const role = user?.role;
-
-  if (role !== "ADMIN") {
+  const session = await auth();
+  const user = session?.user;
+  if (user?.email !== process.env.ADMIN_EMAIL) {
     return {
       success: false,
       message: "You Don't Have Privilige To Add Certificate",
@@ -74,22 +89,21 @@ export async function AddCertificateAction(state: any, data: FormData) {
   }
 
   const result = CertificateSchema.safeParse({
-    title,
-    desc,
+    certTitle,
+    certDesc,
     courseLink,
     profLink,
-    imageLink,
+    certImageLink,
   });
-
+  console.log(result);
   if (result.success) {
-    const certificate = await prisma.certificate.create({
-      data: {
-        title,
-        desc,
-        courseLink,
-        profLink,
-        imageLink,
-      },
+    console.log({ certTitle, certDesc, courseLink, profLink, certImageLink });
+    const certificate = await db.insert(certificates).values({
+      certTitle,
+      certDesc,
+      courseLink,
+      profLink,
+      certImageLink,
     });
     console.log("certificate added successfully");
     revalidatePath("/dashboard/certificates");
@@ -101,18 +115,27 @@ export async function AddCertificateAction(state: any, data: FormData) {
 }
 
 export async function EditCertificateAction(state: any, data: FormData) {
-  const id = data.get("id") as string;
-  const title = data.get("title") as string;
-  const desc = data.get("desc") as string;
+  const certificateId = data.get("id") as unknown as number;
+  const certTitle = data.get("certTitle") as string;
+  const certDesc = data.get("certDesc") as string;
   const courseLink = data.get("courseLink") as string;
   const profLink = data.get("profLink") as string;
+  const certImageLink = data.get("certImageLink") as string;
 
-  const imageLink = data.get("imageLink") as string;
+  console.log("from server", { certImageLink });
+  const session = await auth();
+  const user = session?.user;
 
-  const user = await getUser();
-  const role = user?.role;
+  console.log({
+    certificateId,
+    certTitle,
+    certDesc,
+    courseLink,
+    profLink,
+    certImageLink,
+  });
 
-  if (role !== "ADMIN") {
+  if (user?.email !== process.env.ADMIN_EMAIL) {
     return {
       success: false,
       message: "You Don't Have Privilige To Add Certificate",
@@ -120,36 +143,42 @@ export async function EditCertificateAction(state: any, data: FormData) {
   }
 
   const result = CertificateSchema.safeParse({
-    title,
-    desc,
+    certTitle,
+    certDesc,
     courseLink,
     profLink,
-    imageLink,
+    certImageLink,
   });
+
+  console.log(result);
   if (result.success) {
-    const oldCertificate = await prisma.certificate.findUnique({
-      where: { id: id },
+    const oldCertificate = await db.query.certificates.findFirst({
+      where: eq(certificates.id, certificateId),
     });
-    if (oldCertificate?.imageLink !== imageLink) {
+    console.log({ oldCertificate });
+    if (oldCertificate?.certImageLink !== certImageLink) {
       console.log("New Image");
-      DeleteFromS3(oldCertificate?.imageLink);
+      DeleteFromS3(oldCertificate?.certImageLink);
     }
-    const certificate = await prisma.certificate.update({
-      where: { id: id },
-      data: {
-        title,
-        desc,
+
+    const updatedCertificate = await db
+      .update(certificates)
+      .set({
+        certTitle,
+        certDesc,
         courseLink,
         profLink,
-        imageLink,
-      },
-    });
+        certImageLink,
+      })
+      .where(eq(certificates.id, certificateId))
+      .returning();
+
     console.log("certificate added successfully");
     revalidatePath("/dashboard/certificates");
     return {
       success: true,
       message: "Certificate Added Successfully",
-      certificate,
+      updatedCertificate,
     };
   }
   if (result.error) {
@@ -157,33 +186,39 @@ export async function EditCertificateAction(state: any, data: FormData) {
   }
 }
 
-export async function deleteCertificateAction(certificateId: string) {
-  const user = await getUser();
-  const role = user?.role;
-  if (role !== "ADMIN")
+export async function deleteCertificateAction(certificateId: number) {
+  const session = await auth();
+  const user = session?.user;
+
+  if (user?.email !== process.env.ADMIN_EMAIL) {
     return {
       success: false,
       message: "You Don't Have Privilige To Delete Project",
     };
-  const deleteProjct = await prisma.certificate.delete({
-    where: { id: certificateId },
-  });
+  }
+  console.log(certificateId);
+  const deletCertificate = await db
+    .delete(certificates)
+    .where(eq(certificates.id, certificateId))
+    .returning();
   console.log("projct deleted", certificateId);
   revalidatePath("/dashboard/certificates");
   return { success: true, message: "Certificate Deleted Successfully" };
 }
 
 export async function AddProjectAction(state: any, data: FormData) {
-  const title = data.get("title") as string;
-  const desc = data.get("desc") as string;
+  const projTitle = data.get("title") as string;
+  const projDesc = data.get("desc") as string;
   const repoLink = data.get("repoLink") as string;
   const liveLink = data.get("liveLink") as string;
-  const imageLink = data.get("imageLink") as string;
-  const tags = data.get("tags") as any;
-  const user = await getUser();
-  const role = user?.role;
+  const projImageLink = data.get("imageLink") as string;
+  const categories = data.get("tags") as any;
+  const projCategories = [categories.slice(",")];
 
-  if (role !== "ADMIN") {
+  const session = await auth();
+  const user = session?.user;
+
+  if (user?.email !== process.env.ADMIN_EMAIL) {
     return {
       success: false,
       message: "You Don't Have Privilige To Add Project",
@@ -191,25 +226,34 @@ export async function AddProjectAction(state: any, data: FormData) {
   }
 
   const result = ProjectSchema.safeParse({
-    title,
-    desc,
+    projTitle,
+    projDesc,
     repoLink,
     liveLink,
-    imageLink,
-    tags,
+    projImageLink,
+    projCategories,
   });
-
   if (result.success) {
-    const project = await prisma.project.create({
-      data: {
-        title,
-        desc,
+    console.log({
+      projTitle,
+      projDesc,
+      repoLink,
+      liveLink,
+      projImageLink,
+      projCategories,
+    });
+    const project = await db
+      .insert(projects)
+      .values({
+        projTitle,
+        projDesc,
         repoLink,
         liveLink,
-        imageLink,
-        tags,
-      },
-    });
+        projImageLink,
+        projCategories,
+      })
+      .returning();
+
     console.log("project added successfully");
     revalidatePath("/dashboard/projects");
     return { success: true, data: result.data };
@@ -220,18 +264,19 @@ export async function AddProjectAction(state: any, data: FormData) {
 }
 
 export async function EditProjectAction(state: any, data: FormData) {
-  const id = data.get("id") as string;
-  const title = data.get("title") as string;
-  const desc = data.get("desc") as string;
+  const projectId = data.get("id") as unknown as number;
+  const projTitle = data.get("projTitle") as string;
+  const projDesc = data.get("projDesc") as string;
   const repoLink = data.get("repoLink") as string;
   const liveLink = data.get("liveLink") as string;
-  const imageLink = data.get("imageLink") as string;
-  const tags = data.get("tags") as any;
+  const projImageLink = data.get("projImageLink") as string;
+  const categories = data.get("tags") as any;
+  const projCategories = [categories.slice(",")];
 
-  const user = await getUser();
-  const role = user?.role;
+  const session = await auth();
+  const user = session?.user;
 
-  if (role !== "ADMIN") {
+  if (user?.email !== process.env.ADMIN_EMAIL) {
     return {
       success: false,
       message: "You Don't Have Privilige To Add Project",
@@ -239,32 +284,36 @@ export async function EditProjectAction(state: any, data: FormData) {
   }
 
   const result = ProjectSchema.safeParse({
-    title,
-    desc,
+    projTitle,
+    projDesc,
     repoLink,
     liveLink,
-    imageLink,
-    tags,
+    projImageLink,
+    projCategories,
   });
+  console.log(result);
   if (result.success) {
-    const oldProject = await prisma.project.findUnique({
-      where: { id: id },
+    const oldProject = await db.query.projects.findFirst({
+      where: eq(projects.id, projectId),
     });
-    if (oldProject?.imageLink !== imageLink) {
+
+    if (oldProject?.projImageLink !== projImageLink) {
       console.log("New Image");
-      DeleteFromS3(oldProject?.imageLink);
+      DeleteFromS3(oldProject?.projImageLink);
     }
-    const project = await prisma.project.update({
-      where: { id: id },
-      data: {
-        title,
-        desc,
+
+    const project = await db
+      .update(projects)
+      .set({
+        projTitle,
+        projDesc,
         repoLink,
         liveLink,
-        imageLink,
-        tags,
-      },
-    });
+        projImageLink,
+        projCategories,
+      })
+      .where(eq(projects.id, projectId))
+      .returning();
     console.log("project updated successfully");
     revalidatePath("/dashboard/projects");
     return { success: true, data: result.data };
@@ -274,20 +323,23 @@ export async function EditProjectAction(state: any, data: FormData) {
   }
 }
 
-export async function deleteProjectAction(projectId: string) {
-  const user = await getUser();
-  const role = user?.role;
+export async function deleteProjectAction(projectId: number) {
+  const session = await auth();
+  const user = session?.user;
 
-  if (role !== "ADMIN")
+  if (user?.email !== process.env.ADMIN_EMAIL) {
     return {
       success: false,
       message: "You Don't Have Privilige To Delete Project",
     };
-  const deleteProjct = await prisma.project.delete({
-    where: { id: projectId },
-  });
+  }
+  const deleteProjct = await db
+    .delete(projects)
+    .where(eq(projects.id, projectId))
+    .returning();
   console.log("projct deleted", projectId);
   revalidatePath("/dashboard/projects");
+  console.log(deleteProjct);
   return { success: true, message: "Project Deleted Successfully" };
 }
 
@@ -317,49 +369,54 @@ export async function contactAction(state: any, formData: FormData) {
 }
 
 export async function AddNewPost(state: any, data: FormData) {
-  const user = await getUser();
-  const title = data.get("title") as string;
-  const content = data.get("content") as string;
+  const postTitle = data.get("title") as string;
+  const postContent = data.get("content") as string;
   const published = data.get("published");
   const tags = data.get("tags") as any;
   const isPublished = published === "true" ? true : false;
-  const imageLink = data.get("imageLink") as string;
-  const slug = title.split(" ").join("-");
-  const id = user?.id;
-  const role = user?.role;
-  const categories = tags.split(",");
+  const postImageLink = data.get("imageLink") as string;
+  const slug = postTitle.split(" ").join("-");
+  const categories = data.get("tags") as any;
+  const postsCategories = [categories.slice(",")];
 
-  if (role !== "ADMIN") {
+  const session = await auth();
+  const user = session?.user;
+
+  if (user?.email !== process.env.ADMIN_EMAIL) {
     return {
       success: false,
       message: "You Don't Have Privilige To Add Blog Post",
     };
   }
 
-  const result = BlogPostSchema.safeParse({
-    title,
-    content,
+  const result = postSchema.safeParse({
+    postTitle,
+    postContent,
     slug,
     published: isPublished,
-    imageLink,
-    tags: categories,
+    postImageLink,
+    postsCategories,
   });
-
   if (result.success) {
-    const newPost = await prisma.blogpost.create({
-      data: {
-        title,
-        content,
+    console.log({
+      postTitle,
+      postContent,
+      isPublished,
+      slug,
+      postImageLink,
+      postsCategories,
+    });
+    const newPost = await db
+      .insert(posts)
+      .values({
+        postTitle,
+        postContent,
         slug,
         published: isPublished,
-        imageLink,
-        author: { connect: { id: id } },
-        tags: categories,
-      },
-    });
-
-    console.log(newPost);
-    console.log(result);
+        postImageLink,
+        postsCategories,
+      })
+      .returning();
 
     console.log("Post added successfully");
     revalidatePath("/blogs/");
