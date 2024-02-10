@@ -17,12 +17,14 @@ export default async function Page({}) {
         <Link href={"/dashboard/projects"}>
           <Card className="hover:bg-gray-500 hover:text-gray-200 cursor-pointer p-10 bg-gray-200 w-[200px]">
             <h2>Projects</h2>
+
             <p>{projectsCount}</p>
           </Card>
         </Link>
         <Link href={"/dashboard/certificates"}>
           <Card className="hover:bg-gray-500 hover:text-gray-200 cursor-pointer p-10 bg-gray-200 w-[200px] ">
             <h2>Certificates</h2>
+
             <p>{certificatesCount}</p>
           </Card>
         </Link>

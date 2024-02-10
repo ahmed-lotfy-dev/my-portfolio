@@ -1,4 +1,3 @@
-import { Upload } from "@/src/components/ui/Upload";
 import { deleteSinglePosts, getSinglePosts } from "../../lib/getPosts";
 import { Button } from "@/src/components/ui/button";
 

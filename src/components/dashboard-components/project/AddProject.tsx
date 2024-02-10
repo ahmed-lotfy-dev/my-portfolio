@@ -20,10 +20,10 @@ import { notify } from "@/src/app/lib/utils/toast";
 
 import { TagsInput } from "react-tag-input-component";
 
-import { Textarea } from "../ui/textarea";
+import { Textarea } from "@/src/components/ui/textarea";
 import { useFormState } from "react-dom";
-import Submit from "../ui/formSubmitBtn";
-import { Upload } from "../ui/Upload";
+import Submit from "@/src/components/ui/formSubmitBtn";
+import { Upload } from "@/src/components/ui/Upload";
 import { useSession } from "next-auth/react";
 
 function AddProjectComponent() {

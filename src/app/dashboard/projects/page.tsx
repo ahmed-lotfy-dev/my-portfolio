@@ -1,5 +1,5 @@
 import { NotAuthenticated } from "@/src/components/dashboard-components/NotAuthenticated";
-import ProjectList from "@/src/components/dashboard-components/ProjectList";
+import ProjectList from "@/src/components/dashboard-components/project/ProjectList";
 import { getAllProjects } from "../../lib/getProjects";
 import Link from "next/link";
 import { Button } from "@/src/components/ui/button";

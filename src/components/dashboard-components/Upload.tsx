@@ -1,8 +1,8 @@
 import { ChangeEvent, Dispatch, SetStateAction, useRef, useState } from "react";
-import { Input } from "./input";
+import { Input } from "@/src/components/ui/input";
 import { notify } from "@/src/app/lib/utils/toast";
 import axios, { AxiosRequestConfig } from "axios";
-import { Button } from "./button";
+import { Button } from "@/src/components/ui/button";
 import { useSession } from "next-auth/react";
 
 type UploadProps = {

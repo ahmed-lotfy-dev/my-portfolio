@@ -125,6 +125,7 @@ dependencies:
   pg:
     specifier: ^8.11.3
     version: 8.11.3
+
   postcss:
     specifier: 8.4.35
     version: 8.4.35
@@ -915,6 +916,7 @@ packages:
     dependencies:
       superjson: 2.2.1
     dev: true
+
 
   /@emotion/is-prop-valid@0.8.8:
     resolution: {integrity: sha512-u5WtneEAr5IDG2Wv65yhunPSMLIpuKsbuOktRojfrEiEvRyC85LgPMZI63cr7NUqT8ZIGdSVg8ZKGxIug4lXcA==}
@@ -5439,6 +5441,7 @@ packages:
     dependencies:
       call-bind: 1.0.6
       get-intrinsic: 1.2.4
+
     dev: false
 
   /is-async-function@2.0.0:
@@ -6517,6 +6520,10 @@ packages:
     dependencies:
       wrappy: 1.0.2
 
+  /optional@0.1.4:
+    resolution: {integrity: sha512-gtvrrCfkE08wKcgXaVwQVgwEQ8vel2dc5DDBn9RLQZ3YtmtkBss6A2HY6BnJH4N/4Ku97Ri/SF8sNWE2225WJw==}
+    dev: false
+
   /optionator@0.9.3:
     resolution: {integrity: sha512-JjCoypp+jKn1ttEFExxhetCKeJt9zhAgAve5FXHixTvFDW/5aEktX9bufBKLRRMdU7bNtpLfcGu94B3cdEJgjg==}
     engines: {node: '>= 0.8.0'}
@@ -7404,6 +7411,7 @@ packages:
       define-data-property: 1.1.2
       functions-have-names: 1.2.3
       has-property-descriptors: 1.0.1
+
     dev: false
 
   /shebang-command@2.0.0:

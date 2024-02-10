@@ -13,7 +13,7 @@ import {
 } from "@/src/components/ui/table";
 
 import { deleteCertificateAction } from "@/src/app/actions";
-import { EditPopover } from "../ui/EditPopover";
+import { EditPopover } from "@/src/components/ui/EditPopover";
 
 function CertificateList({ allCertificates }: any) {
   return (
