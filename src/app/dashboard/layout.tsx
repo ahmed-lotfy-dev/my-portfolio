@@ -6,7 +6,7 @@ export default async function DashboardLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="flex h-svh w-full">
+    <div className="flex h-screen w-screen">
       <Aside />
       {children}
     </div>

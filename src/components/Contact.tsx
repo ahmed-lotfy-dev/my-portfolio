@@ -30,7 +30,7 @@ export default function Contact() {
             <span className="mx-auto sm:mx-0">+201016037479</span>
             <span className="mb-4">contact@ahmedlotfy.dev</span>
             <div className="flex flex-row space-x-10 justify-between">
-              <ul>
+              <ul className="flex space-x-10">
                 <li>
                   <Link
                     href={"https://www.linkedin.com/in/ahmed-lotfy-dev/"}
@@ -121,7 +121,10 @@ export default function Contact() {
             <p className="text-sm text-red-400">
               {state?.error?.message && state?.error?.message?._errors}
             </p>
-            <Submit btnText="Send" />
+            <Submit
+              btnText="Send"
+              className="w-[11rem] sm:w-[13rem] md:w-[19rem] xl:w-[27rem]"
+            />
           </form>
         </div>
       </div>
