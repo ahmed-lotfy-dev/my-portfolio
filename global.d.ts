@@ -6,7 +6,6 @@ declare module "@chakra-ui/next-js";
 declare global {
   namespace NodeJS {
     export interface ProcessEnv {
-      GITHUB_AUTH_TOKEN: string;
       NODE_ENV: "development" | "production";
       PORT: string | undefined;
       PWD: string;

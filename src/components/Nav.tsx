@@ -3,7 +3,7 @@ import { ReactNode, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Menu, SidebarClose } from "lucide-react";
-import { useKindeBrowserClient } from "@kinde-oss/kinde-auth-nextjs";
+import { useSession } from "next-auth/react";
 import UserButton from "./dashboard-components/UserButton";
 
 const navLinks = [
@@ -17,7 +17,8 @@ const navLinks = [
 
 function Nav() {
   const path = usePathname();
-  const { user } = useKindeBrowserClient();
+  const { data: session } = useSession();
+  const user = session?.user;
   const [isOpened, setIsOpened] = useState(false);
 
   const toggleMenu = () => {

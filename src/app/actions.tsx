@@ -1,6 +1,7 @@
 "use server";
 import { revalidatePath } from "next/cache";
 import { db } from "@/src/db";
+import { unstable_noStore as noStore } from "next/cache";
 
 import sgMail from "@sendgrid/mail";
 sgMail.setApiKey(process.env.SENDGRID_API_KEY);
@@ -24,7 +25,8 @@ import { posts } from "@/src/db/schema/posts";
 import { projects } from "@/src/db/schema/projects";
 import { eq } from "drizzle-orm";
 import { postSchema } from "./lib/schemas/postSchema";
-import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
+import { auth } from "@/src/auth";
+import { signIn, signOut } from "@/src/auth";
 
 const s3Client = new S3Client({
   region: "auto",
@@ -34,6 +36,15 @@ const s3Client = new S3Client({
     secretAccessKey: process.env.CF_SECRET_ACCESS_KEY,
   },
 });
+
+export async function SignInAction(data: FormData) {
+  const provider = data.get("provider") as string;
+  await signIn(provider);
+}
+
+export async function SignOutAction() {
+  await signOut();
+}
 
 export async function DeleteFromS3(imageLink: string | undefined) {
   if (!imageLink) {
@@ -62,14 +73,14 @@ export async function DeleteFromS3(imageLink: string | undefined) {
 }
 
 export async function AddCertificateAction(state: any, data: FormData) {
-  const certTitle = data.get("title") as string;
-  const certDesc = data.get("desc") as string;
+  const certTitle = data.get("certTitle") as string;
+  const certDesc = data.get("certDesc") as string;
   const courseLink = data.get("courseLink") as string;
   const profLink = data.get("profLink") as string;
-  const certImageLink = data.get("imageLink") as string;
+  const certImageLink = data.get("certImageLink") as string;
 
-  const { getUser } = getKindeServerSession();
-  const user = await getUser();
+  const session = await auth();
+  const user = session?.user;
   if (user?.email !== process.env.ADMIN_EMAIL) {
     return {
       success: false,
@@ -105,15 +116,16 @@ export async function AddCertificateAction(state: any, data: FormData) {
 
 export async function EditCertificateAction(state: any, data: FormData) {
   const certificateId = data.get("id") as unknown as number;
-  const certTitle = data.get("title") as string;
-  const certDesc = data.get("desc") as string;
+  const certTitle = data.get("certTitle") as string;
+  const certDesc = data.get("certDesc") as string;
   const courseLink = data.get("courseLink") as string;
   const profLink = data.get("profLink") as string;
-  const certImageLink = data.get("imageLink") as string;
+  const certImageLink = data.get("certImageLink") as string;
+  noStore();
+  const session = await auth();
+  const user = session?.user;
 
-  const { getUser } = getKindeServerSession();
-  const user = await getUser();
-  if (user?.email === process.env.ADMIN_EMAIL) {
+  if (user?.email !== process.env.ADMIN_EMAIL) {
     return {
       success: false,
       message: "You Don't Have Privilige To Add Certificate",
@@ -127,10 +139,13 @@ export async function EditCertificateAction(state: any, data: FormData) {
     profLink,
     certImageLink,
   });
+  console.log({ certTitle, certDesc, courseLink, profLink, certImageLink });
+  console.log(result);
   if (result.success) {
     const oldCertificate = await db.query.certificates.findFirst({
       where: eq(certificates.id, certificateId),
     });
+    console.log(oldCertificate);
     const updatedCertificate = await db.update(certificates).set({
       certTitle,
       certDesc,
@@ -157,8 +172,9 @@ export async function EditCertificateAction(state: any, data: FormData) {
 }
 
 export async function deleteCertificateAction(certificateId: number) {
-  const { getUser } = getKindeServerSession();
-  const user = await getUser();
+  const session = await auth();
+  const user = session?.user;
+
   if (user?.email !== process.env.ADMIN_EMAIL) {
     return {
       success: false,
@@ -184,8 +200,9 @@ export async function AddProjectAction(state: any, data: FormData) {
   const categories = data.get("tags") as any;
   const projCategories = [categories.slice(",")];
 
-  const { getUser } = getKindeServerSession();
-  const user = await getUser();
+  const session = await auth();
+  const user = session?.user;
+
   if (user?.email !== process.env.ADMIN_EMAIL) {
     return {
       success: false,
@@ -240,8 +257,9 @@ export async function EditProjectAction(state: any, data: FormData) {
   const projImageLink = data.get("imageLink") as string;
   const tags = data.get("tags") as any;
 
-  const { getUser } = getKindeServerSession();
-  const user = await getUser();
+  const session = await auth();
+  const user = session?.user;
+
   if (user?.email === process.env.ADMIN_EMAIL) {
     return {
       success: false,
@@ -288,8 +306,9 @@ export async function EditProjectAction(state: any, data: FormData) {
 }
 
 export async function deleteProjectAction(projectId: number) {
-  const { getUser } = getKindeServerSession();
-  const user = await getUser();
+  const session = await auth();
+  const user = session?.user;
+
   if (user?.email !== process.env.ADMIN_EMAIL) {
     return {
       success: false,
@@ -342,8 +361,8 @@ export async function AddNewPost(state: any, data: FormData) {
   const categories = data.get("tags") as any;
   const postsCategories = [categories.slice(",")];
 
-  const { getUser } = getKindeServerSession();
-  const user = await getUser();
+  const session = await auth();
+  const user = session?.user;
 
   if (user?.email !== process.env.ADMIN_EMAIL) {
     return {

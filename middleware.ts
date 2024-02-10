@@ -1,12 +1,5 @@
-import {
-  authMiddleware,
-  withAuth,
-} from "@kinde-oss/kinde-auth-nextjs/middleware";
+import { auth } from "@/src/auth";
 
-export default function middleware(req: Request) {
-  return withAuth(req);
-}
+export const middleware = auth;
 
-export const config = {
-  matcher: ["/dashboard"],
-};
+export const config = { matcher: ["/dashboard"] };

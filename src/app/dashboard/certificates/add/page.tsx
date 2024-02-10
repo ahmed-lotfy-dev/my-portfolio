@@ -14,15 +14,16 @@ import { Upload } from "@/src/components/ui/Upload";
 import { Button } from "@/src/components/ui/button";
 import { ArrowLeft } from "lucide-react";
 import { useRouter } from "next/navigation";
-import { useKindeBrowserClient } from "@kinde-oss/kinde-auth-nextjs";
+import { useSession } from "next-auth/react";
 
 export default function AddCertificateComponent() {
   const [state, formAction] = useFormState(AddCertificateAction, null);
   const [imageUrl, setImageUrl] = useState("");
   const formRef = useRef<HTMLFormElement>(null);
   const router = useRouter();
-  const { user } = useKindeBrowserClient();
-
+  const { data: session } = useSession();
+  const user = session?.user;
+  
   return (
     <div className="flex flex-col justify-center items-center w-full relative">
       <div className="pt-10 left-5 top-5 absolute">

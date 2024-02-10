@@ -1,5 +1,5 @@
 import { S3Client, PutObjectCommand } from "@aws-sdk/client-s3";
-import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
+import { auth } from "@/src/auth";
 
 const config = {
   region: "auto",
@@ -42,8 +42,8 @@ export async function POST(request: Request): Promise<Response> {
   const fileData = await file.arrayBuffer();
   const buffer = Buffer.from(fileData);
 
-  const { getUser } = getKindeServerSession();
-  const user = await getUser();
+  const session = await auth();
+  const user = session?.user;
   if (user?.email === process.env.ADMIN_EMAIL) {
     const uploaded = await uploadFileToS3(
       buffer,

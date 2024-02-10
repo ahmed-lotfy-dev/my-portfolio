@@ -14,11 +14,11 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/src/components/ui/select";
-import { useKindeBrowserClient } from "@kinde-oss/kinde-auth-nextjs";
 import { Upload } from "@/src/components/ui/Upload";
 import Image from "next/image";
 import { redirect } from "next/navigation";
 import { notify } from "@/src/app/lib/utils/toast";
+import { useSession } from "next-auth/react";
 
 export default function AddPost() {
   const [state, formAction] = useFormState(AddNewPost, null);
@@ -29,7 +29,8 @@ export default function AddPost() {
   //   notify(state?.message!, true);
   //   redirect("/blogs");
   // }
-  const { user } = useKindeBrowserClient();
+  const { data: session } = useSession();
+  const user = session?.user;
 
   return (
     <div className="w-full h-svh flex flex-col justify-start items-center text-center mt-10 gap-5">

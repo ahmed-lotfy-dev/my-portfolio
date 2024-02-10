@@ -12,16 +12,13 @@ import {
   DropdownMenuLabel,
   DropdownMenuTrigger,
 } from "@/src/components/ui/dropdown-menu";
-import {
-  LogoutLink,
-  RegisterLink,
-} from "@kinde-oss/kinde-auth-nextjs/components";
-import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
-import { LoginLink } from "@kinde-oss/kinde-auth-nextjs/components";
-import { useKindeBrowserClient } from "@kinde-oss/kinde-auth-nextjs";
+import { useSession } from "next-auth/react";
+import SignInButton from "../ui/SignInButton";
+import SignOutButton from "../ui/SignOutButton";
 
 export default function UserButton({ className }: { className?: string }) {
-  const { user } = useKindeBrowserClient();
+  const { data: session } = useSession();
+  const user = session?.user;
 
   return user ? (
     <div className={className}>
@@ -31,7 +28,7 @@ export default function UserButton({ className }: { className?: string }) {
             <Avatar className="w-8 h-8">
               {user.picture && (
                 <AvatarImage
-                  src={user?.picture}
+                  src={user?.image}
                   alt={`${user?.given_name} ${user?.family_name}` ?? ``}
                 />
               )}
@@ -42,24 +39,21 @@ export default function UserButton({ className }: { className?: string }) {
         <DropdownMenuContent className="w-56 mt-1" align="end" forceMount>
           <DropdownMenuLabel className="font-normal">
             <div className="flex flex-col space-y-1">
-              <p className="text-sm font-medium leading-none">
-                {user?.given_name} {user?.family_name}
-              </p>
+              <p className="text-sm font-medium leading-none">{user?.name}</p>
               <p className="text-xs leading-none text-muted-foreground">
                 {user?.email}
               </p>
             </div>
           </DropdownMenuLabel>
           <DropdownMenuItem>
-            <LogoutLink>Log out</LogoutLink>
+            <SignOutButton />
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
     </div>
   ) : (
     <>
-      <LoginLink>Sign in</LoginLink>
-      <RegisterLink>Sign up</RegisterLink>
+      <SignInButton />
     </>
   );
 }

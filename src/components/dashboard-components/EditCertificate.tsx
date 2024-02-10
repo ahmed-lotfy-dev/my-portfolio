@@ -18,16 +18,17 @@ import {
 import { Upload } from "../ui/Upload";
 import { Textarea } from "../ui/textarea";
 import { Pencil } from "lucide-react";
-import { useKindeBrowserClient } from "@kinde-oss/kinde-auth-nextjs";
+import { useSession } from "next-auth/react";
 
 function EditCertificate({ EditedObject }: any) {
   const { id } = EditedObject;
   const [state, formAction] = useFormState(EditCertificateAction, null);
   const [editedCert, setEditedCert] = useState(EditedObject);
   const [imageUrl, setImageUrl] = useState("");
-
   const formRef = useRef<HTMLFormElement>(null);
-  const { user } = useKindeBrowserClient();
+  const { data: session } = useSession();
+  const user = session?.user;
+  console.log(user);
 
   const InputHandler = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -38,7 +39,7 @@ function EditCertificate({ EditedObject }: any) {
       };
     });
   };
-
+  console.log(editedCert);
   return (
     <div
       key={id}
@@ -57,9 +58,9 @@ function EditCertificate({ EditedObject }: any) {
             <Input
               className="w-2/3 mt-10"
               type="text"
-              name="title"
+              name="certTitle"
               placeholder="Certificate Title"
-              value={editedCert.title}
+              value={editedCert.certTitle}
               onChange={InputHandler}
             />
             <p className="text-sm text-red-400">
@@ -68,9 +69,9 @@ function EditCertificate({ EditedObject }: any) {
 
             <Input
               className="w-2/3"
-              name="desc"
+              name="certDesc"
               placeholder="Certificate Description"
-              value={editedCert.desc}
+              value={editedCert.certDesc}
               onChange={InputHandler}
             />
             <p className="text-sm text-red-400">
@@ -92,7 +93,7 @@ function EditCertificate({ EditedObject }: any) {
             <Input
               className="w-2/3"
               type="url"
-              name="certProfLink"
+              name="profLink"
               placeholder="Certificate Proof"
               value={editedCert.profLink}
               onChange={InputHandler}
@@ -106,25 +107,29 @@ function EditCertificate({ EditedObject }: any) {
               {state?.error?.certImageLink &&
                 state?.error?.certImageLink?._errors}
             </p>
-            {imageUrl && (
+            {editedCert.certImageLink && (
               <Image
                 className="m-auto"
-                src={imageUrl}
+                src={editedCert.certImageLink}
                 width={300}
                 height={300}
                 alt="Certificate Image"
               />
             )}
             <Input type="hidden" name="id" value={editedCert.id} />
-            <Input type="hidden" name="imageLink" value={imageUrl} />
+            <Input
+              type="hidden"
+              name="certImageLink"
+              value={imageUrl || editedCert.certImageLink}
+            />
 
-            <DialogClose>
+            <DialogClose asChild>
               <Submit
                 btnText="Edit Certificate"
                 className="m-10"
                 type="submit"
                 onClick={() => {
-                  if (user?.email !== process.env.ADMIN_EMAIL) {
+                  if (user?.email !== process.env.NEXT_PUBLIC_ADMIN_EMAIL) {
                     notify("Sorry, you don't have admin privileges", false);
                   } else {
                     notify("Adding Completed Successfully", true);

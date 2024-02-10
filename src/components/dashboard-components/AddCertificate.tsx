@@ -14,11 +14,9 @@ import {
 import Image from "next/image";
 import { Input } from "@/src/components/ui/input";
 import { Label } from "@/src/components/ui/label";
-import { AddProjectAction } from "@/src/app/actions";
+import { AddCertificateAction } from "@/src/app/actions";
 
 import { notify } from "@/src/app/lib/utils/toast";
-
-import { TagsInput } from "react-tag-input-component";
 
 import { Textarea } from "../ui/textarea";
 import { useFormState } from "react-dom";
@@ -26,8 +24,8 @@ import Submit from "../ui/formSubmitBtn";
 import { Upload } from "../ui/Upload";
 import { useSession } from "next-auth/react";
 
-function AddProjectComponent() {
-  const [state, formAction] = useFormState(AddProjectAction, null);
+function AddCertificateComponent() {
+  const [state, formAction] = useFormState(AddCertificateAction, null);
   const [selected, setSelected] = useState<string[]>(["featured"]);
   const [imageUrl, setImageUrl] = useState("");
   const formRef = useRef<HTMLFormElement>(null);
@@ -40,56 +38,59 @@ function AddProjectComponent() {
       <div className="flex w-full min-h-full justify-center items-start mt-6">
         <Dialog>
           <DialogTrigger className="bg-primary text-primary-foreground hover:bg-primary/90 h-10 py-2 px-4 inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none ring-offset-background">
-            Add Project
+            Add Certificate
           </DialogTrigger>
           <DialogContent className="max-w-[700px]">
             <form
+              ref={formRef}
               action={formAction}
-              className="flex flex-col justify-start items-center w-full gap-5 text-black "
+              className="flex flex-col gap-5 justify-start items-center w-full text-black"
             >
               <Input
                 className="w-2/3 mt-10"
                 type="text"
-                name="title"
-                placeholder="Project Title"
+                name="certTitle"
+                placeholder="Certificate Title"
               />
               <p className="text-sm text-red-400">
-                {state?.error?.projTitle && state?.error?.projTitle?._errors}
-              </p>
-
-              <Textarea
-                className="flex justify-center w-2/3"
-                name="desc"
-                placeholder="Project Description"
-              ></Textarea>
-              <p className="text-sm text-red-400">
-                {state?.error?.projDesc && state?.error?.projDesc?._errors}
+                {state?.error?.certTitle && state?.error?.certTitle?._errors[0]}
               </p>
 
               <Input
                 className="w-2/3"
                 type="text"
-                name="repoLink"
-                placeholder="Project Repo Link"
+                name="certDesc"
+                placeholder="Certificate Description"
               />
               <p className="text-sm text-red-400">
-                {state?.error?.repoLink && state?.error?.repoLink?._errors}{" "}
+                {state?.error?.certDesc && state?.error?.certDesc?._errors[0]}
               </p>
 
               <Input
                 className="w-2/3"
-                type="text"
-                name="liveLink"
-                placeholder="Project Live Link"
+                type="url"
+                name="courseLink"
+                placeholder="Course Link"
               />
               <p className="text-sm text-red-400">
-                {state?.error?.liveLink && state?.error?.liveLink?._errors}
+                {state?.error?.courseLink &&
+                  state?.error?.courseLink?._errors[0]}
               </p>
 
-              <Upload setImageUrl={setImageUrl} imageType="Projects" />
+              <Input
+                className="w-2/3"
+                type="url"
+                name="profLink"
+                placeholder="Certificate Proof"
+              />
               <p className="text-sm text-red-400">
-                {state?.error?.projImageLink &&
-                  state?.error?.projImageLink?._errors}
+                {state?.error?.profLink && state?.error?.profLink?._errors[0]}
+              </p>
+
+              <Upload setImageUrl={setImageUrl} imageType={"Certificates"} />
+              <p className="text-sm text-red-400">
+                {state?.error?.certImageLink &&
+                  state?.error?.certImageLink?._errors}
               </p>
               {imageUrl && (
                 <Image
@@ -100,24 +101,16 @@ function AddProjectComponent() {
                   alt="Certificate Image"
                 />
               )}
-              <Input type="hidden" name="imageLink" value={imageUrl} />
-              <Input type="hidden" name="tags" value={selected} />
-
-              <Label className="flex justify-center">Project Tags</Label>
-              <TagsInput
-                value={selected}
-                onChange={setSelected}
-                name="tags"
-                placeHolder="Select Tech"
-              />
+              <Input type="hidden" name="certImageLink" value={imageUrl} />
 
               <DialogClose asChild>
                 <Submit
-                  btnText="Add Project"
+                  btnText="Add Certificate"
                   type="submit"
                   onClick={() => {
                     if (user?.email !== process.env.NEXT_PUBLIC_ADMIN_EMAIL) {
-                      notify("You don't have privilige to do this", false);
+                      notify("sorry you don't have admin priviliges", false);
+                    } else {
                       const submitTimeOut = setTimeout(() => {
                         notify("Adding Completed Successfully", true);
                         setImageUrl("");
@@ -136,4 +129,4 @@ function AddProjectComponent() {
   );
 }
 
-export { AddProjectComponent };
+export { AddCertificateComponent };

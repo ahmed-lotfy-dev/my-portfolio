@@ -3,11 +3,12 @@ import { CertificateList } from "@/src/components/dashboard-components/Certifica
 import { getAllCertificates } from "@/src/app/lib/getCertificates";
 import Link from "next/link";
 import { Button } from "@/src/components/ui/button";
-import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
+import { auth } from "@/src/auth";
+import { AddCertificateComponent } from "@/src/components/dashboard-components/AddCertificate";
 
-export default async function AddProject({}) {
-  const { getUser } = getKindeServerSession();
-  const user = await getUser();
+export default async function AddCertifiate({}) {
+  const session = await auth();
+  const user = session?.user;
   const { allCertificates } = await getAllCertificates();
 
   return (
@@ -15,11 +16,7 @@ export default async function AddProject({}) {
       {!user && <NotAuthenticated />}
       {user && (
         <div className="flex flex-col justify-center items-center w-full">
-          <Link href={`/dashboard/certificates/add`}>
-            <Button className="bg-primary text-primary-foreground hover:bg-primary/90 h-10 py-2 px-4 inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none ring-offset-background">
-              Add Certificate
-            </Button>
-          </Link>
+          <AddCertificateComponent />
           <CertificateList allCertificates={allCertificates} />
         </div>
       )}

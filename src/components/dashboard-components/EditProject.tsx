@@ -17,7 +17,7 @@ import { TagsInput } from "react-tag-input-component";
 import { DialogClose } from "@radix-ui/react-dialog";
 import { Upload } from "../ui/Upload";
 import { Pencil } from "lucide-react";
-import { useKindeBrowserClient } from "@kinde-oss/kinde-auth-nextjs";
+import { useSession } from "next-auth/react";
 
 function EditProject({ EditedObject }: any) {
   const { id } = EditedObject;
@@ -28,8 +28,9 @@ function EditProject({ EditedObject }: any) {
   const [selected, setSelected] = useState<string[]>(["featured"]);
 
   const formRef = useRef<HTMLFormElement>(null);
-  const { user } = useKindeBrowserClient();
-
+  const { data: session } = useSession();
+  const user = session?.user;
+  
   const InputHandler = (
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
