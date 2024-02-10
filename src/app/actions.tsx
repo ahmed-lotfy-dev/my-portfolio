@@ -121,9 +121,19 @@ export async function EditCertificateAction(state: any, data: FormData) {
   const courseLink = data.get("courseLink") as string;
   const profLink = data.get("profLink") as string;
   const certImageLink = data.get("certImageLink") as string;
-  noStore();
+
+  console.log("from server", { certImageLink });
   const session = await auth();
   const user = session?.user;
+
+  console.log({
+    certificateId,
+    certTitle,
+    certDesc,
+    courseLink,
+    profLink,
+    certImageLink,
+  });
 
   if (user?.email !== process.env.ADMIN_EMAIL) {
     return {
@@ -139,24 +149,29 @@ export async function EditCertificateAction(state: any, data: FormData) {
     profLink,
     certImageLink,
   });
-  console.log({ certTitle, certDesc, courseLink, profLink, certImageLink });
+
   console.log(result);
   if (result.success) {
     const oldCertificate = await db.query.certificates.findFirst({
       where: eq(certificates.id, certificateId),
     });
-    console.log(oldCertificate);
-    const updatedCertificate = await db.update(certificates).set({
-      certTitle,
-      certDesc,
-      courseLink,
-      profLink,
-      certImageLink,
-    });
+    console.log({ oldCertificate });
     if (oldCertificate?.certImageLink !== certImageLink) {
       console.log("New Image");
       DeleteFromS3(oldCertificate?.certImageLink);
     }
+
+    const updatedCertificate = await db
+      .update(certificates)
+      .set({
+        certTitle,
+        certDesc,
+        courseLink,
+        profLink,
+        certImageLink,
+      })
+      .where(eq(certificates.id, certificateId))
+      .returning();
 
     console.log("certificate added successfully");
     revalidatePath("/dashboard/certificates");
@@ -250,17 +265,18 @@ export async function AddProjectAction(state: any, data: FormData) {
 
 export async function EditProjectAction(state: any, data: FormData) {
   const projectId = data.get("id") as unknown as number;
-  const projTitle = data.get("title") as string;
-  const projDesc = data.get("desc") as string;
+  const projTitle = data.get("projTitle") as string;
+  const projDesc = data.get("projDesc") as string;
   const repoLink = data.get("repoLink") as string;
   const liveLink = data.get("liveLink") as string;
-  const projImageLink = data.get("imageLink") as string;
-  const tags = data.get("tags") as any;
+  const projImageLink = data.get("projImageLink") as string;
+  const categories = data.get("tags") as any;
+  const projCategories = [categories.slice(",")];
 
   const session = await auth();
   const user = session?.user;
 
-  if (user?.email === process.env.ADMIN_EMAIL) {
+  if (user?.email !== process.env.ADMIN_EMAIL) {
     return {
       success: false,
       message: "You Don't Have Privilige To Add Project",
@@ -273,16 +289,19 @@ export async function EditProjectAction(state: any, data: FormData) {
     repoLink,
     liveLink,
     projImageLink,
-    projCategories: tags,
+    projCategories,
   });
+  console.log(result);
   if (result.success) {
     const oldProject = await db.query.projects.findFirst({
       where: eq(projects.id, projectId),
     });
+
     if (oldProject?.projImageLink !== projImageLink) {
       console.log("New Image");
       DeleteFromS3(oldProject?.projImageLink);
     }
+
     const project = await db
       .update(projects)
       .set({
@@ -291,11 +310,10 @@ export async function EditProjectAction(state: any, data: FormData) {
         repoLink,
         liveLink,
         projImageLink,
-        projCategories: tags,
+        projCategories,
       })
       .where(eq(projects.id, projectId))
       .returning();
-
     console.log("project updated successfully");
     revalidatePath("/dashboard/projects");
     return { success: true, data: result.data };

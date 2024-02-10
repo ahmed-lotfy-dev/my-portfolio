@@ -21,7 +21,7 @@ async function uploadFileToS3(
   const fileBuffer = file;
   const params = {
     Bucket: process.env.CF_BUCKET_NAME,
-    Key: `${imageType}-${fileName}`,
+    Key: fileName,
     Body: fileBuffer,
     ContentType: type,
   };
@@ -30,7 +30,7 @@ async function uploadFileToS3(
   try {
     const response = await s3Client.send(command);
     console.log("File uploaded successfully", response);
-    return fileName;
+    return response;
   } catch (error) {
     throw error;
   }
@@ -47,7 +47,7 @@ export async function POST(request: Request): Promise<Response> {
   if (user?.email === process.env.ADMIN_EMAIL) {
     const uploaded = await uploadFileToS3(
       buffer,
-      file.name,
+      `${imageType}-${file.name}`,
       file.type,
       imageType
     );

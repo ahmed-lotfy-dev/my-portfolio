@@ -29,8 +29,8 @@ function EditProject({ EditedObject }: any) {
 
   const formRef = useRef<HTMLFormElement>(null);
   const { data: session } = useSession();
-  const user = session?.user;
-  
+  const role = session?.user?.role;
+
   const InputHandler = (
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
@@ -42,7 +42,8 @@ function EditProject({ EditedObject }: any) {
       };
     });
   };
-
+  console.log(editedProj);
+  console.log(imageUrl);
   return (
     <div className="flex flex-col justify-center items-center">
       <div className="flex w-full min-h-full justify-center items-start mt-6">
@@ -59,9 +60,9 @@ function EditProject({ EditedObject }: any) {
               <Input
                 className="w-2/3"
                 type="text"
-                name="title"
+                name="projTitle"
                 placeholder="Project Title"
-                value={editedProj.title}
+                value={editedProj.projTitle}
                 onChange={InputHandler}
               />
               <p className="text-sm text-red-400">
@@ -70,9 +71,9 @@ function EditProject({ EditedObject }: any) {
 
               <Textarea
                 className="flex justify-center w-2/3"
-                name="desc"
+                name="projDesc"
                 placeholder="Project Description"
-                value={editedProj.desc}
+                value={editedProj.projDesc}
                 onChange={InputHandler}
               />
               <p className="text-sm text-red-400">
@@ -108,17 +109,27 @@ function EditProject({ EditedObject }: any) {
                 {state?.error?.projImageLink &&
                   state?.error?.projImageLink?._errors}
               </p>
-              {imageUrl && (
+              {editedProj.projImageLink ? (
+                <Image
+                  className="m-auto"
+                  src={editedProj.projImageLink}
+                  width={200}
+                  height={200}
+                  alt="Certificate Image"
+                />
+              ) : (
                 <Image
                   className="m-auto"
                   src={imageUrl}
-                  width={300}
-                  height={300}
+                  width={200}
+                  height={200}
                   alt="Certificate Image"
                 />
               )}
               <Input type="hidden" name="tags" value={selected} />
-              <Input type="hidden" name="imageLink" value={imageUrl} />
+              <Input type="hidden" name="id" value={editedProj.id} />
+
+              <Input type="hidden" name="projImageLink" value={imageUrl} />
 
               <Label className="flex justify-center">Project Tags</Label>
               <TagsInput
@@ -127,13 +138,13 @@ function EditProject({ EditedObject }: any) {
                 name="tags"
                 placeHolder="Select Tech"
               />
-              <DialogClose>
+              <DialogClose asChild>
                 <Submit
                   btnText="Edit Project"
                   className="m-10 w-2/3"
                   type="submit"
                   onClick={() => {
-                    if (user?.email !== process.env.ADMIN_EMAIL) {
+                    if (role !== "admin") {
                       notify("Sorry, you don't have admin privileges", false);
                     } else {
                       notify("Adding Completed Successfully", true);

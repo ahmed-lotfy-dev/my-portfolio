@@ -27,9 +27,8 @@ function EditCertificate({ EditedObject }: any) {
   const [imageUrl, setImageUrl] = useState("");
   const formRef = useRef<HTMLFormElement>(null);
   const { data: session } = useSession();
-  const user = session?.user;
-  console.log(user);
-
+  const role = session?.user?.role;
+  console.log(role);
   const InputHandler = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setEditedCert((prevEditedCert: any) => {
@@ -39,10 +38,10 @@ function EditCertificate({ EditedObject }: any) {
       };
     });
   };
-  console.log(editedCert);
+  console.log("from client", { imageUrl });
   return (
     <div
-      key={id}
+      key={editedCert.id}
       className="flex w-full min-h-full justify-center items-center mt-6"
     >
       <Dialog>
@@ -107,21 +106,25 @@ function EditCertificate({ EditedObject }: any) {
               {state?.error?.certImageLink &&
                 state?.error?.certImageLink?._errors}
             </p>
-            {editedCert.certImageLink && (
+            {editedCert.certImageLink ? (
               <Image
                 className="m-auto"
                 src={editedCert.certImageLink}
-                width={300}
-                height={300}
+                width={200}
+                height={200}
+                alt="Certificate Image"
+              />
+            ) : (
+              <Image
+                className="m-auto"
+                src={imageUrl}
+                width={200}
+                height={200}
                 alt="Certificate Image"
               />
             )}
             <Input type="hidden" name="id" value={editedCert.id} />
-            <Input
-              type="hidden"
-              name="certImageLink"
-              value={imageUrl || editedCert.certImageLink}
-            />
+            <Input type="hidden" name="certImageLink" value={imageUrl} />
 
             <DialogClose asChild>
               <Submit
@@ -129,11 +132,14 @@ function EditCertificate({ EditedObject }: any) {
                 className="m-10"
                 type="submit"
                 onClick={() => {
-                  if (user?.email !== process.env.NEXT_PUBLIC_ADMIN_EMAIL) {
-                    notify("Sorry, you don't have admin privileges", false);
-                  } else {
-                    notify("Adding Completed Successfully", true);
-                    formRef.current?.reset();
+                  if (role !== "admin") {
+                    notify("You don't have privilige to do this", false);
+                    const submitTimeOut = setTimeout(() => {
+                      notify("Adding Completed Successfully", true);
+                      setImageUrl("");
+                      formRef.current?.reset();
+                    }, 200);
+                    clearTimeout(submitTimeOut);
                   }
                 }}
               />

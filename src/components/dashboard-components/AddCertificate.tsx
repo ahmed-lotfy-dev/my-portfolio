@@ -31,7 +31,6 @@ function AddCertificateComponent() {
   const formRef = useRef<HTMLFormElement>(null);
   const { data: session } = useSession();
   const user = session?.user;
-  console.log(selected);
 
   return (
     <div className="flex flex-col justify-center items-center">

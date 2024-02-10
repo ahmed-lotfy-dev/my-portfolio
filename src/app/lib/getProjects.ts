@@ -4,7 +4,7 @@ import { eq } from "drizzle-orm";
 
 async function getAllProjects() {
   try {
-    const allProjects = await db.query.projects.findMany({});
+    const allProjects = await db.query.projects.findMany();
 
     return { allProjects };
   } catch (error) {

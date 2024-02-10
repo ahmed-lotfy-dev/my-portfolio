@@ -14,7 +14,7 @@ export default async function Welcome() {
             Welcome {user?.given_name} {user?.family_name} to the dashboard.
           </h2>
 
-          {user.email !== process.env.NEXT_PUBLIC_ADMIN_EMAIL ? (
+          {user.email === process.env.NEXT_PUBLIC_ADMIN_EMAIL ? (
             <p>You are admin, welcome!</p>
           ) : (
             <p>

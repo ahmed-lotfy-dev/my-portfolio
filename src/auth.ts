@@ -28,7 +28,10 @@ export const { auth, signIn, signOut, handlers } = NextAuth({
       }
       if (user) {
         token.sub = user.id; // token.uid or token.sub both work
-        token.role = user.role;
+        token.role =
+          user.email === process.env.ADMIN_EMAIL
+            ? (token.role = "admin")
+            : (token.role = "user");
       }
       return token;
     },

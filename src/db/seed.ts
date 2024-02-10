@@ -5,7 +5,6 @@ import { certificates } from "@/src/db/schema/certificates";
 
 export const certificatesData = [
   {
-    id: 1,
     certTitle: "Linked-in Programming Foundation",
     certDesc: "LinkedIn",
     courseLink:
@@ -16,7 +15,6 @@ export const certificatesData = [
     createdAt: new Date("2024-01-24T17:17:53.791Z"),
   },
   {
-    id: 2,
     certTitle: "Build Responsive Real World Websited With HTML and,CSS",
     certDesc: "Jonas Schmedtmann",
     courseLink:
@@ -28,7 +26,6 @@ export const certificatesData = [
     createdAt: new Date("2024-01-24T17:22:10.313Z"),
   },
   {
-    id: 3,
     certTitle: "The Complete JavaScript Course 2022: From Zero to Expert!",
     certDesc: "Jonas Schmedtmann",
     courseLink:
@@ -40,7 +37,6 @@ export const certificatesData = [
     createdAt: new Date("2024-01-24T17:25:05.379Z"),
   },
   {
-    id: 4,
     certTitle: "React Development Cross-Skilling",
     certDesc: "Udacity NanoDegree",
     courseLink: "https://egfwd.com/specializtion/react-development/",
@@ -50,7 +46,6 @@ export const certificatesData = [
     createdAt: new Date("2024-01-24T17:28:43.303Z"),
   },
   {
-    id: 5,
     certTitle: "Complete React Developer (w/ Redux, Hooks, GraphQL)",
     certDesc: "Andrei Neagoie, Yihua Zhang (Zero To Mastery)",
     courseLink:
@@ -62,7 +57,6 @@ export const certificatesData = [
     createdAt: new Date("2024-01-24T17:33:06.901Z"),
   },
   {
-    id: 6,
     certTitle: "NodeJS - The Complete Guide (MVC, REST APIs, GraphQL, Deno)",
     certDesc: "Maximilian Schwarzmüller",
     courseLink: "https://www.udemy.com/course/nodejs-the-complete-guide/",
@@ -73,7 +67,6 @@ export const certificatesData = [
     createdAt: new Date("2024-01-24T17:35:14.555Z"),
   },
   {
-    id: 7,
     certTitle: "ChatGPT Basics Course",
     certDesc: "Almadrasa",
     courseLink: "https://almdrasa.com/tracks/ai/courses/chatgpt/",
@@ -114,8 +107,7 @@ export const projectsData = [
 
 const main = async () => {
   const client = new Pool({
-    connectionString:
-      "postgres://postgres:i4O9hcjlXUsz1IgKPvRoLb0ehE3OAZZpzF95JwYzezrH54qzuakajLnvMDZlZj6Q@193.123.91.169:5432/postgres",
+    connectionString: process.env.DATABASE_URL,
   });
   const db = drizzle(client);
 

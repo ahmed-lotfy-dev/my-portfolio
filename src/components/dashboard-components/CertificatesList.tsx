@@ -41,7 +41,7 @@ function CertificateList({ allCertificates }: any) {
                     {cert.certTitle}
                   </Link>
                 </TableCell>
-                <TableCell>{cert.certTitle}</TableCell>
+                <TableCell>{cert.certDesc}</TableCell>
                 <TableCell>
                   <Link href={cert.courseLink} target="_blank">
                     Course Link
