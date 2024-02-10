@@ -13,15 +13,13 @@ import {
 
 import Image from "next/image";
 import { Input } from "@/src/components/ui/input";
-import { Label } from "@/src/components/ui/label";
 import { AddCertificateAction } from "@/src/app/actions";
 
 import { notify } from "@/src/app/lib/utils/toast";
 
-import { Textarea } from "../ui/textarea";
 import { useFormState } from "react-dom";
-import Submit from "../ui/formSubmitBtn";
-import { Upload } from "../ui/Upload";
+import Submit from "../../ui/formSubmitBtn";
+import { Upload } from "../Upload";
 import { useSession } from "next-auth/react";
 
 function AddCertificateComponent() {

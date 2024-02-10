@@ -9,7 +9,6 @@ import type { Metadata } from "next";
 import { Toaster } from "@/src/components/ui/sonner";
 import { ReactNode } from "react";
 import { SessionProvider } from "next-auth/react";
-import UserButton from "../components/dashboard-components/UserButton";
 import { auth } from "@/src/auth";
 
 const josefinsans = Roboto_Serif({
