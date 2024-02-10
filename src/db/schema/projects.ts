@@ -12,5 +12,5 @@ export const projects = pgTable("project", {
   createdAt: timestamp("createdAt", { mode: "date" }).defaultNow().notNull(),
 });
 
-export type Certificate = InferSelectModel<typeof projects>;
+export type Project = InferSelectModel<typeof projects>;
 export type NewCertificate = InferInsertModel<typeof projects>;

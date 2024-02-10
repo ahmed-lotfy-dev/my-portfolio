@@ -2,7 +2,7 @@ import { getAllCertificates } from "@/lib/getCertificates";
 import Link from "next/link";
 import Image from "next/image";
 import { Button } from "./ui/button";
-
+import { Certificate } from "../db/schema/certificates";
 import {
   Accordion,
   AccordionContent,
@@ -22,7 +22,7 @@ export default async function certificates() {
           <h2 className="text-3xl font-bold text-center">Certificates</h2>
         </div>
         <div className="flex flex-col gap-y-6">
-          {allCertificates?.map((cert) => (
+          {allCertificates?.map((cert: Certificate) => (
             <Accordion
               key={cert.id}
               className="gap-y-6"

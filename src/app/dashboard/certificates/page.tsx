@@ -1,11 +1,8 @@
 import { NotAuthenticated } from "@/src/components/dashboard-components/NotAuthenticated";
 import { CertificateList } from "@/src/components/dashboard-components/certificate/CertificatesList";
 import { getAllCertificates } from "@/src/app/lib/getCertificates";
-import Link from "next/link";
-import { Button } from "@/src/components/ui/button";
 import { auth } from "@/src/auth";
-import { AddCertificateComponent } from "@/src/components/dashboard-components/AddCertificate";
-
+import { AddCertificateComponent } from "@/src/components/dashboard-components/certificate/AddCertificate";
 
 export default async function AddCertifiate({}) {
   const session = await auth();

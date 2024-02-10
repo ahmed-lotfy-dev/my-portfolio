@@ -3,7 +3,7 @@ import { getAllProjects } from "@/lib/getProjects";
 import Link from "next/link";
 import { Button } from "./ui/button";
 import { Card } from "./ui/card";
-
+import { Project } from "../db/schema/projects";
 export default async function projects() {
   const { allProjects } = await getAllProjects();
 
@@ -17,7 +17,7 @@ export default async function projects() {
           <h2 className="text-3xl font-bold">Projects</h2>
         </div>
         <div className="flex flex-wrap justify-center md:justify-start mx-auto gap-10">
-          {allProjects?.map((proj) => (
+          {allProjects?.map((proj: Project) => (
             <div
               key={proj.id}
               className="flex flex-col justify-between w-full text-center mt-10 md:text-start max-w-[400px] md:max-w-xl border-black border p-6"

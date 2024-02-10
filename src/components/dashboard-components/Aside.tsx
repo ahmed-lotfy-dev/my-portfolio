@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Code, Home, LayoutDashboard, CircleFadingPlus } from "lucide-react";
+import { Code, Home, LayoutDashboard, Plus } from "lucide-react";
 import certificateIcon from "@/public/certificate-svgrepo-com.svg";
 
 export default function Aside() {
@@ -47,7 +47,7 @@ export default function Aside() {
           </Link>
         </div>
         <div className="flex gap-5 items-center mx-auto">
-          <CircleFadingPlus className="text-gray-300 w-[2rem] h-[2rem]" />
+          <Plus className="text-gray-300 w-[2rem] h-[2rem]" />
           <Link
             className="text-gray-100 hidden group-hover:flex sm:flex"
             href="/dashboard/blogs/new"
