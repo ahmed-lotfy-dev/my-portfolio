@@ -95,9 +95,7 @@ export async function AddCertificateAction(state: any, data: FormData) {
     profLink,
     certImageLink,
   });
-  console.log(result);
   if (result.success) {
-    console.log({ certTitle, certDesc, courseLink, profLink, certImageLink });
     const certificate = await db.insert(certificates).values({
       certTitle,
       certDesc,
@@ -122,18 +120,8 @@ export async function EditCertificateAction(state: any, data: FormData) {
   const profLink = data.get("profLink") as string;
   const certImageLink = data.get("certImageLink") as string;
 
-  console.log("from server", { certImageLink });
   const session = await auth();
   const user = session?.user;
-
-  console.log({
-    certificateId,
-    certTitle,
-    certDesc,
-    courseLink,
-    profLink,
-    certImageLink,
-  });
 
   if (user?.email !== process.env.ADMIN_EMAIL) {
     return {
@@ -150,12 +138,10 @@ export async function EditCertificateAction(state: any, data: FormData) {
     certImageLink,
   });
 
-  console.log(result);
   if (result.success) {
     const oldCertificate = await db.query.certificates.findFirst({
       where: eq(certificates.id, certificateId),
     });
-    console.log({ oldCertificate });
     if (oldCertificate?.certImageLink !== certImageLink) {
       console.log("New Image");
       DeleteFromS3(oldCertificate?.certImageLink);
@@ -196,7 +182,6 @@ export async function deleteCertificateAction(certificateId: number) {
       message: "You Don't Have Privilige To Delete Project",
     };
   }
-  console.log(certificateId);
   const deletCertificate = await db
     .delete(certificates)
     .where(eq(certificates.id, certificateId))
@@ -234,14 +219,6 @@ export async function AddProjectAction(state: any, data: FormData) {
     projCategories,
   });
   if (result.success) {
-    console.log({
-      projTitle,
-      projDesc,
-      repoLink,
-      liveLink,
-      projImageLink,
-      projCategories,
-    });
     const project = await db
       .insert(projects)
       .values({
@@ -291,7 +268,6 @@ export async function EditProjectAction(state: any, data: FormData) {
     projImageLink,
     projCategories,
   });
-  console.log(result);
   if (result.success) {
     const oldProject = await db.query.projects.findFirst({
       where: eq(projects.id, projectId),
@@ -339,7 +315,6 @@ export async function deleteProjectAction(projectId: number) {
     .returning();
   console.log("projct deleted", projectId);
   revalidatePath("/dashboard/projects");
-  console.log(deleteProjct);
   return { success: true, message: "Project Deleted Successfully" };
 }
 
@@ -398,14 +373,6 @@ export async function AddNewPost(state: any, data: FormData) {
     postsCategories,
   });
   if (result.success) {
-    console.log({
-      postTitle,
-      postContent,
-      isPublished,
-      slug,
-      postImageLink,
-      postsCategories,
-    });
     const newPost = await db
       .insert(posts)
       .values({

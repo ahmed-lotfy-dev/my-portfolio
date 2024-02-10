@@ -15,10 +15,10 @@ declare global {
       AUTH_URL: string;
       AUTH_SECRET: string;
       SECRET: string;
-      GOOGLE_CLIENT_ID: string;
-      GOOGLE_CLIENT_SECRET: string;
-      GITHUB_CLIENT_ID: string;
-      GITHUB_CLIENT_SECRET: string;
+      GOOGLE_ID: string;
+      GOOGLE_SECRET: string;
+      GITHUB_ID: string;
+      GITHUB_SECRET: string;
       SENDGRID_API_KEY: string;
       UPLOADTHING_SECRET: string;
       UPLOADTHING_APP_ID: string;
