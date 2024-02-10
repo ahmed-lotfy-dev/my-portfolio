@@ -1,9 +1,12 @@
-import { Popover, PopoverContent, PopoverTrigger } from "./popover";
-import { Button } from "./button";
-import { EditCertificate } from "../dashboard-components/EditCertificate";
-import { EditProject } from "../dashboard-components/EditProject";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/src/components/ui/popover";
+import { Button } from "@/src/components/ui/button";
 import { MoreVertical } from "lucide-react";
-
+import { EditCertificate } from "./certificate/EditCertificate";
+import { EditProject } from "./project/EditProject";
 interface EditPopoverProps {
   onDeleteClick: () => void;
   EditedObject: any;

@@ -13,8 +13,7 @@ import {
 } from "@/src/components/ui/table";
 
 import { deleteCertificateAction } from "@/src/app/actions";
-import { EditPopover } from "@/src/components/ui/EditPopover";
-
+import { EditPopover } from "../EditPopover";
 function CertificateList({ allCertificates }: any) {
   return (
     <div className="w-full">

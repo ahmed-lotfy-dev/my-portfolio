@@ -9,11 +9,11 @@ import {
   CardHeader,
   CardTitle,
 } from "@/src/components/ui/card";
-import { Button } from "../ui/button";
+import { Button } from "@/src/components/ui/button";
 import Link from "next/link";
 import { deleteProjectAction } from "@/src/app/actions";
-import { EditPopover } from "../ui/EditPopover";
-import { AspectRatio } from "../ui/aspect-ratio";
+import { EditPopover } from "../EditPopover";
+import { AspectRatio } from "@/src/components/ui/aspect-ratio";
 
 type projectListProps = {};
 

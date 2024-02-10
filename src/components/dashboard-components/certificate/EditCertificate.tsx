@@ -14,9 +14,9 @@ import {
   DialogContent,
   DialogTrigger,
   DialogClose,
-} from "../ui/dialog";
-import { Upload } from "../ui/Upload";
-import { Textarea } from "../ui/textarea";
+} from "@/src/components/ui/dialog";
+import { Upload } from "../Upload";
+import { Textarea } from "@/src/components/ui/textarea";
 import { Pencil } from "lucide-react";
 import { useSession } from "next-auth/react";
 

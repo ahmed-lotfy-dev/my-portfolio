@@ -23,7 +23,7 @@ import { TagsInput } from "react-tag-input-component";
 import { Textarea } from "@/src/components/ui/textarea";
 import { useFormState } from "react-dom";
 import Submit from "@/src/components/ui/formSubmitBtn";
-import { Upload } from "@/src/components/ui/Upload";
+import { Upload } from "../Upload";
 import { useSession } from "next-auth/react";
 
 function AddProjectComponent() {

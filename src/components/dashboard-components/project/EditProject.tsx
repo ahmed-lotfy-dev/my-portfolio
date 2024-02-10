@@ -10,12 +10,16 @@ import { notify } from "@/src/app/lib/utils/toast";
 
 import { useFormState } from "react-dom";
 
-import Submit from "../ui/formSubmitBtn";
-import { Dialog, DialogContent, DialogTrigger } from "../ui/dialog";
-import { Textarea } from "../ui/textarea";
+import Submit from "@/src/components/ui/formSubmitBtn";
+import {
+  Dialog,
+  DialogContent,
+  DialogTrigger,
+} from "@/src/components/ui/dialog";
+import { Textarea } from "@/src/components/ui/textarea";
 import { TagsInput } from "react-tag-input-component";
 import { DialogClose } from "@radix-ui/react-dialog";
-import { Upload } from "../ui/Upload";
+import { Upload } from "../Upload";
 import { Pencil } from "lucide-react";
 import { useSession } from "next-auth/react";
 

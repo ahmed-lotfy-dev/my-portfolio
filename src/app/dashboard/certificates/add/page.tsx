@@ -10,7 +10,7 @@ import { notify } from "@/src/app/lib/utils/toast";
 import { useFormState } from "react-dom";
 import Submit from "@/src/components/ui/formSubmitBtn";
 
-import { Upload } from "@/src/components/ui/Upload";
+import { Upload } from "@/src/components/dashboard-components/Upload";
 import { Button } from "@/src/components/ui/button";
 import { ArrowLeft } from "lucide-react";
 import { useRouter } from "next/navigation";
@@ -23,7 +23,7 @@ export default function AddCertificateComponent() {
   const router = useRouter();
   const { data: session } = useSession();
   const user = session?.user;
-  
+
   return (
     <div className="flex flex-col justify-center items-center w-full relative">
       <div className="pt-10 left-5 top-5 absolute">
