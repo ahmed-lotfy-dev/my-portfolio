@@ -4,7 +4,7 @@ import GoogleProvider from "next-auth/providers/google";
 import { DrizzleAdapter } from "@auth/drizzle-adapter";
 import { db } from "@/src/db/index";
 
-export const { auth, signIn, signOut, handlers } = NextAuth({
+const authConfig = {
   adapter: DrizzleAdapter(db),
   providers: [
     GithubProvider({
@@ -47,4 +47,6 @@ export const { auth, signIn, signOut, handlers } = NextAuth({
     strategy: "jwt",
   },
   secret: process.env.NEXTAUTH_SECRET,
-} satisfies NextAuthConfig);
+} satisfies NextAuthConfig
+
+export const { handlers, auth, signIn, signOut } = NextAuth(authConfig);
