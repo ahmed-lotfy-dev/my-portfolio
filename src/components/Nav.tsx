@@ -3,8 +3,10 @@ import { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import UserProfile from "@/src/components/dashboard-components/UserProfile";
-import { AiOutlineMenu, AiOutlineClose } from "react-icons/ai";
 import { Session } from "next-auth";
+import Image from "next/image";
+import MenuIcon from "@/public/icons/menu-outline.svg";
+import CloseIcon from "@/public/icons/close-outline.svg";
 
 const navLinks = [
   { href: "/", label: "Home" },
@@ -77,7 +79,13 @@ function Nav({ session }: Props) {
         </div>
         {/* Menu Icon */}
         <div className="md:hidden flex justify-center items-center cursor-pointer">
-          <AiOutlineMenu size={25} onClick={toggleMenu} />
+          <Image
+            src={MenuIcon}
+            width={25}
+            height={25}
+            onClick={toggleMenu}
+            alt={"Menu Icon"}
+          />
         </div>
       </div>
       {/* Responsive Menu*/}
@@ -112,7 +120,13 @@ function Nav({ session }: Props) {
             <li>{user && <UserProfile user={user} className="block" />}</li>
           </ul>
           <div className="mt-9 mr-9 cursor-pointer" onClick={toggleMenu}>
-            <AiOutlineClose size={25} className="fill-gray-500" />
+            <Image
+              src={CloseIcon}
+              width={25}
+              height={25}
+              alt="Close Icon"
+              className="fill-gray-500"
+            />
           </div>
         </div>
       </div>
