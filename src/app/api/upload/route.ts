@@ -1,5 +1,5 @@
 import { S3Client, PutObjectCommand } from "@aws-sdk/client-s3";
-import { auth } from "@/src/auth";
+import { auth } from "@/auth";
 
 const config = {
   region: "auto",

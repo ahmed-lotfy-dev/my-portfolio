@@ -15,6 +15,13 @@
       "when": 1707480626345,
       "tag": "0001_solid_sunfire",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "5",
+      "when": 1707607589179,
+      "tag": "0002_rare_trauma",
+      "breakpoints": true
     }
   ]
 }

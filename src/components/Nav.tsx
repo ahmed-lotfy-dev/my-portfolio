@@ -20,7 +20,7 @@ function Nav() {
   const { data: session } = useSession();
   const user = session?.user;
   const [isOpened, setIsOpened] = useState(false);
-
+  console.log(user);
   const toggleMenu = () => {
     setIsOpened(!isOpened);
   };
@@ -67,9 +67,9 @@ function Nav() {
               )}
             </ul>
           </nav>
-          {user && (
-            <UserButton className="absolute right-20 md:ml-5 md:static" />
-          )}
+
+          <UserButton className="absolute right-20 md:ml-5 md:static" />
+          
         </div>
         {/* Menu Icon */}
         <div className="md:hidden flex justify-center items-center cursor-pointer">

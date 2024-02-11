@@ -13,25 +13,23 @@ import {
   DropdownMenuTrigger,
 } from "@/src/components/ui/dropdown-menu";
 import { useSession } from "next-auth/react";
-import SignInButton from "../ui/SignInButton";
 import SignOutButton from "../ui/SignOutButton";
+import Link from "next/link";
 
 export default function UserButton({ className }: { className?: string }) {
   const { data: session } = useSession();
   const user = session?.user;
 
-  return user ? (
+  return (
     <div className={className}>
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
           <Button variant="ghost" className="relative w-8 h-8 rounded-full">
             <Avatar className="w-8 h-8">
-              {user.picture && (
-                <AvatarImage
-                  src={user?.image}
-                  alt={`${user?.given_name} ${user?.family_name}` ?? ``}
-                />
-              )}
+              <AvatarImage
+                src={user?.picture || user?.image || "https://placehold.co/150"}
+                alt={`${user?.name} ` ?? ``}
+              />
               <AvatarFallback>{user?.email}</AvatarFallback>
             </Avatar>
           </Button>
@@ -46,14 +44,16 @@ export default function UserButton({ className }: { className?: string }) {
             </div>
           </DropdownMenuLabel>
           <DropdownMenuItem>
-            <SignOutButton />
+            {user ? (
+              <SignOutButton />
+            ) : (
+              <Link href="/api/auth/signin" className="w-full p-4">
+                <Button className="w-full">Sign In</Button>
+              </Link>
+            )}
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
     </div>
-  ) : (
-    <>
-      <SignInButton />
-    </>
   );
 }

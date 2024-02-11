@@ -1,8 +1,7 @@
 "use server";
 import { revalidatePath } from "next/cache";
 import { db } from "@/src/db";
-import { unstable_noStore as noStore } from "next/cache";
-
+import bcrypt from "bcrypt";
 import sgMail from "@sendgrid/mail";
 sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 import { ContactInputs, contactSchema } from "./lib/schemas/contactSchema";
@@ -25,8 +24,10 @@ import { posts } from "@/src/db/schema/posts";
 import { projects } from "@/src/db/schema/projects";
 import { eq } from "drizzle-orm";
 import { postSchema } from "./lib/schemas/postSchema";
-import { auth } from "@/src/auth";
-import { signIn, signOut } from "@/src/auth";
+import { auth, signIn, signOut } from "@/auth";
+import { AuthError } from "next-auth";
+import { users } from "../db/schema/users";
+import { redirect } from "next/navigation";
 
 const s3Client = new S3Client({
   region: "auto",
@@ -37,9 +38,40 @@ const s3Client = new S3Client({
   },
 });
 
-export async function SignInAction(data: FormData) {
-  const provider = data.get("provider") as string;
+export async function SignUpAction(state: any, formData: FormData) {
+  const name = formData.get("name") as string;
+  const email = formData.get("email") as string;
+  const password = formData.get("password") as unknown as string;
+
+  try {
+    const hashedPw = await bcrypt.hash(password, 10);
+    const newUser = await db
+      .insert(users)
+      .values({ id: crypto.randomUUID(), name, email, password: hashedPw });
+  } catch (error) {
+    return { error };
+  }
+}
+
+export async function SignInAction(formData: FormData) {
+  const provider = formData.get("provider") as string;
   await signIn(provider);
+}
+export async function SignInActionCredentials(state: any, formData: FormData) {
+  const provider = formData.get("provider") as string;
+  try {
+    await signIn(provider, formData);
+  } catch (error) {
+    if (error instanceof AuthError) {
+      switch (error.type) {
+        case "CredentialsSignin":
+          return "Invalid credentials.";
+        default:
+          return "Something went wrong.";
+      }
+    }
+    throw error;
+  }
 }
 
 export async function SignOutAction() {
