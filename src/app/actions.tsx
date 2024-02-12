@@ -48,6 +48,7 @@ export async function SignUpAction(state: any, formData: FormData) {
     const newUser = await db
       .insert(users)
       .values({ id: crypto.randomUUID(), name, email, password: hashedPw });
+    redirect("/dashboard");
   } catch (error) {
     return { error };
   }
@@ -58,9 +59,10 @@ export async function SignInAction(formData: FormData) {
   await signIn(provider);
 }
 export async function SignInActionCredentials(state: any, formData: FormData) {
-  const provider = formData.get("provider") as string;
+  const email = formData.get("email") as string;
+  const password = formData.get("password") as string;
   try {
-    await signIn(provider, formData);
+    await signIn("credentials", { email, password });
   } catch (error) {
     if (error instanceof AuthError) {
       switch (error.type) {

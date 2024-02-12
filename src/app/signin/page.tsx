@@ -19,11 +19,16 @@ type Props = {
   params: string;
 };
 
-export default function Login({ params }: Props) {
-  console.log(params);
+export default function Login() {
+  console.log();
   const [state, formAction] = useFormState(SignInActionCredentials, null);
   return (
     <div className="w-full flex flex-col justify-center items-center mt-20">
+      <div className="flex flex-col justify-center items-center m-auto">
+        <h2>For testing</h2>
+        <p>Email : test@test.test</p>
+        <p>Password : test</p>
+      </div>
       <form action={formAction}>
         <Card className="mx-auto max-w-sm">
           <CardHeader className="space-y-1">
