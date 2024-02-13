@@ -1,6 +1,6 @@
 "use client";
 import Link from "next/link";
-import { contactAction } from "@/src/app/actions";
+import { contactAction } from "@/src/app/actions/contactAction";
 import { useFormState } from "react-dom";
 import { notify } from "@/src/app/lib/utils/toast";
 import Submit from "./ui/formSubmitBtn";

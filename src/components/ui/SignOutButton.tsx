@@ -1,12 +1,19 @@
-import React from "react";
 import { Button } from "@/src/components/ui/button";
-import { SignOutAction } from "@/src/app/actions";
+import { signOut } from "@/auth";
+
 type Props = {};
 
-export default function SignOutButton({}: Props) {
+export default async function SignOutButton({}: Props) {
   return (
-    <form action={SignOutAction} className="w-full p-10">
-      <Button className="w-full p-0">Sign Out</Button>
-    </form>
+    <div className="w-full p-10">
+      <form
+        action={async () => {
+          "use server";
+          await signOut();
+        }}
+      >
+        <Button className="w-full p-0">Sign Out</Button>
+      </form>
+    </div>
   );
 }

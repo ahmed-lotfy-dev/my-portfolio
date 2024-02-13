@@ -1,5 +1,3 @@
-"use client";
-import { Button } from "@/src/components/ui/button";
 import {
   Card,
   CardContent,
@@ -10,18 +8,12 @@ import {
 import { Input } from "@/src/components/ui/input";
 import { Label } from "@/src/components/ui/label";
 import React from "react";
-import { useFormState } from "react-dom";
-import { SignInActionCredentials } from "@/src/app/actions";
 import Submit from "@/src/components/ui/formSubmitBtn";
-import SignInButtons from "@/src/components/ui/SignInButton";
+import { login } from "@/src/app/actions/authActions";
+import SignInButton from "@/src/components/ui/SignInButton";
+import { signIn } from "@/auth";
 
-type Props = {
-  params: string;
-};
-
-export default function Login() {
-  console.log();
-  const [state, formAction] = useFormState(SignInActionCredentials, null);
+export default async function Login() {
   return (
     <div className="w-full flex flex-col justify-center items-center mt-20">
       <div className="flex flex-col justify-center items-center m-auto">
@@ -29,7 +21,12 @@ export default function Login() {
         <p>Email : test@test.test</p>
         <p>Password : test</p>
       </div>
-      <form action={formAction}>
+      <form
+        action={async (formData) => {
+          "use server";
+          await signIn("credentials", formData);
+        }}
+      >
         <Card className="mx-auto max-w-sm">
           <CardHeader className="space-y-1">
             <CardTitle className="text-2xl font-bold">Login</CardTitle>
@@ -59,7 +56,11 @@ export default function Login() {
           </CardContent>
         </Card>
       </form>
-      <div
+      <div className="flex flex-col justify-center items-center w-full">
+        <SignInButton provider="google" />
+        <SignInButton provider="github" />
+      </div>
+      {/* <div
         className="flex h-8 items-end space-x-1"
         aria-live="polite"
         aria-atomic="true"
@@ -74,7 +75,7 @@ export default function Login() {
       <div className="w-full">
         <SignInButtons provider="google" />
         <SignInButtons provider="github" />
-      </div>
+      </div> */}
     </div>
   );
 }

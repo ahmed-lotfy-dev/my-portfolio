@@ -23,7 +23,8 @@
     "paths": {
       "@/*": ["./*"],
       "@/components/*": ["src/app/components/*"],
-      "@/lib/*": ["src/app/lib/*"]
+      "@/lib/*": ["src/app/lib/*"],
+      "auth": ["./auth.ts"]
     }
   },
   "include": [
@@ -38,7 +39,8 @@
     "src/app/components/accordion.tsx",
     "src/app/page.tsx",
     "src/db/migrate.ts",
-    "src/app/redux/features/Projects"
-, "db-seed-data/prjects-data.ts"  ],
+    "src/app/redux/features/Projects",
+    "db-seed-data/prjects-data.ts"
+  ],
   "exclude": ["node_modules"]
 }

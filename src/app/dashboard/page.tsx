@@ -1,6 +1,6 @@
 import { Card } from "@/src/components/ui/card";
-import { getAllCertificates } from "../lib/getCertificates";
-import { getAllProjects } from "../lib/getProjects";
+import { getAllCertificates } from "@/src/app/actions/certificatesActions";
+import { getAllProjects } from "@/src/app/actions/projectsActions";
 
 import Welcome from "@/src/components/dashboard-components/Welcome";
 import Link from "next/link";

@@ -14,7 +14,7 @@ import {
 import Image from "next/image";
 import { Input } from "@/src/components/ui/input";
 import { Label } from "@/src/components/ui/label";
-import { AddProjectAction } from "@/src/app/actions";
+import { addProjectAction } from "@/src/app/actions/projectsActions";
 
 import { notify } from "@/src/app/lib/utils/toast";
 
@@ -24,15 +24,12 @@ import { Textarea } from "@/src/components/ui/textarea";
 import { useFormState } from "react-dom";
 import Submit from "@/src/components/ui/formSubmitBtn";
 import { Upload } from "../Upload";
-import { useSession } from "next-auth/react";
 
 function AddProjectComponent() {
-  const [state, formAction] = useFormState(AddProjectAction, null);
+  const [state, formAction] = useFormState(addProjectAction, null);
   const [selected, setSelected] = useState<string[]>(["featured"]);
   const [imageUrl, setImageUrl] = useState("");
   const formRef = useRef<HTMLFormElement>(null);
-  const { data: session } = useSession();
-  const user = session?.user;
 
   return (
     <div className="flex flex-col justify-center items-center">
@@ -115,15 +112,15 @@ function AddProjectComponent() {
                   btnText="Add Project"
                   type="submit"
                   onClick={() => {
-                    if (user?.email !== process.env.NEXT_PUBLIC_ADMIN_EMAIL) {
-                      notify("You don't have privilige to do this", false);
-                      const submitTimeOut = setTimeout(() => {
-                        notify("Adding Completed Successfully", true);
-                        setImageUrl("");
-                        formRef.current?.reset();
-                      }, 200);
-                      clearTimeout(submitTimeOut);
-                    }
+                    // if (user?.email !== process.env.NEXT_PUBLIC_ADMIN_EMAIL) {
+                    // notify("You don't have privilige to do this", false);
+                    const submitTimeOut = setTimeout(() => {
+                      notify("Adding Completed Successfully", true);
+                      setImageUrl("");
+                      formRef.current?.reset();
+                    }, 200);
+                    clearTimeout(submitTimeOut);
+                    // }
                   }}
                 />
               </DialogClose>

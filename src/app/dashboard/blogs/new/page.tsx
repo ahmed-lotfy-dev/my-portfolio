@@ -3,7 +3,7 @@ import { Input } from "@/src/components/ui/input";
 import { Textarea } from "@/src/components/ui/textarea";
 import Submit from "@/src/components/ui/formSubmitBtn";
 import { useFormState } from "react-dom";
-import { AddNewPost } from "../../../actions";
+import { addNewPost } from "@/src/app/actions/postsActions";
 import { TagsInput } from "react-tag-input-component";
 import { useState } from "react";
 
@@ -18,10 +18,9 @@ import { Upload } from "@/src/components/dashboard-components/Upload";
 import Image from "next/image";
 import { redirect } from "next/navigation";
 import { notify } from "@/src/app/lib/utils/toast";
-import { useSession } from "next-auth/react";
 
 export default function AddPost() {
-  const [state, formAction] = useFormState(AddNewPost, null);
+  const [state, formAction] = useFormState(addNewPost, null);
   const [selected, setSelected] = useState(["frontend"]);
   const [imageUrl, setImageUrl] = useState("");
 
@@ -29,9 +28,6 @@ export default function AddPost() {
   //   notify(state?.message!, true);
   //   redirect("/blogs");
   // }
-  const { data: session } = useSession();
-  const user = session?.user;
-
   return (
     <div className="w-full h-svh flex flex-col justify-start items-center text-center mt-10 gap-5">
       <h2 className="mb-3">Add New Post</h2>
@@ -89,11 +85,11 @@ export default function AddPost() {
           btnText={"Add Post"}
           className="w-2/3 mt-6"
           onClick={() => {
-            if (user?.email !== process.env.NEXT_PUBLIC_ADMIN_EMAIL) {
-              notify("You don't have privilige to do this", false);
-            } else {
-              notify("Blog Post Completed Successfully", true);
-            }
+            // if (user?.email !== process.env.NEXT_PUBLIC_ADMIN_EMAIL) {
+            notify("You don't have privilige to do this", false);
+            // } else {
+            notify("Blog Post Completed Successfully", true);
+            // }
           }}
         />
       </form>

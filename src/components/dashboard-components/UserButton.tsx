@@ -1,4 +1,3 @@
-"use client";
 import {
   Avatar,
   AvatarFallback,
@@ -12,12 +11,16 @@ import {
   DropdownMenuLabel,
   DropdownMenuTrigger,
 } from "@/src/components/ui/dropdown-menu";
-import { useSession } from "next-auth/react";
 import SignOutButton from "../ui/SignOutButton";
-import Link from "next/link";
+import { auth } from "@/auth";
+import SignInButton from "../ui/SignInButton";
 
-export default function UserButton({ className }: { className?: string }) {
-  const { data: session } = useSession();
+export default async function UserButton({
+  className,
+}: {
+  className?: string;
+}) {
+  const session = await auth();
   const user = session?.user;
 
   return (
@@ -27,14 +30,14 @@ export default function UserButton({ className }: { className?: string }) {
           <Button variant="ghost" className="relative w-8 h-8 rounded-full">
             <Avatar className="w-8 h-8">
               <AvatarImage
-                src={user?.picture || user?.image || "https://placehold.co/150"}
+                src={user?.image || user?.image || "https://placehold.co/150"}
                 alt={`${user?.name} ` ?? ``}
               />
               <AvatarFallback>{user?.email}</AvatarFallback>
             </Avatar>
           </Button>
         </DropdownMenuTrigger>
-        <DropdownMenuContent className="w-56 mt-1" align="end" forceMount>
+        <DropdownMenuContent className="w-56 mt-2" align="end" forceMount>
           <DropdownMenuLabel className="font-normal">
             <div className="flex flex-col space-y-1">
               <p className="text-sm font-medium leading-none">{user?.name}</p>
@@ -44,13 +47,7 @@ export default function UserButton({ className }: { className?: string }) {
             </div>
           </DropdownMenuLabel>
           <DropdownMenuItem>
-            {user ? (
-              <SignOutButton />
-            ) : (
-              <Link href="/api/auth/signin" className="w-full p-4">
-                <Button className="w-full">Sign In</Button>
-              </Link>
-            )}
+            {user ? <SignOutButton /> : <SignInButton />}
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>

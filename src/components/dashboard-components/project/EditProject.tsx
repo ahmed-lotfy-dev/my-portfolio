@@ -4,7 +4,7 @@ import { ChangeEvent, useRef, useState } from "react";
 import Image from "next/image";
 import { Input } from "@/src/components/ui/input";
 import { Label } from "@/src/components/ui/label";
-import { EditCertificateAction, EditProjectAction } from "@/src/app/actions";
+import { editProjectAction } from "@/src/app/actions/projectsActions";
 
 import { notify } from "@/src/app/lib/utils/toast";
 
@@ -21,19 +21,16 @@ import { TagsInput } from "react-tag-input-component";
 import { DialogClose } from "@radix-ui/react-dialog";
 import { Upload } from "../Upload";
 import { Pencil } from "lucide-react";
-import { useSession } from "next-auth/react";
 
 function EditProject({ EditedObject }: any) {
   const { id } = EditedObject;
-  const [state, formAction] = useFormState(EditProjectAction, null);
+  const [state, formAction] = useFormState(editProjectAction, null);
   const [editedProj, setEditedProj] = useState(EditedObject);
   const [imageUrl, setImageUrl] = useState("");
 
   const [selected, setSelected] = useState<string[]>(["featured"]);
 
   const formRef = useRef<HTMLFormElement>(null);
-  const { data: session } = useSession();
-  const role = session?.user?.role;
 
   const InputHandler = (
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -148,12 +145,12 @@ function EditProject({ EditedObject }: any) {
                   className="m-10 w-2/3"
                   type="submit"
                   onClick={() => {
-                    if (role !== "admin") {
-                      notify("Sorry, you don't have admin privileges", false);
-                    } else {
+                    // if (role !== "admin") {
+                      // notify("Sorry, you don't have admin privileges", false);
+                    // } else {
                       notify("Adding Completed Successfully", true);
                       formRef.current?.reset();
-                    }
+                    // }
                   }}
                 />
               </DialogClose>

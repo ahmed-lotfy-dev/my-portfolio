@@ -3,7 +3,6 @@ import { ReactNode, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Menu, SidebarClose } from "lucide-react";
-import { useSession } from "next-auth/react";
 import UserButton from "./dashboard-components/UserButton";
 
 const navLinks = [
@@ -15,12 +14,9 @@ const navLinks = [
   { href: "/#contact", label: "Contact" },
 ];
 
-function Nav() {
+function Nav({ children }: { children: ReactNode }) {
   const path = usePathname();
-  const { data: session } = useSession();
-  const user = session?.user;
   const [isOpened, setIsOpened] = useState(false);
-  console.log(user);
   const toggleMenu = () => {
     setIsOpened(!isOpened);
   };
@@ -67,9 +63,7 @@ function Nav() {
               )}
             </ul>
           </nav>
-
-          <UserButton className="absolute right-20 md:ml-5 md:static" />
-          
+          {children}
         </div>
         {/* Menu Icon */}
         <div className="md:hidden flex justify-center items-center cursor-pointer">
