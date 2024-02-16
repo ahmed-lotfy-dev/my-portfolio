@@ -47,7 +47,14 @@ export default async function UserButton({
             </div>
           </DropdownMenuLabel>
           <DropdownMenuItem>
-            {user ? <SignOutButton /> : <SignInButton />}
+            {user ? (
+              <SignOutButton />
+            ) : (
+              <div className="flex flex-col">
+                <SignInButton provider="google" />
+                <SignInButton provider="github" />
+              </div>
+            )}
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>

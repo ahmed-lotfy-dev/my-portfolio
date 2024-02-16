@@ -1,6 +1,6 @@
 import ProjectList from "@/src/components/dashboard-components/project/ProjectList";
-import { getAllProjects } from "../../lib/getProjects";
 import { AddProjectComponent } from "@/src/components/dashboard-components/project/AddProject";
+import { getAllProjects } from "@/src/app/actions/projectsActions";
 
 export default async function AddProject({}) {
   const { allProjects } = await getAllProjects();

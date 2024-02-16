@@ -46,7 +46,8 @@ export default function Aside() {
             Certificates
           </Link>
         </div>
-        <div className="flex gap-5 items-center mx-auto">
+        {/* Add New Post Link */}
+        {/* <div className="flex gap-5 items-center mx-auto">
           <Plus className="text-gray-300 w-[2rem] h-[2rem]" />
           <Link
             className="text-gray-100 hidden group-hover:flex sm:flex"
@@ -54,7 +55,7 @@ export default function Aside() {
           >
             Add Blog Post
           </Link>
-        </div>
+        </div> */}
       </div>
     </aside>
   );

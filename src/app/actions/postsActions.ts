@@ -3,8 +3,9 @@
 import { posts } from "@/src/db/schema/posts";
 import { db } from "@/src/db";
 import { eq } from "drizzle-orm";
-import { postSchema } from "../lib/schemas/postSchema";
+import { postSchema } from "@/src/app/lib/schemas/postSchema";
 import { revalidatePath } from "next/cache";
+import { auth } from "@/auth";
 
 export async function getAllPosts() {
   try {
@@ -23,55 +24,56 @@ export async function getSinglePosts(postTitle: string) {
   return { success: true, message: "Single Blog Post Found", singlePost };
 }
 
-
-export async function addNewPost(state: any, data: FormData) {
-  const postTitle = data.get("title") as string;
-  const postContent = data.get("content") as string;
-  const published = data.get("published");
-  const tags = data.get("tags") as any;
-  const isPublished = published === "true" ? true : false;
-  const postImageLink = data.get("imageLink") as string;
-  const slug = postTitle.split(" ").join("-");
-  const categories = data.get("tags") as any;
-  const postsCategories = [categories.slice(",")];
-
-  const user = await getUser();
-
-  if (user?.email !== process.env.ADMIN_EMAIL) {
-    return {
-      success: false,
-      message: "You Don't Have Privilige To Add Blog Post",
-    };
-  }
-
-  const result = postSchema.safeParse({
-    postTitle,
-    postContent,
-    slug,
-    published: isPublished,
-    postImageLink,
-    postsCategories,
-  });
-  if (result.success) {
-    const newPost = await db
-      .insert(posts)
-      .values({
-        postTitle,
-        postContent,
-        slug,
-        published: isPublished,
-        postImageLink,
-        postsCategories,
-      })
-      .returning();
-
-    console.log("Post added successfully");
-    revalidatePath("/blogs/");
-    return { success: true, newPost };
-  }
-  if (result.error) {
-    return { success: false, error: result.error.format() };
-  }
+export async function addNewPost(formData: FormData) {
+  // const postTitle = data.get("postTitle") as string;
+  // const postContent = data.get("postContent") as string;
+  // const slug = postTitle.replace(" ", "-");
+  // const categories = data.get("postsCategories") as any;
+  // const postsCategories = [categories.slice(",")];
+  // const published = data.get("published") as string;
+  // const isPublished = !!published;
+  // const postImageLink = data.get("projImageLink") as string;
+  // console.log({
+  //   postTitle,
+  //   postContent,
+  //   slug,
+  //   categories,
+  //   postsCategories,
+  //   isPublished,
+  //   postImageLink,
+  // });
+  // const session = await auth();
+  // const user = session?.user;
+  // if (user?.role !== "admin") {
+  //   return {
+  //     success: false,
+  //     message: "You Don't Have Privilige To Add Certificate",
+  //   };
+  // }
+  // const result = postSchema.safeParse({
+  //   postTitle,
+  //   postContent,
+  //   slug,
+  //   postsCategories,
+  //   published: isPublished,
+  //   postImageLink,
+  // });
+  // if (result.success) {
+  // const post = await db.insert(posts).values({
+  //   postTitle,
+  //   postContent,
+  //   slug,
+  //   postsCategories,
+  //   published: isPublished,
+  //   postImageLink,
+  // });
+  // console.log("certificate added successfully");
+  // revalidatePath("/dashboard/certificates");
+  // return { success: true, message: result.data };
+  // }
+  // if (result.error) {
+  // return { success: false, error: result.error.format() };
+  // }
 }
 
 export async function updateSinglePosts(post: any) {

@@ -8,6 +8,7 @@ import { Toaster } from "@/src/components/ui/sonner";
 import { ReactNode } from "react";
 import { inter, josefinSans, josefinSlab } from "@/src/components/ui/fonts";
 import UserButton from "../components/dashboard-components/UserButton";
+import Providers from "./provider";
 
 export const metadata: Metadata = {
   title: "Ahmed Lotfy",
@@ -24,14 +25,15 @@ export default async function RootLayout({
         className={`${inter.className} ${josefinSans.className} ${josefinSlab.className} antialiased`}
       >
         <main className="font-main">
-          <div className="w-full flex justify-center items-center">
+          <Providers>
             <Nav>
               <UserButton className="flex absolute right-16 md:ml-5 md:static" />
             </Nav>
-          </div>
-          {children}
-          <GoogleAnalytics gaId={process.env.GA_ID} />
-          <Toaster />
+
+            {children}
+            <GoogleAnalytics gaId={process.env.GA_ID} />
+            <Toaster />
+          </Providers>
         </main>
       </body>
     </html>

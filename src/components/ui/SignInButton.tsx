@@ -9,7 +9,7 @@ export default async function SignInButtons({
   className?: string;
 }) {
   return (
-    <div className="flex flex-col gap-7 w-1/2 m-auto mb-5 justify-centeri items-center mt-5">
+    <div className="flex flex-col gap-7 w-1/2 m-auto mb-5 justify-centeri items-center ">
       <form
         action={async () => {
           "use server";

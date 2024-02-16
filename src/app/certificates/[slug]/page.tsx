@@ -1,4 +1,4 @@
-import { getSingleCertificate } from "@/src/app/lib/getCertificates";
+import { getSingleCertificate } from "@/src/app/actions/certificatesActions";
 
 const page = async ({ params }: { params: { slug: string } }) => {
   const { slug } = params;

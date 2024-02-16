@@ -6,6 +6,7 @@ import { db } from "@/src/db";
 import { revalidatePath } from "next/cache";
 import { DeleteFromS3 } from "./deleteImageAction";
 import { eq } from "drizzle-orm";
+import { auth } from "@/auth";
 
 export async function getAllCertificates() {
   try {
@@ -34,9 +35,10 @@ export async function addCertificateAction(state: any, data: FormData) {
   const profLink = data.get("profLink") as string;
   const certImageLink = data.get("certImageLink") as string;
 
-  const user = await getUser();
+  const session = await auth();
+  const user = session?.user;
 
-  if (user?.email !== process.env.ADMIN_EMAIL) {
+  if (user?.role !== "admin") {
     return {
       success: false,
       message: "You Don't Have Privilige To Add Certificate",
@@ -75,9 +77,10 @@ export async function editCertificateAction(state: any, data: FormData) {
   const profLink = data.get("profLink") as string;
   const certImageLink = data.get("certImageLink") as string;
 
-  const user = await getUser();
+  const session = await auth();
+  const user = session?.user;
 
-  if (user?.email !== process.env.ADMIN_EMAIL) {
+  if (user?.role !== "admin") {
     return {
       success: false,
       message: "You Don't Have Privilige To Add Certificate",
@@ -127,9 +130,10 @@ export async function editCertificateAction(state: any, data: FormData) {
 }
 
 export async function deleteCertificateAction(certificateId: number) {
-  const user = await getUser();
+  const session = await auth();
+  const user = session?.user
 
-  if (user?.email !== process.env.ADMIN_EMAIL) {
+  if (user?.role!== "admin") {
     return {
       success: false,
       message: "You Don't Have Privilige To Delete Project",

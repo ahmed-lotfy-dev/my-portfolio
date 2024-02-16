@@ -1,9 +1,12 @@
-import { getSingleProject } from "@/src/app/lib/getProjects";
+import { getSingleProject } from "@/src/app/actions/projectsActions";
 
-const page = async ({ params }: { params: { slug: string } }) => {
+export default async function SingleProjectPage({
+  params,
+}: {
+  params: { slug: string };
+}) {
   const { slug } = params;
   const { singleProject } = await getSingleProject(slug);
   return <div>{singleProject?.projTitle}</div>;
-};
+}
 
-export default page;

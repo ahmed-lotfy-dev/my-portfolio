@@ -1,9 +1,10 @@
 import Image from "next/image";
-import { getAllProjects } from "@/lib/getProjects";
 import Link from "next/link";
 import { Button } from "./ui/button";
 import { Card } from "./ui/card";
 import { Project } from "../db/schema/projects";
+import { getAllProjects } from "../app/actions/projectsActions";
+
 export default async function projects() {
   const { allProjects } = await getAllProjects();
 

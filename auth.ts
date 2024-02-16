@@ -1,12 +1,7 @@
 import type { NextAuthConfig } from "next-auth";
 import Google from "next-auth/providers/google";
 import Github from "next-auth/providers/github";
-import Credentials from "next-auth/providers/credentials";
 import NextAuth from "next-auth";
-import { db } from "./src/db";
-import { users } from "./src/db/schema/users";
-import { eq } from "drizzle-orm";
-import bcrypt from "bcrypt";
 
 declare module "next-auth" {
   interface User {

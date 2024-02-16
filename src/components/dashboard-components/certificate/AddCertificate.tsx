@@ -18,8 +18,8 @@ import { addCertificateAction } from "@/src/app/actions/certificatesActions";
 import { notify } from "@/src/app/lib/utils/toast";
 
 import { useFormState } from "react-dom";
-import Submit from "../../ui/formSubmitBtn";
-import { Upload } from "../Upload";
+import Submit from "@/src/components/ui/formSubmitBtn";
+import { Upload } from "@/src/components/dashboard-components/Upload";
 
 function AddCertificateComponent() {
   const [state, formAction] = useFormState(addCertificateAction, null);
@@ -103,14 +103,14 @@ function AddCertificateComponent() {
                   type="submit"
                   onClick={() => {
                     // if (user?.email !== process.env.NEXT_PUBLIC_ADMIN_EMAIL) {
-                      // notify("sorry you don't have admin priviliges", false);
+                    // notify("sorry you don't have admin priviliges", false);
                     // } else {
-                      const submitTimeOut = setTimeout(() => {
-                        notify("Adding Completed Successfully", true);
-                        setImageUrl("");
-                        formRef.current?.reset();
-                      }, 200);
-                      clearTimeout(submitTimeOut);
+                    const submitTimeOut = setTimeout(() => {
+                      notify("Adding Completed Successfully", true);
+                      setImageUrl("");
+                      formRef.current?.reset();
+                    }, 200);
+                    clearTimeout(submitTimeOut);
                     // }
                   }}
                 />

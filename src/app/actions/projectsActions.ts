@@ -6,6 +6,7 @@ import { eq } from "drizzle-orm";
 import { revalidatePath } from "next/cache";
 import { DeleteFromS3 } from "./deleteImageAction";
 import { ProjectSchema } from "../lib/schemas/projectSchema";
+import { auth } from "@/auth";
 
 export async function getAllProjects() {
   try {
@@ -37,9 +38,10 @@ export async function addProjectAction(state: any, data: FormData) {
   const categories = data.get("tags") as any;
   const projCategories = [categories.slice(",")];
 
-  const user = await getUser();
+  const session = await auth();
+  const user = session?.user;
 
-  if (user?.email !== process.env.ADMIN_EMAIL) {
+  if (user?.role !== "admin") {
     return {
       success: false,
       message: "You Don't Have Privilige To Add Project",
@@ -86,9 +88,10 @@ export async function editProjectAction(state: any, data: FormData) {
   const categories = data.get("tags") as any;
   const projCategories = [categories.slice(",")];
 
-  const user = await getUser();
+  const session = await auth();
+  const user = session?.user;
 
-  if (user?.email !== process.env.ADMIN_EMAIL) {
+  if (user?.role !== "admin") {
     return {
       success: false,
       message: "You Don't Have Privilige To Add Project",
@@ -135,9 +138,10 @@ export async function editProjectAction(state: any, data: FormData) {
 }
 
 export async function deleteProjectAction(projectId: number) {
-  const user = await getUser();
+  const session = await auth();
+  const user = session?.user;
 
-  if (user?.email !== process.env.ADMIN_EMAIL) {
+  if (user?.role !== "admin") {
     return {
       success: false,
       message: "You Don't Have Privilige To Delete Project",
