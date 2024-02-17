@@ -1,7 +1,6 @@
 import { ChangeEvent, Dispatch, SetStateAction, useRef, useState } from "react";
 import { Input } from "@/src/components/ui/input";
 import { notify } from "@/src/app/lib/utils/toast";
-import axios, { AxiosRequestConfig } from "axios";
 import { Button } from "@/src/components/ui/button";
 
 type UploadProps = {
@@ -33,7 +32,6 @@ function Upload({ setImageUrl, imageType }: UploadProps) {
     try {
       const data = await fetch("/api/upload", {
         method: "POST",
-        // headers: { "Content-Type": "multipart/form-data" },
         body: formData,
       });
       const response = await data.json();
