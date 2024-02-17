@@ -1,65 +1,66 @@
 export const certificatesData = [
   {
-    certTitle: "Linked-in Programming Foundation",
-    certDesc: "LinkedIn",
+    title: "Linked-in Programming Foundation",
+    desc: "LinkedIn",
     courseLink:
       "https://drive.google.com/drive/folders/1FP8XyG7QuFQzhco6y5AlLUSlgcPVPCb0?usp=sharing",
     profLink:
       "https://drive.google.com/drive/folders/1FP8XyG7QuFQzhco6y5AlLUSlgcPVPCb0?usp=sharing",
-    certImageLink: "https://images.ahmedlotfy.dev/Full-List.png",
+    imageLink: "https://images.ahmedlotfy.dev/Certificates-Full-List.png",
   },
   {
-    certTitle: "Build Responsive Real World Websited With HTML and,CSS",
-    certDesc: "Jonas Schmedtmann",
+    title: "Build Responsive Real World Websited With HTML and,CSS",
+    desc: "Jonas Schmedtmann",
     courseLink:
       "https://www.udemy.com/course/design-and-develop-a-killer-website-with-html5-and-css3/",
     profLink:
       "https://www.udemy.com/certificate/UC-155b5546-9c7a-4009-9266-78c078671603/",
-    certImageLink:
-      "https://images.ahmedlotfy.dev/Build Responsive Real-World Website With HTML And CSS.jpg",
+    imageLink:
+      "https://images.ahmedlotfy.dev/Certificates-Build%20Responsive%20Real-World%20Website%20With%20HTML%20And%20CSS.jpg",
   },
   {
-    certTitle: "The Complete JavaScript Course 2022: From Zero to Expert!",
-    certDesc: "Jonas Schmedtmann",
+    title: "The Complete JavaScript Course 2022: From Zero to Expert!",
+    desc: "Jonas Schmedtmann",
     courseLink:
       "https://www.udemy.com/course/design-and-develop-a-killer-website-with-html5-and-css3/",
     profLink:
       "https://www.udemy.com/certificate/UC-3dec0b65-0644-4004-a320-37ead834e8ec/",
-    certImageLink:
-      "https://images.ahmedlotfy.dev/The Complete Javascript 2022 From ZERO To EXPERT!.jpg",
+    imageLink:
+      "https://images.ahmedlotfy.dev/Certificates-The%20Complete%20Javascript%202022%20From%20ZERO%20To%20EXPERT!.jpg",
   },
   {
-    certTitle: "React Development Cross-Skilling",
-    certDesc: "Udacity NanoDegree",
+    title: "React Development Cross-Skilling",
+    desc: "Udacity NanoDegree",
     courseLink: "https://egfwd.com/specializtion/react-development/",
     profLink: "https://learn.udacity.com/view-certificate/nd019-fwd-t4",
-    certImageLink:
-      "https://images.ahmedlotfy.dev/Screenshot 2024-01-24 192613.png",
+    imageLink:
+      "https://images.ahmedlotfy.dev/Certificates-React%20cross%20skilling%20udacity%20certification.png",
   },
   {
-    certTitle: "Complete React Developer (w/ Redux, Hooks, GraphQL)",
-    certDesc: "Andrei Neagoie, Yihua Zhang (Zero To Mastery)",
+    title: "Complete React Developer (w/ Redux, Hooks, GraphQL)",
+    desc: "Andrei Neagoie, Yihua Zhang (Zero To Mastery)",
     courseLink:
       "https://www.udemy.com/course/complete-react-developer-zero-to-mastery/",
     profLink: " ",
-    certImageLink:
-      "https://images.ahmedlotfy.dev/Complete React Developer In 2023 w(Redux,Hooks).jpg",
+    imageLink:
+      "https://images.ahmedlotfy.dev/Certificates-Complete%20React%20Developer%20In%202023%20w(Redux%2CHooks).jpg",
   },
   {
-    certTitle: "NodeJS - The Complete Guide (MVC, REST APIs, GraphQL, Deno)",
-    certDesc: "Maximilian Schwarzmüller",
+    title: "NodeJS - The Complete Guide (MVC, REST APIs, GraphQL, Deno)",
+    desc: "Maximilian Schwarzmüller",
     courseLink: "https://www.udemy.com/course/nodejs-the-complete-guide/",
     profLink:
       "https://www.udemy.com/certificate/UC-00adb84c-49c5-4066-a82c-ab267a745100/",
-    certImageLink:
-      "https://images.ahmedlotfy.dev/NodeJS - The Complete Guide (MVC,REST APIs,GraphQL,Deno).jpg",
+    imageLink:
+      "https://images.ahmedlotfy.dev/Certificates-NodeJS%20-%20The%20Complete%20Guide%20(MVC%2CREST%20APIs%2CGraphQL%2CDeno).jpg",
   },
   {
-    certTitle: "ChatGPT Basics Course",
-    certDesc: "Almadrasa",
+    title: "ChatGPT Basics Course",
+    desc: "Almadrasa",
     courseLink: "https://almdrasa.com/tracks/ai/courses/chatgpt/",
     profLink:
       "https://almdrasa.com/certificate-verification/1332CB4B3-1332CB4B0-312ADA9/",
-    certImageLink: "https://images.ahmedlotfy.dev/Almadrasa chatgpt .png",
+    imageLink:
+      "https://images.ahmedlotfy.dev/Certificates-Almadrasa%20chatgpt%20.png",
   },
 ];

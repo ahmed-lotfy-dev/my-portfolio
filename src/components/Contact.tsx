@@ -3,10 +3,8 @@ import Link from "next/link";
 import { contactAction } from "@/src/app/actions/contactAction";
 import { useFormState } from "react-dom";
 import { notify } from "@/src/app/lib/utils/toast";
+import { IoLogoFacebook, IoLogoLinkedin, IoLogoGithub } from "react-icons/io5";
 import Submit from "./ui/formSubmitBtn";
-import LinkedinIcon from "@/public/icons/logo-linkedin.svg";
-import GithubIcon from "@/public/icons/logo-github.svg";
-import FacebookIcon from "@/public/icons/logo-facebook.svg";
 import Image from "next/image";
 
 export default function Contact() {
@@ -37,12 +35,10 @@ export default function Contact() {
                     target={"_blank"}
                     aria-label="Take alook or contact me at my linkedin account"
                   >
-                    <Image
-                      src={LinkedinIcon}
+                    <IoLogoLinkedin
                       width={25}
                       height={25}
-                      alt="LinkedIn Icon"
-                      className="w-10 h-10 fill-[#557aca] hover:fill-[#3b5998] hover:scale-110 transition-all duration-300"
+                      className="w-10 h-10 fill-[#557aca] hover:fill-[#2f4674] hover:scale-110 transition-all duration-300"
                     />
                   </Link>
                 </li>
@@ -52,12 +48,10 @@ export default function Contact() {
                     aria-label="Take alook or contact me at my github profile"
                     target={"_blank"}
                   >
-                    <Image
-                      src={GithubIcon}
+                    <IoLogoGithub
                       width={25}
                       height={25}
-                      alt="Github Icon"
-                      className="w-10 h-10 fill-[#557aca] hover:fill-[#3b5998] hover:scale-110 transition-all duration-300"
+                      className="w-10 h-10 fill-[#557aca] hover:fill-[#0b111d] hover:scale-110 transition-all duration-300"
                     />
                   </Link>
                 </li>
@@ -67,12 +61,10 @@ export default function Contact() {
                     aria-label="Take alook or contact me at my facebook account"
                     target={"_blank"}
                   >
-                    <Image
-                      src={FacebookIcon}
+                    <IoLogoFacebook
                       width={25}
                       height={25}
-                      alt="Facebook Icon"
-                      className="w-10 h-10 fill-[#557aca] hover:fill-[#3b5998] hover:scale-110 transition-all duration-300"
+                      className="w-10 h-10 fill-[#557aca] hover:fill-[#2f4674] hover:scale-110 transition-all duration-300"
                     />{" "}
                   </Link>
                 </li>

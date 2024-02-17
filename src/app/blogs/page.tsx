@@ -13,10 +13,10 @@ export default async function PostsList() {
           return (
             post.published && (
               <Card className="p-10" key={post.id}>
-                <h2 className="">Tite : {post.postTitle}</h2>
-                <p className="">Content : {post.postContent}</p>
+                <h2 className="">Tite : {post.title}</h2>
+                <p className="">Content : {post.content}</p>
                 <Button className="mt-5 w-1/3">
-                  <Link href={`/blogs/${post.postTitle}`}>read more</Link>
+                  <Link href={`/blogs/${post.title}`}>read more</Link>
                 </Button>
               </Card>
             )

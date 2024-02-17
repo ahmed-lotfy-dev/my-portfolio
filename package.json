@@ -11,12 +11,15 @@
     "migrate:push": "drizzle-kit push:pg",
     "migrate:introspect": "drizzle-kit introspect:pg",
     "migrate": "drizzle-kit generate:pg && drizzle-kit push:pg",
-    "seed": "node --import tsx ./src/db/seed.ts"
+    "studio": "pnpx prisma studio",
+    "seed": "npx tsx prisma/seed"
   },
   "dependencies": {
+    "@auth/prisma-adapter": "^1.4.0",
     "@aws-sdk/s3-request-presigner": "^3.515.0",
     "@aws-sdk/signature-v4-crt": "^3.515.0",
     "@next/third-parties": "^14.1.0",
+    "@prisma/client": "5.9.1",
     "@radix-ui/react-accordion": "^1.1.2",
     "@radix-ui/react-aspect-ratio": "^1.0.3",
     "@radix-ui/react-avatar": "^1.0.4",
@@ -46,8 +49,8 @@
     "framer-motion": "^11.0.5",
     "jose": "^5.2.2",
     "lucide-react": "^0.331.0",
-    "next": "^14.1.0",
-    "next-auth": "5.0.0-beta.9",
+    "next": "14.1.1-canary.58",
+    "next-auth": "5.0.0-beta.11",
     "next-themes": "^0.2.1",
     "npm-check-updates": "^16.14.15",
     "pg": "^8.11.3",
@@ -56,6 +59,7 @@
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-dropzone": "^14.2.3",
+    "react-icons": "^5.0.1",
     "react-tag-input": "^6.9.0",
     "react-tag-input-component": "^2.0.2",
     "sonner": "^1.4.0",
@@ -63,7 +67,6 @@
     "tailwindcss": "3.4.1",
     "tailwindcss-animate": "^1.0.7",
     "turbo": "^1.12.4",
-    "typescript": "^5.3.3",
     "zod": "^3.22.4"
   },
   "devDependencies": {
@@ -72,6 +75,7 @@
     "@types/node": "20.11.19",
     "@types/pg": "^8.11.0",
     "drizzle-kit": "^0.20.14",
-    "tsx": "^4.7.1"
+    "prisma": "^5.9.1",
+    "ts-node": "^10.9.2"
   }
 }

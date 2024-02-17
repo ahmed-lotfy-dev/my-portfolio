@@ -7,7 +7,7 @@ export default async function Welcome() {
     <div className="w-full">
       <div className="w-full flex justify-between items-start flex-col pl-10">
         <h2 className="mb-6">Welcome {user?.name} to the dashboard.</h2>
-        {user?.email === process.env.NEXT_PUBLIC_ADMIN_EMAIL ? (
+        {user?.role === "ADMIN" ? (
           <p>You are admin, welcome!</p>
         ) : (
           <p>

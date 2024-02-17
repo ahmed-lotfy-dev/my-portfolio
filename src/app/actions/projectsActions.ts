@@ -1,8 +1,6 @@
 "use server";
 
-import { projects } from "@/src/db/schema/projects";
-import { db } from "@/src/db";
-import { eq } from "drizzle-orm";
+import { db } from "@/src/app/lib/db";
 import { revalidatePath } from "next/cache";
 import { DeleteFromS3 } from "./deleteImageAction";
 import { ProjectSchema } from "../lib/schemas/projectSchema";
@@ -10,19 +8,16 @@ import { auth } from "@/auth";
 
 export async function getAllProjects() {
   try {
-    const allProjects = await db.query.projects.findMany();
-
+    const allProjects = await db.project.findMany();
     return { allProjects };
   } catch (error) {
     return { error };
   }
 }
 
-export async function getSingleProject(projectTitle: string) {
+export async function getSingleProject(id: string) {
   try {
-    const singleProject = await db.query.projects.findFirst({
-      where: eq(projects.projTitle, projectTitle),
-    });
+    const singleProject = await db.project.findFirst({ where: { id: id } });
     return { sucess: true, message: "Project Found", singleProject };
   } catch (error) {
     return { success: false, message: "Projcts Not Found" };
@@ -30,18 +25,18 @@ export async function getSingleProject(projectTitle: string) {
 }
 
 export async function addProjectAction(state: any, data: FormData) {
-  const projTitle = data.get("title") as string;
-  const projDesc = data.get("desc") as string;
+  const title = data.get("title") as string;
+  const desc = data.get("desc") as string;
   const repoLink = data.get("repoLink") as string;
   const liveLink = data.get("liveLink") as string;
-  const projImageLink = data.get("imageLink") as string;
+  const imageLink = data.get("imageLink") as string;
   const categories = data.get("tags") as any;
   const projCategories = [categories.slice(",")];
 
   const session = await auth();
   const user = session?.user;
-
-  if (user?.role !== "admin") {
+  console.log(user);
+  if (user?.role !== "ADMIN") {
     return {
       success: false,
       message: "You Don't Have Privilige To Add Project",
@@ -49,25 +44,24 @@ export async function addProjectAction(state: any, data: FormData) {
   }
 
   const result = ProjectSchema.safeParse({
-    projTitle,
-    projDesc,
+    title,
+    desc,
     repoLink,
     liveLink,
-    projImageLink,
+    imageLink,
     projCategories,
   });
   if (result.success) {
-    const project = await db
-      .insert(projects)
-      .values({
-        projTitle,
-        projDesc,
+    const project = await db.project.create({
+      data: {
+        title,
+        desc,
         repoLink,
         liveLink,
-        projImageLink,
-        projCategories,
-      })
-      .returning();
+        imageLink,
+        categories: projCategories,
+      },
+    });
 
     console.log("project added successfully");
     revalidatePath("/dashboard/projects");
@@ -79,19 +73,18 @@ export async function addProjectAction(state: any, data: FormData) {
 }
 
 export async function editProjectAction(state: any, data: FormData) {
-  const projectId = data.get("id") as unknown as number;
-  const projTitle = data.get("projTitle") as string;
-  const projDesc = data.get("projDesc") as string;
+  const id = data.get("id") as unknown as string;
+  const title = data.get("title") as string;
+  const desc = data.get("desc") as string;
   const repoLink = data.get("repoLink") as string;
   const liveLink = data.get("liveLink") as string;
-  const projImageLink = data.get("projImageLink") as string;
+  const imageLink = data.get("imageLink") as string;
   const categories = data.get("tags") as any;
   const projCategories = [categories.slice(",")];
-
   const session = await auth();
   const user = session?.user;
 
-  if (user?.role !== "admin") {
+  if (user?.role !== "ADMIN") {
     return {
       success: false,
       message: "You Don't Have Privilige To Add Project",
@@ -99,35 +92,30 @@ export async function editProjectAction(state: any, data: FormData) {
   }
 
   const result = ProjectSchema.safeParse({
-    projTitle,
-    projDesc,
+    title,
+    desc,
     repoLink,
     liveLink,
-    projImageLink,
+    imageLink,
     projCategories,
   });
   if (result.success) {
-    const oldProject = await db.query.projects.findFirst({
-      where: eq(projects.id, projectId),
-    });
-
-    if (oldProject?.projImageLink !== projImageLink) {
+    const oldProject = await db.project.findFirst({ where: { id: id } });
+    if (oldProject?.imageLink !== imageLink) {
       console.log("New Image");
-      DeleteFromS3(oldProject?.projImageLink);
+      DeleteFromS3(oldProject?.imageLink);
     }
-
-    const project = await db
-      .update(projects)
-      .set({
-        projTitle,
-        projDesc,
+    const project = await db.project.update({
+      where: { id: id },
+      data: {
+        title,
+        desc,
         repoLink,
         liveLink,
-        projImageLink,
-        projCategories,
-      })
-      .where(eq(projects.id, projectId))
-      .returning();
+        imageLink,
+        categories: projCategories,
+      },
+    });
     console.log("project updated successfully");
     revalidatePath("/dashboard/projects");
     return { success: true, data: result.data };
@@ -137,21 +125,19 @@ export async function editProjectAction(state: any, data: FormData) {
   }
 }
 
-export async function deleteProjectAction(projectId: number) {
+export async function deleteProjectAction(id: string) {
   const session = await auth();
   const user = session?.user;
 
-  if (user?.role !== "admin") {
+  if (user?.role !== "ADMIN") {
     return {
       success: false,
       message: "You Don't Have Privilige To Delete Project",
     };
   }
-  const deleteProjct = await db
-    .delete(projects)
-    .where(eq(projects.id, projectId))
-    .returning();
-  console.log("projct deleted", projectId);
+  const deletedProject = await db.project.delete({ where: { id: id } });
+
+  console.log("projct deleted", id);
   revalidatePath("/dashboard/projects");
   return { success: true, message: "Project Deleted Successfully" };
 }

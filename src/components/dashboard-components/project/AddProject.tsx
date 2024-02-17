@@ -24,13 +24,16 @@ import { Textarea } from "@/src/components/ui/textarea";
 import { useFormState } from "react-dom";
 import Submit from "@/src/components/ui/formSubmitBtn";
 import { Upload } from "../Upload";
+import { useSession } from "next-auth/react";
 
 function AddProjectComponent() {
   const [state, formAction] = useFormState(addProjectAction, null);
   const [selected, setSelected] = useState<string[]>(["featured"]);
   const [imageUrl, setImageUrl] = useState("");
   const formRef = useRef<HTMLFormElement>(null);
-
+  const { data: session } = useSession();
+  const user = session?.user;
+  console.log(user);
   return (
     <div className="flex flex-col justify-center items-center">
       <div className="flex w-full min-h-full justify-center items-start mt-6">
@@ -50,7 +53,7 @@ function AddProjectComponent() {
                 placeholder="Project Title"
               />
               <p className="text-sm text-red-400">
-                {state?.error?.projTitle && state?.error?.projTitle?._errors}
+                {state?.error?.title && state?.error?.title?._errors}
               </p>
 
               <Textarea
@@ -59,7 +62,7 @@ function AddProjectComponent() {
                 placeholder="Project Description"
               ></Textarea>
               <p className="text-sm text-red-400">
-                {state?.error?.projDesc && state?.error?.projDesc?._errors}
+                {state?.error?.desc && state?.error?.desc?._errors}
               </p>
 
               <Input
@@ -84,8 +87,7 @@ function AddProjectComponent() {
 
               <Upload setImageUrl={setImageUrl} imageType="Projects" />
               <p className="text-sm text-red-400">
-                {state?.error?.projImageLink &&
-                  state?.error?.projImageLink?._errors}
+                {state?.error?.imageLink && state?.error?.imageLink?._errors}
               </p>
               {imageUrl && (
                 <Image
@@ -112,15 +114,15 @@ function AddProjectComponent() {
                   btnText="Add Project"
                   type="submit"
                   onClick={() => {
-                    // if (user?.email !== process.env.NEXT_PUBLIC_ADMIN_EMAIL) {
-                    // notify("You don't have privilige to do this", false);
-                    const submitTimeOut = setTimeout(() => {
-                      notify("Adding Completed Successfully", true);
-                      setImageUrl("");
-                      formRef.current?.reset();
-                    }, 200);
-                    clearTimeout(submitTimeOut);
-                    // }
+                    if (user?.role !== "ADMIN") {
+                      notify("You don't have privilige to do this", false);
+                      const submitTimeOut = setTimeout(() => {
+                        notify("Adding Completed Successfully", true);
+                        setImageUrl("");
+                        formRef.current?.reset();
+                      }, 200);
+                      clearTimeout(submitTimeOut);
+                    }
                   }}
                 />
               </DialogClose>

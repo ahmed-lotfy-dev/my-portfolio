@@ -18,7 +18,11 @@ const page = (props: Props) => {
   return (
     <div className="w-full flex flex-col justify-center items-center mt-10">
       <h2>Add New Blog Post</h2>
-      <form action={addNewPost}>
+      <form
+        action={async (formData) => {
+          await addNewPost(formData);
+        }}
+      >
         <Input type="text" name="postTitle" />
 
         <Input type="text" name="postContent" />

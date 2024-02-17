@@ -2,6 +2,8 @@ import type { NextAuthConfig } from "next-auth";
 import Google from "next-auth/providers/google";
 import Github from "next-auth/providers/github";
 import NextAuth from "next-auth";
+import { PrismaAdapter } from "@auth/prisma-adapter";
+import { db } from "@/src/app/lib/db";
 
 declare module "next-auth" {
   interface User {
@@ -11,19 +13,18 @@ declare module "next-auth" {
 }
 
 const config = {
+  adapter: PrismaAdapter(db),
   providers: [Google, Github],
   callbacks: {
-    // @ts-ignore
-    // async jwt({ user, trigger, session, token }: any) {
-    //   if (user) {
-    //     token.user = {
-    //       _id: user._doc._id,
-    //       email: user._doc.email,
-    //       name: user._doc.name,
-    //       isAdmin: user._doc.isAdmin,
-    //     };
-    //   }
-    // },
+    session({ session, token, user }) {
+      return {
+        ...session,
+        user: {
+          ...session.user,
+          role: user.role,
+        },
+      };
+    },
   },
 } satisfies NextAuthConfig;
 

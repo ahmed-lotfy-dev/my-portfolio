@@ -7,6 +7,6 @@ export default async function SingleProjectPage({
 }) {
   const { slug } = params;
   const { singleProject } = await getSingleProject(slug);
-  return <div>{singleProject?.projTitle}</div>;
+  return <div>{singleProject?.title}</div>;
 }
 

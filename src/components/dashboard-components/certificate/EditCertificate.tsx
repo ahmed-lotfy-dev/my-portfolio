@@ -18,6 +18,7 @@ import {
 import { Upload } from "../Upload";
 import { Textarea } from "@/src/components/ui/textarea";
 import { Pencil } from "lucide-react";
+import { useSession } from "next-auth/react";
 
 function EditCertificate({ EditedObject }: any) {
   const { id } = EditedObject;
@@ -25,6 +26,9 @@ function EditCertificate({ EditedObject }: any) {
   const [editedCert, setEditedCert] = useState(EditedObject);
   const [imageUrl, setImageUrl] = useState("");
   const formRef = useRef<HTMLFormElement>(null);
+  const { data: session } = useSession();
+  const user = session?.user;
+
   const InputHandler = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setEditedCert((prevEditedCert: any) => {
@@ -34,7 +38,7 @@ function EditCertificate({ EditedObject }: any) {
       };
     });
   };
-  console.log("from client", { imageUrl });
+
   return (
     <div
       key={editedCert.id}
@@ -53,24 +57,24 @@ function EditCertificate({ EditedObject }: any) {
             <Input
               className="w-2/3 mt-10"
               type="text"
-              name="certTitle"
+              name="title"
               placeholder="Certificate Title"
-              value={editedCert.certTitle}
+              value={editedCert.title}
               onChange={InputHandler}
             />
             <p className="text-sm text-red-400">
-              {state?.error?.certTitle && state?.error?.certTitle?._errors[0]}
+              {state?.error?.title && state?.error?.title?._errors[0]}
             </p>
 
             <Input
               className="w-2/3"
-              name="certDesc"
+              name="desc"
               placeholder="Certificate Description"
-              value={editedCert.certDesc}
+              value={editedCert.desc}
               onChange={InputHandler}
             />
             <p className="text-sm text-red-400">
-              {state?.error?.certDesc && state?.error?.certDesc?._errors[0]}
+              {state?.error?.desc && state?.error?.desc?._errors[0]}
             </p>
 
             <Input
@@ -99,13 +103,12 @@ function EditCertificate({ EditedObject }: any) {
 
             <Upload setImageUrl={setImageUrl} imageType={"Certificates"} />
             <p className="text-sm text-red-400">
-              {state?.error?.certImageLink &&
-                state?.error?.certImageLink?._errors}
+              {state?.error?.imageLink && state?.error?.imageLink?._errors}
             </p>
-            {editedCert.certImageLink ? (
+            {editedCert.imageLink ? (
               <Image
                 className="m-auto"
-                src={editedCert.certImageLink}
+                src={editedCert.imageLink}
                 width={200}
                 height={200}
                 alt="Certificate Image"
@@ -120,7 +123,11 @@ function EditCertificate({ EditedObject }: any) {
               />
             )}
             <Input type="hidden" name="id" value={editedCert.id} />
-            <Input type="hidden" name="certImageLink" value={imageUrl} />
+            <Input
+              type="hidden"
+              name="imageLink"
+              value={editedCert.imageLink}
+            />
 
             <DialogClose asChild>
               <Submit
@@ -128,15 +135,15 @@ function EditCertificate({ EditedObject }: any) {
                 className="m-10"
                 type="submit"
                 onClick={() => {
-                  // if (role !== "admin") {
-                  // notify("You don't have privilige to do this", false);
-                  const submitTimeOut = setTimeout(() => {
-                    notify("Adding Completed Successfully", true);
-                    setImageUrl("");
-                    formRef.current?.reset();
-                  }, 200);
-                  clearTimeout(submitTimeOut);
-                  // }
+                  if (user?.role !== "ADMIN") {
+                    notify("You don't have privilige to do this", false);
+                    const submitTimeOut = setTimeout(() => {
+                      notify("Adding Completed Successfully", true);
+                      setImageUrl("");
+                      formRef.current?.reset();
+                    }, 200);
+                    clearTimeout(submitTimeOut);
+                  }
                 }}
               />
             </DialogClose>

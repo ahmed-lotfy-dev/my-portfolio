@@ -2,13 +2,13 @@ import { getAllCertificates } from "@/src/app/actions/certificatesActions";
 import Link from "next/link";
 import Image from "next/image";
 import { Button } from "./ui/button";
-import { Certificate } from "../db/schema/certificates";
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
 } from "@/src/components/ui/accordion";
+import { Certificate } from "@prisma/client";
 
 export default async function certificates() {
   const { allCertificates } = await getAllCertificates();
@@ -29,18 +29,18 @@ export default async function certificates() {
               type="single"
               collapsible
             >
-              <AccordionItem value={cert.certTitle} className="">
+              <AccordionItem value={cert.title} className="">
                 <AccordionTrigger className="font-bold text-1xl m-auto text-center">
-                  {cert.certTitle}
+                  {cert.title}
                 </AccordionTrigger>
                 <AccordionContent className="">
                   <Image
                     className="m-auto my-6 aspect-auto object-cover"
                     loading="lazy"
-                    src={cert.certImageLink}
+                    src={cert.imageLink}
                     width={500}
                     height={500}
-                    alt={`${cert.certTitle} certification image`}
+                    alt={`${cert.title} certification image`}
                   />
                   <div className="text-center space-x-5">
                     <Link href={cert.courseLink} target="_blank">

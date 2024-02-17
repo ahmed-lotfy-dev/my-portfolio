@@ -1,65 +1,67 @@
 "use server ";
 
-import { posts } from "@/src/db/schema/posts";
-import { db } from "@/src/db";
-import { eq } from "drizzle-orm";
 import { postSchema } from "@/src/app/lib/schemas/postSchema";
 import { auth } from "@/auth";
+import { db } from "@/src/app/lib/db";
 
 export async function getAllPosts() {
   try {
-    const allPosts = await db.query.posts.findMany();
+    const allPosts = await db.post.findMany();
     return { allPosts };
   } catch (error) {
     return { error };
   }
 }
 
-export async function getSinglePosts(postTitle: string) {
-  const singlePost = await db.query.posts.findFirst({
-    where: eq(posts.postTitle, postTitle),
-  });
+export async function getSinglePosts(postId: string) {
+  const singlePost = await db.post.findFirst({ where: { id: postId } });
 
   return { success: true, message: "Single Blog Post Found", singlePost };
 }
 
 export async function addNewPost(formData: FormData) {
-  const postTitle = formData.get("postTitle") as string;
-  const postContent = formData.get("postContent") as string;
+  const title = formData.get("title") as string;
+  const content = formData.get("content") as string;
   const published = formData.get("published") as string;
   const categories = formData.get("categories") as string;
-  const postImageLink = formData.get("postImageLink") as string;
+  const imageLink = formData.get("imageLink") as string;
   const postsCategories = categories?.split(",");
   const isPublished = Boolean(published);
-  const slug = postTitle.replace(" ", "-");
-  const image = formData.get("file");
-  console.log(image);
-  
+  const slug = title.replace(" ", "-") as string;
+
   const session = await auth();
   const user = session?.user;
-  if (user?.role !== "admin") {
+
+  console.log(user?.id);
+  console.log(session);
+
+  if (user?.role !== "ADMIN") {
     return {
       success: false,
       message: "You Don't Have Privilige To Add Certificate",
     };
   }
   const result = postSchema.safeParse({
-    postTitle,
-    postContent,
+    title,
+    content,
     slug,
     postsCategories,
     published: isPublished,
-    postImageLink,
+    imageLink,
   });
   console.log(result);
+
   if (result.success) {
-    const post = await db.insert(posts).values({
-      postTitle,
-      postContent,
-      slug,
-      postsCategories,
-      published: isPublished,
-      postImageLink,
+    const post = await db.post.create({
+      data: {
+        title,
+        content,
+        slug,
+        authorId: user.id as string,
+        categories: postsCategories,
+        published: isPublished,
+        imageLink,
+      },
     });
     console.log("certificate added successfully");
     return { success: true, message: result.data };
@@ -70,8 +72,10 @@ export async function addNewPost(formData: FormData) {
 }
 
 export async function updateSinglePosts(post: any) {
-  const updatedPost = await db.update(posts).set({ ...post });
-
+  const updatedPost = await db.post.update({
+    where: { id: post.id },
+    data: { ...post },
+  });
   return {
     success: true,
     message: "Blog Post Updated Successfully",
@@ -79,8 +83,8 @@ export async function updateSinglePosts(post: any) {
   };
 }
 
-export async function deleteSinglePosts(id: number) {
-  const deletPost = await db.delete(posts).where(eq(posts.id, id)).returning();
+export async function deleteSinglePosts(id: string) {
+  const deletPost = await db.post.delete({ where: { id: id } });
   return {
     success: true,
     message: "Blog Post Deleted Successfully",

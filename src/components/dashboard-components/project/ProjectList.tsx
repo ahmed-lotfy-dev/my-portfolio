@@ -26,7 +26,7 @@ export default function ProjectList({ allProjects }: any) {
             <CardHeader className="flex justify-start">
               <div className="flex justify-between items-center">
                 <CardTitle className="text-3xl">
-                  {proj.projTitle.toUpperCase()}
+                  {proj.title.toUpperCase()}
                 </CardTitle>
                 <EditPopover
                   EditedObject={proj}
@@ -34,14 +34,14 @@ export default function ProjectList({ allProjects }: any) {
                 />
               </div>
               <CardDescription className="text-1xl font-bold mt-6 w-[350px]">
-                {proj.projDesc}
+                {proj.desc}
               </CardDescription>
             </CardHeader>
             <CardContent>
               <div className="w-[350px]">
                 <AspectRatio ratio={16 / 9}>
                   <Image
-                    src={proj.projImageLink}
+                    src={proj.imageLink}
                     alt={`${proj.projTitle} Image`}
                     fill
                   />

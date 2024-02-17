@@ -29,7 +29,7 @@ async function uploadFileToS3(
   };
   const command = new PutObjectCommand(params);
   const imageurl = getSignedUrl(s3Client, command, { expiresIn: 60 });
-  
+
   try {
     const response = await s3Client.send(command);
     console.log("File uploaded successfully", response);
@@ -47,7 +47,7 @@ export async function POST(request: Request): Promise<Response> {
 
   const session = await auth();
   const user = session?.user;
-  if (user?.email === process.env.ADMIN_EMAIL) {
+  if (user?.role === "ADMIN") {
     const uploaded = await uploadFileToS3(
       buffer,
       `${imageType}-${file.name}`,

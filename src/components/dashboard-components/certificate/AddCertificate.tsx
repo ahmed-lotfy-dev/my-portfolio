@@ -20,12 +20,15 @@ import { notify } from "@/src/app/lib/utils/toast";
 import { useFormState } from "react-dom";
 import Submit from "@/src/components/ui/formSubmitBtn";
 import { Upload } from "@/src/components/dashboard-components/Upload";
+import { useSession } from "next-auth/react";
 
 function AddCertificateComponent() {
   const [state, formAction] = useFormState(addCertificateAction, null);
   const [selected, setSelected] = useState<string[]>(["featured"]);
   const [imageUrl, setImageUrl] = useState("");
   const formRef = useRef<HTMLFormElement>(null);
+  const { data: session } = useSession();
+  const user = session?.user;
 
   return (
     <div className="flex flex-col justify-center items-center">
@@ -43,21 +46,21 @@ function AddCertificateComponent() {
               <Input
                 className="w-2/3 mt-10"
                 type="text"
-                name="certTitle"
+                name="title"
                 placeholder="Certificate Title"
               />
               <p className="text-sm text-red-400">
-                {state?.error?.certTitle && state?.error?.certTitle?._errors[0]}
+                {state?.error?.title && state?.error?.title?._errors[0]}
               </p>
 
               <Input
                 className="w-2/3"
                 type="text"
-                name="certDesc"
+                name="desc"
                 placeholder="Certificate Description"
               />
               <p className="text-sm text-red-400">
-                {state?.error?.certDesc && state?.error?.certDesc?._errors[0]}
+                {state?.error?.desc && state?.error?.desc?._errors[0]}
               </p>
 
               <Input
@@ -83,8 +86,7 @@ function AddCertificateComponent() {
 
               <Upload setImageUrl={setImageUrl} imageType={"Certificates"} />
               <p className="text-sm text-red-400">
-                {state?.error?.certImageLink &&
-                  state?.error?.certImageLink?._errors}
+                {state?.error?.imageLink && state?.error?.imageLink?._errors}
               </p>
               {imageUrl && (
                 <Image
@@ -95,23 +97,23 @@ function AddCertificateComponent() {
                   alt="Certificate Image"
                 />
               )}
-              <Input type="hidden" name="certImageLink" value={imageUrl} />
+              <Input type="hidden" name="imageLink" value={imageUrl} />
 
               <DialogClose asChild>
                 <Submit
                   btnText="Add Certificate"
                   type="submit"
                   onClick={() => {
-                    // if (user?.email !== process.env.NEXT_PUBLIC_ADMIN_EMAIL) {
-                    // notify("sorry you don't have admin priviliges", false);
-                    // } else {
-                    const submitTimeOut = setTimeout(() => {
-                      notify("Adding Completed Successfully", true);
-                      setImageUrl("");
-                      formRef.current?.reset();
-                    }, 200);
-                    clearTimeout(submitTimeOut);
-                    // }
+                    if (user?.role !== "ADMIN") {
+                      notify("sorry you don't have admin priviliges", false);
+                    } else {
+                      const submitTimeOut = setTimeout(() => {
+                        notify("Adding Completed Successfully", true);
+                        setImageUrl("");
+                        formRef.current?.reset();
+                      }, 200);
+                      clearTimeout(submitTimeOut);
+                    }
                   }}
                 />
               </DialogClose>

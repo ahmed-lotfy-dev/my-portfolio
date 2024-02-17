@@ -1,8 +1,7 @@
 "use server";
 
-import { certificates } from "@/src/db/schema/certificates";
 import { CertificateSchema } from "../lib/schemas/certificateSchema";
-import { db } from "@/src/db";
+import { db } from "@/src/app/lib/db";
 import { revalidatePath } from "next/cache";
 import { DeleteFromS3 } from "./deleteImageAction";
 import { eq } from "drizzle-orm";
@@ -10,18 +9,16 @@ import { auth } from "@/auth";
 
 export async function getAllCertificates() {
   try {
-    const allCertificates = await db.query.certificates.findMany();
+    const allCertificates = await db.certificate.findMany();
     return { allCertificates };
   } catch (error) {
     return { error };
   }
 }
 
-export async function getSingleCertificate(certificateTitle: string) {
+export async function getSingleCertificate(id: string) {
   try {
-    const certificate = await db.query.certificates.findFirst({
-      where: eq(certificates.certTitle, certificateTitle),
-    });
+    const certificate = await db.certificate.findFirst({ where: { id: id } });
     return { sucess: true, message: "Certificate Found", certificate };
   } catch (error) {
     return { success: false, message: "Certificate Not Found" };
@@ -29,16 +26,16 @@ export async function getSingleCertificate(certificateTitle: string) {
 }
 
 export async function addCertificateAction(state: any, data: FormData) {
-  const certTitle = data.get("certTitle") as string;
-  const certDesc = data.get("certDesc") as string;
+  const title = data.get("title") as string;
+  const desc = data.get("desc") as string;
   const courseLink = data.get("courseLink") as string;
   const profLink = data.get("profLink") as string;
-  const certImageLink = data.get("certImageLink") as string;
+  const imageLink = data.get("imageLink") as string;
 
   const session = await auth();
   const user = session?.user;
-
-  if (user?.role !== "admin") {
+  console.log(user);
+  if (user?.role !== "ADMIN") {
     return {
       success: false,
       message: "You Don't Have Privilige To Add Certificate",
@@ -46,19 +43,15 @@ export async function addCertificateAction(state: any, data: FormData) {
   }
 
   const result = CertificateSchema.safeParse({
-    certTitle,
-    certDesc,
+    title,
+    desc,
     courseLink,
     profLink,
-    certImageLink,
+    imageLink,
   });
   if (result.success) {
-    const certificate = await db.insert(certificates).values({
-      certTitle,
-      certDesc,
-      courseLink,
-      profLink,
-      certImageLink,
+    const certificate = await db.certificate.create({
+      data: { title, desc, courseLink, profLink, imageLink },
     });
     console.log("certificate added successfully");
     revalidatePath("/dashboard/certificates");
@@ -70,17 +63,17 @@ export async function addCertificateAction(state: any, data: FormData) {
 }
 
 export async function editCertificateAction(state: any, data: FormData) {
-  const certificateId = data.get("id") as unknown as number;
-  const certTitle = data.get("certTitle") as string;
-  const certDesc = data.get("certDesc") as string;
+  const id = data.get("id") as unknown as string;
+  const title = data.get("title") as string;
+  const desc = data.get("desc") as string;
   const courseLink = data.get("courseLink") as string;
   const profLink = data.get("profLink") as string;
-  const certImageLink = data.get("certImageLink") as string;
+  const imageLink = data.get("imageLink") as string;
 
   const session = await auth();
   const user = session?.user;
 
-  if (user?.role !== "admin") {
+  if (user?.role !== "ADMIN") {
     return {
       success: false,
       message: "You Don't Have Privilige To Add Certificate",
@@ -88,34 +81,26 @@ export async function editCertificateAction(state: any, data: FormData) {
   }
 
   const result = CertificateSchema.safeParse({
-    certTitle,
-    certDesc,
+    title,
+    desc,
     courseLink,
     profLink,
-    certImageLink,
+    imageLink,
   });
 
   if (result.success) {
-    const oldCertificate = await db.query.certificates.findFirst({
-      where: eq(certificates.id, certificateId),
+    const oldCertificate = await db.certificate.findFirst({
+      where: { id: id },
     });
-    if (oldCertificate?.certImageLink !== certImageLink) {
+
+    if (oldCertificate?.imageLink !== imageLink) {
       console.log("New Image");
-      DeleteFromS3(oldCertificate?.certImageLink);
+      DeleteFromS3(oldCertificate?.imageLink);
     }
-
-    const updatedCertificate = await db
-      .update(certificates)
-      .set({
-        certTitle,
-        certDesc,
-        courseLink,
-        profLink,
-        certImageLink,
-      })
-      .where(eq(certificates.id, certificateId))
-      .returning();
-
+    const updatedCertificate = await db.certificate.update({
+      where: { id: id },
+      data: { title, desc, courseLink, profLink, imageLink },
+    });
     console.log("certificate added successfully");
     revalidatePath("/dashboard/certificates");
     return {
@@ -129,21 +114,21 @@ export async function editCertificateAction(state: any, data: FormData) {
   }
 }
 
-export async function deleteCertificateAction(certificateId: number) {
+export async function deleteCertificateAction(certificateId: string) {
   const session = await auth();
-  const user = session?.user
+  const user = session?.user;
 
-  if (user?.role!== "admin") {
+  if (user?.role !== "ADMIN") {
     return {
       success: false,
-      message: "You Don't Have Privilige To Delete Project",
+      message: "You Don't Have Privilige To Delete Certificate",
     };
   }
-  const deletCertificate = await db
-    .delete(certificates)
-    .where(eq(certificates.id, certificateId))
-    .returning();
-  console.log("projct deleted", certificateId);
+
+  const deletCertificate = await db.certificate.delete({
+    where: { id: certificateId },
+  });
+  console.log("Certificate Deleted", certificateId);
   revalidatePath("/dashboard/certificates");
   return { success: true, message: "Certificate Deleted Successfully" };
 }

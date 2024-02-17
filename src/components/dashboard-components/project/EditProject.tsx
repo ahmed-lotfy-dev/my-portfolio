@@ -5,11 +5,7 @@ import Image from "next/image";
 import { Input } from "@/src/components/ui/input";
 import { Label } from "@/src/components/ui/label";
 import { editProjectAction } from "@/src/app/actions/projectsActions";
-
 import { notify } from "@/src/app/lib/utils/toast";
-
-import { useFormState } from "react-dom";
-
 import Submit from "@/src/components/ui/formSubmitBtn";
 import {
   Dialog,
@@ -21,16 +17,20 @@ import { TagsInput } from "react-tag-input-component";
 import { DialogClose } from "@radix-ui/react-dialog";
 import { Upload } from "../Upload";
 import { Pencil } from "lucide-react";
+import { useSession } from "next-auth/react";
 
 function EditProject({ EditedObject }: any) {
   const { id } = EditedObject;
-  const [state, formAction] = useFormState(editProjectAction, null);
   const [editedProj, setEditedProj] = useState(EditedObject);
+  const editProjectActionWithObject = editProjectAction.bind(null, editedProj);
+
   const [imageUrl, setImageUrl] = useState("");
 
   const [selected, setSelected] = useState<string[]>(["featured"]);
 
   const formRef = useRef<HTMLFormElement>(null);
+  const { data: session } = useSession();
+  const user = session?.user;
 
   const InputHandler = (
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -43,8 +43,7 @@ function EditProject({ EditedObject }: any) {
       };
     });
   };
-  console.log(editedProj);
-  console.log(imageUrl);
+
   return (
     <div className="flex flex-col justify-center items-center">
       <div className="flex w-full min-h-full justify-center items-start mt-6">
@@ -55,31 +54,25 @@ function EditProject({ EditedObject }: any) {
           </DialogTrigger>
           <DialogContent className="w-[700px]">
             <form
-              action={formAction}
+              action={editProjectActionWithObject}
               className="flex flex-col justify-center items-center w-full gap-5 text-black "
             >
               <Input
                 className="w-2/3"
                 type="text"
-                name="projTitle"
+                name="title"
                 placeholder="Project Title"
-                value={editedProj.projTitle}
+                value={editedProj.title}
                 onChange={InputHandler}
               />
-              <p className="text-sm text-red-400">
-                {state?.error?.projTitle && state?.error?.projTitle?._errors}
-              </p>
 
               <Textarea
                 className="flex justify-center w-2/3"
-                name="projDesc"
+                name="desc"
                 placeholder="Project Description"
-                value={editedProj.projDesc}
+                value={editedProj.desc}
                 onChange={InputHandler}
               />
-              <p className="text-sm text-red-400">
-                {state?.error?.projDesc && state?.error?.projDesc?._errors}
-              </p>
 
               <Input
                 className="w-2/3"
@@ -89,9 +82,6 @@ function EditProject({ EditedObject }: any) {
                 value={editedProj.repoLink}
                 onChange={InputHandler}
               />
-              <p className="text-sm text-red-400">
-                {state?.error?.repoLink && state?.error?.repoLink?._errors}{" "}
-              </p>
 
               <Input
                 className="w-2/3"
@@ -101,19 +91,12 @@ function EditProject({ EditedObject }: any) {
                 value={editedProj.liveLink}
                 onChange={InputHandler}
               />
-              <p className="text-sm text-red-400">
-                {state?.error?.liveLink && state?.error?.liveLink?._errors}
-              </p>
 
               <Upload setImageUrl={setImageUrl} imageType="Projects" />
-              <p className="text-sm text-red-400">
-                {state?.error?.projImageLink &&
-                  state?.error?.projImageLink?._errors}
-              </p>
-              {editedProj.projImageLink ? (
+              {editedProj.imageLink ? (
                 <Image
                   className="m-auto"
-                  src={editedProj.projImageLink}
+                  src={editedProj.imageLink}
                   width={200}
                   height={200}
                   alt="Certificate Image"
@@ -130,7 +113,11 @@ function EditProject({ EditedObject }: any) {
               <Input type="hidden" name="tags" value={selected} />
               <Input type="hidden" name="id" value={editedProj.id} />
 
-              <Input type="hidden" name="projImageLink" value={imageUrl} />
+              <Input
+                type="hidden"
+                name="imageLink"
+                value={editedProj.imageLink}
+              />
 
               <Label className="flex justify-center">Project Tags</Label>
               <TagsInput
@@ -145,12 +132,12 @@ function EditProject({ EditedObject }: any) {
                   className="m-10 w-2/3"
                   type="submit"
                   onClick={() => {
-                    // if (role !== "admin") {
-                      // notify("Sorry, you don't have admin privileges", false);
-                    // } else {
-                      notify("Adding Completed Successfully", true);
+                    if (user?.role !== "ADMIN") {
+                      notify("Sorry, you don't have admin privileges", false);
+                    } else {
+                      notify("Project Edited Successfully", true);
                       formRef.current?.reset();
-                    // }
+                    }
                   }}
                 />
               </DialogClose>

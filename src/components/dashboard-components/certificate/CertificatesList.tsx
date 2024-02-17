@@ -36,11 +36,11 @@ function CertificateList({ allCertificates }: any) {
             {allCertificates?.map((cert: any) => (
               <TableRow key={cert.id}>
                 <TableCell className="font-medium">
-                  <Link href={`/certificates/${cert.certTitle}`}>
-                    {cert.certTitle}
+                  <Link href={`/certificates/${cert.title}`}>
+                    {cert.title}
                   </Link>
                 </TableCell>
-                <TableCell>{cert.certDesc}</TableCell>
+                <TableCell>{cert.desc}</TableCell>
                 <TableCell>
                   <Link href={cert.courseLink} target="_blank">
                     Course Link
