@@ -5,15 +5,8 @@
     {
       "idx": 0,
       "version": "5",
-      "when": 1707434510068,
-      "tag": "0000_bright_mongoose",
-      "breakpoints": true
-    },
-    {
-      "idx": 1,
-      "version": "5",
-      "when": 1707480626345,
-      "tag": "0001_solid_sunfire",
+      "when": 1708147440082,
+      "tag": "0000_green_lady_deathstrike",
       "breakpoints": true
     }
   ]

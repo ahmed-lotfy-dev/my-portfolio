@@ -1,4 +1,7 @@
-import { deleteSinglePosts, getSinglePosts } from "../../lib/getPosts";
+import {
+  deleteSinglePosts,
+  getSinglePosts,
+} from "@/src/app/actions/postsActions";
 import { Button } from "@/src/components/ui/button";
 
 export default async function SinglePost({

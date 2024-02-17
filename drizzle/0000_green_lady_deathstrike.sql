@@ -29,3 +29,13 @@ CREATE TABLE IF NOT EXISTS "project" (
 	"projCategories" text[] NOT NULL,
 	"createdAt" timestamp DEFAULT now() NOT NULL
 );
+--> statement-breakpoint
+CREATE TABLE IF NOT EXISTS "user" (
+	"id" text PRIMARY KEY NOT NULL,
+	"name" text NOT NULL,
+	"password" text NOT NULL,
+	"email" text NOT NULL,
+	"role" text DEFAULT 'user' NOT NULL,
+	"emailVerified" timestamp,
+	"image" text
+);

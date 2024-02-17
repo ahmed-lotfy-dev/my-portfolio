@@ -1,9 +1,7 @@
 import { ChangeEvent, Dispatch, SetStateAction, useRef, useState } from "react";
 import { Input } from "@/src/components/ui/input";
 import { notify } from "@/src/app/lib/utils/toast";
-import axios, { AxiosRequestConfig } from "axios";
 import { Button } from "@/src/components/ui/button";
-import { useSession } from "next-auth/react";
 
 type UploadProps = {
   setImageUrl: React.Dispatch<React.SetStateAction<string>>;
@@ -11,8 +9,6 @@ type UploadProps = {
 };
 
 function Upload({ setImageUrl, imageType }: UploadProps) {
-  const { data: session } = useSession();
-  const user = session?.user;
   const [pending, setPending] = useState(false);
   const fileInputRef = useRef<HTMLInputElement | null>(null);
 
@@ -36,7 +32,6 @@ function Upload({ setImageUrl, imageType }: UploadProps) {
     try {
       const data = await fetch("/api/upload", {
         method: "POST",
-        // headers: { "Content-Type": "multipart/form-data" },
         body: formData,
       });
       const response = await data.json();

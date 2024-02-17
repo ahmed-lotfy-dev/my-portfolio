@@ -1,5 +1,7 @@
 import { S3Client, PutObjectCommand } from "@aws-sdk/client-s3";
-import { auth } from "@/src/auth";
+import { getSignedUrl } from "@aws-sdk/s3-request-presigner";
+
+import { auth } from "@/auth";
 
 const config = {
   region: "auto",
@@ -26,7 +28,8 @@ async function uploadFileToS3(
     ContentType: type,
   };
   const command = new PutObjectCommand(params);
-
+  const imageurl = getSignedUrl(s3Client, command, { expiresIn: 60 });
+  
   try {
     const response = await s3Client.send(command);
     console.log("File uploaded successfully", response);

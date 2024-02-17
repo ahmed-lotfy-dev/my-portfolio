@@ -12,7 +12,7 @@ import {
   TableRow,
 } from "@/src/components/ui/table";
 
-import { deleteCertificateAction } from "@/src/app/actions";
+import { deleteCertificateAction } from "@/src/app/actions/certificatesActions";
 import { EditPopover } from "../EditPopover";
 function CertificateList({ allCertificates }: any) {
   return (

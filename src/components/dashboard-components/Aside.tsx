@@ -1,3 +1,4 @@
+
 import Link from "next/link";
 import { Code, Home, LayoutDashboard, Plus } from "lucide-react";
 import certificateIcon from "@/public/certificate-svgrepo-com.svg";
@@ -46,6 +47,7 @@ export default function Aside() {
             Certificates
           </Link>
         </div>
+        {/* Add New Post Link */}
         <div className="flex gap-5 items-center mx-auto">
           <Plus className="text-gray-300 w-[2rem] h-[2rem]" />
           <Link
