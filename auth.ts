@@ -7,7 +7,6 @@ import { db } from "@/src/app/lib/db"
 
 declare module "next-auth" {
   interface User {
-    /** The user's postal address. */
     role: string
   }
 }
@@ -26,7 +25,7 @@ const config = {
       }
     },
   },
-  trustHost: process.env.NODE_ENV === "production",
+  trustHost: true,
 } satisfies NextAuthConfig
 
 export const { handlers, auth, signIn, signOut } = NextAuth(config)
