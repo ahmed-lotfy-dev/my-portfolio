@@ -1,14 +1,14 @@
-import type { NextAuthConfig } from "next-auth";
-import Google from "next-auth/providers/google";
-import Github from "next-auth/providers/github";
-import NextAuth from "next-auth";
-import { PrismaAdapter } from "@auth/prisma-adapter";
-import { db } from "@/src/app/lib/db";
+import type { NextAuthConfig } from "next-auth"
+import Google from "next-auth/providers/google"
+import Github from "next-auth/providers/github"
+import NextAuth from "next-auth"
+import { PrismaAdapter } from "@auth/prisma-adapter"
+import { db } from "@/src/app/lib/db"
 
 declare module "next-auth" {
   interface User {
     /** The user's postal address. */
-    role: string;
+    role: string
   }
 }
 
@@ -23,9 +23,10 @@ const config = {
           ...session.user,
           role: user.role,
         },
-      };
+      }
     },
   },
-} satisfies NextAuthConfig;
+  trustHost: process.env.NODE_ENV === "production",
+} satisfies NextAuthConfig
 
-export const { handlers, auth, signIn, signOut } = NextAuth(config);
+export const { handlers, auth, signIn, signOut } = NextAuth(config)
