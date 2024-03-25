@@ -1,13 +1,13 @@
-import { auth } from "@/auth";
+import { auth } from "@/lib/auth"
 
 export default async function Welcome() {
-  const session = await auth();
-  const user = session?.user;
+  const session = await auth()
+  const user = session?.user
   return (
     <div className="w-full">
       <div className="w-full flex justify-between items-start flex-col pl-10">
         <h2 className="mb-6">Welcome {user?.name} to the dashboard.</h2>
-        {user?.role === "ADMIN" ? (
+        {user?.email === process.env.ADMIN_EMAIL ? (
           <p>You are admin, welcome!</p>
         ) : (
           <p>
@@ -17,5 +17,5 @@ export default async function Welcome() {
         )}
       </div>
     </div>
-  );
+  )
 }

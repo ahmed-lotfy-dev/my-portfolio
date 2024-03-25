@@ -12,7 +12,7 @@ import {
   DropdownMenuTrigger,
 } from "@/src/components/ui/dropdown-menu";
 import SignOutButton from "../ui/SignOutButton";
-import { auth } from "@/auth";
+import { auth } from "@/src/app/lib/auth";
 import SignInButton from "../ui/SignInButton";
 
 export default async function UserButton({

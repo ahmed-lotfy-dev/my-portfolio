@@ -1,4 +1,4 @@
-import { signIn } from "@/auth";
+import { signIn } from "@/lib/auth";
 import { Button } from "@/src/components/ui/button";
 
 export default async function SignInButtons({

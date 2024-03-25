@@ -1,5 +1,5 @@
-"use client";
-import { useState, useRef } from "react";
+"use client"
+import { useState, useRef } from "react"
 
 import {
   Dialog,
@@ -9,26 +9,26 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@/src/components/ui/dialog";
+} from "@/src/components/ui/dialog"
 
-import Image from "next/image";
-import { Input } from "@/src/components/ui/input";
-import { addCertificateAction } from "@/src/app/actions/certificatesActions";
+import Image from "next/image"
+import { Input } from "@/src/components/ui/input"
+import { addCertificateAction } from "@/src/app/actions/certificatesActions"
 
-import { notify } from "@/src/app/lib/utils/toast";
+import { notify } from "@/src/app/lib/utils/toast"
 
-import { useFormState } from "react-dom";
-import Submit from "@/src/components/ui/formSubmitBtn";
-import { Upload } from "@/src/components/dashboard-components/Upload";
-import { useSession } from "next-auth/react";
+import { useFormState } from "react-dom"
+import Submit from "@/src/components/ui/formSubmitBtn"
+import { Upload } from "@/src/components/dashboard-components/Upload"
+import { useSession } from "next-auth/react"
 
 function AddCertificateComponent() {
-  const [state, formAction] = useFormState(addCertificateAction, null);
-  const [selected, setSelected] = useState<string[]>(["featured"]);
-  const [imageUrl, setImageUrl] = useState("");
-  const formRef = useRef<HTMLFormElement>(null);
-  const { data: session } = useSession();
-  const user = session?.user;
+  const [state, formAction] = useFormState(addCertificateAction, null)
+  const [selected, setSelected] = useState<string[]>(["featured"])
+  const [imageUrl, setImageUrl] = useState("")
+  const formRef = useRef<HTMLFormElement>(null)
+  const { data: session } = useSession()
+  const user = session?.user
 
   return (
     <div className="flex flex-col justify-center items-center">
@@ -104,15 +104,15 @@ function AddCertificateComponent() {
                   btnText="Add Certificate"
                   type="submit"
                   onClick={() => {
-                    if (user?.role !== "ADMIN") {
-                      notify("sorry you don't have admin priviliges", false);
+                    if (user?.email !== process.env.ADMIN_EMAIL) {
+                      notify("sorry you don't have admin priviliges", false)
                     } else {
                       const submitTimeOut = setTimeout(() => {
-                        notify("Adding Completed Successfully", true);
-                        setImageUrl("");
-                        formRef.current?.reset();
-                      }, 200);
-                      clearTimeout(submitTimeOut);
+                        notify("Adding Completed Successfully", true)
+                        setImageUrl("")
+                        formRef.current?.reset()
+                      }, 200)
+                      clearTimeout(submitTimeOut)
                     }
                   }}
                 />
@@ -122,7 +122,7 @@ function AddCertificateComponent() {
         </Dialog>
       </div>
     </div>
-  );
+  )
 }
 
-export { AddCertificateComponent };
+export { AddCertificateComponent }

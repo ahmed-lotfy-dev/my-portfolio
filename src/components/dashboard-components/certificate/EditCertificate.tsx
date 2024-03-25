@@ -1,43 +1,43 @@
-"use client";
-import { ChangeEvent, useRef, useState } from "react";
+"use client"
+import { ChangeEvent, useRef, useState } from "react"
 
-import { Input } from "@/src/components/ui/input";
-import { editCertificateAction } from "@/src/app/actions/certificatesActions";
-import Image from "next/image";
-import { notify } from "@/src/app/lib/utils/toast";
+import { Input } from "@/src/components/ui/input"
+import { editCertificateAction } from "@/src/app/actions/certificatesActions"
+import Image from "next/image"
+import { notify } from "@/src/app/lib/utils/toast"
 
-import { useFormState } from "react-dom";
+import { useFormState } from "react-dom"
 
-import Submit from "@/src/components/ui/formSubmitBtn";
+import Submit from "@/src/components/ui/formSubmitBtn"
 import {
   Dialog,
   DialogContent,
   DialogTrigger,
   DialogClose,
-} from "@/src/components/ui/dialog";
-import { Upload } from "../Upload";
-import { Textarea } from "@/src/components/ui/textarea";
-import { Pencil } from "lucide-react";
-import { useSession } from "next-auth/react";
+} from "@/src/components/ui/dialog"
+import { Upload } from "../Upload"
+import { Textarea } from "@/src/components/ui/textarea"
+import { Pencil } from "lucide-react"
+import { useSession } from "next-auth/react"
 
 function EditCertificate({ EditedObject }: any) {
-  const { id } = EditedObject;
-  const [state, formAction] = useFormState(editCertificateAction, null);
-  const [editedCert, setEditedCert] = useState(EditedObject);
-  const [imageUrl, setImageUrl] = useState("");
-  const formRef = useRef<HTMLFormElement>(null);
-  const { data: session } = useSession();
-  const user = session?.user;
+  const { id } = EditedObject
+  const [state, formAction] = useFormState(editCertificateAction, null)
+  const [editedCert, setEditedCert] = useState(EditedObject)
+  const [imageUrl, setImageUrl] = useState("")
+  const formRef = useRef<HTMLFormElement>(null)
+  const { data: session } = useSession()
+  const user = session?.user
 
   const InputHandler = (e: ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
+    const { name, value } = e.target
     setEditedCert((prevEditedCert: any) => {
       return {
         ...prevEditedCert,
         [name]: value,
-      };
-    });
-  };
+      }
+    })
+  }
 
   return (
     <div
@@ -135,14 +135,14 @@ function EditCertificate({ EditedObject }: any) {
                 className="m-10"
                 type="submit"
                 onClick={() => {
-                  if (user?.role !== "ADMIN") {
-                    notify("You don't have privilige to do this", false);
+                  if (user?.email !== process.env.ADMIN_EMAIL) {
+                    notify("You don't have privilige to do this", false)
                     const submitTimeOut = setTimeout(() => {
-                      notify("Adding Completed Successfully", true);
-                      setImageUrl("");
-                      formRef.current?.reset();
-                    }, 200);
-                    clearTimeout(submitTimeOut);
+                      notify("Adding Completed Successfully", true)
+                      setImageUrl("")
+                      formRef.current?.reset()
+                    }, 200)
+                    clearTimeout(submitTimeOut)
                   }
                 }}
               />
@@ -151,7 +151,7 @@ function EditCertificate({ EditedObject }: any) {
         </DialogContent>
       </Dialog>
     </div>
-  );
+  )
 }
 
-export { EditCertificate };
+export { EditCertificate }

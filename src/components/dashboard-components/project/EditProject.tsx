@@ -1,48 +1,48 @@
-"use client";
-import { ChangeEvent, useRef, useState } from "react";
+"use client"
+import { ChangeEvent, useRef, useState } from "react"
 
-import Image from "next/image";
-import { Input } from "@/src/components/ui/input";
-import { Label } from "@/src/components/ui/label";
-import { editProjectAction } from "@/src/app/actions/projectsActions";
-import { notify } from "@/src/app/lib/utils/toast";
-import Submit from "@/src/components/ui/formSubmitBtn";
+import Image from "next/image"
+import { Input } from "@/src/components/ui/input"
+import { Label } from "@/src/components/ui/label"
+import { editProjectAction } from "@/src/app/actions/projectsActions"
+import { notify } from "@/src/app/lib/utils/toast"
+import Submit from "@/src/components/ui/formSubmitBtn"
 import {
   Dialog,
   DialogContent,
   DialogTrigger,
-} from "@/src/components/ui/dialog";
-import { Textarea } from "@/src/components/ui/textarea";
-import { TagsInput } from "react-tag-input-component";
-import { DialogClose } from "@radix-ui/react-dialog";
-import { Upload } from "../Upload";
-import { Pencil } from "lucide-react";
-import { useSession } from "next-auth/react";
+} from "@/src/components/ui/dialog"
+import { Textarea } from "@/src/components/ui/textarea"
+import { TagsInput } from "react-tag-input-component"
+import { DialogClose } from "@radix-ui/react-dialog"
+import { Upload } from "../Upload"
+import { Pencil } from "lucide-react"
+import { useSession } from "next-auth/react"
 
 function EditProject({ EditedObject }: any) {
-  const { id } = EditedObject;
-  const [editedProj, setEditedProj] = useState(EditedObject);
-  const editProjectActionWithObject = editProjectAction.bind(null, editedProj);
+  const { id } = EditedObject
+  const [editedProj, setEditedProj] = useState(EditedObject)
+  const editProjectActionWithObject = editProjectAction.bind(null, editedProj)
 
-  const [imageUrl, setImageUrl] = useState("");
+  const [imageUrl, setImageUrl] = useState("")
 
-  const [selected, setSelected] = useState<string[]>(["featured"]);
+  const [selected, setSelected] = useState<string[]>(["featured"])
 
-  const formRef = useRef<HTMLFormElement>(null);
-  const { data: session } = useSession();
-  const user = session?.user;
+  const formRef = useRef<HTMLFormElement>(null)
+  const { data: session } = useSession()
+  const user = session?.user
 
   const InputHandler = (
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
-    const { name, value } = e.target;
+    const { name, value } = e.target
     setEditedProj((prevEditedProj: any) => {
       return {
         ...prevEditedProj,
         [name]: value,
-      };
-    });
-  };
+      }
+    })
+  }
 
   return (
     <div className="flex flex-col justify-center items-center">
@@ -132,11 +132,11 @@ function EditProject({ EditedObject }: any) {
                   className="m-10 w-2/3"
                   type="submit"
                   onClick={() => {
-                    if (user?.role !== "ADMIN") {
-                      notify("Sorry, you don't have admin privileges", false);
+                    if (user?.email !== process.env.ADMIN_EMAIL) {
+                      notify("Sorry, you don't have admin privileges", false)
                     } else {
-                      notify("Project Edited Successfully", true);
-                      formRef.current?.reset();
+                      notify("Project Edited Successfully", true)
+                      formRef.current?.reset()
                     }
                   }}
                 />
@@ -146,7 +146,7 @@ function EditProject({ EditedObject }: any) {
         </Dialog>
       </div>
     </div>
-  );
+  )
 }
 
-export { EditProject };
+export { EditProject }

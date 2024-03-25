@@ -1,5 +1,5 @@
 import { Button } from "@/src/components/ui/button";
-import { signOut } from "@/auth";
+import { signOut } from "@/lib/auth";
 
 type Props = {};
 

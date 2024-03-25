@@ -1,7 +1,7 @@
 "use server ";
 
 import { postSchema } from "@/src/app/lib/schemas/postSchema";
-import { auth } from "@/auth";
+import { auth } from "@/lib/auth";
 import { db } from "@/src/app/lib/db";
 
 export async function getAllPosts() {
@@ -35,11 +35,11 @@ export async function addNewPost(formData: FormData) {
   console.log(user?.id);
   console.log(session);
 
-  if (user?.role !== "ADMIN") {
+  if (user?.email !== process.env.ADMIN_EMAIL) {
     return {
       success: false,
       message: "You Don't Have Privilige To Add Certificate",
-    };
+    }
   }
   const result = postSchema.safeParse({
     title,

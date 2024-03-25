@@ -1,5 +1,5 @@
-"use client";
-import { useState, useRef } from "react";
+"use client"
+import { useState, useRef } from "react"
 
 import {
   Dialog,
@@ -9,31 +9,31 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@/src/components/ui/dialog";
+} from "@/src/components/ui/dialog"
 
-import Image from "next/image";
-import { Input } from "@/src/components/ui/input";
-import { Label } from "@/src/components/ui/label";
-import { addProjectAction } from "@/src/app/actions/projectsActions";
+import Image from "next/image"
+import { Input } from "@/src/components/ui/input"
+import { Label } from "@/src/components/ui/label"
+import { addProjectAction } from "@/src/app/actions/projectsActions"
 
-import { notify } from "@/src/app/lib/utils/toast";
+import { notify } from "@/src/app/lib/utils/toast"
 
-import { TagsInput } from "react-tag-input-component";
+import { TagsInput } from "react-tag-input-component"
 
-import { Textarea } from "@/src/components/ui/textarea";
-import { useFormState } from "react-dom";
-import Submit from "@/src/components/ui/formSubmitBtn";
-import { Upload } from "../Upload";
-import { useSession } from "next-auth/react";
+import { Textarea } from "@/src/components/ui/textarea"
+import { useFormState } from "react-dom"
+import Submit from "@/src/components/ui/formSubmitBtn"
+import { Upload } from "../Upload"
+import { useSession } from "next-auth/react"
 
 function AddProjectComponent() {
-  const [state, formAction] = useFormState(addProjectAction, null);
-  const [selected, setSelected] = useState<string[]>(["featured"]);
-  const [imageUrl, setImageUrl] = useState("");
-  const formRef = useRef<HTMLFormElement>(null);
-  const { data: session } = useSession();
-  const user = session?.user;
-  console.log(user);
+  const [state, formAction] = useFormState(addProjectAction, null)
+  const [selected, setSelected] = useState<string[]>(["featured"])
+  const [imageUrl, setImageUrl] = useState("")
+  const formRef = useRef<HTMLFormElement>(null)
+  const { data: session } = useSession()
+  const user = session?.user
+  console.log(user)
   return (
     <div className="flex flex-col justify-center items-center">
       <div className="flex w-full min-h-full justify-center items-start mt-6">
@@ -114,14 +114,14 @@ function AddProjectComponent() {
                   btnText="Add Project"
                   type="submit"
                   onClick={() => {
-                    if (user?.role !== "ADMIN") {
-                      notify("You don't have privilige to do this", false);
+                    if (user?.email !== process.env.ADMIN_EMAIL) {
+                      notify("You don't have privilige to do this", false)
                       const submitTimeOut = setTimeout(() => {
-                        notify("Adding Completed Successfully", true);
-                        setImageUrl("");
-                        formRef.current?.reset();
-                      }, 200);
-                      clearTimeout(submitTimeOut);
+                        notify("Adding Completed Successfully", true)
+                        setImageUrl("")
+                        formRef.current?.reset()
+                      }, 200)
+                      clearTimeout(submitTimeOut)
                     }
                   }}
                 />
@@ -131,7 +131,7 @@ function AddProjectComponent() {
         </Dialog>
       </div>
     </div>
-  );
+  )
 }
 
-export { AddProjectComponent };
+export { AddProjectComponent }

@@ -4,7 +4,7 @@ import { db } from "@/src/app/lib/db";
 import { revalidatePath } from "next/cache";
 import { DeleteFromS3 } from "./deleteImageAction";
 import { ProjectSchema } from "../lib/schemas/projectSchema";
-import { auth } from "@/auth";
+import { auth } from "@/lib/auth";
 
 export async function getAllProjects() {
   try {
@@ -35,12 +35,12 @@ export async function addProjectAction(state: any, data: FormData) {
 
   const session = await auth();
   const user = session?.user;
-  console.log(user);
-  if (user?.role !== "ADMIN") {
+
+  if (user?.email !== process.env.ADMIN_EMAIL) {
     return {
       success: false,
       message: "You Don't Have Privilige To Add Project",
-    };
+    }
   }
 
   const result = ProjectSchema.safeParse({
@@ -84,11 +84,11 @@ export async function editProjectAction(state: any, data: FormData) {
   const session = await auth();
   const user = session?.user;
 
-  if (user?.role !== "ADMIN") {
+  if (user?.email !== process.env.ADMIN_EMAIL) {
     return {
       success: false,
       message: "You Don't Have Privilige To Add Project",
-    };
+    }
   }
 
   const result = ProjectSchema.safeParse({
@@ -129,11 +129,11 @@ export async function deleteProjectAction(id: string) {
   const session = await auth();
   const user = session?.user;
 
-  if (user?.role !== "ADMIN") {
+  if (user?.email !== process.env.ADMIN_EMAIL) {
     return {
       success: false,
       message: "You Don't Have Privilige To Delete Project",
-    };
+    }
   }
   const deletedProject = await db.project.delete({ where: { id: id } });
 

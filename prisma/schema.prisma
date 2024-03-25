@@ -44,6 +44,18 @@ model Project {
   updatedAt  DateTime @updatedAt
 }
 
+model User {
+  id            String    @id @default(cuid())
+  name          String?
+  email         String?   @unique
+  emailVerified DateTime?
+  image         String?
+  posts         Post[]
+  role          Role      @default(USER)
+  accounts      Account[]
+  sessions      Session[]
+}
+
 model Account {
   id                String  @id @default(cuid())
   userId            String
@@ -69,18 +81,6 @@ model Session {
   userId       String
   expires      DateTime
   user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-}
-
-model User {
-  id            String    @id @default(cuid())
-  name          String?
-  email         String?   @unique
-  emailVerified DateTime?
-  image         String?
-  posts         Post[]
-  role          Role      @default(USER)
-  accounts      Account[]
-  sessions      Session[]
 }
 
 model VerificationToken {
