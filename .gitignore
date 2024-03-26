@@ -8,6 +8,8 @@
 # testing
 /coverage
 
+.pnpm
+.npmrc
 # next.js
 /.next/
 /out/

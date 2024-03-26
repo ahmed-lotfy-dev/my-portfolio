@@ -9,7 +9,8 @@ const prisma = new PrismaClient()
 export const authConfig = {
   adapter: PrismaAdapter(prisma),
   providers: [GitHub, Google],
-  trustHost: process.env.NODE_ENV === "production",
+  secret: process.env.AUTH_SECRET,
+  trustHost: true,
 }
 export const {
   handlers: { GET, POST },
