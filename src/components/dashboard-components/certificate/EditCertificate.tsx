@@ -1,12 +1,10 @@
 "use client"
-import { ChangeEvent, useRef, useState } from "react"
+import { ChangeEvent, useRef, useState, useActionState } from "react";
 
 import { Input } from "@/src/components/ui/input"
 import { editCertificateAction } from "@/src/app/actions/certificatesActions"
 import Image from "next/image"
 import { notify } from "@/src/app/lib/utils/toast"
-
-import { useFormState } from "react-dom"
 
 import Submit from "@/src/components/ui/formSubmitBtn"
 import {
@@ -22,7 +20,7 @@ import { useSession } from "next-auth/react"
 
 function EditCertificate({ EditedObject }: any) {
   const { id } = EditedObject
-  const [state, formAction] = useFormState(editCertificateAction, null)
+  const [state, formAction] = useActionState(editCertificateAction, null)
   const [editedCert, setEditedCert] = useState(EditedObject)
   const [imageUrl, setImageUrl] = useState("")
   const formRef = useRef<HTMLFormElement>(null)

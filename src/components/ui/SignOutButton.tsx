@@ -1,19 +1,19 @@
-import { Button } from "@/src/components/ui/button";
-import { signOut } from "@/lib/auth";
+import { authClient } from "@/auth-client"
+import { Button } from "@/src/components/ui/button"
 
-type Props = {};
+type Props = {}
 
 export default async function SignOutButton({}: Props) {
   return (
     <div className="w-full p-10">
       <form
         action={async () => {
-          "use server";
-          await signOut();
+          "use server"
+          await authClient.signOut()
         }}
       >
         <Button className="w-full p-0">Sign Out</Button>
       </form>
     </div>
-  );
+  )
 }

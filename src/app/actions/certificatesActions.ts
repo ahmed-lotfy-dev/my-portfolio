@@ -4,7 +4,8 @@ import { CertificateSchema } from "../lib/schemas/certificateSchema"
 import { db } from "@/src/app/lib/db"
 import { revalidatePath } from "next/cache"
 import { DeleteFromS3 } from "./deleteImageAction"
-import { auth } from "@/lib/auth"
+import { headers } from "next/headers"
+import auth from "../lib/auth"
 
 export async function getAllCertificates() {
   try {
@@ -31,7 +32,7 @@ export async function addCertificateAction(state: any, data: FormData) {
   const profLink = data.get("profLink") as string
   const imageLink = data.get("imageLink") as string
 
-  const session = await auth()
+  const session = await auth.api.getSession({ headers: await headers() })
   const user = session?.user
   console.log(user)
 
@@ -70,7 +71,7 @@ export async function editCertificateAction(state: any, data: FormData) {
   const profLink = data.get("profLink") as string
   const imageLink = data.get("imageLink") as string
 
-  const session = await auth()
+  const session = await auth.api.getSession({ headers: await headers() })
   const user = session?.user
 
   if (user?.email !== process.env.ADMIN_EMAIL) {
@@ -115,7 +116,7 @@ export async function editCertificateAction(state: any, data: FormData) {
 }
 
 export async function deleteCertificateAction(certificateId: string) {
-  const session = await auth()
+  const session = await auth.api.getSession({ headers: await headers() })
   const user = session?.user
 
   if (user?.email !== process.env.ADMIN_EMAIL) {

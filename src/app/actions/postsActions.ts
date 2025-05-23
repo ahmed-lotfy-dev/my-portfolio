@@ -1,39 +1,40 @@
-"use server ";
+"use server"
 
-import { postSchema } from "@/src/app/lib/schemas/postSchema";
-import { auth } from "@/lib/auth";
-import { db } from "@/src/app/lib/db";
+import { postSchema } from "@/src/app/lib/schemas/postSchema"
+import { db } from "@/src/app/lib/db"
+import { headers } from "next/headers"
+import auth from "@/lib/auth"
 
 export async function getAllPosts() {
   try {
-    const allPosts = await db.post.findMany();
-    return { allPosts };
+    const allPosts = await db.post.findMany()
+    return { allPosts }
   } catch (error) {
-    return { error };
+    return { error }
   }
 }
 
 export async function getSinglePosts(postId: string) {
-  const singlePost = await db.post.findFirst({ where: { id: postId } });
+  const singlePost = await db.post.findFirst({ where: { id: postId } })
 
-  return { success: true, message: "Single Blog Post Found", singlePost };
+  return { success: true, message: "Single Blog Post Found", singlePost }
 }
 
 export async function addNewPost(formData: FormData) {
-  const title = formData.get("title") as string;
-  const content = formData.get("content") as string;
-  const published = formData.get("published") as string;
-  const categories = formData.get("categories") as string;
-  const imageLink = formData.get("imageLink") as string;
-  const postsCategories = categories?.split(",");
-  const isPublished = Boolean(published);
-  const slug = title.replace(" ", "-") as string;
+  const title = formData.get("title") as string
+  const content = formData.get("content") as string
+  const published = formData.get("published") as string
+  const categories = formData.get("categories") as string
+  const imageLink = formData.get("imageLink") as string
+  const postsCategories = categories?.split(",")
+  const isPublished = Boolean(published)
+  const slug = title.replace(" ", "-") as string
 
-  const session = await auth();
-  const user = session?.user;
+  const session = await auth.api.getSession({ headers: await headers() })
+  const user = session?.user
 
-  console.log(user?.id);
-  console.log(session);
+  console.log(user?.id)
+  console.log(session)
 
   if (user?.email !== process.env.ADMIN_EMAIL) {
     return {
@@ -48,8 +49,8 @@ export async function addNewPost(formData: FormData) {
     postsCategories,
     published: isPublished,
     imageLink,
-  });
-  console.log(result);
+  })
+  console.log(result)
 
   if (result.success) {
     const post = await db.post.create({
@@ -62,12 +63,12 @@ export async function addNewPost(formData: FormData) {
         published: isPublished,
         imageLink,
       },
-    });
-    console.log("certificate added successfully");
-    return { success: true, message: result.data };
+    })
+    console.log("certificate added successfully")
+    return { success: true, message: result.data }
   }
   if (result.error) {
-    return { success: false, error: result.error.format() };
+    return { success: false, error: result.error.format() }
   }
 }
 
@@ -75,18 +76,18 @@ export async function updateSinglePosts(post: any) {
   const updatedPost = await db.post.update({
     where: { id: post.id },
     data: { ...post },
-  });
+  })
   return {
     success: true,
     message: "Blog Post Updated Successfully",
     updatedPost,
-  };
+  }
 }
 
 export async function deleteSinglePosts(id: string) {
-  const deletPost = await db.post.delete({ where: { id: id } });
+  const deletPost = await db.post.delete({ where: { id: id } })
   return {
     success: true,
     message: "Blog Post Deleted Successfully",
-  };
+  }
 }

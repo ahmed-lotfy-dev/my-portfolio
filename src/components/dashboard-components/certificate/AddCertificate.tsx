@@ -1,5 +1,5 @@
 "use client"
-import { useState, useRef } from "react"
+import { useState, useRef, useActionState } from "react";
 
 import {
   Dialog,
@@ -17,13 +17,12 @@ import { addCertificateAction } from "@/src/app/actions/certificatesActions"
 
 import { notify } from "@/src/app/lib/utils/toast"
 
-import { useFormState } from "react-dom"
 import Submit from "@/src/components/ui/formSubmitBtn"
 import { Upload } from "@/src/components/dashboard-components/Upload"
 import { useSession } from "next-auth/react"
 
 function AddCertificateComponent() {
-  const [state, formAction] = useFormState(addCertificateAction, null)
+  const [state, formAction] = useActionState(addCertificateAction, null)
   const [selected, setSelected] = useState<string[]>(["featured"])
   const [imageUrl, setImageUrl] = useState("")
   const formRef = useRef<HTMLFormElement>(null)

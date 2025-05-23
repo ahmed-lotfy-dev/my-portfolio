@@ -4,11 +4,12 @@ import {
 } from "@/src/app/actions/postsActions";
 import { Button } from "@/src/components/ui/button";
 
-export default async function SinglePost({
-  params,
-}: {
-  params: { slug: string };
-}) {
+export default async function SinglePost(
+  props: {
+    params: Promise<{ slug: string }>;
+  }
+) {
+  const params = await props.params;
   const { slug } = params;
   const postTitle = slug.replace("%20", " ");
   const { singlePost } = await getSinglePosts(postTitle);

@@ -1,5 +1,5 @@
 "use client"
-import { ChangeEvent, useRef, useState } from "react"
+import { ChangeEvent, useRef, useState, FormEvent } from "react"
 
 import Image from "next/image"
 import { Input } from "@/src/components/ui/input"
@@ -22,7 +22,7 @@ import { useSession } from "next-auth/react"
 function EditProject({ EditedObject }: any) {
   const { id } = EditedObject
   const [editedProj, setEditedProj] = useState(EditedObject)
-  const editProjectActionWithObject = editProjectAction.bind(null, editedProj)
+  // const editProjectActionWithObject = editProjectAction.bind(null, editedProj)
 
   const [imageUrl, setImageUrl] = useState("")
 
@@ -44,6 +44,13 @@ function EditProject({ EditedObject }: any) {
     })
   }
 
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
+    // Modified this line
+    event.preventDefault() // Prevent default form submission
+    const formData = new FormData(event.currentTarget)
+    await editProjectAction(editedProj, formData)
+  }
+
   return (
     <div className="flex flex-col justify-center items-center">
       <div className="flex w-full min-h-full justify-center items-start mt-6">
@@ -54,7 +61,7 @@ function EditProject({ EditedObject }: any) {
           </DialogTrigger>
           <DialogContent className="w-[700px]">
             <form
-              action={editProjectActionWithObject}
+              onSubmit={handleSubmit}
               className="flex flex-col justify-center items-center w-full gap-5 text-black "
             >
               <Input

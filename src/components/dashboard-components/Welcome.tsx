@@ -1,7 +1,7 @@
-import { auth } from "@/lib/auth"
+import { authClient } from "@/auth-client"
 
 export default async function Welcome() {
-  const session = await auth()
+  const { data: session } = await authClient.getSession()
   const user = session?.user
   return (
     <div className="w-full">

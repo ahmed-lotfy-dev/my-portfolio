@@ -2,6 +2,7 @@ import { S3Client, PutObjectCommand } from "@aws-sdk/client-s3"
 import { getSignedUrl } from "@aws-sdk/s3-request-presigner"
 
 import { auth } from "@/lib/auth"
+import { headers } from "next/headers"
 
 const config = {
   region: "auto",
@@ -45,9 +46,9 @@ export async function POST(request: Request): Promise<Response> {
   const fileData = await file.arrayBuffer()
   const buffer = Buffer.from(fileData)
 
-  const session = await auth()
+  const session = await auth.api.getSession({ headers: await headers() })
   const user = session?.user
-  
+
   if (user?.email === process.env.ADMIN_EMAIL) {
     const uploaded = await uploadFileToS3(
       buffer,

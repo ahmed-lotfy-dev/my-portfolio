@@ -1,27 +1,23 @@
-import {
-  Avatar,
-  AvatarFallback,
-  AvatarImage,
-} from "@/src/components/ui/avatar";
-import { Button } from "@/src/components/ui/button";
+import { Avatar, AvatarFallback, AvatarImage } from "@/src/components/ui/avatar"
+import { Button } from "@/src/components/ui/button"
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuLabel,
   DropdownMenuTrigger,
-} from "@/src/components/ui/dropdown-menu";
-import SignOutButton from "../ui/SignOutButton";
-import { auth } from "@/src/app/lib/auth";
-import SignInButton from "../ui/SignInButton";
+} from "@/src/components/ui/dropdown-menu"
+import SignOutButton from "../ui/SignOutButton"
+import SignInButton from "../ui/SignInButton"
+import { authClient } from "@/auth-client"
 
 export default async function UserButton({
   className,
 }: {
-  className?: string;
+  className?: string
 }) {
-  const session = await auth();
-  const user = session?.user;
+  const { data: session } = await authClient.getSession()
+  const user = session?.user
 
   return (
     <div className={className}>
@@ -31,7 +27,7 @@ export default async function UserButton({
             <Avatar className="w-8 h-8">
               <AvatarImage
                 src={user?.image || user?.image || "https://placehold.co/150"}
-                alt={`${user?.name} ` ?? ``}
+                alt={`${user?.name} `}
               />
               <AvatarFallback>{user?.email}</AvatarFallback>
             </Avatar>
@@ -51,13 +47,12 @@ export default async function UserButton({
               <SignOutButton />
             ) : (
               <div className="flex flex-col">
-                <SignInButton provider="google" />
-                <SignInButton provider="github" />
+                <SignInButton type="social" />
               </div>
             )}
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
     </div>
-  );
+  )
 }

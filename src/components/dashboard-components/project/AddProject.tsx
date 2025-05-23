@@ -1,5 +1,5 @@
 "use client"
-import { useState, useRef } from "react"
+import { useState, useRef, useActionState } from "react";
 
 import {
   Dialog,
@@ -21,13 +21,12 @@ import { notify } from "@/src/app/lib/utils/toast"
 import { TagsInput } from "react-tag-input-component"
 
 import { Textarea } from "@/src/components/ui/textarea"
-import { useFormState } from "react-dom"
 import Submit from "@/src/components/ui/formSubmitBtn"
 import { Upload } from "../Upload"
 import { useSession } from "next-auth/react"
 
 function AddProjectComponent() {
-  const [state, formAction] = useFormState(addProjectAction, null)
+  const [state, formAction] = useActionState(addProjectAction, null)
   const [selected, setSelected] = useState<string[]>(["featured"])
   const [imageUrl, setImageUrl] = useState("")
   const formRef = useRef<HTMLFormElement>(null)

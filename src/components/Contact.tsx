@@ -1,17 +1,17 @@
-"use client";
-import Link from "next/link";
-import { contactAction } from "@/src/app/actions/contactAction";
-import { useFormState } from "react-dom";
-import { notify } from "@/src/app/lib/utils/toast";
-import { IoLogoFacebook, IoLogoLinkedin, IoLogoGithub } from "react-icons/io5";
-import Submit from "./ui/formSubmitBtn";
-import Image from "next/image";
+"use client"
+import { useActionState } from "react"
+import Link from "next/link"
+import { contactAction } from "@/src/app/actions/contactAction"
+import { notify } from "@/src/app/lib/utils/toast"
+import { IoLogoFacebook, IoLogoLinkedin, IoLogoGithub } from "react-icons/io5"
+import Submit from "./ui/formSubmitBtn"
+import Image from "next/image"
 
 export default function Contact() {
-  const [state, formAction] = useFormState(contactAction, null);
+  const [state, formAction] = useActionState(contactAction, null)
 
   if (state?.success)
-    notify("Email sent successfully, i'll contact you soon ", true);
+    notify("Email sent successfully, i'll contact you soon ", true)
 
   return (
     // outer container for bg
@@ -121,5 +121,5 @@ export default function Contact() {
         </div>
       </div>
     </section>
-  );
+  )
 }
