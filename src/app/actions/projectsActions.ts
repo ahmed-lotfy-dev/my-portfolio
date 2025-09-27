@@ -20,12 +20,9 @@ export async function getAllProjects() {
 
 export async function getSingleProject(id: string) {
   try {
-    const singleProject = await db
-      .select()
-      .from(projects)
-      .where(eq(projects.id, id))
-      .limit(1)
-
+    const singleProject = await db.query.projects.findFirst({
+      where: (projects, { eq }) => eq(projects.id, id),
+    })
     return { sucess: true, message: "Project Found", singleProject }
   } catch (error) {
     return { success: false, message: "Projcts Not Found" }
