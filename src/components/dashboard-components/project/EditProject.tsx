@@ -17,7 +17,7 @@ import { TagsInput } from "react-tag-input-component"
 import { DialogClose } from "@radix-ui/react-dialog"
 import { Upload } from "../Upload"
 import { Pencil } from "lucide-react"
-import { useSession } from "next-auth/react"
+import { authClient } from "@/src/lib/auth-client"
 
 function EditProject({ EditedObject }: any) {
   const { id } = EditedObject
@@ -29,7 +29,7 @@ function EditProject({ EditedObject }: any) {
   const [selected, setSelected] = useState<string[]>(["featured"])
 
   const formRef = useRef<HTMLFormElement>(null)
-  const { data: session } = useSession()
+  const { data: session } = authClient.useSession.get()
   const user = session?.user
 
   const InputHandler = (

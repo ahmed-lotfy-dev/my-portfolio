@@ -23,14 +23,14 @@ import { TagsInput } from "react-tag-input-component"
 import { Textarea } from "@/src/components/ui/textarea"
 import Submit from "@/src/components/ui/formSubmitBtn"
 import { Upload } from "../Upload"
-import { useSession } from "next-auth/react"
+import { authClient } from "@/src/lib/auth-client"
 
 function AddProjectComponent() {
   const [state, formAction] = useActionState(addProjectAction, null)
   const [selected, setSelected] = useState<string[]>(["featured"])
   const [imageUrl, setImageUrl] = useState("")
   const formRef = useRef<HTMLFormElement>(null)
-  const { data: session } = useSession()
+  const { data: session } = authClient.useSession.get()
   const user = session?.user
   console.log(user)
   return (

@@ -16,7 +16,7 @@ import {
 import { Upload } from "../Upload"
 import { Textarea } from "@/src/components/ui/textarea"
 import { Pencil } from "lucide-react"
-import { useSession } from "next-auth/react"
+import { authClient } from "@/src/lib/auth-client"
 
 function EditCertificate({ EditedObject }: any) {
   const { id } = EditedObject
@@ -24,7 +24,7 @@ function EditCertificate({ EditedObject }: any) {
   const [editedCert, setEditedCert] = useState(EditedObject)
   const [imageUrl, setImageUrl] = useState("")
   const formRef = useRef<HTMLFormElement>(null)
-  const { data: session } = useSession()
+  const { data: session } = authClient.useSession.get()
   const user = session?.user
 
   const InputHandler = (e: ChangeEvent<HTMLInputElement>) => {

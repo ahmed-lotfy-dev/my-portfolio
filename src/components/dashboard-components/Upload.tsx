@@ -52,11 +52,10 @@ function Upload({ setImageUrl, imageType }: UploadProps) {
       </Button>
       <Input
         type="file"
-        accept="images/*"
+        accept="image/*"
         name="image"
         className="w-2/3"
         onChange={handleFileChange}
-        multiple={true}
         ref={fileInputRef}
         style={{ display: "none" }}
       />

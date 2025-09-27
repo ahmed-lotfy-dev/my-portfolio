@@ -1,23 +1,25 @@
-import { GoogleAnalytics } from "@next/third-parties/google";
+import { GoogleAnalytics } from "@next/third-parties/google"
 
-import "./globals.css";
+import "./globals.css"
 
-import { Nav } from "@/src/components/Nav";
-import type { Metadata } from "next";
-import { Toaster } from "@/src/components/ui/sonner";
-import { ReactNode } from "react";
-import { inter, josefinSans, josefinSlab } from "@/src/components/ui/fonts";
-import UserButton from "../components/dashboard-components/UserButton";
-import Providers from "./provider";
+import { Nav } from "@/src/components/Nav"
+import type { Metadata } from "next"
+import { Toaster } from "@/src/components/ui/sonner"
+import { ReactNode } from "react"
+import { inter, josefinSans, josefinSlab } from "@/src/components/ui/fonts"
+import UserButton from "../components/dashboard-components/UserButton"
+import Providers from "./provider"
+
+export const dynamic = "force-dynamic"
 
 export const metadata: Metadata = {
   title: "Ahmed Lotfy",
   description: "Portfolio of Ahmed Lotfy The Full Stack Developer",
-};
+}
 export default async function RootLayout({
   children,
 }: {
-  children: ReactNode;
+  children: ReactNode
 }) {
   return (
     <html lang="en" className="scroll-smooth max-h-svh">
@@ -37,5 +39,5 @@ export default async function RootLayout({
         </main>
       </body>
     </html>
-  );
+  )
 }

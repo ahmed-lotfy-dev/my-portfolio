@@ -19,14 +19,14 @@ import { notify } from "@/src/lib/utils/toast"
 
 import Submit from "@/src/components/ui/formSubmitBtn"
 import { Upload } from "@/src/components/dashboard-components/Upload"
-import { useSession } from "next-auth/react"
+import { authClient } from "@/src/lib/auth-client"
 
 function AddCertificateComponent() {
   const [state, formAction] = useActionState(addCertificateAction, null)
   const [selected, setSelected] = useState<string[]>(["featured"])
   const [imageUrl, setImageUrl] = useState("")
   const formRef = useRef<HTMLFormElement>(null)
-  const { data: session } = useSession()
+  const { data: session } = authClient.useSession.get()
   const user = session?.user
 
   return (
