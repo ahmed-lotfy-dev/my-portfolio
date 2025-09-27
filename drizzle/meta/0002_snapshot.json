@@ -1,6 +1,6 @@
 {
-  "id": "71c6e3c8-5d24-4d51-8b52-edc9e5864317",
-  "prevId": "00000000-0000-0000-0000-000000000000",
+  "id": "856fb98a-5f5d-473a-9b95-ffa0aa8a862a",
+  "prevId": "b45f59f6-b2a1-4286-9c36-82bd4f7177e9",
   "version": "7",
   "dialect": "postgresql",
   "tables": {
@@ -104,9 +104,10 @@
       "columns": {
         "id": {
           "name": "id",
-          "type": "text",
+          "type": "uuid",
           "primaryKey": true,
-          "notNull": true
+          "notNull": true,
+          "default": "gen_random_uuid()"
         },
         "title": {
           "name": "title",
@@ -167,9 +168,10 @@
       "columns": {
         "id": {
           "name": "id",
-          "type": "text",
+          "type": "uuid",
           "primaryKey": true,
-          "notNull": true
+          "notNull": true,
+          "default": "gen_random_uuid()"
         },
         "title": {
           "name": "title",
@@ -265,9 +267,10 @@
       "columns": {
         "id": {
           "name": "id",
-          "type": "text",
+          "type": "uuid",
           "primaryKey": true,
-          "notNull": true
+          "notNull": true,
+          "default": "gen_random_uuid()"
         },
         "title": {
           "name": "title",
@@ -516,6 +519,13 @@
         },
         "created_at": {
           "name": "created_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        },
+        "updated_at": {
+          "name": "updated_at",
           "type": "timestamp",
           "primaryKey": false,
           "notNull": true,

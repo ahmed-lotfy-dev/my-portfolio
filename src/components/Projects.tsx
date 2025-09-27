@@ -1,11 +1,11 @@
-import Image from "next/image";
-import Link from "next/link";
-import { Button } from "./ui/button";
-import { Card } from "./ui/card";
-import { getAllProjects } from "../app/actions/projectsActions";
+import Image from "next/image"
+import Link from "next/link"
+import { Button } from "./ui/button"
+import { Card } from "./ui/card"
+import { getAllProjects } from "@/src/app/actions/projectsActions"
 
-export default async function projects() {
-  const { allProjects } = await getAllProjects();
+export default async function Projects() {
+  const { allProjects } = await getAllProjects()
 
   return (
     <section
@@ -40,12 +40,11 @@ export default async function projects() {
                   </Link>
                 </div>
               </div>
-
               <div className="order-2 m-auto mt-8 md:m-0 md:p-0">
                 <Image
                   className="shadow-sm shadow-primary"
                   src={proj.imageLink}
-                  alt={"Project Title"}
+                  alt={proj.title}
                   height={600}
                   width={400}
                 />
@@ -55,5 +54,5 @@ export default async function projects() {
         </div>
       </Card>
     </section>
-  );
+  )
 }

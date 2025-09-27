@@ -1,6 +1,6 @@
 import { PrismaClient } from "@prisma/client"
-import { certificatesData } from "@/db-seed-data/certificates-data"
-import { projectsData } from "@/db-seed-data/prjects-data"
+import { certificatesData } from "@/src/db/db-seed-data/certificates-data"
+import { projectsData } from "@/src/db/db-seed-data/prjects-data"
 
 const prisma = new PrismaClient()
 

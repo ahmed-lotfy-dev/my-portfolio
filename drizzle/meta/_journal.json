@@ -5,8 +5,22 @@
     {
       "idx": 0,
       "version": "7",
-      "when": 1758978399266,
-      "tag": "0000_stiff_sasquatch",
+      "when": 1758983039749,
+      "tag": "0000_striped_stryfe",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1758992157270,
+      "tag": "0001_calm_jasper_sitwell",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1758993704125,
+      "tag": "0002_elite_electro",
       "breakpoints": true
     }
   ]

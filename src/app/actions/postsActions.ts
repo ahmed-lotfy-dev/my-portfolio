@@ -1,13 +1,15 @@
 "use server"
 
 import { postSchema } from "@/src/lib/schemas/postSchema"
-import { db } from "@/src/lib/db"
+import { db } from "@/src/db"
 import { headers } from "next/headers"
 import { auth } from "@/src/lib/auth"
+import { posts } from "@/src/db/schema"
+import { eq } from "drizzle-orm"
 
 export async function getAllPosts() {
   try {
-    const allPosts = await db.post.findMany()
+    const allPosts = await db.query.posts.findMany()
     return { allPosts }
   } catch (error) {
     return { error }
@@ -15,7 +17,9 @@ export async function getAllPosts() {
 }
 
 export async function getSinglePosts(postId: string) {
-  const singlePost = await db.post.findFirst({ where: { id: postId } })
+  const singlePost = await db.query.posts.findFirst({
+    where: (p, { eq }) => eq(p.id, postId),
+  })
 
   return { success: true, message: "Single Blog Post Found", singlePost }
 }
@@ -33,15 +37,13 @@ export async function addNewPost(formData: FormData) {
   const session = await auth.api.getSession({ headers: await headers() })
   const user = session?.user
 
-  console.log(user?.id)
-  console.log(session)
-
   if (user?.email !== process.env.ADMIN_EMAIL) {
     return {
       success: false,
-      message: "You Don't Have Privilige To Add Certificate",
+      message: "You Don't Have Privilige To Add Post",
     }
   }
+
   const result = postSchema.safeParse({
     title,
     content,
@@ -50,42 +52,48 @@ export async function addNewPost(formData: FormData) {
     published: isPublished,
     imageLink,
   })
-  console.log(result)
 
   if (result.success) {
-    const post = await db.post.create({
-      data: {
-        title,
-        content,
-        slug,
-        authorId: user.id as string,
-        categories: postsCategories,
-        published: isPublished,
-        imageLink,
-      },
+    await db.insert(posts).values({
+      title,
+      content,
+      slug,
+      authorId: user.id as string,
+      categories: postsCategories,
+      published: isPublished,
+      imageLink,
     })
-    console.log("certificate added successfully")
-    return { success: true, message: result.data }
+
+    return { success: true, message: "Post Added Successfully" }
   }
+
   if (result.error) {
     return { success: false, error: result.error.format() }
   }
 }
 
 export async function updateSinglePosts(post: any) {
-  const updatedPost = await db.post.update({
-    where: { id: post.id },
-    data: { ...post },
-  })
+  await db
+    .update(posts)
+    .set({
+      title: post.title,
+      content: post.content,
+      slug: post.slug,
+      categories: post.categories,
+      published: post.published,
+      imageLink: post.imageLink,
+    })
+    .where(eq(posts.id, post.id))
+
   return {
     success: true,
     message: "Blog Post Updated Successfully",
-    updatedPost,
   }
 }
 
 export async function deleteSinglePosts(id: string) {
-  const deletPost = await db.post.delete({ where: { id: id } })
+  await db.delete(posts).where(eq(posts.id, id))
+
   return {
     success: true,
     message: "Blog Post Deleted Successfully",

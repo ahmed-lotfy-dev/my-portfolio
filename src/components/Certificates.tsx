@@ -10,7 +10,7 @@ import {
 } from "@/src/components/ui/accordion";
 import { Certificate } from "@prisma/client";
 
-export default async function certificates() {
+export default async function Certificates() {
   const { allCertificates } = await getAllCertificates();
   return (
     <section

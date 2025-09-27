@@ -1,8 +1,8 @@
 import "dotenv/config"
-import { db } from "@/src/db"
-import { certificates, projects } from "../db/schema"
-import { certificatesData } from "@/db-seed-data/certificates-data"
-import { projectsData } from "@/db-seed-data/prjects-data"
+import { db } from "@/src/db/index"
+import { certificates, projects } from "@/src/db/schema"
+import { certificatesData } from "@/src/db/db-seed-data/certificates-data"
+import { projectsData } from "@/src/db/db-seed-data/prjects-data"
 
 async function seed() {
   console.log("🌱 Seeding started...")
@@ -19,6 +19,8 @@ async function seed() {
       courseLink: cert.courseLink,
       profLink: cert.profLink,
       imageLink: cert.imageLink,
+      createdAt: new Date(),
+      updatedAt: new Date(),
     }))
   )
 
@@ -31,6 +33,8 @@ async function seed() {
       liveLink: project.liveLink,
       repoLink: project.repoLink,
       categories: project.categories,
+      createdAt: new Date(),
+      updatedAt: new Date(),
     }))
   )
 

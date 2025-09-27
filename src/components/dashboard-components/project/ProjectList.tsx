@@ -1,5 +1,5 @@
-"use client";
-import Image from "next/image";
+"use client"
+import Image from "next/image"
 
 import {
   Card,
@@ -8,16 +8,17 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "@/src/components/ui/card";
-import { Button } from "@/src/components/ui/button";
-import Link from "next/link";
-import { deleteProjectAction } from "@/src/app/actions/projectsActions";
-import { EditPopover } from "../EditPopover";
-import { AspectRatio } from "@/src/components/ui/aspect-ratio";
+} from "@/src/components/ui/card"
+import { Button } from "@/src/components/ui/button"
+import Link from "next/link"
+import { deleteProjectAction } from "@/src/app/actions/projectsActions"
+import { EditPopover } from "../EditPopover"
+import { AspectRatio } from "@/src/components/ui/aspect-ratio"
 
-type projectListProps = {};
+type projectListProps = {}
 
 export default function ProjectList({ allProjects }: any) {
+  console.log(allProjects)
   return (
     <div className="w-full h-full flex gap-x-6">
       {allProjects?.map((proj: any) => (
@@ -41,6 +42,8 @@ export default function ProjectList({ allProjects }: any) {
               <div className="w-[350px]">
                 <AspectRatio ratio={16 / 9}>
                   <Image
+                    width={350}
+                    height={300}
                     src={proj.imageLink}
                     alt={`${proj.projTitle} Image`}
                     fill
@@ -60,5 +63,5 @@ export default function ProjectList({ allProjects }: any) {
         </div>
       ))}
     </div>
-  );
+  )
 }

@@ -1,15 +1,17 @@
 "use server"
 
-import { db } from "@/src/lib/db"
+import { db } from "@/src/db"
 import { revalidatePath } from "next/cache"
 import { DeleteFromS3 } from "./deleteImageAction"
 import { ProjectSchema } from "../../lib/schemas/projectSchema"
 import { headers } from "next/headers"
 import { auth } from "@/src/lib/auth"
+import { projects } from "@/src/db/schema"
+import { eq } from "drizzle-orm"
 
 export async function getAllProjects() {
   try {
-    const allProjects = await db.project.findMany()
+    const allProjects = await db.query.projects.findMany()
     return { allProjects }
   } catch (error) {
     return { error }
@@ -18,7 +20,12 @@ export async function getAllProjects() {
 
 export async function getSingleProject(id: string) {
   try {
-    const singleProject = await db.project.findFirst({ where: { id: id } })
+    const singleProject = await db
+      .select()
+      .from(projects)
+      .where(eq(projects.id, id))
+      .limit(1)
+
     return { sucess: true, message: "Project Found", singleProject }
   } catch (error) {
     return { success: false, message: "Projcts Not Found" }
@@ -53,15 +60,13 @@ export async function addProjectAction(state: any, data: FormData) {
     projCategories,
   })
   if (result.success) {
-    const project = await db.project.create({
-      data: {
-        title,
-        desc,
-        repoLink,
-        liveLink,
-        imageLink,
-        categories: projCategories,
-      },
+    const project = await db.insert(projects).values({
+      title,
+      desc,
+      repoLink,
+      liveLink,
+      imageLink,
+      categories: projCategories,
     })
 
     console.log("project added successfully")
@@ -102,22 +107,27 @@ export async function editProjectAction(state: any, data: FormData) {
     projCategories,
   })
   if (result.success) {
-    const oldProject = await db.project.findFirst({ where: { id: id } })
-    if (oldProject?.imageLink !== imageLink) {
+    const oldProject = await db.query.projects.findFirst({
+      where: (projects, { eq }) => eq(projects.id, id),
+    })
+
+    if (oldProject && oldProject.imageLink !== imageLink) {
       console.log("New Image")
-      DeleteFromS3(oldProject?.imageLink)
+      DeleteFromS3(oldProject.imageLink)
     }
-    const project = await db.project.update({
-      where: { id: id },
-      data: {
+
+    const project = await db
+      .update(projects)
+      .set({
         title,
         desc,
         repoLink,
         liveLink,
         imageLink,
-        categories: projCategories,
-      },
-    })
+        categories,
+      })
+      .where(eq(projects.id, id))
+
     console.log("project updated successfully")
     revalidatePath("/dashboard/projects")
     return { success: true, data: result.data }
@@ -137,7 +147,7 @@ export async function deleteProjectAction(id: string) {
       message: "You Don't Have Privilige To Delete Project",
     }
   }
-  const deletedProject = await db.project.delete({ where: { id: id } })
+  const deletedProject = await db.delete(projects).where(eq(projects.id, id))
 
   console.log("projct deleted", id)
   revalidatePath("/dashboard/projects")

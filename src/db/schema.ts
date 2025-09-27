@@ -5,132 +5,120 @@ import {
   boolean,
   integer,
   pgEnum,
-  uuid,
   uniqueIndex,
 } from "drizzle-orm/pg-core"
 import { relations } from "drizzle-orm"
-import { sql } from "drizzle-orm"
+import { uuid } from "drizzle-orm/pg-core"
 
-// Role Enum
-export const roleEnum = pgEnum("Role", ["USER", "ADMIN"])
+export const roleEnum = pgEnum("role", ["USER", "ADMIN"])
 
-// -------------------- User --------------------
-export const users = pgTable("User", {
-  id: uuid("id")
-    .primaryKey()
-    .default(sql`gen_random_uuid()`), // ✅ UUID
-  name: text("name"),
-  email: text("email").unique(),
-  emailVerified: timestamp("emailVerified", { mode: "date" }),
+export const users = pgTable("users", {
+  id: text("id").primaryKey(),
+  name: text("name").notNull(),
+  email: text("email").notNull().unique(),
+  emailVerified: boolean("email_verified").default(false).notNull(),
   image: text("image"),
   role: roleEnum("role").notNull().default("USER"),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+  updatedAt: timestamp("updated_at")
+    .defaultNow()
+    .$onUpdate(() => new Date())
+    .notNull(),
 })
 
-// -------------------- Post --------------------
-export const posts = pgTable("Post", {
-  id: uuid("id")
-    .primaryKey()
-    .default(sql`gen_random_uuid()`),
+export const sessions = pgTable("sessions", {
+  id: text("id").primaryKey(),
+  expiresAt: timestamp("expires_at").notNull(),
+  token: text("token").notNull().unique(),
+  ipAddress: text("ip_address"),
+  userAgent: text("user_agent"),
+  userId: text("user_id")
+    .notNull()
+    .references(() => users.id, { onDelete: "cascade" }),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+  updatedAt: timestamp("updated_at")
+    .$onUpdate(() => new Date())
+    .notNull(),
+})
+
+export const accounts = pgTable("accounts", {
+  id: text("id").primaryKey(),
+  accountId: text("account_id").notNull(),
+  providerId: text("provider_id").notNull(),
+  userId: text("user_id")
+    .notNull()
+    .references(() => users.id, { onDelete: "cascade" }),
+  accessToken: text("access_token"),
+  refreshToken: text("refresh_token"),
+  idToken: text("id_token"),
+  accessTokenExpiresAt: timestamp("access_token_expires_at"),
+  password: text("password"),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+  updatedAt: timestamp("updated_at")
+    .$onUpdate(() => new Date())
+    .notNull(),
+})
+
+export const verifications = pgTable("verifications", {
+  id: text("id").primaryKey(),
+  identifier: text("identifier").notNull(),
+  value: text("value").notNull(),
+  expiresAt: timestamp("expires_at").notNull(),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+  updatedAt: timestamp("updated_at")
+    .defaultNow()
+    .$onUpdate(() => new Date())
+    .notNull(),
+})
+
+export const posts = pgTable("posts", {
+  id: uuid("id").defaultRandom().primaryKey(),
   title: text("title").notNull(),
   content: text("content").notNull(),
-  slug: text("slug").notNull(),
-  imageLink: text("imageLink").notNull(),
-  published: boolean("published").notNull(),
+  slug: text("slug").notNull().unique(),
+  imageLink: text("image_link").notNull(),
+  published: boolean("published").notNull().default(false),
   categories: text("categories").array().notNull(),
-  authorId: uuid("authorId")
+  authorId: text("author_id") // keep this `text` since it references Better Auth's users table
     .notNull()
     .references(() => users.id, { onDelete: "cascade" }),
-  createdAt: timestamp("createdAt").defaultNow().notNull(),
-  updatedAt: timestamp("updatedAt").defaultNow().notNull(),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+  updatedAt: timestamp("updated_at")
+    .defaultNow()
+    .$onUpdate(() => new Date())
+    .notNull(),
 })
 
-// -------------------- Project --------------------
-export const projects = pgTable("Project", {
-  id: uuid("id")
-    .primaryKey()
-    .default(sql`gen_random_uuid()`),
+export const projects = pgTable("projects", {
+  id: uuid("id").defaultRandom().primaryKey(),
   title: text("title").notNull(),
   desc: text("desc").notNull(),
-  repoLink: text("repoLink").notNull(),
-  liveLink: text("liveLink").notNull(),
-  imageLink: text("imageLink").notNull(),
+  repoLink: text("repo_link").notNull(),
+  liveLink: text("live_link").notNull(),
+  imageLink: text("image_link").notNull(),
   categories: text("categories").array().notNull(),
-  createdAt: timestamp("createdAt").defaultNow().notNull(),
-  updatedAt: timestamp("updatedAt").defaultNow().notNull(),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+  updatedAt: timestamp("updated_at")
+    .defaultNow()
+    .$onUpdate(() => new Date())
+    .notNull(),
 })
 
-// -------------------- Certificate --------------------
-export const certificates = pgTable("Certificate", {
-  id: uuid("id")
-    .primaryKey()
-    .default(sql`gen_random_uuid()`),
+export const certificates = pgTable("certificates", {
+  id: uuid("id").defaultRandom().primaryKey(),
   title: text("title").notNull(),
   desc: text("desc").notNull(),
-  imageLink: text("imageLink").notNull(),
-  courseLink: text("courseLink").notNull(),
-  profLink: text("profLink").notNull(),
-  createdAt: timestamp("createdAt").defaultNow().notNull(),
-  updatedAt: timestamp("updatedAt").defaultNow().notNull(),
+  imageLink: text("image_link").notNull(),
+  courseLink: text("course_link").notNull(),
+  profLink: text("prof_link").notNull(),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+  updatedAt: timestamp("updated_at")
+    .defaultNow()
+    .$onUpdate(() => new Date())
+    .notNull(),
 })
 
-// -------------------- Account --------------------
-export const accounts = pgTable(
-  "Account",
-  {
-    id: uuid("id")
-      .primaryKey()
-      .default(sql`gen_random_uuid()`),
-    userId: uuid("userId")
-      .notNull()
-      .references(() => users.id, { onDelete: "cascade" }),
-    type: text("type").notNull(),
-    provider: text("provider").notNull(),
-    providerAccountId: text("providerAccountId").notNull(),
-    refresh_token: text("refresh_token"),
-    access_token: text("access_token"),
-    expires_at: integer("expires_at"),
-    token_type: text("token_type"),
-    scope: text("scope"),
-    id_token: text("id_token"),
-    session_state: text("session_state"),
-  },
-  (table) => ({
-    providerUnique: uniqueIndex("provider_providerAccountId").on(
-      table.provider,
-      table.providerAccountId
-    ),
-  })
-)
 
-// -------------------- Session --------------------
-export const sessions = pgTable("Session", {
-  id: uuid("id")
-    .primaryKey()
-    .default(sql`gen_random_uuid()`),
-  sessionToken: text("sessionToken").unique().notNull(),
-  userId: uuid("userId")
-    .notNull()
-    .references(() => users.id, { onDelete: "cascade" }),
-  expires: timestamp("expires", { mode: "date" }).notNull(),
-})
-
-// -------------------- VerificationToken --------------------
-export const verificationTokens = pgTable(
-  "VerificationToken",
-  {
-    identifier: text("identifier").notNull(),
-    token: text("token").unique().notNull(),
-    expires: timestamp("expires", { mode: "date" }).notNull(),
-  },
-  (table) => ({
-    identifierTokenUnique: uniqueIndex("identifier_token").on(
-      table.identifier,
-      table.token
-    ),
-  })
-)
-
-// -------------------- Relations --------------------
 export const usersRelations = relations(users, ({ many }) => ({
   posts: many(posts),
   accounts: many(accounts),
