@@ -1,11 +1,11 @@
 "use server"
 
-import { CertificateSchema } from "../lib/schemas/certificateSchema"
-import { db } from "@/src/app/lib/db"
+import { CertificateSchema } from "../../lib/schemas/certificateSchema"
+import { db } from "@/src/lib/db"
 import { revalidatePath } from "next/cache"
 import { DeleteFromS3 } from "./deleteImageAction"
 import { headers } from "next/headers"
-import auth from "../lib/auth"
+import { auth } from "@/src/lib/auth"
 
 export async function getAllCertificates() {
   try {

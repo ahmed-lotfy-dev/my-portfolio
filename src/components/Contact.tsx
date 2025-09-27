@@ -2,7 +2,7 @@
 import { useActionState } from "react"
 import Link from "next/link"
 import { contactAction } from "@/src/app/actions/contactAction"
-import { notify } from "@/src/app/lib/utils/toast"
+import { notify } from "@/src/lib/utils/toast"
 import { IoLogoFacebook, IoLogoLinkedin, IoLogoGithub } from "react-icons/io5"
 import Submit from "./ui/formSubmitBtn"
 import Image from "next/image"

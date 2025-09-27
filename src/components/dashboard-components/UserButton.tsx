@@ -9,7 +9,7 @@ import {
 } from "@/src/components/ui/dropdown-menu"
 import SignOutButton from "../ui/SignOutButton"
 import SignInButton from "../ui/SignInButton"
-import { authClient } from "@/auth-client"
+import { authClient } from "@/src/lib/auth-client"
 
 export default async function UserButton({
   className,

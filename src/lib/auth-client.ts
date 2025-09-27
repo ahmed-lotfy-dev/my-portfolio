@@ -1,5 +1,5 @@
 import { createAuthClient } from "better-auth/client"
-import { auth } from "./src/app/lib/auth.js"
+import { auth } from "./auth.js"
 import { inferAdditionalFields } from "better-auth/client/plugins"
 
 export const authClient = createAuthClient({

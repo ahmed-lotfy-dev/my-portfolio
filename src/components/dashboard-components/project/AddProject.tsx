@@ -1,5 +1,5 @@
 "use client"
-import { useState, useRef, useActionState } from "react";
+import { useState, useRef, useActionState } from "react"
 
 import {
   Dialog,
@@ -16,7 +16,7 @@ import { Input } from "@/src/components/ui/input"
 import { Label } from "@/src/components/ui/label"
 import { addProjectAction } from "@/src/app/actions/projectsActions"
 
-import { notify } from "@/src/app/lib/utils/toast"
+import { notify } from "@/src/lib/utils/toast"
 
 import { TagsInput } from "react-tag-input-component"
 

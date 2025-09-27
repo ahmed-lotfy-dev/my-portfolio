@@ -1,4 +1,4 @@
-import { authClient } from "@/auth-client"
+import { authClient } from "@/src/lib/auth-client"
 import { Button } from "@/src/components/ui/button"
 
 type Props = {}

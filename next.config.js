@@ -4,7 +4,7 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: "https",
-        hostname: "images.ahmedlotfy.dev",
+        hostname: "images.ahmedlotfy.site",
         port: "",
         pathname: "/*",
       },
@@ -18,10 +18,9 @@ const nextConfig = {
         protocol: "https",
         hostname: "avatars.githubusercontent.com",
         port: "",
-        // pathname: "/u/*",
       },
     ],
   },
-};
+}
 
-module.exports = nextConfig;
+module.exports = nextConfig

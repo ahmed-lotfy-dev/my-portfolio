@@ -1,4 +1,4 @@
-import { authClient } from "@/auth-client"
+import { authClient } from "@/src/lib/auth-client"
 
 export default async function Welcome() {
   const { data: session } = await authClient.getSession()

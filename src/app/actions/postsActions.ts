@@ -1,9 +1,9 @@
 "use server"
 
-import { postSchema } from "@/src/app/lib/schemas/postSchema"
-import { db } from "@/src/app/lib/db"
+import { postSchema } from "@/src/lib/schemas/postSchema"
+import { db } from "@/src/lib/db"
 import { headers } from "next/headers"
-import auth from "@/lib/auth"
+import { auth } from "@/src/lib/auth"
 
 export async function getAllPosts() {
   try {

@@ -1,10 +1,10 @@
 "use client"
-import { ChangeEvent, useRef, useState, useActionState } from "react";
+import { ChangeEvent, useRef, useState, useActionState } from "react"
 
 import { Input } from "@/src/components/ui/input"
 import { editCertificateAction } from "@/src/app/actions/certificatesActions"
 import Image from "next/image"
-import { notify } from "@/src/app/lib/utils/toast"
+import { notify } from "@/src/lib/utils/toast"
 
 import Submit from "@/src/components/ui/formSubmitBtn"
 import {

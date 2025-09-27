@@ -1,5 +1,5 @@
 "use client"
-import { useState, useRef, useActionState } from "react";
+import { useState, useRef, useActionState } from "react"
 
 import {
   Dialog,
@@ -15,7 +15,7 @@ import Image from "next/image"
 import { Input } from "@/src/components/ui/input"
 import { addCertificateAction } from "@/src/app/actions/certificatesActions"
 
-import { notify } from "@/src/app/lib/utils/toast"
+import { notify } from "@/src/lib/utils/toast"
 
 import Submit from "@/src/components/ui/formSubmitBtn"
 import { Upload } from "@/src/components/dashboard-components/Upload"

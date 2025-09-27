@@ -1,11 +1,11 @@
 "use server"
 
-import { db } from "@/src/app/lib/db"
+import { db } from "@/src/lib/db"
 import { revalidatePath } from "next/cache"
 import { DeleteFromS3 } from "./deleteImageAction"
-import { ProjectSchema } from "../lib/schemas/projectSchema"
+import { ProjectSchema } from "../../lib/schemas/projectSchema"
 import { headers } from "next/headers"
-import auth from "@/lib/auth"
+import { auth } from "@/src/lib/auth"
 
 export async function getAllProjects() {
   try {

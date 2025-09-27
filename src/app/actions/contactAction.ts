@@ -1,15 +1,15 @@
-"use server";
+"use server"
 
-import { contactSchema } from "../lib/schemas/contactSchema";
-import sgMail from "@sendgrid/mail";
-sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+import { contactSchema } from "../../lib/schemas/contactSchema"
+import sgMail from "@sendgrid/mail"
+sgMail.setApiKey(process.env.SENDGRID_API_KEY)
 
 export async function contactAction(state: any, formData: FormData) {
-  const name = formData.get("name");
-  const email = formData.get("email");
-  const subject = formData.get("subject");
-  const message = formData.get("message");
-  const result = contactSchema.safeParse({ name, email, subject, message });
+  const name = formData.get("name")
+  const email = formData.get("email")
+  const subject = formData.get("subject")
+  const message = formData.get("message")
+  const result = contactSchema.safeParse({ name, email, subject, message })
 
   if (result.success) {
     const msg = {
@@ -20,11 +20,11 @@ export async function contactAction(state: any, formData: FormData) {
       html: `<strong>This Email Is From: ${name},<br>
         His Email Is: ${email}<br>
         And This Is His Message :${message}</strong>`,
-    };
-    const sent = await sgMail.sendMultiple(msg);
-    return { success: true, data: result.data };
+    }
+    const sent = await sgMail.sendMultiple(msg)
+    return { success: true, data: result.data }
   }
   if (result.error) {
-    return { success: false, error: result.error.format() };
+    return { success: false, error: result.error.format() }
   }
 }

@@ -1,4 +1,4 @@
-import { authClient } from "@/auth-client"
+import { authClient } from "@/src/lib/auth-client"
 import { Button } from "@/src/components/ui/button"
 
 export default async function SignInButtons({
@@ -7,7 +7,7 @@ export default async function SignInButtons({
   className,
 }: {
   type: "social" | "credentials"
-  user?:{email:string,password:string}
+  user?: { email: string; password: string }
   className?: string
 }) {
   const { email, password } = user ?? { email: "", password: "" }
