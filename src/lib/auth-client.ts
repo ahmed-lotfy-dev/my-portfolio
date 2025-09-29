@@ -1,8 +1,8 @@
 import { createAuthClient } from "better-auth/client"
-import { auth } from "./auth.js"
 import { inferAdditionalFields } from "better-auth/client/plugins"
+import type { auth } from "./auth"
 
 export const authClient = createAuthClient({
-  baseURL: "http://localhost:3000",
+  // For Next.js, omit baseURL to use the current origin automatically
   plugins: [inferAdditionalFields<typeof auth>()],
 })

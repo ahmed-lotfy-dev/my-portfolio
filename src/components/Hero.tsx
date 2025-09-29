@@ -4,32 +4,37 @@ import HeroImage from "@/public/images/alotfy_Programmer_coding_on_laptop_sittin
 
 export default async function Hero() {
   return (
-    <section className="bg-gray-700 border-b-2 border-gray-900 p-6" id="hero">
-      <div className="container mx-auto flex flex-col gap-5 p-5 sm:flex-row mb-10 justify-between items-center max-w-screen-xl">
-        <div className=" text-gray-300 flex flex-col gap-2 my-24  text-center sm:text-start">
-          <p className="text-1xl mb-4 sm:text-xl md:text-3xl">Hello this is,</p>
-          <h1 className="text-5xl md:text-6xl font-extrabold uppercase font-main flex-1 sm:truncate">
+    <section className="bg-gradient-custom border-b p-6" id="hero">
+      <div className="container mx-auto flex flex-col gap-10 p-5 sm:flex-row mb-10 justify-between items-center max-w-screen-xl min-h-[calc(100vh-80px)]">
+        <div className="flex flex-col gap-4 text-center sm:text-start">
+          <p className="text-lg sm:text-xl md:text-2xl text-muted-foreground">
+            Hello, I'm
+          </p>
+          <h1 className="text-5xl md:text-7xl font-extrabold uppercase font-main">
             Ahmed Lotfy
           </h1>
-          <h2 className="text-2xl sm:text-2xl md:text-3xl font-extrabold font-heading">
-            Full-stack software engineer
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-primary">
+            Full-Stack Software Engineer
           </h2>
+          <p className="text-md md:text-lg text-muted-foreground max-w-2xl mt-4">
+            I build beautiful, responsive, and scalable web applications. Let's create something amazing together.
+          </p>
           <Link
-            href="/"
-            className="py-3 px-8 mt-10 w-60 self-center text-center sm:self-start bg-yellow-600 rounded-md hover:bg-yellow-500 text-gray-800 hover:text-gray-700 font-bold transition-all hover:rounded-lg border-[3px] border-solid border-gray-800 sm:text-xl"
+            href="/resume.pdf"
+            className="py-3 px-8 mt-8 w-60 self-center text-center sm:self-start bg-primary text-primary-foreground rounded-md hover:bg-primary/90 font-bold transition-all hover:rounded-lg border-2 border-solid sm:text-xl"
           >
-            Resume
+            My Resume
           </Link>
         </div>
-        <div className="bg-cover rounded-full">
+        <div className="relative">
           <Image
-            className=" flex-1 rounded-full w-[250] h-[250] sm:w-[250] sm:h-[250] bg-cover"
+            className="rounded-full border-4 border-primary shadow-lg w-[250px] h-[250px] sm:w-[350px] sm:h-[350px] object-cover"
             src={HeroImage}
             priority={true}
             alt="Hero Image Developer Illustration"
-            width={300}
-            height={300}
-          ></Image>
+            width={400}
+            height={400}
+          />
         </div>
       </div>
     </section>

@@ -78,4 +78,8 @@
     @apply bg-background text-foreground;
     font-feature-settings: "rlig" 1, "calt" 1;
   }
+
+  .bg-gradient-custom {
+    background-image: linear-gradient(to right, var(--background), var(--muted));
+  }
 }

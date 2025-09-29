@@ -1,15 +1,24 @@
-import { Card } from "@/src/components/ui/card";
-import { getAllCertificates } from "@/src/app/actions/certificatesActions";
-import { getAllProjects } from "@/src/app/actions/projectsActions";
+import { Card } from "@/src/components/ui/card"
+import { getAllCertificates } from "@/src/app/actions/certificatesActions"
+import { getAllProjects } from "@/src/app/actions/projectsActions"
 
-import Welcome from "@/src/components/dashboard-components/Welcome";
-import Link from "next/link";
+import Welcome from "@/src/components/dashboard-components/Welcome"
+import Link from "next/link"
+import { auth } from "@/src/lib/auth"
+import { headers } from "next/headers"
 
 export default async function Page({}) {
-  const { allCertificates } = await getAllCertificates();
-  const { allProjects } = await getAllProjects();
-  const projectsCount = allProjects?.length;
-  const certificatesCount = allCertificates?.length;
+  const session = await auth.api.getSession({
+    headers: await headers(),
+  })
+  if (!session) {
+    return <div>Not authenticated</div>
+  }
+
+  const { allCertificates } = await getAllCertificates()
+  const { allProjects } = await getAllProjects()
+  const projectsCount = allProjects?.length
+  const certificatesCount = allCertificates?.length
   return (
     <div className="group flex flex-col flex-wrap gap-3 w-full justify-start items-start mt-10">
       <Welcome />
@@ -29,6 +38,9 @@ export default async function Page({}) {
           </Card>
         </Link>
       </div>
+      <div className="flex flex-1">
+        <h1>Welcome {session.user.name}</h1>
+      </div>
     </div>
-  );
+  )
 }
