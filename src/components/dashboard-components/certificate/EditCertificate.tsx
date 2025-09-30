@@ -140,7 +140,6 @@ function EditCertificate({ EditedObject }: any) {
                       setImageUrl("")
                       formRef.current?.reset()
                     }, 200)
-                    clearTimeout(submitTimeOut)
                   }
                 }}
               />

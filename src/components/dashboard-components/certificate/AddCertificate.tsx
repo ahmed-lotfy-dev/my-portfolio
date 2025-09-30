@@ -111,7 +111,6 @@ function AddCertificateComponent() {
                         setImageUrl("")
                         formRef.current?.reset()
                       }, 200)
-                      clearTimeout(submitTimeOut)
                     }
                   }}
                 />

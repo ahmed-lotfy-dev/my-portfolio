@@ -30,14 +30,24 @@ export default function SignInButtons({
   }
 
   return (
-    <div className={`flex flex-col gap-7 w-1/2 m-auto mb-5 justify-center items-center ${className ?? ""}`}>
+    <div
+      className={`flex flex-col gap-7 w-1/2 m-auto mb-5 justify-center items-center ${
+        className ?? ""
+      }`}
+    >
       <Button
         className="m-auto w-full px-10 capitalize"
         type="button"
         onClick={handleClick}
         disabled={loading}
       >
-        {type === "social" ? (loading ? "Redirecting..." : "Sign in with Google") : loading ? "Signing in..." : "Sign in"}
+        {type === "social"
+          ? loading
+            ? "Redirecting..."
+            : "Sign in with Google"
+          : loading
+          ? "Signing in..."
+          : "Sign in"}
       </Button>
     </div>
   )

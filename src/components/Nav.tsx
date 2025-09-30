@@ -1,9 +1,12 @@
-"use client";
-import { ReactNode, useState } from "react";
-import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { Menu, SidebarClose } from "lucide-react";
-import UserButton from "./dashboard-components/UserButton";
+"use client"
+import { ReactNode, useState } from "react"
+import Link from "next/link"
+import { usePathname } from "next/navigation"
+import { Menu, X } from "lucide-react"
+import Image from "next/image"
+import ThemeToggle from "@/src/components/ThemeToggle"
+
+import LogoImage from "@/public/Logo-black-white.png"
 
 const navLinks = [
   { href: "/", label: "Home" },
@@ -12,97 +15,150 @@ const navLinks = [
   { href: "/#certificates", label: "Certificates" },
   { href: "/#about", label: "About" },
   { href: "/#contact", label: "Contact" },
-];
+]
 
 function Nav({ children }: { children: ReactNode }) {
-  const path = usePathname();
-  const [isOpened, setIsOpened] = useState(false);
-  const toggleMenu = () => {
-    setIsOpened(!isOpened);
-  };
+  const pathname = usePathname()
+  const [open, setOpen] = useState(false)
 
+  const toggle = () => setOpen((v) => !v)
+  const close = () => setOpen(false)
+
+  console.log(pathname)
   return (
-    <nav className="relative w-full h-24 shadow-xl bg-gray-700 border-b-1 border-gray-900 dark:bg-slate-700  text-gray-300">
-      <div className="container flex justify-between w-full h-full">
+    <header
+      className={`${
+        pathname === "/dashboard" ? "hidden" : "fixed"
+      } inset-x-0 top-0 z-50 bg-gradient-to-r from-blue-400/70 to-blue-500/70 backdrop-blur-md supports-[backdrop-filter]:bg-blue-400/60 shadow-md `}
+    >
+      <nav className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
         {/* Logo */}
-        <div>
-          <Link href={"/"} className="">
-            <h1 className="text-3xl font-bold  py-7 font-main cursor-pointer">
-              &#123;AL&#125;
-            </h1>
-          </Link>
-        </div>
-        {/* Nav */}
-        <div className="flex justify-center items-center">
-          <nav className="flex justify-center items-center">
-            <ul
-              className={`hidden md:flex md:justify-center md:items-center ${
-                isOpened
-                  ? "flex w-full h-full bg-red-700"
-                  : "hidden md:flex gap-5 font-main text-cyan-50"
-              } `}
+        <Link href="/" className="">
+          <Image src={LogoImage} width={100} height={100} alt={"Logo"} />
+        </Link>
+
+        {/* Desktop navigation */}
+        <ul className="hidden flex-1 items-center justify-center ml-auto gap-6 md:flex">
+          {navLinks.map((link) => (
+            <li key={link.href}>
+              <Link
+                href={link.href}
+                className={`relative inline-flex items-center text-sm font-semibold transition-colors ${
+                  pathname === link.href
+                    ? "text-blue-900"
+                    : "text-gray-100 hover:text-white"
+                }`}
+                aria-current={pathname === link.href ? "page" : undefined}
+              >
+                {link.label}
+              </Link>
+            </li>
+          ))}
+          <li>
+            <Link
+              href="/dashboard"
+              className={`text-sm font-semibold transition-colors ${
+                pathname === "/dashboard"
+                  ? "text-blue-900"
+                  : "text-gray-100 hover:text-white"
+              }`}
+              aria-current={pathname === "/dashboard" ? "page" : undefined}
             >
-              {navLinks.map((link) => (
-                <li
-                  key={link.label}
-                  className={` hover:text-blue-400 hover:border-b-4 hover:border-b-blue-600 transition-all delay-75 duration-250 ${
-                    path === "/" ? "active" : ""
-                  }`}
-                >
-                  <Link href={link.href}>{link.label}</Link>
-                </li>
-              ))}
-              {path && (
-                <li
-                  className={`hover:text-blue-400 hover:border-b-4 hover:border-b-blue-600 transition-all delay-75 duration-250 ${
-                    path === "/" ? "active" : ""
-                  }`}
-                >
-                  <Link href="/dashboard">Dashboard</Link>
-                </li>
-              )}
-            </ul>
-          </nav>
+              Dashboard
+            </Link>
+          </li>
+        </ul>
+
+        {/* Right side (slots) */}
+        <div className="hidden items-center gap-3 md:flex">
+          <ThemeToggle />
           {children}
         </div>
-        {/* Menu Icon */}
-        <div className="md:hidden flex justify-center items-center cursor-pointer">
-          <Menu size={25} onClick={toggleMenu} />
-        </div>
-      </div>
-      {/* Responsive Menu*/}
+
+        {/* Mobile menu button */}
+        <button
+          type="button"
+          aria-label="Open menu"
+          aria-expanded={open}
+          onClick={toggle}
+          className="inline-flex h-9 w-9 items-center justify-center rounded-md transition-colors hover:bg-blue-300/40 md:hidden"
+        >
+          <Menu className="h-5 w-5 text-white" />
+        </button>
+      </nav>
+
+      {/* Mobile menu */}
       <div
-        className={`${
-          isOpened
-            ? "fixed left-[0%] top-0  w-full h-svh bg-gray-600 md:hidden ease-in duration-500"
-            : "fixed left-[100%] top-0 w-full h-svh bg-gray-600 ease-in duration-500"
-        }`}
+        className={`${open ? "pointer-events-auto" : "pointer-events-none"}`}
       >
-        <div className="flex w-full justify-between items-start">
-          <ul className="w-full flex flex-col justify-start items-center h-screen mt-14 ml-20">
+        {/* Overlay */}
+        <div
+          onClick={close}
+          className={`fixed inset-0 z-40 bg-black/40 transition-opacity ${
+            open ? "opacity-100" : "opacity-0"
+          }`}
+        />
+        {/* Panel */}
+        <div
+          className={`fixed right-0 top-0 z-50 h-full w-80 transform bg-white/90 backdrop-blur-md shadow-xl transition-transform duration-300 ${
+            open ? "translate-x-0" : "translate-x-full"
+          }`}
+        >
+          <div className="flex h-16 items-center justify-between border-b px-4 bg-gradient-to-r from-blue-50/80 to-blue-100/80 backdrop-blur">
+            <Link
+              href="/"
+              onClick={close}
+              className="text-lg font-bold text-blue-900"
+            >
+              {`{AL}`}
+            </Link>
+            <button
+              type="button"
+              aria-label="Close menu"
+              onClick={close}
+              className="inline-flex h-9 w-9 items-center justify-center rounded-md hover:bg-blue-200/40"
+            >
+              <X className="h-5 w-5 text-blue-900" />
+            </button>
+          </div>
+
+          <ul className="flex flex-col gap-1 p-4">
             {navLinks.map((link) => (
-              <li
-                key={link.label}
-                className={`py-4 cursor-pointer hover:text-blue-400 hover:border-b-4 hover:border-b-blue-600 transition-all delay-75 duration-250 ${
-                  path === "/" ? "active" : ""
-                }`}
-              >
-                <Link href={link.href}>{link.label}</Link>
+              <li key={link.href}>
+                <Link
+                  href={link.href}
+                  onClick={close}
+                  className={`block rounded-md px-3 py-2 text-sm font-medium ${
+                    pathname === link.href
+                      ? "bg-blue-100/60 text-blue-900"
+                      : "text-gray-800 hover:bg-blue-50/60 hover:text-blue-900"
+                  }`}
+                  aria-current={pathname === link.href ? "page" : undefined}
+                >
+                  {link.label}
+                </Link>
               </li>
             ))}
-            {path && (
-              <li>
-                <Link href="/dashboard">Dashboard</Link>
-              </li>
-            )}
+            <li>
+              <Link
+                href="/dashboard"
+                onClick={close}
+                className={`block rounded-md px-3 py-2 text-sm font-medium ${
+                  pathname === "/dashboard"
+                    ? "bg-blue-100/60 text-blue-900"
+                    : "text-gray-800 hover:bg-blue-50/60 hover:text-blue-900"
+                }`}
+                aria-current={pathname === "/dashboard" ? "page" : undefined}
+              >
+                Dashboard
+              </Link>
+            </li>
+            <ThemeToggle />
           </ul>
-          <div className="mt-9 mr-9 cursor-pointer" onClick={toggleMenu}>
-            <SidebarClose size={25} className="fill-gray-500" />
-          </div>
         </div>
       </div>
-    </nav>
-  );
+    </header>
+  )
 }
 
-export { Nav };
+export { Nav }

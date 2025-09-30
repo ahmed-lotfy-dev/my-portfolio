@@ -1,75 +1,74 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
- 
+
 @layer base {
-  :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 47.4% 11.2%;
- 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
- 
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 47.4% 11.2%;
- 
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 47.4% 11.2%;
- 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
- 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
- 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
- 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
- 
-    --destructive: 0 100% 50%;
-    --destructive-foreground: 210 40% 98%;
- 
-    --ring: 215 20.2% 65.1%;
- 
-    --radius: 0.5rem;
-  }
- 
-  .dark {
-    --background: 224 71% 4%;
-    --foreground: 213 31% 91%;
- 
-    --muted: 223 47% 11%;
-    --muted-foreground: 215.4 16.3% 56.9%;
- 
-    --popover: 224 71% 4%;
-    --popover-foreground: 215 20.2% 65.1%;
- 
-    --card: 224 71% 4%;
-    --card-foreground: 213 31% 91%;
- 
-    --border: 216 34% 17%;
-    --input: 216 34% 17%;
- 
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 1.2%;
- 
-    --secondary: 222.2 47.4% 11.2%;
-    --secondary-foreground: 210 40% 98%;
- 
-    --accent: 216 34% 17%;
-    --accent-foreground: 210 40% 98%;
- 
-    --destructive: 0 63% 31%;
-    --destructive-foreground: 210 40% 98%;
- 
-    --ring: 216 34% 17%;
- 
-    --radius: 0.5rem;
-  }
+:root {
+  --background: 0 0% 100%; /* white */
+  --foreground: 222 47% 11%; /* slate-900 */
+
+  --muted: 210 40% 96%; /* slate-100 */
+  --muted-foreground: 215 16% 47%; /* slate-500 */
+
+  --popover: 0 0% 100%;
+  --popover-foreground: 222 47% 11%;
+
+  --card: 0 0% 100%;
+  --card-foreground: 222 47% 11%;
+
+  --border: 214 32% 91%;
+  --input: 214 32% 91%;
+
+  /* 👇 Ahmed’s brand */
+  --primary: 245 58% 52%; /* #4F46E5 */
+  --primary-foreground: 210 40% 98%; /* almost white */
+
+  --secondary: 42 100% 50%; /* #F59E0B amber accent */
+  --secondary-foreground: 222 47% 11%;
+
+  --accent: 42 100% 50%;
+  --accent-foreground: 222 47% 11%;
+
+  --destructive: 0 84% 60%; /* red-500 */
+  --destructive-foreground: 210 40% 98%;
+
+  --ring: 245 58% 52%;
+
+  --radius: 0.5rem;
 }
- 
+
+.dark {
+  --background: 220 20% 10%; /* slate-900 */
+  --foreground: 210 40% 98%;
+
+  --muted: 220 20% 15%;
+  --muted-foreground: 215 16% 70%;
+
+  --popover: 220 20% 10%;
+  --popover-foreground: 210 40% 98%;
+
+  --card: 220 20% 10%;
+  --card-foreground: 210 40% 98%;
+
+  --border: 220 20% 20%;
+  --input: 220 20% 20%;
+
+  --primary: 245 58% 52%; /* keep brand consistent */
+  --primary-foreground: 210 40% 98%;
+
+  --secondary: 42 100% 50%;
+  --secondary-foreground: 210 40% 98%;
+
+  --accent: 42 100% 50%;
+  --accent-foreground: 210 40% 98%;
+
+  --destructive: 0 63% 31%;
+  --destructive-foreground: 210 40% 98%;
+
+  --ring: 245 58% 52%;
+}
+}
+
 @layer base {
   * {
     @apply border-border;
@@ -80,6 +79,45 @@
   }
 
   .bg-gradient-custom {
-    background-image: linear-gradient(to right, var(--background), var(--muted));
+    background-image: linear-gradient(
+      to right,
+      var(--background),
+      var(--muted)
+    );
   }
+}
+
+body {
+  @apply transition-colors duration-300;
+}
+
+@keyframes scrollX {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+
+body {
+  color: var(--color-text);
+  background-color: var(--color-bg);
+}
+
+a {
+  color: var(--color-primary);
+}
+a:hover {
+  color: var(--color-primary-dark);
+}
+
+/* Buttons */
+.btn-primary {
+  background-color: var(--color-primary);
+  color: var(--color-bg);
+}
+.btn-primary:hover {
+  background-color: var(--color-primary-dark);
 }

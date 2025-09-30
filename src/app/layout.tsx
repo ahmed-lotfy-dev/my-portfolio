@@ -22,7 +22,11 @@ export default async function RootLayout({
   children: ReactNode
 }) {
   return (
-    <html lang="en" className="scroll-smooth max-h-svh">
+    <html
+      lang="en"
+      className="scroll-smooth max-h-svh"
+      suppressHydrationWarning
+    >
       <body
         className={`${inter.className} ${josefinSans.className} ${josefinSlab.className} antialiased`}
       >

@@ -2,10 +2,10 @@
 module.exports = {
   darkMode: ["class"],
   content: [
-    './pages/**/*.{ts,tsx}',
-    './components/**/*.{ts,tsx}',
-    './app/**/*.{ts,tsx}',
-    './src/**/*.{ts,tsx}',
+    "./pages/**/*.{ts,tsx}",
+    "./components/**/*.{ts,tsx}",
+    "./app/**/*.{ts,tsx}",
+    "./src/**/*.{ts,tsx}",
   ],
   prefix: "",
   theme: {
@@ -18,6 +18,20 @@ module.exports = {
     },
     extend: {
       colors: {
+        // my colors
+        primary: "var(--color-primary)",
+        "primary-light": "var(--color-primary-light)",
+        "primary-dark": "var(--color-primary-dark)",
+        accent: "var(--color-accent)",
+        bg: "var(--color-bg)",
+        "bg-muted": "var(--color-bg-muted)",
+        text: "var(--color-text)",
+        "text-muted": "var(--color-text-muted)",
+        success: "var(--color-success)",
+        error: "var(--color-error)",
+        info: "var(--color-info)",
+        warning: "var(--color-warning)",
+        //  end 
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
@@ -70,6 +84,9 @@ module.exports = {
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+      },
+      transitionProperty: {
+        colors: "background-color, color",
       },
     },
   },
