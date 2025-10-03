@@ -43,9 +43,11 @@ function Nav({ children }: { children: ReactNode }) {
   return (
     <header
       className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
-        scrolled
-          ? "bg-background/80 backdrop-blur-md shadow-sm border-b border-border"
-          : "bg-transparent"
+        open
+          ? "bg-background shadow-sm border-b border-border"
+          : scrolled
+          ? "bg-background shadow-sm border-b border-border sm:bg-background/80 sm:backdrop-blur-md"
+          : "bg-background shadow-sm border-b border-border sm:bg-transparent sm:shadow-none sm:border-b-0"
       } ${pathname.startsWith("/dashboard") ? "hidden" : ""}`}
     >
       <nav className="max-w-6xl mx-auto flex h-16 items-center justify-between">
@@ -88,7 +90,7 @@ function Nav({ children }: { children: ReactNode }) {
           type="button"
           aria-label="Open menu"
           onClick={toggle}
-          className="md:hidden"
+          className="md:hidden p-2 mr-2 rounded-md hover:bg-accent/30"
         >
           <Menu className="h-6 w-6 text-foreground" />
         </button>
@@ -117,9 +119,17 @@ function Nav({ children }: { children: ReactNode }) {
               alt="Logo"
             />
           </Link>
-          <button type="button" aria-label="Close menu" onClick={close}>
-            <X className="h-6 w-6 text-foreground" />
-          </button>
+          <div className="flex items-center gap-3">
+            <ThemeToggle />
+            <button
+              type="button"
+              aria-label="Close menu"
+              onClick={close}
+              className="p-2 rounded-md hover:bg-accent/30"
+            >
+              <X className="h-6 w-6 text-foreground" />
+            </button>
+          </div>
         </div>
         <ul className="flex flex-col p-4 space-y-2">
           {navLinks.map((link) => (
@@ -141,9 +151,6 @@ function Nav({ children }: { children: ReactNode }) {
             >
               Dashboard
             </Link>
-          </li>
-          <li className="pt-4">
-            <ThemeToggle />
           </li>
         </ul>
       </div>

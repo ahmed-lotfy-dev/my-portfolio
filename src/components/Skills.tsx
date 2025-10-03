@@ -32,10 +32,10 @@ const skillsList: Skill[] = [
 
 export default function Skills() {
   // Duplicate skills to create seamless loop
-  const loopSkills = [...skillsList,]
+  const loopSkills = [...skillsList, ...skillsList]
 
   return (
-    <section className="flex flex-col items-center  my-16" id="skills">
+    <section className="flex flex-col items-center my-16 px-4" id="skills">
       <div className=" rounded-xl">
         <div className="text-center mb-10">
           <h2 className="text-4xl font-extrabold text-blue-900 tracking-tight sm:text-5xl">
@@ -48,18 +48,18 @@ export default function Skills() {
 
         {/* Auto-scrolling horizontal list */}
         <div className="relative overflow-hidden w-full max-w-5xl">
-          <div className="flex gap-5 animate-[scrollX_30s_linear_infinite]">
-            {skillsList.map((skill, index) => (
+          <div className="inline-flex w-max gap-5 will-change-transform animate-[scrollX_30s_linear_infinite]">
+            {loopSkills.map((skill, index) => (
               <div
                 key={`${skill.alt}-${index}`}
-                className="flex flex-col items-center justify-center min-w-[100px] sm:min-w-[120px]"
+                className="flex flex-col items-center justify-center min-w-[72px] sm:min-w-[100px]"
               >
                 <Image
                   src={skill.src}
                   alt={skill.alt}
-                  width={60}
-                  height={60}
-                  className="filter opacity-50 dark:invert dark:opacity-100 hover:grayscale-0 hover:opacity-100 transition-all duration-300"
+                  width={44}
+                  height={44}
+                  className="filter opacity-60 dark:invert dark:opacity-100 hover:grayscale-0 hover:opacity-100 transition-all duration-300 sm:w-[60px] sm:h-[60px]"
                 />
               </div>
             ))}

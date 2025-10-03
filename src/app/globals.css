@@ -91,6 +91,12 @@ body {
   @apply transition-colors duration-300;
 }
 
+/* Prevent horizontal overflow on mobile */
+html,
+body {
+  overflow-x: hidden;
+}
+
 @keyframes scrollX {
   0% {
     transform: translateX(0%);
