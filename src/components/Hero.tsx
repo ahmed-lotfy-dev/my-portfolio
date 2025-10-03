@@ -1,4 +1,3 @@
-
 import Link from "next/link"
 import Image from "next/image"
 import HeroImage from "@/public/images/alotfy_Programmer_coding_on_laptop_sitting_on_desk_-_-_v4_styli_9fb2f0c6-7665-4891-b42c-89e8e4c6274b.png"
@@ -7,8 +6,11 @@ import { FileText } from "lucide-react"
 
 export default async function Hero() {
   return (
-    <Section className="bg-gradient-custom border-b" id="hero">
-      <div className="container mx-auto flex flex-col gap-10 p-5 sm:flex-row justify-between items-center max-w-screen-xl min-h-[calc(100vh-80px)]">
+    <Section
+      className="bg-gradient-custom border-b pt-10 sm:pt-14 lg:pt-16"
+      id="hero"
+    >
+      <div className="container mx-auto flex flex-col gap-10 px-4 pt-6 sm:px-6 sm:pt-8 sm:pb-6 sm:flex-row justify-between items-center max-w-screen-xl min-h-[calc(100svh-64px)]">
         <div className="flex flex-col gap-4 text-center sm:text-start">
           <h1 className="text-5xl md:text-7xl font-extrabold uppercase font-main">
             Ahmed Lotfy

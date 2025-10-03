@@ -36,18 +36,18 @@ export default function Skills() {
 
   return (
     <section className="flex flex-col items-center my-16 px-4" id="skills">
-      <div className=" rounded-xl">
+      <div className="container">
         <div className="text-center mb-10">
           <h2 className="text-4xl font-extrabold text-blue-900 tracking-tight sm:text-5xl">
             My <span className="text-blue-600">Skills</span>
           </h2>
-          <p className="mt-3 text-lg text-gray-600 max-w-2xl mx-auto">
+          <p className="mt-3 text-lg text-gray-600 max-w-2xl mx-auto px-2 sm:px-0">
             A quick glance at the tools and technologies I use most.
           </p>
         </div>
 
         {/* Auto-scrolling horizontal list */}
-        <div className="relative overflow-hidden w-full max-w-5xl">
+        <div className="relative overflow-hidden w-full sm:max-w-5xl mx-auto">
           <div className="inline-flex w-max gap-5 will-change-transform animate-[scrollX_30s_linear_infinite]">
             {loopSkills.map((skill, index) => (
               <div
