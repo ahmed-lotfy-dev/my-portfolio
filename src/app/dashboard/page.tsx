@@ -20,25 +20,27 @@ export default async function Page({}) {
   const projectsCount = allProjects?.length
   const certificatesCount = allCertificates?.length
   return (
-    <div className="group flex flex-col flex-wrap gap-3 w-full justify-start items-start mt-10">
+    <div className="flex flex-col gap-6 w-full p-5 pt-10">
       <Welcome />
-      <div className="flex gap-10 flex-wrap justify-center items-center text-center md:justify-start pl-0 md:pl-10 w-full mt-6">
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 justify-start">
         <Link href={"/dashboard/projects"}>
-          <Card className="hover:bg-gray-500 hover:text-gray-200 cursor-pointer p-10 bg-gray-200 w-[200px]">
-            <h2>Projects</h2>
-
-            <p>{projectsCount}</p>
+          <Card className="cursor-pointer p-6 bg-muted hover:bg-accent/30 transition-colors">
+            <h2 className="text-sm font-medium text-muted-foreground">
+              Projects
+            </h2>
+            <p className="text-3xl font-bold">{projectsCount}</p>
           </Card>
         </Link>
         <Link href={"/dashboard/certificates"}>
-          <Card className="hover:bg-gray-500 hover:text-gray-200 cursor-pointer p-10 bg-gray-200 w-[200px] ">
-            <h2>Certificates</h2>
-
-            <p>{certificatesCount}</p>
+          <Card className="cursor-pointer p-6 bg-muted hover:bg-accent/30 transition-colors">
+            <h2 className="text-sm font-medium text-muted-foreground">
+              Certificates
+            </h2>
+            <p className="text-3xl font-bold">{certificatesCount}</p>
           </Card>
         </Link>
       </div>
-      <div className="flex flex-1">
+      <div className="mt-2 text-sm text-muted-foreground">
         <h1>Welcome {session.user.name}</h1>
       </div>
     </div>

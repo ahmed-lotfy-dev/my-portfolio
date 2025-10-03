@@ -1,62 +1,70 @@
-import Link from "next/link";
+import Link from "next/link"
+import ThemeToggle from "@/src/components/ThemeToggle"
 import {
   IoHome,
   IoCode,
   IoGrid,
   IoRibbon,
   IoAddCircleSharp,
-} from "react-icons/io5";
+} from "react-icons/io5"
+import SignOutButton from "../ui/SignOutButton"
 
 export default function Aside() {
   return (
-    <aside className="flex flex-0 group w-[12rem] bg-blue-400">
-      <div className="container mx-auto bg-gray-600 h-full p-6  space-y-5">
-        <div className="flex gap-5 items-center mx-auto first:mt-2 ">
-          <IoHome className="text-gray-300 w-[2rem] h-[2rem]" />
-          <Link
-            className="text-gray-100 hidden group-hover:flex transition-hover  duration-300 sm:flex"
-            href="/"
-          >
-            Home Page
-          </Link>
-        </div>
-        <div className="flex gap-5 items-center mx-auto">
-          <IoGrid className="text-gray-300 w-[2rem] h-[2rem]" />
+    <aside className="flex flex-col w-56 border-r bg-card pl-5 pt-10 gap-10">
+      <div className="h-full space-y-4 flex flex-col gap-6 justify-between content-start">
+        <div className="flex flex-col gap-6 ">
+          <div className="flex gap-5 items-start first:mt-2">
+            <IoHome className="text-muted-foreground w-[1.5rem] h-[1.5rem]" />
+            <Link
+              className="text-foreground/90 hover:text-primary transition-colors"
+              href="/"
+            >
+              Home Page
+            </Link>
+          </div>
+          <div className="flex gap-5 items-start">
+            <IoGrid className="text-muted-foreground w-[1.5rem] h-[1.5rem]" />
 
-          <Link
-            className="text-gray-100 hidden group-hover:flex  sm:flex"
-            href="/dashboard"
-          >
-            Dashboard
-          </Link>
+            <Link
+              className="text-foreground/90 hover:text-primary transition-colors"
+              href="/dashboard"
+            >
+              Dashboard
+            </Link>
+          </div>
+          <div className="flex gap-5 items-start">
+            <IoCode className="text-muted-foreground w-[1.5rem] h-[1.5rem]" />
+            <Link
+              className="text-foreground/90 hover:text-primary transition-colors"
+              href="/dashboard/projects"
+            >
+              Projects
+            </Link>
+          </div>
+          <div className="flex gap-5 items-start">
+            <IoRibbon className="text-muted-foreground w-[1.5rem] h-[1.5rem]" />
+            <Link
+              className="text-foreground/90 hover:text-primary transition-colors"
+              href="/dashboard/certificates"
+            >
+              Certificates
+            </Link>
+          </div>
+          {/* Add New Post Link */}
+          <div className="flex gap-5 items-start">
+            <IoAddCircleSharp className="text-muted-foreground w-[1.5rem] h-[1.5rem]" />
+            <Link
+              className="text-foreground/90 hover:text-primary transition-colors"
+              href="/dashboard/blogs/new"
+            >
+              Add Blog Post
+            </Link>
+          </div>
         </div>
-        <div className="flex gap-5 items-center mx-auto">
-          <IoCode className="text-gray-300 w-[2rem] h-[2rem]" />
-          <Link
-            className="text-gray-100 hidden group-hover:flex  sm:flex"
-            href="/dashboard/projects"
-          >
-            Projects
-          </Link>
-        </div>
-        <div className="flex gap-5 items-center mx-auto">
-          <IoRibbon className="text-gray-300 w-[2rem] h-[2rem]" />
-          <Link
-            className="text-gray-100 hidden group-hover:flex  sm:flex"
-            href="/dashboard/certificates"
-          >
-            Certificates
-          </Link>
-        </div>
-        {/* Add New Post Link */}
-        <div className="flex gap-5 items-center mx-auto">
-          <IoAddCircleSharp className="text-gray-300 w-[2rem] h-[2rem]" />
-          <Link
-            className="text-gray-100 hidden group-hover:flex sm:flex"
-            href="/dashboard/blogs/new"
-          >
-            Add Blog Post
-          </Link>
+        <div className="flex flex-col items-start">
+          <ThemeToggle />
+          <SignOutButton />
         </div>
       </div>
     </aside>

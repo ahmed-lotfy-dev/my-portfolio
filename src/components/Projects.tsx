@@ -12,7 +12,7 @@ export default async function Projects() {
     <Section className="flex flex-col items-center" id="projects">
       <div className="container">
         <div className="text-center mb-10">
-          <h2 className="text-4xl font-extrabold tracking-tight sm:text-5xl text-foreground">
+          <h2 className="text-4xl sm:text-5xl font-extrabold tracking-tight text-foreground [font-variation-settings:'wght'_800]">
             My <span className="text-primary">Projects</span>
           </h2>
           <p className="mt-3 text-lg text-muted-foreground max-w-2xl mx-auto px-2 sm:px-0">

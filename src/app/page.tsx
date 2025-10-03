@@ -8,13 +8,13 @@ import Container from "../components/ui/Container"
 
 export default async function HomePage() {
   return (
-    <div className="font-main">
-      <Hero />
-      <Skills />
-      <Projects />
-      <Certificates />
-      <About />
-      <Contact />
-    </div>
+    <Container className="font-main">
+        <Hero />
+        <Skills />
+        <Projects />
+        <Certificates />
+        <About />
+        <Contact />
+    </Container>
   )
 }
