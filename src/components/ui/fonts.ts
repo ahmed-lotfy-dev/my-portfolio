@@ -1,13 +1,13 @@
-import { Inter, Josefin_Sans, Josefin_Slab } from "next/font/google";
+import { Inter, Plus_Jakarta_Sans, Space_Grotesk } from "next/font/google"
 
-export const inter = Inter({ subsets: ["latin"] });
+export const inter = Inter({ subsets: ["latin"] })
 
-export const josefinSans = Josefin_Sans({
+export const plusJakarta = Plus_Jakarta_Sans({
   subsets: ["latin"],
   variable: "--main-font",
-});
+})
 
-export const josefinSlab = Josefin_Slab({
+export const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
   variable: "--heading-font",
-});
+})

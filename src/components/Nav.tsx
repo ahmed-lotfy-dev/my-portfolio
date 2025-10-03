@@ -5,7 +5,9 @@ import { usePathname } from "next/navigation"
 import { Menu, X } from "lucide-react"
 import Image from "next/image"
 import ThemeToggle from "@/src/components/ThemeToggle"
-import LogoImage from "@/public/Logo-black-white.png"
+import { useTheme } from "next-themes"
+import LogoLight from "@/public/Logo-Blue-Dot.png"
+import LogoDark from "@/public/Logo-Blue-Dot.png"
 
 const navLinks = [
   { href: "/", label: "Home" },
@@ -20,6 +22,8 @@ function Nav({ children }: { children: ReactNode }) {
   const pathname = usePathname()
   const [open, setOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
+  const { resolvedTheme } = useTheme()
+  const [mounted, setMounted] = useState(false)
 
   useEffect(() => {
     const handleScroll = () => {
@@ -27,6 +31,10 @@ function Nav({ children }: { children: ReactNode }) {
     }
     window.addEventListener("scroll", handleScroll)
     return () => window.removeEventListener("scroll", handleScroll)
+  }, [])
+
+  useEffect(() => {
+    setMounted(true)
   }, [])
 
   const toggle = () => setOpen((v) => !v)
@@ -42,7 +50,12 @@ function Nav({ children }: { children: ReactNode }) {
     >
       <nav className="max-w-6xl mx-auto flex h-16 items-center justify-between">
         <Link href="/" className="flex items-center">
-          <Image src={LogoImage} width={80} height={80} alt="Logo" />
+          <Image
+            src={!mounted || resolvedTheme === "light" ? LogoLight : LogoDark}
+            width={80}
+            height={80}
+            alt="Logo"
+          />
         </Link>
 
         <ul className="hidden md:flex items-center gap-8">
@@ -97,7 +110,12 @@ function Nav({ children }: { children: ReactNode }) {
       >
         <div className="flex items-center justify-between p-4 border-b">
           <Link href="/" onClick={close}>
-            <Image src={LogoImage} width={70} height={70} alt="Logo" />
+            <Image
+              src={!mounted || resolvedTheme === "light" ? LogoLight : LogoDark}
+              width={70}
+              height={70}
+              alt="Logo"
+            />
           </Link>
           <button type="button" aria-label="Close menu" onClick={close}>
             <X className="h-6 w-6 text-foreground" />

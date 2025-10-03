@@ -14,10 +14,7 @@ import { Eye } from "lucide-react"
 export default async function Certificates() {
   const { allCertificates } = await getAllCertificates()
   return (
-    <section
-      className="flex flex-col items-center my-16"
-      id="certificates"
-    >
+    <section className="flex flex-col items-center my-16" id="certificates">
       <div className="text-center mb-10">
         <h2 className="text-4xl font-extrabold text-blue-900 tracking-tight sm:text-5xl">
           My <span className="text-blue-600">Certificates</span>
@@ -33,11 +30,13 @@ export default async function Certificates() {
             <HoverCardTrigger asChild>
               <Card className="flex flex-col justify-between overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 cursor-pointer">
                 <div className="p-6 flex flex-col flex-grow">
-                  <div className="flex items-center justify-between mb-2">
-                    <h3 className="text-xl font-bold flex-grow pr-2">
-                      {cert.title}
-                    </h3>
-                    <Eye className="w-5 h-5 text-gray-400" />
+                  <div className="flex items-start justify-between gap-2 mb-2">
+                    <div className="min-w-0 flex-1">
+                      <h3 className="text-xl font-bold" title={cert.title}>
+                        {cert.title}
+                      </h3>
+                    </div>
+                    <Eye className="w-5 h-5 text-muted-foreground shrink-0" />
                   </div>
                   <div className="mt-4 flex justify-end gap-4">
                     <Link href={cert.courseLink} target="_blank">
@@ -50,13 +49,13 @@ export default async function Certificates() {
                 </div>
               </Card>
             </HoverCardTrigger>
-            <HoverCardContent className="w-auto">
+            <HoverCardContent className="w-[320px] sm:w-[420px] max-w-[90vw] p-2">
               <Image
                 src={cert.imageLink}
                 alt={cert.title}
-                width={400}
-                height={300}
-                className="rounded-md"
+                width={420}
+                height={315}
+                className="rounded-md w-full h-auto"
               />
             </HoverCardContent>
           </HoverCard>

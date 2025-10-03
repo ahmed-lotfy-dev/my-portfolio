@@ -3,12 +3,13 @@ import Link from "next/link"
 import { Button } from "./ui/button"
 import { Card } from "./ui/card"
 import { getAllProjects } from "@/src/app/actions/projectsActions"
+import Section from "./ui/Section"
 
 export default async function Projects() {
   const { allProjects } = await getAllProjects()
 
   return (
-    <section className="flex flex-col items-center" id="projects">
+    <Section className="flex flex-col items-center" id="projects">
       <div className="text-center mb-10">
         <h2 className="text-4xl font-extrabold tracking-tight sm:text-5xl text-foreground">
           My <span className="text-primary">Projects</span>
@@ -46,6 +47,6 @@ export default async function Projects() {
           </Card>
         ))}
       </div>
-    </section>
+    </Section>
   )
 }

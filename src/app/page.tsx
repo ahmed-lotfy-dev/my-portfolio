@@ -8,7 +8,7 @@ import Container from "../components/ui/Container"
 
 export default async function HomePage() {
   return (
-    <div className="font-main space-y-20 sm:space-y-24 lg:space-y-28">
+    <div className="font-main">
       <Hero />
       <Skills />
       <Projects />

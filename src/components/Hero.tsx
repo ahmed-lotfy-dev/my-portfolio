@@ -1,11 +1,14 @@
+
 import Link from "next/link"
 import Image from "next/image"
 import HeroImage from "@/public/images/alotfy_Programmer_coding_on_laptop_sitting_on_desk_-_-_v4_styli_9fb2f0c6-7665-4891-b42c-89e8e4c6274b.png"
+import Section from "./ui/Section"
+import { FileText } from "lucide-react"
 
 export default async function Hero() {
   return (
-    <section className="bg-gradient-custom border-b" id="hero">
-      <div className="container mx-auto flex flex-col gap-10 p-5 sm:flex-row mb-10 justify-between items-center max-w-screen-xl min-h-[calc(100vh-80px)]">
+    <Section className="bg-gradient-custom border-b" id="hero">
+      <div className="container mx-auto flex flex-col gap-10 p-5 sm:flex-row justify-between items-center max-w-screen-xl min-h-[calc(100vh-80px)]">
         <div className="flex flex-col gap-4 text-center sm:text-start">
           <h1 className="text-5xl md:text-7xl font-extrabold uppercase font-main">
             Ahmed Lotfy
@@ -19,9 +22,10 @@ export default async function Hero() {
           </p>
           <Link
             href="/resume.pdf"
-            className="py-3 px-8 mt-8 w-60 self-center text-center sm:self-start bg-primary text-primary-foreground rounded-md hover:bg-primary/90 font-bold transition-all hover:rounded-lg sm:text-xl"
+            className="group inline-flex items-center justify-center gap-2 mt-8 self-center sm:self-start rounded-full px-6 py-3 sm:text-lg font-semibold bg-primary text-primary-foreground shadow-md transition-colors focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-background hover:bg-accent"
           >
-            My Resume
+            <FileText className="h-5 w-5" />
+            <span>My Resume</span>
           </Link>
         </div>
         <div className="relative">
@@ -35,6 +39,6 @@ export default async function Hero() {
           />
         </div>
       </div>
-    </section>
+    </Section>
   )
 }

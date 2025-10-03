@@ -6,7 +6,7 @@ import { Nav } from "@/src/components/Nav"
 import type { Metadata } from "next"
 import { Toaster } from "@/src/components/ui/sonner"
 import { ReactNode } from "react"
-import { inter, josefinSans, josefinSlab } from "@/src/components/ui/fonts"
+import { inter, plusJakarta, spaceGrotesk } from "@/src/components/ui/fonts"
 import UserButton from "../components/dashboard-components/UserButton"
 import Providers from "./provider"
 import Container from "../components/ui/Container"
@@ -87,7 +87,7 @@ export default async function RootLayout({
       suppressHydrationWarning
     >
       <body
-        className={`${inter.className} ${josefinSans.className} ${josefinSlab.className} antialiased`}
+        className={`${inter.className} ${plusJakarta.variable} ${spaceGrotesk.variable} antialiased`}
       >
         <main className="font-main ">
           <Providers>
@@ -97,7 +97,7 @@ export default async function RootLayout({
               </Nav>
 
               {children}
-            </Container>  
+            </Container>
             <GoogleAnalytics gaId={process.env.GA_ID} />
             <Toaster />
           </Providers>
