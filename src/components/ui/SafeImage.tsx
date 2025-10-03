@@ -16,7 +16,7 @@ function isTrusted(url: string) {
   }
 }
 type SafeImageProps = ImageProps & {
-  fallbackClassName?: string // optional extra if you want special styling for fallback <img>
+  fallbackClassName?: string
 }
 
 export default function SafeImage({
@@ -27,14 +27,12 @@ export default function SafeImage({
   ...props
 }: ImageProps) {
   if (isTrusted(String(src))) {
-    // ✅ Optimized by Next.js
     return (
       <Image
         src={src}
         alt={alt}
         width={width || 800}
         height={height || 600}
-        {...props}
       />
     )
   }
@@ -43,12 +41,6 @@ export default function SafeImage({
   }
 
   return (
-    <img
-      src={String(src)}
-      alt={alt}
-      width={width}
-      height={height}
-      {...props}
-    />
+    <img src={String(src)} alt={alt} width={width} height={height} {...props} />
   )
 }
