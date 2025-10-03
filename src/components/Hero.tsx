@@ -7,10 +7,10 @@ import { FileText } from "lucide-react"
 export default async function Hero() {
   return (
     <Section
-      className="bg-gradient-custom border-b pt-10 sm:pt-14 lg:pt-16"
+      className="bg-gradient-custom border-b pt-10 pb-4 sm:pt-14 sm:pb-6 lg:pt-16 lg:pb-1"
       id="hero"
     >
-      <div className="container mx-auto flex flex-col gap-10 px-4 pt-6 sm:px-6 sm:pt-8 sm:pb-6 sm:flex-row justify-between items-center max-w-screen-xl min-h-[calc(100svh-64px)]">
+      <div className="container mx-auto flex flex-col gap-10 px-4 pt-6 sm:px-6 sm:pt-8 sm:flex-row justify-between items-center max-w-screen-xl min-h-[calc(100svh-64px)]">
         <div className="flex flex-col gap-4 text-center sm:text-start">
           <h1 className="text-5xl md:text-7xl font-extrabold uppercase font-main">
             Ahmed Lotfy
