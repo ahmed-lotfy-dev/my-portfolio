@@ -6,13 +6,20 @@ import Welcome from "@/src/components/dashboard-components/Welcome"
 import Link from "next/link"
 import { auth } from "@/src/lib/auth"
 import { headers } from "next/headers"
+import SignInForm from "@/src/components/auth/SignInForm"
 
 export default async function Page({}) {
   const session = await auth.api.getSession({
     headers: await headers(),
   })
   if (!session) {
-    return <div>Not authenticated</div>
+    return (
+      <div className="w-full p-5 pt-10">
+        <div className="max-w-xl">
+          <SignInForm />
+        </div>
+      </div>
+    )
   }
 
   const { allCertificates } = await getAllCertificates()

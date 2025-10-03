@@ -45,16 +45,16 @@ export default function Contact() {
             <Link href="https://github.com/ahmed-lotfy-dev" target="_blank">
               <IoLogoGithub className="w-8 h-8 text-gray-800 dark:text-gray-200 hover:text-black dark:hover:text-white" />
             </Link>
-            <Link
-              href="https://www.facebook.com/ahmed.lotfy00"
-              target="_blank"
-            >
+            <Link href="https://www.facebook.com/ahmed.lotfy00" target="_blank">
               <IoLogoFacebook className="w-8 h-8 text-blue-800 hover:text-blue-900" />
             </Link>
           </div>
         </div>
-        <div className="md:w-1/2">
-          <form action={formAction} className="space-y-4">
+        <div className="md:w-1/2 ">
+          <form
+            action={formAction}
+            className="[&_input]:mt-6 [&_textarea]:mt-6 [&_button]:mt-6 [&_p]:mt-6"
+          >
             <Input type="text" name="name" placeholder="Name" />
             {state?.error?.name && (
               <p className="text-sm text-red-500">

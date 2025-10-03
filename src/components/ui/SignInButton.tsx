@@ -1,53 +1,36 @@
 "use client"
-import { useState } from "react"
+import { useEffect, useState, useCallback } from "react"
+import { useRouter } from "next/navigation"
 import { authClient } from "@/src/lib/auth-client"
 import { Button } from "@/src/components/ui/button"
+import UserButton from "@/src/components/dashboard-components/UserButton"
 
-export default function SignInButtons({
-  type,
-  user,
-  className,
-}: {
-  type: "social" | "credentials"
-  user?: { email: string; password: string }
-  className?: string
-}) {
+export default function SignInButtons({ className }: { className?: string }) {
+  const router = useRouter()
+  const [user, setUser] = useState<any>(undefined)
   const [loading, setLoading] = useState(false)
-  const email = user?.email ?? ""
-  const password = user?.password ?? ""
 
-  const handleClick = async () => {
-    setLoading(true)
+  const refreshSession = useCallback(async () => {
     try {
-      if (type === "social") {
-        await authClient.signIn.social({ provider: "google" })
-      } else {
-        await authClient.signIn.email({ email, password })
-      }
-    } finally {
-      setLoading(false)
+      const s: any = await authClient.getSession()
+      setUser(s?.user ?? null)
+    } catch {
+      setUser(null)
     }
+  }, [])
+
+  useEffect(() => {
+    refreshSession()
+  }, [refreshSession])
+
+  if (user) {
+    return <UserButton className={className} />
   }
 
   return (
-    <div
-      className={`flex flex-col gap-7 w-1/2 m-auto mb-5 justify-center items-center ${
-        className ?? ""
-      }`}
-    >
-      <Button
-        className="m-auto w-full px-10 capitalize"
-        type="button"
-        onClick={handleClick}
-        disabled={loading}
-      >
-        {type === "social"
-          ? loading
-            ? "Redirecting..."
-            : "Sign in with Google"
-          : loading
-          ? "Signing in..."
-          : "Sign in"}
+    <div className={`flex justify-center ${className ?? ""}`}>
+      <Button type="button" onClick={() => router.push("/login")}>
+        Sign in
       </Button>
     </div>
   )

@@ -7,9 +7,9 @@ import {
   IoRibbon,
   IoAddCircleSharp,
 } from "react-icons/io5"
-import SignOutButton from "../ui/SignOutButton"
+import UserButton from "@/src/components/dashboard-components/UserButton"
 
-export default function Aside() {
+export default async function Aside() {
   return (
     <aside className="flex flex-col w-56 border-r bg-card pl-5 pt-10 gap-10">
       <div className="h-full space-y-4 flex flex-col gap-6 justify-between content-start">
@@ -62,9 +62,9 @@ export default function Aside() {
             </Link>
           </div>
         </div>
-        <div className="flex flex-col items-start">
+        <div className="flex flex-col items-start gap-3 pr-5 pb-4">
           <ThemeToggle />
-          <SignOutButton />
+          <UserButton />
         </div>
       </div>
     </aside>
