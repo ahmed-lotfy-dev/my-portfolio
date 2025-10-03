@@ -1,11 +1,10 @@
 "use client"
-import { ReactNode, useState } from "react"
+import { ReactNode, useState, useEffect } from "react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { Menu, X } from "lucide-react"
 import Image from "next/image"
 import ThemeToggle from "@/src/components/ThemeToggle"
-
 import LogoImage from "@/public/Logo-black-white.png"
 
 const navLinks = [
@@ -20,35 +19,97 @@ const navLinks = [
 function Nav({ children }: { children: ReactNode }) {
   const pathname = usePathname()
   const [open, setOpen] = useState(false)
+  const [scrolled, setScrolled] = useState(false)
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 10)
+    }
+    window.addEventListener("scroll", handleScroll)
+    return () => window.removeEventListener("scroll", handleScroll)
+  }, [])
 
   const toggle = () => setOpen((v) => !v)
   const close = () => setOpen(false)
 
-  console.log(pathname)
   return (
     <header
-      className={`${
-        pathname === "/dashboard" ? "hidden" : "fixed"
-      } inset-x-0 top-0 z-50 bg-gradient-to-r from-blue-400/70 to-blue-500/70 backdrop-blur-md supports-[backdrop-filter]:bg-blue-400/60 shadow-md `}
+      className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
+        scrolled
+          ? "bg-white/80 dark:bg-gray-900/80 backdrop-blur-md shadow-md"
+          : "bg-transparent"
+      } ${pathname.startsWith("/dashboard") ? "hidden" : ""}`}
     >
-      <nav className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
-        {/* Logo */}
-        <Link href="/" className="">
-          <Image src={LogoImage} width={100} height={100} alt={"Logo"} />
+      <nav className="max-w-6xl mx-auto flex h-16 items-center justify-between">
+        <Link href="/" className="flex items-center">
+          <Image src={LogoImage} width={80} height={80} alt="Logo" />
         </Link>
 
-        {/* Desktop navigation */}
-        <ul className="hidden flex-1 items-center justify-center ml-auto gap-6 md:flex">
+        <ul className="hidden md:flex items-center gap-8">
           {navLinks.map((link) => (
             <li key={link.href}>
               <Link
                 href={link.href}
-                className={`relative inline-flex items-center text-sm font-semibold transition-colors ${
-                  pathname === link.href
-                    ? "text-blue-900"
-                    : "text-gray-100 hover:text-white"
-                }`}
-                aria-current={pathname === link.href ? "page" : undefined}
+                className="relative text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+              >
+                {link.label}
+                {pathname === link.href && (
+                  <span className="absolute -bottom-1 left-0 w-full h-0.5 bg-blue-600 dark:bg-blue-400" />
+                )}
+              </Link>
+            </li>
+          ))}
+        </ul>
+
+        <div className="hidden md:flex items-center gap-4">
+          <ThemeToggle />
+          <Link href="/dashboard">
+            <span className="text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+              Dashboard
+            </span>
+          </Link>
+          {children}
+        </div>
+
+        <button
+          type="button"
+          aria-label="Open menu"
+          onClick={toggle}
+          className="md:hidden"
+        >
+          <Menu className="h-6 w-6 text-gray-800 dark:text-gray-200" />
+        </button>
+      </nav>
+
+      {/* Mobile Menu */}
+      <div
+        className={`fixed inset-0 z-40 transition-opacity duration-300 ${
+          open ? "opacity-100" : "opacity-0 pointer-events-none"
+        }`}
+        onClick={close}
+      >
+        <div className="absolute inset-0 bg-black/50" />
+      </div>
+      <div
+        className={`fixed right-0 top-0 h-full w-72 bg-white dark:bg-gray-900 shadow-lg transform transition-transform duration-300 z-50 ${
+          open ? "translate-x-0" : "translate-x-full"
+        }`}
+      >
+        <div className="flex items-center justify-between p-4 border-b">
+          <Link href="/" onClick={close}>
+            <Image src={LogoImage} width={70} height={70} alt="Logo" />
+          </Link>
+          <button type="button" aria-label="Close menu" onClick={close}>
+            <X className="h-6 w-6 text-gray-800 dark:text-gray-200" />
+          </button>
+        </div>
+        <ul className="flex flex-col p-4 space-y-2">
+          {navLinks.map((link) => (
+            <li key={link.href}>
+              <Link
+                href={link.href}
+                onClick={close}
+                className="block px-4 py-2 text-sm font-medium text-gray-800 dark:text-gray-200 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800"
               >
                 {link.label}
               </Link>
@@ -57,105 +118,16 @@ function Nav({ children }: { children: ReactNode }) {
           <li>
             <Link
               href="/dashboard"
-              className={`text-sm font-semibold transition-colors ${
-                pathname === "/dashboard"
-                  ? "text-blue-900"
-                  : "text-gray-100 hover:text-white"
-              }`}
-              aria-current={pathname === "/dashboard" ? "page" : undefined}
+              onClick={close}
+              className="block px-4 py-2 text-sm font-medium text-gray-800 dark:text-gray-200 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800"
             >
               Dashboard
             </Link>
           </li>
-        </ul>
-
-        {/* Right side (slots) */}
-        <div className="hidden items-center gap-3 md:flex">
-          <ThemeToggle />
-          {children}
-        </div>
-
-        {/* Mobile menu button */}
-        <button
-          type="button"
-          aria-label="Open menu"
-          aria-expanded={open}
-          onClick={toggle}
-          className="inline-flex h-9 w-9 items-center justify-center rounded-md transition-colors hover:bg-blue-300/40 md:hidden"
-        >
-          <Menu className="h-5 w-5 text-white" />
-        </button>
-      </nav>
-
-      {/* Mobile menu */}
-      <div
-        className={`${open ? "pointer-events-auto" : "pointer-events-none"}`}
-      >
-        {/* Overlay */}
-        <div
-          onClick={close}
-          className={`fixed inset-0 z-40 bg-black/40 transition-opacity ${
-            open ? "opacity-100" : "opacity-0"
-          }`}
-        />
-        {/* Panel */}
-        <div
-          className={`fixed right-0 top-0 z-50 h-full w-80 transform bg-white/90 backdrop-blur-md shadow-xl transition-transform duration-300 ${
-            open ? "translate-x-0" : "translate-x-full"
-          }`}
-        >
-          <div className="flex h-16 items-center justify-between border-b px-4 bg-gradient-to-r from-blue-50/80 to-blue-100/80 backdrop-blur">
-            <Link
-              href="/"
-              onClick={close}
-              className="text-lg font-bold text-blue-900"
-            >
-              {`{AL}`}
-            </Link>
-            <button
-              type="button"
-              aria-label="Close menu"
-              onClick={close}
-              className="inline-flex h-9 w-9 items-center justify-center rounded-md hover:bg-blue-200/40"
-            >
-              <X className="h-5 w-5 text-blue-900" />
-            </button>
-          </div>
-
-          <ul className="flex flex-col gap-1 p-4">
-            {navLinks.map((link) => (
-              <li key={link.href}>
-                <Link
-                  href={link.href}
-                  onClick={close}
-                  className={`block rounded-md px-3 py-2 text-sm font-medium ${
-                    pathname === link.href
-                      ? "bg-blue-100/60 text-blue-900"
-                      : "text-gray-800 hover:bg-blue-50/60 hover:text-blue-900"
-                  }`}
-                  aria-current={pathname === link.href ? "page" : undefined}
-                >
-                  {link.label}
-                </Link>
-              </li>
-            ))}
-            <li>
-              <Link
-                href="/dashboard"
-                onClick={close}
-                className={`block rounded-md px-3 py-2 text-sm font-medium ${
-                  pathname === "/dashboard"
-                    ? "bg-blue-100/60 text-blue-900"
-                    : "text-gray-800 hover:bg-blue-50/60 hover:text-blue-900"
-                }`}
-                aria-current={pathname === "/dashboard" ? "page" : undefined}
-              >
-                Dashboard
-              </Link>
-            </li>
+          <li className="pt-4">
             <ThemeToggle />
-          </ul>
-        </div>
+          </li>
+        </ul>
       </div>
     </header>
   )

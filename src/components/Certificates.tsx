@@ -1,61 +1,67 @@
-import { getAllCertificates } from "@/src/app/actions/certificatesActions";
-import Link from "next/link";
-import Image from "next/image";
-import { Button } from "./ui/button";
+import { getAllCertificates } from "@/src/app/actions/certificatesActions"
+import Link from "next/link"
+import Image from "next/image"
+import { Button } from "./ui/button"
+import { Card } from "./ui/card"
 import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/src/components/ui/accordion";
-import { Certificate } from "@prisma/client";
+  HoverCard,
+  HoverCardContent,
+  HoverCardTrigger,
+} from "@/src/components/ui/hover-card"
+import { Certificate } from "@prisma/client"
+import { Eye } from "lucide-react"
 
 export default async function Certificates() {
-  const { allCertificates } = await getAllCertificates();
+  const { allCertificates } = await getAllCertificates()
   return (
     <section
-      className="bg-blue-200 flex flex-col mx-auto justify-center items-center sm:items-start p-6 max-w-screen-xl mb-10"
+      className="flex flex-col items-center my-16"
       id="certificates"
     >
-      <div className="container max-w-screen-xl justify-center items-center p-6">
-        <div className="p-6">
-          <h2 className="text-3xl font-bold text-center">Certificates</h2>
-        </div>
-        <div className="flex flex-col gap-y-6">
-          {allCertificates?.map((cert: Certificate) => (
-            <Accordion
-              key={cert.id}
-              className="gap-y-6"
-              type="single"
-              collapsible
-            >
-              <AccordionItem value={cert.title} className="">
-                <AccordionTrigger className="font-bold text-1xl m-auto text-center">
-                  {cert.title}
-                </AccordionTrigger>
-                <AccordionContent className="">
-                  <Image
-                    className="m-auto my-6 aspect-auto object-cover"
-                    loading="lazy"
-                    src={cert.imageLink}
-                    width={500}
-                    height={500}
-                    alt={`${cert.title} certification image`}
-                  />
-                  <div className="text-center space-x-5">
+      <div className="text-center mb-10">
+        <h2 className="text-4xl font-extrabold text-blue-900 tracking-tight sm:text-5xl">
+          My <span className="text-blue-600">Certificates</span>
+        </h2>
+        <p className="mt-3 text-lg text-gray-600 max-w-2xl mx-auto">
+          A collection of my certifications and qualifications. Hover over a
+          card to see the certificate.
+        </p>
+      </div>
+      <div className="container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {allCertificates?.map((cert: Certificate) => (
+          <HoverCard key={cert.id}>
+            <HoverCardTrigger asChild>
+              <Card className="flex flex-col justify-between overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 cursor-pointer">
+                <div className="p-6 flex flex-col flex-grow">
+                  <div className="flex items-center justify-between mb-2">
+                    <h3 className="text-xl font-bold flex-grow pr-2">
+                      {cert.title}
+                    </h3>
+                    <Eye className="w-5 h-5 text-gray-400" />
+                  </div>
+                  <div className="mt-4 flex justify-end gap-4">
                     <Link href={cert.courseLink} target="_blank">
-                      <Button>Course Link</Button>
+                      <Button variant="outline">Course</Button>
                     </Link>
                     <Link href={cert.profLink} target="_blank">
-                      <Button>Cerification Proof</Button>
+                      <Button>Proof</Button>
                     </Link>
                   </div>
-                </AccordionContent>
-              </AccordionItem>
-            </Accordion>
-          ))}
-        </div>
+                </div>
+              </Card>
+            </HoverCardTrigger>
+            <HoverCardContent className="w-auto">
+              <Image
+                src={cert.imageLink}
+                alt={cert.title}
+                width={400}
+                height={300}
+                className="rounded-md"
+              />
+            </HoverCardContent>
+          </HoverCard>
+        ))}
       </div>
     </section>
-  );
+  )
 }

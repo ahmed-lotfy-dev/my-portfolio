@@ -1,50 +1,43 @@
-import Image from "next/image";
-import myImage from "@/public/images/skills/css3.svg";
+import Image from "next/image"
+import myImage from "@/public/images/AShouman_3d_vector_human_with_glasses_developer_coding_09763759-3521-438f-a963-0c61670df468.png"
 
 export default function About() {
   return (
-    <section className="bg-blue-300" id="about">
-      <div className="container mx-auto max-w-screen-xl p-6">
-        <h2 className="text-3xl font-extrabold text-center mt-16 mb-12">
-          About Me
+    <section className="flex flex-col items-center my-16" id="about">
+      <div className="text-center mb-10">
+        <h2 className="text-4xl font-extrabold text-blue-900 tracking-tight sm:text-5xl">
+          About <span className="text-blue-600">Me</span>
         </h2>
-        {/* outer container grid */}
-        <div className="grid grid-cols-6 grid-row-2  w-full justify-between text-lg font-semibold text-center md:text-start">
-          {/* inside container grid for the text */}
-          <div className="w-full md:w-5/6 sm:text-start text-md col-start-1 col-end-7 md:col-start-1 md:col-end-6 md:row-start-1 mt-12 leading-8 font-semibold mb-12">
-            <h2 className="px-5 py-1 text-center md:text-start mt-6">
-              Hello, I&apos;m Ahmed Lotfy, Full stack software developer coming
-              from PC maintenance background & shifting my career.
-            </h2>
-            <h2 className="px-5 py-1 text-center md:text-start mt-6">
-              I have a passion for technology and a strong desire to
-              continuously learn and grow.
-            </h2>
-            <h2 className="px-5 py-1 text-center md:text-start mt-6">
-              With experience in PC maintenance , I bring a unique perspective
-              to software development.
-            </h2>
-            <h2 className="px-5 py-1 text-center md:text-start mt-6">
-              If you are looking for a full-stack software engineer, I would
-              love the opportunity to connect with you.
-            </h2>
-            <h2 className="px-5 py-1 text-center md:text-start mt-6">
-              Please feel free to reach out to me. I am excited about the future
-              and look forward to what opportunities coming in the future.
-            </h2>
-          </div>
-          {/* inside container for my image */}
-          <div className="m-auto aspect-auto col-start-1 col-end-7 row-start-1 row-end-2 md:col-start-5 md:col-end-7">
-            <Image
-              src={myImage}
-              width={250}
-              height={350}
-              alt={"my image"}
-              className="md:w-[300] md:h-[400px]"
-            />
-          </div>
+      </div>
+      <div className="container flex flex-col md:flex-row items-center gap-12">
+        <div className="md:w-1/2">
+          <Image
+            src={myImage}
+            width={400}
+            height={400}
+            alt="Ahmed Lotfy"
+            className="rounded-lg shadow-lg"
+          />
+        </div>
+        <div className="md:w-1/2 text-lg text-gray-700 dark:text-gray-300 space-y-4">
+          <p>
+            Hello, I&apos;m Ahmed Lotfy, a Full Stack Software Developer with a
+            background in PC maintenance. My journey into software development
+            is driven by a passion for technology and a desire for continuous
+            learning.
+          </p>
+          <p>
+            My experience in hardware gives me a unique perspective on software
+            development, allowing me to approach problems with a holistic
+            mindset.
+          </p>
+          <p>
+            I am actively seeking opportunities to contribute to innovative
+            projects. If you are looking for a dedicated full-stack engineer, I
+            would love to connect with you.
+          </p>
         </div>
       </div>
     </section>
-  );
+  )
 }

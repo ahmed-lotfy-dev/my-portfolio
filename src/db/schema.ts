@@ -85,15 +85,19 @@ export const verifications = pgTable("verifications", {
 
 export const posts = pgTable("posts", {
   id: uuid("id").defaultRandom().primaryKey(),
-  title: text("title").notNull(),
-  content: text("content").notNull(),
+  // New language-specific fields
+  title_en: text("title_en").notNull(),
+  content_en: text("content_en").notNull(),
+  title_ar: text("title_ar").notNull(),
+  content_ar: text("content_ar").notNull(),
+
+  // Existing fields
   slug: text("slug").notNull().unique(),
-  imageLink: text("image_link").notNull(),
+  imageLink: text("image_link"), // Assuming a link, not always available in RSS
+  originalLink: text("original_link").notNull(), // A new field for the source link
   published: boolean("published").notNull().default(false),
   categories: text("categories").array().notNull(),
-  authorId: text("author_id") // keep this `text` since it references Better Auth's users table
-    .notNull()
-    .references(() => users.id, { onDelete: "cascade" }),
+  author: text("author_id"),
   createdAt: timestamp("created_at").defaultNow().notNull(),
   updatedAt: timestamp("updated_at")
     .defaultNow()
@@ -130,7 +134,6 @@ export const certificates = pgTable("certificates", {
     .notNull(),
 })
 
-
 export const usersRelations = relations(users, ({ many }) => ({
   posts: many(posts),
   accounts: many(accounts),
@@ -139,7 +142,7 @@ export const usersRelations = relations(users, ({ many }) => ({
 
 export const postsRelations = relations(posts, ({ one }) => ({
   author: one(users, {
-    fields: [posts.authorId],
+    fields: [posts.author],
     references: [users.id],
   }),
 }))

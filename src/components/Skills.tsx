@@ -32,14 +32,11 @@ const skillsList: Skill[] = [
 
 export default function Skills() {
   // Duplicate skills to create seamless loop
-  const loopSkills = [...skillsList,...skillsList ]
+  const loopSkills = [...skillsList,]
 
   return (
-    <section
-      className="flex flex-col items-center w-full py-16 px-4 sm:px-6 md:px-8 bg-gradient-to-b from-blue-50 to-blue-100 dark:bg-slate-950"
-      id="skills"
-    >
-      <Card className="container p-8 md:p-12 bg-white rounded-xl shadow-2xl shadow-blue-200/50 max-w-6xl">
+    <section className="flex flex-col items-center  my-16" id="skills">
+      <div className=" rounded-xl">
         <div className="text-center mb-10">
           <h2 className="text-4xl font-extrabold text-blue-900 tracking-tight sm:text-5xl">
             My <span className="text-blue-600">Skills</span>
@@ -50,8 +47,8 @@ export default function Skills() {
         </div>
 
         {/* Auto-scrolling horizontal list */}
-        <div className="relative overflow-hidden w-full">
-          <div className="flex gap-5 animate-[scrollX_30s_linear_infinite] w-max">
+        <div className="relative overflow-hidden w-full max-w-5xl">
+          <div className="flex gap-5 animate-[scrollX_30s_linear_infinite]">
             {skillsList.map((skill, index) => (
               <div
                 key={`${skill.alt}-${index}`}
@@ -62,14 +59,13 @@ export default function Skills() {
                   alt={skill.alt}
                   width={60}
                   height={60}
-                  className="filter grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all duration-300"
+                  className="filter opacity-50 dark:invert dark:opacity-100 hover:grayscale-0 hover:opacity-100 transition-all duration-300"
                 />
-  
               </div>
             ))}
           </div>
         </div>
-      </Card>
+      </div>
     </section>
   )
 }

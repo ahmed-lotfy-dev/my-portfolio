@@ -16,9 +16,9 @@ export async function getAllPosts() {
   }
 }
 
-export async function getSinglePosts(postId: string) {
+export async function getSinglePosts(postSlug: string) {
   const singlePost = await db.query.posts.findFirst({
-    where: (p, { eq }) => eq(p.id, postId),
+    where: (p, { eq }) => eq(p.slug, postSlug),
   })
 
   return { success: true, message: "Single Blog Post Found", singlePost }
@@ -55,13 +55,16 @@ export async function addNewPost(formData: FormData) {
 
   if (result.success) {
     await db.insert(posts).values({
-      title,
-      content,
+      title_en: title,
+      content_en: content,
+      title_ar: title,
+      content_ar: content,
       slug,
-      authorId: user.id as string,
+      author: user.id as string,
       categories: postsCategories,
       published: isPublished,
       imageLink,
+      originalLink: "",
     })
 
     return { success: true, message: "Post Added Successfully" }
@@ -76,8 +79,10 @@ export async function updateSinglePosts(post: any) {
   await db
     .update(posts)
     .set({
-      title: post.title,
-      content: post.content,
+      title_en: post.title,
+      content_en: post.content,
+      title_ar: post.title,
+      content_ar: post.content,
       slug: post.slug,
       categories: post.categories,
       published: post.published,

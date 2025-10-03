@@ -21,9 +21,9 @@ export default async function SinglePost(
   };
 
   return (
-    <div className="p-9 w-full h-svh flex flex-col gap-7">
-      <h2>{singlePost?.title}</h2>
-      <p>{singlePost?.content}</p>
+    <div className="p-9 w-full h-svh flex flex-col gap-7 mt-28 max-w-6xl m-auto">
+      <h2>{singlePost?.title_en}</h2>
+      <p>{singlePost?.content_en}</p>
       <p>
         {singlePost?.createdAt?.toLocaleDateString("en-GB", {
           year: "numeric",

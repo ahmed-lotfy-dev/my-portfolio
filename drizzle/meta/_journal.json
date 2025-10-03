@@ -8,6 +8,20 @@
       "when": 1759146365618,
       "tag": "0000_slimy_misty_knight",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1759324466661,
+      "tag": "0001_bored_colossus",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1759326128483,
+      "tag": "0002_eminent_gambit",
+      "breakpoints": true
     }
   ]
 }
