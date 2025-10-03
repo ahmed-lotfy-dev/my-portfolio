@@ -86,14 +86,17 @@ function Nav({ children }: { children: ReactNode }) {
           {children}
         </div>
 
-        <button
-          type="button"
-          aria-label="Open menu"
-          onClick={toggle}
-          className="md:hidden p-2 mr-2 rounded-md hover:bg-accent/30"
-        >
-          <Menu className="h-6 w-6 text-foreground" />
-        </button>
+        <div className="flex items-center gap-2 md:hidden pr-2">
+          <ThemeToggle />
+          <button
+            type="button"
+            aria-label="Open menu"
+            onClick={toggle}
+            className="p-2 rounded-md hover:bg-accent/30"
+          >
+            <Menu className="h-6 w-6 text-foreground" />
+          </button>
+        </div>
       </nav>
 
       {/* Mobile Menu */}
@@ -119,17 +122,14 @@ function Nav({ children }: { children: ReactNode }) {
               alt="Logo"
             />
           </Link>
-          <div className="flex items-center gap-3">
-            <ThemeToggle />
-            <button
-              type="button"
-              aria-label="Close menu"
-              onClick={close}
-              className="p-2 rounded-md hover:bg-accent/30"
-            >
-              <X className="h-6 w-6 text-foreground" />
-            </button>
-          </div>
+          <button
+            type="button"
+            aria-label="Close menu"
+            onClick={close}
+            className="p-2 rounded-md hover:bg-accent/30"
+          >
+            <X className="h-6 w-6 text-foreground" />
+          </button>
         </div>
         <ul className="flex flex-col p-4 space-y-2">
           {navLinks.map((link) => (

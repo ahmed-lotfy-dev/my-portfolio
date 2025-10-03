@@ -15,14 +15,16 @@ export default async function Certificates() {
   const { allCertificates } = await getAllCertificates()
   return (
     <section className="flex flex-col items-center my-16" id="certificates">
-      <div className="text-center mb-10">
-        <h2 className="text-4xl font-extrabold text-blue-900 tracking-tight sm:text-5xl">
-          My <span className="text-blue-600">Certificates</span>
-        </h2>
-        <p className="mt-3 text-lg text-gray-600 max-w-2xl mx-auto">
-          A collection of my certifications and qualifications. Hover over a
-          card to see the certificate.
-        </p>
+      <div className="container">
+        <div className="text-center mb-10">
+          <h2 className="text-4xl font-extrabold text-blue-900 tracking-tight sm:text-5xl">
+            My <span className="text-blue-600">Certificates</span>
+          </h2>
+          <p className="mt-3 text-lg text-gray-600 max-w-2xl mx-auto px-2 sm:px-0">
+            A collection of my certifications and qualifications. Hover over a
+            card to see the certificate.
+          </p>
+        </div>
       </div>
       <div className="container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {allCertificates?.map((cert: Certificate) => (
