@@ -8,34 +8,32 @@ export default async function Projects() {
   const { allProjects } = await getAllProjects()
 
   return (
-    <section className="flex flex-col items-center my-16" id="projects">
+    <section className="flex flex-col items-center" id="projects">
       <div className="text-center mb-10">
-        <h2 className="text-4xl font-extrabold text-blue-900 tracking-tight sm:text-5xl">
-          My <span className="text-blue-600">Projects</span>
+        <h2 className="text-4xl font-extrabold tracking-tight sm:text-5xl text-foreground">
+          My <span className="text-primary">Projects</span>
         </h2>
-        <p className="mt-3 text-lg text-gray-600 max-w-2xl mx-auto">
+        <p className="mt-3 text-lg text-muted-foreground max-w-2xl mx-auto">
           Here are some of the projects I&apos;ve worked on.
         </p>
       </div>
-      <div className="container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div className="w-full grid gap-8 [grid-template-columns:repeat(auto-fit,minmax(280px,1fr))] justify-items-stretch">
         {allProjects?.map((proj) => (
           <Card
             key={proj.id}
-            className="flex flex-col justify-between overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300"
+            className="flex h-full flex-col justify-between overflow-hidden hover:shadow-md transition-shadow duration-300"
           >
             <div className="relative w-full h-56">
               <Image
                 src={proj.imageLink}
                 alt={proj.title}
-                layout="fill"
-                objectFit="cover"
+                fill
+                className="object-cover"
               />
             </div>
             <div className="p-6 flex flex-col flex-grow">
               <h3 className="text-2xl font-bold mb-2">{proj.title}</h3>
-              <p className="text-gray-700 dark:text-gray-300 flex-grow">
-                {proj.desc}
-              </p>
+              <p className="text-muted-foreground flex-grow">{proj.desc}</p>
               <div className="mt-4 flex justify-end gap-4">
                 <Link href={proj.liveLink} target="_blank">
                   <Button variant="outline">Live</Button>

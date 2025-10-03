@@ -25,7 +25,7 @@ export default function ThemeToggle() {
       aria-pressed={isDark}
       title={isDark ? "Switch to light mode" : "Switch to dark mode"}
       onClick={() => setTheme(isDark ? "light" : "dark")}
-      className="inline-flex h-9 w-9 items-center justify-center rounded-md border border-gray-300 bg-transparent text-gray-100 shadow-sm transition-colors  hover:bg-blue-800 dark:border-gray-100 dark:bg-transparent dark:text-slate-100 dark:hover:bg-blue-700"
+      className="inline-flex h-9 w-9 items-center justify-center rounded-md border border-border bg-transparent text-foreground shadow-sm transition-colors hover:bg-primary/10 dark:hover:bg-primary/20 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background"
     >
       {isDark ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
     </button>

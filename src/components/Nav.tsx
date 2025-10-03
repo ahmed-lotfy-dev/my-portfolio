@@ -36,7 +36,7 @@ function Nav({ children }: { children: ReactNode }) {
     <header
       className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
         scrolled
-          ? "bg-white/80 dark:bg-gray-900/80 backdrop-blur-md shadow-md"
+          ? "bg-background/80 backdrop-blur-md shadow-sm border-b border-border"
           : "bg-transparent"
       } ${pathname.startsWith("/dashboard") ? "hidden" : ""}`}
     >
@@ -50,11 +50,11 @@ function Nav({ children }: { children: ReactNode }) {
             <li key={link.href}>
               <Link
                 href={link.href}
-                className="relative text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+                className="relative text-sm font-medium text-foreground/80 hover:text-primary transition-colors"
               >
                 {link.label}
                 {pathname === link.href && (
-                  <span className="absolute -bottom-1 left-0 w-full h-0.5 bg-blue-600 dark:bg-blue-400" />
+                  <span className="absolute -bottom-1 left-0 w-full h-0.5 bg-primary" />
                 )}
               </Link>
             </li>
@@ -64,7 +64,7 @@ function Nav({ children }: { children: ReactNode }) {
         <div className="hidden md:flex items-center gap-4">
           <ThemeToggle />
           <Link href="/dashboard">
-            <span className="text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+            <span className="text-sm font-medium text-foreground/80 hover:text-primary transition-colors">
               Dashboard
             </span>
           </Link>
@@ -77,7 +77,7 @@ function Nav({ children }: { children: ReactNode }) {
           onClick={toggle}
           className="md:hidden"
         >
-          <Menu className="h-6 w-6 text-gray-800 dark:text-gray-200" />
+          <Menu className="h-6 w-6 text-foreground" />
         </button>
       </nav>
 
@@ -91,7 +91,7 @@ function Nav({ children }: { children: ReactNode }) {
         <div className="absolute inset-0 bg-black/50" />
       </div>
       <div
-        className={`fixed right-0 top-0 h-full w-72 bg-white dark:bg-gray-900 shadow-lg transform transition-transform duration-300 z-50 ${
+        className={`fixed right-0 top-0 h-full w-72 bg-background shadow-lg transform transition-transform duration-300 z-50 ${
           open ? "translate-x-0" : "translate-x-full"
         }`}
       >
@@ -100,7 +100,7 @@ function Nav({ children }: { children: ReactNode }) {
             <Image src={LogoImage} width={70} height={70} alt="Logo" />
           </Link>
           <button type="button" aria-label="Close menu" onClick={close}>
-            <X className="h-6 w-6 text-gray-800 dark:text-gray-200" />
+            <X className="h-6 w-6 text-foreground" />
           </button>
         </div>
         <ul className="flex flex-col p-4 space-y-2">
@@ -109,7 +109,7 @@ function Nav({ children }: { children: ReactNode }) {
               <Link
                 href={link.href}
                 onClick={close}
-                className="block px-4 py-2 text-sm font-medium text-gray-800 dark:text-gray-200 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800"
+                className="block px-4 py-2 text-sm font-medium text-foreground rounded-md hover:bg-accent/30"
               >
                 {link.label}
               </Link>
@@ -119,7 +119,7 @@ function Nav({ children }: { children: ReactNode }) {
             <Link
               href="/dashboard"
               onClick={close}
-              className="block px-4 py-2 text-sm font-medium text-gray-800 dark:text-gray-200 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800"
+              className="block px-4 py-2 text-sm font-medium text-foreground rounded-md hover:bg-accent/30"
             >
               Dashboard
             </Link>
