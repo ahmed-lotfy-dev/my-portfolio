@@ -30,7 +30,7 @@ function AddProjectComponent() {
   const [selected, setSelected] = useState<string[]>(["featured"])
   const [imageUrl, setImageUrl] = useState("")
   const formRef = useRef<HTMLFormElement>(null)
-  const { data: session } = authClient.useSession.get()
+  const { data: session } = authClient.useSession()
   const user = session?.user
   console.log(user)
   

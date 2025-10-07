@@ -1,4 +1,3 @@
-// src/components/UserButton.tsx
 import { auth } from "@/src/lib/auth" // the server instance from better-auth
 import { Avatar, AvatarFallback, AvatarImage } from "@/src/components/ui/avatar"
 import { Button } from "@/src/components/ui/button"

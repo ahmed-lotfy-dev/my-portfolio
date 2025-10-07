@@ -24,7 +24,7 @@ function EditCertificate({ EditedObject }: any) {
   const [editedCert, setEditedCert] = useState(EditedObject)
   const [imageUrl, setImageUrl] = useState("")
   const formRef = useRef<HTMLFormElement>(null)
-  const { data: session } = authClient.useSession.get()
+  const { data: session } = authClient.useSession()
   const user = session?.user
 
   const InputHandler = (e: ChangeEvent<HTMLInputElement>) => {

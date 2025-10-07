@@ -18,7 +18,7 @@ export default function SignInForm({ redirectTo }: { redirectTo?: string }) {
     setLoading(true)
     setError(null)
     try {
-     const res =  await authClient.signIn.email({
+      const res = await authClient.signIn.email({
         email,
         password,
         fetchOptions: { redirect: "follow" },
@@ -35,23 +35,24 @@ export default function SignInForm({ redirectTo }: { redirectTo?: string }) {
   }
 
   const handleGoogle = async () => {
-    setLoading(true);
-    setError(null);
+    setLoading(true)
+    setError(null)
     try {
       await authClient.signIn.social({
         provider: "google",
         fetchOptions: {
           onSuccess: () => {
-            router.refresh();
+            router.push("/")
+            router.refresh()
           },
         },
-      });
+      })
     } catch (e: any) {
-      setError(e?.message ?? "Google sign-in failed");
+      setError(e?.message ?? "Google sign-in failed")
     } finally {
-      setLoading(false);
+      setLoading(false)
     }
-  };
+  }
 
   return (
     <div className="w-full max-w-md mx-auto bg-card border rounded-xl p-6 sm:p-8 shadow-sm">

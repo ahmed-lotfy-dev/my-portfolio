@@ -29,7 +29,7 @@ function EditProject({ EditedObject }: any) {
   const [selected, setSelected] = useState<string[]>(["featured"])
 
   const formRef = useRef<HTMLFormElement>(null)
-  const { data: session } = authClient.useSession.get()
+  const { data: session } = authClient.useSession()
   const user = session?.user
 
   const InputHandler = (
