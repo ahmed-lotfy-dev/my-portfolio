@@ -33,6 +33,7 @@ function AddProjectComponent() {
   const { data: session } = authClient.useSession.get()
   const user = session?.user
   console.log(user)
+  
   return (
     <div className="flex flex-col justify-center items-center">
       <div className="flex w-full min-h-full justify-center items-start mt-6">

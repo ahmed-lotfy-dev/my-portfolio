@@ -41,7 +41,7 @@ export async function addProjectAction(state: any, data: FormData) {
   const session = await auth.api.getSession({ headers: await headers() })
   const user = session?.user
 
-  if (user?.email !== process.env.ADMIN_EMAIL) {
+  if (user?.email !== process.env.NEXT_PUBLIC_ADMIN_EMAIL) {
     return {
       success: false,
       message: "You Don't Have Privilige To Add Project",
@@ -88,7 +88,7 @@ export async function editProjectAction(state: any, data: FormData) {
   const session = await auth.api.getSession({ headers: await headers() })
   const user = session?.user
 
-  if (user?.email !== process.env.ADMIN_EMAIL) {
+  if (user?.email !== process.env.NEXT_PUBLIC_ADMIN_EMAIL) {
     return {
       success: false,
       message: "You Don't Have Privilige To Add Project",
@@ -138,7 +138,7 @@ export async function deleteProjectAction(id: string) {
   const session = await auth.api.getSession({ headers: await headers() })
   const user = session?.user
 
-  if (user?.email !== process.env.ADMIN_EMAIL) {
+  if (user?.email !== process.env.NEXT_PUBLIC_ADMIN_EMAIL) {
     return {
       success: false,
       message: "You Don't Have Privilige To Delete Project",

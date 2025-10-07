@@ -4,7 +4,7 @@ import SignInForm from "@/src/components/auth/SignInForm"
 export const metadata = {
   title: "Login",
 }
-
+console.log(process.env.NEXT_PUBLIC_BASE_URL)
 export default function LoginPage() {
   return (
     <Section id="login">

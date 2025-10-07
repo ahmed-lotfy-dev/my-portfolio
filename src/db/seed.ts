@@ -3,9 +3,38 @@ import { db } from "@/src/db/index"
 import { certificates, projects } from "@/src/db/schema"
 import { certificatesData } from "@/src/db/db-seed-data/certificates-data"
 import { projectsData } from "@/src/db/db-seed-data/prjects-data"
+import { auth } from "../lib/auth"
+import { users } from "@/src/db/schema"
+import { eq } from "drizzle-orm"
 
 async function seed() {
   console.log("🌱 Seeding started...")
+
+  // Check if the admin user already exists
+  const existingUser = await db
+    .select()
+    .from(users)
+    .where(eq(users.email, "elshenawy19@gmail.com"))
+
+  if (existingUser.length === 0) {
+    // Create the admin user if it doesn't exist
+    await auth.api.signUpEmail({
+      body: {
+        email: "elshenawy19@gmail.com",
+        password: "ahmedlotfy",
+        name: "Ahmed Lotfy",
+      },
+    });
+    // Set the user's role to admin
+    await db
+      .update(users)
+      .set({ role: "ADMIN" })
+      .where(eq(users.email, "elshenawy19@gmail.com"));
+
+    console.log("Admin user created and assigned admin role.");
+  } else {
+    console.log("Admin user already exists.")
+  }
 
   // Clear tables
   await db.delete(certificates)

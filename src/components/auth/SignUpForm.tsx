@@ -25,7 +25,7 @@ export default function SignUpForm() {
         name,
       })
       console.log("SIGNUP RESULT:", res)
-      if(res.data?.user){
+      if (res.data?.user) {
         router.push("/")
         router.refresh()
       }
@@ -40,7 +40,14 @@ export default function SignUpForm() {
     setLoading(true)
     setError(null)
     try {
-      await authClient.signIn.social({ provider: "google" })
+      await authClient.signIn.social({
+        provider: "google",
+        fetchOptions: {
+          onSuccess: () => {
+            router.refresh()
+          },
+        },
+      })
     } catch (e: any) {
       setError(e?.message ?? "Google sign-in failed")
     } finally {
