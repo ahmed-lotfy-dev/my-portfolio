@@ -110,16 +110,16 @@ function AddProjectComponent() {
 
               <DialogClose asChild>
                 <Submit
-                  btnText="Add Project"
+                  btnText="Edit Certificate"
+                  className="m-10"
                   type="submit"
                   onClick={() => {
-                    if (user?.email !== process.env.NEXT_PUBLIC_ADMIN_EMAIL) {
-                      notify("You don't have privilige to do this", false)
-                      const submitTimeOut = setTimeout(() => {
-                        notify("Adding Completed Successfully", true)
-                        setImageUrl("")
-                        formRef.current?.reset()
-                      }, 200)
+                    if (user?.email === process.env.NEXT_PUBLIC_ADMIN_EMAIL) {
+                      notify("Editing Completed Successfully", true)
+                      setImageUrl("")
+                      formRef.current?.reset()
+                    } else {
+                      notify("You don't have privilege to do this", false)
                     }
                   }}
                 />

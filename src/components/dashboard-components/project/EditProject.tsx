@@ -133,17 +133,19 @@ function EditProject({ EditedObject }: any) {
                 name="tags"
                 placeHolder="Select Tech"
               />
+
               <DialogClose asChild>
                 <Submit
-                  btnText="Edit Project"
-                  className="m-10 w-2/3"
+                  btnText="Edit Certificate"
+                  className="m-10"
                   type="submit"
                   onClick={() => {
-                    if (user?.email !== process.env.NEXT_PUBLIC_ADMIN_EMAIL) {
-                      notify("Sorry, you don't have admin privileges", false)
-                    } else {
-                      notify("Project Edited Successfully", true)
+                    if (user?.email === process.env.NEXT_PUBLIC_ADMIN_EMAIL) {
+                      notify("Editing Completed Successfully", true)
+                      setImageUrl("")
                       formRef.current?.reset()
+                    } else {
+                      notify("You don't have privilege to do this", false)
                     }
                   }}
                 />

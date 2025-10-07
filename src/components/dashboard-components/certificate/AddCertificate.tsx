@@ -100,17 +100,16 @@ function AddCertificateComponent() {
 
               <DialogClose asChild>
                 <Submit
-                  btnText="Add Certificate"
+                  btnText="Edit Certificate"
+                  className="m-10"
                   type="submit"
                   onClick={() => {
-                    if (user?.email !== process.env.NEXT_PUBLIC_ADMIN_EMAIL) {
-                      notify("sorry you don't have admin priviliges", false)
+                    if (user?.email === process.env.NEXT_PUBLIC_ADMIN_EMAIL) {
+                      notify("Editing Completed Successfully", true)
+                      setImageUrl("")
+                      formRef.current?.reset()
                     } else {
-                      const submitTimeOut = setTimeout(() => {
-                        notify("Adding Completed Successfully", true)
-                        setImageUrl("")
-                        formRef.current?.reset()
-                      }, 200)
+                      notify("You don't have privilege to do this", false)
                     }
                   }}
                 />
