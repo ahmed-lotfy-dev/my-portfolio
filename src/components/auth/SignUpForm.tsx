@@ -60,6 +60,14 @@ export default function SignUpForm() {
       </div>
 
       <div className="grid gap-4">
+        <Button
+          onClick={handleGoogle}
+          disabled={loading}
+          className="w-full"
+          variant="outline"
+        >
+          {loading ? "Signing up..." : "Sign up with Google"}
+        </Button>
         <div className="relative text-center">
           <span className="absolute inset-x-0 top-1/2 -translate-y-1/2 text-xs text-muted-foreground">
             or
