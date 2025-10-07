@@ -103,7 +103,7 @@ function AddCertificateComponent() {
                   btnText="Add Certificate"
                   type="submit"
                   onClick={() => {
-                    if (user?.email !== process.env.ADMIN_EMAIL) {
+                    if (user?.email !== process.env.NEXT_PUBLIC_ADMIN_EMAIL) {
                       notify("sorry you don't have admin priviliges", false)
                     } else {
                       const submitTimeOut = setTimeout(() => {

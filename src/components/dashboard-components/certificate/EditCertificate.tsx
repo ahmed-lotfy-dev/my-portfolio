@@ -133,7 +133,7 @@ function EditCertificate({ EditedObject }: any) {
                 className="m-10"
                 type="submit"
                 onClick={() => {
-                  if (user?.email !== process.env.ADMIN_EMAIL) {
+                  if (user?.email !== process.env.NEXT_PUBLIC_ADMIN_EMAIL) {
                     notify("You don't have privilige to do this", false)
                     const submitTimeOut = setTimeout(() => {
                       notify("Adding Completed Successfully", true)

@@ -32,8 +32,7 @@ function AddProjectComponent() {
   const formRef = useRef<HTMLFormElement>(null)
   const { data: session } = authClient.useSession()
   const user = session?.user
-  console.log(user)
-  
+
   return (
     <div className="flex flex-col justify-center items-center">
       <div className="flex w-full min-h-full justify-center items-start mt-6">
@@ -114,7 +113,7 @@ function AddProjectComponent() {
                   btnText="Add Project"
                   type="submit"
                   onClick={() => {
-                    if (user?.email !== process.env.ADMIN_EMAIL) {
+                    if (user?.email !== process.env.NEXT_PUBLIC_ADMIN_EMAIL) {
                       notify("You don't have privilige to do this", false)
                       const submitTimeOut = setTimeout(() => {
                         notify("Adding Completed Successfully", true)

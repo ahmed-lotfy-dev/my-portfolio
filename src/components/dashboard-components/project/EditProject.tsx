@@ -139,7 +139,7 @@ function EditProject({ EditedObject }: any) {
                   className="m-10 w-2/3"
                   type="submit"
                   onClick={() => {
-                    if (user?.email !== process.env.ADMIN_EMAIL) {
+                    if (user?.email !== process.env.NEXT_PUBLIC_ADMIN_EMAIL) {
                       notify("Sorry, you don't have admin privileges", false)
                     } else {
                       notify("Project Edited Successfully", true)
