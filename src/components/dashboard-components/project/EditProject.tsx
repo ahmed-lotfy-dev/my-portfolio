@@ -136,7 +136,7 @@ function EditProject({ EditedObject }: any) {
 
               <DialogClose asChild>
                 <Submit
-                  btnText="Edit Certificate"
+                  btnText="Edit Project"
                   className="m-10"
                   type="submit"
                   onClick={() => {

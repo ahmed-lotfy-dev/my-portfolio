@@ -9,7 +9,6 @@ import { ReactNode } from "react"
 import { inter, plusJakarta, sora } from "@/src/components/ui/fonts"
 import UserButton from "../components/dashboard-components/UserButton"
 import Providers from "./provider"
-import Container from "../components/ui/Container"
 
 export const dynamic = "force-dynamic"
 

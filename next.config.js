@@ -10,6 +10,12 @@ const nextConfig = {
       },
       {
         protocol: "https",
+        hostname: "images.ahmedlotfy.dev",
+        port: "",
+        pathname: "/*",
+      },
+      {
+        protocol: "https",
         hostname: "lh3.googleusercontent.com",
         port: "",
         pathname: "/a/**",
@@ -20,6 +26,14 @@ const nextConfig = {
         port: "",
       },
     ],
+  },
+  serverActions: {
+    bodySizeLimit: "5mb",
+  },
+  api: {
+    bodyParser: {
+      sizeLimit: "20mb",
+    },
   },
 }
 

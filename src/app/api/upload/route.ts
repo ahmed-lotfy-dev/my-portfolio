@@ -1,74 +1,59 @@
 import { S3Client, PutObjectCommand } from "@aws-sdk/client-s3"
-import { getSignedUrl } from "@aws-sdk/s3-request-presigner"
-
 import { auth } from "@/src/lib/auth"
 import { headers } from "next/headers"
 
-const config = {
+const s3Client = new S3Client({
   region: "auto",
   endpoint: `https://${process.env.CF_ACCOUNT_ID}.r2.cloudflarestorage.com`,
   credentials: {
-    accessKeyId: process.env.CF_ACCESS_KEY_ID,
-    secretAccessKey: process.env.CF_SECRET_ACCESS_KEY,
+    accessKeyId: process.env.CF_ACCESS_KEY_ID!,
+    secretAccessKey: process.env.CF_SECRET_ACCESS_KEY!,
   },
-}
+})
 
-const s3Client = new S3Client(config)
-
-async function uploadFileToS3(
-  file: Buffer,
-  fileName: string,
-  type: string,
-  imageType: string
-) {
-  const fileBuffer = file
-  const params = {
-    Bucket: process.env.CF_BUCKET_NAME,
-    Key: fileName,
-    Body: fileBuffer,
-    ContentType: type,
-  }
-  const command = new PutObjectCommand(params)
-  const imageurl = getSignedUrl(s3Client, command, { expiresIn: 60 })
-
-  try {
-    const response = await s3Client.send(command)
-    console.log("File uploaded successfully", response)
-    return response
-  } catch (error) {
-    throw error
-  }
-}
 export async function POST(request: Request): Promise<Response> {
-  const formData = await request.formData()
-  const file = formData.get("file") as File
-  const imageType = formData.get("image-type") as string
-  const fileData = await file.arrayBuffer()
-  const buffer = Buffer.from(fileData)
+  try {
+    const formData = await request.formData()
+    const file = formData.get("file") as File | null
+    const imageType = formData.get("image-type") as string
 
-  const session = await auth.api.getSession({ headers: await headers() })
-  const user = session?.user
+    if (!file) {
+      return Response.json({ success: false, message: "No file uploaded" })
+    }
 
-  if (user?.email === process.env.ADMIN_EMAIL) {
-    const uploaded = await uploadFileToS3(
-      buffer,
-      `${imageType}-${file.name}`,
-      file.type,
-      imageType
-    )
-    return new Response(
-      JSON.stringify({
-        success: true,
-        message: "File uploaded successfully",
-        imageLink: `${process.env.CF_IMAGES_SUBDOMAIN}/${imageType}-${file.name}`,
-      })
-    )
-  } else {
-    return new Response(
-      JSON.stringify({
+    const session = await auth.api.getSession({ headers: await headers() })
+    const user = session?.user
+    if (user?.email !== process.env.ADMIN_EMAIL) {
+      return Response.json({
         success: false,
-        message: "File upload failed you don't have enough priviliges",
+        message: "You don't have permission to upload files",
       })
+    }
+
+    const fileData = Buffer.from(await file.arrayBuffer())
+    const fileName = `${imageType}-${file.name}`
+
+    await s3Client.send(
+      new PutObjectCommand({
+        Bucket: process.env.CF_BUCKET_NAME!,
+        Key: fileName,
+        Body: fileData,
+        ContentType: file.type,
+      })
+    )
+
+    const imageUrl = `https://${process.env.CF_IMAGES_SUBDOMAIN}/${fileName}`
+
+    return Response.json({
+      success: true,
+      message: "File uploaded successfully",
+      imageLink: imageUrl,
+    })
+  } catch (error) {
+    console.error("❌ Upload error:", error)
+    return Response.json(
+      { success: false, message: "Upload failed", error: String(error) },
+      { status: 500 }
     )
   }
 }

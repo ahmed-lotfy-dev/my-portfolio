@@ -1,33 +1,40 @@
 "use client"
-import { useState, useRef, useActionState } from "react"
-
+import { useState, useRef, useActionState, useEffect } from "react"
 import {
   Dialog,
   DialogClose,
   DialogContent,
-  DialogDescription,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
 } from "@/src/components/ui/dialog"
-
 import Image from "next/image"
 import { Input } from "@/src/components/ui/input"
 import { addCertificateAction } from "@/src/app/actions/certificatesActions"
-
 import { notify } from "@/src/lib/utils/toast"
-
 import Submit from "@/src/components/ui/formSubmitBtn"
 import { Upload } from "@/src/components/dashboard-components/Upload"
 import { authClient } from "@/src/lib/auth-client"
 
 function AddCertificateComponent() {
   const [state, formAction] = useActionState(addCertificateAction, null)
-  const [selected, setSelected] = useState<string[]>(["featured"])
   const [imageUrl, setImageUrl] = useState("")
   const formRef = useRef<HTMLFormElement>(null)
   const { data: session } = authClient.useSession()
   const user = session?.user
+
+  // ✅ show toast when server action finishes
+  useEffect(() => {
+    if (state?.success) {
+      notify("Certificate added successfully!", true)
+      setImageUrl("")
+      formRef.current?.reset()
+    } else if (state?.message && !state?.success) {
+      notify(state.message, false)
+    }
+  }, [state])
+
+  console.log("Server action result:", state)
 
   return (
     <div className="flex flex-col justify-center items-center">
@@ -36,6 +43,7 @@ function AddCertificateComponent() {
           <DialogTrigger className="bg-primary text-primary-foreground hover:bg-primary/90 h-10 py-2 px-4 inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none ring-offset-background">
             Add Certificate
           </DialogTrigger>
+          <DialogTitle className="hidden">Add New Certificate</DialogTitle>
           <DialogContent className="max-w-[700px]">
             <form
               ref={formRef}
@@ -47,6 +55,7 @@ function AddCertificateComponent() {
                 type="text"
                 name="title"
                 placeholder="Certificate Title"
+                required
               />
               <p className="text-sm text-red-400">
                 {state?.error?.title && state?.error?.title?._errors[0]}
@@ -57,6 +66,7 @@ function AddCertificateComponent() {
                 type="text"
                 name="desc"
                 placeholder="Certificate Description"
+                required
               />
               <p className="text-sm text-red-400">
                 {state?.error?.desc && state?.error?.desc?._errors[0]}
@@ -67,6 +77,7 @@ function AddCertificateComponent() {
                 type="url"
                 name="courseLink"
                 placeholder="Course Link"
+                required
               />
               <p className="text-sm text-red-400">
                 {state?.error?.courseLink &&
@@ -78,6 +89,7 @@ function AddCertificateComponent() {
                 type="url"
                 name="profLink"
                 placeholder="Certificate Proof"
+                required
               />
               <p className="text-sm text-red-400">
                 {state?.error?.profLink && state?.error?.profLink?._errors[0]}
@@ -85,8 +97,9 @@ function AddCertificateComponent() {
 
               <Upload setImageUrl={setImageUrl} imageType={"Certificates"} />
               <p className="text-sm text-red-400">
-                {state?.error?.imageLink && state?.error?.imageLink?._errors}
+                {state?.error?.imageLink && state?.error?.imageLink?._errors[0]}
               </p>
+
               {imageUrl && (
                 <Image
                   className="m-auto"
@@ -100,18 +113,9 @@ function AddCertificateComponent() {
 
               <DialogClose asChild>
                 <Submit
-                  btnText="Edit Certificate"
+                  btnText="Add Certificate"
                   className="m-10"
                   type="submit"
-                  onClick={() => {
-                    if (user?.email === process.env.NEXT_PUBLIC_ADMIN_EMAIL) {
-                      notify("Editing Completed Successfully", true)
-                      setImageUrl("")
-                      formRef.current?.reset()
-                    } else {
-                      notify("You don't have privilege to do this", false)
-                    }
-                  }}
                 />
               </DialogClose>
             </form>

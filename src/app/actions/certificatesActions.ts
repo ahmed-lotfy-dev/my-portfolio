@@ -1,3 +1,4 @@
+
 "use server"
 
 import { CertificateSchema } from "../../lib/schemas/certificateSchema"
@@ -12,6 +13,7 @@ import { eq } from "drizzle-orm"
 export async function getAllCertificates() {
   try {
     const allCertificates = await db.query.certificates.findMany()
+    console.log(allCertificates)
     return { allCertificates }
   } catch (error) {
     return { error }
@@ -23,7 +25,7 @@ export async function getSingleCertificate(id: string) {
     const certificate = await db.query.certificates.findFirst({
       where: (c, { eq }) => eq(c.id, id),
     })
-    return { sucess: true, message: "Certificate Found", certificate }
+    return { success: true, message: "Certificate Found", certificate }
   } catch (error) {
     return { success: false, message: "Certificate Not Found" }
   }
@@ -36,13 +38,16 @@ export async function addCertificateAction(state: any, data: FormData) {
   const profLink = data.get("profLink") as string
   const imageLink = data.get("imageLink") as string
 
+  console.log("Received form data:", { title, desc, courseLink, profLink, imageLink })
+
   const session = await auth.api.getSession({ headers: await headers() })
   const user = session?.user
+  console.log("Session user:", user)
 
   if (user?.email !== process.env.NEXT_PUBLIC_ADMIN_EMAIL) {
     return {
       success: false,
-      message: "You Don't Have Privilige To Add Certificate",
+      message: "You don't have privilege to add a certificate.",
     }
   }
 
@@ -54,7 +59,12 @@ export async function addCertificateAction(state: any, data: FormData) {
     imageLink,
   })
 
-  if (result.success) {
+  if (!result.success) {
+    console.error("Validation failed:", result.error.format())
+    return { success: false, error: result.error.format() }
+  }
+
+  try {
     await db.insert(certificates).values({
       title,
       desc,
@@ -63,13 +73,13 @@ export async function addCertificateAction(state: any, data: FormData) {
       imageLink,
     })
 
-    console.log("certificate added successfully")
-    revalidatePath("/dashboard/certificates")
-    return { success: true, message: result.data }
-  }
+    console.log("✅ Certificate added successfully")
+    await revalidatePath("/dashboard/certificates")
 
-  if (result.error) {
-    return { success: false, error: result.error.format() }
+    return { success: true, message: "Certificate added successfully" }
+  } catch (error) {
+    console.error("❌ Database insert failed:", error)
+    return { success: false, message: "Database insert failed" }
   }
 }
 
@@ -87,7 +97,7 @@ export async function editCertificateAction(state: any, data: FormData) {
   if (user?.email !== process.env.NEXT_PUBLIC_ADMIN_EMAIL) {
     return {
       success: false,
-      message: "You Don't Have Privilige To Edit Certificate",
+      message: "You don't have privilege to edit a certificate.",
     }
   }
 
@@ -99,31 +109,29 @@ export async function editCertificateAction(state: any, data: FormData) {
     imageLink,
   })
 
-  if (result.success) {
-    const [oldCertificate] = await db
-      .select()
-      .from(certificates)
-      .where(eq(certificates.id, id))
-      .limit(1)
-
-    if (oldCertificate?.imageLink !== imageLink) {
-      console.log("New Image")
-      DeleteFromS3(oldCertificate?.imageLink)
-    }
-
-    await db
-      .update(certificates)
-      .set({ title, desc, courseLink, profLink, imageLink })
-      .where(eq(certificates.id, id))
-
-    console.log("certificate updated successfully")
-    revalidatePath("/dashboard/certificates")
-    return { success: true, message: "Certificate Updated Successfully" }
-  }
-
-  if (result.error) {
+  if (!result.success) {
     return { success: false, error: result.error.format() }
   }
+
+  const [oldCertificate] = await db
+    .select()
+    .from(certificates)
+    .where(eq(certificates.id, id))
+    .limit(1)
+
+  if (oldCertificate?.imageLink !== imageLink) {
+    console.log("New Image Detected — deleting old one")
+    DeleteFromS3(oldCertificate?.imageLink)
+  }
+
+  await db
+    .update(certificates)
+    .set({ title, desc, courseLink, profLink, imageLink })
+    .where(eq(certificates.id, id))
+
+  await revalidatePath("/dashboard/certificates")
+  console.log("✅ Certificate updated successfully")
+  return { success: true, message: "Certificate updated successfully" }
 }
 
 export async function deleteCertificateAction(certificateId: string) {
@@ -133,13 +141,13 @@ export async function deleteCertificateAction(certificateId: string) {
   if (user?.email !== process.env.NEXT_PUBLIC_ADMIN_EMAIL) {
     return {
       success: false,
-      message: "You Don't Have Privilige To Delete Certificate",
+      message: "You don't have privilege to delete a certificate.",
     }
   }
 
   await db.delete(certificates).where(eq(certificates.id, certificateId))
+  await revalidatePath("/dashboard/certificates")
 
-  console.log("Certificate Deleted", certificateId)
-  revalidatePath("/dashboard/certificates")
-  return { success: true, message: "Certificate Deleted Successfully" }
+  console.log("✅ Certificate deleted:", certificateId)
+  return { success: true, message: "Certificate deleted successfully" }
 }

@@ -15,4 +15,13 @@ export const projectsData = [
     repoLink: "https://github.com/ahmed-lotfy-dev/POS-System",
     categories: ["featured"],
   },
-];
+  {
+    title: "hi-x.net LinkTree ",
+    desc: "a project for client came to me to fix and add bckground to the mobile view and i fixe the structure of the website to inustry standard cause it was all code in html file and then fixed performance by removing big font awesome package hen add svg images and used lazyloadng and made mobile images and used picture tag to responsie shw versions",
+    repoLink: "https://github.com/ahmed-lotfy-dev/hi-x",
+    liveLink: "https://hi-x.net",
+    imageLink:
+      "https://images.ahmedlotfy.site/Projects-hi-x-net-2025-10-07-18_23_54.png",
+    categories: ["featured"],
+  },
+]

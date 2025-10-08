@@ -38,10 +38,10 @@ export default async function Projects() {
                 <p className="text-muted-foreground flex-grow">{proj.desc}</p>
                 <div className="mt-4 flex justify-end gap-4">
                   <Link href={proj.liveLink} target="_blank">
-                    <Button variant="outline">Live</Button>
+                    <Button>Live</Button>
                   </Link>
                   <Link href={proj.repoLink} target="_blank">
-                    <Button>Repo</Button>
+                    <Button variant="outline">Repo</Button>
                   </Link>
                 </div>
               </div>

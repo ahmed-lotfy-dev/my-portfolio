@@ -134,7 +134,7 @@ function EditCertificate({ EditedObject }: any) {
                 type="submit"
                 onClick={() => {
                   if (user?.email === process.env.NEXT_PUBLIC_ADMIN_EMAIL) {
-                    notify("Editing Completed Successfully", true)
+                    notify("Edit Completed Successfully", true)
                     setImageUrl("")
                     formRef.current?.reset()
                   } else {
