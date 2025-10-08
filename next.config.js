@@ -27,12 +27,14 @@ const nextConfig = {
       },
     ],
   },
-  serverActions: {
-    bodySizeLimit: "5mb",
-  },
-  api: {
-    bodyParser: {
-      sizeLimit: "20mb",
+  experimental: {
+    serverActions: {
+      bodySizeLimit: "5mb",
+    },
+    api: {
+      bodyParser: {
+        sizeLimit: "20mb",
+      },
     },
   },
 }
