@@ -7,7 +7,6 @@ export default async function SingleProjectPage(
 ) {
   const params = await props.params;
   const { slug } = params;
-  const { singleProject } = await getSingleProject(slug);
-  return <div>{singleProject?.title}</div>;
+  const { project } = await getSingleProject(slug);
+  return <div>{project?.title}</div>;
 }
-
