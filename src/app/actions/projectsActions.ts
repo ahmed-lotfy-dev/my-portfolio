@@ -7,12 +7,14 @@ import { ProjectSchema } from "../../lib/schemas/projectSchema"
 import { headers } from "next/headers"
 import { auth } from "@/src/lib/auth"
 import { projects } from "@/src/db/schema"
-import { eq } from "drizzle-orm"
+import { desc,asc, eq } from "drizzle-orm"
 
 // ✅ Fetch all projects
 export async function getAllProjects() {
   try {
-    const allProjects = await db.query.projects.findMany()
+    const allProjects = await db.query.projects.findMany({
+      orderBy: [asc(projects.createdAt)],
+    })
     return { allProjects }
   } catch (error) {
     console.error("❌ Failed to fetch projects:", error)

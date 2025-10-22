@@ -6,21 +6,11 @@ import Welcome from "@/src/components/dashboard-components/Welcome"
 import Link from "next/link"
 import { auth } from "@/src/lib/auth"
 import { headers } from "next/headers"
-import SignInForm from "@/src/components/auth/SignInForm"
 
 export default async function Page({}) {
   const session = await auth.api.getSession({
     headers: await headers(),
   })
-  if (!session) {
-    return (
-      <div className="w-full p-5 pt-10">
-        <div className="max-w-xl">
-          <SignInForm />
-        </div>
-      </div>
-    )
-  }
 
   const { allCertificates } = await getAllCertificates()
   const { allProjects } = await getAllProjects()
@@ -47,9 +37,11 @@ export default async function Page({}) {
           </Card>
         </Link>
       </div>
-      <div className="mt-2 text-sm text-muted-foreground">
-        <h1>Welcome {session.user.name}</h1>
-      </div>
+      {session?.user?.name && (
+        <div className="mt-2 text-sm text-muted-foreground">
+          <h1>Welcome {session.user.name}</h1>
+        </div>
+      )}
     </div>
   )
 }

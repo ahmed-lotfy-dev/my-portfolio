@@ -4,6 +4,8 @@ import { Button } from "./ui/button"
 import { Card } from "./ui/card"
 import { getAllProjects } from "@/src/app/actions/projectsActions"
 import Section from "./ui/Section"
+import ReadMoreText from "./ui/ReadMoreText"
+import ImageViewer from "./ui/ImageViewer"
 
 export default async function Projects() {
   const { allProjects } = await getAllProjects()
@@ -25,20 +27,28 @@ export default async function Projects() {
               key={proj.id}
               className="flex h-full flex-col justify-between overflow-hidden hover:shadow-md transition-shadow duration-300"
             >
-              <div className="relative w-full h-56">
-                <Image
-                  src={proj.imageLink}
-                  alt={proj.title}
-                  fill
-                  className="object-cover"
-                />
-              </div>
+              <ImageViewer
+                imageUrl={proj.imageLink}
+                altText={proj.title}
+                trigger={
+                  <div className="relative w-full h-72 cursor-pointer">
+                    <Image
+                      src={proj.imageLink}
+                      alt={proj.title}
+                      fill
+                      className={proj.categories?.includes("mobile") || proj.categories?.includes("app") ? "object-contain" : "object-cover"}
+                    />
+                  </div>
+                }
+              />
               <div className="p-6 flex flex-col flex-grow">
                 <h3 className="text-2xl font-bold mb-2">{proj.title}</h3>
-                <p className="text-muted-foreground flex-grow">{proj.desc}</p>
+                <ReadMoreText text={proj.desc} maxLines={5} className="text-muted-foreground flex-grow" />
                 <div className="mt-4 flex justify-end gap-4">
                   <Link href={proj.liveLink} target="_blank">
-                    <Button>Live</Button>
+                    <Button>
+                      {proj.categories?.includes("mobile") || proj.categories?.includes("app") ? "APK" : "Live"}
+                    </Button>
                   </Link>
                   <Link href={proj.repoLink} target="_blank">
                     <Button variant="outline">Repo</Button>

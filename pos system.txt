@@ -4,7 +4,7 @@ Books App
 
 This Project Was Part Of The 6 Weeks Internship With Chingu.Io I Worked With A Team Of 4 People On The Project Project Is Built On Vite As The Front-End And Express On The Backend, The Authentication Part Is Built With Passportjs Practiced Much And Learned How To Work On Team Based Projects And Practice On (Agile) Methodoligy
 
-https://chingu-v43-team14f.ahmedlotfy.dev/
+https://chingu-v43-team14f.ahmedlotfy.site/
 
 https://github.com/chingu-voyages/v43-tier2-team-14
 
@@ -16,4 +16,4 @@ It is a full stack applciation POS System that serve any on their work with cust
 
 https://github.com/ahmed-lotfy-dev/POS-System
 
-https://pos-system-f.ahmedlotfy.dev/
+https://pos-system-f.ahmedlotfy.site/

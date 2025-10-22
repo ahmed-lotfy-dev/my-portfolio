@@ -59,7 +59,7 @@ function EditProject({ EditedObject }: any) {
             <Pencil className="mr-3" size={20} />
             Edit Project
           </DialogTrigger>
-          <DialogContent className="w-[700px]">
+          <DialogContent className="w-[700px] overflow-y-auto max-h-[calc(100vh-100px)]">
             <form
               onSubmit={handleSubmit}
               className="flex flex-col justify-center items-center w-full gap-5 text-black "

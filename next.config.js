@@ -1,5 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  reactCompiler: true,
   images: {
     remotePatterns: [
       {
@@ -28,13 +29,9 @@ const nextConfig = {
     ],
   },
   experimental: {
+    turbopackFileSystemCacheForDev: true,
     serverActions: {
       bodySizeLimit: "5mb",
-    },
-    api: {
-      bodyParser: {
-        sizeLimit: "20mb",
-      },
     },
   },
 }

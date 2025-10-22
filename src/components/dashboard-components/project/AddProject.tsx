@@ -40,6 +40,9 @@ function AddProjectComponent() {
       formRef.current?.reset()
     } else if (state?.error && Object.keys(state.error).length > 0) {
       notify("Please fix the errors and try again.", false)
+      // Clear inputs on validation error
+      setImageUrl("")
+      formRef.current?.reset()
     }
   }, [state])
 
@@ -51,7 +54,7 @@ function AddProjectComponent() {
             Add Project
           </DialogTrigger>
 
-          <DialogContent className="max-w-[700px]">
+          <DialogContent className="max-w-[700px] overflow-y-auto max-h-[calc(100vh-100px)]">
             <DialogHeader>
               <DialogTitle>Add a New Project</DialogTitle>
               <DialogDescription>

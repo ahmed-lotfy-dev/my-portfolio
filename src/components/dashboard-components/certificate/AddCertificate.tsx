@@ -44,7 +44,7 @@ function AddCertificateComponent() {
             Add Certificate
           </DialogTrigger>
           <DialogTitle className="hidden">Add New Certificate</DialogTitle>
-          <DialogContent className="max-w-[700px]">
+          <DialogContent className="max-w-[700px] overflow-y-auto max-h-[calc(100vh-100px)]">
             <form
               ref={formRef}
               action={formAction}

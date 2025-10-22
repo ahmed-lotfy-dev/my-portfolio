@@ -16,12 +16,21 @@ export const projectsData = [
     categories: ["featured"],
   },
   {
-    title: "hi-x.net LinkTree ",
-    desc: "a project for client came to me to fix and add bckground to the mobile view and i fixe the structure of the website to inustry standard cause it was all code in html file and then fixed performance by removing big font awesome package hen add svg images and used lazyloadng and made mobile images and used picture tag to responsie shw versions",
+    title: "hi-x.net LinkTree",
+    desc: "a project for client came to me to fix, add bckground to the mobile view and i fixe the structure of the website to industry standards cause it was all code in html file and then fixed lighthouse performance by removing big font awesome package hen add svg images and used lazyloadng and made mobile images and used picture tag to responsie show versions",
     repoLink: "https://github.com/ahmed-lotfy-dev/hi-x",
     liveLink: "https://hi-x.net",
     imageLink:
       "https://images.ahmedlotfy.site/Projects-hi-x-net-2025-10-07-18_23_54.png",
     categories: ["featured"],
+  },
+  {
+    title: "DevChallenges Frontend Projects Collection",
+    desc: "A collection of multiple front-end challenges completed from DevChallenges.io to practice responsive design, accessibility, and performance optimization. Each mini-project was built with modern best practices — semantic HTML, CSS Grid/Flexbox, and optimized images for fast loading. Projects include the 404 Not Found Page, Interior Consultant, Recipe Page, My Gallery, and Checkout Page. The collection demonstrates consistency in coding standards, UI fidelity to Figma designs, and strong attention to performance and accessibility.",
+    repoLink: "https://github.com/ahmed-lotfy-dev/devchallenges-projects",
+    liveLink: "https://devchallenges.ahmedlotfy.site",
+    imageLink:
+      "https://images.ahmedlotfy.site/Projects-devchallenges-collection.png",
+    categories: ["featured", "dev-challenges"],
   },
 ]

@@ -8,7 +8,7 @@ console.log(process.env.NEXT_PUBLIC_BASE_URL)
 export default function LoginPage() {
   return (
     <Section id="login">
-      <div className="container">
+      <div className="container ">
         <div className="mx-auto max-w-3xl text-center mb-10">
           <h1 className="text-4xl sm:text-5xl font-extrabold tracking-tight">
             Sign in

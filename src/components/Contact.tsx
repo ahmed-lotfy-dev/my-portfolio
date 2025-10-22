@@ -30,7 +30,7 @@ export default function Contact() {
         <div className="md:w-1/2 space-y-4">
           <h3 className="text-2xl font-bold">Get in Touch</h3>
           <p className="text-gray-700 dark:text-gray-300">
-            Email: contact@ahmedlotfy.dev
+            Email: contact@ahmedlotfy.site
           </p>
           <p className="text-gray-700 dark:text-gray-300">
             Phone: +201016037479

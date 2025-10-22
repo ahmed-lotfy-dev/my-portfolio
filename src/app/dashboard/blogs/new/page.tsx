@@ -1,7 +1,8 @@
-"use client";
-import { addNewPost } from "@/src/app/actions/postsActions";
-import Submit from "@/src/components/ui/formSubmitBtn";
-import { Input } from "@/src/components/ui/input";
+"use client"
+
+import { addNewPost } from "@/src/app/actions/postsActions"
+import Submit from "@/src/components/ui/formSubmitBtn"
+import { Input } from "@/src/components/ui/input"
 import {
   Select,
   SelectContent,
@@ -10,41 +11,94 @@ import {
   SelectLabel,
   SelectTrigger,
   SelectValue,
-} from "@/src/components/ui/select";
+} from "@/src/components/ui/select"
 
-type Props = {};
+type Props = {}
 
-const page = (props: Props) => {
+const Page = (props: Props) => {
   return (
     <div className="w-full flex flex-col justify-center items-center mt-10">
-      <h2>Add New Blog Post</h2>
+      <h2 className="text-2xl font-bold mb-6">Add New Blog Post</h2>
+
       <form
         action={async (formData) => {
-          await addNewPost(formData);
+          await addNewPost(formData)
         }}
+        className="flex flex-col gap-5 w-full max-w-lg p-6 border rounded-lg shadow-sm bg-card"
       >
-        <Input type="text" name="postTitle" />
+        {/* Post Title */}
+        <div className="flex flex-col gap-2">
+          <label htmlFor="title" className="font-medium">
+            Post Title
+          </label>
+          <Input
+            id="title"
+            type="text"
+            name="title"
+            placeholder="Enter post title"
+            required
+          />
+        </div>
 
-        <Input type="text" name="postContent" />
+        {/* Post Content */}
+        <div className="flex flex-col gap-2">
+          <label htmlFor="postContent" className="font-medium">
+            Post Content
+          </label>
+          <Input
+            id="postContent"
+            type="text"
+            name="postContent"
+            placeholder="Enter content"
+            required
+          />
+        </div>
 
-        <Select name="published">
-          <SelectTrigger className="w-[180px]">
-            <SelectValue placeholder="Select Publish State" />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectGroup id="published">
-              <SelectItem value="true">published</SelectItem>
-              <SelectItem value="false">unpublished</SelectItem>
-            </SelectGroup>
-          </SelectContent>
-        </Select>
-        <Input type="file" name="file" />
+        {/* Publish State */}
+        <div className="flex flex-col gap-2">
+          <label htmlFor="published" className="font-medium">
+            Publish State
+          </label>
+          <Select name="published">
+            <SelectTrigger className="w-full">
+              <SelectValue placeholder="Select Publish State" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectGroup>
+                <SelectLabel>Publish State</SelectLabel>
+                <SelectItem value="true">Published</SelectItem>
+                <SelectItem value="false">Unpublished</SelectItem>
+              </SelectGroup>
+            </SelectContent>
+          </Select>
+        </div>
 
-        <Input type="text" placeholder="Categories" name="categories" />
-        <Submit btnText={"Add Post"} />
+        {/* Upload Image */}
+        <div className="flex flex-col gap-2">
+          <label htmlFor="file" className="font-medium">
+            Upload Image
+          </label>
+          <Input id="file" type="file" name="file" accept="image/*" />
+        </div>
+
+        {/* Categories */}
+        <div className="flex flex-col gap-2">
+          <label htmlFor="categories" className="font-medium">
+            Categories
+          </label>
+          <Input
+            id="categories"
+            type="text"
+            name="categories"
+            placeholder="e.g. frontend, backend"
+          />
+        </div>
+
+        <Submit btnText="Add Post" />
       </form>
     </div>
-  );
-};
+  )
+}
 
-export default page;
+export default Page
+  
