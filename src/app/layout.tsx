@@ -95,7 +95,7 @@ export default async function RootLayout({
             </Nav>
 
             {children}
-            <GoogleAnalytics gaId={process.env.GA_ID} />
+            <GoogleAnalytics gaId={"G-97J3PKW2DK"} />
             <Toaster />
           </Providers>
         </main>
