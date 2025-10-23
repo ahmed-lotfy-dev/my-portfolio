@@ -36,18 +36,35 @@ export default async function Projects() {
                       src={proj.imageLink}
                       alt={proj.title}
                       fill
-                      className={proj.categories?.includes("mobile") || proj.categories?.includes("app") ? "object-contain" : "object-cover"}
+                      unoptimized={
+                        proj.imageLink?.toLowerCase().endsWith(".gif")
+                          ? true
+                          : undefined
+                      }
+                      className={
+                        proj.categories?.includes("mobile") ||
+                        proj.categories?.includes("app")
+                          ? "object-contain"
+                          : "object-cover"
+                      }
                     />
                   </div>
                 }
               />
               <div className="p-6 flex flex-col flex-grow">
                 <h3 className="text-2xl font-bold mb-2">{proj.title}</h3>
-                <ReadMoreText text={proj.desc} maxLines={5} className="text-muted-foreground flex-grow" />
+                <ReadMoreText
+                  text={proj.desc}
+                  maxLines={5}
+                  className="text-muted-foreground flex-grow"
+                />
                 <div className="mt-4 flex justify-end gap-4">
                   <Link href={proj.liveLink} target="_blank">
                     <Button>
-                      {proj.categories?.includes("mobile") || proj.categories?.includes("app") ? "APK" : "Live"}
+                      {proj.categories?.includes("mobile") ||
+                      proj.categories?.includes("app")
+                        ? "APK"
+                        : "Live"}
                     </Button>
                   </Link>
                   <Link href={proj.repoLink} target="_blank">

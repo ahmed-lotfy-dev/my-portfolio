@@ -1,8 +1,9 @@
 "use server"
 
 import { contactSchema } from "../../lib/schemas/contactSchema"
-import sgMail from "@sendgrid/mail"
-sgMail.setApiKey(process.env.SENDGRID_API_KEY)
+import { Resend } from "resend"
+
+const resend = new Resend(process.env.RESEND_API_KEY)
 
 export async function contactAction(state: any, formData: FormData) {
   const name = formData.get("name")
@@ -21,7 +22,7 @@ export async function contactAction(state: any, formData: FormData) {
         His Email Is: ${email}<br>
         And This Is His Message :${message}</strong>`,
     }
-    const sent = await sgMail.sendMultiple(msg)
+    const sent = await resend.emails.send(msg)
     return { success: true, data: result.data }
   }
   if (result.error) {
