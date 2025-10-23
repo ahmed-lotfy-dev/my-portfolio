@@ -54,7 +54,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Ahmed Lotfy – Full-Stack Software Engineer",
     description:
-      "Portfolio of Ahmed Lotfy – Full-Stack Software Engineer. I build beautiful, responsive, and scalable web applications.",
+      "Portfolio of Ahmed Lotfy – Full-Stack Software Engineer. I build responsive, and scalable web applications.",
     creator: "@yourTwitterHandle",
     images: ["https://ahmedlotfy.site/og-image.png"],
   },
