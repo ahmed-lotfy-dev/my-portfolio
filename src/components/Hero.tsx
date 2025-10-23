@@ -19,7 +19,7 @@ export default async function Hero() {
             Full-Stack Software Engineer
           </h2>
           <p className="text-md md:text-lg text-muted-foreground max-w-2xl mt-4">
-            I build beautiful, responsive, and scalable web applications.
+            I build responsive, and scalable web applications.
             Let&apos;s create something amazing together.
           </p>
           <Link

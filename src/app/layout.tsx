@@ -19,7 +19,7 @@ export const metadata: Metadata = {
     template: "%s | Ahmed Lotfy",
   },
   description:
-    "Portfolio of Ahmed Lotfy – Full-Stack Software Engineer. I build beautiful, responsive, and scalable web applications. Let's create something amazing together.",
+    "Portfolio of Ahmed Lotfy – Full-Stack Software Engineer. I build responsive, and scalable web applications. Let's create something amazing together.",
   keywords: [
     "Ahmed Lotfy",
     "Full-Stack Developer",
@@ -38,7 +38,7 @@ export const metadata: Metadata = {
     url: "https://ahmedlotfy.site",
     title: "Ahmed Lotfy – Full-Stack Software Engineer",
     description:
-      "Portfolio of Ahmed Lotfy – Full-Stack Software Engineer. I build beautiful, responsive, and scalable web applications.",
+      "Portfolio of Ahmed Lotfy – Full-Stack Software Engineer. I build responsive, and scalable web applications.",
     siteName: "Ahmed Lotfy Portfolio",
     images: [
       {
