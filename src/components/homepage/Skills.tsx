@@ -1,5 +1,5 @@
 import Image from "next/image"
-import { Card } from "./ui/card"
+import { Card } from "@/src/components/ui/card"
 
 import html from "@/public/images/skills/html.svg"
 import css from "@/public/images/skills/css3.svg"
@@ -11,6 +11,7 @@ import github from "@/public/images/skills/github.svg"
 import graphql from "@/public/images/skills/graphql.svg"
 import linux from "@/public/images/skills/linux.svg"
 import docker from "@/public/images/skills/docker.svg"
+import { getTranslations } from "next-intl/server"
 
 interface Skill {
   src: string
@@ -30,19 +31,20 @@ const skillsList: Skill[] = [
   { src: docker, alt: "Docker" },
 ]
 
-export default function Skills() {
+export default async function Skills() {
   // Duplicate skills to create seamless loop
   const loopSkills = [...skillsList, ...skillsList]
+  const t = await getTranslations("skills")
 
   return (
-    <section className="flex flex-col items-center my-16 px-4" id="skills">
+    <section className="flex flex-col items-center mt-16 px-4" id="skills">
       <div className="container">
         <div className="text-center mb-10">
-          <h2 className="text-4xl font-extrabold text-blue-900 tracking-tight sm:text-5xl">
-            My <span className="text-blue-600">Skills</span>
+          <h2 className="text-4xl font-extrabold text-blue-900 dark:text-blue-700 tracking-tight sm:text-5xl ">
+            {t("title")}
           </h2>
           <p className="mt-3 text-lg text-gray-600 max-w-2xl mx-auto px-2 sm:px-0">
-            A quick glance at the tools and technologies I use most.
+            {t("description")}
           </p>
         </div>
 

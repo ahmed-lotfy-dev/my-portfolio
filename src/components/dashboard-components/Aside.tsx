@@ -15,7 +15,7 @@ export default async function Aside() {
       <div className="h-full space-y-4 flex flex-col gap-6 justify-between content-start">
         <div className="flex flex-col gap-6 ">
           <div className="flex gap-5 items-start first:mt-2">
-            <IoHome className="text-muted-foreground w-[1.5rem] h-[1.5rem]" />
+            <IoHome className="text-muted-foreground w-6 h-6" />
             <Link
               className="text-foreground/90 hover:text-primary transition-colors"
               href="/"
@@ -24,7 +24,7 @@ export default async function Aside() {
             </Link>
           </div>
           <div className="flex gap-5 items-start">
-            <IoGrid className="text-muted-foreground w-[1.5rem] h-[1.5rem]" />
+            <IoGrid className="text-muted-foreground w-6 h-6" />
 
             <Link
               className="text-foreground/90 hover:text-primary transition-colors"
@@ -34,7 +34,7 @@ export default async function Aside() {
             </Link>
           </div>
           <div className="flex gap-5 items-start">
-            <IoCode className="text-muted-foreground w-[1.5rem] h-[1.5rem]" />
+            <IoCode className="text-muted-foreground w-6 h-6" />
             <Link
               className="text-foreground/90 hover:text-primary transition-colors"
               href="/dashboard/projects"
@@ -43,7 +43,7 @@ export default async function Aside() {
             </Link>
           </div>
           <div className="flex gap-5 items-start">
-            <IoRibbon className="text-muted-foreground w-[1.5rem] h-[1.5rem]" />
+            <IoRibbon className="text-muted-foreground w-6 h-6" />
             <Link
               className="text-foreground/90 hover:text-primary transition-colors"
               href="/dashboard/certificates"
@@ -53,7 +53,7 @@ export default async function Aside() {
           </div>
           {/* Add New Post Link */}
           <div className="flex gap-5 items-start">
-            <IoAddCircleSharp className="text-muted-foreground w-[1.5rem] h-[1.5rem]" />
+            <IoAddCircleSharp className="text-muted-foreground w-6 h-6" />
             <Link
               className="text-foreground/90 hover:text-primary transition-colors"
               href="/dashboard/blogs/new"

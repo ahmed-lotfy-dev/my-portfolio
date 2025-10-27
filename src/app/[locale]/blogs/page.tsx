@@ -35,7 +35,7 @@ export default async function PostsList() {
                       />
                     </div>
                   </CardHeader>
-                  <CardContent className="p-6 flex-grow mt-14">
+                  <CardContent className="p-6 grow mt-14">
                     <CardTitle className="text-xl font-semibold mb-2">
                       {post.title_en}
                     </CardTitle>

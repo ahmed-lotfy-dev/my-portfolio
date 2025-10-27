@@ -1,5 +1,6 @@
-/** @type {import('tailwindcss').Config} */
-module.exports = {
+/** @type {import('tailwindcss').Config} */ 
+
+export default {
   darkMode: ["class"],
   content: [
     "./pages/**/*.{ts,tsx}",
@@ -31,7 +32,7 @@ module.exports = {
         error: "var(--color-error)",
         info: "var(--color-info)",
         warning: "var(--color-warning)",
-        //  end 
+        //  end
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",

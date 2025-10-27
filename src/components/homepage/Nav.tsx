@@ -5,17 +5,20 @@ import { usePathname } from "next/navigation"
 import { Menu, X } from "lucide-react"
 import Image from "next/image"
 import ThemeToggle from "@/src/components/ThemeToggle"
+import LanguageSwitcher from "@/src/components/i18n/LanguageSwitcher"
 import { useTheme } from "next-themes"
 import LogoLight from "@/public/Logo-Blue-Dot.png"
 import LogoDark from "@/public/Logo-Blue-Dot.png"
+import { useLocale, useTranslations } from "next-intl"
 
 const navLinks = [
-  { href: "/", label: "Home" },
-  { href: "/#projects", label: "Projects" },
-  { href: "/blogs", label: "Blog" },
-  { href: "/#certificates", label: "Certificates" },
-  { href: "/#about", label: "About" },
-  { href: "/#contact", label: "Contact" },
+  { href: "/", label: "home" },
+  { href: "/#projects", label: "projects" },
+  { href: "/blogs", label: "blog" },
+  { href: "/#certificates", label: "certificates" },
+  { href: "/#about", label: "about" },
+  { href: "/#contact", label: "contact" },
+  { href: "/dashboard", label: "dashboard" },
 ]
 
 function Nav({ children }: { children: ReactNode }) {
@@ -24,6 +27,9 @@ function Nav({ children }: { children: ReactNode }) {
   const [scrolled, setScrolled] = useState(false)
   const { resolvedTheme } = useTheme()
   const [mounted, setMounted] = useState(false)
+
+  const t = useTranslations("nav")
+  const locale = useLocale()
 
   useEffect(() => {
     const handleScroll = () => {
@@ -42,13 +48,13 @@ function Nav({ children }: { children: ReactNode }) {
 
   return (
     <header
-      className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
-        open
-          ? "bg-background shadow-sm border-b border-border"
+      className={`fixed inset-x-0 top-0 z-50 transition-all duration-100 ${
+        pathname.startsWith("/dashboard")
+          ? "hidden"
           : scrolled
-          ? "bg-background shadow-sm border-b border-border sm:bg-background/80 sm:backdrop-blur-md"
-          : "bg-background shadow-sm border-b border-border sm:bg-transparent sm:shadow-none sm:border-b-0"
-      } ${pathname.startsWith("/dashboard") ? "hidden" : ""}`}
+          ? "bg-background/70 backdrop-blur-md border-b border-border shadow-sm"
+          : ""
+      }`}
     >
       <nav className="max-w-6xl mx-auto flex h-16 items-center justify-between">
         <Link href="/" className="flex items-center">
@@ -67,7 +73,7 @@ function Nav({ children }: { children: ReactNode }) {
                 href={link.href}
                 className="relative text-sm font-medium text-foreground/80 hover:text-primary transition-colors"
               >
-                {link.label}
+                {t(link.label)}
                 {pathname === link.href && (
                   <span className="absolute -bottom-1 left-0 w-full h-0.5 bg-primary" />
                 )}
@@ -78,16 +84,13 @@ function Nav({ children }: { children: ReactNode }) {
 
         <div className="hidden md:flex items-center gap-4">
           <ThemeToggle />
-          <Link href="/dashboard">
-            <span className="text-sm font-medium text-foreground/80 hover:text-primary transition-colors">
-              Dashboard
-            </span>
-          </Link>
+          <LanguageSwitcher />
           {children}
         </div>
 
         <div className="flex items-center gap-2 md:hidden pr-2">
           <ThemeToggle />
+          <LanguageSwitcher />
           <button
             type="button"
             aria-label="Open menu"
@@ -109,9 +112,18 @@ function Nav({ children }: { children: ReactNode }) {
         <div className="absolute inset-0 bg-black/50" />
       </div>
       <div
-        className={`fixed right-0 top-0 h-full w-72 bg-background shadow-lg transform transition-transform duration-300 z-50 ${
-          open ? "translate-x-0" : "translate-x-full"
-        }`}
+        className={`fixed top-0 h-full w-72 bg-background shadow-lg transform transition-transform duration-300 z-50
+    ${open ? "translate-x-0" : ""}
+    ${
+      locale === "ar"
+        ? open
+          ? "left-0 translate-x-0"
+          : "-translate-x-full left-0"
+        : open
+        ? "right-0 translate-x-0"
+        : "translate-x-full right-0"
+    }
+  `}
       >
         <div className="flex items-center justify-between p-4 border-b">
           <Link href="/" onClick={close}>
@@ -139,19 +151,10 @@ function Nav({ children }: { children: ReactNode }) {
                 onClick={close}
                 className="block px-4 py-2 text-sm font-medium text-foreground rounded-md hover:bg-accent/30"
               >
-                {link.label}
+                {t(link.label)}
               </Link>
             </li>
           ))}
-          <li>
-            <Link
-              href="/dashboard"
-              onClick={close}
-              className="block px-4 py-2 text-sm font-medium text-foreground rounded-md hover:bg-accent/30"
-            >
-              Dashboard
-            </Link>
-          </li>
         </ul>
       </div>
     </header>

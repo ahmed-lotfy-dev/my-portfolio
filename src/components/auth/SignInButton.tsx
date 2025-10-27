@@ -4,11 +4,13 @@ import { useRouter } from "next/navigation"
 import { authClient } from "@/src/lib/auth-client"
 import { Button } from "@/src/components/ui/button"
 import UserButton from "@/src/components/dashboard-components/UserButton"
+import { useTranslations } from "use-intl"
 
 export default function SignInButtons({ className }: { className?: string }) {
   const router = useRouter()
   const [user, setUser] = useState<any>(undefined)
   const [loading, setLoading] = useState(false)
+  const t = useTranslations("nav")
 
   const refreshSession = useCallback(async () => {
     try {
@@ -30,7 +32,7 @@ export default function SignInButtons({ className }: { className?: string }) {
   return (
     <div className={`flex justify-center ${className ?? ""}`}>
       <Button type="button" onClick={() => router.push("/login")}>
-        Sign in
+        {t("signin")}
       </Button>
     </div>
   )

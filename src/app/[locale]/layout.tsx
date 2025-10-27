@@ -1,14 +1,19 @@
+import { NextIntlClientProvider, hasLocale } from "next-intl"
+import { notFound } from "next/navigation"
+import { routing } from "@/src/i18n/routing"
+
 import { GoogleAnalytics } from "@next/third-parties/google"
 
-import "./globals.css"
+import "../globals.css"
 
-import { Nav } from "@/src/components/Nav"
+import { Nav } from "@/src/components/homepage/Nav"
 import type { Metadata } from "next"
 import { Toaster } from "@/src/components/ui/sonner"
 import { ReactNode } from "react"
 import { inter, plusJakarta, sora } from "@/src/components/ui/fonts"
-import UserButton from "../components/dashboard-components/UserButton"
-import Providers from "./provider"
+import UserButton from "@/src/components/dashboard-components/UserButton"
+import Providers from "@/src/app/provider"
+import { getMessages } from "next-intl/server"
 
 export const dynamic = "force-dynamic"
 
@@ -74,14 +79,25 @@ export const metadata: Metadata = {
   },
 }
 
-export default async function RootLayout({
-  children,
-}: {
-  children: ReactNode
-}) {
+type Props = {
+  children: React.ReactNode
+  params: Promise<{ locale: string }>
+}
+
+export default async function LocaleLayout({ children, params }: Props) {
+  const { locale } = await params 
+  const isArabic = locale === "ar" ? "rtl" : "ltr"
+
+  if (!hasLocale(routing.locales, locale)) {
+    notFound()
+  }
+
+  const messages = await getMessages()
+
   return (
     <html
-      lang="en"
+      lang={locale}
+      dir={isArabic}
       className="scroll-smooth max-h-svh"
       suppressHydrationWarning
     >
@@ -90,14 +106,16 @@ export default async function RootLayout({
       >
         <main className="font-main ">
           <Providers>
-            <Nav>
-              <UserButton className="flex absolute right-16 md:ml-5 md:static" />
-            </Nav>
+            <NextIntlClientProvider messages={messages}>
+              <Nav>
+                <UserButton className="flex absolute right-16 md:ml-5 md:static" />
+              </Nav>
 
-            {children}
-            <GoogleAnalytics gaId={"G-97J3PKW2DK"} />
-            <Toaster />
+              {children}
+            </NextIntlClientProvider>
           </Providers>
+          <GoogleAnalytics gaId={"G-97J3PKW2DK"} />
+          <Toaster />
         </main>
       </body>
     </html>

@@ -1,11 +1,7 @@
 {
   "compilerOptions": {
     "target": "es2017",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
@@ -25,18 +21,10 @@
     ],
     "baseUrl": ".",
     "paths": {
-      "@/*": [
-        "./*"
-      ],
-      "@/components/*": [
-        "src/app/components/*"
-      ],
-      "@/lib/*": [
-        "src/lib/*"
-      ],
-      "auth": [
-        "./auth.ts"
-      ]
+      "@/*": ["./*"],
+      "@/components/*": ["src/app/[locale]/components/*"],
+      "@/lib/*": ["src/lib/*"],
+      "auth": ["./auth.ts"]
     }
   },
   "include": [
@@ -44,18 +32,16 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
-    "src/app/dashboard/aside.jsx",
-    "src/app/components/Skills.tsx",
+    "src/app/[locale]/dashboard/aside.jsx",
+    "src/app/[locale]/components/Skills.tsx",
     ".pagesOld/api/contact.ts",
     "src/app/actions/page.tsx",
-    "src/app/components/accordion.tsx",
+    "src/app/[locale]/components/accordion.tsx",
     "src/app/page.tsx",
     "src/db/migrate.ts",
     "src/app/redux/features/Projects",
     "src/db/db-seed-data/prjects-data.ts",
     ".next/dev/types/**/*.ts"
   ],
-  "exclude": [
-    "node_modules"
-  ]
+  "exclude": ["node_modules"]
 }

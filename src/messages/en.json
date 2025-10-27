@@ -1,0 +1,105 @@
+{
+  "nav": {
+    "home": "Home",
+    "projects": "Projects",
+    "blog": "Blog",
+    "certificates": "Certificates",
+    "about": "About",
+    "contact": "Contact",
+    "dashboard": "Dashboard",
+    "signin": "Sign In",
+    "signout": "Sign Out"
+  },
+  "hero": {
+    "name": "Ahmed Lotfy",
+    "title": "Full-Stack Web & Mobile Software Developer",
+    "description": "I build responsive and scalable web and mobile applications. Let's create something amazing together.",
+    "resume": "My Resume",
+    "illustrationAlt": "Developer Illustration Hero Image"
+  },
+  "skills": {
+    "title": "My Skills",
+    "description": "A quick glance at the tools and technologies I use most.",
+    "list": [
+      "HTML",
+      "CSS",
+      "JavaScript",
+      "React",
+      "React Native",
+      "Next.js",
+      "Node.js",
+      "MongoDB",
+      "GraphQL",
+      "GitHub",
+      "Linux",
+      "Docker"
+    ]
+  },
+  "projects": {
+    "title": "My Projects",
+    "description": "Here are some of the projects I've worked on.",
+    "booksApp": {
+      "title": "Books App",
+      "description": "This project was part of a 6-week internship with Chingu.io. I worked with a team of 4 people on a project built with Vite for the frontend and Express on the backend. Authentication was implemented with Passport.js, and I practiced teamwork and Agile methodology."
+    },
+    "posSystem": {
+      "title": "POS System App",
+      "description": "A Full-Stack POS System for businesses to manage multiple customers simultaneously. The backend uses NestJS with JWT authentication and authorization, while the frontend is built with Vite and React Router v6 to strengthen my skills in NestJS and React."
+    },
+    "linktree": {
+      "title": "hi-x.net LinkTree",
+      "description": "A client project where I fixed layout issues, improved structure to follow industry standards, optimized performance by replacing Font Awesome with SVGs, applied lazy loading, and made the site fully responsive."
+    },
+    "devChallenges": {
+      "title": "DevChallenges Frontend Projects Collection",
+      "description": "A collection of front-end challenges from DevChallenges.io, focused on responsive design, accessibility, and performance. Each project uses semantic HTML, CSS Grid/Flexbox, and optimized images for speed and consistency."
+    },
+    "selfTracker": {
+      "title": "SelfTracker Fitness App",
+      "description": "A React Native mobile app for Android and iOS to track weight and workout logs with a calendar view, charts, and task management — designed to improve lifestyle and personal progress tracking."
+    }
+  },
+  "certificates": {
+    "title": "My Certificates",
+    "description": "A collection of my certifications and qualifications. Hover over a card to see the certificate.",
+    "list": [
+      "LinkedIn Programming Foundation",
+      "Build Responsive Real World Websites With HTML and CSS",
+      "The Complete JavaScript Course 2022: From Zero to Expert!",
+      "React Development Cross-Skilling",
+      "Complete React Developer (w/ Redux, Hooks, GraphQL)",
+      "NodeJS – The Complete Guide (MVC, REST APIs, GraphQL, Deno)",
+      "ChatGPT Basics Course"
+    ]
+  },
+  "about": {
+    "title": "About Me",
+    "name": "Ahmed Lotfy",
+    "description1": "Hello, I'm Ahmed Lotfy, a Full-Stack Web & Mobile Software Developer with a background in PC maintenance. My journey into software development is driven by a passion for technology and continuous learning.",
+    "description2": "My experience in hardware gives me a unique perspective on software development, allowing me to approach problems with a holistic mindset.",
+    "description3": "I am actively seeking opportunities to contribute to innovative projects. If you're looking for a dedicated Full-Stack developer, I’d love to connect with you."
+  },
+  "contact": {
+    "title": "Contact Me",
+    "description": "Have a question or want to work together? Send me a message.",
+    "getInTouch": "Get in Touch",
+    "email": "Email: contact@ahmedlotfy.site",
+    "phone": "Phone: +201016037479",
+    "send": "Send Message",
+    "placeholders": {
+      "name": "Full Name",
+      "email": "Email Address",
+      "subject": "Message Subject",
+      "message": "Write your message here..."
+    },
+    "error": {
+      "name_min": "The name must be at least 5 characters long.",
+      "name_max": "The name must not exceed 80 characters.",
+      "email_invalid": "Please enter a valid email address.",
+      "subject_min": "Please add a subject for the message.",
+      "message_min": "Please add a description for the message.",
+      "message_links": "Please write the message without links and ensure it's work-related only."
+    }
+  }
+}
+  

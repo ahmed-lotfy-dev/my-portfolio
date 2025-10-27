@@ -50,7 +50,7 @@ export default function ProjectList({ allProjects }: any) {
                 />
               </div>
             </CardHeader>
-            <ReadMoreText text={proj.desc} maxLines={5} className="text-sm font-medium break-words leading-relaxed mt-4 flex-1" />
+            <ReadMoreText text={proj.desc} maxLines={5} className="text-sm font-medium wrap-break-word leading-relaxed mt-4 flex-1" />
             <CardFooter className="mt-auto flex flex-wrap gap-4 p-0 pt-4">
               <Link href={proj.liveLink} target="_blank">
                 <Button >

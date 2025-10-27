@@ -1,6 +1,6 @@
 "use server"
 
-import { contactSchema } from "../../lib/schemas/contactSchema"
+import { getContactSchema } from "@/src/lib/schemas/contactSchema"
 import { Resend } from "resend"
 
 const resend = new Resend(process.env.RESEND_API_KEY)
@@ -10,7 +10,9 @@ export async function contactAction(state: any, formData: FormData) {
   const email = formData.get("email")
   const subject = formData.get("subject")
   const message = formData.get("message")
-  const result = contactSchema.safeParse({ name, email, subject, message })
+  const locale = formData.get("locale") as string // added
+  const schema = getContactSchema(locale)
+  const result = schema.safeParse({ name, email, subject, message })
 
   if (result.success) {
     const msg = {

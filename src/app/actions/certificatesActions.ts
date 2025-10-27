@@ -13,7 +13,6 @@ import { eq } from "drizzle-orm"
 export async function getAllCertificates() {
   try {
     const allCertificates = await db.query.certificates.findMany()
-    console.log(allCertificates)
     return { allCertificates }
   } catch (error) {
     return { error }
