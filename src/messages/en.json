@@ -85,6 +85,8 @@
     }
   },
   "dashboard": {
+    "projects": "Projects",
+    "certificates": "Certificates",
     "nav": {
       "home": "Home",
       "dashboard": "Dashboard",
