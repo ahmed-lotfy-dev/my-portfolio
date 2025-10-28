@@ -54,7 +54,14 @@
   },
   "certificates": {
     "title": "My Certificates",
-    "description": "A collection of my certifications and qualifications. Hover over a card to see the certificate."
+    "description": "A collection of my certifications and qualifications. Hover over a card to see the certificate.",
+    "validation": {
+      "title_required": "Certificate title link is required",
+      "desc_required": "Certificate description is required",
+      "course_link_required": "Certificate link proof is required",
+      "prof_link_required": "Certificate link proof is required",
+      "image_link_required": "Certificate image link is required"
+    }
   },
   "about": {
     "title": "About Me",
@@ -84,31 +91,12 @@
       "projects": "Projects",
       "certificates": "Certificates",
       "blog": "Add Post"
-    }
-  },
-  "validation": {
-    "project": {
-      "title_en_required": "Project title (EN) required",
-      "desc_en_required": "Description (EN) required",
-      "repo_link_invalid": "Invalid repo link",
-      "live_link_invalid": "Invalid live link",
-      "image_link_required": "Image link is required",
-      "categories_required": "At least one category required"
     },
-    "certificate": {
-      "title_required": "Certificate title link is required",
-      "desc_required": "Certificate description is required",
-      "course_link_required": "Certificate link proof is required",
-      "prof_link_required": "Certificate link proof is required",
-      "image_link_required": "Certificate image link is required"
-    },
-    "contact": {
-      "name_min": "The name must be at least 5 characters long.",
-      "name_max": "The name must not exceed 80 characters.",
-      "email_invalid": "Please enter a valid email address.",
-      "subject_min": "Please add a subject for the message.",
-      "message_min": "Please add a description for the message.",
-      "message_links": "Please write the message without links and ensure it's work-related only."
+    "welcome": {
+      "greeting": "Welcome {name} to the dashboard.",
+      "guest": "Guest",
+      "admin_message": "You are admin, welcome!",
+      "user_message": "You are not admin. You can view the site but not perform privileged actions."
     }
   }
 }

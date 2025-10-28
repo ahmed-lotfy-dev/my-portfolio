@@ -58,26 +58,6 @@
       "live_link_invalid": "رابط الموقع غير صالح.",
       "image_link_required": "رابط الصورة مطلوب.",
       "categories_required": "مطلوب فئة واحدة على الأقل."
-    },
-    "booksApp": {
-      "title": "تطبيق الكتب",
-      "description": "هذا المشروع كان جزءًا من تدريب لمدة 6 أسابيع مع Chingu.io. عملت مع فريق من 4 أشخاص على مشروع يستخدم Vite في الواجهة الأمامية وExpress في الخلفية، وتم بناء نظام التسجيل باستخدام Passport.js. تعلمت من خلاله العمل الجماعي ومنهجية أجايل."
-    },
-    "posSystem": {
-      "title": "تطبيق نظام نقاط البيع",
-      "description": "تطبيق (Full Stack) لإدارة العملاء في الشركات. يعتمد على NestJS في الخلفية مع JWT للمصادقة والتفويض، والواجهة الأمامية مبنية باستخدام Vite وReact Router v6."
-    },
-    "linktree": {
-      "title": "hi-x.net LinkTree",
-      "description": "مشروع لعميل قمت فيه بإصلاح تصميم الموقع وتحسين الأداء بإزالة مكتبة Font Awesome واستبدالها بـ SVG، واستخدام التحميل الكسول والصور المتجاوبة."
-    },
-    "devChallenges": {
-      "title": "مجموعة مشاريع DevChallenges",
-      "description": "مجموعة من تحديات الواجهة الأمامية من DevChallenges.io لتطوير التصميم المتجاوب وسهولة الوصول والأداء. استخدمت تقنيات HTML دلالية وCSS Grid وFlexbox وصور محسّنة."
-    },
-    "selfTracker": {
-      "title": "تطبيق SelfTracker Fitness",
-      "description": "تطبيق React Native لأجهزة Android وiOS لتتبع الوزن والتمارين مع عرض تقويم ورسوم بيانية وإدارة مهام، لتحسين أسلوب الحياة."
     }
   },
   "certificates": {
@@ -130,12 +110,20 @@
     }
   },
   "dashboard": {
+    "projects":"المشاريع",
+    "certificates":"الشهادات",
     "nav": {
       "home": "الرئيسية",
       "dashboard": "لوحة التحكم",
       "projects": "المشاريع",
       "certificates": "الشهادات",
       "blog": "أضف بوست"
+    },
+    "welcome": {
+      "greeting": "مرحبًا بك {name} في لوحة التحكم.",
+      "guest": "زائر",
+      "admin_message": "أنت المسؤول، أهلاً بك!",
+      "user_message": "ليس لديك صلاحيات ولكن يمكنك تصفح الموقع ولكن لا يمكنك تنفيذ الإجراءات التي تتطلب صلاحيات."
     }
   }
 }
