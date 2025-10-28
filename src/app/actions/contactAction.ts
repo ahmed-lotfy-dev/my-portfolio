@@ -10,8 +10,10 @@ export async function contactAction(state: any, formData: FormData) {
   const email = formData.get("email")
   const subject = formData.get("subject")
   const message = formData.get("message")
-  const locale = formData.get("locale") as string // added
-  const schema = getContactSchema(locale)
+  const locale = (formData.get("locale") as string) || "en"
+
+  // Build localized schema dynamically
+  const schema = await getContactSchema(locale)
   const result = schema.safeParse({ name, email, subject, message })
 
   if (result.success) {
@@ -24,10 +26,10 @@ export async function contactAction(state: any, formData: FormData) {
         His Email Is: ${email}<br>
         And This Is His Message :${message}</strong>`,
     }
-    const sent = await resend.emails.send(msg)
+
+    await resend.emails.send(msg)
     return { success: true, data: result.data }
   }
-  if (result.error) {
-    return { success: false, error: result.error.format() }
-  }
+
+  return { success: false, error: result.error.format() }
 }

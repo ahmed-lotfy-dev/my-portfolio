@@ -20,7 +20,6 @@ export default async function HomePage({
   const header = await headers()
   const session = await auth.api.getSession({ headers: header })
   const user = session
-  console.log({ user })
   const { locale } = await params
   setRequestLocale(locale)
 

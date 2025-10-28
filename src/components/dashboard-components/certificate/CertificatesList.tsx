@@ -14,6 +14,8 @@ import {
 
 import { deleteCertificateAction } from "@/src/app/actions/certificatesActions";
 import { EditPopover } from "../EditPopover";
+import ImageViewer from "@/src/components/ui/ImageViewer";
+import { IoImage } from "react-icons/io5";
 function CertificateList({ allCertificates }: any) {
   return (
     <div className="w-full">
@@ -47,9 +49,22 @@ function CertificateList({ allCertificates }: any) {
                   </Link>
                 </TableCell>
                 <TableCell>
-                  <Link href={cert.profLink} target="_blank">
-                    Certificate Proof
-                  </Link>
+                  <ImageViewer
+                    imageUrl={cert.profLink}
+                    altText={`Certificate proof for ${cert.title}`}
+                    trigger={
+                      <div className="relative group cursor-pointer">
+                        <img
+                          src={cert.profLink}
+                          alt={`Certificate proof for ${cert.title}`}
+                          className="w-16 h-16 object-cover rounded border transition-all duration-300 group-hover:w-32 group-hover:h-32 group-hover:z-10 group-hover:shadow-lg"
+                        />
+                        <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-50 transition-opacity duration-300 rounded flex items-center justify-center">
+                          <IoImage className="w-6 h-6 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                        </div>
+                      </div>
+                    }
+                  />
                 </TableCell>
 
                 <TableCell>

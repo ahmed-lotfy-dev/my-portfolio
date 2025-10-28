@@ -2,6 +2,7 @@ import { ChangeEvent, Dispatch, SetStateAction, useRef, useState } from "react"
 import { Input } from "@/src/components/ui/input"
 import { notify } from "@/src/lib/utils/toast"
 import { Button } from "@/src/components/ui/button"
+import { useTranslations } from "next-intl"
 
 type UploadProps = {
   setImageUrl: React.Dispatch<React.SetStateAction<string>>
@@ -11,6 +12,7 @@ type UploadProps = {
 function Upload({ setImageUrl, imageType }: UploadProps) {
   const [pending, setPending] = useState(false)
   const fileInputRef = useRef<HTMLInputElement | null>(null)
+  const t = useTranslations("projects")
 
   const handleFileUpload = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault()
@@ -48,7 +50,7 @@ function Upload({ setImageUrl, imageType }: UploadProps) {
   return (
     <div>
       <Button onClick={handleFileUpload} disabled={pending}>
-        {pending ? "Uploading..." : "Upload Image"}
+        {pending ? `${t("uploading")} ...` : t("upload")}
       </Button>
       <Input
         type="file"

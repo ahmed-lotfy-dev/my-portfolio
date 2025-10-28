@@ -3,11 +3,12 @@
 import { db } from "@/src/db"
 import { revalidatePath } from "next/cache"
 import { DeleteFromS3 } from "./deleteImageAction"
-import { ProjectSchema } from "../../lib/schemas/projectSchema"
+import { getProjectSchema } from "../../lib/schemas/projectSchema"
 import { headers } from "next/headers"
+import { translateText } from "@/src/lib/utils/translate"
 import { auth } from "@/src/lib/auth"
 import { projects } from "@/src/db/schema"
-import { desc,asc, eq } from "drizzle-orm"
+import { desc, asc, eq } from "drizzle-orm"
 
 // ✅ Fetch all projects
 export async function getAllProjects() {
@@ -40,13 +41,16 @@ export async function getSingleProject(id: string) {
 
 // ✅ Add new project
 export async function addProjectAction(state: any, data: FormData) {
-  const title = data.get("title") as string
-  const desc = data.get("desc") as string
+  const title_en = data.get("title_en") as string
+  const title_ar = data.get("title_ar") as string
+  const desc_en = data.get("desc_en") as string
+  const desc_ar = data.get("desc_ar") as string
   const repoLink = data.get("repoLink") as string
   const liveLink = data.get("liveLink") as string
   const imageLink = data.get("imageLink") as string
   const categories =
-    (data.get("tags") as string)?.split(",").map((tag) => tag.trim()) || []
+    (data.get("categories") as string)?.split(",").map((tag) => tag.trim()) ||
+    []
 
   const session = await auth.api.getSession({ headers: await headers() })
   const user = session?.user
@@ -58,9 +62,12 @@ export async function addProjectAction(state: any, data: FormData) {
     }
   }
 
-  const result = ProjectSchema.safeParse({
-    title,
-    desc,
+  const schema = await getProjectSchema()
+  const result = schema.safeParse({
+    title_en,
+    title_ar,
+    desc_en,
+    desc_ar,
     repoLink,
     liveLink,
     imageLink,
@@ -73,9 +80,27 @@ export async function addProjectAction(state: any, data: FormData) {
   }
 
   try {
+    console.log("Original AR Title:", title_ar)
+    console.log("Original AR Desc:", desc_ar)
+
+    let translatedTitle = title_ar
+    if (!title_ar) {
+      translatedTitle = await translateText(title_en)
+    }
+
+    let translatedDesc = desc_ar
+    if (!desc_ar) {
+      translatedDesc = await translateText(desc_en)
+    }
+
+    console.log("Translated Title:", translatedTitle)
+    console.log("Translated Desc:", translatedDesc)
+
     await db.insert(projects).values({
-      title,
-      desc,
+      title_en,
+      title_ar: translatedTitle,
+      desc_en,
+      desc_ar: translatedDesc,
       repoLink,
       liveLink,
       imageLink,
@@ -95,13 +120,16 @@ export async function addProjectAction(state: any, data: FormData) {
 // ✅ Edit project
 export async function editProjectAction(state: any, data: FormData) {
   const id = data.get("id") as string
-  const title = data.get("title") as string
-  const desc = data.get("desc") as string
+  const title_en = data.get("title_en") as string
+  const title_ar = data.get("title_ar") as string
+  const desc_en = data.get("desc_en") as string
+  const desc_ar = data.get("desc_ar") as string
   const repoLink = data.get("repoLink") as string
   const liveLink = data.get("liveLink") as string
   const imageLink = data.get("imageLink") as string
   const categories =
-    (data.get("tags") as string)?.split(",").map((tag) => tag.trim()) || []
+    (data.get("categories") as string)?.split(",").map((tag) => tag.trim()) ||
+    []
 
   const session = await auth.api.getSession({ headers: await headers() })
   const user = session?.user
@@ -113,9 +141,12 @@ export async function editProjectAction(state: any, data: FormData) {
     }
   }
 
-  const result = ProjectSchema.safeParse({
-    title,
-    desc,
+  const schema = await getProjectSchema()
+  const result = schema.safeParse({
+    title_en,
+    title_ar,
+    desc_en,
+    desc_ar,
     repoLink,
     liveLink,
     imageLink,
@@ -137,9 +168,31 @@ export async function editProjectAction(state: any, data: FormData) {
       await DeleteFromS3(oldProject.imageLink)
     }
 
+    console.log("Original AR Title:", title_ar)
+    console.log("Original AR Desc:", desc_ar)
+    let translatedTitle = title_ar
+    if (!title_ar) {
+      translatedTitle = await translateText(title_en)
+    }
+
+    let translatedDesc = desc_ar
+    if (!desc_ar) {
+      translatedDesc = await translateText(desc_en)
+    }
+    console.log("Translated Title:", translatedTitle)
+    console.log("Translated Desc:", translatedDesc)
     await db
       .update(projects)
-      .set({ title, desc, repoLink, liveLink, imageLink, categories })
+      .set({
+        title_en,
+        title_ar: translatedTitle,
+        desc_en,
+        desc_ar: translatedDesc,
+        repoLink,
+        liveLink,
+        imageLink,
+        categories,
+      })
       .where(eq(projects.id, id))
 
     await revalidatePath("/dashboard/projects")

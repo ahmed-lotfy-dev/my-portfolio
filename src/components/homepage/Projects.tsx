@@ -34,12 +34,12 @@ export default async function Projects() {
             >
               <ImageViewer
                 imageUrl={proj.imageLink}
-                altText={proj.title}
+                altText={locale === "ar" ? proj.title_ar : proj.title_en}
                 trigger={
                   <div className="relative w-full h-72 cursor-pointer">
                     <Image
                       src={proj.imageLink}
-                      alt={proj.title}
+                      alt={locale === "ar" ? proj.title_ar : proj.title_en}
                       fill
                       unoptimized={
                         proj.imageLink?.toLowerCase().endsWith(".gif")
@@ -57,9 +57,11 @@ export default async function Projects() {
                 }
               />
               <div className="p-6 flex flex-col grow">
-                <h3 className="text-2xl font-bold mb-2">{proj.title}</h3>
+                <h3 className="text-2xl font-bold mb-2">
+                  {locale === "ar" ? proj.title_ar : proj.title_en}
+                </h3>
                 <ReadMoreText
-                  text={proj.desc}
+                  text={locale === "ar" ? proj.desc_ar : proj.desc_en}
                   maxLines={5}
                   className="text-muted-foreground grow"
                 />

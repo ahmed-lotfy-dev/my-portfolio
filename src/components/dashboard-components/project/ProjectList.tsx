@@ -16,8 +16,11 @@ import { EditPopover } from "../EditPopover"
 import { AspectRatio } from "@/src/components/ui/aspect-ratio"
 import ReadMoreText from "@/src/components/ui/ReadMoreText"
 import ImageViewer from "../../ui/ImageViewer"
+import { useLocale } from "next-intl"
 
 export default function ProjectList({ allProjects }: any) {
+    const locale =  useLocale()
+
   return (
     <div className="w-full h-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-10 p-10">
       {allProjects?.map((proj: any) => (
@@ -25,14 +28,26 @@ export default function ProjectList({ allProjects }: any) {
           <CardContent className="p-0">
             <ImageViewer
               imageUrl={proj.imageLink}
-              altText={`${proj.title} Image`}
+              altText={`${
+                locale === "ar" ? proj.title_ar : proj.title_en
+              } Image`}
               trigger={
-                <AspectRatio ratio={16 / 9} className="rounded-t-lg cursor-pointer">
+                <AspectRatio
+                  ratio={16 / 9}
+                  className="rounded-t-lg cursor-pointer"
+                >
                   <Image
                     src={proj.imageLink}
-                    alt={`${proj.title} Image`}
+                    alt={`${
+                      locale === "ar" ? proj.title_ar : proj.title_en
+                    } Image`}
                     fill
-                    className={proj.categories?.includes("mobile") || proj.categories?.includes("app") ? "object-contain rounded-t-lg" : "object-cover rounded-t-lg"}
+                    className={
+                      proj.categories?.includes("mobile") ||
+                      proj.categories?.includes("app")
+                        ? "object-contain rounded-t-lg"
+                        : "object-cover rounded-t-lg"
+                    }
                   />
                 </AspectRatio>
               }
@@ -42,7 +57,7 @@ export default function ProjectList({ allProjects }: any) {
             <CardHeader className="p-0">
               <div className="flex items-start justify-between gap-3">
                 <CardTitle className="text-2xl font-bold capitalize">
-                  {proj.title}
+                  {locale === "ar" ? proj.title_ar : proj.title_en}
                 </CardTitle>
                 <EditPopover
                   EditedObject={proj}
@@ -50,11 +65,18 @@ export default function ProjectList({ allProjects }: any) {
                 />
               </div>
             </CardHeader>
-            <ReadMoreText text={proj.desc} maxLines={5} className="text-sm font-medium wrap-break-word leading-relaxed mt-4 flex-1" />
+            <ReadMoreText
+              text={locale === "ar" ? proj.desc_ar : proj.desc_en}
+              maxLines={5}
+              className="text-sm font-medium wrap-break-word leading-relaxed mt-4 flex-1"
+            />
             <CardFooter className="mt-auto flex flex-wrap gap-4 p-0 pt-4">
               <Link href={proj.liveLink} target="_blank">
-                <Button >
-                  {proj.categories?.includes("mobile") || proj.categories?.includes("app") ? "APK" : "Live"}
+                <Button>
+                  {proj.categories?.includes("mobile") ||
+                  proj.categories?.includes("app")
+                    ? "APK"
+                    : "Live"}
                 </Button>
               </Link>
               <Link href={proj.repoLink} target="_blank">

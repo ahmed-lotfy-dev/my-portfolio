@@ -107,8 +107,10 @@ export const posts = pgTable("posts", {
 
 export const projects = pgTable("projects", {
   id: uuid("id").defaultRandom().primaryKey(),
-  title: text("title").notNull(),
-  desc: text("desc").notNull(),
+  title_en: text("title_en").notNull(),
+  title_ar: text("title_ar").notNull(),
+  desc_en: text("desc_en").notNull(),
+  desc_ar: text("desc_ar").notNull(),
   repoLink: text("repo_link").notNull(),
   liveLink: text("live_link").notNull(),
   imageLink: text("image_link").notNull(),
@@ -118,7 +120,7 @@ export const projects = pgTable("projects", {
     .defaultNow()
     .$onUpdate(() => new Date())
     .notNull(),
-})
+})    
 
 export const certificates = pgTable("certificates", {
   id: uuid("id").defaultRandom().primaryKey(),

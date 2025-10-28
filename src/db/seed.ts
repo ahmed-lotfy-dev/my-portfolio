@@ -56,8 +56,10 @@ async function seed() {
   // Insert projects
   await db.insert(projects).values(
     projectsData.map((project) => ({
-      title: project.title,
-      desc: project.desc,
+      title_en: project.title,
+      desc_en: project.desc,
+      title_ar: project.title,
+      desc_ar: project.desc,
       imageLink: project.imageLink,
       liveLink: project.liveLink,
       repoLink: project.repoLink,

@@ -22,6 +22,20 @@
       "when": 1759326128483,
       "tag": "0002_eminent_gambit",
       "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "7",
+      "when": 1761633231439,
+      "tag": "0003_mature_beast",
+      "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "7",
+      "when": 1761633587575,
+      "tag": "0004_handy_vulture",
+      "breakpoints": true
     }
   ]
 }

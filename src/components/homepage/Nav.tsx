@@ -45,12 +45,14 @@ function Nav({ children }: { children: ReactNode }) {
 
   const toggle = () => setOpen((v) => !v)
   const close = () => setOpen(false)
+
+  console.log(pathname)
   return (
     <header
       className={`fixed inset-x-0 top-0 z-50 transition-all duration-100 ${
         scrolled &&
         "bg-background/70 backdrop-blur-md border-b border-border shadow-sm"
-      } ${pathname.split("/").at(-1) === "dashboard" && "hidden"}`}
+      } ${pathname.includes("dashboard") && "hidden"}`}
     >
       <nav className="max-w-6xl mx-auto flex h-16 items-center justify-between">
         <Link href="/" className="flex items-center">

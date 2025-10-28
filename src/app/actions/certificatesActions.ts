@@ -1,7 +1,7 @@
 
 "use server"
 
-import { CertificateSchema } from "../../lib/schemas/certificateSchema"
+import { createCertificateSchema } from "../../lib/schemas/certificateSchema"
 import { db } from "@/src/db"
 import { revalidatePath } from "next/cache"
 import { DeleteFromS3 } from "./deleteImageAction"
@@ -50,7 +50,8 @@ export async function addCertificateAction(state: any, data: FormData) {
     }
   }
 
-  const result = CertificateSchema.safeParse({
+  const schema = await createCertificateSchema()
+  const result = schema.safeParse({
     title,
     desc,
     courseLink,
@@ -100,7 +101,8 @@ export async function editCertificateAction(state: any, data: FormData) {
     }
   }
 
-  const result = CertificateSchema.safeParse({
+  const schema = await createCertificateSchema()
+  const result = schema.safeParse({
     title,
     desc,
     courseLink,

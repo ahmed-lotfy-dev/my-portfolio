@@ -14,8 +14,11 @@ export default function LanguageSwitcher() {
     // Compute next locale
     const nextLocale = locale === "en" ? "ar" : "en"
 
-    // Navigate to same path but with new locale
-    router.push(`/${nextLocale}`, { scroll: false })
+    // Replace the current locale in the pathname with the next locale
+    const newPath = pathname.replace(`/${locale}`, `/${nextLocale}`)
+
+    // Navigate to the same path but with new locale
+    router.push(newPath, { scroll: false })
 
     // Restore scroll after navigation finishes
     setTimeout(() => window.scrollTo(0, scrollY), 100)
