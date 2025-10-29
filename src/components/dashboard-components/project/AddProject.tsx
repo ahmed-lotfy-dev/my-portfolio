@@ -14,7 +14,6 @@ import Image from "next/image"
 import { Input } from "@/src/components/ui/input"
 import { Label } from "@/src/components/ui/label"
 import { Textarea } from "@/src/components/ui/textarea"
-import { TagsInput } from "react-tag-input-component"
 import Submit from "@/src/components/ui/formSubmitBtn"
 import { Upload } from "../Upload"
 import { notify } from "@/src/lib/utils/toast"
@@ -25,7 +24,6 @@ import { useTranslations } from "next-intl"
 
 function AddProjectComponent() {
   const [state, formAction] = useActionState(addProjectAction, null)
-  const [selected, setSelected] = useState<string[]>(["featured"])
   const [imageUrl, setImageUrl] = useState("")
   const [open, setOpen] = useState(false)
   const formRef = useRef<HTMLFormElement>(null)
@@ -162,18 +160,27 @@ function AddProjectComponent() {
               <Input type="hidden" name="imageLink" value={imageUrl} />
 
               {/* Categories */}
-              <Label className="flex justify-center">{t("placeholders.categories")}</Label>
-              <TagsInput
-                value={selected}
-                onChange={setSelected}
+              <Label className="flex justify-center">
+                {t("placeholders.categories")}
+              </Label>
+              <p className="text-sm text-gray-500 dark:text-gray-400">
+                {t("placeholders.categories_helper")}
+              </p>
+              <Input
+                className="w-2/3"
+                type="text"
                 name="categories"
-                placeHolder={t("placeholders.categories")}
+                placeholder={t("placeholders.categories")}
               />
-              <Input type="hidden" name="categories" value={selected} />
+              {state?.error?.categories && (
+                <p className="text-sm text-red-400">
+                  {state.error.categories._errors}
+                </p>
+              )}
 
               {/* Submit */}
               <Submit
-                btnText="Add Project"
+                btnText={t("add-title")}
                 className="m-10"
                 type="submit"
                 disabled={!user?.email}

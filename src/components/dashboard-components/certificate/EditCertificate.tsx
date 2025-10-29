@@ -1,41 +1,41 @@
-"use client"
-import { ChangeEvent, useRef, useState, useActionState } from "react"
+"use client";
+import { ChangeEvent, useRef, useState, useActionState } from "react";
 
-import { Input } from "@/src/components/ui/input"
-import { editCertificateAction } from "@/src/app/actions/certificatesActions"
-import Image from "next/image"
-import { notify } from "@/src/lib/utils/toast"
+import { Input } from "@/src/components/ui/input";
+import { editCertificateAction } from "@/src/app/actions/certificatesActions";
+import Image from "next/image";
+import { notify } from "@/src/lib/utils/toast";
 
-import Submit from "@/src/components/ui/formSubmitBtn"
+import Submit from "@/src/components/ui/formSubmitBtn";
 import {
   Dialog,
   DialogContent,
   DialogTrigger,
   DialogClose,
-} from "@/src/components/ui/dialog"
-import { Upload } from "../Upload"
-import { Textarea } from "@/src/components/ui/textarea"
-import { Pencil } from "lucide-react"
-import { authClient } from "@/src/lib/auth-client"
+} from "@/src/components/ui/dialog";
+import { Upload } from "../Upload";
+import { Textarea } from "@/src/components/ui/textarea";
+import { Pencil } from "lucide-react";
+import { authClient } from "@/src/lib/auth-client";
 
 function EditCertificate({ EditedObject }: any) {
-  const { id } = EditedObject
-  const [state, formAction] = useActionState(editCertificateAction, null)
-  const [editedCert, setEditedCert] = useState(EditedObject)
-  const [imageUrl, setImageUrl] = useState("")
-  const formRef = useRef<HTMLFormElement>(null)
-  const { data: session } = authClient.useSession()
-  const user = session?.user
+  const { id } = EditedObject;
+  const [state, formAction] = useActionState(editCertificateAction, null);
+  const [editedCert, setEditedCert] = useState(EditedObject);
+  const [imageUrl, setImageUrl] = useState("");
+  const formRef = useRef<HTMLFormElement>(null);
+  const { data: session } = authClient.useSession();
+  const user = session?.user;
 
   const InputHandler = (e: ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target
+    const { name, value } = e.target;
     setEditedCert((prevEditedCert: any) => {
       return {
         ...prevEditedCert,
         [name]: value,
-      }
-    })
-  }
+      };
+    });
+  };
 
   return (
     <div
@@ -50,7 +50,8 @@ function EditCertificate({ EditedObject }: any) {
         <DialogContent className="max-w-[700px]">
           <form
             action={formAction}
-            className="flex flex-col gap-5 justify-center items-center w-full  bg-gray-100 text-black"
+            ref={formRef}
+            className="flex flex-col gap-5 justify-center items-center w-full bg-background text-foreground"
           >
             <Input
               className="w-2/3 mt-10"
@@ -134,11 +135,11 @@ function EditCertificate({ EditedObject }: any) {
                 type="submit"
                 onClick={() => {
                   if (user?.email === process.env.NEXT_PUBLIC_ADMIN_EMAIL) {
-                    notify("Edit Completed Successfully", true)
-                    setImageUrl("")
-                    formRef.current?.reset()
+                    notify("Edit Completed Successfully", true);
+                    setImageUrl("");
+                    formRef.current?.reset();
                   } else {
-                    notify("You don't have privilege to do this", false)
+                    notify("You don't have privilege to do this", false);
                   }
                 }}
               />
@@ -147,7 +148,7 @@ function EditCertificate({ EditedObject }: any) {
         </DialogContent>
       </Dialog>
     </div>
-  )
+  );
 }
 
-export { EditCertificate }
+export { EditCertificate };

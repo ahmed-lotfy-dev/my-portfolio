@@ -1,5 +1,6 @@
 "use client"
 
+import { useTranslations } from "next-intl"
 import { addNewPost } from "@/src/app/actions/postsActions"
 import Submit from "@/src/components/ui/formSubmitBtn"
 import { Input } from "@/src/components/ui/input"
@@ -12,13 +13,15 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/src/components/ui/select"
+import { Textarea } from "@/src/components/ui/textarea"
 
 type Props = {}
 
 const Page = (props: Props) => {
+  const t = useTranslations("blogs")
   return (
     <div className="w-full flex flex-col justify-center items-center mt-10">
-      <h2 className="text-2xl font-bold mb-6">Add New Blog Post</h2>
+      <h2 className="text-2xl font-bold mb-6">{t("add-title")}</h2>
 
       <form
         action={async (formData) => {
@@ -29,13 +32,13 @@ const Page = (props: Props) => {
         {/* Post Title */}
         <div className="flex flex-col gap-2">
           <label htmlFor="title" className="font-medium">
-            Post Title
+            {t("post_title")}
           </label>
           <Input
             id="title"
             type="text"
             name="title"
-            placeholder="Enter post title"
+            placeholder={t("placeholders.title")}
             required
           />
         </div>
@@ -43,13 +46,12 @@ const Page = (props: Props) => {
         {/* Post Content */}
         <div className="flex flex-col gap-2">
           <label htmlFor="postContent" className="font-medium">
-            Post Content
+            {t("post_content")}
           </label>
-          <Input
+          <Textarea
             id="postContent"
-            type="text"
-            name="postContent"
-            placeholder="Enter content"
+            name="content"
+            placeholder={t("placeholders.content")}
             required
           />
         </div>
@@ -57,15 +59,15 @@ const Page = (props: Props) => {
         {/* Publish State */}
         <div className="flex flex-col gap-2">
           <label htmlFor="published" className="font-medium">
-            Publish State
+            {t("publish_state")}
           </label>
           <Select name="published">
             <SelectTrigger className="w-full">
-              <SelectValue placeholder="Select Publish State" />
+              <SelectValue placeholder={t("select_publish_state")} />
             </SelectTrigger>
             <SelectContent>
               <SelectGroup>
-                <SelectLabel>Publish State</SelectLabel>
+                <SelectLabel>{t("publish_state")}</SelectLabel>
                 <SelectItem value="true">Published</SelectItem>
                 <SelectItem value="false">Unpublished</SelectItem>
               </SelectGroup>
@@ -76,7 +78,7 @@ const Page = (props: Props) => {
         {/* Upload Image */}
         <div className="flex flex-col gap-2">
           <label htmlFor="file" className="font-medium">
-            Upload Image
+            {t("upload_image")}
           </label>
           <Input id="file" type="file" name="file" accept="image/*" />
         </div>
@@ -84,21 +86,20 @@ const Page = (props: Props) => {
         {/* Categories */}
         <div className="flex flex-col gap-2">
           <label htmlFor="categories" className="font-medium">
-            Categories
+            {t("categories")}
           </label>
           <Input
             id="categories"
             type="text"
             name="categories"
-            placeholder="e.g. frontend, backend"
+            placeholder={t("placeholders.categories")}
           />
         </div>
 
-        <Submit btnText="Add Post" />
+        <Submit btnText={t("add_post")} />
       </form>
     </div>
   )
 }
 
 export default Page
-  

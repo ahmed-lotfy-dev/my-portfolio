@@ -1,178 +1,203 @@
-  "use client"
-  import { ChangeEvent, useRef, useState, FormEvent } from "react"
+"use client";
+import { ChangeEvent, useRef, useState, FormEvent } from "react";
 
-  import Image from "next/image"
-  import { Input } from "@/src/components/ui/input"
-  import { Label } from "@/src/components/ui/label"
-  import { editProjectAction } from "@/src/app/actions/projectsActions"
-  import { notify } from "@/src/lib/utils/toast"
-  import Submit from "@/src/components/ui/formSubmitBtn"
-  import {
-    Dialog,
-    DialogContent,
-    DialogTrigger,
-  } from "@/src/components/ui/dialog"
-  import { Textarea } from "@/src/components/ui/textarea"
-  import { TagsInput } from "react-tag-input-component"
-  import { DialogClose } from "@radix-ui/react-dialog"
-  import { Upload } from "../Upload"
-  import { Pencil } from "lucide-react"
-  import { authClient } from "@/src/lib/auth-client"
+import Image from "next/image";
+import { Input } from "@/src/components/ui/input";
+import { Label } from "@/src/components/ui/label";
+import { editProjectAction } from "@/src/app/actions/projectsActions";
+import { notify } from "@/src/lib/utils/toast";
+import Submit from "@/src/components/ui/formSubmitBtn";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/src/components/ui/dialog";
+import { Textarea } from "@/src/components/ui/textarea";
+import { DialogClose } from "@radix-ui/react-dialog";
+import { Upload } from "../Upload";
+import { Pencil } from "lucide-react";
+import { authClient } from "@/src/lib/auth-client";
+import { useTranslations } from "next-intl";
 
-  function EditProject({ EditedObject }: any) {
-    const { id } = EditedObject
-    const [editedProj, setEditedProj] = useState(EditedObject)
-    // const editProjectActionWithObject = editProjectAction.bind(null, editedProj)
+function EditProject({ EditedObject }: any) {
+  const t = useTranslations("projects");
+  const { id } = EditedObject;
+  const [editedProj, setEditedProj] = useState(EditedObject);
+  // const editProjectActionWithObject = editProjectAction.bind(null, editedProj)
 
-    const [imageUrl, setImageUrl] = useState("")
+  const [imageUrl, setImageUrl] = useState("");
 
-    const [selected, setSelected] = useState<string[]>(["featured"])
+  const formRef = useRef<HTMLFormElement>(null);
+  const { data: session } = authClient.useSession();
+  const user = session?.user;
 
-    const formRef = useRef<HTMLFormElement>(null)
-    const { data: session } = authClient.useSession()
-    const user = session?.user
-
-    const InputHandler = (
-      e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-    ) => {
-      const { name, value } = e.target
-      setEditedProj((prevEditedProj: any) => {
+  const InputHandler = (
+    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    const { name, value } = e.target;
+    setEditedProj((prevEditedProj: any) => {
+      // Special handling for categories field
+      if (name === "categories") {
         return {
           ...prevEditedProj,
-          [name]: value,
-        }
-      })
-    }
+          [name]: value.split(",").map((cat) => cat.trim()),
+        };
+      }
+      return {
+        ...prevEditedProj,
+        [name]: value,
+      };
+    });
+  };
 
-    const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
-      // Modified this line
-      event.preventDefault() // Prevent default form submission
-      const formData = new FormData(event.currentTarget)
-      await editProjectAction(editedProj, formData)
-    }
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
+    // Modified this line
+    event.preventDefault(); // Prevent default form submission
+    const formData = new FormData(event.currentTarget);
+    await editProjectAction(editedProj, formData);
+  };
 
-    return (
-      <div className="flex flex-col justify-center items-center">
-        <div className="flex w-full min-h-full justify-center items-start mt-6">
-          <Dialog>
-            <DialogTrigger className="bg-primary text-primary-foreground hover:bg-primary/90 h-10 py-2 px-4 inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none ring-offset-background">
-              <Pencil className="mr-3" size={20} />
-              Edit Project
-            </DialogTrigger>
-            <DialogContent className="w-[700px] overflow-y-auto max-h-[calc(100vh-100px)]">
-              <form
-                onSubmit={handleSubmit}
-                className="flex flex-col justify-center items-center w-full gap-5 text-white dark:text-white"
-              >
-                <Input
-                  className="w-2/3"
-                  type="text"
-                  name="title_en"
-                  placeholder="Project Title (EN)"
-                  value={editedProj.title_en}
-                  onChange={InputHandler}
+  return (
+    <div className="flex flex-col justify-center items-center">
+      <div className="flex w-full min-h-full justify-center items-start">
+        <Dialog>
+          <DialogTrigger className="bg-primary text-primary-foreground hover:bg-primary/90 h-10 py-2 px-4 inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none ring-offset-background">
+            <Pencil className="mr-3" size={20} />
+            Edit Project
+          </DialogTrigger>
+          <DialogContent className="w-[700px] overflow-y-auto max-h-[calc(100vh-100px)] bg-blue-500">
+            <DialogHeader className="flex justify-center items-center mt-3">
+              <DialogTitle>{t("edit-title")}</DialogTitle>
+              <DialogDescription>{t("edit-desc")}</DialogDescription>
+            </DialogHeader>
+            <form
+              onSubmit={handleSubmit}
+                          ref={formRef}
+
+              className="flex flex-col gap-5 justify-center items-center w-full bg-background text-foreground"
+            >
+              <Input
+                className="w-2/3"
+                type="text"
+                name="title_en"
+                placeholder="Project Title (EN)"
+                value={editedProj.title_en}
+                onChange={InputHandler}
+              />
+
+              <Input
+                className="w-2/3"
+                type="text"
+                name="title_ar"
+                placeholder="Project Title (AR)"
+                value={editedProj.title_ar}
+                onChange={InputHandler}
+              />
+
+              <Textarea
+                className="flex justify-center w-2/3"
+                name="desc_en"
+                placeholder="Project Description (EN)"
+                value={editedProj.desc_en}
+                onChange={InputHandler}
+              />
+
+              <Textarea
+                className="flex justify-center w-2/3"
+                name="desc_ar"
+                placeholder="Project Description (AR)"
+                value={editedProj.desc_ar}
+                onChange={InputHandler}
+              />
+
+              <Input
+                className="w-2/3"
+                type="text"
+                name="repoLink"
+                placeholder="Project Repo Link"
+                value={editedProj.repoLink}
+                onChange={InputHandler}
+              />
+
+              <Input
+                className="w-2/3"
+                type="text"
+                name="liveLink"
+                placeholder="Project Live Link"
+                value={editedProj.liveLink}
+                onChange={InputHandler}
+              />
+
+              <Upload setImageUrl={setImageUrl} imageType="Projects" />
+              {editedProj.imageLink ? (
+                <Image
+                  className="m-auto"
+                  src={editedProj.imageLink}
+                  width={200}
+                  height={200}
+                  alt="Certificate Image"
                 />
-
-                <Input
-                  className="w-2/3"
-                  type="text"
-                  name="title_ar"
-                  placeholder="Project Title (AR)"
-                  value={editedProj.title_ar}
-                  onChange={InputHandler}
+              ) : (
+                <Image
+                  className="m-auto"
+                  src={imageUrl}
+                  width={200}
+                  height={200}
+                  alt="Certificate Image"
                 />
+              )}
+              <Input type="hidden" name="id" value={editedProj.id} />
 
-                <Textarea
-                  className="flex justify-center w-2/3"
-                  name="desc_en"
-                  placeholder="Project Description (EN)"
-                  value={editedProj.desc_en}
-                  onChange={InputHandler}
+              <Input
+                type="hidden"
+                name="imageLink"
+                value={editedProj.imageLink}
+              />
+
+              <Label className="flex justify-center bg-black">
+                {t("placeholders.categories")}
+              </Label>
+              <p className="text-sm text-gray-500 dark:text-gray-400">
+                {t("placeholders.categories_helper")}
+              </p>
+              <Input
+                className="w-2/3"
+                type="text"
+                name="categories"
+                placeholder={t("placeholders.categories")}
+                value={
+                  Array.isArray(editedProj.categories)
+                    ? editedProj.categories.join(", ")
+                    : editedProj.categories || ""
+                }
+                onChange={InputHandler}
+              />
+
+              <DialogClose asChild>
+                <Submit
+                  btnText="Edit Project"
+                  className="m-10"
+                  type="submit"
+                  onClick={() => {
+                    if (user?.email === process.env.NEXT_PUBLIC_ADMIN_EMAIL) {
+                      notify("Editing Completed Successfully", true);
+                      setImageUrl("");
+                      formRef.current?.reset();
+                    } else {
+                      notify("You don't have privilege to do this", false);
+                    }
+                  }}
                 />
-
-                <Textarea
-                  className="flex justify-center w-2/3"
-                  name="desc_ar"
-                  placeholder="Project Description (AR)"
-                  value={editedProj.desc_ar}
-                  onChange={InputHandler}
-                />
-
-                <Input
-                  className="w-2/3"
-                  type="text"
-                  name="repoLink"
-                  placeholder="Project Repo Link"
-                  value={editedProj.repoLink}
-                  onChange={InputHandler}
-                />
-
-                <Input
-                  className="w-2/3"
-                  type="text"
-                  name="liveLink"
-                  placeholder="Project Live Link"
-                  value={editedProj.liveLink}
-                  onChange={InputHandler}
-                />
-
-                <Upload setImageUrl={setImageUrl} imageType="Projects" />
-                {editedProj.imageLink ? (
-                  <Image
-                    className="m-auto"
-                    src={editedProj.imageLink}
-                    width={200}
-                    height={200}
-                    alt="Certificate Image"
-                  />
-                ) : (
-                  <Image
-                    className="m-auto"
-                    src={imageUrl}
-                    width={200}
-                    height={200}
-                    alt="Certificate Image"
-                  />
-                )}
-                <Input type="hidden" name="id" value={editedProj.id} />
-
-                <Input
-                  type="hidden"
-                  name="imageLink"
-                  value={editedProj.imageLink}
-                />
-
-                <Label className="flex justify-center ">Project Categories</Label>
-                <TagsInput
-                  value={selected}
-                  onChange={setSelected}
-                  name="categories"
-                  placeHolder="Select Tech"
-                />
-                <Input type="hidden" name="categories" value={selected} />
-
-                <DialogClose asChild>
-                  <Submit
-                    btnText="Edit Project"
-                    className="m-10"
-                    type="submit"
-                    onClick={() => {
-                      if (user?.email === process.env.NEXT_PUBLIC_ADMIN_EMAIL) {
-                        notify("Editing Completed Successfully", true)
-                        setImageUrl("")
-                        formRef.current?.reset()
-                      } else {
-                        notify("You don't have privilege to do this", false)
-                      }
-                    }}
-                  />
-                </DialogClose>
-              </form>
-            </DialogContent>
-          </Dialog>
-        </div>
+              </DialogClose>
+            </form>
+          </DialogContent>
+        </Dialog>
       </div>
-    )
-  }
+    </div>
+  );
+}
 
-  export { EditProject }
+export { EditProject };

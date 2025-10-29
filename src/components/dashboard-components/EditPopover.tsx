@@ -20,14 +20,14 @@ function EditPopover({ onDeleteClick, EditedObject }: EditPopoverProps) {
         <MoreVertical size={22} />
       </PopoverTrigger>
       <PopoverContent className="w-full">
-        <div className="cursor-pointer">
+        <div className="">
           <div className="w-full">
             {isCertificate ? (
               <EditCertificate EditedObject={EditedObject} />
             ) : (
               <EditProject EditedObject={EditedObject} />
             )}
-            <Button className="w-full mt-2" onClick={onDeleteClick}>
+            <Button className="w-full mt-2 cursor-pointer" onClick={onDeleteClick}>
               Delete
             </Button>
           </div>

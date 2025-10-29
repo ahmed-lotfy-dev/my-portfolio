@@ -1,5 +1,5 @@
-"use client"
-import { useState, useRef, useActionState, useEffect } from "react"
+"use client";
+import { useState, useRef, useActionState, useEffect } from "react";
 import {
   Dialog,
   DialogClose,
@@ -8,36 +8,36 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@/src/components/ui/dialog"
-import Image from "next/image"
-import { useTranslations } from "next-intl"
-import { Input } from "@/src/components/ui/input"
-import { addCertificateAction } from "@/src/app/actions/certificatesActions"
-import { notify } from "@/src/lib/utils/toast"
-import Submit from "@/src/components/ui/formSubmitBtn"
-import { Upload } from "@/src/components/dashboard-components/Upload"
-import { authClient } from "@/src/lib/auth-client"
+} from "@/src/components/ui/dialog";
+import Image from "next/image";
+import { useTranslations } from "next-intl";
+import { Input } from "@/src/components/ui/input";
+import { addCertificateAction } from "@/src/app/actions/certificatesActions";
+import { notify } from "@/src/lib/utils/toast";
+import Submit from "@/src/components/ui/formSubmitBtn";
+import { Upload } from "@/src/components/dashboard-components/Upload";
+import { authClient } from "@/src/lib/auth-client";
 
 function AddCertificateComponent() {
-  const t = useTranslations("certificates")
-  const [state, formAction] = useActionState(addCertificateAction, null)
-  const [imageUrl, setImageUrl] = useState("")
-  const formRef = useRef<HTMLFormElement>(null)
-  const { data: session } = authClient.useSession()
-  const user = session?.user
+  const t = useTranslations("certificates");
+  const [state, formAction] = useActionState(addCertificateAction, null);
+  const [imageUrl, setImageUrl] = useState("");
+  const formRef = useRef<HTMLFormElement>(null);
+  const { data: session } = authClient.useSession();
+  const user = session?.user;
 
   // ✅ show toast when server action finishes
   useEffect(() => {
     if (state?.success) {
-      notify("Certificate added successfully!", true)
-      setImageUrl("")
-      formRef.current?.reset()
+      notify("Certificate added successfully!", true);
+      setImageUrl("");
+      formRef.current?.reset();
     } else if (state?.message && !state?.success) {
-      notify(state.message, false)
+      notify(state.message, false);
     }
-  }, [state])
+  }, [state]);
 
-  console.log("Server action result:", state)
+  console.log("Server action result:", state);
 
   return (
     <div className="flex flex-col justify-center items-center">
@@ -54,7 +54,7 @@ function AddCertificateComponent() {
             <form
               ref={formRef}
               action={formAction}
-              className="flex flex-col gap-5 justify-start items-center w-full text-black"
+              className="flex flex-col gap-5 justify-start items-center w-full text-black dark:text-white"
             >
               <Input
                 className="w-2/3 mt-10"
@@ -129,7 +129,7 @@ function AddCertificateComponent() {
         </Dialog>
       </div>
     </div>
-  )
+  );
 }
 
-export { AddCertificateComponent }
+export { AddCertificateComponent };

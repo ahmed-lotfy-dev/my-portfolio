@@ -40,6 +40,8 @@
     "description": "Here are some of the projects I've worked on.",
     "add-title": "Add Project",
     "add-desc": "Fill in the details below to add a new project",
+    "edit-title": "Edit Project",
+    "edit-desc": "Fill in the details below to edit the project",
     "upload": "Upload Project Image",
     "uploading": "Uploading Image",
     "live": "Live",
@@ -54,7 +56,8 @@
       "desc_ar": "Project Description (AR)",
       "repo_link": "Project Repo Link",
       "live_link": "Project Live Link",
-      "categories": "Select Tech"
+      "categories": "Project Categories",
+      "categories_helper": "Please enter categories as comma-separated values."
     }
   },
   "certificates": {
@@ -133,6 +136,32 @@
       "guest": "Guest",
       "admin_message": "You are admin, welcome!",
       "user_message": "You are not admin. You can view the site but not perform privileged actions."
+    }
+  },
+  "blogs": {
+    "title": "My Blogs",
+    "description": "Here are some of the blogs I've written.",
+    "add-title": "Add New Blog Post",
+    "add-desc": "Fill in the details below to add a new blog post",
+    "upload": "Upload Blog Image",
+    "uploading": "Uploading Image",
+    "readmore": "Read more",
+    "showless": "Show less",
+    "post_title": "Post Title",
+    "post_content": "Post Content",
+    "publish_state": "Publish State",
+    "select_publish_state": "Select Publish State",
+    "upload_image": "Upload Image",
+    "categories": "Categories",
+    "add_post": "Add Post",
+    "placeholders": {
+      "title": "Enter post title",
+      "content": "Enter content",
+      "categories": "e.g. frontend, backend"
+    },
+    "validation": {
+      "title_required": "Blog title is required",
+      "content_required": "Blog content is required"
     }
   }
 }

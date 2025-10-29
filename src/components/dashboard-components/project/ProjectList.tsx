@@ -21,6 +21,7 @@ import { useLocale, useTranslations } from "next-intl";
 export default function ProjectList({ allProjects }: any) {
   const locale = useLocale();
   const t = useTranslations("projects");
+  console.log(allProjects);
   return (
     <div className="w-full h-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-10 p-10">
       {allProjects?.map((proj: any) => (
