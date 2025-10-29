@@ -32,7 +32,6 @@ const nextConfig: NextConfig = {
     ],
   },
   experimental: {
-    turbopackFileSystemCacheForDev: true,
     serverActions: {
       bodySizeLimit: "5mb",
     },

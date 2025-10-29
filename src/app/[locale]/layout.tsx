@@ -83,8 +83,8 @@ export default async function LocaleLayout({ children, params }: Props) {
       lang={locale}
       dir={isArabic ? "rtl" : "ltr"}
       suppressHydrationWarning
-      className="scroll-smooth max-h-svh"
-    >
+      className="scroll-smooth max-h-svh "
+    > 
       <body
         className={`${inter.variable}  ${sora.variable} ${
           isArabic ? tajawal.variable : ""
@@ -93,10 +93,12 @@ export default async function LocaleLayout({ children, params }: Props) {
       >
         <Providers>
           <NextIntlClientProvider messages={messages}>
-            <Nav>
-              <UserButton className="flex absolute right-16 md:ml-5 md:static" />
-            </Nav>
-            {children}
+            <div className="relative">
+              <Nav>
+                <UserButton className="flex absolute right-16 md:ml-5 md:static" />
+              </Nav>
+              {children}
+            </div>
           </NextIntlClientProvider>
         </Providers>
 

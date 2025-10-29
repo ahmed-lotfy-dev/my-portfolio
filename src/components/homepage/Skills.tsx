@@ -1,7 +1,6 @@
 import Image from "next/image"
 import { Card } from "@/src/components/ui/card"
 
-import LogoLoop from '@/src/components/LogoLoop';
 import { SiReact, SiNextdotjs, SiTypescript, SiTailwindcss, SiHtml5, SiCss3 } from 'react-icons/si';
 
 import html from "@/public/images/skills/html.svg"
