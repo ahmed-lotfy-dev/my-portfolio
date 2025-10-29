@@ -1,19 +1,19 @@
-import Image from "next/image"
-import Link from "next/link"
-import { Button } from "@/src/components/ui/button"
-import { Card } from "@/src/components/ui/card"
-import { getAllProjects } from "@/src/app/actions/projectsActions"
-import Section from "@/src/components/ui/Section"
-import ReadMoreText from "@/src/components/ui/ReadMoreText"
-import ImageViewer from "@/src/components/ui/ImageViewer"
-import { getTranslations, getLocale } from "next-intl/server"
+import Image from "next/image";
+import Link from "next/link";
+import { Button } from "@/src/components/ui/button";
+import { Card } from "@/src/components/ui/card";
+import { getAllProjects } from "@/src/app/actions/projectsActions";
+import Section from "@/src/components/ui/Section";
+import ReadMoreText from "@/src/components/ui/ReadMoreText";
+import ImageViewer from "@/src/components/ui/ImageViewer";
+import { getTranslations, getLocale } from "next-intl/server";
 
 export default async function Projects() {
-  const { allProjects } = await getAllProjects()
-  const t = await getTranslations("projects")
-  const locale = await getLocale()
+  const { allProjects } = await getAllProjects();
+  const t = await getTranslations("projects");
+  const locale = await getLocale();
 
-  const isRTL = locale === "ar"
+  const isRTL = locale === "ar";
 
   return (
     <Section className="flex flex-col items-center p-4" id="projects">
@@ -70,12 +70,12 @@ export default async function Projects() {
                     <Button>
                       {proj.categories?.includes("mobile") ||
                       proj.categories?.includes("app")
-                        ? "APK"
-                        : "Live"}
+                        ? t("apk")
+                        : t("live")}
                     </Button>
                   </Link>
                   <Link href={proj.repoLink} target="_blank">
-                    <Button variant="outline">Repo</Button>
+                    <Button variant="outline">{t("repo")}</Button>
                   </Link>
                 </div>
               </div>
@@ -84,5 +84,5 @@ export default async function Projects() {
         </div>
       </div>
     </Section>
-  )
+  );
 }

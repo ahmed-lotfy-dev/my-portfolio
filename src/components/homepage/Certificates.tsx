@@ -14,7 +14,7 @@ import { getTranslations } from "next-intl/server"
 
 export default async function Certificates() {
   const { allCertificates } = await getAllCertificates()
-  const t = await getTranslations("certificates")
+const t = await getTranslations("certificates")
 
   return (
     <section className="flex flex-col items-center my-16 p-4" id="certificates">
@@ -44,10 +44,10 @@ export default async function Certificates() {
                   </div>
                   <div className="mt-4 flex justify-end gap-4">
                     <Link href={cert.courseLink} target="_blank">
-                      <Button variant="outline">Course</Button>
+                      <Button variant="outline">{t("course")}</Button>
                     </Link>
                     <Link href={cert.profLink} target="_blank">
-                      <Button>Proof</Button>
+                      <Button>{t("certificate")}</Button>
                     </Link>
                   </div>
                 </div>

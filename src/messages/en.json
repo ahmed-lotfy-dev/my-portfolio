@@ -42,6 +42,11 @@
     "add-desc": "Fill in the details below to add a new project",
     "upload": "Upload Project Image",
     "uploading": "Uploading Image",
+    "live": "Live",
+    "repo": "Repo",
+    "apk": "APK",
+    "readmore": "Read more",
+    "showless": "Show less",
     "placeholders": {
       "title_en": "Project Title (EN)",
       "title_ar": "Project Title (AR)",
@@ -55,6 +60,27 @@
   "certificates": {
     "title": "My Certificates",
     "description": "A collection of my certifications and qualifications. Hover over a card to see the certificate.",
+    "add-title": "Add Certificate",
+    "add-desc": "Fill in the details below to add a new certificate",
+    "course": "Course",
+    "certificate": "Certificate",
+    "table": {
+      "title": "Certificate Title",
+      "author": "Course Author",
+      "course_link": "Course Link",
+      "proof": "Certificate Proof",
+      "options": "Options",
+      "view_course": "View Course",
+      "view_certificate":"View Certificate"
+    },
+    "placeholders": {
+      "title": "Certificate Title",
+      "description": "Certificate Description",
+      "course_link": "Course Link",
+      "proof_link": "Certificate Proof Link",
+      "image": "Certificate Image",
+      "options": "Options"
+    },
     "validation": {
       "title_required": "Certificate title link is required",
       "desc_required": "Certificate description is required",
@@ -82,6 +108,14 @@
       "email": "Email Address",
       "subject": "Message Subject",
       "message": "Write your message here..."
+    },
+    "validation": {
+      "name_min": "The name must contain at least 5 characters.",
+      "name_max": "The name must not exceed 80 characters.",
+      "email_invalid": "Please enter a valid email address.",
+      "subject_min": "Please add a subject for the message.",
+      "message_min": "Please add a description for the message.",
+      "message_links": "Please write the message without links and make sure it is work-related only."
     }
   },
   "dashboard": {

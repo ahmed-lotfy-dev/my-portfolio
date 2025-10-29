@@ -1,12 +1,12 @@
-import Link from "next/link"
-import Image from "next/image"
-import HeroImage from "@/public/images/alotfy_Programmer_coding_on_laptop_sitting_on_desk_-_-_v4_styli_9fb2f0c6-7665-4891-b42c-89e8e4c6274b.png"
-import Section from "@/src/components/ui/Section"
-import { FileText } from "lucide-react"
-import { getTranslations } from "next-intl/server"
+import Link from "next/link";
+import Image from "next/image";
+import HeroImage from "@/public/images/alotfy_Programmer_coding_on_laptop_sitting_on_desk_-_-_v4_styli_9fb2f0c6-7665-4891-b42c-89e8e4c6274b.png";
+import Section from "@/src/components/ui/Section";
+import { FileText } from "lucide-react";
+import { getTranslations } from "next-intl/server";
 
 export default async function Hero({}) {
-  const t = await getTranslations("hero")
+  const t = await getTranslations("hero");
 
   return (
     <Section
@@ -24,13 +24,15 @@ export default async function Hero({}) {
           <p className="text-md md:text-lg text-muted-foreground max-w-2xl mt-4">
             {t("description")}
           </p>
-          <Link
-            href="/resume.pdf"
-            className="group inline-flex items-center justify-center gap-2 mt-8 self-center sm:self-start rounded-full px-6 py-3 sm:text-lg font-semibold bg-primary text-primary-foreground shadow-md transition-colors focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-background hover:bg-accent"
-          >
-            <FileText className="h-5 w-5" />
-            <span>{t("resume")}</span>
-          </Link>
+<Link
+  href="/resume.pdf"
+  className="inline-flex items-center justify-center gap-2 mt-8 self-center sm:self-start rounded-full px-6 py-3 sm:text-lg font-semibold 
+  bg-primary text-white shadow-md hover:opacity-90 transition-opacity focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/70"
+>
+  <FileText className="h-5 w-5" />
+  <span>{t("resume")}</span>
+</Link>
+
         </div>
         <div className="relative">
           <Image
@@ -44,5 +46,5 @@ export default async function Hero({}) {
         </div>
       </div>
     </Section>
-  )
+  );
 }

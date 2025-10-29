@@ -89,6 +89,11 @@ export default {
       transitionProperty: {
         colors: "background-color, color",
       },
+      fontFamily: {
+        main: "var(--main-font)",
+        heading: "var(--heading-font)",
+        arabic: "var(--arabic-font)",
+      },
     },
   },
   plugins: [require("tailwindcss-animate")],

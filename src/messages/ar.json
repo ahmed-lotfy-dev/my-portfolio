@@ -40,6 +40,11 @@
     "add-desc": "املأ التفاصيل أدناه لإضافة مشروع جديد.",
     "upload": "رفع صورة المشروع",
     "uploading": "يتم رفع الصورة...",
+    "live": "الموقع الحي",
+    "repo": "المستودع",
+    "apk": "ملف التطبيق",
+    "readmore": "إقرأ المزيد",
+    "showless": "إخفاء",
     "placeholders": {
       "title_en": "عنوان المشروع (EN)",
       "title_ar": "عنوان المشروع (AR)",
@@ -63,22 +68,34 @@
   "certificates": {
     "title": "شهاداتي",
     "description": "مجموعة من شهاداتي ومؤهلاتي. مرّر فوق البطاقة لعرض الشهادة.",
+    "add-title": "إضافة شهادة",
+    "add-desc": "املأ التفاصيل أدناه لإضافة شهادة جديدة",
+    "course": "الدورة",
+    "certificate": "الشهادة",
+    "table": {
+      "title": "عنوان الشهادة",
+      "author": "مؤلف الدورة",
+      "course_link": "رابط الدورة",
+      "proof": "إثبات الشهادة",
+      "options": "الخيارات",
+      "view_course": "عرض الدورة",
+      "view_certificate": "عرض الشهاده"
+    },
+    "placeholders": {
+      "title": "عنوان الشهادة",
+      "description": "وصف الشهادة",
+      "course_link": "رابط الدورة",
+      "proof_link": "رابط إثبات الشهادة",
+      "image": "صورة الشهادة",
+      "options": "الخيارات"
+    },
     "validation": {
-      "title_required": "عنوان الشهادة مطلوب.",
+      "title_required": "رابط عنوان الشهادة مطلوب.",
       "desc_required": "وصف الشهادة مطلوب.",
-      "course_link_required": "رابط إثبات الشهادة مطلوب.",
+      "course_link_required": "رابط إثبات الدورة مطلوب.",
       "prof_link_required": "رابط إثبات الشهادة مطلوب.",
       "image_link_required": "رابط صورة الشهادة مطلوب."
-    },
-    "list": [
-      "أساسيات البرمجة من LinkedIn",
-      "بناء مواقع ويب حقيقية متجاوبة باستخدام HTML وCSS",
-      "دورة JavaScript الكاملة 2022: من الصفر إلى الاحتراف",
-      "مهارات تطوير React",
-      "مطور React (Redux, Hooks, GraphQL)",
-      "دورة NodeJS الكاملة (MVC, REST APIs, GraphQL, Deno)",
-      "دورة أساسيات ChatGPT"
-    ]
+    }
   },
   "about": {
     "title": "نبذة عني",
@@ -110,8 +127,8 @@
     }
   },
   "dashboard": {
-    "projects":"المشاريع",
-    "certificates":"الشهادات",
+    "projects": "المشاريع",
+    "certificates": "الشهادات",
     "nav": {
       "home": "الرئيسية",
       "dashboard": "لوحة التحكم",

@@ -22,7 +22,7 @@ export default async function About() {
             className="rounded-lg shadow-lg"
           />
         </div>
-        <div className="md:w-1/2 text-lg text-gray-700 dark:text-gray-300 space-y-4">
+        <div className="md:w-1/2 text-lg text-black dark:text-gray-600 space-y-4">
           <p className="mb-8">{t("description1")}</p>
           <p className="mb-8">{t("description2")}</p>
           <p className="mb-8">{t("description3")}</p>

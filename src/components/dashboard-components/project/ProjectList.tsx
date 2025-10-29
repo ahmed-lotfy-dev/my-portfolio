@@ -1,6 +1,6 @@
-"use client"
-import Image from "next/image"
-import Link from "next/link"
+"use client";
+import Image from "next/image";
+import Link from "next/link";
 
 import {
   Card,
@@ -9,18 +9,18 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "@/src/components/ui/card"
-import { Button } from "@/src/components/ui/button"
-import { deleteProjectAction } from "@/src/app/actions/projectsActions"
-import { EditPopover } from "../EditPopover"
-import { AspectRatio } from "@/src/components/ui/aspect-ratio"
-import ReadMoreText from "@/src/components/ui/ReadMoreText"
-import ImageViewer from "../../ui/ImageViewer"
-import { useLocale } from "next-intl"
+} from "@/src/components/ui/card";
+import { Button } from "@/src/components/ui/button";
+import { deleteProjectAction } from "@/src/app/actions/projectsActions";
+import { EditPopover } from "../EditPopover";
+import { AspectRatio } from "@/src/components/ui/aspect-ratio";
+import ReadMoreText from "@/src/components/ui/ReadMoreText";
+import ImageViewer from "../../ui/ImageViewer";
+import { useLocale, useTranslations } from "next-intl";
 
 export default function ProjectList({ allProjects }: any) {
-    const locale =  useLocale()
-
+  const locale = useLocale();
+  const t = useTranslations("projects");
   return (
     <div className="w-full h-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-10 p-10">
       {allProjects?.map((proj: any) => (
@@ -75,17 +75,17 @@ export default function ProjectList({ allProjects }: any) {
                 <Button>
                   {proj.categories?.includes("mobile") ||
                   proj.categories?.includes("app")
-                    ? "APK"
-                    : "Live"}
+                    ? t("apk")
+                    : t("live")}
                 </Button>
               </Link>
               <Link href={proj.repoLink} target="_blank">
-                <Button variant="outline">Repo</Button>
+                <Button variant="outline">{t("repo")}</Button>
               </Link>
             </CardFooter>
           </div>
         </Card>
       ))}
     </div>
-  )
+  );
 }

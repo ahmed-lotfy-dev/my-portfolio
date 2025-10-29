@@ -1,22 +1,22 @@
-"use client"
-import { useActionState } from "react"
-import Link from "next/link"
-import { contactAction } from "@/src/app/actions/contactAction"
-import { notify } from "@/src/lib/utils/toast"
-import { IoLogoFacebook, IoLogoLinkedin, IoLogoGithub } from "react-icons/io5"
-import { Input } from "@/src/components/ui/input"
-import { Textarea } from "@/src/components/ui/textarea"
-import { Button } from "@/src/components/ui/button"
-import Submit from "@/src/components/ui/formSubmitBtn"
-import { useLocale, useTranslations } from "next-intl"
+"use client";
+import { useActionState } from "react";
+import Link from "next/link";
+import { contactAction } from "@/src/app/actions/contactAction";
+import { notify } from "@/src/lib/utils/toast";
+import { IoLogoFacebook, IoLogoLinkedin, IoLogoGithub } from "react-icons/io5";
+import { Input } from "@/src/components/ui/input";
+import { Textarea } from "@/src/components/ui/textarea";
+import { Button } from "@/src/components/ui/button";
+import Submit from "@/src/components/ui/formSubmitBtn";
+import { useLocale, useTranslations } from "next-intl";
 
 export default function Contact() {
-  const t = useTranslations("contact")
+  const t = useTranslations("contact");
 
-  const [state, formAction] = useActionState(contactAction, null)
+  const [state, formAction] = useActionState(contactAction, null);
 
   if (state?.success) {
-    notify("Email sent successfully, I'll contact you soon", true)
+    notify("Email sent successfully, I'll contact you soon", true);
   }
 
   return (
@@ -32,8 +32,8 @@ export default function Contact() {
       <div className="container flex flex-col md:flex-row gap-12">
         <div className="md:w-1/2 space-y-4">
           <h3 className="text-2xl font-bold"> {t("getInTouch")}</h3>
-          <p className="text-gray-700 dark:text-gray-300">{t("email")}</p>
-          <p className="text-gray-700 dark:text-gray-300">{t("phone")}</p>
+          <p className="text-gray-700 dark:text-gray-600">{t("email")}</p>
+          <p className="text-gray-700 dark:text-gray-600">{t("phone")}</p>
           <div className="flex space-x-4">
             <Link
               href="https://www.linkedin.com/in/ahmed-lotfy-dev/"
@@ -42,7 +42,7 @@ export default function Contact() {
               <IoLogoLinkedin className="w-8 h-8 text-blue-600 hover:text-blue-800" />
             </Link>
             <Link href="https://github.com/ahmed-lotfy-dev" target="_blank">
-              <IoLogoGithub className="w-8 h-8 text-gray-800 dark:text-gray-200 hover:text-black dark:hover:text-white" />
+              <IoLogoGithub className="w-8 h-8 text-gray-600 dark:text-gray-500 hover:text-gray-900 " />
             </Link>
             <Link href="https://www.facebook.com/ahmed.lotfy00" target="_blank">
               <IoLogoFacebook className="w-8 h-8 text-blue-800 hover:text-blue-900" />
@@ -96,5 +96,5 @@ export default function Contact() {
         </div>
       </div>
     </section>
-  )
+  );
 }

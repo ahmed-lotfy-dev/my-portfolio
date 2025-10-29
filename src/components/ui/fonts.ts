@@ -1,14 +1,21 @@
-import { Inter, DM_Sans, Outfit } from "next/font/google"
+// src/components/ui/fonts.ts
+import { Inter, Sora, Tajawal } from "next/font/google";
 
-export const inter = Inter({ subsets: ["latin"] })
-
-export const plusJakarta = DM_Sans({
+export const inter = Inter({
   subsets: ["latin"],
-  variable: "--main-font",
-})
+  variable: "--font-inter",
+  display: "swap",
+});
 
-export const sora = Outfit({
+export const sora = Sora({
   subsets: ["latin"],
-  variable: "--heading-font",
-  weight: ["500", "600", "700", "800"],
-})
+  variable: "--font-sora",
+  display: "swap",
+});
+
+export const tajawal = Tajawal({
+  subsets: ["arabic"],
+  variable: "--font-tajawal",
+  display: "swap",
+  weight: "400"
+});

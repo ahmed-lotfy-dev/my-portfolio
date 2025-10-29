@@ -1,6 +1,9 @@
 import Image from "next/image"
 import { Card } from "@/src/components/ui/card"
 
+import LogoLoop from '@/src/components/LogoLoop';
+import { SiReact, SiNextdotjs, SiTypescript, SiTailwindcss, SiHtml5, SiCss3 } from 'react-icons/si';
+
 import html from "@/public/images/skills/html.svg"
 import css from "@/public/images/skills/css3.svg"
 import js from "@/public/images/skills/javascript.svg"
@@ -11,6 +14,7 @@ import github from "@/public/images/skills/github.svg"
 import graphql from "@/public/images/skills/graphql.svg"
 import linux from "@/public/images/skills/linux.svg"
 import docker from "@/public/images/skills/docker.svg"
+
 import { getTranslations } from "next-intl/server"
 
 interface Skill {
@@ -36,6 +40,15 @@ export default async function Skills() {
   const loopSkills = [...skillsList, ...skillsList]
   const t = await getTranslations("skills")
 
+const techLogos = [
+  { node: <SiHtml5 />, title: "HTML", href: "https://tailwindcss.com" },
+  { node: <SiCss3 />, title: "CSS", href: "https://tailwindcss.com" },
+  { node: <SiCss3 />, title: "CSS", href: "https://tailwindcss.com" },
+  { node: <SiReact />, title: "React", href: "https://react.dev" },
+  { node: <SiNextdotjs />, title: "Next.js", href: "https://nextjs.org" },
+  { node: <SiTypescript />, title: "TypeScript", href: "https://www.typescriptlang.org" },
+  { node: <SiTailwindcss />, title: "Tailwind CSS", href: "https://tailwindcss.com" },
+];
   return (
     <section className="flex flex-col items-center mt-16 px-4" id="skills">
       <div className="container">
@@ -47,7 +60,6 @@ export default async function Skills() {
             {t("description")}
           </p>
         </div>
-
         {/* Auto-scrolling horizontal list */}
         <div className="relative overflow-hidden w-full sm:max-w-5xl mx-auto">
           <div className="inline-flex w-max gap-5 will-change-transform animate-[scrollX_30s_linear_infinite]">
