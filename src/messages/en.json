@@ -14,7 +14,7 @@
     "name": "Ahmed Lotfy",
     "title": "Full-Stack Web & Mobile Software Developer",
     "description": "I build responsive and scalable web and mobile applications. Let's create something amazing together.",
-    "resume": "My Resume",
+    "resume": "My Cv",
     "illustrationAlt": "Developer Illustration Hero Image"
   },
   "skills": {
@@ -74,7 +74,7 @@
       "proof": "Certificate Proof",
       "options": "Options",
       "view_course": "View Course",
-      "view_certificate":"View Certificate"
+      "view_certificate": "View Certificate"
     },
     "placeholders": {
       "title": "Certificate Title",

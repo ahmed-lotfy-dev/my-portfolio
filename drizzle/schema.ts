@@ -99,8 +99,10 @@ export const posts = pgTable("posts", {
 
 export const projects = pgTable("projects", {
 	id: uuid().defaultRandom().primaryKey().notNull(),
-	title: text().notNull(),
-	desc: text().notNull(),
+	titleEn: text("title_en").notNull(),
+	titleAr: text("title_ar").notNull(),
+	descEn: text("desc_en").notNull(),
+	descAr: text("desc_ar").notNull(),
 	repoLink: text("repo_link").notNull(),
 	liveLink: text("live_link").notNull(),
 	imageLink: text("image_link").notNull(),

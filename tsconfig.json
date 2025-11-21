@@ -1,7 +1,11 @@
 {
   "compilerOptions": {
     "target": "es2017",
-    "lib": ["dom", "dom.iterable", "esnext"],
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
@@ -21,10 +25,18 @@
     ],
     "baseUrl": ".",
     "paths": {
-      "@/*": ["./*"],
-      "@/components/*": ["src/app/[locale]/components/*"],
-      "@/lib/*": ["src/lib/*"],
-      "auth": ["./auth.ts"]
+      "@/*": [
+        "./*"
+      ],
+      "@/components/*": [
+        "src/app/[locale]/components/*"
+      ],
+      "@/lib/*": [
+        "src/lib/*"
+      ],
+      "auth": [
+        "./auth.ts"
+      ]
     }
   },
   "include": [
@@ -41,7 +53,10 @@
     "src/db/migrate.ts",
     "src/app/redux/features/Projects",
     "src/db/db-seed-data/prjects-data.ts",
-    ".next/dev/types/**/*.ts"
+    ".next/dev/types/**/*.ts",
+    ".next\\dev/types/**/*.ts"
   ],
-  "exclude": ["node_modules"]
+  "exclude": [
+    "node_modules"
+  ]
 }

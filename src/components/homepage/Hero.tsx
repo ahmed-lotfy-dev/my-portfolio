@@ -4,7 +4,6 @@ import HeroImage from "@/public/images/alotfy_Programmer_coding_on_laptop_sittin
 import Section from "@/src/components/ui/Section";
 import { FileText } from "lucide-react";
 import { getTranslations } from "next-intl/server";
-import Silk from "@/src/components/Silk";
 
 export default async function Hero({}) {
   const t = await getTranslations("hero");
@@ -23,7 +22,8 @@ export default async function Hero({}) {
             {t("description")}
           </p>
           <Link
-            href="/resume.pdf"
+            href="/Ahmed-Lotfy-CV.pdf"
+            download
             className="inline-flex items-center justify-center gap-2 mt-8 self-center sm:self-start rounded-full px-6 py-3 sm:text-lg font-semibold 
   bg-primary text-white shadow-md hover:opacity-90 transition-opacity focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/70"
           >

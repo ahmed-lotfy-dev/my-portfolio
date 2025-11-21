@@ -1,9 +1,16 @@
-import { NextConfig } from "next"
-import createNextIntlPlugin from "next-intl/plugin"
+import { NextConfig } from "next";
+import createNextIntlPlugin from "next-intl/plugin";
 
 /** @type {import('next').NextConfig} */
 const nextConfig: NextConfig = {
-  reactCompiler: true,
+  experimental: {
+    // turbopackFileSystemCacheForDev: true,
+    serverActions: {
+      bodySizeLimit: "5mb",
+    },
+  },
+
+  reactCompiler: false,
   images: {
     remotePatterns: [
       {
@@ -31,12 +38,8 @@ const nextConfig: NextConfig = {
       },
     ],
   },
-  experimental: {
-    serverActions: {
-      bodySizeLimit: "5mb",
-    },
-  },
-}
+  skipTrailingSlashRedirect: true,
+};
 
-const withNextIntl = createNextIntlPlugin()
-export default withNextIntl(nextConfig)
+const withNextIntl = createNextIntlPlugin();
+export default withNextIntl(nextConfig);

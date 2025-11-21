@@ -9,9 +9,13 @@ import { Nav } from "@/src/components/homepage/Nav";
 import type { Metadata } from "next";
 import { Toaster } from "@/src/components/ui/sonner";
 import UserButton from "@/src/components/dashboard-components/UserButton";
-import Providers from "@/src/app/provider";
 import { getMessages } from "next-intl/server";
+
 import { inter, sora, tajawal } from "@/src/components/ui/fonts";
+import { ThemeProvider } from "next-themes";
+import { PostHogProvider } from "@/src/providers/postHogProvider";
+import { Suspense } from "react";
+import PostHogPageView from "@/src/components/PostHogPageView";
 
 export const dynamic = "force-dynamic";
 
@@ -84,25 +88,30 @@ export default async function LocaleLayout({ children, params }: Props) {
       dir={isArabic ? "rtl" : "ltr"}
       suppressHydrationWarning
       className="scroll-smooth max-h-svh "
-    > 
+    >
       <body
         className={`${inter.variable}  ${sora.variable} ${
           isArabic ? tajawal.variable : ""
         } antialiased font-main`}
         suppressHydrationWarning
       >
-        <Providers>
-          <NextIntlClientProvider messages={messages}>
-            <div className="relative">
-              <Nav>
-                <UserButton className="flex absolute right-16 md:ml-5 md:static" />
-              </Nav>
-              {children}
-            </div>
-          </NextIntlClientProvider>
-        </Providers>
+        <PostHogProvider>
+          <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+            <NextIntlClientProvider messages={messages}>
+              <div className="relative">
+                <Nav>
+                  <UserButton className="flex absolute right-16 md:ml-5 md:static" />
+                </Nav>
+                <Suspense fallback={null}>
+                  <PostHogPageView />
+                </Suspense>
+                {children}
+              </div>
+            </NextIntlClientProvider>
+          </ThemeProvider>
+        </PostHogProvider>
 
-        <GoogleAnalytics gaId="G-97J3PKW2DK" />
+        {/* <GoogleAnalytics gaId="G-97J3PKW2DK" /> */}
         <Toaster />
       </body>
     </html>

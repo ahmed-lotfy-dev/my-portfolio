@@ -8,7 +8,6 @@ import {
   HoverCardContent,
   HoverCardTrigger,
 } from "@/src/components/ui/hover-card"
-import { Certificate } from "@prisma/client"
 import { Eye } from "lucide-react"
 import { getTranslations } from "next-intl/server"
 
@@ -29,7 +28,7 @@ const t = await getTranslations("certificates")
         </div>
       </div>
       <div className="container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {allCertificates?.map((cert: Certificate) => (
+        {allCertificates?.map((cert: any) => (
           <HoverCard key={cert.id}>
             <HoverCardTrigger asChild>
               <Card className="flex flex-col justify-between overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 cursor-pointer">

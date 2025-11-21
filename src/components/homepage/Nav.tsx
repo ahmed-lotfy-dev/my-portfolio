@@ -1,15 +1,15 @@
-"use client"
-import { ReactNode, useState, useEffect } from "react"
-import Link from "next/link"
-import { usePathname } from "next/navigation"
-import { Menu, X } from "lucide-react"
-import Image from "next/image"
-import ThemeToggle from "@/src/components/ThemeToggle"
-import LanguageSwitcher from "@/src/components/i18n/LanguageSwitcher"
-import { useTheme } from "next-themes"
-import LogoLight from "@/public/Logo-Blue-Dot.png"
-import LogoDark from "@/public/Logo-Blue-Dot.png"
-import { useLocale, useTranslations } from "next-intl"
+"use client";
+import { ReactNode, useState, useEffect } from "react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { Menu, X } from "lucide-react";
+import Image from "next/image";
+import ThemeToggle from "@/src/components/ThemeToggle";
+import LanguageSwitcher from "@/src/components/i18n/LanguageSwitcher";
+import { useTheme } from "next-themes";
+import LogoLight from "@/public/Logo-Blue-Dot.png";
+import LogoDark from "@/public/Logo-Blue-Dot.png";
+import { useLocale, useTranslations } from "next-intl";
 
 const navLinks = [
   { href: "/", label: "home" },
@@ -19,34 +19,34 @@ const navLinks = [
   { href: "/#about", label: "about" },
   { href: "/#contact", label: "contact" },
   { href: "/dashboard", label: "dashboard" },
-]
+];
 
 function Nav({ children }: { children: ReactNode }) {
-  const pathname = usePathname()
-  const [open, setOpen] = useState(false)
-  const [scrolled, setScrolled] = useState(false)
-  const { resolvedTheme } = useTheme()
-  const [mounted, setMounted] = useState(false)
+  const pathname = usePathname();
+  const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const { resolvedTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
 
-  const t = useTranslations("nav")
-  const locale = useLocale()
+  const t = useTranslations("nav");
+  const locale = useLocale();
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 10)
-    }
-    window.addEventListener("scroll", handleScroll)
-    return () => window.removeEventListener("scroll", handleScroll)
-  }, [])
+      setScrolled(window.scrollY > 10);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   useEffect(() => {
-    setMounted(true)
-  }, [])
+    setMounted(true);
+  }, []);
 
-  const toggle = () => setOpen((v) => !v)
-  const close = () => setOpen(false)
+  const toggle = () => setOpen((v) => !v);
+  const close = () => setOpen(false);
 
-  console.log(pathname)
+  console.log(pathname);
   return (
     <header
       className={`fixed inset-x-0 top-0 z-50 transition-all duration-100 ${
@@ -63,12 +63,11 @@ function Nav({ children }: { children: ReactNode }) {
             alt="Logo"
           />
         </Link>
-
         <ul className="hidden md:flex items-center gap-8">
           {navLinks.map((link) => (
             <li key={link.href}>
               <Link
-                href={link.href}
+                href={`/${locale}${link.href}`}
                 className="relative text-sm font-medium text-foreground/80 hover:text-primary transition-colors"
               >
                 {t(link.label)}
@@ -156,7 +155,7 @@ function Nav({ children }: { children: ReactNode }) {
         </ul>
       </div>
     </header>
-  )
+  );
 }
 
-export { Nav }
+export { Nav };
