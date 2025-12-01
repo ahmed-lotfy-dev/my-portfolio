@@ -15,7 +15,7 @@ import { logger } from "@/src/lib/utils/logger";
 export async function getAllProjects() {
   try {
     const allProjects = await db.query.projects.findMany({
-      orderBy: [asc(projects.createdAt)],
+      orderBy: [desc(projects.displayOrder), desc(projects.createdAt)],
     });
     return { allProjects };
   } catch (error) {

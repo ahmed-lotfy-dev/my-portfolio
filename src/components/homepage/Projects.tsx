@@ -67,6 +67,23 @@ export default async function Projects() {
                     maxLines={5}
                     className="text-muted-foreground grow"
                   />
+
+                  {/* Tech Stack */}
+                  {proj.categories &&
+                    proj.categories.length > 0 &&
+                    proj.categories[0] !== "" && (
+                      <div className="mt-4 flex flex-wrap gap-2">
+                        {proj.categories.map((tech, index) => (
+                          <span
+                            key={index}
+                            className="px-3 py-1 text-xs font-medium bg-primary/10 text-primary rounded-full"
+                          >
+                            {tech}
+                          </span>
+                        ))}
+                      </div>
+                    )}
+
                   <div className="mt-4 flex justify-end gap-4">
                     <Link href={proj.liveLink} target="_blank">
                       <Button>

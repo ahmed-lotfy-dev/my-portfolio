@@ -116,6 +116,7 @@ export const projects = pgTable("projects", {
   imageLink: text("image_link").notNull(),
   categories: text("categories").array().notNull(),
   published: boolean("published").notNull().default(true),
+  displayOrder: integer("display_order").default(0),
   createdAt: timestamp("created_at").defaultNow().notNull(),
   updatedAt: timestamp("updated_at")
     .defaultNow()

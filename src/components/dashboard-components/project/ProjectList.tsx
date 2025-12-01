@@ -71,6 +71,23 @@ export default function ProjectList({ allProjects }: any) {
               maxLines={5}
               className="text-sm font-medium wrap-break-word leading-relaxed mt-4 flex-1"
             />
+
+            {/* Tech Stack */}
+            {proj.categories &&
+              proj.categories.length > 0 &&
+              proj.categories[0] !== "" && (
+                <div className="mt-3 flex flex-wrap gap-2">
+                  {proj.categories.map((tech, index) => (
+                    <span
+                      key={index}
+                      className="px-2 py-1 text-xs font-medium bg-primary/10 text-primary rounded-md"
+                    >
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+              )}
+
             <CardFooter className="mt-auto flex flex-wrap gap-4 p-0 pt-4">
               <Link href={proj.liveLink} target="_blank">
                 <Button>
