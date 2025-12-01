@@ -32,6 +32,7 @@ function EditProject({ EditedObject }: any) {
   const [imageUrl, setImageUrl] = useState("");
 
   const formRef = useRef<HTMLFormElement>(null);
+  const closeButtonRef = useRef<HTMLButtonElement>(null);
   const { data: session } = authClient.useSession();
   const user = session?.user;
 
@@ -55,10 +56,16 @@ function EditProject({ EditedObject }: any) {
   };
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
-    // Modified this line
-    event.preventDefault(); // Prevent default form submission
+    event.preventDefault();
     const formData = new FormData(event.currentTarget);
-    await editProjectAction(editedProj, formData);
+    const result = await editProjectAction(editedProj, formData);
+
+    if (result?.success) {
+      notify("Project updated successfully!", true);
+      closeButtonRef.current?.click(); // Close dialog using ref
+    } else if (result?.message) {
+      notify(result.message, false);
+    }
   };
 
   return (
@@ -69,6 +76,7 @@ function EditProject({ EditedObject }: any) {
             <Pencil className="mr-3" size={20} />
             Edit Project
           </DialogTrigger>
+          <DialogClose ref={closeButtonRef} className="hidden" />
           <DialogContent className="w-[700px] overflow-y-auto max-h-[calc(100vh-100px)] bg-blue-500">
             <DialogHeader className="flex justify-center items-center mt-3">
               <DialogTitle>{t("edit-title")}</DialogTitle>
@@ -198,9 +206,7 @@ function EditProject({ EditedObject }: any) {
                 value={editedProj.published !== false ? "true" : "false"}
               />
 
-              <DialogClose asChild>
-                <Submit btnText="Edit Project" className="m-10" type="submit" />
-              </DialogClose>
+              <Submit btnText="Edit Project" className="m-10" type="submit" />
             </form>
           </DialogContent>
         </Dialog>

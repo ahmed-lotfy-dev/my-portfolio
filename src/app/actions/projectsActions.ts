@@ -152,6 +152,9 @@ export async function editProjectAction(state: any, data: FormData) {
     categoriesString?.split(",").map((tag) => tag.trim()) || [];
   const published = data.get("published") === "true";
 
+  logger.debug("Edit Project - Categories String:", categoriesString);
+  logger.debug("Edit Project - Categories Array:", categories);
+
   const session = await auth.api.getSession({ headers: await headers() });
   const user = session?.user;
 
