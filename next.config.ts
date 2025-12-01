@@ -6,7 +6,7 @@ const nextConfig: NextConfig = {
   experimental: {
     // turbopackFileSystemCacheForDev: true,
     serverActions: {
-      bodySizeLimit: "5mb",
+      bodySizeLimit: "10mb", // Increased from default 1mb to allow image uploads
     },
   },
 
