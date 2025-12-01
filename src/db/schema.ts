@@ -6,11 +6,11 @@ import {
   integer,
   pgEnum,
   uniqueIndex,
-} from "drizzle-orm/pg-core"
-import { relations } from "drizzle-orm"
-import { uuid } from "drizzle-orm/pg-core"
+} from "drizzle-orm/pg-core";
+import { relations } from "drizzle-orm";
+import { uuid } from "drizzle-orm/pg-core";
 
-export const roleEnum = pgEnum("role", ["USER", "ADMIN"])
+export const roleEnum = pgEnum("role", ["USER", "ADMIN"]);
 
 export const users = pgTable("users", {
   id: text("id").primaryKey(),
@@ -24,7 +24,7 @@ export const users = pgTable("users", {
     .defaultNow()
     .$onUpdate(() => new Date())
     .notNull(),
-})
+});
 
 export const sessions = pgTable("sessions", {
   id: text("id").primaryKey(),
@@ -39,7 +39,7 @@ export const sessions = pgTable("sessions", {
   updatedAt: timestamp("updated_at")
     .$onUpdate(() => new Date())
     .notNull(),
-})
+});
 
 export const accounts = pgTable(
   "accounts",
@@ -69,7 +69,7 @@ export const accounts = pgTable(
       table.accountId
     ),
   })
-)
+);
 
 export const verifications = pgTable("verifications", {
   id: text("id").primaryKey(),
@@ -81,7 +81,7 @@ export const verifications = pgTable("verifications", {
     .defaultNow()
     .$onUpdate(() => new Date())
     .notNull(),
-})
+});
 
 export const posts = pgTable("posts", {
   id: uuid("id").defaultRandom().primaryKey(),
@@ -103,7 +103,7 @@ export const posts = pgTable("posts", {
     .defaultNow()
     .$onUpdate(() => new Date())
     .notNull(),
-})
+});
 
 export const projects = pgTable("projects", {
   id: uuid("id").defaultRandom().primaryKey(),
@@ -115,12 +115,13 @@ export const projects = pgTable("projects", {
   liveLink: text("live_link").notNull(),
   imageLink: text("image_link").notNull(),
   categories: text("categories").array().notNull(),
+  published: boolean("published").notNull().default(true),
   createdAt: timestamp("created_at").defaultNow().notNull(),
   updatedAt: timestamp("updated_at")
     .defaultNow()
     .$onUpdate(() => new Date())
     .notNull(),
-})    
+});
 
 export const certificates = pgTable("certificates", {
   id: uuid("id").defaultRandom().primaryKey(),
@@ -134,31 +135,31 @@ export const certificates = pgTable("certificates", {
     .defaultNow()
     .$onUpdate(() => new Date())
     .notNull(),
-})
+});
 
 export const usersRelations = relations(users, ({ many }) => ({
   posts: many(posts),
   accounts: many(accounts),
   sessions: many(sessions),
-}))
+}));
 
 export const postsRelations = relations(posts, ({ one }) => ({
   author: one(users, {
     fields: [posts.author],
     references: [users.id],
   }),
-}))
+}));
 
 export const accountsRelations = relations(accounts, ({ one }) => ({
   user: one(users, {
     fields: [accounts.userId],
     references: [users.id],
   }),
-}))
+}));
 
 export const sessionsRelations = relations(sessions, ({ one }) => ({
   user: one(users, {
     fields: [sessions.userId],
     references: [users.id],
   }),
-}))
+}));

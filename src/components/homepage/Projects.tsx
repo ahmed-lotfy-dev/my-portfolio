@@ -27,60 +27,62 @@ export default async function Projects() {
           </p>
         </div>
         <div className="w-full grid gap-8 grid-cols-[repeat(auto-fit,minmax(280px,1fr))] justify-items-stretch">
-          {allProjects?.map((proj) => (
-            <Card
-              key={proj.id}
-              className="flex h-full flex-col justify-between overflow-hidden hover:shadow-md transition-shadow duration-300"
-            >
-              <ImageViewer
-                imageUrl={proj.imageLink}
-                altText={locale === "ar" ? proj.title_ar : proj.title_en}
-                trigger={
-                  <div className="relative w-full h-72 cursor-pointer">
-                    <Image
-                      src={proj.imageLink}
-                      alt={locale === "ar" ? proj.title_ar : proj.title_en}
-                      fill
-                      unoptimized={
-                        proj.imageLink?.toLowerCase().endsWith(".gif")
-                          ? true
-                          : undefined
-                      }
-                      className={
-                        proj.categories?.includes("mobile") ||
-                        proj.categories?.includes("app")
-                          ? "object-contain"
-                          : "object-cover"
-                      }
-                    />
-                  </div>
-                }
-              />
-              <div className="p-6 flex flex-col grow">
-                <h3 className="text-2xl font-bold mb-2">
-                  {locale === "ar" ? proj.title_ar : proj.title_en}
-                </h3>
-                <ReadMoreText
-                  text={locale === "ar" ? proj.desc_ar : proj.desc_en}
-                  maxLines={5}
-                  className="text-muted-foreground grow"
+          {allProjects
+            ?.filter((proj) => proj.published !== false)
+            .map((proj) => (
+              <Card
+                key={proj.id}
+                className="flex h-full flex-col justify-between overflow-hidden hover:shadow-md transition-shadow duration-300"
+              >
+                <ImageViewer
+                  imageUrl={proj.imageLink}
+                  altText={locale === "ar" ? proj.title_ar : proj.title_en}
+                  trigger={
+                    <div className="relative w-full h-72 cursor-pointer">
+                      <Image
+                        src={proj.imageLink}
+                        alt={locale === "ar" ? proj.title_ar : proj.title_en}
+                        fill
+                        unoptimized={
+                          proj.imageLink?.toLowerCase().endsWith(".gif")
+                            ? true
+                            : undefined
+                        }
+                        className={
+                          proj.categories?.includes("mobile") ||
+                          proj.categories?.includes("app")
+                            ? "object-contain"
+                            : "object-cover"
+                        }
+                      />
+                    </div>
+                  }
                 />
-                <div className="mt-4 flex justify-end gap-4">
-                  <Link href={proj.liveLink} target="_blank">
-                    <Button>
-                      {proj.categories?.includes("mobile") ||
-                      proj.categories?.includes("app")
-                        ? t("apk")
-                        : t("live")}
-                    </Button>
-                  </Link>
-                  <Link href={proj.repoLink} target="_blank">
-                    <Button variant="outline">{t("repo")}</Button>
-                  </Link>
+                <div className="p-6 flex flex-col grow">
+                  <h3 className="text-2xl font-bold mb-2">
+                    {locale === "ar" ? proj.title_ar : proj.title_en}
+                  </h3>
+                  <ReadMoreText
+                    text={locale === "ar" ? proj.desc_ar : proj.desc_en}
+                    maxLines={5}
+                    className="text-muted-foreground grow"
+                  />
+                  <div className="mt-4 flex justify-end gap-4">
+                    <Link href={proj.liveLink} target="_blank">
+                      <Button>
+                        {proj.categories?.includes("mobile") ||
+                        proj.categories?.includes("app")
+                          ? t("apk")
+                          : t("live")}
+                      </Button>
+                    </Link>
+                    <Link href={proj.repoLink} target="_blank">
+                      <Button variant="outline">{t("repo")}</Button>
+                    </Link>
+                  </div>
                 </div>
-              </div>
-            </Card>
-          ))}
+              </Card>
+            ))}
         </div>
       </div>
     </Section>

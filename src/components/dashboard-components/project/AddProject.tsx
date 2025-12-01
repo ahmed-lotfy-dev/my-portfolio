@@ -14,6 +14,7 @@ import Image from "next/image";
 import { Input } from "@/src/components/ui/input";
 import { Label } from "@/src/components/ui/label";
 import { Textarea } from "@/src/components/ui/textarea";
+import { Switch } from "@/src/components/ui/switch";
 import Submit from "@/src/components/ui/formSubmitBtn";
 import { Upload } from "../Upload";
 import { notify } from "@/src/lib/utils/toast";
@@ -40,6 +41,7 @@ function AddProjectComponent() {
     repoLink: "",
     liveLink: "",
     categories: "",
+    published: true,
   });
 
   // ✅ Automatically close dialog & reset form on success
@@ -56,6 +58,7 @@ function AddProjectComponent() {
         repoLink: "",
         liveLink: "",
         categories: "",
+        published: true,
       });
       formRef.current?.reset();
     } else if (state?.message && !state?.success) {
@@ -226,6 +229,28 @@ function AddProjectComponent() {
                   {state.error.categories._errors}
                 </p>
               )}
+
+              {/* Published Toggle */}
+              <div className="flex items-center justify-between w-2/3 p-4 border rounded-md">
+                <div className="space-y-0.5">
+                  <Label htmlFor="published">{t("publish_toggle")}</Label>
+                  <p className="text-sm text-muted-foreground">
+                    {t("publish_toggle_desc")}
+                  </p>
+                </div>
+                <Switch
+                  id="published"
+                  checked={formData.published}
+                  onCheckedChange={(checked) =>
+                    setFormData({ ...formData, published: checked })
+                  }
+                />
+              </div>
+              <input
+                type="hidden"
+                name="published"
+                value={formData.published ? "true" : "false"}
+              />
 
               {/* Submit */}
               <Submit

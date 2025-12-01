@@ -7,6 +7,7 @@ import { Label } from "@/src/components/ui/label";
 import { editProjectAction } from "@/src/app/actions/projectsActions";
 import { notify } from "@/src/lib/utils/toast";
 import Submit from "@/src/components/ui/formSubmitBtn";
+import { Switch } from "@/src/components/ui/switch";
 import {
   Dialog,
   DialogContent,
@@ -173,6 +174,28 @@ function EditProject({ EditedObject }: any) {
                     : editedProj.categories || ""
                 }
                 onChange={InputHandler}
+              />
+
+              {/* Published Toggle */}
+              <div className="flex items-center justify-between w-2/3 p-4 border rounded-md">
+                <div className="space-y-0.5">
+                  <Label htmlFor="published-edit">{t("publish_toggle")}</Label>
+                  <p className="text-sm text-muted-foreground">
+                    {t("publish_toggle_desc")}
+                  </p>
+                </div>
+                <Switch
+                  id="published-edit"
+                  checked={editedProj.published !== false}
+                  onCheckedChange={(checked) =>
+                    setEditedProj({ ...editedProj, published: checked })
+                  }
+                />
+              </div>
+              <input
+                type="hidden"
+                name="published"
+                value={editedProj.published !== false ? "true" : "false"}
               />
 
               <DialogClose asChild>

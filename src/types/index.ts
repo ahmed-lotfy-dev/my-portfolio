@@ -16,6 +16,7 @@ export interface Project {
   liveLink: string;
   imageLink: string;
   categories: string[];
+  published?: boolean;
   createdAt: Date;
   updatedAt?: Date;
 }

@@ -49,9 +49,10 @@ export async function addProjectAction(state: any, data: FormData) {
   const repoLink = data.get("repoLink") as string;
   const liveLink = data.get("liveLink") as string;
   const imageLink = data.get("imageLink") as string;
+  const categoriesString = data.get("categories") as string;
   const categories =
-    (data.get("categories") as string)?.split(",").map((tag) => tag.trim()) ||
-    [];
+    categoriesString?.split(",").map((tag) => tag.trim()) || [];
+  const published = data.get("published") === "true";
 
   const session = await auth.api.getSession({ headers: await headers() });
   const user = session?.user;
@@ -123,6 +124,7 @@ export async function addProjectAction(state: any, data: FormData) {
       liveLink,
       imageLink,
       categories,
+      published,
     });
 
     logger.info("Project added successfully");
@@ -145,9 +147,10 @@ export async function editProjectAction(state: any, data: FormData) {
   const repoLink = data.get("repoLink") as string;
   const liveLink = data.get("liveLink") as string;
   const imageLink = data.get("imageLink") as string;
+  const categoriesString = data.get("categories") as string;
   const categories =
-    (data.get("categories") as string)?.split(",").map((tag) => tag.trim()) ||
-    [];
+    categoriesString?.split(",").map((tag) => tag.trim()) || [];
+  const published = data.get("published") === "true";
 
   const session = await auth.api.getSession({ headers: await headers() });
   const user = session?.user;
@@ -230,6 +233,7 @@ export async function editProjectAction(state: any, data: FormData) {
         liveLink,
         imageLink,
         categories,
+        published,
       })
       .where(eq(projects.id, id));
 
