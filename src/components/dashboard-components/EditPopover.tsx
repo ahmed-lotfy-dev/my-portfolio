@@ -14,6 +14,16 @@ interface EditPopoverProps {
 function EditPopover({ onDeleteClick, EditedObject }: EditPopoverProps) {
   const isCertificate = "courseLink" in EditedObject;
 
+  const handleDelete = () => {
+    if (
+      window.confirm(
+        "Are you sure you want to delete this? This action cannot be undone."
+      )
+    ) {
+      onDeleteClick();
+    }
+  };
+
   return (
     <Popover>
       <PopoverTrigger>
@@ -27,7 +37,10 @@ function EditPopover({ onDeleteClick, EditedObject }: EditPopoverProps) {
             ) : (
               <EditProject EditedObject={EditedObject} />
             )}
-            <Button className="w-full mt-2 cursor-pointer" onClick={onDeleteClick}>
+            <Button
+              className="w-full mt-2 cursor-pointer"
+              onClick={handleDelete}
+            >
               Delete
             </Button>
           </div>
