@@ -50,8 +50,12 @@ export async function addProjectAction(state: any, data: FormData) {
   const liveLink = data.get("liveLink") as string;
   const imageLink = data.get("imageLink") as string;
   const categoriesString = data.get("categories") as string;
-  const categories =
-    categoriesString?.split(",").map((tag) => tag.trim()) || [];
+  const categories = categoriesString
+    ? categoriesString
+        .split(",")
+        .map((tag) => tag.trim())
+        .filter((tag) => tag !== "")
+    : [];
   const published = data.get("published") === "true";
 
   const session = await auth.api.getSession({ headers: await headers() });
@@ -148,8 +152,12 @@ export async function editProjectAction(state: any, data: FormData) {
   const liveLink = data.get("liveLink") as string;
   const imageLink = data.get("imageLink") as string;
   const categoriesString = data.get("categories") as string;
-  const categories =
-    categoriesString?.split(",").map((tag) => tag.trim()) || [];
+  const categories = categoriesString
+    ? categoriesString
+        .split(",")
+        .map((tag) => tag.trim())
+        .filter((tag) => tag !== "")
+    : [];
   const published = data.get("published") === "true";
 
   const session = await auth.api.getSession({ headers: await headers() });
