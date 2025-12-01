@@ -77,7 +77,7 @@ export default function ProjectList({ allProjects }: any) {
               proj.categories.length > 0 &&
               proj.categories[0] !== "" && (
                 <div className="mt-3 flex flex-wrap gap-2">
-                  {proj.categories.map((tech, index) => (
+                  {proj.categories.map((tech: string, index: number) => (
                     <span
                       key={index}
                       className="px-2 py-1 text-xs font-medium bg-primary/10 text-primary rounded-md"
