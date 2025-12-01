@@ -26,14 +26,25 @@ function AddCertificateComponent() {
   const { data: session } = authClient.useSession();
   const user = session?.user;
 
+  // Form field states to preserve values on validation errors
+  const [formData, setFormData] = useState({
+    title: "",
+    desc: "",
+    courseLink: "",
+    profLink: "",
+  });
+
   // ✅ show toast when server action finishes
   useEffect(() => {
     if (state?.success) {
       notify("Certificate added successfully!", true);
       setImageUrl("");
+      setFormData({ title: "", desc: "", courseLink: "", profLink: "" });
       formRef.current?.reset();
     } else if (state?.message && !state?.success) {
       notify(state.message, false);
+    } else if (state?.error && Object.keys(state.error).length > 0) {
+      notify("Please fix the errors and try again.", false);
     }
   }, [state]);
 
@@ -61,6 +72,10 @@ function AddCertificateComponent() {
                 type="text"
                 name="title"
                 placeholder={t("placeholders.title")}
+                value={formData.title}
+                onChange={(e) =>
+                  setFormData({ ...formData, title: e.target.value })
+                }
                 required
               />
               <p className="text-sm text-red-400">
@@ -72,6 +87,10 @@ function AddCertificateComponent() {
                 type="text"
                 name="desc"
                 placeholder={t("placeholders.description")}
+                value={formData.desc}
+                onChange={(e) =>
+                  setFormData({ ...formData, desc: e.target.value })
+                }
                 required
               />
               <p className="text-sm text-red-400">
@@ -83,6 +102,10 @@ function AddCertificateComponent() {
                 type="url"
                 name="courseLink"
                 placeholder={t("placeholders.course_link")}
+                value={formData.courseLink}
+                onChange={(e) =>
+                  setFormData({ ...formData, courseLink: e.target.value })
+                }
                 required
               />
               <p className="text-sm text-red-400">
@@ -95,6 +118,10 @@ function AddCertificateComponent() {
                 type="url"
                 name="profLink"
                 placeholder={t("placeholders.proof_link")}
+                value={formData.profLink}
+                onChange={(e) =>
+                  setFormData({ ...formData, profLink: e.target.value })
+                }
                 required
               />
               <p className="text-sm text-red-400">

@@ -1,6 +1,6 @@
-"use client"
+"use client";
 
-import { useState, useRef, useEffect } from "react"
+import { useState, useRef, useEffect } from "react";
 import {
   Dialog,
   DialogClose,
@@ -9,42 +9,63 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@/src/components/ui/dialog"
-import Image from "next/image"
-import { Input } from "@/src/components/ui/input"
-import { Label } from "@/src/components/ui/label"
-import { Textarea } from "@/src/components/ui/textarea"
-import Submit from "@/src/components/ui/formSubmitBtn"
-import { Upload } from "../Upload"
-import { notify } from "@/src/lib/utils/toast"
-import { authClient } from "@/src/lib/auth-client"
-import { useActionState } from "react"
-import { addProjectAction } from "@/src/app/actions/projectsActions"
-import { useTranslations } from "next-intl"
+} from "@/src/components/ui/dialog";
+import Image from "next/image";
+import { Input } from "@/src/components/ui/input";
+import { Label } from "@/src/components/ui/label";
+import { Textarea } from "@/src/components/ui/textarea";
+import Submit from "@/src/components/ui/formSubmitBtn";
+import { Upload } from "../Upload";
+import { notify } from "@/src/lib/utils/toast";
+import { authClient } from "@/src/lib/auth-client";
+import { useActionState } from "react";
+import { addProjectAction } from "@/src/app/actions/projectsActions";
+import { useTranslations } from "next-intl";
 
 function AddProjectComponent() {
-  const [state, formAction] = useActionState(addProjectAction, null)
-  const [imageUrl, setImageUrl] = useState("")
-  const [open, setOpen] = useState(false)
-  const formRef = useRef<HTMLFormElement>(null)
-  const { data: session } = authClient.useSession()
-  const user = session?.user
-  const t = useTranslations("projects")
+  const [state, formAction] = useActionState(addProjectAction, null);
+  const [imageUrl, setImageUrl] = useState("");
+  const [open, setOpen] = useState(false);
+  const formRef = useRef<HTMLFormElement>(null);
+  const { data: session } = authClient.useSession();
+  const user = session?.user;
+  const t = useTranslations("projects");
+
+  // Form field states to preserve values on validation errors
+  const [formData, setFormData] = useState({
+    title_en: "",
+    title_ar: "",
+    desc_en: "",
+    desc_ar: "",
+    repoLink: "",
+    liveLink: "",
+    categories: "",
+  });
 
   // ✅ Automatically close dialog & reset form on success
   useEffect(() => {
     if (state?.success) {
-      notify("Project added successfully!", true)
-      setOpen(false)
-      setImageUrl("")
-      formRef.current?.reset()
+      notify("Project added successfully!", true);
+      setOpen(false);
+      setImageUrl("");
+      setFormData({
+        title_en: "",
+        title_ar: "",
+        desc_en: "",
+        desc_ar: "",
+        repoLink: "",
+        liveLink: "",
+        categories: "",
+      });
+      formRef.current?.reset();
+    } else if (state?.message && !state?.success) {
+      // Show server error message (e.g., auth error)
+      notify(state.message, false);
     } else if (state?.error && Object.keys(state.error).length > 0) {
-      notify("Please fix the errors and try again.", false)
-      // Clear inputs on validation error
-      setImageUrl("")
-      formRef.current?.reset()
+      // Show validation error
+      notify("Please fix the errors and try again.", false);
     }
-  }, [state])
+  }, [state]);
 
   return (
     <div className="flex flex-col justify-center items-center">
@@ -71,6 +92,10 @@ function AddProjectComponent() {
                 type="text"
                 name="title_en"
                 placeholder={t("placeholders.title_en")}
+                value={formData.title_en}
+                onChange={(e) =>
+                  setFormData({ ...formData, title_en: e.target.value })
+                }
               />
               {state?.error?.title_en && (
                 <p className="text-sm text-red-400">
@@ -84,6 +109,10 @@ function AddProjectComponent() {
                 type="text"
                 name="title_ar"
                 placeholder={t("placeholders.title_ar")}
+                value={formData.title_ar}
+                onChange={(e) =>
+                  setFormData({ ...formData, title_ar: e.target.value })
+                }
               />
               {state?.error?.title_ar && (
                 <p className="text-sm text-red-400">
@@ -95,7 +124,11 @@ function AddProjectComponent() {
               <Textarea
                 className="flex justify-center w-2/3"
                 name="desc_en"
-                placeholder={t("placeholders.desc_ar")}
+                placeholder={t("placeholders.desc_en")}
+                value={formData.desc_en}
+                onChange={(e) =>
+                  setFormData({ ...formData, desc_en: e.target.value })
+                }
               />
               {state?.error?.desc_en && (
                 <p className="text-sm text-red-400">
@@ -108,6 +141,10 @@ function AddProjectComponent() {
                 className="flex justify-center w-2/3"
                 name="desc_ar"
                 placeholder={t("placeholders.desc_ar")}
+                value={formData.desc_ar}
+                onChange={(e) =>
+                  setFormData({ ...formData, desc_ar: e.target.value })
+                }
               />
               {state?.error?.desc_ar && (
                 <p className="text-sm text-red-400">
@@ -121,6 +158,10 @@ function AddProjectComponent() {
                 type="text"
                 name="repoLink"
                 placeholder={t("placeholders.repo_link")}
+                value={formData.repoLink}
+                onChange={(e) =>
+                  setFormData({ ...formData, repoLink: e.target.value })
+                }
               />
               {state?.error?.repoLink && (
                 <p className="text-sm text-red-400">
@@ -134,6 +175,10 @@ function AddProjectComponent() {
                 type="text"
                 name="liveLink"
                 placeholder={t("placeholders.live_link")}
+                value={formData.liveLink}
+                onChange={(e) =>
+                  setFormData({ ...formData, liveLink: e.target.value })
+                }
               />
               {state?.error?.liveLink && (
                 <p className="text-sm text-red-400">
@@ -171,6 +216,10 @@ function AddProjectComponent() {
                 type="text"
                 name="categories"
                 placeholder={t("placeholders.categories")}
+                value={formData.categories}
+                onChange={(e) =>
+                  setFormData({ ...formData, categories: e.target.value })
+                }
               />
               {state?.error?.categories && (
                 <p className="text-sm text-red-400">
@@ -190,7 +239,7 @@ function AddProjectComponent() {
         </Dialog>
       </div>
     </div>
-  )
+  );
 }
 
-export { AddProjectComponent }
+export { AddProjectComponent };

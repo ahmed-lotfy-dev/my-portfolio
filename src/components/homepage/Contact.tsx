@@ -1,5 +1,5 @@
 "use client";
-import { useActionState } from "react";
+import { useActionState, useState, useEffect } from "react";
 import Link from "next/link";
 import { contactAction } from "@/src/app/actions/contactAction";
 import { notify } from "@/src/lib/utils/toast";
@@ -15,9 +15,22 @@ export default function Contact() {
 
   const [state, formAction] = useActionState(contactAction, null);
 
-  if (state?.success) {
-    notify("Email sent successfully, I'll contact you soon", true);
-  }
+  // Form field states to preserve values on validation errors
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    subject: "",
+    message: "",
+  });
+
+  useEffect(() => {
+    if (state?.success) {
+      notify("Email sent successfully, I'll contact you soon", true);
+      setFormData({ name: "", email: "", subject: "", message: "" });
+    } else if (state?.error && Object.keys(state.error).length > 0) {
+      notify("Please fix the errors and try again.", false);
+    }
+  }, [state]);
 
   return (
     <section className="flex flex-col items-center my-16 p-4" id="contact">
@@ -59,6 +72,10 @@ export default function Contact() {
               type="text"
               name="name"
               placeholder={t("placeholders.name")}
+              value={formData.name}
+              onChange={(e) =>
+                setFormData({ ...formData, name: e.target.value })
+              }
             />
             {state?.error?.name && (
               <p className="text-sm text-red-500">
@@ -69,6 +86,10 @@ export default function Contact() {
               type="email"
               name="email"
               placeholder={t("placeholders.email")}
+              value={formData.email}
+              onChange={(e) =>
+                setFormData({ ...formData, email: e.target.value })
+              }
             />
             {state?.error?.email && (
               <p className="text-sm text-red-500">
@@ -79,13 +100,24 @@ export default function Contact() {
               type="text"
               name="subject"
               placeholder={t("placeholders.subject")}
+              value={formData.subject}
+              onChange={(e) =>
+                setFormData({ ...formData, subject: e.target.value })
+              }
             />
             {state?.error?.subject && (
               <p className="text-sm text-red-500">
                 {state.error.subject._errors.join(", ")}
               </p>
             )}
-            <Textarea name="message" placeholder={t("placeholders.message")} />
+            <Textarea
+              name="message"
+              placeholder={t("placeholders.message")}
+              value={formData.message}
+              onChange={(e) =>
+                setFormData({ ...formData, message: e.target.value })
+              }
+            />
             {state?.error?.message && (
               <p className="text-sm text-red-500">
                 {state.error.message._errors.join(", ")}

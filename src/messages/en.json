@@ -58,6 +58,16 @@
       "live_link": "Project Live Link",
       "categories": "Project Categories",
       "categories_helper": "Please enter categories as comma-separated values."
+    },
+    "validation": {
+      "title_en_required": "Project title in English is required.",
+      "title_ar_required": "Project title in Arabic is required.",
+      "desc_en_required": "Project description in English is required.",
+      "desc_ar_required": "Project description in Arabic is required.",
+      "repo_link_invalid": "Please enter a valid repository URL.",
+      "live_link_invalid": "Please enter a valid live demo URL.",
+      "image_link_required": "Project image is required.",
+      "categories_required": "At least one category is required."
     }
   },
   "certificates": {

@@ -133,15 +133,6 @@ function EditCertificate({ EditedObject }: any) {
                 btnText="Edit Certificate"
                 className="m-10"
                 type="submit"
-                onClick={() => {
-                  if (user?.email === process.env.NEXT_PUBLIC_ADMIN_EMAIL) {
-                    notify("Edit Completed Successfully", true);
-                    setImageUrl("");
-                    formRef.current?.reset();
-                  } else {
-                    notify("You don't have privilege to do this", false);
-                  }
-                }}
               />
             </DialogClose>
           </form>

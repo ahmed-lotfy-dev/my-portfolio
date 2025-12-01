@@ -75,8 +75,7 @@ function EditProject({ EditedObject }: any) {
             </DialogHeader>
             <form
               onSubmit={handleSubmit}
-                          ref={formRef}
-
+              ref={formRef}
               className="flex flex-col gap-5 justify-center items-center w-full bg-background text-foreground"
             >
               <Input
@@ -177,20 +176,7 @@ function EditProject({ EditedObject }: any) {
               />
 
               <DialogClose asChild>
-                <Submit
-                  btnText="Edit Project"
-                  className="m-10"
-                  type="submit"
-                  onClick={() => {
-                    if (user?.email === process.env.NEXT_PUBLIC_ADMIN_EMAIL) {
-                      notify("Editing Completed Successfully", true);
-                      setImageUrl("");
-                      formRef.current?.reset();
-                    } else {
-                      notify("You don't have privilege to do this", false);
-                    }
-                  }}
-                />
+                <Submit btnText="Edit Project" className="m-10" type="submit" />
               </DialogClose>
             </form>
           </DialogContent>

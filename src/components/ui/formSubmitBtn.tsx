@@ -8,11 +8,16 @@ type SubmitProps = ButtonProps & {
   onClick?: () => void;
 };
 
-export default function Submit({ btnText, className, ...rest }: SubmitProps) {
+export default function Submit({
+  btnText,
+  className,
+  disabled,
+  ...rest
+}: SubmitProps) {
   const { pending } = useFormStatus();
   return (
     <Button
-      disabled={pending}
+      disabled={pending || disabled}
       {...rest}
       className={`mx-auto w-[200px] py-2 ${className}`}
     >
