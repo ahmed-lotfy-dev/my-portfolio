@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import HeroImage from "@/public/images/modern_developer_hero.png";
+import HeroImage from "@/public/images/improved_hero_background.png";
 import { FileText, ArrowRight } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { motion } from "framer-motion";
