@@ -139,7 +139,11 @@ function EditProject({ EditedObject }: any) {
                 onChange={InputHandler}
               />
 
-              <Upload setImageUrl={setImageUrl} imageType="Projects" />
+              <Upload
+                setImageUrl={setImageUrl}
+                imageType="Projects"
+                currentImageUrl={editedProj.imageLink}
+              />
               {editedProj.imageLink ? (
                 <Image
                   className="m-auto"
@@ -162,7 +166,7 @@ function EditProject({ EditedObject }: any) {
               <Input
                 type="hidden"
                 name="imageLink"
-                value={editedProj.imageLink}
+                value={imageUrl || editedProj.imageLink}
               />
 
               <Label className="flex justify-center bg-black">
