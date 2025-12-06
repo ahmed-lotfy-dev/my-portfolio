@@ -125,6 +125,21 @@ export async function addProjectAction(state: any, data: FormData) {
       imageLink,
       categories,
       published,
+      displayOrder: (
+        await db
+          .select({ max: projects.displayOrder })
+          .from(projects)
+          .orderBy(desc(projects.displayOrder))
+          .limit(1)
+      ).at(0)?.max
+        ? ((
+            await db
+              .select({ max: projects.displayOrder })
+              .from(projects)
+              .orderBy(desc(projects.displayOrder))
+              .limit(1)
+          ).at(0)?.max || 0) + 1
+        : 0,
     });
 
     logger.info("Project added successfully");
@@ -270,5 +285,32 @@ export async function deleteProjectAction(id: string) {
   } catch (error) {
     logger.error("Failed to delete project:", error);
     return { success: false, message: "Project deletion failed" };
+  }
+}
+
+// ✅ Update project order
+export async function updateProjectOrder(items: { id: string; displayOrder: number }[]) {
+  const session = await auth.api.getSession({ headers: await headers() });
+  const user = session?.user;
+
+  if (user?.email !== process.env.NEXT_PUBLIC_ADMIN_EMAIL) {
+    return { success: false, message: "Unauthorized" };
+  }
+
+  try {
+    await Promise.all(
+      items.map((item) =>
+        db
+          .update(projects)
+          .set({ displayOrder: item.displayOrder })
+          .where(eq(projects.id, item.id))
+      )
+    );
+
+    revalidatePath("/dashboard/projects");
+    return { success: true, message: "Order updated successfully" };
+  } catch (error) {
+    logger.error("Failed to update order:", error);
+    return { success: false, message: "Failed to update order" };
   }
 }

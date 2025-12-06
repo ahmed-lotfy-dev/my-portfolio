@@ -1,109 +1,247 @@
 "use client";
-import Image from "next/image";
-import Link from "next/link";
 
+import { useState, useEffect } from "react";
+import Image from "next/image";
 import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/src/components/ui/card";
+  Reorder,
+  useDragControls,
+  motion,
+  AnimatePresence,
+} from "framer-motion";
+import {
+  deleteProjectAction,
+  updateProjectOrder,
+} from "@/src/app/actions/projectsActions";
 import { Button } from "@/src/components/ui/button";
-import { deleteProjectAction } from "@/src/app/actions/projectsActions";
-import { EditPopover } from "../EditPopover";
-import { AspectRatio } from "@/src/components/ui/aspect-ratio";
-import ReadMoreText from "@/src/components/ui/ReadMoreText";
 import ImageViewer from "../../ui/ImageViewer";
 import { useLocale, useTranslations } from "next-intl";
+import { notify } from "@/src/lib/utils/toast";
+import { EditProject } from "./EditProject";
+import { Trash2, ExternalLink, GripVertical, Loader2 } from "lucide-react";
+import { Badge } from "@/src/components/ui/badge";
+import { cn } from "@/src/lib/utils";
 
 export default function ProjectList({ allProjects }: any) {
   const locale = useLocale();
   const t = useTranslations("projects");
-  console.log(allProjects);
+  const [projects, setProjects] = useState(allProjects);
+  const [isReordering, setIsReordering] = useState(false);
+  const [hasOrderChanged, setHasOrderChanged] = useState(false);
+
+  useEffect(() => {
+    setProjects(allProjects);
+  }, [allProjects]);
+
+  const handleReorder = (newOrder: any[]) => {
+    setProjects(newOrder);
+    setHasOrderChanged(true);
+  };
+
+  const saveOrder = async () => {
+    setIsReordering(true);
+    try {
+      const updates = projects.map((proj: any, index: number) => ({
+        id: proj.id,
+        displayOrder: projects.length - index, // Higher order first
+      }));
+
+      const result = await updateProjectOrder(updates);
+      if (result.success) {
+        notify("Order updated successfully", true);
+        setHasOrderChanged(false);
+      } else {
+        notify("Failed to update order", false);
+      }
+    } catch (error) {
+      notify("Error saving order", false);
+    } finally {
+      setIsReordering(false);
+    }
+  };
+
+  const handleDelete = async (id: string, title: string) => {
+    if (confirm(`Are you sure you want to delete "${title}"?`)) {
+      const result = await deleteProjectAction(id);
+      if (result.success) {
+        notify(result.message, true);
+      } else {
+        notify(result.message || "Failed to delete project", false);
+      }
+    }
+  };
+
   return (
-    <div className="w-full h-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-10 p-10">
-      {allProjects?.map((proj: any) => (
-        <Card key={proj.id} className="flex flex-col">
-          <CardContent className="p-0">
-            <ImageViewer
-              imageUrl={proj.imageLink}
-              altText={`${
-                locale === "ar" ? proj.title_ar : proj.title_en
-              } Image`}
-              trigger={
-                <AspectRatio
-                  ratio={16 / 9}
-                  className="rounded-t-lg cursor-pointer"
-                >
-                  <Image
-                    src={proj.imageLink}
-                    alt={`${
-                      locale === "ar" ? proj.title_ar : proj.title_en
-                    } Image`}
-                    fill
-                    className={
-                      proj.categories?.includes("mobile") ||
-                      proj.categories?.includes("app")
-                        ? "object-contain rounded-t-lg"
-                        : "object-cover rounded-t-lg"
+    <div className="w-full h-full p-6 space-y-6">
+      {/* Header */}
+      <div className="flex justify-between items-center backdrop-blur-md bg-background/30 p-4 rounded-xl border border-border/50 shadow-sm sticky top-0 z-10">
+        <div>
+          <h2 className="text-2xl font-bold bg-gradient-to-r from-primary to-purple-600 bg-clip-text text-transparent">
+            Projects Dashboard
+          </h2>
+          <p className="text-sm text-muted-foreground">
+            Manage and reorder your portfolio projects
+          </p>
+        </div>
+
+        <AnimatePresence>
+          {hasOrderChanged && (
+            <motion.div
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: 20 }}
+            >
+              <Button
+                onClick={saveOrder}
+                disabled={isReordering}
+                className="bg-primary hover:bg-primary/90 shadow-lg shadow-primary/20"
+              >
+                {isReordering ? (
+                  <>
+                    <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                    Saving...
+                  </>
+                ) : (
+                  "Save Order"
+                )}
+              </Button>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </div>
+
+      {/* Modern List */}
+      <div className="space-y-4">
+        <div className="grid grid-cols-12 gap-4 px-4 py-2 text-sm font-medium text-muted-foreground uppercase tracking-wider">
+          <div className="col-span-1"></div>
+          <div className="col-span-2">Image</div>
+          <div className="col-span-4">Details</div>
+          <div className="col-span-3 hidden md:block">Tags</div>
+          <div className="col-span-2 text-right">Actions</div>
+        </div>
+
+        <Reorder.Group
+          axis="y"
+          values={projects}
+          onReorder={handleReorder}
+          className="space-y-3"
+        >
+          {projects?.map((proj: any) => (
+            <Reorder.Item
+              key={proj.id}
+              value={proj}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.9 }}
+              whileDrag={{
+                scale: 1.02,
+                boxShadow:
+                  "0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1)",
+              }}
+              className="group relative grid grid-cols-12 gap-4 items-center p-4 rounded-xl border border-border/40 bg-card/50 hover:bg-card/80 backdrop-blur-sm transition-all hover:shadow-md hover:border-primary/20"
+            >
+              {/* Drag Handle */}
+              <div className="col-span-1 flex justify-center cursor-grab active:cursor-grabbing text-muted-foreground hover:text-primary transition-colors">
+                <GripVertical className="h-5 w-5" />
+              </div>
+
+              {/* Image */}
+              <div className="col-span-2">
+                <div className="relative h-16 w-24 rounded-lg overflow-hidden ring-1 ring-border/50 group-hover:ring-primary/50 transition-all">
+                  <ImageViewer
+                    imageUrl={proj.imageLink}
+                    altText={locale === "ar" ? proj.title_ar : proj.title_en}
+                    trigger={
+                      <Image
+                        src={proj.imageLink}
+                        alt={locale === "ar" ? proj.title_ar : proj.title_en}
+                        fill
+                        className="object-cover cursor-pointer hover:scale-110 transition-transform duration-500"
+                      />
                     }
                   />
-                </AspectRatio>
-              }
-            />
-          </CardContent>
-          <div className="p-6 flex flex-col flex-1">
-            <CardHeader className="p-0">
-              <div className="flex items-start justify-between gap-3">
-                <CardTitle className="text-2xl font-bold capitalize">
-                  {locale === "ar" ? proj.title_ar : proj.title_en}
-                </CardTitle>
-                <EditPopover
-                  EditedObject={proj}
-                  onDeleteClick={() => deleteProjectAction(proj.id)}
-                />
-              </div>
-            </CardHeader>
-            <ReadMoreText
-              text={locale === "ar" ? proj.desc_ar : proj.desc_en}
-              maxLines={5}
-              className="text-sm font-medium wrap-break-word leading-relaxed mt-4 flex-1"
-            />
-
-            {/* Tech Stack */}
-            {proj.categories &&
-              proj.categories.length > 0 &&
-              proj.categories[0] !== "" && (
-                <div className="mt-3 flex flex-wrap gap-2">
-                  {proj.categories.map((tech: string, index: number) => (
-                    <span
-                      key={index}
-                      className="px-2 py-1 text-xs font-medium bg-primary/10 text-primary rounded-md"
-                    >
-                      {tech}
-                    </span>
-                  ))}
                 </div>
-              )}
+              </div>
 
-            <CardFooter className="mt-auto flex flex-wrap gap-4 p-0 pt-4">
-              <Link href={proj.liveLink} target="_blank">
-                <Button>
-                  {proj.categories?.includes("mobile") ||
-                  proj.categories?.includes("app")
-                    ? t("apk")
-                    : t("live")}
+              {/* Details */}
+              <div className="col-span-4 space-y-1">
+                <h3 className="font-semibold text-lg leading-none truncate">
+                  {locale === "ar" ? proj.title_ar : proj.title_en}
+                </h3>
+                <div className="flex gap-3 text-xs text-muted-foreground">
+                  {proj.liveLink && (
+                    <a
+                      href={proj.liveLink}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="hover:text-primary flex items-center gap-1 transition-colors"
+                    >
+                      <ExternalLink className="h-3 w-3" /> Live
+                    </a>
+                  )}
+                  {proj.repoLink && (
+                    <a
+                      href={proj.repoLink}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="hover:text-primary flex items-center gap-1 transition-colors"
+                    >
+                      <ExternalLink className="h-3 w-3" /> Repo
+                    </a>
+                  )}
+                  <span
+                    className={cn(
+                      "px-1.5 py-0.5 rounded-full text-[10px] font-medium border",
+                      proj.published
+                        ? "bg-green-500/10 text-green-500 border-green-500/20"
+                        : "bg-yellow-500/10 text-yellow-500 border-yellow-500/20"
+                    )}
+                  >
+                    {proj.published ? "Published" : "Draft"}
+                  </span>
+                </div>
+              </div>
+
+              {/* Tags */}
+              <div className="col-span-3 hidden md:flex flex-wrap gap-1.5">
+                {proj.categories
+                  ?.slice(0, 3)
+                  .map((cat: string, idx: number) => (
+                    <Badge
+                      key={idx}
+                      variant="secondary"
+                      className="text-xs bg-secondary/50 hover:bg-secondary border-secondary-foreground/10"
+                    >
+                      {cat}
+                    </Badge>
+                  ))}
+                {proj.categories?.length > 3 && (
+                  <Badge variant="outline" className="text-xs opacity-50">
+                    +{proj.categories.length - 3}
+                  </Badge>
+                )}
+              </div>
+
+              {/* Actions */}
+              <div className="col-span-2 flex justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+                <EditProject EditedObject={proj} />
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  className="h-8 w-8 text-destructive hover:text-destructive hover:bg-destructive/10 rounded-full"
+                  onClick={() =>
+                    handleDelete(
+                      proj.id,
+                      locale === "ar" ? proj.title_ar : proj.title_en
+                    )
+                  }
+                >
+                  <Trash2 className="h-4 w-4" />
                 </Button>
-              </Link>
-              <Link href={proj.repoLink} target="_blank">
-                <Button variant="outline">{t("repo")}</Button>
-              </Link>
-            </CardFooter>
-          </div>
-        </Card>
-      ))}
+              </div>
+            </Reorder.Item>
+          ))}
+        </Reorder.Group>
+      </div>
     </div>
   );
 }
