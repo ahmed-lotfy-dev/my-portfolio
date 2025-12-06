@@ -144,10 +144,10 @@
       "blog": "Add Post"
     },
     "welcome": {
-      "greeting": "Welcome {name} to the dashboard.",
-      "guest": "Guest",
-      "admin_message": "You are admin, welcome!",
-      "user_message": "You are not admin. You can view the site but not perform privileged actions."
+      "greeting": "Welcome, {name}!",
+      "guest": "visitor",
+      "admin_message": "You are an admin. Welcome!",
+      "user_message": "You can browse the site, but you can't perform privileged actions."
     }
   },
   "blogs": {

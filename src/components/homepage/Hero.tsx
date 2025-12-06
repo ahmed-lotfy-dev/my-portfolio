@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import HeroImage from "@/public/images/improved_hero_background.png";
+import HeroImage from "@/public/images/modern_developer_hero.png";
 import Section from "@/src/components/ui/Section";
 import { FileText } from "lucide-react";
 import { getTranslations, getLocale } from "next-intl/server";
