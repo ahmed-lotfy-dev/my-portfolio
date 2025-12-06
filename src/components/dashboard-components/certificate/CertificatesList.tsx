@@ -1,107 +1,114 @@
 "use client";
 
 import Link from "next/link";
-import {
-  Table,
-  TableBody,
-  TableHead,
-  TableHeader,
-  TableRow,
-  TableCell,
-} from "@/src/components/ui/table";
 import { deleteCertificateAction } from "@/src/app/actions/certificatesActions";
-import { EditPopover } from "../EditPopover";
+import { EditCertificate } from "./EditCertificate";
 import ImageViewer from "@/src/components/ui/ImageViewer";
-import { IoImage } from "react-icons/io5";
 import { useLocale, useTranslations } from "next-intl";
+import { motion, AnimatePresence } from "framer-motion";
+import { ExternalLink, Trash2, Award, FileText } from "lucide-react";
+import { AddCertificateComponent } from "./AddCertificate";
+import Image from "next/image";
 
 function CertificateList({ allCertificates }: any) {
   const locale = useLocale();
   const t = useTranslations("certificates");
-
   const isArabic = locale === "ar";
 
   return (
-    <div
-      className={`w-full mt-18 ${
-        isArabic ? "rtl text-right" : "ltr text-left"
-      }`}
-      dir={isArabic ? "rtl" : "ltr"}
-    >
-      <div className="m-auto w-full lg:w-2/3">
-        <Table>
-          <TableHeader>
-            <TableRow>
-              <TableHead
-                className={`font-extrabold ${
-                  isArabic ? "text-right" : "text-left"
-                }`}
-              >
-                {t("table.title")}
-              </TableHead>
-              <TableHead
-                className={`font-extrabold ${
-                  isArabic ? "text-right" : "text-left"
-                }`}
-              >
-                {t("table.author")}
-              </TableHead>
-              <TableHead
-                className={`font-extrabold ${
-                  isArabic ? "text-right" : "text-left"
-                }`}
-              >
-                {t("table.course_link")}
-              </TableHead>
-              <TableHead
-                className={`font-extrabold ${
-                  isArabic ? "text-right" : "text-left"
-                }`}
-              >
-                {t("table.proof")}
-              </TableHead>
-              <TableHead
-                className={`font-extrabold ${
-                  isArabic ? "text-right" : "text-left"
-                }`}
-              >
-                {t("table.options")}
-              </TableHead>
-            </TableRow>
-          </TableHeader>
+    <div className="w-full h-full p-6 space-y-6">
+      {/* Header */}
+      <div className="rounded-xl border border-border/50 shadow-sm sticky top-0 z-10 overflow-hidden">
+        <div className="absolute inset-0 bg-card/80 backdrop-blur-xl border-b border-border" />
+        <div className="relative flex items-center justify-between px-6 py-4">
+          <h2 className="text-2xl font-bold text-foreground tracking-tight">
+            {t("table.title")}
+          </h2>
+          <AddCertificateComponent />
+        </div>
+      </div>
 
-          <TableBody>
-            {allCertificates?.map((cert: any) => (
-              <TableRow key={cert.id}>
-                <TableCell className="font-medium">
-                  <Link href={`/certificates/${cert.title}`}>{cert.title}</Link>
-                </TableCell>
-                <TableCell>{cert.desc}</TableCell>
-                <TableCell>
-                  <Link href={cert.courseLink} target="_blank">
-                    {t("table.view_course")}
-                  </Link>
-                </TableCell>
-                <TableCell>
+      {/* Grid Layout */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+        <AnimatePresence>
+          {allCertificates?.map((cert: any, index: number) => (
+            <motion.div
+              key={cert.id}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.9 }}
+              transition={{ delay: index * 0.05 }}
+              className="group relative flex flex-col overflow-hidden rounded-xl border border-border bg-card/50 backdrop-blur-sm transition-all hover:border-primary/50 hover:shadow-lg hover:shadow-primary/5"
+            >
+              {/* Image Section */}
+              <div className="relative aspect-video w-full overflow-hidden bg-muted/50">
+                {cert.imageLink ? (
                   <ImageViewer
                     imageUrl={cert.imageLink}
-                    altText={cert.Title}
+                    altText={cert.title}
                     trigger={
-                      <img src={cert.imageLink} className="w-36 h-20 pointer" />
+                      <div className="relative w-full h-full cursor-pointer group-hover:scale-105 transition-transform duration-500">
+                        <Image
+                          src={cert.imageLink}
+                          alt={cert.title}
+                          fill
+                          className="object-cover"
+                        />
+                        <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors" />
+                      </div>
                     }
                   />
-                </TableCell>
+                ) : (
+                  <div className="flex h-full w-full items-center justify-center text-muted-foreground">
+                    <Award className="h-12 w-12 opacity-20" />
+                  </div>
+                )}
+              </div>
 
-                <TableCell>
-                  <EditPopover
-                    EditedObject={cert}
-                    onDeleteClick={() => deleteCertificateAction(cert.id)}
-                  />
-                </TableCell>
-              </TableRow>
-            ))}
-          </TableBody>
-        </Table>
+              {/* Content Section */}
+              <div className="flex flex-1 flex-col p-5 gap-3">
+                <div className="flex items-start justify-between gap-2">
+                  <h3
+                    className="font-semibold text-lg leading-tight text-foreground line-clamp-1"
+                    title={cert.title}
+                  >
+                    {cert.title}
+                  </h3>
+                </div>
+
+                <p className="text-sm text-muted-foreground line-clamp-2 min-h-10">
+                  {cert.desc}
+                </p>
+
+                <div className="mt-auto pt-4 flex items-center justify-between border-t border-border">
+                  <div className="flex gap-2">
+                    {cert.courseLink && (
+                      <Link
+                        href={cert.courseLink}
+                        target="_blank"
+                        className="p-2 rounded-full bg-muted text-muted-foreground hover:bg-primary/10 hover:text-primary transition-colors"
+                        title={t("table.view_course")}
+                      >
+                        <ExternalLink size={16} />
+                      </Link>
+                    )}
+                    {cert.profLink && (
+                      <Link
+                        href={cert.profLink}
+                        target="_blank"
+                        className="p-2 rounded-full bg-muted text-muted-foreground hover:bg-primary/10 hover:text-primary transition-colors"
+                        title={t("table.proof")}
+                      >
+                        <FileText size={16} />
+                      </Link>
+                    )}
+                    <EditCertificate EditedObject={cert} />
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          ))}
+        </AnimatePresence>
       </div>
     </div>
   );

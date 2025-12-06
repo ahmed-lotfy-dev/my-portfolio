@@ -1,4 +1,4 @@
-/** @type {import('tailwindcss').Config} */ 
+    /** @type {import('tailwindcss').Config} */ 
 
 export default {
   darkMode: ["class"],
@@ -13,7 +13,7 @@ export default {
     container: {
       center: true,
       padding: "2rem",
-      screens: {
+      screens: {                                                        
         "2xl": "1400px",
       },
     },
@@ -81,10 +81,20 @@ export default {
           from: { height: "var(--radix-accordion-content-height)" },
           to: { height: "0" },
         },
+        scrollX: {
+          "0%": { transform: "translateX(0)" },
+          "100%": { transform: "translateX(-50%)" },
+        },
+        scrollXReverse: {
+          "0%": { transform: "translateX(0)" },
+          "100%": { transform: "translateX(50%)" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+        scrollX: "scrollX 30s linear infinite",
+        scrollXReverse: "scrollXReverse 30s linear infinite",
       },
       transitionProperty: {
         colors: "background-color, color",

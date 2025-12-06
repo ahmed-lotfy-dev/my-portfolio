@@ -17,9 +17,16 @@ import ImageViewer from "../../ui/ImageViewer";
 import { useLocale, useTranslations } from "next-intl";
 import { notify } from "@/src/lib/utils/toast";
 import { EditProject } from "./EditProject";
-import { Trash2, ExternalLink, GripVertical, Loader2 } from "lucide-react";
+import {
+  Trash2,
+  ExternalLink,
+  GripVertical,
+  Loader2,
+  Save,
+} from "lucide-react";
 import { Badge } from "@/src/components/ui/badge";
 import { cn } from "@/src/lib/utils";
+import { AddProjectComponent } from "./AddProject";
 
 export default function ProjectList({ allProjects }: any) {
   const locale = useLocale();
@@ -60,7 +67,7 @@ export default function ProjectList({ allProjects }: any) {
   };
 
   const handleDelete = async (id: string, title: string) => {
-    if (confirm(`Are you sure you want to delete "${title}"?`)) {
+    if (window.confirm(`Are you sure you want to delete "${title}"?`)) {
       const result = await deleteProjectAction(id);
       if (result.success) {
         notify(result.message, true);
@@ -73,40 +80,35 @@ export default function ProjectList({ allProjects }: any) {
   return (
     <div className="w-full h-full p-6 space-y-6">
       {/* Header */}
-      <div className="flex justify-between items-center backdrop-blur-md bg-background/30 p-4 rounded-xl border border-border/50 shadow-sm sticky top-0 z-10">
-        <div>
-          <h2 className="text-2xl font-bold bg-gradient-to-r from-primary to-purple-600 bg-clip-text text-transparent">
-            Projects Dashboard
+      <div className="relative rounded-xl border border-border/50 shadow-sm z-10 overflow-hidden">
+        <div className="absolute inset-0 bg-card/80 backdrop-blur-xl border-b border-border" />
+        <div className="relative flex items-center justify-between px-6 py-4">
+          <h2 className="text-2xl font-bold text-foreground tracking-tight">
+            {t("title")}
           </h2>
-          <p className="text-sm text-muted-foreground">
-            Manage and reorder your portfolio projects
-          </p>
+          <div className="flex items-center gap-3">
+            <AnimatePresence>
+              {hasOrderChanged && (
+                <motion.button
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.9 }}
+                  onClick={saveOrder}
+                  disabled={isReordering}
+                  className="bg-primary text-primary-foreground shadow-lg shadow-primary/20 h-10 px-4 rounded-md text-sm font-medium transition-all hover:shadow-xl hover:shadow-primary/30 flex items-center gap-2"
+                >
+                  {isReordering ? (
+                    <Loader2 className="h-4 w-4 animate-spin" />
+                  ) : (
+                    <Save className="h-4 w-4" />
+                  )}
+                  Save Order
+                </motion.button>
+              )}
+            </AnimatePresence>
+            <AddProjectComponent />
+          </div>
         </div>
-
-        <AnimatePresence>
-          {hasOrderChanged && (
-            <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: 20 }}
-            >
-              <Button
-                onClick={saveOrder}
-                disabled={isReordering}
-                className="bg-primary hover:bg-primary/90 shadow-lg shadow-primary/20"
-              >
-                {isReordering ? (
-                  <>
-                    <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                    Saving...
-                  </>
-                ) : (
-                  "Save Order"
-                )}
-              </Button>
-            </motion.div>
-          )}
-        </AnimatePresence>
       </div>
 
       {/* Modern List */}
@@ -222,7 +224,7 @@ export default function ProjectList({ allProjects }: any) {
               </div>
 
               {/* Actions */}
-              <div className="col-span-2 flex justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+              <div className="col-span-2 flex justify-end gap-2 transition-opacity duration-200">
                 <EditProject EditedObject={proj} />
                 <Button
                   variant="ghost"

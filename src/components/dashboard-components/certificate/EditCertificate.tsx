@@ -2,6 +2,7 @@
 import { ChangeEvent, useRef, useState, useActionState } from "react";
 
 import { Input } from "@/src/components/ui/input";
+import { Label } from "@/src/components/ui/label";
 import { editCertificateAction } from "@/src/app/actions/certificatesActions";
 import Image from "next/image";
 import { notify } from "@/src/lib/utils/toast";
@@ -12,11 +13,15 @@ import {
   DialogContent,
   DialogTrigger,
   DialogClose,
+  DialogHeader,
+  DialogTitle,
+  DialogDescription,
 } from "@/src/components/ui/dialog";
 import { Upload } from "../Upload";
-import { Textarea } from "@/src/components/ui/textarea";
-import { Pencil } from "lucide-react";
+import { Pencil, X } from "lucide-react";
 import { authClient } from "@/src/lib/auth-client";
+import { motion, AnimatePresence } from "framer-motion";
+import { cn } from "@/src/lib/utils";
 
 function EditCertificate({ EditedObject }: any) {
   const { id } = EditedObject;
@@ -24,6 +29,7 @@ function EditCertificate({ EditedObject }: any) {
   const [editedCert, setEditedCert] = useState(EditedObject);
   const [imageUrl, setImageUrl] = useState("");
   const formRef = useRef<HTMLFormElement>(null);
+  const closeButtonRef = useRef<HTMLButtonElement>(null);
   const { data: session } = authClient.useSession();
   const user = session?.user;
 
@@ -37,105 +43,165 @@ function EditCertificate({ EditedObject }: any) {
     });
   };
 
+  const inputClasses =
+    "bg-background/50 border-white/10 focus:border-primary/50 focus:ring-primary/20 transition-all duration-300 hover:bg-background/80";
+  const labelClasses = "text-sm font-medium text-muted-foreground mb-1.5 block";
+
   return (
-    <div
-      key={editedCert.id}
-      className="flex w-full min-h-full justify-center items-center mt-6"
-    >
+    <div key={editedCert.id} className="flex justify-center items-center">
       <Dialog>
-        <DialogTrigger className="w-full bg-primary text-primary-foreground hover:bg-primary/90 h-10 py-2 px-4 inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none ring-offset-background">
-          <Pencil className="mr-3" size={20} />
-          Edit Certificate
-        </DialogTrigger>
-        <DialogContent className="max-w-[700px]">
-          <form
-            action={formAction}
-            ref={formRef}
-            className="flex flex-col gap-5 justify-center items-center w-full bg-background text-foreground"
+        <DialogTrigger asChild>
+          <motion.button
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.9 }}
+            className="p-2 rounded-full bg-primary/10 text-primary hover:bg-primary/20 transition-colors"
           >
-            <Input
-              className="w-2/3 mt-10"
-              type="text"
-              name="title"
-              placeholder="Certificate Title"
-              value={editedCert.title}
-              onChange={InputHandler}
-            />
-            <p className="text-sm text-red-400">
-              {state?.error?.title && state?.error?.title?._errors[0]}
-            </p>
+            <Pencil size={16} />
+          </motion.button>
+        </DialogTrigger>
+        <DialogClose ref={closeButtonRef} className="hidden" />
 
-            <Input
-              className="w-2/3"
-              name="desc"
-              placeholder="Certificate Description"
-              value={editedCert.desc}
-              onChange={InputHandler}
-            />
-            <p className="text-sm text-red-400">
-              {state?.error?.desc && state?.error?.desc?._errors[0]}
-            </p>
+        <DialogContent className="max-w-[700px] overflow-hidden p-0 bg-zinc-950 border-zinc-800 shadow-2xl sm:rounded-xl">
+          <div className="max-h-[85vh] overflow-y-auto custom-scrollbar">
+            <DialogHeader className="p-6 pb-4 sticky top-0 bg-zinc-950/95 backdrop-blur-md z-10 border-b border-zinc-800">
+              <DialogTitle className="text-2xl font-bold text-foreground">
+                Edit Certificate
+              </DialogTitle>
+              <DialogDescription className="text-muted-foreground">
+                Update certificate details
+              </DialogDescription>
+            </DialogHeader>
 
-            <Input
-              className="w-2/3"
-              type="url"
-              name="courseLink"
-              placeholder="Course Link"
-              value={editedCert.courseLink}
-              onChange={InputHandler}
-            />
-            <p className="text-sm text-red-400">
-              {state?.error?.courseLink && state?.error?.courseLink?._errors[0]}
-            </p>
+            <form
+              action={formAction}
+              ref={formRef}
+              className="flex flex-col gap-6 p-6"
+            >
+              <div className="space-y-1">
+                <Label htmlFor="title" className={labelClasses}>
+                  Certificate Title
+                </Label>
+                <Input
+                  id="title"
+                  className={inputClasses}
+                  type="text"
+                  name="title"
+                  placeholder="Certificate Title"
+                  value={editedCert.title}
+                  onChange={InputHandler}
+                />
+                {state?.error?.title && (
+                  <p className="text-xs text-red-400 mt-1">
+                    {state.error.title._errors[0]}
+                  </p>
+                )}
+              </div>
 
-            <Input
-              className="w-2/3"
-              type="url"
-              name="profLink"
-              placeholder="Certificate Proof"
-              value={editedCert.profLink}
-              onChange={InputHandler}
-            />
-            <p className="text-sm text-red-400">
-              {state?.error?.profLink && state?.error?.profLink?._errors[0]}
-            </p>
+              <div className="space-y-1">
+                <Label htmlFor="desc" className={labelClasses}>
+                  Description
+                </Label>
+                <Input
+                  id="desc"
+                  className={inputClasses}
+                  name="desc"
+                  placeholder="Certificate Description"
+                  value={editedCert.desc}
+                  onChange={InputHandler}
+                />
+                {state?.error?.desc && (
+                  <p className="text-xs text-red-400 mt-1">
+                    {state.error.desc._errors[0]}
+                  </p>
+                )}
+              </div>
 
-            <Upload setImageUrl={setImageUrl} imageType={"Certificates"} />
-            <p className="text-sm text-red-400">
-              {state?.error?.imageLink && state?.error?.imageLink?._errors}
-            </p>
-            {editedCert.imageLink ? (
-              <Image
-                className="m-auto"
-                src={editedCert.imageLink}
-                width={200}
-                height={200}
-                alt="Certificate Image"
-              />
-            ) : (
-              <Image
-                className="m-auto"
-                src={imageUrl}
-                width={200}
-                height={200}
-                alt="Certificate Image"
-              />
-            )}
-            <Input type="hidden" name="id" value={editedCert.id} />
-            <Input
-              type="hidden"
-              name="imageLink"
-              value={editedCert.imageLink}
-            />
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="space-y-1">
+                  <Label htmlFor="courseLink" className={labelClasses}>
+                    Course Link
+                  </Label>
+                  <Input
+                    id="courseLink"
+                    className={inputClasses}
+                    type="url"
+                    name="courseLink"
+                    placeholder="Course Link"
+                    value={editedCert.courseLink}
+                    onChange={InputHandler}
+                  />
+                  {state?.error?.courseLink && (
+                    <p className="text-xs text-red-400 mt-1">
+                      {state.error.courseLink._errors[0]}
+                    </p>
+                  )}
+                </div>
 
-            <DialogClose asChild>
-              <Submit
-                btnText="Edit Certificate"
-                className="m-10"
-                type="submit"
-              />
-            </DialogClose>
-          </form>
+                <div className="space-y-1">
+                  <Label htmlFor="profLink" className={labelClasses}>
+                    Proof Link
+                  </Label>
+                  <Input
+                    id="profLink"
+                    className={inputClasses}
+                    type="url"
+                    name="profLink"
+                    placeholder="Certificate Proof"
+                    value={editedCert.profLink}
+                    onChange={InputHandler}
+                  />
+                  {state?.error?.profLink && (
+                    <p className="text-xs text-red-400 mt-1">
+                      {state.error.profLink._errors[0]}
+                    </p>
+                  )}
+                </div>
+              </div>
+
+              <div className="space-y-2 p-4 rounded-xl border border-dashed border-white/20 bg-white/5">
+                <Label className={labelClasses}>Certificate Image</Label>
+                <Upload setImageUrl={setImageUrl} imageType={"Certificates"} />
+                {state?.error?.imageLink && (
+                  <p className="text-xs text-red-400 mt-1">
+                    {state.error.imageLink._errors}
+                  </p>
+                )}
+
+                <AnimatePresence>
+                  {(editedCert.imageLink || imageUrl) && (
+                    <motion.div
+                      initial={{ opacity: 0, scale: 0.9 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      exit={{ opacity: 0, scale: 0.9 }}
+                      className="relative mt-4 rounded-lg overflow-hidden border border-white/10 shadow-lg w-full max-w-md mx-auto aspect-video"
+                    >
+                      <Image
+                        src={imageUrl || editedCert.imageLink}
+                        fill
+                        className="object-cover"
+                        alt="Certificate Preview"
+                      />
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+
+                <Input type="hidden" name="id" value={editedCert.id} />
+                <Input
+                  type="hidden"
+                  name="imageLink"
+                  value={imageUrl || editedCert.imageLink}
+                />
+              </div>
+
+              <div className="flex justify-end pt-4 border-t border-white/10">
+                <Submit
+                  btnText="Edit Certificate"
+                  className="bg-primary hover:bg-primary/90 text-white px-8 py-2 rounded-md shadow-lg shadow-primary/20 transition-all hover:shadow-primary/30 hover:scale-105"
+                  type="submit"
+                />
+              </div>
+            </form>
+          </div>
         </DialogContent>
       </Dialog>
     </div>

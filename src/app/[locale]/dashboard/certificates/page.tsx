@@ -8,7 +8,6 @@ export default async function AddCertifiate({}) {
   return (
     <div className="w-full flex justify-center items-start pt-14">
       <div className="flex flex-col justify-center items-center w-full">
-        <AddCertificateComponent />
         <CertificateList allCertificates={allCertificates} />
       </div>
     </div>

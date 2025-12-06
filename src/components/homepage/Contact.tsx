@@ -33,12 +33,15 @@ export default function Contact() {
   }, [state]);
 
   return (
-    <section className="flex flex-col items-center my-16 p-4" id="contact">
-      <div className="text-center mb-10">
-        <h2 className="text-4xl font-extrabold text-foreground dark:text-blue-700 tracking-tight sm:text-5xl">
+    <section
+      className="flex flex-col items-center py-20 px-4 border-t border-border/40 bg-background"
+      id="contact"
+    >
+      <div className="text-center mb-16 space-y-4">
+        <h2 className="inline-block px-4 py-1.5 rounded-full bg-primary/10 text-primary text-sm font-medium tracking-wide uppercase border border-primary/20 backdrop-blur-sm">
           {t("title")}
         </h2>
-        <p className="mt-3 text-lg text-gray-600 max-w-2xl mx-auto">
+        <p className="text-3xl sm:text-4xl font-bold text-foreground tracking-tight">
           {t("description")}
         </p>
       </div>

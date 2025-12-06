@@ -4,6 +4,7 @@ import Projects from "@/src/components/homepage/Projects";
 import Skills from "@/src/components/homepage/Skills";
 import About from "@/src/components/homepage/About";
 import Contact from "@/src/components/homepage/Contact";
+import Footer from "@/src/components/homepage/Footer";
 import Container from "@/src/components/ui/Container";
 import { auth } from "@/src/lib/auth";
 import { headers } from "next/headers";
@@ -24,13 +25,14 @@ export default async function HomePage({
   setRequestLocale(locale);
 
   return (
-    <Container className="font-main bg-linear-to-b from-slate-700 to-slate-900">
+    <Container className="font-main min-h-screen bg-background text-foreground">
       <Hero />
       <Skills />
       <Projects />
       <Certificates />
       <About />
       <Contact />
+      <Footer />
     </Container>
   );
 }

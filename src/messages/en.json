@@ -35,6 +35,9 @@
       "Docker"
     ]
   },
+  "footer": {
+    "rights": "All rights reserved."
+  },
   "projects": {
     "title": "My Projects",
     "description": "Here are some of the projects I've worked on.",
@@ -46,6 +49,9 @@
     "publish_toggle_desc": "Show this project on the public homepage",
     "upload": "Upload Project Image",
     "uploading": "Uploading Image",
+    "select_image": "Select Image",
+    "optimizing": "Optimizing...",
+    "upload_optimize": "Upload & Optimize",
     "live": "Live",
     "repo": "Repo",
     "apk": "APK",

@@ -33,6 +33,9 @@
       "Docker"
     ]
   },
+  "footer": {
+    "rights": "جميع الحقوق محفوظة."
+  },
   "projects": {
     "title": "مشاريعي",
     "description": "بعض المشاريع التي عملت عليها.",
@@ -44,12 +47,15 @@
     "publish_toggle_desc": "إظهار هذا المشروع في الصفحة الرئيسية العامة",
     "upload": "رفع صورة المشروع",
     "uploading": "يتم رفع الصورة...",
+    "select_image": "اختر صورة",
+    "optimizing": "جاري التحسين...",
+    "upload_optimize": "رفع وتحسين",
     "live": "الموقع الحي",
     "repo": "المستودع",
     "apk": "ملف التطبيق",
     "readmore": "إقرأ المزيد",
     "showless": "إخفاء",
-    "placeholders": {
+    "placeholders": {         
       "title_en": "عنوان المشروع (EN)",
       "title_ar": "عنوان المشروع (AR)",
       "desc_en": "وصف المشروع (EN)",

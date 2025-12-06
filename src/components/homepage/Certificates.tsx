@@ -1,28 +1,31 @@
-import { getAllCertificates } from "@/src/app/actions/certificatesActions"
-import Link from "next/link"
-import Image from "next/image"
-import { Button } from "@/src/components/ui/button"
-import { Card } from "@/src/components/ui/card"
+import { getAllCertificates } from "@/src/app/actions/certificatesActions";
+import Link from "next/link";
+import Image from "next/image";
+import { Button } from "@/src/components/ui/button";
+import { Card } from "@/src/components/ui/card";
 import {
   HoverCard,
   HoverCardContent,
   HoverCardTrigger,
-} from "@/src/components/ui/hover-card"
-import { Eye } from "lucide-react"
-import { getTranslations } from "next-intl/server"
+} from "@/src/components/ui/hover-card";
+import { Eye } from "lucide-react";
+import { getTranslations } from "next-intl/server";
 
 export default async function Certificates() {
-  const { allCertificates } = await getAllCertificates()
-const t = await getTranslations("certificates")
+  const { allCertificates } = await getAllCertificates();
+  const t = await getTranslations("certificates");
 
   return (
-    <section className="flex flex-col items-center my-16 p-4" id="certificates">
+    <section
+      className="flex flex-col items-center py-20 px-4 border-t border-border/40 bg-linear-to-b from-muted/20 to-transparent"
+      id="certificates"
+    >
       <div className="container">
-        <div className="text-center mb-10">
-          <h2 className="text-4xl font-extrabold text-foreground dark:text-blue-700 tracking-tight sm:text-5xl">
+        <div className="text-center mb-16 space-y-4">
+          <h2 className="inline-block px-4 py-1.5 rounded-full bg-primary/10 text-primary text-sm font-medium tracking-wide uppercase border border-primary/20 backdrop-blur-sm">
             {t("title")}
           </h2>
-          <p className="mt-3 text-lg text-gray-600 max-w-2xl mx-auto px-2 sm:px-0">
+          <p className="text-3xl sm:text-4xl font-bold text-foreground tracking-tight">
             {t("description")}
           </p>
         </div>
@@ -65,5 +68,5 @@ const t = await getTranslations("certificates")
         ))}
       </div>
     </section>
-  )
+  );
 }

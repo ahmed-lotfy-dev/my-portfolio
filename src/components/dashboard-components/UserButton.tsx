@@ -1,30 +1,30 @@
-import { auth } from "@/src/lib/auth" // the server instance from better-auth
-import { Avatar, AvatarFallback, AvatarImage } from "@/src/components/ui/avatar"
-import { Button } from "@/src/components/ui/button"
+"use client";
+
+import {
+  Avatar,
+  AvatarFallback,
+  AvatarImage,
+} from "@/src/components/ui/avatar";
+import { Button } from "@/src/components/ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuLabel,
   DropdownMenuTrigger,
-} from "@/src/components/ui/dropdown-menu"
-import Link from "next/link"
-import { headers } from "next/headers"
-import SignOutButton from "@/src/components/auth/SignoutButton"
-import { getTranslations } from "next-intl/server"
+} from "@/src/components/ui/dropdown-menu";
+import Link from "next/link";
+import SignOutButton from "@/src/components/auth/SignoutButton";
+import { useTranslations } from "next-intl";
+import { authClient } from "@/src/lib/auth-client";
 
-export default async function UserButton({
-  className,
-}: {
-  className?: string
-}) {
-  const header = await headers()
-  const session = await auth.api.getSession({ headers: header })
-  const user = session?.user
-  const t = await getTranslations("nav")
+export default function UserButton({ className }: { className?: string }) {
+  const { data: session } = authClient.useSession();
+  const user = session?.user;
+  const t = useTranslations("nav");
 
   const defaultAvatar =
-    "https://api.dicebear.com/7.x/thumbs/svg?seed=guest&radius=50&backgroundType=gradientLinear&shapeColor=%23CBD5E1&mouth=smile"
+    "https://api.dicebear.com/7.x/thumbs/svg?seed=guest&radius=50&backgroundType=gradientLinear&shapeColor=%23CBD5E1&mouth=smile";
 
   if (!user) {
     return (
@@ -33,7 +33,7 @@ export default async function UserButton({
           <Button variant="outline">{t("signin")}</Button>
         </Link>
       </div>
-    )
+    );
   }
 
   return (
@@ -71,5 +71,5 @@ export default async function UserButton({
         </DropdownMenuContent>
       </DropdownMenu>
     </div>
-  )
+  );
 }
