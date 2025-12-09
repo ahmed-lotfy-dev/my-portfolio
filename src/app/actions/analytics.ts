@@ -20,21 +20,26 @@ export async function getPostHogAnalytics() {
   try {
     const headers = { Authorization: `Bearer ${apiKey}` };
 
+    // Common properties to exclude localhost
+    const properties = encodeURIComponent(
+      JSON.stringify([{ key: "$host", operator: "is_not", value: ["localhost:3000"] }])
+    );
+
     // 1. Trend (Last 7 Days)
     const trendPromise = fetch(
-      `${host}/api/projects/${projectId}/insights/trend/?events=[{"id":"$pageview","math":"dau"}]&date_from=-7d&display=ActionsLineGraph&interval=day`,
+      `${host}/api/projects/${projectId}/insights/trend/?events=[{"id":"$pageview","math":"dau"}]&date_from=-7d&display=ActionsLineGraph&interval=day&properties=${properties}`,
       { headers, next: { revalidate: 3600 } }
     ).then((r) => r.json());
 
     // 2. Top Paths (Most visited pages)
     const pathsPromise = fetch(
-      `${host}/api/projects/${projectId}/insights/trend/?events=[{"id":"$pageview"}]&date_from=-7d&breakdown=$pathname&limit=5`,
+      `${host}/api/projects/${projectId}/insights/trend/?events=[{"id":"$pageview"}]&date_from=-7d&breakdown=$pathname&limit=5&properties=${properties}`,
       { headers, next: { revalidate: 3600 } }
     ).then((r) => r.json());
 
     // 3. Traffic Sources (Referrers)
     const sourcesPromise = fetch(
-      `${host}/api/projects/${projectId}/insights/trend/?events=[{"id":"$pageview"}]&date_from=-7d&breakdown=$referrer&limit=5`,
+      `${host}/api/projects/${projectId}/insights/trend/?events=[{"id":"$pageview"}]&date_from=-7d&breakdown=$referrer&limit=5&properties=${properties}`,
       { headers, next: { revalidate: 3600 } }
     ).then((r) => r.json());
 

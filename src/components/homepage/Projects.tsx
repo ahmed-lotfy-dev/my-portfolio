@@ -107,7 +107,7 @@ export default async function Projects() {
                     >
                       <Button
                         variant="outline"
-                        className="w-full gap-2 bg-transparent border-border hover:bg-muted"
+                        className="w-full gap-2 bg-transparent border-border hover:bg-muted text-primary"
                       >
                         <Github size={16} />
                         {t("repo")}
