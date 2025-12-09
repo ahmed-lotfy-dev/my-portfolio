@@ -1,9 +1,11 @@
 import Image from "next/image";
-import myImage from "@/public/images/AShouman_3d_vector_human_with_glasses_developer_coding_09763759-3521-438f-a963-0c61670df468.png";
-import { getTranslations } from "next-intl/server";
+import myImage from "@/public/images/About-Image.png";
+import { getTranslations, getLocale } from "next-intl/server";
 
 export default async function About() {
   const t = await getTranslations("about");
+  const locale = await getLocale();
+  const isRTL = locale === "ar";
 
   return (
     <section
@@ -15,14 +17,14 @@ export default async function About() {
           {t("title")}
         </h2>
       </div>
-      <div className="container flex flex-col md:flex-row items-center gap-12">
+      <div className="container flex flex-col md:flex-row items-center gap-12 transform">
         <div className="md:w-1/2">
           <Image
             src={myImage}
             width={400}
             height={400}
             alt="Ahmed Lotfy"
-            className="rounded-lg shadow-lg"
+            className={`rounded-lg shadow-lg ${isRTL ? "scale-x-[-1]" : ""}`}
           />
         </div>
         <div className="md:w-1/2 text-lg text-muted-foreground space-y-4">

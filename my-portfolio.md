@@ -54,8 +54,27 @@ Adding a **"Blog"** or **"Articles"** section demonstrates communication skills.
 - **SEO (Verified):** Open Graph (`og-image.png`) and Favicon (`icon.png`) are present and correctly configured in `layout.tsx`.
 - **Resume (Verified):** "Download Resume" button points to the latest PDF version (`Ahmed-Lotfy-CV.pdf`).
 
-## 🚀 Recommended Action Plan
+## 5. 🛠️ Verified System Updates (Dec 09, 2025)
+
+### 🎨 Theme & UI Overhaul
+- **[IMPLEMENTED] Professional Azure Theme:** Switched to a trustworthy "Standard Blue" (`hsl(215)`) palette.
+    - **Dark Mode Optimization:** Primary buttons now use **White Text** on Blue background for premium contrast.
+    - **Global Typography:** Tuned `foreground` colors to "Midnight Blue" (Light) and "Cold White" (Dark) for superior readability.
+- **[IMPLEMENTED] Glassmorphism:** Enhanced `ImageViewer` and Modal Overlays with `backdrop-blur-sm` (fixed opaque white overlay issue).
+
+### 📱 Responsiveness & RTL
+- **[FIXED] Smart Image Ratios:** Project Hero images now automatically vertically frame Mobile Apps (`9:16`) while keeping Web Apps widescreen (`16:9`).
+- **[FIXED] RTL Support:**
+    - **Mirrored Images:** The "About" section character now flips horizontally in Arabic mode (`scale-x-[-1]`) to face the content appropriately.
+    - **Directional Icons:** Arrows (Back, View Project) now visually rotate based on locale.
+
+### 🧩 Component Standardization
+- **[REFACTORED] Unified Buttons:** Replaced custom link styles on Project Pages with standard Shadcn `Button` components (Default & Outline variants) for consistency.
+- **[REFACTORED] Interactive Previews:** Refactored `ImageViewer` to be a reusable wrapper with centralized hover effects.
+
+## 6. 🚀 Recommended Action Plan
 1.  **Fix the `/ingest` 404s** (I can help with this if you open the portfolio workspace).
 2.  **Revise 3 Project Descriptions** to include quantitative metrics.
 3.  **Draft one "Case Study"** format for your best project.
 4.  **Integrate AI Translation:** Automate translation of Markdown content in Case Studies using robust AI (e.g., Gemini/OpenAI) to preserve formatting.
+5.  **Upload Transparent Images:** Replace the current About/Hero images with transparent PNGs to perfect the new design.

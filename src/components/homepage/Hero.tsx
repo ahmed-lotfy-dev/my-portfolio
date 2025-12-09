@@ -28,7 +28,7 @@ export default function Hero() {
           initial={{ opacity: 0, x: isRTL ? 50 : -50 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
-          className="flex flex-col gap-6 text-center lg:text-left lg:w-1/2"
+          className="flex flex-col gap-6 text-center lg:text-start lg:w-1/2"
         >
           <div className="space-y-4">
             <motion.div
@@ -78,8 +78,8 @@ export default function Hero() {
               href="#projects"
               className="inline-flex items-center justify-center gap-2 rounded-full border border-border bg-card/50 backdrop-blur-sm px-8 py-4 text-lg font-semibold text-foreground shadow-sm transition-all hover:bg-muted hover:scale-105 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
             >
-              <span>View Work</span>
-              <ArrowRight className="h-5 w-5" />
+              <span>{t("view_work")}</span>
+              <ArrowRight className={`h-5 w-5 ${isRTL ? "rotate-180" : ""}`} />
             </Link>
           </motion.div>
         </motion.div>

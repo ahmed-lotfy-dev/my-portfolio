@@ -5,9 +5,9 @@ import { Card } from "@/src/components/ui/card";
 import { getAllProjects } from "@/src/app/actions/projectsActions";
 import Section from "@/src/components/ui/Section";
 import ReadMoreText from "@/src/components/ui/ReadMoreText";
-import ImageViewer from "@/src/components/ui/ImageViewer";
+
 import { getTranslations, getLocale } from "next-intl/server";
-import { ExternalLink, Github } from "lucide-react";
+import { ExternalLink, Github, ArrowRight } from "lucide-react";
 import ProjectCategories from "@/src/components/ui/ProjectCategories";
 import { shouldShowApk } from "@/src/lib/utils/projectUtils";
 
@@ -44,10 +44,7 @@ export default async function Projects() {
                   key={proj.id}
                   className="group flex h-full flex-col justify-between overflow-hidden border-border bg-card/50 backdrop-blur-sm hover:border-primary/50 hover:shadow-xl hover:shadow-primary/5 transition-all duration-300"
                 >
-                <ImageViewer
-                  imageUrl={proj.imageLink}
-                  altText={locale === "ar" ? proj.title_ar : proj.title_en}
-                  trigger={
+                <Link href={proj.slug ? `/projects/${proj.slug}` : proj.liveLink} target={proj.slug ? undefined : "_blank"} className="block">
                     <div className="relative w-full h-64 cursor-pointer overflow-hidden">
                       <Image
                         src={proj.imageLink}
@@ -66,8 +63,7 @@ export default async function Projects() {
                       />
                       <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300" />
                     </div>
-                  }
-                />
+                </Link>
                 <div className="p-6 flex flex-col grow gap-4">
                   <div>
                     <Link href={proj.slug ? `/projects/${proj.slug}` : proj.liveLink} target={proj.slug ? undefined : "_blank"}>
@@ -80,6 +76,12 @@ export default async function Projects() {
                       maxLines={3}
                       className="text-muted-foreground text-sm leading-relaxed"
                     />
+                    {proj.slug && (
+                        <Link href={`/projects/${proj.slug}`} className="inline-flex items-center gap-1 text-primary text-sm font-medium mt-3 hover:underline underline-offset-4 w-fit group/link">
+                            {t("view_case_study")} 
+                            <ArrowRight size={14} className={`transition-transform group-hover/link:translate-x-1 ${locale === "ar" ? "rotate-180 group-hover/link:-translate-x-1" : ""}`} />
+                        </Link>
+                    )}
                   </div>
 
                   {/* Tech Stack */}

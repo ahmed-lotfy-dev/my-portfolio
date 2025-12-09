@@ -46,18 +46,16 @@ function CertificateList({ allCertificates }: any) {
                   <ImageViewer
                     imageUrl={cert.imageLink}
                     altText={cert.title}
-                    trigger={
-                      <div className="relative w-full h-full cursor-pointer group-hover:scale-105 transition-transform duration-500">
-                        <Image
-                          src={cert.imageLink}
-                          alt={cert.title}
-                          fill
-                          className="object-cover"
-                        />
-                        <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors" />
-                      </div>
-                    }
-                  />
+                    className="w-full h-full"
+                  >
+                      <Image
+                        src={cert.imageLink}
+                        alt={cert.title}
+                        fill
+                        className="object-cover group-hover:scale-105 transition-transform duration-500"
+                        sizes="(max-width: 768px) 100vw, 300px"
+                      />
+                  </ImageViewer>
                 ) : (
                   <div className="flex h-full w-full items-center justify-center text-muted-foreground">
                     <Award className="h-12 w-12 opacity-20" />

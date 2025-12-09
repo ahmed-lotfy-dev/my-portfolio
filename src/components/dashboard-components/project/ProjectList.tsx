@@ -156,20 +156,19 @@ export default function ProjectList({ allProjects }: any) {
 
               {/* Image */}
               <div className="col-span-2">
-                <div className="relative h-16 w-24 rounded-lg overflow-hidden ring-1 ring-border/50 group-hover:ring-primary/50 transition-all">
-                  <ImageViewer
+                 <ImageViewer
                     imageUrl={proj.imageLink}
                     altText={locale === "ar" ? proj.title_ar : proj.title_en}
-                    trigger={
+                    className="h-16 w-24 rounded-lg ring-1 ring-border/50 hover:ring-primary/50 transition-all"
+                 >
                       <Image
                         src={proj.imageLink}
                         alt={locale === "ar" ? proj.title_ar : proj.title_en}
                         fill
-                        className="object-cover cursor-pointer hover:scale-110 transition-transform duration-500"
+                        className="object-cover hover:scale-110 transition-transform duration-500"
+                        sizes="96px"
                       />
-                    }
-                  />
-                </div>
+                 </ImageViewer>
               </div>
 
               {/* Details */}

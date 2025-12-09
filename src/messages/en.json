@@ -15,6 +15,7 @@
     "title": "Full-Stack Web & Mobile Software Developer",
     "description": "I build responsive and scalable web and mobile applications. Let's create something amazing together.",
     "resume": "My Cv",
+    "view_work": "View Work",
     "illustrationAlt": "Developer Illustration Hero Image"
   },
   "skills": {
@@ -55,6 +56,12 @@
     "live": "Live",
     "repo": "Repo",
     "apk": "APK",
+    "back_to_portfolio": "Back to Portfolio",
+    "view_other_projects": "View Other Projects",
+    "view_code": "View Code",
+    "visit_live_site": "Visit Live Site",
+    "view_case_study": "View Case Study",
+    "case_study_coming_soon": "Detailed case study coming soon.",
     "readmore": "Read more",
     "showless": "Show less",
     "placeholders": {
