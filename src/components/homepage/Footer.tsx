@@ -21,14 +21,14 @@ export default async function Footer() {
 
           <div className="flex items-center gap-4">
             <Link
-              href="https://github.com/ahmedlotfy"
+              href="https://github.com/ahmed-lotfy-dev"
               target="_blank"
               className="p-2 rounded-full bg-muted/50 text-muted-foreground hover:bg-primary/10 hover:text-primary transition-colors"
             >
               <Github size={20} />
             </Link>
             <Link
-              href="https://linkedin.com/in/ahmedlotfy"
+              href="https://linkedin.com/in/ahmed-lotfy-dev"
               target="_blank"
               className="p-2 rounded-full bg-muted/50 text-muted-foreground hover:bg-primary/10 hover:text-primary transition-colors"
             >
