@@ -38,7 +38,7 @@ export default function UserButton({ className }: { className?: string }) {
 
   return (
     <div className={className}>
-      <DropdownMenu>
+      <DropdownMenu modal={false}>
         <DropdownMenuTrigger asChild>
           <Button variant="ghost" className="relative h-9 w-9 rounded-full p-0">
             <Avatar className="h-9 w-9 ring-1 ring-gray-300 dark:ring-neutral-700">

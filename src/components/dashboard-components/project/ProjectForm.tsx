@@ -28,7 +28,7 @@ export default function ProjectForm({
   action,
   mode,
 }: ProjectFormProps) {
-  const [state, formAction] = useActionState(action, null);
+  const [state, formAction] = useActionState(action, null as any);
   const router = useRouter();
   const [imageUrl, setImageUrl] = useState(initialData?.imageLink || "");
   const [titleEn, setTitleEn] = useState(initialData?.title_en || "");
@@ -38,7 +38,7 @@ export default function ProjectForm({
   const [helperImageUrl, setHelperImageUrl] = useState("");
 
   useEffect(() => {
-    if (state?.success) {
+    if (state && "success" in state && state.success) {
       notify(state.message, true);
       router.push("/dashboard/projects");
       router.refresh();

@@ -16,7 +16,13 @@
     "description": "I build responsive and scalable web and mobile applications. Let's create something amazing together.",
     "resume": "My Cv",
     "view_work": "View Work",
-    "illustrationAlt": "Developer Illustration Hero Image"
+    "illustrationAlt": "Developer Illustration Hero Image",
+    "cv_modal": {
+      "title": "View Resume",
+      "description": "How would you like to view the resume?",
+      "view_browser": "View in Browser",
+      "download": "Download PDF"
+    }
   },
   "skills": {
     "title": "My Skills",

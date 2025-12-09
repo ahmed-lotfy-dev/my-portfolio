@@ -1,12 +1,13 @@
+import Link from "next/link";
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
 } from "@/src/components/ui/popover";
 import { Button } from "@/src/components/ui/button";
-import { MoreVertical } from "lucide-react";
+import { MoreVertical, Pencil } from "lucide-react";
 import { EditCertificate } from "./certificate/EditCertificate";
-import { EditProject } from "./project/EditProject";
+
 interface EditPopoverProps {
   onDeleteClick: () => void;
   EditedObject: any;
@@ -35,7 +36,16 @@ function EditPopover({ onDeleteClick, EditedObject }: EditPopoverProps) {
             {isCertificate ? (
               <EditCertificate EditedObject={EditedObject} />
             ) : (
-              <EditProject EditedObject={EditedObject} />
+             <Button
+                variant="ghost"
+                className="w-full justify-start pl-2"
+                asChild
+              >
+                <Link href={`/dashboard/projects/${EditedObject.id}`}>
+                    <Pencil className="mr-2 h-4 w-4" />
+                    Edit
+                </Link>
+              </Button>
             )}
             <Button
               className="w-full mt-2 cursor-pointer"

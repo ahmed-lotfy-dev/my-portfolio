@@ -1,8 +1,8 @@
 import ProjectList from "@/src/components/dashboard-components/project/ProjectList";
-import { AddProjectComponent } from "@/src/components/dashboard-components/project/AddProject";
+
 import { getAllProjects } from "@/src/app/actions/projectsActions";
 
-export default async function AddProject({}) {
+export default async function ProjectsPage({}) {
   const { allProjects } = await getAllProjects();
   return (
     <div className="w-full flex justify-center items-start pt-14">

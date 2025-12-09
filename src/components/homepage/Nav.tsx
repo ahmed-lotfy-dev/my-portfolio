@@ -1,8 +1,9 @@
 "use client";
-import { ReactNode, useState, useEffect } from "react";
+
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Menu, X } from "lucide-react";
+import { Menu } from "lucide-react";
 import Image from "next/image";
 import ThemeToggle from "@/src/components/ThemeToggle";
 import LanguageSwitcher from "@/src/components/i18n/LanguageSwitcher";
@@ -10,6 +11,15 @@ import { useTheme } from "next-themes";
 import LogoLight from "@/public/Logo-Blue-Dot.png";
 import LogoDark from "@/public/Logo-Blue-Dot.png";
 import { useLocale, useTranslations } from "next-intl";
+import { Button } from "../ui/button";
+import {
+  Sheet,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "../ui/sheet";
+import { cn } from "@/src/lib/utils";
 
 const navLinks = [
   { href: "/", label: "home" },
@@ -21,15 +31,16 @@ const navLinks = [
   { href: "/dashboard", label: "dashboard" },
 ];
 
-function Nav({ children }: { children: ReactNode }) {
+export function Nav({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
-  const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const { resolvedTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
+  const [open, setOpen] = useState(false);
 
   const t = useTranslations("nav");
   const locale = useLocale();
+  const isRTL = locale === "ar";
 
   useEffect(() => {
     const handleScroll = () => {
@@ -43,119 +54,103 @@ function Nav({ children }: { children: ReactNode }) {
     setMounted(true);
   }, []);
 
-  const toggle = () => setOpen((v) => !v);
-  const close = () => setOpen(false);
+  if (pathname.includes("dashboard")) return null;
 
-  console.log(pathname);
+  const Logo = (
+    <Link href="/" className="flex items-center gap-2">
+      <Image
+        src={!mounted || resolvedTheme === "light" ? LogoLight : LogoDark}
+        width={40}
+        height={40}
+        alt="Logo"
+        className="object-contain"
+      />
+      <span className="font-bold text-xl tracking-tight hidden sm:block">
+        Ahmed Lotfy
+      </span>
+    </Link>
+  );
+
   return (
     <header
-      className={`fixed inset-x-0 top-0 z-50 transition-all duration-100 ${
-        scrolled &&
-        "bg-background/70 backdrop-blur-md border-b border-border shadow-sm"
-      } ${pathname.includes("dashboard") && "hidden"}`}
+      className={cn(
+        "fixed inset-x-0 top-0 z-50 transition-all duration-300",
+        scrolled
+          ? "bg-background/80 backdrop-blur-md border-b shadow-sm py-2"
+          : "bg-transparent py-4"
+      )}
     >
-      <nav className="max-w-6xl mx-auto flex h-16 items-center justify-between">
-        <Link href="/" className="flex items-center">
-          <Image
-            src={!mounted || resolvedTheme === "light" ? LogoLight : LogoDark}
-            width={80}
-            height={80}
-            alt="Logo"
-          />
-        </Link>
-        <ul className="hidden md:flex items-center gap-8">
-          {navLinks.map((link) => (
-            <li key={link.href}>
-              <Link
-                href={`/${locale}${link.href}`}
-                className="relative text-sm font-medium text-foreground/80 hover:text-primary transition-colors"
-              >
-                {t(link.label)}
-                {pathname === link.href && (
-                  <span className="absolute -bottom-1 left-0 w-full h-0.5 bg-primary" />
-                )}
-              </Link>
-            </li>
-          ))}
-        </ul>
+      <nav className="container mx-auto px-4 flex items-center justify-between">
+        {Logo}
 
-        <div className="hidden md:flex items-center gap-4">
-          <ThemeToggle />
-          <LanguageSwitcher />
-          {children}
+        {/* Desktop Navigation */}
+        <div className="hidden md:flex items-center gap-1">
+          {navLinks.map((link) => (
+            <Button
+              key={link.href}
+              variant="ghost"
+              asChild
+              className={cn(
+                "text-sm font-medium transition-colors hover:text-primary hover:bg-primary/10",
+                pathname === link.href && "text-primary bg-primary/10"
+              )}
+            >
+              <Link href={`/${locale}${link.href}`}>{t(link.label)}</Link>
+            </Button>
+          ))}
         </div>
 
-        <div className="flex items-center gap-2 md:hidden pr-2">
+        <div className="hidden md:flex items-center gap-2 pl-4 border-l ml-4">
           <ThemeToggle />
           <LanguageSwitcher />
-          <button
-            type="button"
-            aria-label="Open menu"
-            onClick={toggle}
-            className="p-2 rounded-md hover:bg-accent/30"
-          >
-            <Menu className="h-6 w-6 text-foreground" />
-          </button>
+        </div>
+
+        {/* Mobile Navigation */}
+        <div className="flex md:hidden items-center gap-2">
+          <ThemeToggle />
+          <LanguageSwitcher />
+          
+          <Sheet open={open} onOpenChange={setOpen}>
+            <SheetTrigger asChild>
+              <Button variant="ghost" size="icon" className="md:hidden">
+                <Menu className="h-6 w-6" />
+                <span className="sr-only">Toggle menu</span>
+              </Button>
+            </SheetTrigger>
+            <SheetContent side={isRTL ? "right" : "left"} className="w-[300px] sm:w-[400px]">
+              <SheetHeader className="text-left border-b pb-4 mb-4">
+                <SheetTitle className="flex items-center gap-2">
+                   <Image
+                    src={!mounted || resolvedTheme === "light" ? LogoLight : LogoDark}
+                    width={32}
+                    height={32}
+                    alt="Logo"
+                  />
+                  <span>Ahmed Lotfy</span>
+                </SheetTitle>
+              </SheetHeader>
+              <div className="flex flex-col gap-2">
+                {navLinks.map((link) => (
+                  <Button
+                    key={link.href}
+                    variant="ghost"
+                    asChild
+                    className={cn(
+                      "justify-start text-base",
+                      pathname === link.href && "text-primary bg-primary/10"
+                    )}
+                    onClick={() => setOpen(false)}
+                  >
+                    <Link href={`/${locale}${link.href}`}>
+                      {t(link.label)}
+                    </Link>
+                  </Button>
+                ))}
+              </div>
+            </SheetContent>
+          </Sheet>
         </div>
       </nav>
-
-      {/* Mobile Menu */}
-      <div
-        className={`fixed inset-0 z-40 transition-opacity duration-300 ${
-          open ? "opacity-100" : "opacity-0 pointer-events-none"
-        }`}
-        onClick={close}
-      >
-        <div className="absolute inset-0 bg-black/50" />
-      </div>
-      <div
-        className={`fixed top-0 h-full w-72 bg-background shadow-lg transform transition-transform duration-300 z-50
-    ${open ? "translate-x-0" : ""}
-    ${
-      locale === "ar"
-        ? open
-          ? "left-0 translate-x-0"
-          : "-translate-x-full left-0"
-        : open
-        ? "right-0 translate-x-0"
-        : "translate-x-full right-0"
-    }
-  `}
-      >
-        <div className="flex items-center justify-between p-4 border-b">
-          <Link href="/" onClick={close}>
-            <Image
-              src={!mounted || resolvedTheme === "light" ? LogoLight : LogoDark}
-              width={70}
-              height={70}
-              alt="Logo"
-            />
-          </Link>
-          <button
-            type="button"
-            aria-label="Close menu"
-            onClick={close}
-            className="p-2 rounded-md hover:bg-accent/30"
-          >
-            <X className="h-6 w-6 text-foreground" />
-          </button>
-        </div>
-        <ul className="flex flex-col p-4 space-y-2">
-          {navLinks.map((link) => (
-            <li key={link.href}>
-              <Link
-                href={link.href}
-                onClick={close}
-                className="block px-4 py-2 text-sm font-medium text-foreground rounded-md hover:bg-accent/30"
-              >
-                {t(link.label)}
-              </Link>
-            </li>
-          ))}
-        </ul>
-      </div>
     </header>
   );
 }
-
-export { Nav };

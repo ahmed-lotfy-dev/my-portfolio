@@ -4,6 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import HeroImage from "@/public/images/improved_hero_background.png";
 import { FileText, ArrowRight } from "lucide-react";
+import { CVDropdown } from "./CVDropdown";
 import { useTranslations } from "next-intl";
 import { motion } from "framer-motion";
 import { useLocale } from "next-intl";
@@ -19,7 +20,7 @@ export default function Hero() {
       id="hero"
     >
       {/* Background Elements */}
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-primary/20 via-background to-background opacity-70" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,var(--tw-gradient-stops))] from-primary/20 via-background to-background opacity-70" />
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[500px] bg-primary/10 blur-[100px] rounded-full pointer-events-none" />
 
       <div className="container relative mx-auto flex flex-col-reverse gap-12 px-4 sm:px-6 lg:flex-row lg:items-center lg:justify-between">
@@ -66,14 +67,12 @@ export default function Hero() {
             transition={{ delay: 0.5, duration: 0.5 }}
             className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mt-4"
           >
-            <Link
-              href="/Ahmed-Lotfy-CV.pdf"
-              download
-              className="inline-flex items-center justify-center gap-2 rounded-full bg-primary px-8 py-4 text-lg font-semibold text-primary-foreground shadow-lg shadow-primary/25 transition-all hover:bg-primary/90 hover:scale-105 hover:shadow-primary/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
-            >
-              <FileText className="h-5 w-5" />
-              <span>{t("resume")}</span>
-            </Link>
+            <CVDropdown>
+              <button className="inline-flex items-center justify-center gap-2 rounded-full bg-primary px-8 py-4 text-lg font-semibold text-primary-foreground shadow-lg shadow-primary/25 transition-all hover:bg-primary/90 hover:scale-105 hover:shadow-primary/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary">
+                <FileText className="h-5 w-5" />
+                <span>{t("resume")}</span>
+              </button>
+            </CVDropdown>
             <Link
               href="#projects"
               className="inline-flex items-center justify-center gap-2 rounded-full border border-border bg-card/50 backdrop-blur-sm px-8 py-4 text-lg font-semibold text-foreground shadow-sm transition-all hover:bg-muted hover:scale-105 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
