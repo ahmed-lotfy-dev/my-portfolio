@@ -9,6 +9,7 @@ import ImageViewer from "@/src/components/ui/ImageViewer";
 import { getTranslations, getLocale } from "next-intl/server";
 import { ExternalLink, Github } from "lucide-react";
 import ProjectCategories from "@/src/components/ui/ProjectCategories";
+import { shouldShowApk } from "@/src/lib/utils/projectUtils";
 
 export default async function Projects() {
   const { allProjects } = await getAllProjects();
@@ -35,11 +36,14 @@ export default async function Projects() {
         <div className="w-full grid gap-8 grid-cols-[repeat(auto-fit,minmax(320px,1fr))] justify-items-stretch">
           {allProjects
             ?.filter((proj) => proj.published !== false)
-            .map((proj) => (
-              <Card
-                key={proj.id}
-                className="group flex h-full flex-col justify-between overflow-hidden border-border bg-card/50 backdrop-blur-sm hover:border-primary/50 hover:shadow-xl hover:shadow-primary/5 transition-all duration-300"
-              >
+            .map((proj) => {
+              const showApk = shouldShowApk(proj.categories);
+
+              return (
+                <Card
+                  key={proj.id}
+                  className="group flex h-full flex-col justify-between overflow-hidden border-border bg-card/50 backdrop-blur-sm hover:border-primary/50 hover:shadow-xl hover:shadow-primary/5 transition-all duration-300"
+                >
                 <ImageViewer
                   imageUrl={proj.imageLink}
                   altText={locale === "ar" ? proj.title_ar : proj.title_en}
@@ -55,10 +59,7 @@ export default async function Projects() {
                             : undefined
                         }
                         className={`transition-transform duration-500 group-hover:scale-110 ${
-                          (proj.categories?.includes("mobile") ||
-                          proj.categories?.includes("app") ||
-                          proj.categories?.includes("android")) &&
-                          !proj.categories?.includes("web")
+                          showApk
                             ? "object-contain p-4 bg-muted/50"
                             : "object-cover"
                         }`}
@@ -92,10 +93,7 @@ export default async function Projects() {
                     >
                       <Button className="w-full gap-2 shadow-lg shadow-primary/20">
                         <ExternalLink size={16} />
-                        {(proj.categories?.includes("mobile") ||
-                        proj.categories?.includes("app") ||
-                        proj.categories?.includes("android")) &&
-                        !proj.categories?.includes("web")
+                        {showApk
                           ? t("apk")
                           : t("live")}
                       </Button>
@@ -116,7 +114,8 @@ export default async function Projects() {
                   </div>
                 </div>
               </Card>
-            ))}
+                );
+            })}
         </div>
       </div>
     </Section>
