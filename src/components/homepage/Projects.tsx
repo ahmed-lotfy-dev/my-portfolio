@@ -54,8 +54,10 @@ export default async function Projects() {
                             : undefined
                         }
                         className={`transition-transform duration-500 group-hover:scale-110 ${
-                          proj.categories?.includes("mobile") ||
-                          proj.categories?.includes("app")
+                          (proj.categories?.includes("mobile") ||
+                          proj.categories?.includes("app") ||
+                          proj.categories?.includes("android")) &&
+                          !proj.categories?.includes("web")
                             ? "object-contain p-4 bg-muted/50"
                             : "object-cover"
                         }`}
@@ -100,8 +102,10 @@ export default async function Projects() {
                     >
                       <Button className="w-full gap-2 shadow-lg shadow-primary/20">
                         <ExternalLink size={16} />
-                        {proj.categories?.includes("mobile") ||
-                        proj.categories?.includes("app")
+                        {(proj.categories?.includes("mobile") ||
+                        proj.categories?.includes("app") ||
+                        proj.categories?.includes("android")) &&
+                        !proj.categories?.includes("web")
                           ? t("apk")
                           : t("live")}
                       </Button>
