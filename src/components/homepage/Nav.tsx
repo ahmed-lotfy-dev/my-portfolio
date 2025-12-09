@@ -100,7 +100,7 @@ export function Nav({ children }: { children: React.ReactNode }) {
           ))}
         </div>
 
-        <div className="hidden md:flex items-center gap-2 pl-4 border-l ml-4">
+        <div className="hidden md:flex items-center gap-2 border-s ps-4 ms-4">
           <ThemeToggle />
           <LanguageSwitcher />
         </div>
@@ -117,7 +117,7 @@ export function Nav({ children }: { children: React.ReactNode }) {
                 <span className="sr-only">Toggle menu</span>
               </Button>
             </SheetTrigger>
-            <SheetContent side={isRTL ? "right" : "left"} className="w-[300px] sm:w-[400px]">
+            <SheetContent side={isRTL ? "left" : "right"} className="w-[300px] sm:w-[400px]">
               <SheetHeader className="text-left border-b pb-4 mb-4">
                 <SheetTitle className="flex items-center gap-2">
                    <Image

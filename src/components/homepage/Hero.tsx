@@ -68,7 +68,7 @@ export default function Hero() {
             className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mt-4"
           >
             <CVDropdown>
-              <button className="inline-flex items-center justify-center gap-2 rounded-full bg-primary px-8 py-4 text-lg font-semibold text-primary-foreground shadow-lg shadow-primary/25 transition-all hover:bg-primary/90 hover:scale-105 hover:shadow-primary/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary">
+              <button className="inline-flex items-center justify-center gap-2 rounded-full bg-primary px-8 py-4 text-lg font-semibold text-primary-foreground shadow-lg shadow-primary/25 transition-all hover:bg-primary/90 hover:scale-105 hover:shadow-primary/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary cursor-pointer">
                 <FileText className="h-5 w-5" />
                 <span>{t("resume")}</span>
               </button>
@@ -108,11 +108,13 @@ export default function Hero() {
               initial={{ y: 20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ delay: 1, duration: 0.5 }}
-              className="absolute -bottom-6 -left-6 md:bottom-10 md:-left-10 bg-card/80 backdrop-blur-xl border border-border p-4 rounded-2xl shadow-xl flex items-center gap-3"
+              className={`absolute -bottom-6 md:bottom-10 bg-card/80 backdrop-blur-xl border border-border p-4 rounded-2xl shadow-xl flex items-center gap-3 ${
+                isRTL ? "-right-6 md:-right-10" : "-left-6 md:-left-10"
+              }`}
             >
               <div className="w-3 h-3 rounded-full bg-green-500 animate-pulse" />
               <span className="font-medium text-sm text-foreground">
-                Available for work
+                {t("available_work")}
               </span>
             </motion.div>
           </div>

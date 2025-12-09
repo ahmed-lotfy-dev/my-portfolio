@@ -12,7 +12,15 @@ export default function ThemeToggle() {
   }, [])
 
   if (!mounted) {
-    return null
+    return (
+      <button
+        type="button"
+        className="inline-flex h-9 w-9 items-center justify-center rounded-md border border-border bg-transparent text-muted-foreground shadow-sm"
+        disabled
+      >
+        <Sun className="h-5 w-5 opacity-0" />
+      </button>
+    )
   }
 
   const current = theme ?? resolvedTheme
