@@ -7,7 +7,7 @@ export async function getPostHogAnalytics() {
 
   if (!projectId || !apiKey) {
     console.error("PostHog credentials missing");
-    return { uniqueVisitors: 0 };
+    return { uniqueVisitors: 0, trend: [], topPaths: [], sources: [] };
   }
 
   if (apiKey.startsWith("phc_")) {
