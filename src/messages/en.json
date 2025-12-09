@@ -142,6 +142,7 @@
   "dashboard": {
     "projects": "Projects",
     "certificates": "Certificates",
+    "analytics": "Analytics",
     "nav": {
       "home": "Home",
       "dashboard": "Dashboard",

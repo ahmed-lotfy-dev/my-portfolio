@@ -1,6 +1,7 @@
 import { Card } from "@/src/components/ui/card"
 import { getAllCertificates } from "@/src/app/actions/certificatesActions"
 import { getAllProjects } from "@/src/app/actions/projectsActions"
+import { getPostHogAnalytics } from "@/src/app/actions/analytics"
 import Welcome from "@/src/components/dashboard-components/Welcome"
 import Link from "next/link"
 import { auth } from "@/src/lib/auth"
@@ -14,6 +15,7 @@ export default async function Page() {
 
   const { allCertificates } = await getAllCertificates()
   const { allProjects } = await getAllProjects()
+  const analyticsData = await getPostHogAnalytics()
 
   const projectsCount = allProjects?.length
   const certificatesCount = allCertificates?.length
@@ -42,6 +44,13 @@ export default async function Page() {
             <p className="text-3xl font-bold">{certificatesCount}</p>
           </Card>
         </Link>
+
+        <Card className="flex flex-col justify-center items-center gap-4 p-6 bg-muted hover:bg-accent/30 transition-colors">
+          <h2 className="text-sm font-medium text-muted-foreground">
+            {t("analytics")} (7d)
+          </h2>
+          <p className="text-3xl font-bold">{analyticsData.uniqueVisitors}</p>
+        </Card>
       </div>
     </div>
   )

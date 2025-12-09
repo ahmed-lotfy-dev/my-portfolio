@@ -140,6 +140,7 @@
   "dashboard": {
     "projects": "المشاريع",
     "certificates": "الشهادات",
+    "analytics": "التحليلات",
     "nav": {
       "home": "الرئيسية",
       "dashboard": "لوحة التحكم",
