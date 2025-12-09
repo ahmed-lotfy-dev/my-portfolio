@@ -24,11 +24,8 @@ export default function Welcome() {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
-      className="w-full relative overflow-hidden rounded-3xl bg-zinc-900/50 border border-white/5 p-8 backdrop-blur-xl shadow-2xl"
+      className="w-full relative overflow-hidden rounded-xl  border border-blue p-8  shadow-1xl"
     >
-      {/* Decorative background elements */}
-      <div className="absolute top-0 right-0 -mt-20 -mr-20 h-80 w-80 rounded-full bg-primary/10 blur-3xl opacity-30 pointer-events-none" />
-      <div className="absolute bottom-0 left-0 -mb-20 -ml-20 h-80 w-80 rounded-full bg-zinc-800/50 blur-3xl opacity-30 pointer-events-none" />
 
       <div className="relative z-10 flex flex-col gap-4">
         <motion.h2

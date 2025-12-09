@@ -7,6 +7,7 @@ import Link from "next/link"
 import { auth } from "@/src/lib/auth"
 import { headers } from "next/headers"
 import { getTranslations } from "next-intl/server"
+import AnalyticsDashboard from "@/src/components/dashboard-components/AnalyticsDashboard"
 
 export default async function Page() {
   const session = await auth.api.getSession({
@@ -26,7 +27,9 @@ export default async function Page() {
   return (
     <div className="flex flex-col gap-6 w-full p-5 pt-10">
       <Welcome />
-      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 justify-start">
+      
+      {/* Quick Stats Row */}
+      <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 justify-start">
         <Link href={"/dashboard/projects"}>
           <Card className="flex flex-col justify-center items-center gap-4 cursor-pointer p-6 bg-muted hover:bg-accent/30 transition-colors">
             <h2 className="text-sm font-medium text-muted-foreground">
@@ -44,7 +47,7 @@ export default async function Page() {
             <p className="text-3xl font-bold">{certificatesCount}</p>
           </Card>
         </Link>
-
+        
         <Card className="flex flex-col justify-center items-center gap-4 p-6 bg-muted hover:bg-accent/30 transition-colors">
           <h2 className="text-sm font-medium text-muted-foreground">
             {t("analytics")} (7d)
@@ -52,6 +55,9 @@ export default async function Page() {
           <p className="text-3xl font-bold">{analyticsData.uniqueVisitors}</p>
         </Card>
       </div>
+
+      {/* Advanced Analytics Section */}
+      <AnalyticsDashboard data={analyticsData} />
     </div>
   )
 }
