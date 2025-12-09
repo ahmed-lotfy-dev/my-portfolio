@@ -16,6 +16,13 @@
 - **Issue:** Projects like "Link Tree" were displaying "APK" button because they contained the "app" category.
 - **Resolution:** Refined conditional logic in `Projects.tsx` to exclude projects with the "web" category from the "APK" label, ensuring they display "Live Link".
 
+### [FIXED] Category Display & Interaction
+- **Issue:** Long category lists were cluttered; inputs were case-sensitive; "APK" logic was flaky for terms like "React Native".
+- **Resolution:**
+    - **Logic:** Refactored APK detection to be robust (case-insensitive, substring matching) via `shouldShowApk` utility.
+    - **UI:** Implemented `ProjectCategories` component to truncate lists (>5 items) with "Show More/Less" toggle.
+    - **Interactivity:** Added pointer cursors and made description/category containers clickable for better UX.
+
 ## 2. 🎨 Visual & UX Design
 **Status:** ✅ **Excellent**
 - The site features a strong, modern aesthetic with a consistent color palette and dark mode support.
@@ -44,10 +51,11 @@ Adding a **"Blog"** or **"Articles"** section demonstrates communication skills.
 - This sets you apart from developers who just write code.
 
 ## 4. 🔍 Minor Polish
-- **SEO:** verification of meta tags (OpenGraph images for social sharing) for every page.
-- **Resume:** Ensure the "Download Resume" button (if present) points to the latest PDF version.
+- **SEO (Verified):** Open Graph (`og-image.png`) and Favicon (`icon.png`) are present and correctly configured in `layout.tsx`.
+- **Resume (Verified):** "Download Resume" button points to the latest PDF version (`Ahmed-Lotfy-CV.pdf`).
 
 ## 🚀 Recommended Action Plan
 1.  **Fix the `/ingest` 404s** (I can help with this if you open the portfolio workspace).
 2.  **Revise 3 Project Descriptions** to include quantitative metrics.
 3.  **Draft one "Case Study"** format for your best project.
+4.  **Integrate AI Translation:** Automate translation of Markdown content in Case Studies using robust AI (e.g., Gemini/OpenAI) to preserve formatting.

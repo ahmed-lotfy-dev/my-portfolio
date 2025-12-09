@@ -70,7 +70,7 @@ export default async function Projects() {
                 />
                 <div className="p-6 flex flex-col grow gap-4">
                   <div>
-                    <Link href={proj.liveLink} target="_blank">
+                    <Link href={proj.slug ? `/projects/${proj.slug}` : proj.liveLink} target={proj.slug ? undefined : "_blank"}>
                       <h3 className="text-2xl font-bold text-foreground mb-2 group-hover:text-primary transition-colors cursor-pointer">
                         {locale === "ar" ? proj.title_ar : proj.title_en}
                       </h3>

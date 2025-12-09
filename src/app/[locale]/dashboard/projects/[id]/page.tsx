@@ -1,0 +1,22 @@
+import { editProjectAction, getSingleProject } from "@/src/app/actions/projectsActions";
+import ProjectForm from "@/src/components/dashboard-components/project/ProjectForm";
+import { notFound } from "next/navigation";
+
+export default async function EditProjectPage({ params }: { params: Promise<{ id: string }> }) {
+  const { id } = await params;
+  const result = await getSingleProject(id);
+
+  if (!result.success || !result.project) {
+    return notFound();
+  }
+
+  return (
+    <div className="w-full flex justify-center items-start pt-14">
+      <ProjectForm 
+        action={editProjectAction} 
+        mode="edit" 
+        initialData={result.project} 
+      />
+    </div>
+  );
+}

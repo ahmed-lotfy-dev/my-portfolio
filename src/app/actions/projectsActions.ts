@@ -2,6 +2,7 @@
 
 import { db } from "@/src/db";
 import { revalidatePath } from "next/cache";
+import { redirect } from "next/navigation";
 import { DeleteFromS3 } from "./deleteImageAction";
 import { getProjectSchema } from "../../lib/schemas/projectSchema";
 import { headers } from "next/headers";
@@ -40,6 +41,22 @@ export async function getSingleProject(id: string) {
   }
 }
 
+// ✅ Fetch single project by Slug
+export async function getProjectBySlug(slug: string) {
+  try {
+    const project = await db.query.projects.findFirst({
+      where: (p, { eq }) => eq(p.slug, slug),
+    });
+
+    if (!project) return { success: false, message: "Project not found" };
+
+    return { success: true, message: "Project found", project };
+  } catch (error) {
+    logger.error("Failed to fetch project by slug:", error);
+    return { success: false, message: "Project not found" };
+  }
+}
+
 // ✅ Add new project
 export async function addProjectAction(state: any, data: FormData) {
   const title_en = data.get("title_en") as string;
@@ -53,6 +70,10 @@ export async function addProjectAction(state: any, data: FormData) {
   const categories =
     categoriesString?.split(",").map((tag) => tag.trim()) || [];
   const published = data.get("published") === "true";
+  
+  const slug = data.get("slug") as string;
+  const content_en = data.get("content_en") as string;
+  const content_ar = data.get("content_ar") as string;
 
   const session = await auth.api.getSession({ headers: await headers() });
   const user = session?.user;
@@ -70,6 +91,9 @@ export async function addProjectAction(state: any, data: FormData) {
     title_ar,
     desc_en,
     desc_ar,
+    slug,
+    content_en,
+    content_ar,
     repoLink,
     liveLink,
     imageLink,
@@ -125,6 +149,9 @@ export async function addProjectAction(state: any, data: FormData) {
       imageLink,
       categories,
       published,
+      slug: slug || title_en.toLowerCase().replace(/ /g, "-").replace(/[^\w-]+/g, ""),
+      content_en,
+      content_ar,
       displayOrder: (
         await db
           .select({ max: projects.displayOrder })
@@ -166,6 +193,10 @@ export async function editProjectAction(state: any, data: FormData) {
   const categories =
     categoriesString?.split(",").map((tag) => tag.trim()) || [];
   const published = data.get("published") === "true";
+  
+  const slug = data.get("slug") as string;
+  const content_en = data.get("content_en") as string;
+  const content_ar = data.get("content_ar") as string;
 
   logger.debug("Edit Project - Categories String:", categoriesString);
   logger.debug("Edit Project - Categories Array:", categories);
@@ -186,6 +217,9 @@ export async function editProjectAction(state: any, data: FormData) {
     title_ar,
     desc_en,
     desc_ar,
+    slug,
+    content_en,
+    content_ar,
     repoLink,
     liveLink,
     imageLink,
@@ -247,6 +281,9 @@ export async function editProjectAction(state: any, data: FormData) {
         title_ar: finalTitleAr,
         desc_en: finalDescEn,
         desc_ar: finalDescAr,
+        slug: slug || finalTitleEn.toLowerCase().replace(/ /g, "-").replace(/[^\w-]+/g, ""),
+        content_en,
+        content_ar,
         repoLink,
         liveLink,
         imageLink,
