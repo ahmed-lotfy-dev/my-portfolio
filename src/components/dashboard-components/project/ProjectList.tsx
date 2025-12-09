@@ -27,6 +27,7 @@ import {
 import { Badge } from "@/src/components/ui/badge";
 import { cn } from "@/src/lib/utils";
 import { AddProjectComponent } from "./AddProject";
+import ProjectCategories from "@/src/components/ui/ProjectCategories";
 
 export default function ProjectList({ allProjects }: any) {
   const locale = useLocale();
@@ -204,23 +205,8 @@ export default function ProjectList({ allProjects }: any) {
               </div>
 
               {/* Tags */}
-              <div className="col-span-3 hidden md:flex flex-wrap gap-1.5">
-                {proj.categories
-                  ?.slice(0, 3)
-                  .map((cat: string, idx: number) => (
-                    <Badge
-                      key={idx}
-                      variant="secondary"
-                      className="text-xs bg-secondary/50 hover:bg-secondary border-secondary-foreground/10"
-                    >
-                      {cat}
-                    </Badge>
-                  ))}
-                {proj.categories?.length > 3 && (
-                  <Badge variant="outline" className="text-xs opacity-50">
-                    +{proj.categories.length - 3}
-                  </Badge>
-                )}
+              <div className="col-span-3 hidden md:block">
+                <ProjectCategories categories={proj.categories || []} limit={3} />
               </div>
 
               {/* Actions */}

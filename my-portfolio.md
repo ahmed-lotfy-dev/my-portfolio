@@ -3,11 +3,18 @@
 **Target URL:** [ahmedlotfy.site](https://ahmedlotfy.site)
 **Date:** 2025-12-09
 
-## 1. 🚨 Critical Technical Findings
-The most immediate issue to address is the presence of **404 (Not Found)** errors in the browser console.
-- **Errors observed:** Multiple requests to `/en/ingest/...` and `/ingest/array/...` are failing.
-- **Likely Cause:** These are typically associated with **PostHog** or similar analytics tools when the reverse proxy (rewrites) is not configured correctly in `next.config.js` or the environment variables for the ingestion host are missing in production.
-- **Impact:** While it doesn't break the UI, it spams the console and signals a misconfiguration to technical interviewers who inspect the site.
+## 1. ✅ Resolved / Fixed Issues
+### [FIXED] 404 (Not Found) Errors / PostHog Ingestion
+- **Status:** Verified Fixed.
+- **Resolution:** PostHog rewrites are correctly configured in `next.config.ts`, and console is clean of `/ingest` errors on the live site.
+
+### [FIXED] Dashboard Build Error
+- **Issue:** `bun run build` failed due to a TypeScript type mismatch in `AnalyticsDashboard`.
+- **Resolution:** Updated `getPostHogAnalytics` to return consistent data structures (empty arrays instead of undefined) when credentials are partial or missing.
+
+### [FIXED] "APK" Label on Web Projects (Link Tree)
+- **Issue:** Projects like "Link Tree" were displaying "APK" button because they contained the "app" category.
+- **Resolution:** Refined conditional logic in `Projects.tsx` to exclude projects with the "web" category from the "APK" label, ensuring they display "Live Link".
 
 ## 2. 🎨 Visual & UX Design
 **Status:** ✅ **Excellent**

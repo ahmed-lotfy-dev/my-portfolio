@@ -8,6 +8,7 @@ import ReadMoreText from "@/src/components/ui/ReadMoreText";
 import ImageViewer from "@/src/components/ui/ImageViewer";
 import { getTranslations, getLocale } from "next-intl/server";
 import { ExternalLink, Github } from "lucide-react";
+import ProjectCategories from "@/src/components/ui/ProjectCategories";
 
 export default async function Projects() {
   const { allProjects } = await getAllProjects();
@@ -68,9 +69,11 @@ export default async function Projects() {
                 />
                 <div className="p-6 flex flex-col grow gap-4">
                   <div>
-                    <h3 className="text-2xl font-bold text-foreground mb-2 group-hover:text-primary transition-colors">
-                      {locale === "ar" ? proj.title_ar : proj.title_en}
-                    </h3>
+                    <Link href={proj.liveLink} target="_blank">
+                      <h3 className="text-2xl font-bold text-foreground mb-2 group-hover:text-primary transition-colors cursor-pointer">
+                        {locale === "ar" ? proj.title_ar : proj.title_en}
+                      </h3>
+                    </Link>
                     <ReadMoreText
                       text={locale === "ar" ? proj.desc_ar : proj.desc_en}
                       maxLines={3}
@@ -79,20 +82,7 @@ export default async function Projects() {
                   </div>
 
                   {/* Tech Stack */}
-                  {proj.categories &&
-                    proj.categories.length > 0 &&
-                    proj.categories[0] !== "" && (
-                      <div className="flex flex-wrap gap-2 mt-auto pt-4 border-t border-border/50">
-                        {proj.categories.map((tech: string, index: number) => (
-                          <span
-                            key={index}
-                            className="px-2.5 py-1 text-xs font-medium bg-muted text-muted-foreground rounded-md border border-border"
-                          >
-                            {tech}
-                          </span>
-                        ))}
-                      </div>
-                    )}
+                  <ProjectCategories categories={proj.categories || []} />
 
                   <div className="flex gap-3 mt-4">
                     <Link

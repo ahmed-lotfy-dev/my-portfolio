@@ -49,7 +49,12 @@ const ReadMoreText: React.FC<ReadMoreTextProps> = ({
 
   return (
     <div className={className}>
-      <p ref={textRef} style={style}>
+      <p
+        ref={textRef}
+        style={style}
+        onClick={isTruncated ? toggleExpanded : undefined}
+        className={`${isTruncated ? "cursor-pointer" : ""}`}
+      >
         {text}
       </p>
       {isTruncated && (
