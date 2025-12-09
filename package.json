@@ -81,6 +81,7 @@
     "@types/pg": "^8.15.5",
     "@types/react-icons": "^3.0.0",
     "babel-plugin-react-compiler": "^1.0.0",
+    "baseline-browser-mapping": "^2.9.5",
     "drizzle-kit": "^0.31.5",
     "ts-node": "^10.9.2",
     "tsx": "^4.20.6"
