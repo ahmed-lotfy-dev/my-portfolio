@@ -3,6 +3,7 @@ import createNextIntlPlugin from "next-intl/plugin";
 
 /** @type {import('next').NextConfig} */
 const nextConfig: NextConfig = {
+  output: "standalone", // Enable standalone mode for optimized Docker builds
   experimental: {
     // turbopackFileSystemCacheForDev: true,
     serverActions: {
