@@ -26,7 +26,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     updatedAt: certificates.updatedAt,
   }).from(certificates)
   
-  // Static pages
+  // Static pages - Homepage and main sections
   const staticPages = [
     {
       url: baseUrl,
@@ -45,6 +45,45 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       lastModified: new Date(),
       changeFrequency: 'weekly' as const,
       priority: 1,
+    },
+    // Projects listing page
+    {
+      url: `${baseUrl}/en/projects`,
+      lastModified: new Date(),
+      changeFrequency: 'weekly' as const,
+      priority: 0.9,
+    },
+    {
+      url: `${baseUrl}/ar/projects`,
+      lastModified: new Date(),
+      changeFrequency: 'weekly' as const,
+      priority: 0.9,
+    },
+    // Blogs listing page
+    {
+      url: `${baseUrl}/en/blogs`,
+      lastModified: new Date(),
+      changeFrequency: 'weekly' as const,
+      priority: 0.9,
+    },
+    {
+      url: `${baseUrl}/ar/blogs`,
+      lastModified: new Date(),
+      changeFrequency: 'weekly' as const,
+      priority: 0.9,
+    },
+    // Certificates listing page
+    {
+      url: `${baseUrl}/en/certificates`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly' as const,
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/ar/certificates`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly' as const,
+      priority: 0.8,
     },
   ]
   
