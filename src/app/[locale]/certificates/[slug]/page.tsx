@@ -16,7 +16,7 @@ export async function generateMetadata({
 
   return {
     title: certificate.title,
-    description: certificate.description,
+    description: certificate.desc,
     openGraph: {
       images: [certificate.imageLink],
     },
