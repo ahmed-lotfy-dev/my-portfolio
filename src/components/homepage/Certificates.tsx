@@ -11,20 +11,16 @@ import {
 } from "@/src/components/ui/hover-card";
 import { Eye } from "lucide-react";
 import { useTranslations } from "next-intl";
-import { useState, useEffect } from "react";
+import { use, useState } from "react";
 import ImageViewer from "@/src/components/ui/ImageViewer";
 
+const certificatesPromise = getAllCertificates();
+
 export default function Certificates() {
-  const [allCertificates, setAllCertificates] = useState<any[]>([]);
+  const { allCertificates } = use(certificatesPromise);
   const [selectedCertificate, setSelectedCertificate] = useState<any>(null);
   const [showImageViewer, setShowImageViewer] = useState(false);
   const t = useTranslations("certificates");
-
-  useEffect(() => {
-    getAllCertificates().then(({ allCertificates }) => {
-      setAllCertificates(allCertificates || []);
-    });
-  }, []);
 
   const handleEyeClick = (e: React.MouseEvent, cert: any) => {
     e.preventDefault();
