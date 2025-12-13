@@ -17,10 +17,10 @@ module.exports = {
       name: 'backup-worker',
       script: 'backup-worker/dist/index.js',
       interpreter: 'bun',
-      args: '--type=full',
+      // No args - only run on cron schedule, not on startup
       instances: 1,
       autorestart: false,
-      cron_restart: '0 */8 * * *',
+      cron_restart: '0 2 * * *', // Daily at 2 AM UTC
       watch: false,
       env: {
         NODE_ENV: 'production'
