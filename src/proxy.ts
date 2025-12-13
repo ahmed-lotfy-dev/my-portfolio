@@ -1,11 +1,66 @@
-import createMiddleware from "next-intl/middleware"
-import { routing } from "./i18n/routing"
+import createMiddleware from 'next-intl/middleware';
+import { routing } from '@/src/i18n/routing';
+import { NextRequest, NextResponse } from 'next/server';
 
-export default createMiddleware(routing)
+const handleI18n = createMiddleware(routing);
+
+export default function proxy(request: NextRequest) {
+  // 1. Run next-intl middleware (handles redirects and locale)
+  const response = handleI18n(request);
+
+  // ============================================
+  // SECURITY HEADERS
+  // ============================================
+
+  const csp = [
+    "default-src 'self'",
+    "script-src 'self' 'unsafe-eval' 'unsafe-inline' *.posthog.com *.googletagmanager.com",
+    "style-src 'self' 'unsafe-inline'",
+    "img-src 'self' data: https:",
+    "font-src 'self' data:",
+    "connect-src 'self' *.posthog.com *.googletagmanager.com",
+    "frame-ancestors 'self'",
+  ].join("; ");
+
+  response.headers.set("Content-Security-Policy", csp);
+  response.headers.set(
+    "Strict-Transport-Security",
+    "max-age=31536000; includeSubDomains; preload"
+  );
+  response.headers.set("X-Frame-Options", "SAMEORIGIN");
+  response.headers.set("X-Content-Type-Options", "nosniff");
+  response.headers.set("Referrer-Policy", "strict-origin-when-cross-origin");
+  response.headers.set("Cross-Origin-Opener-Policy", "same-origin");
+  response.headers.set("Cross-Origin-Resource-Policy", "cross-origin");
+  response.headers.set(
+    "Permissions-Policy",
+    "camera=(), microphone=(), geolocation=()"
+  );
+
+  // ============================================
+  // CACHING HEADERS
+  // ============================================
+
+  if (request.nextUrl.pathname.startsWith("/_next/static/")) {
+    response.headers.set(
+      "Cache-Control",
+      "public, max-age=31536000, immutable"
+    );
+  }
+
+  if (
+    request.nextUrl.pathname.match(/\.(jpg|jpeg|png|gif|webp|avif|svg|ico)$/)
+  ) {
+    response.headers.set("Cache-Control", "public, max-age=31536000");
+  }
+
+  return response;
+}
 
 export const config = {
-  // Match all pathnames except for
-  // - … if they start with `/api`, `/trpc`, `/_next` or `/_vercel`
-  // - … the ones containing a dot (e.g. `favicon.ico`)
-  matcher: "/((?!api|trpc|_next|_vercel|ingest|.*\\..*).*)",
-}
+  matcher: [
+    // Enable a comprehensive source matcher to ensure that
+    // the middleware runs on all relevant paths
+    "/((?!api|_next/static|_next/image|favicon.ico).*)",
+  ],
+};

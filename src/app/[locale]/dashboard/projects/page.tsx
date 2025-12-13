@@ -1,13 +1,14 @@
-import ProjectList from "@/src/components/dashboard-components/project/ProjectList";
+import { Suspense } from "react";
+import ProjectListContainer from "@/src/components/dashboard-components/project/ProjectListContainer";
+import DashboardTableSkeleton from "@/src/components/skeletons/DashboardTableSkeleton";
 
-import { getAllProjects } from "@/src/app/actions/projectsActions";
-
-export default async function ProjectsPage({}) {
-  const { allProjects } = await getAllProjects();
+export default function ProjectsPage({ }) {
   return (
     <div className="w-full flex justify-center items-start">
       <div className="flex flex-col justify-center items-center w-full">
-        <ProjectList allProjects={allProjects} />
+        <Suspense fallback={<DashboardTableSkeleton />}>
+          <ProjectListContainer />
+        </Suspense>
       </div>
     </div>
   );

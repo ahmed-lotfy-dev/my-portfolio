@@ -1,15 +1,20 @@
+import { Suspense } from "react";
 import Certificates from "@/src/components/homepage/Certificates";
+import ProjectsSkeleton from "@/src/components/skeletons/ProjectsSkeleton";
+import CertificatesSkeleton from "@/src/components/skeletons/CertificatesSkeleton";
 import Hero from "@/src/components/homepage/Hero";
 import Projects from "@/src/components/homepage/Projects";
 import Skills from "@/src/components/homepage/Skills";
 import About from "@/src/components/homepage/About";
 import Contact from "@/src/components/homepage/Contact";
-import Footer from "@/src/components/homepage/Footer";
 import Container from "@/src/components/ui/Container";
-import { auth } from "@/src/lib/auth";
-import { headers } from "next/headers";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import StructuredData from "@/src/components/seo/StructuredData";
+import { routing } from "@/src/i18n/routing";
+
+export function generateStaticParams() {
+  return routing.locales.map((locale) => ({ locale }));
+}
 
 export async function generateMetadata({
   params,
@@ -56,9 +61,6 @@ export default async function HomePage({
 }: {
   params: Promise<{ locale: string }>;
 }) {
-  const header = await headers();
-  const session = await auth.api.getSession({ headers: header });
-  const user = session;
   const { locale } = await params;
   setRequestLocale(locale);
 
@@ -98,11 +100,14 @@ export default async function HomePage({
 
       <Hero />
       <Skills />
-      <Projects />
-      <Certificates />
+      <Suspense fallback={<ProjectsSkeleton />}>
+        <Projects />
+      </Suspense>
+      <Suspense fallback={<CertificatesSkeleton />}>
+        <Certificates />
+      </Suspense>
       <About />
       <Contact />
-      <Footer />
     </Container>
   );
 }

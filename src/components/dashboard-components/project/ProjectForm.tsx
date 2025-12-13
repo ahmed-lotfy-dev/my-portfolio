@@ -190,7 +190,7 @@ export default function ProjectForm({
             <div className="flex items-center gap-2 text-sm text-muted-foreground bg-muted/30 px-3 py-1.5 rounded-full border border-border/50">
               <ImageIcon size={14} />
               <span>Image Helper</span>
-              <div className="w-[1px] h-4 bg-border mx-1" />
+              <div className="w-px h-4 bg-border mx-1" />
               <div className="w-24 relative overflow-hidden">
                 <Upload
                   setImageUrl={(url) => {
