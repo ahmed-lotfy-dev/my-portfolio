@@ -3,7 +3,6 @@ import { eq } from 'drizzle-orm'
 import { db } from '@/src/db'
 import { projects, posts, certificates } from '@/src/db/schema'
 
-// Force dynamic rendering to avoid database access during build
 export const dynamic = 'force-dynamic'
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {

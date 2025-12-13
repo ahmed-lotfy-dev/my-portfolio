@@ -99,6 +99,11 @@
     "add-desc": "Fill in the details below to add a new certificate",
     "course": "Course",
     "certificate": "Certificate",
+    "instructor": "Instructor",
+    "completed": "Completed",
+    "view_course": "View Course",
+    "view_certificate": "View Certificate",
+    "back_to_certificates": "Back to Certificates",
     "table": {
       "title": "Certificate Title",
       "author": "Course Author",

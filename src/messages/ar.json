@@ -97,6 +97,11 @@
     "add-desc": "املأ التفاصيل أدناه لإضافة شهادة جديدة",
     "course": "الدورة",
     "certificate": "الشهادة",
+    "instructor": "المدرب",
+    "completed": "مكتمل",
+    "view_course": "عرض الدورة",
+    "view_certificate": "عرض الشهادة",
+    "back_to_certificates": "العودة إلى الشهادات",
     "table": {
       "title": "عنوان الشهادة",
       "author": "مؤلف الدورة",
