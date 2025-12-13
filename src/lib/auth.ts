@@ -10,6 +10,16 @@ export const auth = betterAuth({
     provider: "pg",
     usePlural: true,
   }),
+  user: {
+    additionalFields: {
+      role: {
+        type: "string",
+        required: false,
+        defaultValue: "USER",
+        input: false, // Prevent users from setting their own role
+      },
+    },
+  },
   emailAndPassword: {
     enabled: true,
   },
@@ -17,16 +27,6 @@ export const auth = betterAuth({
     google: {
       clientId: process.env.GOOGLE_CLIENT_ID as string,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET as string,
-    },
-  },
-  user: {
-    additionalFields: {
-      role: {
-        type: "string",
-        required: true,
-        defaultValue: "USER",
-        input: false, // Users can't set their own role
-      },
     },
   },
   plugins: [nextCookies()],

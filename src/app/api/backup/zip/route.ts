@@ -82,7 +82,7 @@ export async function GET(req: NextRequest) {
           let continuationToken: string | undefined = undefined;
           
           do {
-            const listCommand = new ListObjectsV2Command({
+            const listCommand: ListObjectsV2Command = new ListObjectsV2Command({
               Bucket: process.env.CF_BUCKET_NAME,
               Prefix: mediaPrefix,
               ContinuationToken: continuationToken,

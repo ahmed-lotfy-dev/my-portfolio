@@ -3,6 +3,7 @@ declare module "@sendgrid/mail"
 declare module "fs"
 declare module "@chakra-ui/next-js"
 
+
 declare global {
   namespace NodeJS {
     export interface ProcessEnv {
@@ -42,14 +43,7 @@ declare module "*.svg" {
   export default src
 }
 
-export type User = {
-  name: string
-  email: string
-  image: string
-  id: string
-  role: string
-  id: number
-}
+
 
 export type certificateType = {
   id: string

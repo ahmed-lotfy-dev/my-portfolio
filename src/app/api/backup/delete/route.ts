@@ -56,7 +56,7 @@ export async function POST(req: NextRequest) {
                 
                 try {
                     do {
-                        const listCmd = new ListObjectsV2Command({
+                        const listCmd: ListObjectsV2Command = new ListObjectsV2Command({
                             Bucket: process.env.CF_BUCKET_NAME,
                             Prefix: mediaPrefix,
                             ContinuationToken: continuationToken
