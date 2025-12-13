@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState, useTransition } from "react";
+import { use, useEffect, useState, useTransition } from "react";
 import { Card, CardHeader, CardTitle, CardContent, CardDescription } from "@/src/components/ui/card";
 import { Table, TableHeader, TableRow, TableHead, TableBody, TableCell } from "@/src/components/ui/table";
 import { Badge } from "@/src/components/ui/badge";
@@ -17,9 +17,12 @@ interface SystemHealthProps {
   cfBucketName?: string;
 }
 
+const initialLogsPromise = getBackupLogs();
+
 export default function SystemHealth({ isAdmin, cfAccountId, cfBucketName }: SystemHealthProps) {
-  const [logs, setLogs] = useState<BackupLog>([]);
-  const [loading, setLoading] = useState(true);
+  const initialData = use(initialLogsPromise);
+  const [logs, setLogs] = useState<BackupLog>(initialData.data || []);
+  const [loading, setLoading] = useState(false);
   const [isPending, startTransition] = useTransition();
 
   const fetchLogs = async () => {
@@ -31,8 +34,8 @@ export default function SystemHealth({ isAdmin, cfAccountId, cfBucketName }: Sys
     setLoading(false);
   };
 
+  // Keep useEffect for polling interval (side effect)
   useEffect(() => {
-    fetchLogs();
     const interval = setInterval(fetchLogs, 30000);
     return () => clearInterval(interval);
   }, []);

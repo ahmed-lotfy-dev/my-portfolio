@@ -3,19 +3,14 @@
 import { useTranslations } from "next-intl";
 import { motion } from "framer-motion";
 import { authClient } from "@/src/lib/auth-client";
-import { useEffect, useState } from "react";
+import { use } from "react";
+
+const sessionPromise = authClient.getSession();
 
 export default function Welcome() {
   const t = useTranslations("dashboard.welcome");
-  const [user, setUser] = useState<any>(null);
-
-  useEffect(() => {
-    const fetchSession = async () => {
-      const { data } = await authClient.getSession();
-      setUser(data?.user);
-    };
-    fetchSession();
-  }, []);
+  const { data } = use(sessionPromise);
+  const user = data?.user;
 
   const isAdmin = user?.email === process.env.NEXT_PUBLIC_ADMIN_EMAIL;
 
