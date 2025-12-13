@@ -37,3 +37,33 @@ The easiest way to deploy your Next.js app is to use the [Vercel Platform](https
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
 # my-portfolio
+
+## Backup System
+
+This project features a production-grade backup architecture separated into an **Execution Plane** (Worker) and a **Control Plane** (Dashboard).
+
+### Backup Worker
+Located in `scripts/backup-worker`. Runs as a standalone Node.js process to perform heavy backup operations.
+- **SQL Backup**: Uses `pg_dump` to generate custom-format dumps.
+- **Media Backup**: Uses Cloudflare R2 `CopyObject` to effectively snapshot media without downloading/re-uploading.
+
+**Deployment**:
+The built-in Dockerfile includes the backup worker in the final image at `/app/backup-worker`.
+
+**Run Manually via Docker**:
+```bash
+# Full Backup
+docker exec -it <container_id> node backup-worker/dist/index.js --type=full
+```
+
+**Scheduled Backups (Dokploy/Cron)**:
+Set up a cron job using the app image:
+- Command: `node backup-worker/dist/index.js --type=full`
+- Schedule: `0 */8 * * *` (Every 8 hours recommended)
+
+### Dashboard
+Visit `/dashboard` to view the **System Health** card, which displays recent backup logs (Success/Failure) and allows manual triggers (creates a pending request).
+
+### Disaster Recovery
+See [docs/restore-runbook.md](./docs/restore-runbook.md) for detailed instructions on restoring data from R2.
+
