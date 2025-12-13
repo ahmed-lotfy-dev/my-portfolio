@@ -18,7 +18,7 @@ export const certificatesData = [
       "https://www.udemy.com/certificate/UC-155b5546-9c7a-4009-9266-78c078671603/",
     imageLink:
       "https://images.ahmedlotfy.site/Certificates-Build%20Responsive%20Real-World%20Website%20With%20HTML%20And%20CSS.jpg",
-    completedAt: null,
+    completedAt: new Date("2022-05-25"),
   },
   {
     title: "The Complete JavaScript Course 2022: From Zero to Expert!",

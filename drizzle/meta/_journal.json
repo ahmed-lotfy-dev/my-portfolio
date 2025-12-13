@@ -50,6 +50,13 @@
       "when": 1764624695542,
       "tag": "0006_parched_kylun",
       "breakpoints": true
+    },
+    {
+      "idx": 7,
+      "version": "7",
+      "when": 1765646624611,
+      "tag": "0007_pale_victor_mancha",
+      "breakpoints": true
     }
   ]
 }
