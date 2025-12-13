@@ -7,7 +7,7 @@ export const certificatesData = [
     profLink:
       "https://drive.google.com/drive/folders/1FP8XyG7QuFQzhco6y5AlLUSlgcPVPCb0?usp=sharing",
     imageLink: "https://images.ahmedlotfy.site/Certificates-Full-List.png",
-    completedAt: null,
+    completedAt: new Date("2022-06-02"),
   },
   {
     title: "Build Responsive Real World Websited With HTML and,CSS",
