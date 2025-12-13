@@ -43,7 +43,15 @@ export async function POST(req: NextRequest) {
     // We use 'bun' as requested by the user.
     const { exec } = require('child_process');
     const path = require('path');
-    const workerPath = path.join(process.cwd(), 'scripts/backup-worker/dist/index.js');
+    
+    let workerPath;
+    if (process.env.NODE_ENV === 'production') {
+      // In Docker/Production, the worker is copied to /app/backup-worker/dist
+      workerPath = path.join(process.cwd(), 'backup-worker/dist/index.js');
+    } else {
+      // In Development, it's in scripts/backup-worker/dist
+      workerPath = path.join(process.cwd(), 'scripts/backup-worker/dist/index.js');
+    }
     
     exec(`bun ${workerPath} --type=${type} --id=${insertedLog.id}`, async (error: any, stdout: any, stderr: any) => {
         if (error) {

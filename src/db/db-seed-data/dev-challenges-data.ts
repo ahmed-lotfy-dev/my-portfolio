@@ -16,6 +16,6 @@ export const projectsData = {
     "published": true,
     "repo_link": "https://github.com/ahmed-lotfy-dev/dev-challenges-io",
     "live_link": "https://dev-challenges.ahmedlotfy.surge.sh",
-    "cover_image": "https://images.ahmedlotfy.site/Projects-Generated Image September 30, 2025 - 12_40PM.png",
+    "cover_image": "https://images.ahmedlotfy.site/projects/Generated%20Image%20September%2030,%202025%20-%2012_40PM.png",
     "display_order": 2
   };
