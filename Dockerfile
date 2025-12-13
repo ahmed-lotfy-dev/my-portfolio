@@ -33,23 +33,48 @@ ENV NEXT_TELEMETRY_DISABLED=1
 # This creates .next/standalone with minimal production files
 RUN bun run build
 
+# Build the Backup Worker
+WORKDIR /app/scripts/backup-worker
+RUN bun install
+RUN bun run build
+WORKDIR /app
+
 # Stage 3: Production runtime
-FROM node:22-alpine AS runner
+FROM oven/bun:1 AS runner
 WORKDIR /app
 
 # Set to production environment
 ENV NODE_ENV=production
 ENV NEXT_TELEMETRY_DISABLED=1
 
-# Create non-root user for security
+# Create non-root user (Bun image has 'bun' user, we can use that or create one)
+# We'll use the default 'bun' user if possible, or stick to 'nextjs' convention but map to valid UID.
+# Bun image usually runs as root by default but has 'bun' user.
+# Let's create nextjs user for consistency with previous setup.
 RUN addgroup --system --gid 1001 nodejs && \
     adduser --system --uid 1001 nextjs
 
+# Install PostgreSQL client for backup capabilities (Debian based)
+RUN apt-get update && apt-get install -y postgresql-client curl && rm -rf /var/lib/apt/lists/*
+
+# Install PM2 globally using Bun
+RUN bun install -g pm2
+
 # Copy standalone output from builder
-# The standalone folder contains everything needed to run the app
 COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
 COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
 COPY --from=builder --chown=nextjs:nodejs /app/public ./public
+
+# Copy Backup Worker
+COPY --from=builder --chown=nextjs:nodejs /app/scripts/backup-worker/dist ./backup-worker/dist
+COPY --from=builder --chown=nextjs:nodejs /app/scripts/backup-worker/package.json ./backup-worker/package.json
+# Install prod deps for worker
+WORKDIR /app/backup-worker
+RUN bun install --production
+WORKDIR /app
+
+# Copy PM2 Config
+COPY --from=builder /app/ecosystem.config.js ./ecosystem.config.js
 
 # Switch to non-root user
 USER nextjs
@@ -57,13 +82,13 @@ USER nextjs
 # Expose port
 EXPOSE 3000
 
-# Set hostname to accept connections from any IP
+# Set hostname
 ENV HOSTNAME="0.0.0.0"
 ENV PORT=3000
 
-# Health check for container orchestration
+# Health check
 HEALTHCHECK --interval=30s --timeout=3s --start-period=40s --retries=3 \
-  CMD node -e "require('http').get('http://localhost:3000/api/health', (r) => {process.exit(r.statusCode === 200 ? 0 : 1)})" || exit 1
+  CMD bun -e "fetch('http://localhost:3000/api/health').then(r => process.exit(r.status === 200 ? 0 : 1))" || exit 1
 
-# Start the application
-CMD ["node", "server.js"]
+# Start with PM2
+CMD ["pm2-runtime", "start", "ecosystem.config.js"]
