@@ -32,6 +32,9 @@ export class ErrorBoundary extends Component<
 
   componentDidCatch(error: Error, errorInfo: React.ErrorInfo) {
     logger.error("Error caught by boundary:", error, errorInfo);
+    if (error.message.includes("Failed to find Server Action")) {
+      window.location.reload();
+    }
     // TODO: Send to error tracking service (Sentry, etc.)
   }
 

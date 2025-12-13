@@ -1,15 +1,29 @@
-import { getAllPosts } from "@/src/app/actions/postsActions"
+import { getAllPosts } from "@/src/app/actions/postsActions";
 import {
   Card,
   CardContent,
   CardFooter,
   CardHeader,
   CardTitle,
-} from "@/src/components/ui/card"
-import { Button } from "@/src/components/ui/button"
-import Link from "next/link"
-import Image from "next/image"
-import SafeImage from "@/src/components/ui/SafeImage"
+} from "@/src/components/ui/card";
+import { Button } from "@/src/components/ui/button";
+import Link from "next/link";
+import Image from "next/image";
+import SafeImage from "@/src/components/ui/SafeImage";
+import { getTranslations } from "next-intl/server";
+
+export async function generateMetadata({
+  params: { locale },
+}: {
+  params: { locale: string };
+}) {
+  const t = await getTranslations({ locale, namespace: "metadata.blogs" });
+
+  return {
+    title: t("title"),
+    description: t("description"),
+  };
+}
 
 export default async function PostsList() {
   const { allPosts } = await getAllPosts()

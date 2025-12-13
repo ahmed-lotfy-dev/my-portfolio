@@ -5,15 +5,16 @@ export const zamalekStoreProject = {
     slug: "zamalek-store",
   },
   shortDescription: {
-    en: "A modern, bilingual e-commerce platform for Zamalek SC merchandise, built with Next.js 15 and specialized for the Egyptian market with local payments and optimization.",
-    ar: "متجر إلكتروني حديث وثنائي اللغة لمنتجات نادي الزمالك، مبني باستخدام Next.js 15 ومصمم خصيصاً للسوق المصري مع دعم كامل للمدفوعات المحلية وتحسين الأداء.",
+    en: "A production-ready, bilingual e-commerce platform for Zamalek SC merchandise. Built with Next.js 16, featuring dual payment gateways (Paymob/Kashier), background job processing with BullMQ, Docker deployment, and comprehensive admin dashboard. Optimized for the Egyptian market with RTL support and local payment integration.",
+    ar: "متجر إلكتروني احترافي وثنائي اللغة لمنتجات نادي الزمالك. مبني باستخدام Next.js 16، يتضمن بوابتي دفع (Paymob/Kashier)، معالجة مهام خلفية مع BullMQ، نشر عبر Docker، ولوحة تحكم شاملة. محسّن للسوق المصري مع دعم كامل للغة العربية والمدفوعات المحلية.",
   },
   caseStudy: {
     en: `# Case Study: Zamalek Store
-**Building a Bilingual E-Commerce Platform for the Egyptian Market**
+**Building a Production-Ready Bilingual E-Commerce Platform for the Egyptian Market**
 
-> **Role:** Full-Stack Developer
-> **Tech Stack:** Next.js 15, React 19, TypeScript, PostgreSQL, Prisma, Paymob/Kashier
+> **Role:** Full-Stack Developer  
+> **Tech Stack:** Next.js 16, React 19, TypeScript, PostgreSQL, Prisma, Redis, BullMQ, Docker  
+> **Payment Gateways:** Paymob, Kashier, Stripe  
 > **Live Demo:** [zamalek-store.ahmedlotfy.site](https://zamalek-store.ahmedlotfy.site)
 
 ---
@@ -25,9 +26,26 @@ Building an e-commerce store for **Zamalek SC** fans meant more than just listin
 3. **Performance:** Merchandise photos are heavy, but the site needed to load fast on mobile data.
 
 ## 1. Technical Architecture
-I chose **Next.js 15 (App Router)** because it allows me to move heavy logic to the server.
-*   **Database:** Used **PostgreSQL** with **Prisma ORM**. I designed the schema to handle bilingual data natively (e.g., \`name_ar\` and \`name_en\` columns) so I don't rely on fragile JSON files for product data.
-*   **State Management:** I built a **hybrid cart system**. Guest users store items in \`localStorage\` for speed. When they log in, I automatically merge their local items with their database cart, ensuring no "lost" items during signup.
+I chose **Next.js 16 (App Router)** because it allows me to move heavy logic to the server and leverage React Server Components for optimal performance.
+
+### Database & ORM
+*   **PostgreSQL with Prisma 7.1**: I designed a comprehensive schema with 15 models to handle all aspects of the e-commerce platform. The schema handles bilingual data natively (e.g., \`name_ar\` and \`name_en\` columns) so I don't rely on fragile JSON files for product data.
+*   **Type Safety**: Prisma provides end-to-end type safety from database to UI, catching errors at compile time.
+*   **Migrations**: All schema changes are versioned and tracked through Prisma migrations.
+
+### State Management
+I built a **hybrid cart system** that adapts to user authentication status:
+*   **Guest users**: Cart stored in \`localStorage\` for instant performance
+*   **Logged-in users**: Cart synced to PostgreSQL database
+*   **Auto-merge**: When guests log in, their local cart automatically merges with their database cart, ensuring no "lost" items during signup
+*   **Persistence**: Cart survives page refreshes, browser restarts, and device switches (for authenticated users)
+
+### Background Job Processing
+Implemented **BullMQ with Redis** for reliable asynchronous task processing:
+*   **Email Queue**: Order confirmations, status updates, and welcome emails processed in background
+*   **Retry Logic**: Failed jobs automatically retry with exponential backoff (3 attempts)
+*   **Worker Process**: Separate \`worker.ts\` process handles jobs independently from the main application
+*   **Benefits**: Checkout responses are instant (~200ms), even though emails are being sent
 
 ## 2. Solving Real Problems
 
@@ -45,13 +63,21 @@ Storing thousands of high-res jersey photos on the main server would be too expe
 *   **True RTL Support:** The entire layout flips automatically based on the language. I used Tailwind's logical properties (like \`ms-2\` instead of \`ml-2\`) so margins and padding automatically respect the direction.
 *   **Admin Dashboard:** I built a custom dashboard where store managers can upload products, track orders, and generate sales reports.
 *   **Real-time Email:** Using a background worker (BullMQ) to send order confirmation emails without slowing down the checkout response.
+*   **Product Variants**: Full support for size and color combinations with independent stock tracking
+*   **Coupon System**: Flexible discount system with percentage/fixed amounts, usage limits, and expiration dates
+*   **Review System**: Customers can rate and review products after purchase
+*   **Wishlist**: Save items for later with one-click add to cart
 
-### ⚡ The HeroUI v3 Migration (Bundle Size Optimization)
-When building for production, I noticed the bundle size was larger than necessary. The issue? I was importing components from the monolithic \`@heroui/react\` package.
-*   **The Problem:** Importing from \`@heroui/react\` pulls in the entire component library, even if you only use a few components. This hurts performance, especially on mobile connections.
-*   **The Solution:** HeroUI v3 uses a **modular package architecture**. Instead of \`import { Button, Input } from '@heroui/react'\`, I now import each component from its specific package: \`@heroui/button\`, \`@heroui/input\`, \`@heroui/card\`.
-*   **The Result:** Webpack can now tree-shake unused components, reducing the bundle size. Only the components I actually use get shipped to the browser.
-*   **Bonus:** The v3 API also uses cleaner patterns, like \`onValueChange\` instead of \`onChange\` for form inputs, which gives you the value directly instead of a synthetic event object.
+### ⚡ UI Component Architecture (Shadcn + Radix UI)
+I chose **Shadcn UI** with **Radix UI** primitives for the component library instead of a monolithic UI framework.
+*   **The Approach:** Shadcn provides beautifully designed components that you copy into your project, built on top of Radix UI's accessible, unstyled primitives.
+*   **Why This Matters:** 
+    - **Full Control**: Components live in your codebase, so you can customize them completely
+    - **No Bundle Bloat**: Only the components you use are in your bundle
+    - **Accessibility First**: Radix UI handles complex accessibility patterns (keyboard navigation, ARIA attributes, focus management)
+    - **Type Safety**: Full TypeScript support with proper prop types
+*   **Components Used**: Avatar, Dialog, Dropdown Menu, Select, Checkbox, Radio Group, Tabs, Tooltip, Scroll Area, and more
+*   **The Result:** A polished, accessible UI without the overhead of a full component library. Perfect balance of developer experience and performance.
 
 ## 4. The Thinking Process: Technical Deep Dives
 
@@ -83,9 +109,21 @@ For the product listing page, I avoided local state (\`useState\`) for filters.
 
 ## 5. What I Learned
 This project pushed me to go beyond simple CRUD apps. I learned:
-*   How to handle **real-world financial transactions** securely.
-*   The complexity of **Server Actions** in Next.js 15 and how to use them for type-safe form submissions.
+*   How to handle **real-world financial transactions** securely with HMAC verification and idempotency.
+*   The complexity of **Server Actions** in Next.js 16 and how to use them for type-safe form submissions.
 *   That **user experience** is in the details—like keeping the cart saved even if the user refreshes or switches devices.
+*   **Background job processing** with BullMQ for reliable asynchronous tasks.
+*   **Docker containerization** for consistent deployments across environments.
+*   **Production-ready architecture** with proper error handling, logging, and monitoring.
+
+## 6. Production Metrics
+*   **15 Database Models**: Comprehensive schema covering all e-commerce needs
+*   **30+ API Endpoints**: RESTful APIs for all features
+*   **50+ Components**: Reusable React components with TypeScript
+*   **2 Languages**: Full Arabic and English support with RTL
+*   **3 Payment Gateways**: Paymob, Kashier, and Stripe integration
+*   **Docker Ready**: Production deployment with Bun runtime
+*   **Background Workers**: Asynchronous email processing with BullMQ
 `,
     ar: `# دراسة حالة: متجر الزمالك
 **بناء منصة تجارة إلكترونية ثنائية اللغة للسوق المصري**
@@ -103,9 +141,26 @@ This project pushed me to go beyond simple CRUD apps. I learned:
 3. **الأداء:** صور المنتجات ثقيلة، لكن الموقع يحتاج إلى سرعة تحميل عالية حتى على بيانات الهاتف.
 
 ## 1. الهيكلية التقنية
-اخترت **Next.js 15 (App Router)** لأنه يسمح بنقل المنطق الثقيل إلى الخادم.
-*   **قاعدة البيانات:** استخدمت **PostgreSQL** مع **Prisma ORM**. صممت المخطط للتعامل مع البيانات ثنائية اللغة محلياً (مثل أعمدة \`name_ar\` و \`name_en\`) لتجنب الاعتماد على ملفات JSON الهشة لبيانات المنتجات.
-*   **إدارة الحالة:** قمت ببناء **نظام سلة هجين**. الزوار يحفظون العناصر في \`localStorage\` للسرعة. عند تسجيل الدخول، أقوم بدمج عناصرهم المحلية تلقائياً مع سلة قاعدة البيانات، لضمان عدم ضياع أي عناصر أثناء التسجيل.
+اخترت **Next.js 16 (App Router)** لأنه يسمح بنقل المنطق الثقيل إلى الخادم والاستفادة من مكونات React Server للأداء الأمثل.
+
+### قاعدة البيانات والـ ORM
+*   **PostgreSQL مع Prisma 7.1**: صممت مخططاً شاملاً يحتوي على 15 نموذجاً للتعامل مع جميع جوانب المنصة. يتعامل المخطط مع البيانات ثنائية اللغة محلياً (مثل أعمدة \`name_ar\` و \`name_en\`).
+*   **أمان الأنواع**: يوفر Prisma أماناً شاملاً للأنواع من قاعدة البيانات إلى واجهة المستخدم.
+*   **الترحيلات**: جميع تغييرات المخطط مُصنّفة ومُتتبّعة عبر ترحيلات Prisma.
+
+### إدارة الحالة
+قمت ببناء **نظام سلة هجين** يتكيف مع حالة مصادقة المستخدم:
+*   **الزوار**: السلة محفوظة في \`localStorage\` للأداء الفوري
+*   **المستخدمون المسجلون**: السلة متزامنة مع قاعدة بيانات PostgreSQL
+*   **الدمج التلقائي**: عند تسجيل دخول الزوار، تندمج سلتهم المحلية تلقائياً مع سلة قاعدة البيانات
+*   **الاستمرارية**: تبقى السلة حتى بعد تحديث الصفحة أو تبديل الأجهزة
+
+### معالجة المهام الخلفية
+نفذت **BullMQ مع Redis** لمعالجة المهام غير المتزامنة بشكل موثوق:
+*   **قائمة انتظار البريد**: تأكيدات الطلبات وتحديثات الحالة تُعالج في الخلفية
+*   **منطق إعادة المحاولة**: المهام الفاشلة تُعاد تلقائياً مع تأخير أسّي (3 محاولات)
+*   **عملية العامل**: عملية \`worker.ts\` منفصلة تتعامل مع المهام بشكل مستقل
+*   **الفوائد**: استجابات الدفع فورية (~200 ميلي ثانية)، حتى أثناء إرسال البريد
 
 ## 2. حل مشاكل حقيقية
 
@@ -144,13 +199,36 @@ This project pushed me to go beyond simple CRUD apps. I learned:
 
 ## 5. ماذا تعلمت
 دفعني هذا المشروع لتجاوز تطبيقات CRUD البسيطة. تعلمت:
-*   كيفية التعامل مع **الماملات المالية الحقيقية** بأمان.
-*   تعقيد **Server Actions** في Next.js 15 وكيفية استخدامها لتقديم النماذج بأمان.
+*   كيفية التعامل مع **المعاملات المالية الحقيقية** بأمان مع التحقق من HMAC وعدم التكرار.
+*   تعقيد **Server Actions** في Next.js 16 وكيفية استخدامها لتقديم النماذج بأمان.
 *   أن **تجربة المستخدم** تكمن في التفاصيل - مثل الحفاظ على السلة حتى لو قام المستخدم بتحديث الصفحة.
+*   **معالجة المهام الخلفية** مع BullMQ للمهام غير المتزامنة الموثوقة.
+*   **الحاويات Docker** للنشر المتسق عبر البيئات.
+*   **البنية الجاهزة للإنتاج** مع معالجة الأخطاء والتسجيل والمراقبة المناسبة.
+
+## 6. مقاييس الإنتاج
+*   **15 نموذج قاعدة بيانات**: مخطط شامل يغطي جميع احتياجات التجارة الإلكترونية
+*   **30+ نقطة API**: واجهات برمجية لجميع الميزات
+*   **50+ مكون**: مكونات React قابلة لإعادة الاستخدام مع TypeScript
+*   **لغتان**: دعم كامل للعربية والإنجليزية مع RTL
+*   **3 بوابات دفع**: تكامل Paymob و Kashier و Stripe
+*   **جاهز لـ Docker**: نشر الإنتاج مع Bun runtime
+*   **عمال الخلفية**: معالجة البريد الإلكتروني غير المتزامنة مع BullMQ
 `,
   },
   mediaMetadata: {
-    categories: ["React", "Next.js", "TypeScript", "Prisma", "PostgreSQL", "TailwindCSS"],
+    categories: [
+      "Next.js",
+      "React",
+      "TypeScript",
+      "PostgreSQL",
+      "Prisma",
+      "TailwindCSS",
+      "Redis",
+      "BullMQ",
+      "Docker",
+      "E-Commerce",
+    ],
     published: true,
     repoLink: "https://github.com/ahmed-lotfy-dev/zamalek-store",
     liveLink: "https://zamalek-store.ahmedlotfy.site",
@@ -158,5 +236,3 @@ This project pushed me to go beyond simple CRUD apps. I learned:
   },
   displayOrder: 7,
 };
-
-

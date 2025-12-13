@@ -198,5 +198,15 @@
       "title_required": "Blog title is required",
       "content_required": "Blog content is required"
     }
+  },
+  "metadata": {
+    "home": {
+      "title": "Ahmed Lotfy – Full-Stack Software Engineer",
+      "description": "Portfolio of Ahmed Lotfy – Full-Stack Software Engineer. I build responsive and scalable web applications."
+    },
+    "blogs": {
+      "title": "Blog | Ahmed Lotfy",
+      "description": "Read my thoughts on software development, web technologies, and more."
+    }
   }
 }

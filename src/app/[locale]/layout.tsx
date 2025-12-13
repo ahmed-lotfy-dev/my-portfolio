@@ -1,3 +1,4 @@
+import { ErrorBoundary } from "@/src/components/ErrorBoundary";
 import { NextIntlClientProvider, hasLocale } from "next-intl";
 import { notFound } from "next/navigation";
 import { routing } from "@/src/i18n/routing";
@@ -101,15 +102,17 @@ export default async function LocaleLayout({ children, params }: Props) {
         <PostHogProvider>
           <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
             <NextIntlClientProvider messages={messages}>
-              <div className="relative">
-                <Nav>
-                  <UserButton className="flex absolute right-16 md:ml-5 md:static" />
-                </Nav>
-                <Suspense fallback={null}>
-                  <PostHogPageView />
-                </Suspense>
-                {children}
-              </div>
+              <ErrorBoundary>
+                <div className="relative">
+                  <Nav>
+                    <UserButton className="flex absolute right-16 md:ml-5 md:static" />
+                  </Nav>
+                  <Suspense fallback={null}>
+                    <PostHogPageView />
+                  </Suspense>
+                  {children}
+                </div>
+              </ErrorBoundary>
             </NextIntlClientProvider>
           </ThemeProvider>
         </PostHogProvider>

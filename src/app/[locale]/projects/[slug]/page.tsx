@@ -9,6 +9,44 @@ import ReactMarkdown from "react-markdown";
 import { ArrowLeft, ExternalLink, Github } from "lucide-react";
 import ImageViewer from "@/src/components/ui/ImageViewer";
 import { Button } from "@/src/components/ui/button";
+import StructuredData from "@/src/components/seo/StructuredData";
+
+// Helper function to extract keywords from markdown content
+function extractKeywords(content: string, maxKeywords: number = 15): string[] {
+    if (!content) return [];
+
+    // Remove markdown syntax and special characters
+    const cleanText = content
+        .replace(/[#*`_\[\]()]/g, ' ')
+        .replace(/\n+/g, ' ')
+        .toLowerCase();
+
+    // Common stop words to filter out
+    const stopWords = new Set([
+        'the', 'a', 'an', 'and', 'or', 'but', 'in', 'on', 'at', 'to', 'for',
+        'of', 'with', 'by', 'from', 'as', 'is', 'was', 'are', 'were', 'been',
+        'be', 'have', 'has', 'had', 'do', 'does', 'did', 'will', 'would', 'could',
+        'should', 'may', 'might', 'must', 'can', 'this', 'that', 'these', 'those',
+        'i', 'you', 'he', 'she', 'it', 'we', 'they', 'my', 'your', 'his', 'her',
+        'its', 'our', 'their', 'what', 'which', 'who', 'when', 'where', 'why', 'how'
+    ]);
+
+    // Extract words and count frequency
+    const words = cleanText.split(/\s+/).filter(word =>
+        word.length > 3 && !stopWords.has(word) && /^[a-z]+$/.test(word)
+    );
+
+    const frequency: Record<string, number> = {};
+    words.forEach(word => {
+        frequency[word] = (frequency[word] || 0) + 1;
+    });
+
+    // Sort by frequency and return top keywords
+    return Object.entries(frequency)
+        .sort((a, b) => b[1] - a[1])
+        .slice(0, maxKeywords)
+        .map(([word]) => word);
+}
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
     const { slug } = await params;
@@ -17,11 +55,62 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 
     if (!project) return { title: "Project Not Found" };
 
+    const title = locale === "ar" ? project.title_ar : project.title_en;
+    const description = locale === "ar" ? project.desc_ar : project.desc_en;
+    const content = locale === "ar" ? project.content_ar : project.content_en;
+
+    // Extract keywords from content
+    const contentKeywords = extractKeywords(content || '', 12);
+    const categoryKeywords = project.categories || [];
+    const allKeywords = [...new Set([...categoryKeywords, ...contentKeywords])].join(', ');
+
     return {
-        title: locale === "ar" ? project.title_ar : project.title_en,
-        description: locale === "ar" ? project.desc_ar : project.desc_en,
+        title: `${title} | Ahmed Lotfy`,
+        description: description,
+        keywords: allKeywords,
+        authors: [{ name: 'Ahmed Lotfy' }],
+        creator: 'Ahmed Lotfy',
+        publisher: 'Ahmed Lotfy',
         openGraph: {
+            title: title,
+            description: description,
+            url: `https://ahmedlotfy.site/${locale}/projects/${slug}`,
+            siteName: 'Ahmed Lotfy Portfolio',
+            images: [
+                {
+                    url: project.imageLink,
+                    width: 1200,
+                    height: 630,
+                    alt: title,
+                }
+            ],
+            locale: locale === 'ar' ? 'ar_EG' : 'en_US',
+            type: 'article',
+        },
+        twitter: {
+            card: 'summary_large_image',
+            title: title,
+            description: description,
             images: [project.imageLink],
+            creator: '@ahmedlotfy_dev',
+        },
+        robots: {
+            index: true,
+            follow: true,
+            googleBot: {
+                index: true,
+                follow: true,
+                'max-video-preview': -1,
+                'max-image-preview': 'large',
+                'max-snippet': -1,
+            },
+        },
+        alternates: {
+            canonical: `https://ahmedlotfy.site/${locale}/projects/${slug}`,
+            languages: {
+                'en': `/en/projects/${slug}`,
+                'ar': `/ar/projects/${slug}`,
+            },
         },
     };
 }
@@ -43,6 +132,24 @@ export default async function ProjectDetailsPage({ params }: { params: Promise<{
 
     return (
         <article className="min-h-screen pb-20 bg-background text-foreground selection:bg-primary/20">
+            {/* Structured Data for SEO */}
+            <StructuredData
+                type="CreativeWork"
+                data={{
+                    title: title,
+                    description: desc,
+                    image: project.imageLink,
+                    url: `https://ahmedlotfy.site/${locale}/projects/${slug}`,
+                    authorName: 'Ahmed Lotfy',
+                    authorUrl: 'https://ahmedlotfy.site',
+                    createdDate: project.createdAt?.toISOString(),
+                    modifiedDate: project.updatedAt?.toISOString(),
+                    keywords: project.categories.join(', '),
+                    categories: project.categories,
+                    language: locale === 'ar' ? 'ar' : 'en',
+                }}
+            />
+
             {/* Background Effects */}
             <div className="fixed inset-0 pointer-events-none overflow-hidden">
                 <div className="absolute top-[-10%] right-[-10%] w-[500px] h-[500px] bg-primary/10 blur-[100px] rounded-full mix-blend-screen opacity-50" />

@@ -18,6 +18,7 @@ const normalizeProject = (project: any, type: "flat" | "nested") => {
     return {
       title_en: project.basicInfo.titleEn,
       title_ar: project.basicInfo.titleAr,
+      slug: project.basicInfo.slug,
       desc_en: project.shortDescription.en,
       desc_ar: project.shortDescription.ar,
       content_en: project.caseStudy.en,
@@ -33,6 +34,7 @@ const normalizeProject = (project: any, type: "flat" | "nested") => {
     return {
       title_en: project.title_en ?? project.title, // Fallback if title is generic
       title_ar: project.title_ar ?? project.title,
+      slug: project.slug,
       desc_en: project.short_description_en ?? project.desc_en,
       desc_ar: project.short_description_ar ?? project.desc_ar,
       content_en: project.content_en || null,
