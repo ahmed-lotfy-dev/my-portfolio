@@ -1,5 +1,5 @@
 "use client";
-import { ChangeEvent, useRef, useState, useActionState } from "react";
+import { ChangeEvent, useRef, useState, useActionState, useEffect } from "react";
 
 import { Input } from "@/src/components/ui/input";
 import { Label } from "@/src/components/ui/label";
@@ -22,16 +22,32 @@ import { Pencil, X } from "lucide-react";
 import { authClient } from "@/src/lib/auth-client";
 import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/src/lib/utils";
+import { useRouter } from "next/navigation";
 
 function EditCertificate({ EditedObject }: any) {
   const { id } = EditedObject;
   const [state, formAction] = useActionState(editCertificateAction, null);
   const [editedCert, setEditedCert] = useState(EditedObject);
   const [imageUrl, setImageUrl] = useState("");
+  const [open, setOpen] = useState(false);
   const formRef = useRef<HTMLFormElement>(null);
   const closeButtonRef = useRef<HTMLButtonElement>(null);
   const { data: session } = authClient.useSession();
   const user = session?.user;
+  const router = useRouter();
+
+  useEffect(() => {
+    if (state?.success) {
+      notify("Certificate updated successfully!", true);
+      setOpen(false);
+      setImageUrl("");
+      router.refresh();
+    } else if (state?.message && !state?.success) {
+      notify(state.message, false);
+    } else if (state?.error && Object.keys(state.error).length > 0) {
+      notify("Please fix the errors and try again.", false);
+    }
+  }, [state, router]);
 
   const InputHandler = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -49,7 +65,7 @@ function EditCertificate({ EditedObject }: any) {
 
   return (
     <div key={editedCert.id} className="flex justify-center items-center">
-      <Dialog>
+      <Dialog open={open} onOpenChange={setOpen}>
         <DialogTrigger asChild>
           <motion.button
             whileHover={{ scale: 1.1 }}
