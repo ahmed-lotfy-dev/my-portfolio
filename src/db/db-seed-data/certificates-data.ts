@@ -63,4 +63,12 @@ export const certificatesData = [
     imageLink:
       "https://images.ahmedlotfy.site/Certificates-Almadrasa%20chatgpt%20.png",
   },
+  {
+    title: "PHP Course - From Zero to Hero",
+    desc: "Yehia Tech",
+    courseLink: "https://www.youtube.com/watch?v=qmvjwRbtNww&t=1289s",
+    profLink: "",
+    imageLink:
+      "https://images.ahmedlotfy.site/Screenshot%202025-11-03%20170200.png",
+  },
 ];
