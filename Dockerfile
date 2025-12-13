@@ -51,8 +51,8 @@ ENV NEXT_TELEMETRY_DISABLED=1
 # We'll use the default 'bun' user if possible, or stick to 'nextjs' convention but map to valid UID.
 # Bun image usually runs as root by default but has 'bun' user.
 # Let's create nextjs user for consistency with previous setup.
-RUN addgroup --system --gid 1001 nodejs && \
-    adduser --system --uid 1001 nextjs
+RUN groupadd --system --gid 1001 nodejs && \
+    useradd --system --uid 1001 -g nodejs nextjs
 
 # Install PostgreSQL client for backup capabilities (Debian based)
 RUN apt-get update && apt-get install -y postgresql-client curl && rm -rf /var/lib/apt/lists/*
