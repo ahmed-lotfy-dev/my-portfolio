@@ -77,6 +77,6 @@ export const certificatesData = [
     profLink: "https://github.com/ahmed-lotfy-dev/learning-php",
     imageLink:
       "https://images.ahmedlotfy.site/Screenshot%202025-11-03%20170200.png",
-    completedAt: new Date("2024-11-13"), // Approximately one month ago from today
+    completedAt: new Date("2025-11-03"),
   },
 ];
