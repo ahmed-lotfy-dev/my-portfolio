@@ -29,7 +29,7 @@ export const certificatesData = [
       "https://www.udemy.com/certificate/UC-3dec0b65-0644-4004-a320-37ead834e8ec/",
     imageLink:
       "https://images.ahmedlotfy.site/Certificates-The%20Complete%20Javascript%202022%20From%20ZERO%20To%20EXPERT!.jpg",
-    completedAt: null,
+    completedAt: new Date("2022-09-04"),
   },
   {
     title: "React Development Cross-Skilling",
@@ -38,7 +38,7 @@ export const certificatesData = [
     profLink: "https://learn.udacity.com/view-certificate/nd019-fwd-t4",
     imageLink:
       "https://images.ahmedlotfy.site/Certificates-React%20cross%20skilling%20udacity%20certification.png",
-    completedAt: null,
+    completedAt: new Date("2022-06-11"),
   },
   {
     title: "Complete React Developer (w/ Redux, Hooks, GraphQL)",
@@ -48,7 +48,7 @@ export const certificatesData = [
     profLink: " ",
     imageLink:
       "https://images.ahmedlotfy.site/Certificates-Complete%20React%20Developer%20In%202023%20w(Redux%2CHooks).jpg",
-    completedAt: null,
+    completedAt: new Date("2022-11-27"),
   },
   {
     title: "NodeJS - The Complete Guide (MVC, REST APIs, GraphQL, Deno)",
@@ -58,7 +58,7 @@ export const certificatesData = [
       "https://www.udemy.com/certificate/UC-00adb84c-49c5-4066-a82c-ab267a745100/",
     imageLink:
       "https://images.ahmedlotfy.site/Certificates-NodeJS%20-%20The%20Complete%20Guide%20(MVC%2CREST%20APIs%2CGraphQL%2CDeno).jpg",
-    completedAt: null,
+    completedAt: new Date("2022-12-28"),
   },
   {
     title: "ChatGPT Basics Course",
