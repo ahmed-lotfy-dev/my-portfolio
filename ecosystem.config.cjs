@@ -20,7 +20,7 @@ module.exports = {
       // No args - only run on cron schedule, not on startup
       instances: 1,
       autorestart: false,
-      cron_restart: '0 2 * * *', // Daily at 2 AM UTC
+      cron_restart: '0 2 * * 0', // Weekly on Sundays at 2 AM UTC
       watch: false,
       env: {
         NODE_ENV: 'production'

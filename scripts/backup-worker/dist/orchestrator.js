@@ -137,14 +137,20 @@ class Orchestrator {
             // Log Success
             await pgClient.query(`UPDATE "backup_logs" SET status = 'SUCCESS', "completed_at" = NOW(), path = $1, "size_bytes" = $2, details = $3 WHERE id = $4`, [manifestKey, stats.sql_dump_size_bytes + stats.media_total_size_bytes, JSON.stringify(stats), logId]);
             console.log(`[Backup] Completed successfully. Log ID: ${logId}`);
+            // Cleanup old backups (keep only 3 most recent)
+            await pgClient.end(); // Close connection before cleanup
+            const { CleanupService } = await Promise.resolve().then(() => __importStar(require('./cleanup-service')));
+            const cleanupService = new CleanupService(this.config);
+            const cleanupResult = await cleanupService.cleanupOldBackups(3);
+            console.log(`[Cleanup] Result: deleted ${cleanupResult.deleted}, kept ${cleanupResult.kept}`);
         }
         catch (error) {
             console.error("[Backup] Failed:", error);
             await pgClient.query(`UPDATE "backup_logs" SET status = 'FAILED', "completed_at" = NOW(), details = $1 WHERE id = $2`, [String(error), logId]);
+            await pgClient.end();
             throw error;
         }
         finally {
-            await pgClient.end();
             // Cleanup temp
             await fs.rm(tempDir, { recursive: true, force: true });
         }
