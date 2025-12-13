@@ -141,6 +141,18 @@ export const certificates = pgTable("certificates", {
     .notNull(),
 });
 
+export const backupLogs = pgTable("backup_logs", {
+  id: uuid("id").defaultRandom().primaryKey(),
+  status: text("status").notNull(), // PENDING, SUCCESS, FAILED
+  type: text("type").notNull(), // full, sql, media
+  path: text("path"),
+  sizeBytes: integer("size_bytes"),
+  details: text("details"),
+  startedAt: timestamp("started_at").defaultNow().notNull(),
+  completedAt: timestamp("completed_at"),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+});
+
 export const usersRelations = relations(users, ({ many }) => ({
   posts: many(posts),
   accounts: many(accounts),
