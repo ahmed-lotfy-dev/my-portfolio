@@ -67,7 +67,8 @@ CHANGELOG.md
 # Misc
 *.txt
 drizzle/
-scripts/
+scripts/*
+!scripts/backup-worker/
 .nixpacks.toml
 nixpacks.toml
 Dockerfile
