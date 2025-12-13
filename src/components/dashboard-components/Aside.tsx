@@ -11,17 +11,21 @@ import {
   IoAddCircleSharp,
   IoChevronBack,
   IoChevronForward,
+  IoLogOut,
+  IoSaveSharp,
 } from "react-icons/io5";
 import { cn } from "@/src/lib/utils";
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
 import UserButton from "./UserButton";
 import LanguageSwitcher from "../i18n/LanguageSwitcher";
 import ThemeToggle from "../ThemeToggle";
 import { useState, useEffect } from "react";
+import { SignOutButton } from "@/src/components/auth/SignOutButton";
 
 export default function Aside() {
   const pathname = usePathname();
   const t = useTranslations("dashboard.nav");
+  const locale = useLocale();
   const [isExpanded, setIsExpanded] = useState(true);
   const [isMobile, setIsMobile] = useState(false);
 
@@ -51,6 +55,7 @@ export default function Aside() {
       text: t("certificates"),
     },
     { href: "/dashboard/blogs/new", icon: IoAddCircleSharp, text: t("blog") },
+    { href: "/dashboard/backups", icon: IoSaveSharp, text: "Backups" },
   ];
 
   return (
@@ -79,9 +84,9 @@ export default function Aside() {
           isExpanded ? "px-6 justify-start" : "justify-center"
         )}
       >
-        <Link href="/" className="flex items-center gap-3 group">
+        <Link href={`/${locale}/dashboard`} className="flex items-center gap-3 group">
           <div className="relative flex h-10 w-10 items-center justify-center rounded-xl bg-primary text-primary-foreground shadow-lg shadow-primary/20 transition-transform group-hover:scale-105 shrink-0">
-            <IoHome className="h-5 w-5" />
+            <IoGrid className="h-5 w-5" />
           </div>
           <span
             className={cn(
@@ -89,7 +94,7 @@ export default function Aside() {
               !isExpanded && "opacity-0 w-0 hidden"
             )}
           >
-            {t("home")}
+            {t("dashboard")}
           </span>
         </Link>
       </div>
@@ -98,15 +103,19 @@ export default function Aside() {
       <div className="flex-1 overflow-y-auto py-4 px-2 space-y-2 custom-scrollbar">
         <nav className="grid gap-2">
           {navLinks.map((link) => {
+            const pathWithoutLocale = pathname.replace(`/${locale}`, "") || "/";
+
             const isActive =
-              link.href === "/"
-                ? pathname === "/"
-                : pathname.startsWith(link.href);
+              link.href === "/dashboard"
+                ? pathWithoutLocale === "/dashboard"
+                : link.href === "/"
+                  ? pathWithoutLocale === "/"
+                  : pathWithoutLocale.startsWith(link.href);
 
             return (
               <Link
                 key={link.href}
-                href={link.href}
+                href={link.href === "/" ? `/${locale}` : `/${locale}${link.href}`}
                 className="relative group block"
                 title={!isExpanded ? link.text : undefined}
               >
@@ -171,6 +180,12 @@ export default function Aside() {
           >
             <ThemeToggle />
             <LanguageSwitcher />
+            <SignOutButton
+              className="p-2 rounded-md hover:bg-muted text-white hover:text-destructive transition-colors cursor-pointer h-9 w-9"
+              title={t("sign_out") || "Sign Out"}
+            >
+              <IoLogOut className="w-5 h-5" />
+            </SignOutButton>
           </div>
         </div>
       </div>

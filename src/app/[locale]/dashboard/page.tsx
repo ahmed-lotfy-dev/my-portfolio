@@ -8,6 +8,7 @@ import { auth } from "@/src/lib/auth"
 import { headers } from "next/headers"
 import { getTranslations } from "next-intl/server"
 import AnalyticsDashboard from "@/src/components/dashboard-components/AnalyticsDashboard"
+import SystemHealth from "@/src/components/dashboard-components/SystemHealth"
 
 export default async function Page() {
   const session = await auth.api.getSession({
@@ -23,6 +24,9 @@ export default async function Page() {
 
   // Server translation
   const t = await getTranslations("dashboard")
+
+  // Check if user is admin
+  const isAdmin = session?.user?.role === "ADMIN" || session?.user?.email === process.env.ADMIN_EMAIL;
 
   return (
     <div className="flex flex-col gap-6 w-full p-5 pt-10">
@@ -58,6 +62,13 @@ export default async function Page() {
 
       {/* Advanced Analytics Section */}
       <AnalyticsDashboard data={analyticsData} />
+
+      {/* System Health & Backups */}
+      <SystemHealth 
+        isAdmin={!!isAdmin} 
+        cfAccountId={process.env.CF_ACCOUNT_ID}
+        cfBucketName={process.env.CF_BUCKET_NAME}
+      />
     </div>
   )
 }
