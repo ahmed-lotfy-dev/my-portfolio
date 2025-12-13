@@ -34,5 +34,19 @@ export const auth = betterAuth({
   trustedOrigins:
     process.env.NODE_ENV === "development"
       ? ["http://localhost:3000", "http://127.0.0.1:3000"]
-      : [process.env.BASE_URL],
+      : (() => {
+          const baseUrl = process.env.BETTER_AUTH_URL || process.env.BASE_URL;
+          if (!baseUrl) return [];
+          
+          // Add both www and non-www versions
+          const origins = [baseUrl];
+          if (baseUrl.includes('://www.')) {
+            // If URL has www, add non-www version
+            origins.push(baseUrl.replace('://www.', '://'));
+          } else if (baseUrl.includes('://')) {
+            // If URL doesn't have www, add www version
+            origins.push(baseUrl.replace('://', '://www.'));
+          }
+          return origins;
+        })(),
 })
