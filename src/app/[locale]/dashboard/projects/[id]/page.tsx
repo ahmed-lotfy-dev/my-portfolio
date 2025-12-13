@@ -11,7 +11,7 @@ export default async function EditProjectPage({ params }: { params: Promise<{ id
   }
 
   return (
-    <div className="w-full flex justify-center items-start pt-14">
+    <div className="w-full flex justify-center items-start">
       <ProjectForm 
         action={editProjectAction} 
         mode="edit" 

@@ -14,7 +14,7 @@ import {
   DropdownMenuTrigger,
 } from "@/src/components/ui/dropdown-menu";
 import Link from "next/link";
-import SignOutButton from "@/src/components/auth/SignoutButton";
+import { SignOutButton } from "@/src/components/auth/SignOutButton";
 import { useTranslations } from "next-intl";
 import { authClient } from "@/src/lib/auth-client";
 
@@ -66,7 +66,12 @@ export default function UserButton({ className }: { className?: string }) {
           </DropdownMenuLabel>
 
           <DropdownMenuItem asChild>
-            <SignOutButton />
+            <SignOutButton
+              variant="ghost"
+              className="w-full justify-start cursor-pointer text-destructive hover:text-destructive hover:bg-destructive/10"
+            >
+              {t("sign_out") || "Sign Out"}
+            </SignOutButton>
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>

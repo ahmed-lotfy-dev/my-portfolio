@@ -8,7 +8,7 @@
     "contact": "Contact",
     "dashboard": "Dashboard",
     "signin": "Sign In",
-    "signout": "Sign Out"
+    "sign_out": "Sign Out"
   },
   "hero": {
     "name": "Ahmed Lotfy",
@@ -162,7 +162,9 @@
       "dashboard": "Dashboard",
       "projects": "Projects",
       "certificates": "Certificates",
-      "blog": "Add Post"
+      "certificates": "Certificates",
+      "blog": "Add Post",
+      "sign_out": "Sign Out"
     },
     "welcome": {
       "greeting": "Welcome, {name}!",

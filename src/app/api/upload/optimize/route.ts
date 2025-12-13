@@ -58,7 +58,7 @@ export async function POST(request: Request): Promise<Response> {
         fit: "inside",
       })
       .webp({
-        quality: 80, // 80% quality for good balance
+  lossless: true,
         effort: 6, // Higher effort = better compression (0-6)
       })
       .toBuffer();

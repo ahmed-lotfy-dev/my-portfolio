@@ -3,7 +3,7 @@ import ProjectForm from "@/src/components/dashboard-components/project/ProjectFo
 
 export default function AddProjectPage() {
   return (
-    <div className="w-full flex justify-center items-start pt-14">
+    <div className="w-full flex justify-center items-start">
       <ProjectForm action={addProjectAction} mode="create" />
     </div>
   );

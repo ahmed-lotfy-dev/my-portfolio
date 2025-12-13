@@ -8,6 +8,8 @@ import { CVDropdown } from "./CVDropdown";
 import { useTranslations } from "next-intl";
 import { motion } from "framer-motion";
 import { useLocale } from "next-intl";
+import { Button } from "../ui/button";
+import { cn } from "@/src/lib/utils";
 
 export default function Hero() {
   const t = useTranslations("hero");
@@ -68,18 +70,27 @@ export default function Hero() {
             className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mt-4"
           >
             <CVDropdown>
-              <button className="inline-flex items-center justify-center gap-2 rounded-full bg-primary px-8 py-4 text-lg font-semibold text-primary-foreground shadow-lg shadow-primary/25 transition-all hover:bg-primary/90 hover:scale-105 hover:shadow-primary/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary cursor-pointer">
-                <FileText className="h-5 w-5" />
-                <span>{t("resume")}</span>
-              </button>
+              <Button
+                size="lg"
+                className="rounded-xl shadow-lg shadow-primary/25 hover:shadow-primary/40 text-lg py-6 px-8 cursor-pointer"
+              >
+                <FileText className="mr-2 h-5 w-5" />
+                {t("resume")}
+              </Button>
             </CVDropdown>
-            <Link
-              href="#projects"
-              className="inline-flex items-center justify-center gap-2 rounded-full border border-border bg-card/50 backdrop-blur-sm px-8 py-4 text-lg font-semibold text-foreground shadow-sm transition-all hover:bg-muted hover:scale-105 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+            <Button
+              variant="outline"
+              size="lg"
+              className="rounded-xl backdrop-blur-sm bg-card/50 text-lg py-6 px-8"
+              asChild
             >
-              <span>{t("view_work")}</span>
-              <ArrowRight className={`h-5 w-5 ${isRTL ? "rotate-180" : ""}`} />
-            </Link>
+              <Link href="#projects">
+                <span>{t("view_work")}</span>
+                <ArrowRight
+                  className={cn("ml-2 h-5 w-5", isRTL && "rotate-180")}
+                />
+              </Link>
+            </Button>
           </motion.div>
         </motion.div>
 
@@ -108,9 +119,8 @@ export default function Hero() {
               initial={{ y: 20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ delay: 1, duration: 0.5 }}
-              className={`absolute -bottom-6 md:bottom-10 bg-card/80 backdrop-blur-xl border border-border p-4 rounded-2xl shadow-xl flex items-center gap-3 ${
-                isRTL ? "-right-6 md:-right-10" : "-left-6 md:-left-10"
-              }`}
+              className={`absolute -bottom-6 md:bottom-10 bg-card/80 backdrop-blur-xl border border-border p-4 rounded-2xl shadow-xl flex items-center gap-3 ${isRTL ? "-right-6 md:-right-10" : "-left-6 md:-left-10"
+                }`}
             >
               <div className="w-3 h-3 rounded-full bg-green-500 animate-pulse" />
               <span className="font-medium text-sm text-foreground">

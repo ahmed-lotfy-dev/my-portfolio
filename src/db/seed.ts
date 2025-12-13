@@ -2,7 +2,7 @@ import "dotenv/config"
 import { db } from "@/src/db/index"
 import { certificates, projects } from "@/src/db/schema"
 import { certificatesData } from "@/src/db/db-seed-data/certificates-data"
-import { projectsData } from "@/src/db/db-seed-data/prjects-data"
+import { projectsSeedData } from "@/src/db/db-seed-data/projects-seed"
 import { auth } from "../lib/auth"
 import { users } from "@/src/db/schema"
 import { eq } from "drizzle-orm"
@@ -55,15 +55,18 @@ async function seed() {
 
   // Insert projects
   await db.insert(projects).values(
-    projectsData.map((project) => ({
-      title_en: project.title,
-      desc_en: project.desc,
-      title_ar: project.title,
-      desc_ar: project.desc,
+    projectsSeedData.map((project, index) => ({
+      title_en: project.title_en,
+      desc_en: project.desc_en,
+      title_ar: project.title_ar,
+      desc_ar: project.desc_ar,
       imageLink: project.imageLink,
       liveLink: project.liveLink,
       repoLink: project.repoLink,
       categories: project.categories,
+      content_en: project.content_en,
+      content_ar: project.content_ar,
+      displayOrder: project.displayOrder,
       createdAt: new Date(),
       updatedAt: new Date(),
     }))

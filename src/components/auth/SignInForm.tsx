@@ -6,6 +6,7 @@ import { Button } from "@/src/components/ui/button"
 import { Input } from "@/src/components/ui/input"
 import { Label } from "@/src/components/ui/label"
 import Link from "next/link"
+import { FcGoogle } from "react-icons/fc"
 
 export default function SignInForm({ redirectTo }: { redirectTo?: string }) {
   const router = useRouter()
@@ -29,6 +30,26 @@ export default function SignInForm({ redirectTo }: { redirectTo?: string }) {
       }
     } catch (e: any) {
       setError(e?.message ?? "Failed to sign in")
+    } finally {
+      setLoading(false)
+    }
+  }
+
+  const handleGuestLogin = async () => {
+    setLoading(true)
+    setError(null)
+    try {
+      const res = await authClient.signIn.email({
+        email: "test@gmail.com",
+        password: "testpassword",
+        fetchOptions: { redirect: "follow" },
+      })
+      if (res.data?.user) {
+        router.push("/")
+        router.refresh()
+      }
+    } catch (e: any) {
+      setError(e?.message ?? "Failed to sign in as guest")
     } finally {
       setLoading(false)
     }
@@ -67,12 +88,27 @@ export default function SignInForm({ redirectTo }: { redirectTo?: string }) {
 
       <div className="grid gap-4">
         <Button
+          onClick={handleGuestLogin}
+          disabled={loading}
+          className="w-full bg-emerald-600 hover:bg-emerald-700 text-white shadow-md transition-all hover:-translate-y-0.5 cursor-pointer"
+          size="lg"
+        >
+          {loading ? "Signing in..." : "Sign in as Guest (One-Click)"}
+        </Button>
+        <div className="relative text-center my-2">
+          <span className="absolute inset-x-0 top-1/2 -translate-y-1/2 text-xs text-muted-foreground bg-card px-2 w-fit mx-auto">
+            or use social
+          </span>
+          <div className="h-px bg-border" />
+        </div>
+        <Button
           onClick={handleGoogle}
           disabled={loading}
-          className="w-full"
+          className="w-full flex items-center justify-center gap-2"
           variant="outline"
         >
-          {loading ? "Signing in..." : "Sign in with Google"}
+          <FcGoogle className="w-5 h-5" />
+          {loading ? "Signing in..." : "Continue with Google"}
         </Button>
         <div className="relative text-center">
           <span className="absolute inset-x-0 top-1/2 -translate-y-1/2 text-xs text-muted-foreground">

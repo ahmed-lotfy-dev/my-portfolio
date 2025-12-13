@@ -8,7 +8,7 @@
     "contact": "اتصل بي",
     "dashboard": "لوحة التحكم",
     "signin": "تسجيل الدخول",
-    "signout": "تسجيل الخروج"
+    "sign_out": "تسجيل الخروج"
   },
   "hero": {
     "name": "أحمد لطفي",
@@ -160,7 +160,9 @@
       "dashboard": "لوحة التحكم",
       "projects": "المشاريع",
       "certificates": "الشهادات",
-      "blog": "أضف بوست"
+      "certificates": "الشهادات",
+      "blog": "أضف بوست",
+      "sign_out": "تسجيل الخروج"
     },
     "welcome": {
       "greeting": "مرحبًا بك يا {name}!",

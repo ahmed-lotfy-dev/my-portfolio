@@ -1,4 +1,4 @@
-    /** @type {import('tailwindcss').Config} */ 
+/** @type {import('tailwindcss').Config} */
 
 export default {
   darkMode: ["class"],
@@ -13,7 +13,7 @@ export default {
     container: {
       center: true,
       padding: "2rem",
-      screens: {                                                        
+      screens: {
         "2xl": "1400px",
       },
     },
@@ -106,5 +106,5 @@ export default {
       },
     },
   },
-  plugins: [require("tailwindcss-animate")],
+  plugins: [require("tailwindcss-animate"), require("@tailwindcss/typography")],
 }

@@ -6,7 +6,7 @@ export default async function AddCertifiate({}) {
   const { allCertificates } = await getAllCertificates();
 
   return (
-    <div className="w-full flex justify-center items-start pt-14">
+    <div className="w-full flex justify-center items-start">
       <div className="flex flex-col justify-center items-center w-full">
         <CertificateList allCertificates={allCertificates} />
       </div>
