@@ -10,15 +10,20 @@ import { Nav } from "@/src/components/homepage/Nav";
 import type { Metadata } from "next";
 import { Toaster } from "@/src/components/ui/sonner";
 import UserButton from "@/src/components/dashboard-components/UserButton";
-import { getMessages } from "next-intl/server";
+import { getMessages, setRequestLocale } from "next-intl/server";
 
 import { inter, sora, tajawal } from "@/src/components/ui/fonts";
 import { ThemeProvider } from "next-themes";
 import { PostHogProvider } from "@/src/providers/postHogProvider";
 import { Suspense } from "react";
 import PostHogPageView from "@/src/components/PostHogPageView";
+import Footer from "@/src/components/homepage/Footer";
 
-export const dynamic = "force-dynamic";
+export const revalidate = 3600;
+
+export function generateStaticParams() {
+  return routing.locales.map((locale) => ({ locale }));
+}
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://ahmedlotfy.site"),
@@ -78,6 +83,7 @@ type Props = {
 
 export default async function LocaleLayout({ children, params }: Props) {
   const { locale } = await params;
+  setRequestLocale(locale); // Enable SSG for next-intl
   const isArabic = locale === "ar";
 
   if (!hasLocale(routing.locales, locale)) {
@@ -93,10 +99,29 @@ export default async function LocaleLayout({ children, params }: Props) {
       suppressHydrationWarning
       className="scroll-smooth max-h-svh "
     >
+      <head>
+        <link
+          rel="preconnect"
+          href="https://images.ahmedlotfy.site"
+          crossOrigin="anonymous"
+        />
+        <link rel="dns-prefetch" href="https://images.ahmedlotfy.site" />
+        <link
+          rel="preconnect"
+          href="https://us.i.posthog.com"
+          crossOrigin="anonymous"
+        />
+        <link rel="dns-prefetch" href="https://us.i.posthog.com" />
+        <link
+          rel="preconnect"
+          href="https://us-assets.i.posthog.com"
+          crossOrigin="anonymous"
+        />
+        <link rel="dns-prefetch" href="https://us-assets.i.posthog.com" />
+      </head>
       <body
-        className={`${inter.variable}  ${sora.variable} ${
-          isArabic ? tajawal.variable : ""
-        } antialiased font-main`}
+        className={`${inter.variable}  ${sora.variable} ${isArabic ? tajawal.variable : ""
+          } antialiased font-main`}
         suppressHydrationWarning
       >
         <PostHogProvider>
@@ -111,13 +136,14 @@ export default async function LocaleLayout({ children, params }: Props) {
                     <PostHogPageView />
                   </Suspense>
                   {children}
+                  <Footer />
                 </div>
               </ErrorBoundary>
             </NextIntlClientProvider>
           </ThemeProvider>
         </PostHogProvider>
 
-        {/* <GoogleAnalytics gaId="G-97J3PKW2DK" /> */}
+        <GoogleAnalytics gaId="G-97J3PKW2DK" />
         <Toaster />
       </body>
     </html>
