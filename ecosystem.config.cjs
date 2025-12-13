@@ -15,7 +15,7 @@ module.exports = {
     },
     {
       name: 'backup-worker',
-      script: 'backup-worker/dist/index.js',
+      script: 'scripts/backup-worker/dist/index.js',
       interpreter: 'bun',
       // No args - only run on cron schedule, not on startup
       instances: 1,

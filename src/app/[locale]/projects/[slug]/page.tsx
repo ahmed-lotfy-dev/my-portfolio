@@ -7,6 +7,8 @@ import { shouldShowApk } from "@/src/lib/utils/projectUtils";
 import Link from "next/link";
 import ReactMarkdown from "react-markdown";
 import { ArrowLeft, ExternalLink, Github } from "lucide-react";
+import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
+import { vscDarkPlus } from "react-syntax-highlighter/dist/esm/styles/prism";
 import ImageViewer from "@/src/components/ui/ImageViewer";
 import { Button } from "@/src/components/ui/button";
 import StructuredData from "@/src/components/seo/StructuredData";
@@ -241,6 +243,7 @@ export default async function ProjectDetailsPage({ params }: { params: Promise<{
                 <div className="max-w-3xl mx-auto">
                     <div className="prose prose-lg md:prose-xl dark:prose-invert max-w-none 
                     prose-headings:scroll-mt-20 prose-headings:font-bold prose-headings:tracking-tight
+                    prose-h2:mt-16 prose-h2:mb-4 prose-h3:mt-12 prose-h3:mb-3
                     prose-p:leading-loose prose-p:text-muted-foreground
                     prose-a:text-primary prose-a:no-underline prose-a:border-b prose-a:border-primary/50 hover:prose-a:border-primary prose-a:transition-all
                     prose-img:rounded-2xl prose-img:shadow-xl prose-img:my-12 prose-img:border prose-img:border-border/50
@@ -273,6 +276,25 @@ export default async function ProjectDetailsPage({ params }: { params: Promise<{
                                             )}
                                         </div>
                                     ),
+                                    code({ node, className, children, ...props }) {
+                                        const match = /language-(\w+)/.exec(className || '');
+                                        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+                                        const { ref, ...rest } = props;
+                                        return match ? (
+                                            <SyntaxHighlighter
+                                                style={vscDarkPlus as any}
+                                                language={match[1]}
+                                                PreTag="div"
+                                                {...rest}
+                                            >
+                                                {String(children).replace(/\n$/, '')}
+                                            </SyntaxHighlighter>
+                                        ) : (
+                                            <code className={className} {...props}>
+                                                {children}
+                                            </code>
+                                        );
+                                    },
                                 }}
                             >
                                 {content}
