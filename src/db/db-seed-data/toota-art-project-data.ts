@@ -131,7 +131,7 @@ Targeting an artistic audience required a different mindset than standard e-comm
     published: true,
     repoLink: "https://github.com/ahmed-lotfy-dev/toota-portfolio",
     liveLink: "https://toota-art.ahmedlotfy.site",
-    coverImage: "https://images.ahmedlotfy.site/screencapture-toota-art-ahmedlotfy-site-2025-12-01-21_53_25%20(Edited).png",
+    coverImage: "https://images.ahmedlotfy.site/projects/Projects-screencapture-toota-art-ahmedlotfy-site-2025-12-01-21_53_25%20(Edited)-1765597181426.webp",
   },
   displayOrder: 6,
 };

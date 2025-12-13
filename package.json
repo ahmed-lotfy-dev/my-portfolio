@@ -15,7 +15,8 @@
     "db:introspect": "drizzle-kit introspect",
     "db:migrate": "drizzle-kit generate && drizzle-kit push",
     "studio": "bunx drizzle-kit studio",
-    "seed": "tsx src/db/seed.ts"
+    "seed": "tsx src/db/seed.ts",
+    "migrate-r2": "tsx src/scripts/migrate-r2-to-folders.ts"
   },
   "dependencies": {
     "@aws-sdk/s3-request-presigner": "^3.948.0",

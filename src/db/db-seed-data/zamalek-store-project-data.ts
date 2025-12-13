@@ -232,7 +232,7 @@ This project pushed me to go beyond simple CRUD apps. I learned:
     published: true,
     repoLink: "https://github.com/ahmed-lotfy-dev/zamalek-store",
     liveLink: "https://zamalek-store.ahmedlotfy.site",
-    coverImage: "https://images.ahmedlotfy.site/Projects-screencapture-zamalek-store-ahmedlotfy-site-en-2025-12-06-20_06_48-1765597020942.webp",
+    coverImage: "https://images.ahmedlotfy.site/projects/screencapture-zamalek-store-ahmedlotfy-site-en-2025-12-06-20_06_48-1765597020942.webp",
   },
   displayOrder: 7,
 };

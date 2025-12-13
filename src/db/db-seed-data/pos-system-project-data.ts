@@ -156,7 +156,7 @@ Revisiting this project taught me that **code is a living thing**. The differenc
     published: true,
     repoLink: "https://github.com/ahmed-lotfy-dev/pos-system",
     liveLink: "https://pos-system-app.ahmedlotfy.site",
-    coverImage: "https://images.ahmedlotfy.site/Projects-Pos-System%20.png",
+    coverImage: "https://images.ahmedlotfy.site/projects/Pos-System%20.png",
   },
   displayOrder: 4,
 };

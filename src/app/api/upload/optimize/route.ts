@@ -77,9 +77,13 @@ export async function POST(request: Request): Promise<Response> {
       "%"
     );
 
-    // Generate filename with .webp extension
+    // Generate filename with .webp extension and folder structure
     const originalName = file.name.replace(/\.[^/.]+$/, ""); // Remove original extension
-    const fileName = `${imageType}-${originalName}-${Date.now()}.webp`;
+    const timestamp = Date.now();
+    
+    // Determine folder based on imageType
+    const folder = imageType.toLowerCase(); // "Certificates" -> "certificates", "Projects" -> "projects"
+    const fileName = `${folder}/${originalName}-${timestamp}.webp`;
 
     // Upload to R2
     await s3Client.send(

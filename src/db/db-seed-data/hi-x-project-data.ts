@@ -17,6 +17,6 @@ export const hiXProjectData = {
     "published": true,
     "repo_link": "https://github.com/ahmed-lotfy-dev/hi-x",
     "live_link": "https://hi-x.com",
-    "cover_image": "https://images.ahmedlotfy.site/Projects-hi-x-net-2025-10-07-18_23_54.png",
+    "cover_image": "https://images.ahmedlotfy.site/projects/hi-x-net-2025-10-07-18_23_54.png",
     "display_order": 3
   };
