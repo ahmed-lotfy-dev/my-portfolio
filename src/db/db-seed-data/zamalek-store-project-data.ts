@@ -5,229 +5,216 @@ export const zamalekStoreProject = {
     slug: "zamalek-store",
   },
   shortDescription: {
-    en: "A production-ready, bilingual e-commerce platform for Zamalek SC merchandise. Built with Next.js 16, featuring dual payment gateways (Paymob/Kashier), background job processing with BullMQ, Docker deployment, and comprehensive admin dashboard. Optimized for the Egyptian market with RTL support and local payment integration.",
-    ar: "متجر إلكتروني احترافي وثنائي اللغة لمنتجات نادي الزمالك. مبني باستخدام Next.js 16، يتضمن بوابتي دفع (Paymob/Kashier)، معالجة مهام خلفية مع BullMQ، نشر عبر Docker، ولوحة تحكم شاملة. محسّن للسوق المصري مع دعم كامل للغة العربية والمدفوعات المحلية.",
+    en: "A production-ready, bilingual e-commerce platform for Egyptian football fans. Built with Next.js 16, React 19, and Paymob/Kashier integration. Features a hybrid cart system, BullMQ background processing, and optimal mobile performance via Cloudflare R2.",
+    ar: "منصة تجارة إلكترونية احترافي ثنائية اللغة لمشجعي الكرة المصرية. مبنية بـ Next.js 16 و React 19 مع دمج بوابات دفع محلية. تتميز بنظام سلة هجين، معالجة خلفية بـ BullMQ، وأداء مثالي للموبايل عبر Cloudflare R2.",
   },
   caseStudy: {
     en: `# Case Study: Zamalek Store
-**Building a Production-Ready Bilingual E-Commerce Platform for the Egyptian Market**
+**Production-Ready Bilingual E-Commerce Platform for the Egyptian Market**
 
-> **Role:** Full-Stack Developer  
-> **Tech Stack:** Next.js 16, React 19, TypeScript, PostgreSQL, Prisma, Redis, BullMQ, Docker  
-> **Payment Gateways:** Paymob, Kashier, Stripe  
-> **Live Demo:** [zamalek-store.ahmedlotfy.site](https://zamalek-store.ahmedlotfy.site)
+> **Role:** Full-Stack Developer
+> **Stack:** Next.js 16, React 19, TypeScript, PostgreSQL, Prisma, Redis, BullMQ, Docker
+> **Payments:** Paymob, Kashier, Stripe
+> **Live:** [zamalek-store.ahmedlotfy.site](https://zamalek-store.ahmedlotfy.site)
 
----
+Building an e-commerce platform for the Egyptian market meant solving three critical challenges: **true RTL/LTR bilingual support**, **reliable local payment gateway integration**, and **high performance on mobile networks** with large product images.
 
-## The Challenge
-Building an e-commerce store for **Zamalek SC** fans meant more than just listing products. I needed to solve three specific challenges relevant to the Egyptian market:
-1. **Localization:** It had to work seamlessly in both Arabic (RTL) and English (LTR).
-2. **Local Payments:** It needed to accept local payments (Paymob & Kashier) reliably.
-3. **Performance:** Merchandise photos are heavy, but the site needed to load fast on mobile data.
+## Technical Architecture
+Chose **Next.js App Router** to leverage React Server Components for fast initial loads and reduced client bundles, moving heavy logic server-side.
 
-## 1. Technical Architecture
-I chose **Next.js 16 (App Router)** because it allows me to move heavy logic to the server and leverage React Server Components for optimal performance.
+### Database Design
+*   **PostgreSQL with Prisma:** 15 relational models covering products, variants, orders, carts, coupons, reviews, and users.
+*   **Bilingual at Schema Level:** \`name_ar\`, \`name_en\` fields instead of fragile JSON blobs.
+*   **Fully Versioned:** All changes tracked via Prisma migrations.
 
-### Database & ORM
-*   **PostgreSQL with Prisma 7.1**: I designed a comprehensive schema with 15 models to handle all aspects of the e-commerce platform. The schema handles bilingual data natively (e.g., \`name_ar\` and \`name_en\` columns) so I don't rely on fragile JSON files for product data.
-*   **Type Safety**: Prisma provides end-to-end type safety from database to UI, catching errors at compile time.
-*   **Migrations**: All schema changes are versioned and tracked through Prisma migrations.
+### Hybrid Cart System
+*   **Guests:** Cart in localStorage for instant interaction.
+*   **Authenticated:** Cart synced to database.
+*   **Automatic Merge:** No lost items when switching devices or logging in.
+*   **Resilient:** Survives refreshes, logouts, and device changes.
 
-### State Management
-I built a **hybrid cart system** that adapts to user authentication status:
-*   **Guest users**: Cart stored in \`localStorage\` for instant performance
-*   **Logged-in users**: Cart synced to PostgreSQL database
-*   **Auto-merge**: When guests log in, their local cart automatically merges with their database cart, ensuring no "lost" items during signup
-*   **Persistence**: Cart survives page refreshes, browser restarts, and device switches (for authenticated users)
+### Background Processing
+Implemented **BullMQ with Redis** to keep checkout fast:
+*   Order confirmation emails sent asynchronously.
+*   Automatic retries with exponential backoff.
+*   Isolated worker process separate from web server.
+*   Checkout stays instant even under load.
 
-### Background Job Processing
-Implemented **BullMQ with Redis** for reliable asynchronous task processing:
-*   **Email Queue**: Order confirmations, status updates, and welcome emails processed in background
-*   **Retry Logic**: Failed jobs automatically retry with exponential backoff (3 attempts)
-*   **Worker Process**: Separate \`worker.ts\` process handles jobs independently from the main application
-*   **Benefits**: Checkout responses are instant (~200ms), even though emails are being sent
+## Key Solutions
 
-## 2. Solving Real Problems
+### Payment Security
+Local gateways like Paymob require strict validation to prevent fraud and duplicate processing:
+*   **HMAC signature verification:** Every webhook validated for authenticity.
+*   **Idempotency checks:** Prevent duplicate order processing if gateways send webhooks multiple times.
+*   **Centralized validation logic:** Auditable and secure payment flow.
+Financial operations stay reliable even when gateways behave inconsistently.
 
-### 💳 The Payment Integration Struggle
-Integrating Egyptian gateways like Paymob was the hardest part. The documentation can be tricky, and webhooks sometimes fail.
-*   **The Fix:** I implemented **HMAC Signature Verification**. Every time the payment gateway sends a webhook saying "Payment Success," my server cryptographically checks the signature to ensure it's actually from Paymob and not a hacker.
-*   **Double-Check:** I also added a check to ensure we don't process the same order twice if the webhook is sent multiple times (Idempotency).
+### Image Optimization
+High-resolution product images would kill performance on mobile networks. I built a client-side optimization pipeline:
+*   Store on **Cloudflare R2** for zero egress fees.
+*   Resize and compress to **WebP** in browser before upload.
+*   Reduced image size from ~5MB to ~200KB.
+*   Faster uploads, lower bandwidth costs, instant product pages.
 
-### 🚀 Optimizing Images (The "R2" Strategy)
-Storing thousands of high-res jersey photos on the main server would be too expensive and slow.
-*   **My Solution:** I used **Cloudflare R2** (cheaper than AWS S3).
-*   **The Trick:** Instead of uploading heavy 5MB images directly, I use a browser script to resize and compress them to **WebP** format *before* they leave the user's device. This reduces a 5MB image to ~200KB, saving huge amounts of bandwidth and making uploads instant.
+### Component Architecture
+Used **Shadcn UI** with **Radix primitives** instead of heavy UI frameworks:
+*   **Full Ownership:** Components live in codebase, fully customizable.
+*   **Zero Bloat:** No unused components in bundle.
+*   **Built-in Accessibility:** Keyboard navigation, focus control, ARIA attributes.
+*   **Strong TypeScript Support.**
 
-## 3. Key Features
-*   **True RTL Support:** The entire layout flips automatically based on the language. I used Tailwind's logical properties (like \`ms-2\` instead of \`ml-2\`) so margins and padding automatically respect the direction.
-*   **Admin Dashboard:** I built a custom dashboard where store managers can upload products, track orders, and generate sales reports.
-*   **Real-time Email:** Using a background worker (BullMQ) to send order confirmation emails without slowing down the checkout response.
-*   **Product Variants**: Full support for size and color combinations with independent stock tracking
-*   **Coupon System**: Flexible discount system with percentage/fixed amounts, usage limits, and expiration dates
-*   **Review System**: Customers can rate and review products after purchase
-*   **Wishlist**: Save items for later with one-click add to cart
+## Engineering Decisions
 
-### ⚡ UI Component Architecture (Shadcn + Radix UI)
-I chose **Shadcn UI** with **Radix UI** primitives for the component library instead of a monolithic UI framework.
-*   **The Approach:** Shadcn provides beautifully designed components that you copy into your project, built on top of Radix UI's accessible, unstyled primitives.
-*   **Why This Matters:** 
-    - **Full Control**: Components live in your codebase, so you can customize them completely
-    - **No Bundle Bloat**: Only the components you use are in your bundle
-    - **Accessibility First**: Radix UI handles complex accessibility patterns (keyboard navigation, ARIA attributes, focus management)
-    - **Type Safety**: Full TypeScript support with proper prop types
-*   **Components Used**: Avatar, Dialog, Dropdown Menu, Select, Checkbox, Radio Group, Tabs, Tooltip, Scroll Area, and more
-*   **The Result:** A polished, accessible UI without the overhead of a full component library. Perfect balance of developer experience and performance.
+### Decimal Serialization
+Prisma decimals can't be passed to client components. Built a data-boundary layer that converts decimals before reaching client while preserving backend precision.
 
-## 4. The Thinking Process: Technical Deep Dives
+### Centralized Middleware
+*   Locale detection.
+*   Admin route protection.
+*   Authentication checks.
+All in one place to reduce duplication and simplify debugging.
 
-### 🔢 Solving the "Decimal" Problem
-One of the trickiest bugs I encountered was passing pricing data from the server (Prisma) to the client (React).
-*   **The Issue:** Prisma uses a custom \`Decimal\` type for precision. Next.js Server Components can read this, but when passing it to a Client Component, React fails to serialize it because it's not a native JSON type.
-*   **The Fix:** I created a utility to transform data at the boundary. Before passing any product object to a client component, the \`price\` field is converted to a plain number or string. This ensures the frontend gets clean, usable data without losing the precision usage on the backend.
+### URL-Driven Search
+Filters, search, and sorting in URL parameters with debounced updates. Fully shareable product URLs for better UX.
 
-### 🛡️ Centralized Middleware Architecture
-I wanted to keep my authorization and localization logic clean, so I avoided scattering checks across every page.
-*   **Proxy Pattern:** I implemented a \`proxy.ts\` module that acts as the central brain for request handling.
-*   **Flow:**
-    1.  **i18n First:** The middleware first resolves the locale (Arabic/English).
-    2.  **Route Protection:** It then checks if the user is accessing an \`/admin\` route.
-    3.  **Auth Check:** If it's an admin route, it verifies the session token *before* the request even hits the layout.
-    This consolidation means I have **one single place** to debug routing logic, rather than juggling three different middleware responsibilities.
+## Features
+*   Full RTL/LTR layout support.
+*   Comprehensive admin dashboard for products, orders, and analytics.
+*   Product variants with stock tracking.
+*   Flexible coupons and discounts system.
+*   Reviews and ratings.
+*   Wishlist with one-click add to cart.
+*   Dockerized production deployment.
 
-### 🔐 Why Better Auth?
-I initially considered NextAuth (Auth.js) but switched to **Better Auth**.
-*   **Type Safety:** Better Auth provided superior TypeScript inference out of the box.
-*   **Performance:** It felt more lightweight and didn't require as much boilerplate for simple email/password and social login flows.
-*   **Control:** It gave me finer control over session management, which was crucial for the "Hybrid Cart" feature where I needed to merge guest sessions with authenticated user sessions.
+## What This Demonstrates
+*   Secure handling of real payment systems with strict validation.
+*   Production-level state management across guest and authenticated flows.
+*   Server-first architecture for optimal performance.
+*   Performance optimization under real-world constraints.
+*   Clean separation of concerns across the entire stack.
 
-### 🔍 Shareable Search State
-For the product listing page, I avoided local state (\`useState\`) for filters.
-*   **URL-Driven State:** Instead, I pushed all search queries, category filters, and sort options directly to the URL parameters.
-*   **Debouncing:** I implemented a debounced search input that updates the URL after 300ms of typing.
-*   **Benefit:** This means users can share a link like \`.../products?search=jersey&sort=price_asc\` and the recipient sees *exactly* the same view. It makes the store feel much more professional and accessible.
+This goes beyond CRUD—it reflects real engineering decisions, trade-offs, and scalability concerns for a production system.
 
-## 5. What I Learned
-This project pushed me to go beyond simple CRUD apps. I learned:
-*   How to handle **real-world financial transactions** securely with HMAC verification and idempotency.
-*   The complexity of **Server Actions** in Next.js 16 and how to use them for type-safe form submissions.
-*   That **user experience** is in the details—like keeping the cart saved even if the user refreshes or switches devices.
-*   **Background job processing** with BullMQ for reliable asynchronous tasks.
-*   **Docker containerization** for consistent deployments across environments.
-*   **Production-ready architecture** with proper error handling, logging, and monitoring.
-
-## 6. Production Metrics
-*   **15 Database Models**: Comprehensive schema covering all e-commerce needs
-*   **30+ API Endpoints**: RESTful APIs for all features
-*   **50+ Components**: Reusable React components with TypeScript
-*   **2 Languages**: Full Arabic and English support with RTL
-*   **3 Payment Gateways**: Paymob, Kashier, and Stripe integration
-*   **Docker Ready**: Production deployment with Bun runtime
-*   **Background Workers**: Asynchronous email processing with BullMQ
+## Production Scale
+*   **15** Database Models
+*   **30+** API Endpoints
+*   **50+** Reusable Components
+*   **2** Languages (Arabic/English)
+*   **3** Payment Gateways
+*   **Background Workers** with Redis
+*   **Docker-ready** deployment
 `,
     ar: `# دراسة حالة: متجر الزمالك
-**بناء منصة تجارة إلكترونية ثنائية اللغة للسوق المصري**
+**منصة تجارة إلكترونية جاهزة للإنتاج للسوق المصري**
 
 > **الدور:** مطور واجهة كاملة (Full-Stack Developer)
-> **التقنيات المستخدمة:** Next.js 15, React 19, TypeScript, PostgreSQL, Prisma, Paymob/Kashier
+> **التقنيات:** Next.js 16, React 19, TypeScript, PostgreSQL, Prisma, Redis, BullMQ, Docker
+> **المدفوعات:** Paymob, Kashier, Stripe
 > **المعاينة الحية:** [zamalek-store.ahmedlotfy.site](https://zamalek-store.ahmedlotfy.site)
 
----
+بناء منصة تجارة إلكترونية للسوق المصري كان يتطلب حل ثلاث تحديات حاسمة: **دعم ثنائي اللغة الحقيقي (RTL/LTR)**، **تكامل موثوق لبوابات الدفع المحلية**، و **أداء عالي على شبكات الهاتف** مع صور منتجات كبيرة.
 
-## التحدي
-بناء متجر إلكتروني لمشجعي **نادي الزمالك** كان يعني أكثر من مجرد عرض المنتجات. كان عليّ حل ثلاثة تحديات محددة تتعلق بالسوق المصري:
-1. **التعريب (Localization):** يجب أن يعمل المتجر بسلاسة باللغتين العربية (من اليمين لليسار) والإنجليزية.
-2. **المدفوعات المحلية:** قبول المدفوعات المحلية (Paymob & Kashier) بشكل موثوق.
-3. **الأداء:** صور المنتجات ثقيلة، لكن الموقع يحتاج إلى سرعة تحميل عالية حتى على بيانات الهاتف.
+## الهيكلية التقنية
+اخترت **Next.js App Router** للاستفادة من React Server Components للتحميل الأولي السريع وتقليل حزم العميل، ونقل المنطق الثقيل إلى الخادم.
 
-## 1. الهيكلية التقنية
-اخترت **Next.js 16 (App Router)** لأنه يسمح بنقل المنطق الثقيل إلى الخادم والاستفادة من مكونات React Server للأداء الأمثل.
+### تصميم قاعدة البيانات
+*   **PostgreSQL مع Prisma:** 15 نموذجاً علائقياً تغطي المنتجات، المتغيرات، الطلبات، السلة، الكوبونات، المراجعات، والمستخدمين.
+*   **ثنائية اللغة في المخطط:** حقول \`name_ar\` و \`name_en\` بدلاً من كائنات JSON الهشة.
+*   **إصدارات كاملة:** تتبع جميع التغييرات عبر ترحيلات Prisma.
 
-### قاعدة البيانات والـ ORM
-*   **PostgreSQL مع Prisma 7.1**: صممت مخططاً شاملاً يحتوي على 15 نموذجاً للتعامل مع جميع جوانب المنصة. يتعامل المخطط مع البيانات ثنائية اللغة محلياً (مثل أعمدة \`name_ar\` و \`name_en\`).
-*   **أمان الأنواع**: يوفر Prisma أماناً شاملاً للأنواع من قاعدة البيانات إلى واجهة المستخدم.
-*   **الترحيلات**: جميع تغييرات المخطط مُصنّفة ومُتتبّعة عبر ترحيلات Prisma.
+### نظام السلة الهجين
+*   **الزوار:** السلة في \`localStorage\` للتفاعل الفوري.
+*   **المسجلون:** مزامنة السلة مع قاعدة البيانات.
+*   **الدمج التلقائي:** لا ضياع للعناصر عند تغيير الجهاز أو تسجيل الدخول.
+*   **مرونة:** تنجو من التحديث، تسجيل الخروج، وتغيير الأجهزة.
 
-### إدارة الحالة
-قمت ببناء **نظام سلة هجين** يتكيف مع حالة مصادقة المستخدم:
-*   **الزوار**: السلة محفوظة في \`localStorage\` للأداء الفوري
-*   **المستخدمون المسجلون**: السلة متزامنة مع قاعدة بيانات PostgreSQL
-*   **الدمج التلقائي**: عند تسجيل دخول الزوار، تندمج سلتهم المحلية تلقائياً مع سلة قاعدة البيانات
-*   **الاستمرارية**: تبقى السلة حتى بعد تحديث الصفحة أو تبديل الأجهزة
+### المعالجة الخلفية
+نفذت **BullMQ مع Redis** للحفاظ على سرعة الدفع:
+*   إرسال رسائل تأكيد البريد الإلكتروني بشكل غير متزامن.
+*   إعادة المحاولة التلقائية مع تراجع أسي (Exponential Backoff).
+*   عملية عامل (Worker) معزولة ومنفصلة عن خادم الويب.
+*   عملية الدفع تظل فورية حتى تحت الضغط.
 
-### معالجة المهام الخلفية
-نفذت **BullMQ مع Redis** لمعالجة المهام غير المتزامنة بشكل موثوق:
-*   **قائمة انتظار البريد**: تأكيدات الطلبات وتحديثات الحالة تُعالج في الخلفية
-*   **منطق إعادة المحاولة**: المهام الفاشلة تُعاد تلقائياً مع تأخير أسّي (3 محاولات)
-*   **عملية العامل**: عملية \`worker.ts\` منفصلة تتعامل مع المهام بشكل مستقل
-*   **الفوائد**: استجابات الدفع فورية (~200 ميلي ثانية)، حتى أثناء إرسال البريد
+## حلول رئيسية
 
-## 2. حل مشاكل حقيقية
+### أمان المدفوعات
+تتطلب البوابات المحلية مثل Paymob تحققاً صارماً لمنع الاحتيال والمعالجة المزدوجة:
+*   **التحقق من توقيع HMAC:** التحقق من صحة كل Webhook.
+*   **فحوصات التكرار (Idempotency):** منع تكرار معالجة الطلب إذا أرسلت البوابة الإشعار أكثر من مرة.
+*   **منطق تحقق مركزي:** تدفق دفع آمن وقابل للتدقيق.
+تظل العمليات المالية موثوقة حتى عندما تتصرف البوابات بشكل غير متسق.
 
-### 💳 صراع دمج بوابات الدفع
-كان دمج بوابات الدفع المصرية مثل Paymob هو الجزء الأصعب. التوثيق قد يكون معقداً، والـ Webhooks تفشل أحياناً.
-*   **الحل:** قمت بتنفيذ **التحقق من التوقيع (HMAC Signature Verification)**. في كل مرة ترسل فيها بوابة الدفع إشعاراً بنجاح الدفع، يقوم الخادم بالتحقق من التوقيع للتأكد من أنه قادم من Paymob فعلاً وليس من مخترق.
-*   **تحقق مزدوج:** أضفت أيضاً تحققاً لضمان عدم معالجة نفس الطلب مرتين (Idempotency) إذا تم إرسال الـ Webhook عدة مرات.
+### تحسين الصور
+صور المنتجات عالية الدقة تقتل الأداء على شبكات الهاتف. قمت ببناء خط أنابيب تحسين من جانب العميل:
+*   التخزين على **Cloudflare R2** لعدم وجود رسوم نقل بيانات.
+*   تغيير الحجم والضغط إلى **WebP** في المتصفح قبل الرفع.
+*   تقليل حجم الصورة من ~5 ميجابايت إلى ~200 كيلوبايت.
+*   رفع أسرع، تكلفة أقل، وصفحات منتجات فورية.
 
-### 🚀 تحسين الصور (استراتيجية R2)
-تخزين آلاف الصور عالية الدقة سيكون مكلفاً وبطئياً.
-*   **حلي:** استخدمت **Cloudflare R2** (أرخص من AWS S3).
-*   **الحيلة:** بدلاً من رفع صور بحجم 5 ميجابايت مباشرة، أستخدم سكربت في المتصفح لتغيير حجمها وضغطها إلى صيغة **WebP** *قبل* أن تغادر جهاز المستخدم. هذا يقلل الصورة من 5 ميجابايت إلى حوالي 200 كيلوبايت، مما يوفر استهلاك الباقة وبجعل الرفع فورياً.
+### هندسة المكونات
+استخدمت **Shadcn UI** مع **Radix primitives** بدلاً من أطر العمل الثقيلة:
+*   **ملكية كاملة:** المكونات تعيش في الكود، قابلة للتخصيص بالكامل.
+*   **صفر تضخم (Zero Bloat):** لا مكونات غير مستخدمة في الحزمة.
+*   **إمكانية الوصول المدمجة:** تنقل بلوحة المفاتيح، تحكم بالتركيز، وسمات ARIA.
+*   **دعم TypeScript قوي.**
 
-## 3. المميزات الرئيسية
-*   **دعم حقيقي للغة العربية (RTL):** ينقلب التخطيط بالكامل تلقائياً بناءً على اللغة. استخدمت خصائص Tailwind المنطقية (مثل \`ms-2\` بدلاً من \`ml-2\`) لضمان احترام الاتجاهات تلقائياً.
-*   **لوحة تحكم المشرف:** قمت ببناء لوحة تحكم مخصصة يمكن لمديري المتجر من خلالها رفع المنتجات، تتبع الطلبات، وإنشاء تقارير المبيعات.
-*   **بريد إلكتروني فوري:** استخدام معالج خلفية (BullMQ) لإرسال رسائل تأكيد الطلب دون إبطاء استجابة الدفع.
+## قرارات هندسية
 
-### ⚡ الترحيل إلى HeroUI v3 (تحسين حجم الحزمة)
-عند البناء للإنتاج، لاحظت أن حجم الحزمة كان أكبر من اللازم. السبب؟ كنت أستورد المكونات من حزمة \`@heroui/react\` الكبيرة.
-*   **المشكلة:** الاستيراد من \`@heroui/react\` يسحب مكتبة المكونات بالكامل حتى لو استخدمت مكونات قليلة. هذا يضر بالأداء.
-*   **الحل:** HeroUI v3 يستخدم **هيكلية حزم معيارية**. بدلاً من الاستيراد العام، أصبحت أستورد كل مكون من حزمته الخاصة.
-*   **النتيجة:** يمكن لـ Webpack الآن استبعاد المكونات غير المستخدمة (tree-shake)، مما يقلل حجم الحزمة بشكل كبير.
+### تسلسل الأرقام العشرية (Decimal Serialization)
+لا يمكن تمرير أرقام Prisma العشرية لمكونات العميل. بنيت طبقة حدود بيانات تحول الأرقام قبل وصولها للعميل مع الحفاظ على الدقة في الخلفية.
 
-## 4. عملية التفكير: نقاشات تقنية عميقة
+### البرمجيات الوسيطة المركزية (Middleware)
+*   كشف اللغة.
+*   حماية مسارات المسؤول.
+*   فحوصات المصادقة.
+كلها في مكان واحد لتقليل التكرار وتسهيل التصحيح.
 
-### 🔢 حل مشكلة "الأرقام العشرية"
-واحدة من أصعب الأخطاء كانت تمرير بيانات الأسعار من الخادم (Prisma) إلى العميل (React).
-*   **المشكلة:** Prisma تستخدم نوع \`Decimal\` للدقة. مكونات الخادم تقرؤه، ولكن عند تمريره لمكون العميل، يفشل React في قراءته لأنه ليس نوع JSON أصلي.
-*   **الحل:** أنشأت أداة لتحويل البيانات عند الحدود الفاصلة. قبل تمرير أي منتج، يتم تحويل حقل السعر إلى رقم عادي أو نص، لضمان وصول بيانات نظيفة للواجهة الأمامية.
+### بحث مدفوع بالرابط (URL-Driven)
+الفلاتر، البحث، والترتيب في معلمات URL مع تحديثات (Debounced). روابط منتجات قابلة للمشاركة بالكامل لتجربة مستخدم أفضل.
 
-### 🛡️ هندسة البرمجيات الوسيطة المركزية (Middleware)
-أردت الحفاظ على نظافة منطق التحقق والتوثيق.
-*   **نمط الوكيل (Proxy Pattern):** نفذت وحدة \`proxy.ts\` تعمل كعقل مدبر لمعالجة الطلبات.
-*   **التدفق:** تحدد اللغة أولاً، ثم تتحقق من المسار، ثم تتحقق من صلاحيات المدير قبل الوصول للصفحة. هذا يعني مكاناً واحداً لتنقيح أخطاء التوجيه.
+## المميزات
+*   دعم تخطيط كامل RTL/LTR.
+*   لوحة تحكم إدارية شاملة للمنتجات، الطلبات، والتحليلات.
+*   متغيرات المنتج مع تتبع المخزون.
+*   نظام مرن للكوبونات والخصومات.
+*   مراجعات وتقييمات.
+*   قائمة رغبات مع إضافة للسلة بنقرة واحدة.
+*   نشر إنتاج Dockerized.
 
-## 5. ماذا تعلمت
-دفعني هذا المشروع لتجاوز تطبيقات CRUD البسيطة. تعلمت:
-*   كيفية التعامل مع **المعاملات المالية الحقيقية** بأمان مع التحقق من HMAC وعدم التكرار.
-*   تعقيد **Server Actions** في Next.js 16 وكيفية استخدامها لتقديم النماذج بأمان.
-*   أن **تجربة المستخدم** تكمن في التفاصيل - مثل الحفاظ على السلة حتى لو قام المستخدم بتحديث الصفحة.
-*   **معالجة المهام الخلفية** مع BullMQ للمهام غير المتزامنة الموثوقة.
-*   **الحاويات Docker** للنشر المتسق عبر البيئات.
-*   **البنية الجاهزة للإنتاج** مع معالجة الأخطاء والتسجيل والمراقبة المناسبة.
+## ماذا يثبت هذا المشروع
+*   تعامل آمن مع أنظمة الدفع الحقيقية بتحقق صارم.
+*   إدارة حالة بمستوى الإنتاج عبر تدفقات الزوار والمسجلين.
+*   هندسة الخادم أولاً (Server-first) للأداء الأمثل.
+*   تحسين الأداء تحت قيود العالم الحقيقي.
+*   فصل نظيف للاهتمامات عبر المكدس بالكامل.
 
-## 6. مقاييس الإنتاج
-*   **15 نموذج قاعدة بيانات**: مخطط شامل يغطي جميع احتياجات التجارة الإلكترونية
-*   **30+ نقطة API**: واجهات برمجية لجميع الميزات
-*   **50+ مكون**: مكونات React قابلة لإعادة الاستخدام مع TypeScript
-*   **لغتان**: دعم كامل للعربية والإنجليزية مع RTL
-*   **3 بوابات دفع**: تكامل Paymob و Kashier و Stripe
-*   **جاهز لـ Docker**: نشر الإنتاج مع Bun runtime
-*   **عمال الخلفية**: معالجة البريد الإلكتروني غير المتزامنة مع BullMQ
+هذا يتجاوز تطبيقات CRUD—إنه يعكس قرارات هندسية حقيقية، ومفاضلات، ومخاوف قابلية التوسع لنظام إنتاج.
+
+## مقاييس الإنتاج
+*   **15** نموذج قاعدة بيانات
+*   **30+** نقطة API
+*   **50+** مكون قابل لإعادة الاستخدام
+*   **2** لغة (عربي / إنجليزي)
+*   **3** بوابات دفع
+*   **عمال خلفية** مع Redis
+*   نشر **جاهز لـ Docker**
 `,
   },
   mediaMetadata: {
     categories: [
-      "Next.js",
-      "React",
+      "Next.js 16",
+      "React 19",
       "TypeScript",
+      "Tailwind CSS",
       "PostgreSQL",
       "Prisma",
-      "TailwindCSS",
       "Redis",
       "BullMQ",
       "Docker",
-      "E-Commerce",
+      "Paymob",
+      "Kashier",
+      "Stripe",
+      "Cloudflare R2",
     ],
     published: true,
     repoLink: "https://github.com/ahmed-lotfy-dev/zamalek-store",

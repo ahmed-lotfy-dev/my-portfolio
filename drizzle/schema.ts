@@ -1,4 +1,4 @@
-import { pgTable, uniqueIndex, foreignKey, text, timestamp, unique, boolean, uuid, pgEnum } from "drizzle-orm/pg-core"
+import { pgTable, uniqueIndex, foreignKey, text, timestamp, unique, boolean, uuid, pgEnum, integer } from "drizzle-orm/pg-core"
 import { sql } from "drizzle-orm"
 
 export const role = pgEnum("role", ['USER', 'ADMIN'])
@@ -103,10 +103,17 @@ export const projects = pgTable("projects", {
 	titleAr: text("title_ar").notNull(),
 	descEn: text("desc_en").notNull(),
 	descAr: text("desc_ar").notNull(),
+    contentEn: text("content_en"),
+    contentAr: text("content_ar"),
+    slug: text("slug").unique(),
 	repoLink: text("repo_link").notNull(),
 	liveLink: text("live_link").notNull(),
 	imageLink: text("image_link").notNull(),
 	categories: text().array().notNull(),
+    published: boolean("published").default(true),
+    displayOrder: integer("display_order"), 
 	createdAt: timestamp("created_at", { mode: 'string' }).defaultNow().notNull(),
 	updatedAt: timestamp("updated_at", { mode: 'string' }).defaultNow().notNull(),
-});
+}, (table) => [
+	uniqueIndex("projects_slug_unique").on(table.slug),
+]);
