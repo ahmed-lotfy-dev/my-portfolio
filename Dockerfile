@@ -33,11 +33,8 @@ ENV NEXT_TELEMETRY_DISABLED=1
 # This creates .next/standalone with minimal production files
 RUN bun run build
 
-# Build the Backup Worker
-WORKDIR /app/scripts/backup-worker
-RUN bun install
-RUN bun run build
-WORKDIR /app
+# Build the Backup Worker (using --cwd to avoid changing WORKDIR)
+RUN cd scripts/backup-worker && bun install && bun run build
 
 # Stage 3: Production runtime
 FROM oven/bun:1 AS runner
