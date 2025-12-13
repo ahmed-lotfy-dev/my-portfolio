@@ -36,6 +36,10 @@ export async function addCertificateAction(state: any, data: FormData) {
   const courseLink = data.get("courseLink") as string;
   const profLink = data.get("profLink") as string;
   const imageLink = data.get("imageLink") as string;
+  const completedAtStr = data.get("completedAt") as string;
+
+  // Convert completedAt string to Date object if provided
+  const completedAt = completedAtStr ? new Date(completedAtStr) : null;
 
   logger.debug("Received form data:", {
     title,
@@ -43,6 +47,7 @@ export async function addCertificateAction(state: any, data: FormData) {
     courseLink,
     profLink,
     imageLink,
+    completedAt,
   });
 
   const session = await auth.api.getSession({ headers: await headers() });
@@ -63,6 +68,7 @@ export async function addCertificateAction(state: any, data: FormData) {
     courseLink,
     profLink,
     imageLink,
+    completedAt: completedAtStr,
   });
 
   if (!result.success) {
@@ -77,6 +83,7 @@ export async function addCertificateAction(state: any, data: FormData) {
       courseLink,
       profLink,
       imageLink,
+      completedAt,
     });
 
     logger.info("Certificate added successfully");
@@ -96,6 +103,10 @@ export async function editCertificateAction(state: any, data: FormData) {
   const courseLink = data.get("courseLink") as string;
   const profLink = data.get("profLink") as string;
   const imageLink = data.get("imageLink") as string;
+  const completedAtStr = data.get("completedAt") as string;
+
+  // Convert completedAt string to Date object if provided
+  const completedAt = completedAtStr ? new Date(completedAtStr) : null;
 
   const session = await auth.api.getSession({ headers: await headers() });
   const user = session?.user;
@@ -114,6 +125,7 @@ export async function editCertificateAction(state: any, data: FormData) {
     courseLink,
     profLink,
     imageLink,
+    completedAt: completedAtStr,
   });
 
   if (!result.success) {
@@ -133,7 +145,7 @@ export async function editCertificateAction(state: any, data: FormData) {
 
   await db
     .update(certificates)
-    .set({ title, desc, courseLink, profLink, imageLink })
+    .set({ title, desc, courseLink, profLink, imageLink, completedAt })
     .where(eq(certificates.id, id));
 
   await revalidatePath("/dashboard/certificates");

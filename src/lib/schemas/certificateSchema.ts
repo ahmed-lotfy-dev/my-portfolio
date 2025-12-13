@@ -21,6 +21,7 @@ export async function createCertificateSchema() {
       .string()
       .url({ message: t("image_link_required") })
       .min(10, { message: t("image_link_required") }),
+    completedAt: z.string().optional(),
   });
 }
 

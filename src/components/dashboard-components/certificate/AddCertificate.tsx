@@ -36,7 +36,6 @@ function AddCertificateComponent() {
     desc: "",
     courseLink: "",
     profLink: "",
-    author: "",
     completedAt: "",
   });
 
@@ -46,7 +45,7 @@ function AddCertificateComponent() {
       notify("Certificate added successfully!", true);
       setOpen(false);
       setImageUrl("");
-      setFormData({ title: "", desc: "", courseLink: "", profLink: "", author: "", completedAt: "" });
+      setFormData({ title: "", desc: "", courseLink: "", profLink: "", completedAt: "" });
       formRef.current?.reset();
     } else if (state?.message && !state?.success) {
       notify(state.message, false);
@@ -131,28 +130,6 @@ function AddCertificateComponent() {
                 {state?.error?.desc && (
                   <p className="text-xs text-red-400 mt-1">
                     {state.error.desc._errors[0]}
-                  </p>
-                )}
-              </div>
-
-              <div className="space-y-1">
-                <Label htmlFor="author" className={labelClasses}>
-                  {t("instructor")}
-                </Label>
-                <Input
-                  id="author"
-                  className={inputClasses}
-                  type="text"
-                  name="author"
-                  placeholder={t("instructor")}
-                  value={formData.author}
-                  onChange={(e) =>
-                    setFormData({ ...formData, author: e.target.value })
-                  }
-                />
-                {state?.error?.author && (
-                  <p className="text-xs text-red-400 mt-1">
-                    {state.error.author._errors[0]}
                   </p>
                 )}
               </div>

@@ -116,6 +116,29 @@ function EditCertificate({ EditedObject }: any) {
                 )}
               </div>
 
+              <div className="space-y-1">
+                <Label htmlFor="completedAt" className={labelClasses}>
+                  Completion Date
+                </Label>
+                <Input
+                  id="completedAt"
+                  className={inputClasses}
+                  type="date"
+                  name="completedAt"
+                  value={
+                    editedCert.completedAt
+                      ? new Date(editedCert.completedAt).toISOString().split("T")[0]
+                      : ""
+                  }
+                  onChange={InputHandler}
+                />
+                {state?.error?.completedAt && (
+                  <p className="text-xs text-red-400 mt-1">
+                    {state.error.completedAt._errors[0]}
+                  </p>
+                )}
+              </div>
+
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="space-y-1">
                   <Label htmlFor="courseLink" className={labelClasses}>
