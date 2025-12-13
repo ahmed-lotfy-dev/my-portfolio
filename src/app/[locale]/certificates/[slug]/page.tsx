@@ -127,7 +127,7 @@ export default async function CertificatePage(props: { params: Promise<{ slug: s
             <div className="flex items-center justify-center gap-2 text-muted-foreground mb-10">
               <span className="text-sm font-medium uppercase tracking-wider">{t("completed")}:</span>
               <span className="text-base font-semibold text-foreground">
-                {certificate.createdAt?.toLocaleDateString(locale === 'ar' ? 'ar-EG' : 'en-US', {
+                {(certificate.completedAt || certificate.createdAt)?.toLocaleDateString(locale === 'ar' ? 'ar-EG' : 'en-US', {
                   year: 'numeric',
                   month: 'long',
                   day: 'numeric',

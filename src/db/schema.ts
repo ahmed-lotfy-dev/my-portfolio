@@ -134,6 +134,7 @@ export const certificates = pgTable("certificates", {
   imageLink: text("image_link").notNull(),
   courseLink: text("course_link").notNull(),
   profLink: text("prof_link").notNull(),
+  completedAt: timestamp("completed_at"),
   createdAt: timestamp("created_at").defaultNow().notNull(),
   updatedAt: timestamp("updated_at")
     .defaultNow()

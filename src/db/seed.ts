@@ -48,6 +48,7 @@ async function seed() {
       courseLink: cert.courseLink,
       profLink: cert.profLink,
       imageLink: cert.imageLink,
+      completedAt: cert.completedAt,
       createdAt: new Date(),
       updatedAt: new Date(),
     }))
