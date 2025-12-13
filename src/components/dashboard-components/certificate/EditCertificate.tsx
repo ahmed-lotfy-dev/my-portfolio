@@ -199,7 +199,11 @@ function EditCertificate({ EditedObject }: any) {
 
               <div className="space-y-2 p-4 rounded-xl border border-dashed border-white/20 bg-white/5">
                 <Label className={labelClasses}>Certificate Image</Label>
-                <Upload setImageUrl={setImageUrl} imageType={"Certificates"} />
+                <Upload
+                  setImageUrl={setImageUrl}
+                  imageType={"Certificates"}
+                  itemTitle={editedCert.title}
+                />
                 {state?.error?.imageLink && (
                   <p className="text-xs text-red-400 mt-1">
                     {state.error.imageLink._errors}

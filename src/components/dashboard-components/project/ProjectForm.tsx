@@ -94,7 +94,7 @@ export default function ProjectForm({
           <h2 className="text-xl font-semibold flex items-center gap-2">
             Basic Information
           </h2>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="space-y-1">
               <Label htmlFor="title_en" className={labelClasses}>
@@ -124,33 +124,33 @@ export default function ProjectForm({
                 placeholder="Arabic Title"
               />
             </div>
-            
+
             <div className="space-y-1 md:col-span-2">
               <Label htmlFor="slug" className={labelClasses}>
                 Slug (URL Identifier) - unique
               </Label>
               <div className="flex gap-2">
-                  <Input
-                    id="slug"
-                    className={inputClasses}
-                    type="text"
-                    name="slug"
-                    value={slug}
-                    onChange={handleSlugChange}
-                    placeholder="e.g. self-tracker"
-                  />
-                  <Button 
-                    type="button" 
-                    variant="outline" 
-                    onClick={() => {
-                        const generated = titleEn.toLowerCase().trim().replace(/[^\w\s-]/g, "").replace(/[\s_-]+/g, "-").replace(/^-+|-+$/g, "");
-                        setSlug(generated);
-                        setIsSlugEdited(true);
-                    }}
-                    title="Regenerate from Title"
-                  >
-                    Generate
-                  </Button>
+                <Input
+                  id="slug"
+                  className={inputClasses}
+                  type="text"
+                  name="slug"
+                  value={slug}
+                  onChange={handleSlugChange}
+                  placeholder="e.g. self-tracker"
+                />
+                <Button
+                  type="button"
+                  variant="outline"
+                  onClick={() => {
+                    const generated = titleEn.toLowerCase().trim().replace(/[^\w\s-]/g, "").replace(/[\s_-]+/g, "-").replace(/^-+|-+$/g, "");
+                    setSlug(generated);
+                    setIsSlugEdited(true);
+                  }}
+                  title="Regenerate from Title"
+                >
+                  Generate
+                </Button>
               </div>
               <p className="text-xs text-muted-foreground">Used for the case study URL: /projects/{slug || '...'}</p>
             </div>
@@ -185,168 +185,169 @@ export default function ProjectForm({
 
         {/* Case Study Content Section */}
         <div className="space-y-6 p-6 rounded-xl bg-background/40 border border-border/50">
-           <div className="flex justify-between items-center">
+          <div className="flex justify-between items-center">
             <h2 className="text-xl font-semibold">Case Study Content (Markdown)</h2>
             <div className="flex items-center gap-2 text-sm text-muted-foreground bg-muted/30 px-3 py-1.5 rounded-full border border-border/50">
-               <ImageIcon size={14} />
-               <span>Image Helper</span>
-               <div className="w-[1px] h-4 bg-border mx-1" />
-               <div className="w-24 relative overflow-hidden">
-                 <Upload 
-                    setImageUrl={(url) => {
-                        setHelperImageUrl(url);
-                        copyToClipboard(`![Image](${url})`);
-                    }} 
-                    imageType="Blogs" 
-                 />
-                 <span className="absolute inset-0 flex items-center justify-center text-xs pointer-events-none">Upload</span>
-               </div>
+              <ImageIcon size={14} />
+              <span>Image Helper</span>
+              <div className="w-[1px] h-4 bg-border mx-1" />
+              <div className="w-24 relative overflow-hidden">
+                <Upload
+                  setImageUrl={(url) => {
+                    setHelperImageUrl(url);
+                    copyToClipboard(`![Image](${url})`);
+                  }}
+                  imageType="Blogs"
+                />
+                <span className="absolute inset-0 flex items-center justify-center text-xs pointer-events-none">Upload</span>
+              </div>
             </div>
-           </div>
-           
-           {/* Image Helper Result */}
-           <AnimatePresence>
-             {helperImageUrl && (
-                <motion.div 
-                    initial={{ opacity: 0, height: 0 }} 
-                    animate={{ opacity: 1, height: "auto" }}
-                    exit={{ opacity: 0, height: 0 }}
-                    className="flex items-center justify-between p-3 bg-green-500/10 border border-green-500/20 rounded-lg"
-                >
-                    <code className="text-xs text-green-400 truncate flex-1 mr-4">![Image]({helperImageUrl})</code>
-                    <Button 
-                        size="sm" 
-                        variant="ghost" 
-                        className="h-6 w-6 p-0 text-green-400 hover:text-green-300"
-                        onClick={() => setHelperImageUrl("")}
-                        type="button"
-                    >
-                        <X size={14} />
-                    </Button>
-                </motion.div>
-             )}
-           </AnimatePresence>
+          </div>
 
-           <div className="grid grid-cols-1 gap-6">
-                <div className="space-y-1">
-                    <Label htmlFor="content_en" className={labelClasses}>
-                        Content (English)
-                    </Label>
-                    <Textarea
-                        id="content_en"
-                        className={cn(inputClasses, "min-h-[400px] font-mono text-sm leading-relaxed")}
-                        name="content_en"
-                        defaultValue={initialData?.content_en || ""}
-                        placeholder="# The Challenge&#10;Describe the problem...&#10;&#10;# The Solution&#10;How you solved it..."
-                    />
-                </div>
-                <div className="space-y-1">
-                    <Label htmlFor="content_ar" className={labelClasses}>
-                        Content (Arabic)
-                    </Label>
-                    <Textarea
-                        id="content_ar"
-                        className={cn(inputClasses, "min-h-[400px] font-mono text-sm leading-relaxed")}
-                        name="content_ar"
-                        defaultValue={initialData?.content_ar || ""}
-                        dir="rtl"
-                        placeholder="Arabic content..."
-                    />
-                </div>
-           </div>
+          {/* Image Helper Result */}
+          <AnimatePresence>
+            {helperImageUrl && (
+              <motion.div
+                initial={{ opacity: 0, height: 0 }}
+                animate={{ opacity: 1, height: "auto" }}
+                exit={{ opacity: 0, height: 0 }}
+                className="flex items-center justify-between p-3 bg-green-500/10 border border-green-500/20 rounded-lg"
+              >
+                <code className="text-xs text-green-400 truncate flex-1 mr-4">![Image]({helperImageUrl})</code>
+                <Button
+                  size="sm"
+                  variant="ghost"
+                  className="h-6 w-6 p-0 text-green-400 hover:text-green-300"
+                  onClick={() => setHelperImageUrl("")}
+                  type="button"
+                >
+                  <X size={14} />
+                </Button>
+              </motion.div>
+            )}
+          </AnimatePresence>
+
+          <div className="grid grid-cols-1 gap-6">
+            <div className="space-y-1">
+              <Label htmlFor="content_en" className={labelClasses}>
+                Content (English)
+              </Label>
+              <Textarea
+                id="content_en"
+                className={cn(inputClasses, "min-h-[400px] font-mono text-sm leading-relaxed")}
+                name="content_en"
+                defaultValue={initialData?.content_en || ""}
+                placeholder="# The Challenge&#10;Describe the problem...&#10;&#10;# The Solution&#10;How you solved it..."
+              />
+            </div>
+            <div className="space-y-1">
+              <Label htmlFor="content_ar" className={labelClasses}>
+                Content (Arabic)
+              </Label>
+              <Textarea
+                id="content_ar"
+                className={cn(inputClasses, "min-h-[400px] font-mono text-sm leading-relaxed")}
+                name="content_ar"
+                defaultValue={initialData?.content_ar || ""}
+                dir="rtl"
+                placeholder="Arabic content..."
+              />
+            </div>
+          </div>
         </div>
 
         {/* Media & Meta */}
         <div className="space-y-6 p-6 rounded-xl bg-background/40 border border-border/50">
-            <h2 className="text-xl font-semibold">Media & Metadata</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div className="space-y-1">
-                  <Label htmlFor="categories" className={labelClasses}>
-                    Categories (comma separated)
-                  </Label>
-                  <Input
-                    id="categories"
-                    className={inputClasses}
-                    type="text"
-                    name="categories"
-                    defaultValue={
-                      Array.isArray(initialData?.categories)
-                        ? initialData.categories.join(", ")
-                        : initialData?.categories || ""
-                    }
-                    placeholder="React, Next.js, TypeScript"
-                  />
-                </div>
-
-                <div className="space-y-1">
-                   {/* Toggle Published */}
-                   <div className="flex items-center justify-between h-10 px-4 rounded-md border border-white/10 bg-white/5">
-                      <Label htmlFor="published" className="cursor-pointer">Published</Label>
-                      <Switch
-                        id="published"
-                        name="published"
-                        defaultChecked={initialData?.published !== false}
-                        value="true"
-                      />
-                   </div>
-                </div>
-
-                <div className="space-y-1">
-                  <Label htmlFor="repoLink" className={labelClasses}>Repo Link</Label>
-                  <Input
-                    id="repoLink"
-                    className={inputClasses}
-                    name="repoLink"
-                    defaultValue={initialData?.repoLink || ""}
-                  />
-                </div>
-                <div className="space-y-1">
-                  <Label htmlFor="liveLink" className={labelClasses}>Live Link</Label>
-                  <Input
-                    id="liveLink"
-                    className={inputClasses}
-                    name="liveLink"
-                    defaultValue={initialData?.liveLink || ""}
-                  />
-                </div>
-
-                {/* Main Image */}
-                <div className="md:col-span-2 space-y-2">
-                    <Label className={labelClasses}>Cover Image</Label>
-                    <div className="p-4 rounded-xl border border-dashed border-white/20 bg-white/5">
-                        <Upload 
-                            setImageUrl={(url) => setImageUrl(url)} 
-                            imageType="Projects" 
-                            currentImageUrl={initialData?.imageLink}
-                        />
-                        <AnimatePresence>
-                            {imageUrl && (
-                            <motion.div
-                                initial={{ opacity: 0, scale: 0.9 }}
-                                animate={{ opacity: 1, scale: 1 }}
-                                className="relative mt-4 rounded-lg overflow-hidden aspect-video max-w-sm mx-auto border border-border"
-                            >
-                                <Image
-                                src={imageUrl}
-                                fill
-                                className="object-cover"
-                                alt="Preview"
-                                />
-                            </motion.div>
-                            )}
-                        </AnimatePresence>
-                        <input type="hidden" name="imageLink" value={imageUrl} />
-                    </div>
-                </div>
+          <h2 className="text-xl font-semibold">Media & Metadata</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="space-y-1">
+              <Label htmlFor="categories" className={labelClasses}>
+                Categories (comma separated)
+              </Label>
+              <Input
+                id="categories"
+                className={inputClasses}
+                type="text"
+                name="categories"
+                defaultValue={
+                  Array.isArray(initialData?.categories)
+                    ? initialData.categories.join(", ")
+                    : initialData?.categories || ""
+                }
+                placeholder="React, Next.js, TypeScript"
+              />
             </div>
+
+            <div className="space-y-1">
+              {/* Toggle Published */}
+              <div className="flex items-center justify-between h-10 px-4 rounded-md border border-white/10 bg-white/5">
+                <Label htmlFor="published" className="cursor-pointer">Published</Label>
+                <Switch
+                  id="published"
+                  name="published"
+                  defaultChecked={initialData?.published !== false}
+                  value="true"
+                />
+              </div>
+            </div>
+
+            <div className="space-y-1">
+              <Label htmlFor="repoLink" className={labelClasses}>Repo Link</Label>
+              <Input
+                id="repoLink"
+                className={inputClasses}
+                name="repoLink"
+                defaultValue={initialData?.repoLink || ""}
+              />
+            </div>
+            <div className="space-y-1">
+              <Label htmlFor="liveLink" className={labelClasses}>Live Link</Label>
+              <Input
+                id="liveLink"
+                className={inputClasses}
+                name="liveLink"
+                defaultValue={initialData?.liveLink || ""}
+              />
+            </div>
+
+            {/* Main Image */}
+            <div className="md:col-span-2 space-y-2">
+              <Label className={labelClasses}>Cover Image</Label>
+              <div className="p-4 rounded-xl border border-dashed border-white/20 bg-white/5">
+                <Upload
+                  setImageUrl={(url) => setImageUrl(url)}
+                  imageType="Projects"
+                  currentImageUrl={initialData?.imageLink}
+                  itemTitle={titleEn}
+                />
+                <AnimatePresence>
+                  {imageUrl && (
+                    <motion.div
+                      initial={{ opacity: 0, scale: 0.9 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      className="relative mt-4 rounded-lg overflow-hidden aspect-video max-w-sm mx-auto border border-border"
+                    >
+                      <Image
+                        src={imageUrl}
+                        fill
+                        className="object-cover"
+                        alt="Preview"
+                      />
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+                <input type="hidden" name="imageLink" value={imageUrl} />
+              </div>
+            </div>
+          </div>
         </div>
 
         <div className="flex justify-end pt-4">
-             <Submit
-                btnText={mode === "create" ? t("add-title") : "Save Changes"}
-                className="bg-primary hover:bg-primary/90 text-white px-8 py-3 rounded-full text-lg shadow-lg shadow-primary/20 transition-all hover:shadow-primary/40 hover:scale-105"
-                type="submit"
-              />
+          <Submit
+            btnText={mode === "create" ? t("add-title") : "Save Changes"}
+            className="bg-primary hover:bg-primary/90 text-white px-8 py-3 rounded-full text-lg shadow-lg shadow-primary/20 transition-all hover:shadow-primary/40 hover:scale-105"
+            type="submit"
+          />
         </div>
       </form>
     </div>

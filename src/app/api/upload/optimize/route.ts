@@ -17,6 +17,7 @@ export async function POST(request: Request): Promise<Response> {
     const formData = await request.formData();
     const file = formData.get("file") as File | null;
     const imageType = formData.get("image-type") as string;
+    const itemTitle = formData.get("item-title") as string | null;
 
     if (!file) {
       return Response.json({ success: false, message: "No file uploaded" });
@@ -77,13 +78,29 @@ export async function POST(request: Request): Promise<Response> {
       "%"
     );
 
+    // Helper function to sanitize filename
+    const sanitizeFilename = (name: string): string => {
+      return name
+        .toLowerCase()
+        .replace(/[^a-z0-9\s-]/g, "") // Remove special characters
+        .replace(/\s+/g, "-") // Replace spaces with hyphens
+        .replace(/-+/g, "-") // Replace multiple hyphens with single
+        .trim();
+    };
+
     // Generate filename with .webp extension and folder structure
-    const originalName = file.name.replace(/\.[^/.]+$/, ""); // Remove original extension
     const timestamp = Date.now();
-    
-    // Determine folder based on imageType
     const folder = imageType.toLowerCase(); // "Certificates" -> "certificates", "Projects" -> "projects"
-    const fileName = `${folder}/${originalName}-${timestamp}.webp`;
+    
+    // Use item title if provided, otherwise use original filename
+    let baseName: string;
+    if (itemTitle && itemTitle.trim()) {
+      baseName = sanitizeFilename(itemTitle);
+    } else {
+      baseName = file.name.replace(/\.[^/.]+$/, ""); // Remove original extension
+    }
+    
+    const fileName = `${folder}/${baseName}-${timestamp}.webp`;
 
     // Upload to R2
     await s3Client.send(

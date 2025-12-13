@@ -10,9 +10,10 @@ type UploadProps = {
   setImageUrl: React.Dispatch<React.SetStateAction<string>>;
   imageType: string;
   currentImageUrl?: string;
+  itemTitle?: string; // Optional title for better file naming
 };
 
-function Upload({ setImageUrl, imageType, currentImageUrl }: UploadProps) {
+function Upload({ setImageUrl, imageType, currentImageUrl, itemTitle }: UploadProps) {
   const [previewUrl, setPreviewUrl] = useState<string | null>(
     currentImageUrl || null
   );
@@ -62,6 +63,9 @@ function Upload({ setImageUrl, imageType, currentImageUrl }: UploadProps) {
       const formData = new FormData();
       formData.append("file", selectedFile);
       formData.append("image-type", imageType);
+      if (itemTitle) {
+        formData.append("item-title", itemTitle);
+      }
 
       const response = await fetch("/api/upload/optimize", {
         method: "POST",
