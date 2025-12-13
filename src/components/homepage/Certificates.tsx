@@ -1,7 +1,8 @@
+"use client";
+
 import { getAllCertificates } from "@/src/app/actions/certificatesActions";
 import Link from "next/link";
 import Image from "next/image";
-import { Button } from "@/src/components/ui/button";
 import { Card } from "@/src/components/ui/card";
 import {
   HoverCard,
@@ -9,11 +10,28 @@ import {
   HoverCardTrigger,
 } from "@/src/components/ui/hover-card";
 import { Eye } from "lucide-react";
-import { getTranslations } from "next-intl/server";
+import { useTranslations } from "next-intl";
+import { useState, useEffect } from "react";
+import ImageViewer from "@/src/components/ui/ImageViewer";
 
-export default async function Certificates() {
-  const { allCertificates } = await getAllCertificates();
-  const t = await getTranslations("certificates");
+export default function Certificates() {
+  const [allCertificates, setAllCertificates] = useState<any[]>([]);
+  const [selectedCertificate, setSelectedCertificate] = useState<any>(null);
+  const [showImageViewer, setShowImageViewer] = useState(false);
+  const t = useTranslations("certificates");
+
+  useEffect(() => {
+    getAllCertificates().then(({ allCertificates }) => {
+      setAllCertificates(allCertificates || []);
+    });
+  }, []);
+
+  const handleEyeClick = (e: React.MouseEvent, cert: any) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setSelectedCertificate(cert);
+    setShowImageViewer(true);
+  };
 
   return (
     <section
@@ -43,7 +61,13 @@ export default async function Certificates() {
                           {cert.title}
                         </h3>
                       </div>
-                      <Eye className="w-5 h-5 text-primary shrink-0" />
+                      <button
+                        onClick={(e) => handleEyeClick(e, cert)}
+                        className="p-2 rounded-full hover:bg-primary/10 transition-colors"
+                        aria-label="Preview certificate"
+                      >
+                        <Eye className="w-5 h-5 text-primary shrink-0" />
+                      </button>
                     </div>
                     <p className="text-sm text-muted-foreground mt-2">
                       {cert.desc}
@@ -64,6 +88,36 @@ export default async function Certificates() {
           </Link>
         ))}
       </div>
+
+      {/* Image Viewer Modal */}
+      {showImageViewer && selectedCertificate && (
+        <div
+          className="fixed inset-0 z-50 bg-background/95 backdrop-blur-sm flex items-center justify-center p-4"
+          onClick={() => setShowImageViewer(false)}
+        >
+          <div className="relative w-full max-w-5xl" onClick={(e) => e.stopPropagation()}>
+            <button
+              onClick={() => setShowImageViewer(false)}
+              className="absolute -top-12 right-0 text-foreground hover:text-primary transition-colors text-sm font-medium"
+            >
+              Close ✕
+            </button>
+            <ImageViewer
+              imageUrl={selectedCertificate.imageLink}
+              altText={selectedCertificate.title}
+              className="relative w-full aspect-4/3 rounded-2xl overflow-hidden shadow-2xl"
+            >
+              <Image
+                src={selectedCertificate.imageLink}
+                alt={selectedCertificate.title}
+                fill
+                className="object-contain"
+                sizes="(max-width: 768px) 100vw, 1200px"
+              />
+            </ImageViewer>
+          </div>
+        </div>
+      )}
     </section>
   );
 }
