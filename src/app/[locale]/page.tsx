@@ -12,10 +12,11 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 import StructuredData from "@/src/components/seo/StructuredData";
 
 export async function generateMetadata({
-  params: { locale },
+  params,
 }: {
-  params: { locale: string };
+  params: Promise<{ locale: string }>;
 }) {
+  const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "metadata.home" });
   const baseUrl = 'https://ahmedlotfy.site';
 
@@ -53,7 +54,7 @@ export async function generateMetadata({
 export default async function HomePage({
   params,
 }: {
-  params: { locale: string };
+  params: Promise<{ locale: string }>;
 }) {
   const header = await headers();
   const session = await auth.api.getSession({ headers: header });
