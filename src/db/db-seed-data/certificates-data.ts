@@ -79,4 +79,13 @@ export const certificatesData = [
       "https://images.ahmedlotfy.site/Screenshot%202025-11-03%20170200.png",
     completedAt: new Date("2025-11-03"),
   },
+  {
+    title: "Laravel From Scratch",
+    desc: "Brad Traversy",
+    courseLink: "https://www.udemy.com/course/laravel-from-scratch/",
+    profLink: "https://workopia.ahmedlotfy.site/",
+    imageLink:
+      "https://images.ahmedlotfy.site/laravel-certificate-placeholder.png",
+    completedAt: new Date("2025-11-20"),
+  },
 ];
