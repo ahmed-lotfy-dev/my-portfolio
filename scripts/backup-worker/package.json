@@ -1,0 +1,24 @@
+{
+  "name": "backup-worker",
+  "version": "1.0.0",
+  "description": "Dedicated worker for heavy database and media backups",
+  "main": "index.ts",
+  "scripts": {
+    "start": "node dist/index.js",
+    "build": "tsc",
+    "backup:full": "node dist/index.js --type=full",
+    "backup:sql": "node dist/index.js --type=sql",
+    "backup:media": "node dist/index.js --type=media"
+  },
+  "dependencies": {
+    "@aws-sdk/client-s3": "^3.400.0",
+    "dotenv": "^16.3.1",
+    "pg": "^8.11.3"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "@types/pg": "^8.10.0",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.2.2"
+  }
+}
