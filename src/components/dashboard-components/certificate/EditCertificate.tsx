@@ -202,6 +202,7 @@ function EditCertificate({ EditedObject }: any) {
                 <Upload
                   setImageUrl={setImageUrl}
                   imageType={"Certificates"}
+                  currentImageUrl={editedCert.imageLink}
                   itemTitle={editedCert.title}
                 />
                 {state?.error?.imageLink && (

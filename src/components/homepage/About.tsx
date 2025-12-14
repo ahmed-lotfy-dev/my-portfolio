@@ -1,5 +1,5 @@
 import Image from "next/image";
-import myImage from "@/public/images/About-Image.png";
+import myImage from "@/public/images/optimized/About-Image.webp";
 import { getTranslations, getLocale } from "next-intl/server";
 
 export default async function About() {

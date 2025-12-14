@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import HeroImage from "@/public/images/hero-image.png";
+import HeroImage from "@/public/images/optimized/improved_hero_background.webp";
 import { FileText, ArrowRight } from "lucide-react";
 import { CVDropdown } from "./CVDropdown";
 import { useTranslations } from "next-intl";
@@ -108,10 +108,11 @@ export default function Hero() {
                 className={`object-cover ${isRTL ? "scale-x-[-1]" : ""}`}
                 src={HeroImage}
                 priority={true}
-                quality={85}
-                alt={t("illustrationAlt")}
+                quality={75}
+                alt={t("Ahmed Lotfy Image")}
                 fill
-                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                sizes="(max-width: 768px) 280px, (max-width: 1200px) 400px, 500px"
+                placeholder="blur"
               />
             </div>
 

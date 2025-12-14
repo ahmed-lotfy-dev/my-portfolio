@@ -1,4 +1,4 @@
-import { S3Client, PutObjectCommand } from "@aws-sdk/client-s3";
+import { S3Client, PutObjectCommand, DeleteObjectCommand } from "@aws-sdk/client-s3";
 import { auth } from "@/src/lib/auth";
 import { headers } from "next/headers";
 import sharp from "sharp";
@@ -12,18 +12,29 @@ const s3Client = new S3Client({
   },
 });
 
+function extractKeyFromUrl(url: string): string | null {
+  try {
+    const urlObj = new URL(url);
+    const pathname = urlObj.pathname;
+    return pathname.startsWith('/') ? pathname.slice(1) : pathname;
+  } catch (error) {
+    console.error("Failed to parse URL:", url, error);
+    return null;
+  }
+}
+
 export async function POST(request: Request): Promise<Response> {
   try {
     const formData = await request.formData();
     const file = formData.get("file") as File | null;
     const imageType = formData.get("image-type") as string;
     const itemTitle = formData.get("item-title") as string | null;
+    const oldImageUrl = formData.get("old-image-url") as string | null;
 
     if (!file) {
       return Response.json({ success: false, message: "No file uploaded" });
     }
 
-    // Validate file type
     if (!file.type.startsWith("image/")) {
       return Response.json({
         success: false,
@@ -39,6 +50,26 @@ export async function POST(request: Request): Promise<Response> {
         success: false,
         message: "You don't have permission to upload files",
       });
+    }
+
+    // Delete old image if it exists
+    if (oldImageUrl) {
+      try {
+        const oldKey = extractKeyFromUrl(oldImageUrl);
+        if (oldKey) {
+          console.log("🗑️  Deleting old image:", oldKey);
+          await s3Client.send(
+            new DeleteObjectCommand({
+              Bucket: process.env.CF_BUCKET_NAME!,
+              Key: oldKey,
+            })
+          );
+          console.log("✅ Old image deleted successfully");
+        }
+      } catch (deleteError) {
+        // Log but don't fail the upload if deletion fails
+        console.warn("⚠️  Failed to delete old image:", deleteError);
+      }
     }
 
     // Convert file to buffer
