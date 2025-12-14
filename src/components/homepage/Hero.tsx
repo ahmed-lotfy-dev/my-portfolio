@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import HeroImage from "@/images/original-pngs/hero-image.png";
+import HeroImage from "@/images/hero-image.png";
 import { FileText, ArrowRight } from "lucide-react";
 import { CVDropdown } from "./CVDropdown";
 import { useTranslations } from "next-intl";

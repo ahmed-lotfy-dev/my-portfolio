@@ -1,5 +1,5 @@
 import Image from "next/image";
-import myImage from "@/images/original-pngs/About-Image.png";
+import myImage from "@/images/About-Image.png";
 import { getTranslations, getLocale } from "next-intl/server";
 
 export default async function About() {
