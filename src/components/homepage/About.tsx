@@ -1,5 +1,5 @@
 import Image from "next/image";
-import myImage from "@/public/images/About-Image.png";
+import myImage from "@/public/images/original-pngs/About-Image.png";
 import { getTranslations, getLocale } from "next-intl/server";
 
 export default async function About() {
@@ -23,6 +23,7 @@ export default async function About() {
             src={myImage}
             width={400}
             height={400}
+            quality={85}
             alt="Ahmed Lotfy"
             className={`rounded-lg shadow-lg ${isRTL ? "scale-x-[-1]" : ""}`}
           />

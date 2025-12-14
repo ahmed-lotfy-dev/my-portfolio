@@ -9,6 +9,20 @@ const nextConfig: NextConfig = {
     serverActions: {
       bodySizeLimit: "10mb", // Increased from default 1mb to allow image uploads
     },
+    // Tree-shake large dependencies to reduce bundle size
+    optimizePackageImports: [
+      "lucide-react",
+      "framer-motion",
+      "react-icons",
+      "@radix-ui/react-accordion",
+      "@radix-ui/react-avatar",
+      "@radix-ui/react-dialog",
+      "@radix-ui/react-dropdown-menu",
+      "@radix-ui/react-popover",
+      "@radix-ui/react-select",
+      "@radix-ui/react-tabs",
+      "@radix-ui/react-tooltip",
+    ],
   },
 
   reactCompiler: false,
@@ -80,6 +94,24 @@ const nextConfig: NextConfig = {
           {
             key: "Cache-Control",
             value: "public, max-age=31536000, immutable",
+          },
+        ],
+      },
+      {
+        source: "/fonts/:path*",
+        headers: [
+          {
+            key: "Cache-Control",
+            value: "public, max-age=31536000, immutable",
+          },
+        ],
+      },
+      {
+        source: "/api/:path*",
+        headers: [
+          {
+            key: "Cache-Control",
+            value: "public, s-maxage=60, stale-while-revalidate=300",
           },
         ],
       },

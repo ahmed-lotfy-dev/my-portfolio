@@ -142,8 +142,6 @@ export default async function LocaleLayout({ children, params }: Props) {
             </NextIntlClientProvider>
           </ThemeProvider>
         </PostHogProvider>
-
-        <GoogleAnalytics gaId="G-97J3PKW2DK" />
         <Toaster />
       </body>
     </html>

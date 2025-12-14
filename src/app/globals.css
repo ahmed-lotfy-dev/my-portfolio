@@ -17,7 +17,8 @@
   --color-destructive: hsl(0 84% 60%);
 
   /* Base color variables */
-  --color-background: hsl(220 30% 96%); /* Subtle cool gray for futuristic feel */
+  --color-background: hsl(220 30% 96%);
+  /* Subtle cool gray for futuristic feel */
   --color-foreground: hsl(215 60% 12%);
   --color-card: hsl(0 0% 100%);
   --color-card-foreground: hsl(215 60% 12%);
@@ -41,7 +42,8 @@
   .dark {
     --color-background: hsl(222 47% 11%);
     --color-foreground: hsl(215 60% 98%);
-    --color-card: hsl(222 47% 13%); /* Slightly lighter than bg */
+    --color-card: hsl(222 47% 13%);
+    /* Slightly lighter than bg */
     --color-card-foreground: hsl(215 60% 98%);
     --color-popover: hsl(222 47% 11%);
     --color-popover-foreground: hsl(215 60% 98%);
@@ -50,7 +52,7 @@
     --color-primary-foreground: hsl(0 0% 100%);
     --color-accent: hsl(217 33% 17%);
     --color-accent-foreground: hsl(215 60% 98%);
-    --color-border: hsl(217 33% 20%);  
+    --color-border: hsl(217 33% 20%);
     --color-muted: hsl(217 33% 17%);
     /* Optimized Dark Muted Text */
     --color-muted-foreground: hsl(215 30% 70%);
@@ -65,11 +67,15 @@
     background-color: var(--color-background, white);
   }
 
-  h1, h2, h3, h4 {
+  h1,
+  h2,
+  h3,
+  h4 {
     font-family: var(--font-heading);
   }
 
-  :lang(ar), [dir="rtl"] {
+  :lang(ar),
+  [dir="rtl"] {
     font-family: var(--font-arabic);
     direction: rtl;
   }
@@ -87,5 +93,20 @@
   body {
     margin: 0;
     min-height: 100vh;
+  }
+
+  /* GPU acceleration for animations */
+  .animate-pulse,
+  .animate-spin,
+  [data-motion] {
+    will-change: transform, opacity;
+    transform: translateZ(0);
+  }
+
+  /* Optimize compositing for frequently animated elements */
+  @media (prefers-reduced-motion: no-preference) {
+    * {
+      scroll-behavior: smooth;
+    }
   }
 }
