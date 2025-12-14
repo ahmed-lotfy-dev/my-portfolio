@@ -2,7 +2,6 @@ import { ErrorBoundary } from "@/src/components/ErrorBoundary";
 import { NextIntlClientProvider, hasLocale } from "next-intl";
 import { notFound } from "next/navigation";
 import { routing } from "@/src/i18n/routing";
-import { GoogleAnalytics } from "@next/third-parties/google";
 
 import "../globals.css";
 
@@ -125,7 +124,8 @@ export default async function LocaleLayout({ children, params }: Props) {
           href="https://us-assets.i.posthog.com"
           crossOrigin="anonymous"
         />
-
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         {/* DNS prefetch as fallback for older browsers */}
         <link rel="dns-prefetch" href="https://images.ahmedlotfy.site" />
         <link rel="dns-prefetch" href="https://us.i.posthog.com" />

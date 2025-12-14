@@ -108,7 +108,7 @@ export default function Hero() {
                 className={`object-cover ${isRTL ? "scale-x-[-1]" : ""}`}
                 src={HeroImage}
                 priority={true}
-                quality={75}
+                quality={60}
                 alt={t("illustrationAlt")}
                 fill
                 sizes="(max-width: 768px) 280px, (max-width: 1200px) 400px, 500px"
