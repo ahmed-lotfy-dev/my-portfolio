@@ -27,7 +27,6 @@ const nextConfig: NextConfig = {
   },
 
   reactCompiler: false,
-  swcMinify: true, // Enable SWC minification for better performance
   images: {
     formats: ["image/avif", "image/webp"],
     minimumCacheTTL: 31536000, // 1 year - Aggressive caching for optimized images
