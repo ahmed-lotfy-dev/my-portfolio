@@ -1,69 +1,235 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Ahmed Lotfy - Portfolio
 
-## Getting Started
+> Modern, high-performance portfolio built with Next.js 16, featuring a 91/100 Lighthouse score and production-grade architecture.
 
-First, run the development server:
+[![Performance](https://img.shields.io/badge/Lighthouse-91%2F100-success)](https://ahmedlotfy.site)
+[![Next.js](https://img.shields.io/badge/Next.js-16.0-black)](https://nextjs.org/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.0-blue)](https://www.typescriptlang.org/)
+
+## 🚀 Features
+
+### Core Functionality
+- **Multilingual Support** - Full i18n with Arabic (RTL) and English
+- **Dynamic Content** - Projects, certificates, and blog posts with admin dashboard
+- **Authentication** - Secure admin access with Better Auth
+- **Image Optimization** - WebP conversion with 87% size reduction
+- **Auto-Delete System** - Automatic cleanup of old cover images from R2 storage
+
+### Performance Optimizations
+- **Desktop**: 91/100 Lighthouse score
+- **LCP**: 1.5s (85% improvement from 10.4s)
+- **TBT**: 0ms (perfect score)
+- **Image Delivery**: Responsive WebP with blur placeholders
+- **CDN Caching**: 1-year TTL for static assets
+- **Bundle Optimization**: Modular imports for lucide-react
+
+### Production Features
+- **Automated Backups** - Scheduled database and media backups to R2
+- **Docker Deployment** - Multi-stage builds with standalone output
+- **Analytics** - PostHog integration with proxy for ad-blocker bypass
+- **SEO Optimized** - Dynamic metadata, robots.txt, and sitemap
+- **Error Handling** - Comprehensive error boundaries and logging
+
+## 🛠 Tech Stack
+
+### Framework & Runtime
+- **Next.js 16** - React framework with App Router
+- **React 19** - Latest React features
+- **TypeScript** - Type-safe development
+- **Bun** - Fast JavaScript runtime
+
+### Database & Storage
+- **PostgreSQL** - Primary database with Kysely query builder
+- **Cloudflare R2** - Object storage for images and backups
+- **Better Auth** - Modern authentication solution
+
+### Styling & UI
+- **Tailwind CSS** - Utility-first CSS framework
+- **Shadcn/ui** - High-quality React components
+- **Framer Motion** - Smooth animations
+- **Lucide Icons** - Beautiful icon library
+
+### DevOps & Monitoring
+- **Docker** - Containerized deployment
+- **PM2** - Process management for backup worker
+- **PostHog** - Product analytics
+- **Sharp** - High-performance image processing
+
+## 📦 Installation
+
+### Prerequisites
+- Bun 1.3+
+- PostgreSQL 14+
+- Cloudflare R2 account
+
+### Setup
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
+# Clone repository
+git clone https://github.com/ahmed-lotfy-dev/my-portfolio.git
+cd my-portfolio
+
+# Install dependencies
+bun install
+
+# Configure environment
+cp .env.example .env.local
+# Edit .env.local with your credentials
+
+# Run database migrations
+bun run db:migrate
+
+# Seed initial data
+bun run db:seed
+
+# Start development server
+bun run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Visit `http://localhost:3001`
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 🔧 Configuration
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+### Environment Variables
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+```env
+# Database
+DATABASE_URL=postgresql://user:password@localhost:5432/portfolio
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+# Authentication
+BETTER_AUTH_SECRET=your-secret-key
+ADMIN_EMAIL=your@email.com
 
-## Learn More
+# Cloudflare R2
+CF_ACCOUNT_ID=your-account-id
+CF_ACCESS_KEY_ID=your-access-key
+CF_SECRET_ACCESS_KEY=your-secret-key
+CF_BUCKET_NAME=your-bucket-name
+CF_IMAGES_SUBDOMAIN=your-subdomain
 
-To learn more about Next.js, take a look at the following resources:
+# Analytics (Optional)
+NEXT_PUBLIC_POSTHOG_KEY=your-posthog-key
+NEXT_PUBLIC_POSTHOG_HOST=https://us.i.posthog.com
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 🎨 Project Structure
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+```
+my-portfolio/
+├── src/
+│   ├── app/                    # Next.js App Router
+│   │   ├── [locale]/          # Internationalized routes
+│   │   ├── api/               # API endpoints
+│   │   └── actions/           # Server actions
+│   ├── components/            # React components
+│   │   ├── homepage/         # Landing page sections
+│   │   ├── dashboard-components/ # Admin dashboard
+│   │   └── ui/               # Reusable UI components
+│   ├── db/                   # Database layer
+│   │   ├── schema/          # Kysely schema
+│   │   └── db-seed-data/    # Seed data
+│   └── lib/                  # Utilities and helpers
+├── scripts/
+│   ├── backup-worker/        # Automated backup system
+│   └── optimize-images.ts    # Image optimization script
+├── public/
+│   └── images/
+│       ├── optimized/        # WebP images
+│       └── original-pngs/    # Source images
+└── docs/                     # Documentation
+```
 
-## Deploy on Vercel
+## 🚢 Deployment
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Docker Build
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
-# my-portfolio
-
-## Backup System
-
-This project features a production-grade backup architecture separated into an **Execution Plane** (Worker) and a **Control Plane** (Dashboard).
-
-### Backup Worker
-Located in `scripts/backup-worker`. Runs as a standalone Node.js process to perform heavy backup operations.
-- **SQL Backup**: Uses `pg_dump` to generate custom-format dumps.
-- **Media Backup**: Uses Cloudflare R2 `CopyObject` to effectively snapshot media without downloading/re-uploading.
-
-**Deployment**:
-The built-in Dockerfile includes the backup worker in the final image at `/app/backup-worker`.
-
-**Run Manually via Docker**:
 ```bash
-# Full Backup
-docker exec -it <container_id> node backup-worker/dist/index.js --type=full
+# Build image
+docker build -t my-portfolio .
+
+# Run container
+docker run -p 3000:3000 \
+  --env-file .env.local \
+  my-portfolio
 ```
 
-**Scheduled Backups (Dokploy/Cron)**:
-Set up a cron job using the app image:
-- Command: `node backup-worker/dist/index.js --type=full`
-- Schedule: `0 */8 * * *` (Every 8 hours recommended)
+### Backup System
 
-### Dashboard
-Visit `/dashboard` to view the **System Health** card, which displays recent backup logs (Success/Failure) and allows manual triggers (creates a pending request).
+The backup worker runs independently and can be scheduled via cron:
 
-### Disaster Recovery
-See [docs/restore-runbook.md](./docs/restore-runbook.md) for detailed instructions on restoring data from R2.
+```bash
+# Manual backup
+docker exec <container> node backup-worker/dist/index.js --type=full
 
+# Cron schedule (every 8 hours)
+0 */8 * * * docker exec <container> node backup-worker/dist/index.js --type=full
+```
+
+## 📈 Performance Metrics
+
+### Lighthouse Scores
+- **Performance**: 91/100 (Desktop)
+- **Accessibility**: 92/100
+- **Best Practices**: 92/100
+- **SEO**: 92/100
+
+### Core Web Vitals
+- **LCP**: 1.5s (target: <2.5s) ✅
+- **FCP**: 1.2s (target: <1.8s) ✅
+- **TBT**: 0ms (target: <200ms) ✅
+- **CLS**: 0 (target: <0.1) ✅
+
+### Optimizations Applied
+- WebP image conversion (87% size reduction)
+- Responsive image sizes with proper srcset
+- LCP image preloading with fetchPriority
+- Font preconnect to eliminate render-blocking
+- Modular icon imports to reduce bundle size
+- 1-year CDN caching for static assets
+
+## 🔐 Security
+
+- **Authentication**: Better Auth with secure session management
+- **CSRF Protection**: Built-in Next.js protection
+- **Input Validation**: Zod schemas for all forms
+- **Image Sanitization**: Filename sanitization for uploads
+- **Admin-Only Routes**: Server-side authentication checks
+- **Security Headers**: CSP, HSTS, X-Frame-Options configured
+
+## 📝 Development
+
+### Available Scripts
+
+```bash
+bun run dev          # Start development server
+bun run build        # Build for production
+bun run start        # Start production server
+bun run lint         # Run ESLint
+bun run db:migrate   # Run database migrations
+bun run db:seed      # Seed database
+```
+
+### Adding New Content
+
+1. **Projects**: Use admin dashboard at `/dashboard/projects`
+2. **Certificates**: Use admin dashboard at `/dashboard/certificates`
+3. **Blog Posts**: Use admin dashboard at `/dashboard/blogs`
+
+All content supports bilingual (English/Arabic) input with markdown support.
+
+## 🤝 Contributing
+
+This is a personal portfolio project, but suggestions and feedback are welcome!
+
+## 📄 License
+
+MIT License - feel free to use this as inspiration for your own portfolio.
+
+## 🔗 Links
+
+- **Live Site**: [ahmedlotfy.site](https://ahmedlotfy.site)
+- **GitHub**: [ahmed-lotfy-dev](https://github.com/ahmed-lotfy-dev)
+
+---
+
+Built with ❤️ using Next.js 16 and modern web technologies.

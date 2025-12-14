@@ -26,11 +26,6 @@ const nextConfig: NextConfig = {
     ],
     
   },
-  modularizeImports: {
-    'lucide-react': {
-      transform: 'lucide-react/dist/esm/icons/{{member}}',
-    },
-  },
   reactCompiler: false,
   images: {
     formats: ["image/avif", "image/webp"],
