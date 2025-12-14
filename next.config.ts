@@ -24,8 +24,13 @@ const nextConfig: NextConfig = {
       "@radix-ui/react-tabs",
       "@radix-ui/react-tooltip",
     ],
+    
   },
-
+  modularizeImports: {
+    'lucide-react': {
+      transform: 'lucide-react/dist/esm/icons/{{member}}',
+    },
+  },
   reactCompiler: false,
   images: {
     formats: ["image/avif", "image/webp"],

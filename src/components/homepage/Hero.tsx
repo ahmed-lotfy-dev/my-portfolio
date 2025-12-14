@@ -7,13 +7,11 @@ import { FileText, ArrowRight } from "lucide-react";
 import { CVDropdown } from "./CVDropdown";
 import { useTranslations } from "next-intl";
 import { motion } from "framer-motion";
-import { useLocale } from "next-intl";
 import { Button } from "../ui/button";
 import { cn } from "@/src/lib/utils";
 
-export default function Hero() {
+export default function Hero({ locale }: { locale: string }) {
   const t = useTranslations("hero");
-  const locale = useLocale();
   const isRTL = locale === "ar";
 
   return (
@@ -108,7 +106,7 @@ export default function Hero() {
                 className={`object-cover ${isRTL ? "scale-x-[-1]" : ""}`}
                 src={HeroImage}
                 priority={true}
-                quality={60}
+                quality={75}
                 alt={t("illustrationAlt")}
                 fill
                 sizes="(max-width: 640px) 280px, (max-width: 768px) 350px, (max-width: 1024px) 400px, 500px"
