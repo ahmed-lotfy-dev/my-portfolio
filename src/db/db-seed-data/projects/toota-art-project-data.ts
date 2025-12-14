@@ -1,15 +1,10 @@
-export const tootaArtProject = {
-  basicInfo: {
-    titleEn: "Toota Art Portfolio",
-    titleAr: "معرض توته للفنون",
-    slug: "toota-art",
-  },
-  shortDescription: {
-    en: "A performance-first digital gallery for visual artists, built with the TALL stack and Cloudflare R2. Features server-side interactivity with Livewire 3, zero-egress object storage, and a comprehensive automated backup system.",
-    ar: "معرض رقمي يركز على الأداء للفنانين البصريين، مبني باستخدام TALL Stack و Cloudflare R2. يتميز بتفاعلية من جانب الخادم باستخدام Livewire 3، وتخزين كائنات بدون رسوم نقل، ونظام نسخ احتياطي آلي شامل.",
-  },
-  caseStudy: {
-    en: `# Case Study: Toota Art Portfolio
+export const tootaArtProject = [{
+  title_en: "Toota Art Portfolio",
+  title_ar: "معرض توته للفنون",
+  slug: "toota-art",
+  desc_en: "A performance-first digital gallery for visual artists, built with the TALL stack and Cloudflare R2. Features server-side interactivity with Livewire 3, zero-egress object storage, and a comprehensive automated backup system.",
+  desc_ar: "معرض رقمي يركز على الأداء للفنانين البصريين، مبني باستخدام TALL Stack و Cloudflare R2. يتميز بتفاعلية من جانب الخادم باستخدام Livewire 3، وتخزين كائنات بدون رسوم نقل، ونظام نسخ احتياطي آلي شامل.",
+  content_en: `# Case Study: Toota Art Portfolio
 **A Performance-First Digital Gallery for Visual Artists**
 
 > **Role:** Full-Stack Developer
@@ -66,7 +61,7 @@ Unlike social platforms, this is a dedicated professional portfolio.
 *   Implementing **automated backup scheduling** with programmatic retention policies.
 *   Operationalizing **SEO automation** for instant content discoverability.
 `,
-    ar: `# دراسة حالة: معرض توته للفنون
+  content_ar: `# دراسة حالة: معرض توته للفنون
 **معرض رقمي يركز على الأداء للفنانين البصريين**
 
 > **الدور:** مطور واجهة كاملة (Full-Stack Developer)
@@ -118,18 +113,12 @@ Unlike social platforms, this is a dedicated professional portfolio.
 *   **مرونة بنقرة واحدة:** تنزيل فوري لتفريغ SQL، تصدير JSON، أو أرشيفات وسائط كاملة.
 
 ## ماذا تعلمت
-*   إتقان **Cloudflare R2 APIs** لتقديم وسائط عالي الأداء وفعال من حيث التكلفة.
-*   بناء **رافعات ملفات معقدة بالسحب والإفلات** بـ PHP/Livewire فقط.
-*   تنفيذ **جدولة النسخ الاحتياطي الآلي** مع سياسات احتفاظ برمجية.
 *   تشغيل **أتمتة السيو (SEO)** لضمان اكتشاف المحتوى فورياً.
 `,
-  },
-  mediaMetadata: {
-    categories: ["Laravel", "Livewire", "Alpine.js", "Tailwind CSS", "PostgreSQL", "Cloudflare R2", "Docker", "Spatie"],
-    published: true,
-    repoLink: "https://github.com/ahmed-lotfy-dev/toota-portfolio",
-    liveLink: "https://toota-art.ahmedlotfy.site",
-    coverImage: "https://images.ahmedlotfy.site/projects/Projects-screencapture-toota-art-ahmedlotfy-site-2025-12-01-21_53_25%20(Edited)-1765597181426.webp",
-  },
+  categories: ["Laravel", "Livewire", "Alpine.js", "Tailwind CSS", "PostgreSQL", "Cloudflare R2", "Docker", "Spatie"],
+  published: true,
+  repoLink: "https://github.com/ahmed-lotfy-dev/toota-portfolio",
+  liveLink: "https://toota-art.ahmedlotfy.site",
+  imageLink: "https://images.ahmedlotfy.site/projects/Projects-screencapture-toota-art-ahmedlotfy-site-2025-12-01-21_53_25%20(Edited)-1765597181426.webp",
   displayOrder: 6,
-};
+}];

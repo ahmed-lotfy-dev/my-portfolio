@@ -1,15 +1,10 @@
-export const posSystemProject = {
-  basicInfo: {
-    titleEn: "POS System",
-    titleAr: "نظام نقاط البيع",
-    slug: "pos-system",
-  },
-  shortDescription: {
-    en: "A modern, full-stack Point of Sale system built with React, NestJS, and Prisma. Features include real-time inventory management, role-based access control, and a responsive UI designed for speed and reliability.",
-    ar: "نظام نقاط بيع متكامل وعصري مبني باستخدام React و NestJS و Prisma. يتميز بإدارة المخزون في الوقت الفعلي، والتحكم في الوصول القائم على الأدوار، وواجهة مستخدم سريعة وموثوقة.",
-  },
-  caseStudy: {
-    en: `# POS System Case Study
+export const posSystemProject = [{
+  title_en: "POS System",
+  title_ar: "نظام نقاط البيع",
+  slug: "pos-system",
+  desc_en: "A modern, full-stack Point of Sale system built with React, NestJS, and Prisma. Features include real-time inventory management, role-based access control, and a responsive UI designed for speed and reliability.",
+  desc_ar: "نظام نقاط بيع متكامل وعصري مبني باستخدام React و NestJS و Prisma. يتميز بإدارة المخزون في الوقت الفعلي، والتحكم في الوصول القائم على الأدوار، وواجهة مستخدم سريعة وموثوقة.",
+  content_en: `# POS System Case Study
 
 **Role:** Full Stack Developer  
 **Tech Stack:** React 18, Vite, NestJS, Prisma, PostgreSQL, Docker, Tailwind CSS  
@@ -76,7 +71,7 @@ Revisiting this project taught me that **code is a living thing**. The differenc
 *   **Type Safety is king:** Moving to strict TypeScript saved me from countless bugs that would have only appeared in production.
 *   **User Experience Matters:** A powerful backend is useless if the frontend is clunky. Investing time in a proper design system paid off in usability.
 `,
-    ar: `# دراسة حالة: نظام نقاط البيع (POS System)
+  content_ar: `# دراسة حالة: نظام نقاط البيع (POS System)
 
 **الدور:** مطور واجهات متكاملة (Full Stack Developer)  
 **التقنيات المستخدمة:** React 18, Vite, NestJS, Prisma, PostgreSQL, Docker, Tailwind CSS  
@@ -139,24 +134,20 @@ Revisiting this project taught me that **code is a living thing**. The differenc
 
 إعادة زيارة هذا المشروع علمتني أن **الكود كائن حي**. الفرق بين تنفيذي الأولي والنسخة الحالية هو كالفرق بين الليل والنهار.
 
-*   **إعادة الهيكلة مهارة:** تعلم كيفية ترحيل قاعدة بيانات حية وتبديل أدوات البناء دون توقف الخدمة لا يقل قيمة عن كتابة كود جديد.
 *   **أمان النوع هو الملك:** الانتقال إلى TypeScript الصارم أنقذني من أخطاء لا حصر لها كانت ستظهر فقط في الإنتاج.
 *   **تجربة المستخدم تهم:** الخلفية القوية عديمة الفائدة إذا كانت الواجهة الأمامية صعبة الاستخدام. استثمار الوقت في نظام تصميم مناسب آتى ثماره في سهولة الاستخدام.
 `,
-  },
-  mediaMetadata: {
-    categories: [
-      "React",
-      "NestJS",
-      "Prisma",
-      "PostgreSQL",
-      "Docker",
-      "Tailwind CSS",
-    ],
-    published: true,
-    repoLink: "https://github.com/ahmed-lotfy-dev/pos-system",
-    liveLink: "https://pos-system-app.ahmedlotfy.site",
-    coverImage: "https://images.ahmedlotfy.site/projects/Pos-System%20.png",
-  },
+  categories: [
+    "React",
+    "NestJS",
+    "Prisma",
+    "PostgreSQL",
+    "Docker",
+    "Tailwind CSS",
+  ],
+  published: true,
+  repoLink: "https://github.com/ahmed-lotfy-dev/pos-system",
+  liveLink: "https://pos-system-app.ahmedlotfy.site",
+  imageLink: "https://images.ahmedlotfy.site/projects/Pos-System%20.png",
   displayOrder: 4,
-};
+}];
