@@ -82,11 +82,6 @@ experimental: {
     '@radix-ui/*'
   ],
 },
-modularizeImports: {
-  'lucide-react': {
-    transform: 'lucide-react/dist/esm/icons/{{member}}',
-  },
-}
 ```
 
 **Results**:

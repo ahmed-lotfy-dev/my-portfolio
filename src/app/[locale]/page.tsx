@@ -99,7 +99,7 @@ export default async function HomePage({
         }}
       />
 
-      <Hero />
+      <Hero locale={locale} />
       <Skills />
       <Suspense fallback={<ProjectsSkeleton />}>
         <Projects />
