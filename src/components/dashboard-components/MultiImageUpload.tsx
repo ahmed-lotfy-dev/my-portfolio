@@ -8,16 +8,19 @@ import { useTranslations } from "next-intl";
 import Image from "next/image";
 import { Loader2, Trash2, Star, Plus, Check } from "lucide-react";
 import { cn } from "@/src/lib/utils";
+import { authClient } from "@/src/lib/auth-client";
 
-type MultiImageUploadProps = {
-  images: string[];
-  setImages: (images: string[]) => void;
-  primaryImage: string;
-  setPrimaryImage: (url: string) => void;
-  imageType: string;
-  itemSlug: string;
-  itemTitle?: string;
-};
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/src/components/ui/alert-dialog";
 
 export function MultiImageUpload({
   images,
@@ -104,7 +107,15 @@ export function MultiImageUpload({
     }
   };
 
+  const { data: session } = authClient.useSession();
+  const isAdmin = session?.user?.email === process.env.NEXT_PUBLIC_ADMIN_EMAIL;
+
   const handleDelete = (urlToDelete: string) => {
+    if (!isAdmin) {
+      notify("You have no privileges doing this", false);
+      return;
+    }
+
     const newImages = images.filter(url => url !== urlToDelete);
     setImages(newImages);
 
@@ -123,7 +134,7 @@ export function MultiImageUpload({
             const isPrimary = url === primaryImage;
             return (
               <div
-                key={index}
+                key={`${url}-${index}`}
                 className={cn(
                   "relative aspect-video rounded-lg overflow-hidden border-2 group transition-all",
                   isPrimary ? "border-primary ring-2 ring-primary/20" : "border-border hover:border-border/80"
@@ -137,30 +148,61 @@ export function MultiImageUpload({
                 />
 
                 {/* Actions Overlay */}
-                <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-2">
+                <div className="absolute inset-0 bg-black/60 opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity flex items-center justify-center gap-2">
                   {/* Make Primary Button */}
                   {!isPrimary && (
                     <Button
                       size="sm"
                       variant="secondary"
                       className="h-8 text-xs gap-1"
-                      onClick={() => setPrimaryImage(url)}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        e.preventDefault();
+                        setPrimaryImage(url);
+                      }}
                       type="button"
                     >
                       <Star className="w-3 h-3" /> Set Cover
                     </Button>
                   )}
 
-                  {/* Delete Button */}
-                  <Button
-                    size="icon"
-                    variant="destructive"
-                    className="h-8 w-8"
-                    onClick={() => handleDelete(url)}
-                    type="button"
-                  >
-                    <Trash2 className="w-4 h-4" />
-                  </Button>
+                  {/* Delete Button with AlertDialog */}
+                  <AlertDialog>
+                    <AlertDialogTrigger asChild>
+                      <Button
+                        size="icon"
+                        variant="destructive"
+                        className="h-8 w-8 z-20"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          // Don't preventDefault here, or Trigger won't work
+                        }}
+                      >
+                        <Trash2 className="w-4 h-4" />
+                      </Button>
+                    </AlertDialogTrigger>
+                    <AlertDialogContent>
+                      <AlertDialogHeader>
+                        <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
+                        <AlertDialogDescription>
+                          This check to prevent accidental deletions.
+                          The image will be removed from this project.
+                        </AlertDialogDescription>
+                      </AlertDialogHeader>
+                      <AlertDialogFooter>
+                        <AlertDialogCancel onClick={(e) => e.stopPropagation()}>Cancel</AlertDialogCancel>
+                        <AlertDialogAction
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            handleDelete(url);
+                          }}
+                          className="bg-destructive hover:bg-destructive/90"
+                        >
+                          Delete
+                        </AlertDialogAction>
+                      </AlertDialogFooter>
+                    </AlertDialogContent>
+                  </AlertDialog>
                 </div>
 
                 {/* Primary Badge */}
@@ -214,3 +256,13 @@ export function MultiImageUpload({
     </div>
   );
 }
+
+type MultiImageUploadProps = {
+  images: string[];
+  setImages: (images: string[]) => void;
+  primaryImage: string;
+  setPrimaryImage: (url: string) => void;
+  imageType: string;
+  itemSlug: string;
+  itemTitle?: string;
+};

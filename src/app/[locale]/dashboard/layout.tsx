@@ -1,21 +1,28 @@
+import { cookies } from "next/headers";
+import { SidebarInset, SidebarProvider, SidebarTrigger } from "@/src/components/ui/sidebar";
+import { Separator } from "@/src/components/ui/separator";
 import Aside from "@/src/components/dashboard-components/Aside";
-import { getLocale } from "next-intl/server";
 
 export default async function DashboardLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  const locale = await getLocale();
+  const cookieStore = await cookies();
+  const defaultOpen = cookieStore.get("sidebar:state")?.value === "true";
 
   return (
-    <div className="flex min-h-screen w-full">
+    <SidebarProvider defaultOpen={defaultOpen}>
       <Aside />
-      <div className="flex-1 flex flex-col min-w-0">
-        <main className="flex flex-1 flex-col gap-4 p-4 lg:gap-6 lg:p-6 overflow-x-hidden">
+      <SidebarInset>
+        <header className="flex h-16 shrink-0 items-center gap-2 border-b px-4">
+          <SidebarTrigger className="-ml-1" />
+          <Separator orientation="vertical" className="mr-2 h-4" />
+        </header>
+        <div className="flex flex-1 flex-col gap-4 p-4 pt-0">
           {children}
-        </main>
-      </div>
-    </div>
+        </div>
+      </SidebarInset>
+    </SidebarProvider>
   );
 }

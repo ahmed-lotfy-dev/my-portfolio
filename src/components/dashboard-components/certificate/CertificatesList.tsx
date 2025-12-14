@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { authClient } from "@/src/lib/auth-client";
 import { deleteCertificateAction } from "@/src/app/actions/certificatesActions";
 import { EditCertificate } from "./EditCertificate";
 import { ImageCarousel } from "@/src/components/ui/ImageCarousel";
@@ -10,10 +11,41 @@ import { ExternalLink, Trash2, Award, FileText } from "lucide-react";
 import { AddCertificateComponent } from "./AddCertificate";
 import Image from "next/image";
 
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/src/components/ui/alert-dialog";
+import { notify } from "@/src/lib/utils/toast";
+import { Button } from "@/src/components/ui/button";
+
 function CertificateList({ allCertificates }: any) {
   const locale = useLocale();
   const t = useTranslations("certificates");
   const isArabic = locale === "ar";
+
+  const { data: session } = authClient.useSession();
+  const isAdmin = session?.user?.email === process.env.NEXT_PUBLIC_ADMIN_EMAIL;
+
+  const handleDelete = async (id: string, title: string) => {
+    if (!isAdmin) {
+      notify("You have no privileges doing this", false);
+      return;
+    }
+
+    const result = await deleteCertificateAction(id);
+    if (result.success) {
+      notify(result.message, true);
+    } else {
+      notify(result.message || "Failed to delete certificate", false);
+    }
+  };
 
   return (
     <div className="w-full h-full p-6 space-y-6">
@@ -71,7 +103,7 @@ function CertificateList({ allCertificates }: any) {
                 </p>
 
                 <div className="mt-auto pt-4 flex items-center justify-between border-t border-border">
-                  <div className="flex gap-2">
+                  <div className="flex gap-2 items-center">
                     {cert.courseLink && (
                       <Link
                         href={cert.courseLink}
@@ -92,7 +124,40 @@ function CertificateList({ allCertificates }: any) {
                         <FileText size={16} />
                       </Link>
                     )}
+                  </div>
+
+                  <div className="flex gap-2">
                     <EditCertificate EditedObject={cert} />
+
+                    <AlertDialog>
+                      <AlertDialogTrigger asChild>
+                        <Button
+                          variant="ghost"
+                          size="icon"
+                          className="h-9 w-9 text-destructive hover:text-destructive hover:bg-destructive/10 rounded-full"
+                        >
+                          <Trash2 size={16} />
+                        </Button>
+                      </AlertDialogTrigger>
+                      <AlertDialogContent>
+                        <AlertDialogHeader>
+                          <AlertDialogTitle>Delete Certificate?</AlertDialogTitle>
+                          <AlertDialogDescription>
+                            This will permanently delete "{cert.title}".
+                            This action cannot be undone.
+                          </AlertDialogDescription>
+                        </AlertDialogHeader>
+                        <AlertDialogFooter>
+                          <AlertDialogCancel>Cancel</AlertDialogCancel>
+                          <AlertDialogAction
+                            onClick={() => handleDelete(cert.id, cert.title)}
+                            className="bg-destructive hover:bg-destructive/90"
+                          >
+                            Delete
+                          </AlertDialogAction>
+                        </AlertDialogFooter>
+                      </AlertDialogContent>
+                    </AlertDialog>
                   </div>
                 </div>
               </div>

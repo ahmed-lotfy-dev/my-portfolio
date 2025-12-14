@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Image from "next/image";
+import { authClient } from "@/src/lib/auth-client";
 import {
   Reorder,
   useDragControls,
@@ -29,6 +30,18 @@ import {
 import { Badge } from "@/src/components/ui/badge";
 import { cn } from "@/src/lib/utils";
 import ProjectCategories from "@/src/components/ui/ProjectCategories";
+
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/src/components/ui/alert-dialog";
 
 export default function ProjectList({ allProjects }: any) {
   const locale = useLocale();
@@ -68,14 +81,20 @@ export default function ProjectList({ allProjects }: any) {
     }
   };
 
-  const handleDelete = async (id: string, title: string) => {
-    if (window.confirm(`Are you sure you want to delete "${title}"?`)) {
-      const result = await deleteProjectAction(id);
-      if (result.success) {
-        notify(result.message, true);
-      } else {
-        notify(result.message || "Failed to delete project", false);
-      }
+  const { data: session } = authClient.useSession();
+  const isAdmin = session?.user?.email === process.env.NEXT_PUBLIC_ADMIN_EMAIL;
+
+  const handleDelete = async (id: string) => {
+    if (!isAdmin) {
+      notify("You have no privileges doing this", false);
+      return;
+    }
+
+    const result = await deleteProjectAction(id);
+    if (result.success) {
+      notify(result.message, true);
+    } else {
+      notify(result.message || "Failed to delete project", false);
     }
   };
 
@@ -214,19 +233,36 @@ export default function ProjectList({ allProjects }: any) {
                     <Pencil size={16} />
                   </button>
                 </Link>
-                <Button
-                  variant="ghost"
-                  size="icon"
-                  className="h-8 w-8 text-destructive hover:text-destructive hover:bg-destructive/10 rounded-full"
-                  onClick={() =>
-                    handleDelete(
-                      proj.id,
-                      locale === "ar" ? proj.title_ar : proj.title_en
-                    )
-                  }
-                >
-                  <Trash2 className="h-4 w-4" />
-                </Button>
+
+                <AlertDialog>
+                  <AlertDialogTrigger asChild>
+                    <Button
+                      variant="ghost"
+                      size="icon"
+                      className="h-8 w-8 text-destructive hover:text-destructive hover:bg-destructive/10 rounded-full"
+                    >
+                      <Trash2 className="h-4 w-4" />
+                    </Button>
+                  </AlertDialogTrigger>
+                  <AlertDialogContent>
+                    <AlertDialogHeader>
+                      <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
+                      <AlertDialogDescription>
+                        This action cannot be undone. This will permanently delete the project
+                        "{locale === "ar" ? proj.title_ar : proj.title_en}".
+                      </AlertDialogDescription>
+                    </AlertDialogHeader>
+                    <AlertDialogFooter>
+                      <AlertDialogCancel>Cancel</AlertDialogCancel>
+                      <AlertDialogAction
+                        onClick={() => handleDelete(proj.id)}
+                        className="bg-destructive hover:bg-destructive/90"
+                      >
+                        Delete
+                      </AlertDialogAction>
+                    </AlertDialogFooter>
+                  </AlertDialogContent>
+                </AlertDialog>
               </div>
             </Reorder.Item>
           ))}

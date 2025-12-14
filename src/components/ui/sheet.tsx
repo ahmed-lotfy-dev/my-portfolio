@@ -69,7 +69,6 @@ const SheetContent = React.forwardRef<
         <span className="sr-only">Close</span>
       </SheetPrimitive.Close>
       {children}
-      <SheetPrimitive.Title className="sr-only">Toggle navigation menu</SheetPrimitive.Title>
     </SheetPrimitive.Content>
   </SheetPortal>
 ))
