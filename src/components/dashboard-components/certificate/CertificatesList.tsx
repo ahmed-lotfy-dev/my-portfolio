@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { deleteCertificateAction } from "@/src/app/actions/certificatesActions";
 import { EditCertificate } from "./EditCertificate";
-import ImageViewer from "@/src/components/ui/ImageViewer";
+import { ImageCarousel } from "@/src/components/ui/ImageCarousel";
 import { useLocale, useTranslations } from "next-intl";
 import { motion, AnimatePresence } from "framer-motion";
 import { ExternalLink, Trash2, Award, FileText } from "lucide-react";
@@ -43,19 +43,11 @@ function CertificateList({ allCertificates }: any) {
               {/* Image Section */}
               <div className="relative aspect-video w-full overflow-hidden bg-muted/50">
                 {cert.imageLink ? (
-                  <ImageViewer
-                    imageUrl={cert.imageLink}
-                    altText={cert.title}
-                    className="w-full h-full"
-                  >
-                      <Image
-                        src={cert.imageLink}
-                        alt={cert.title}
-                        fill
-                        className="object-cover group-hover:scale-105 transition-transform duration-500"
-                        sizes="(max-width: 768px) 100vw, 300px"
-                      />
-                  </ImageViewer>
+                  <ImageCarousel
+                    images={[cert.imageLink]}
+                    title={cert.title}
+                    className="w-full h-full mb-0"
+                  />
                 ) : (
                   <div className="flex h-full w-full items-center justify-center text-muted-foreground">
                     <Award className="h-12 w-12 opacity-20" />

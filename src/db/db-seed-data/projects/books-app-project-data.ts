@@ -18,6 +18,6 @@ export const booksAppProjectData = [{
     "published": true,
     "repoLink": "https://github.com/chingu-voyages/v43-tier2-team-14",
     "liveLink": "https://books-app.ahmedlotfy.site/",
-    "imageLink": "https://images.ahmedlotfy.site/projects/Books-Project.png",
+    "coverImage": "https://images.ahmedlotfy.site/projects/Books-Project.png",
     "displayOrder": 1
   }];

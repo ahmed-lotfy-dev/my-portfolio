@@ -16,6 +16,6 @@ export const devChallengesProjectData = [{
     "published": true,
     "repoLink": "https://github.com/ahmed-lotfy-dev/dev-challenges-io",
     "liveLink": "https://dev-challenges.ahmedlotfy.surge.sh",
-    "imageLink": "https://images.ahmedlotfy.site/projects/Generated%20Image%20September%2030,%202025%20-%2012_40PM.png",
+    "coverImage": "https://images.ahmedlotfy.site/projects/Generated%20Image%20September%2030,%202025%20-%2012_40PM.png",
     "displayOrder": 2
   }];

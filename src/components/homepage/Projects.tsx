@@ -17,7 +17,7 @@ type Project = {
   title_ar: string;
   desc_en: string;
   desc_ar: string;
-  imageLink: string;
+  coverImage: string;
   liveLink: string;
   repoLink: string;
   categories: string[];
@@ -62,11 +62,11 @@ export default async function Projects() {
                   <Link href={proj.slug ? `/projects/${proj.slug}` : proj.liveLink} target={proj.slug ? undefined : "_blank"} className="block">
                     <div className="relative w-full h-64 cursor-pointer overflow-hidden">
                       <Image
-                        src={proj.imageLink}
+                        src={proj.coverImage}
                         alt={locale === "ar" ? proj.title_ar : proj.title_en}
                         fill
                         unoptimized={
-                          proj.imageLink?.toLowerCase().endsWith(".gif")
+                          proj.coverImage?.toLowerCase().endsWith(".gif")
                             ? true
                             : undefined
                         }

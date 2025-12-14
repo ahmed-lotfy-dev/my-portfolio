@@ -5,7 +5,7 @@ import { cn } from "@/src/lib/utils";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowLeft, ExternalLink, Award } from "lucide-react";
-import ImageViewer from "@/src/components/ui/ImageViewer";
+import { ImageCarousel } from "@/src/components/ui/ImageCarousel";
 import { Button } from "@/src/components/ui/button";
 import StructuredData from "@/src/components/seo/StructuredData";
 
@@ -87,20 +87,11 @@ export default async function CertificatePage(props: { params: Promise<{ slug: s
         </Link>
 
         {/* Certificate Image - Large and Zoomable */}
-        <ImageViewer
-          imageUrl={certificate.imageLink}
-          altText={certificate.title}
+        <ImageCarousel
+          images={[certificate.imageLink]}
+          title={certificate.title}
           className="relative w-full max-w-4xl mx-auto aspect-4/3 rounded-2xl md:rounded-3xl shadow-2xl border border-white/10 mb-12 md:mb-16 ring-1 ring-white/10 bg-secondary/5 hover:ring-primary/50 transition-all overflow-hidden"
-        >
-          <Image
-            src={certificate.imageLink}
-            alt={certificate.title}
-            fill
-            className="object-contain relative z-10 transition-transform duration-700 group-hover:scale-105"
-            priority
-            sizes="(max-width: 768px) 100vw, 1200px"
-          />
-        </ImageViewer>
+        />
 
         {/* Certificate Information Card */}
         <div className="max-w-3xl mx-auto space-y-8 md:space-y-10">

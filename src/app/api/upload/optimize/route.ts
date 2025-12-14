@@ -29,6 +29,7 @@ export async function POST(request: Request): Promise<Response> {
     const file = formData.get("file") as File | null;
     const imageType = formData.get("image-type") as string;
     const itemTitle = formData.get("item-title") as string | null;
+    const itemSlug = formData.get("item-slug") as string | null;
     const oldImageUrl = formData.get("old-image-url") as string | null;
 
     if (!file) {
@@ -90,7 +91,7 @@ export async function POST(request: Request): Promise<Response> {
         fit: "inside",
       })
       .webp({
-  lossless: true,
+        lossless: true,
         effort: 6, // Higher effort = better compression (0-6)
       })
       .toBuffer();
@@ -121,7 +122,12 @@ export async function POST(request: Request): Promise<Response> {
 
     // Generate filename with .webp extension and folder structure
     const timestamp = Date.now();
-    const folder = imageType.toLowerCase(); // "Certificates" -> "certificates", "Projects" -> "projects"
+    let folder = imageType.toLowerCase(); // "Certificates" -> "certificates", "Projects" -> "projects"
+    
+    // For projects, organize in subfolders if slug is available
+    if (folder === "projects" && itemSlug) {
+      folder = `projects/${sanitizeFilename(itemSlug)}`;
+    }
     
     // Use item title if provided, otherwise use original filename
     let baseName: string;
@@ -154,7 +160,7 @@ export async function POST(request: Request): Promise<Response> {
     return Response.json({
       success: true,
       message: "Image optimized and uploaded successfully",
-      imageLink: imageUrl,
+      coverImage: imageUrl,
       stats: {
         originalSize: `${(buffer.length / 1024 / 1024).toFixed(2)} MB`,
         optimizedSize: `${(optimizedBuffer.length / 1024 / 1024).toFixed(

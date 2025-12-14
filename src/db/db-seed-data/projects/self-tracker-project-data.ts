@@ -18,6 +18,6 @@ export const selfTrackerProjectData = [{
     "published": true,
     "repoLink": "https://github.com/ahmed-lotfy-dev/selfTracker",
     "liveLink": "https://drive.google.com/file/d/1r1qLiMZwX0oDeq7lQaouEdSs3vUhC8Fg/view?usp=drive_link",
-    "imageLink": "https://images.ahmedlotfy.site/projects/ezgif.com-animated-gif-maker(1).gif",
+    "coverImage": "https://images.ahmedlotfy.site/projects/ezgif.com-animated-gif-maker(1).gif",
     "displayOrder": 5,
   }];

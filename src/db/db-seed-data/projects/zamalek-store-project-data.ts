@@ -213,6 +213,6 @@ This goes beyond CRUD—it reflects real engineering decisions, trade-offs, and 
   published: true,
   repoLink: "https://github.com/ahmed-lotfy-dev/zamalek-store",
   liveLink: "https://zamalek-store.ahmedlotfy.site",
-  imageLink: "https://images.ahmedlotfy.site/projects/screencapture-zamalek-store-ahmedlotfy-site-en-2025-12-06-20_06_48-1765597020942.webp",
+  coverImage: "https://images.ahmedlotfy.site/projects/screencapture-zamalek-store-ahmedlotfy-site-en-2025-12-06-20_06_48-1765597020942.webp",
   displayOrder: 7,
 }]

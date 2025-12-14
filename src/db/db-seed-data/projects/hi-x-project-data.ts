@@ -17,6 +17,6 @@ export const hiXProjectData = [{
     "published": true,
     "repoLink": "https://github.com/ahmed-lotfy-dev/hi-x",
     "liveLink": "https://hi-x.com",
-    "imageLink": "https://images.ahmedlotfy.site/projects/hi-x-net-2025-10-07-18_23_54.png",
+    "coverImage": "https://images.ahmedlotfy.site/projects/hi-x-net-2025-10-07-18_23_54.png",
     "displayOrder": 3
   }];

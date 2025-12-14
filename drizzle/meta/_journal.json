@@ -57,6 +57,13 @@
       "when": 1765646624611,
       "tag": "0007_pale_victor_mancha",
       "breakpoints": true
+    },
+    {
+      "idx": 8,
+      "version": "7",
+      "when": 1765732299356,
+      "tag": "0008_chunky_prowler",
+      "breakpoints": true
     }
   ]
 }

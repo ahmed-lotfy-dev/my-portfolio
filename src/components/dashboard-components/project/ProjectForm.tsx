@@ -7,6 +7,7 @@ import { Textarea } from "@/src/components/ui/textarea";
 import { Switch } from "@/src/components/ui/switch";
 import Submit from "@/src/components/ui/formSubmitBtn";
 import { Upload } from "../Upload";
+import { MultiImageUpload } from "../MultiImageUpload";
 import { notify } from "@/src/lib/utils/toast";
 import { useActionState } from "react";
 import { useTranslations } from "next-intl";
@@ -30,7 +31,8 @@ export default function ProjectForm({
 }: ProjectFormProps) {
   const [state, formAction] = useActionState(action, null as any);
   const router = useRouter();
-  const [imageUrl, setImageUrl] = useState(initialData?.imageLink || "");
+  const [imageUrl, setImageUrl] = useState(initialData?.coverImage || "");
+  const [images, setImages] = useState<string[]>(initialData?.images || (initialData?.coverImage ? [initialData.coverImage] : []));
   const [titleEn, setTitleEn] = useState(initialData?.title_en || "");
   const [slug, setSlug] = useState(initialData?.slug || "");
   const [isSlugEdited, setIsSlugEdited] = useState(mode === "edit");
@@ -310,33 +312,23 @@ export default function ProjectForm({
               />
             </div>
 
-            {/* Main Image */}
+            {/* Main Image & Gallery */}
             <div className="md:col-span-2 space-y-2">
-              <Label className={labelClasses}>Cover Image</Label>
+              <Label className={labelClasses}>Project Images</Label>
               <div className="p-4 rounded-xl border border-dashed border-white/20 bg-white/5">
-                <Upload
-                  setImageUrl={(url) => setImageUrl(url)}
+                <MultiImageUpload
+                  images={images}
+                  setImages={setImages}
+                  primaryImage={imageUrl}
+                  setPrimaryImage={setImageUrl}
                   imageType="Projects"
-                  currentImageUrl={initialData?.imageLink}
+                  itemSlug={slug}
                   itemTitle={titleEn}
                 />
-                <AnimatePresence>
-                  {imageUrl && (
-                    <motion.div
-                      initial={{ opacity: 0, scale: 0.9 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      className="relative mt-4 rounded-lg overflow-hidden aspect-video max-w-sm mx-auto border border-border"
-                    >
-                      <Image
-                        src={imageUrl}
-                        fill
-                        className="object-cover"
-                        alt="Preview"
-                      />
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-                <input type="hidden" name="imageLink" value={imageUrl} />
+
+                {/* Hidden Inputs for Form Submission */}
+                <input type="hidden" name="coverImage" value={imageUrl} />
+                <input type="hidden" name="images" value={JSON.stringify(images)} />
               </div>
             </div>
           </div>

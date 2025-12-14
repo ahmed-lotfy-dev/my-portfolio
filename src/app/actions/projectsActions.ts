@@ -65,10 +65,26 @@ export async function addProjectAction(state: any, data: FormData) {
   const desc_ar = data.get("desc_ar") as string;
   const repoLink = data.get("repoLink") as string;
   const liveLink = data.get("liveLink") as string;
-  const imageLink = data.get("imageLink") as string;
+  const coverImage = data.get("coverImage") as string;
   const categoriesString = data.get("categories") as string;
   const categories =
     categoriesString?.split(",").map((tag) => tag.trim()) || [];
+  
+  /* Safe extraction of images array (defensive against File objects) */
+  const imagesEntries = data.getAll("images");
+  let images: string[] = [];
+  for (const entry of imagesEntries) {
+    if (typeof entry === "string") {
+      try {
+        const parsed = JSON.parse(entry);
+        if (Array.isArray(parsed)) {
+          images = parsed;
+          break;
+        }
+      } catch (e) { /* ignore invalid json */ }
+    }
+  }
+
   const published = data.get("published") === "true";
   
   const slug = data.get("slug") as string;
@@ -96,7 +112,8 @@ export async function addProjectAction(state: any, data: FormData) {
     content_ar,
     repoLink,
     liveLink,
-    imageLink,
+    coverImage,
+    images,
     categories,
   });
 
@@ -146,7 +163,8 @@ export async function addProjectAction(state: any, data: FormData) {
       desc_ar: finalDescAr,
       repoLink,
       liveLink,
-      imageLink,
+      coverImage,
+      images,
       categories,
       published,
       slug: slug || title_en.toLowerCase().replace(/ /g, "-").replace(/[^\w-]+/g, ""),
@@ -188,10 +206,30 @@ export async function editProjectAction(state: any, data: FormData) {
   const desc_ar = data.get("desc_ar") as string;
   const repoLink = data.get("repoLink") as string;
   const liveLink = data.get("liveLink") as string;
-  const imageLink = data.get("imageLink") as string;
+  const coverImage = data.get("coverImage") as string;
   const categoriesString = data.get("categories") as string;
   const categories =
     categoriesString?.split(",").map((tag) => tag.trim()) || [];
+
+  /* Safe extraction of images array (defensive against File objects) */
+  logger.debug("Project ID:", id);
+  logger.debug("FormData Keys:", Array.from(data.keys()));
+  logger.debug("coverImage raw value:", data.get("coverImage"));
+
+  const imagesEntries = data.getAll("images");
+  let images: string[] = [];
+  for (const entry of imagesEntries) {
+    if (typeof entry === "string") {
+      try {
+        const parsed = JSON.parse(entry);
+        if (Array.isArray(parsed)) {
+          images = parsed;
+          break;
+        }
+      } catch (e) { /* ignore invalid json */ }
+    }
+  }
+
   const published = data.get("published") === "true";
   
   const slug = data.get("slug") as string;
@@ -222,7 +260,8 @@ export async function editProjectAction(state: any, data: FormData) {
     content_ar,
     repoLink,
     liveLink,
-    imageLink,
+    coverImage,
+    images,
     categories,
   });
 
@@ -236,9 +275,9 @@ export async function editProjectAction(state: any, data: FormData) {
       where: (p, { eq }) => eq(p.id, id),
     });
 
-    if (oldProject?.imageLink && oldProject.imageLink !== imageLink) {
+    if (oldProject?.coverImage && oldProject.coverImage !== coverImage) {
       logger.info("New image detected — deleting old one");
-      await DeleteFromS3(oldProject.imageLink);
+      await DeleteFromS3(oldProject.coverImage);
     }
 
     logger.debug("Original EN Title:", title_en);
@@ -286,7 +325,8 @@ export async function editProjectAction(state: any, data: FormData) {
         content_ar,
         repoLink,
         liveLink,
-        imageLink,
+        coverImage,
+        images,
         categories,
         published,
       })

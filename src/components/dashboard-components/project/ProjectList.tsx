@@ -13,7 +13,7 @@ import {
   updateProjectOrder,
 } from "@/src/app/actions/projectsActions";
 import { Button } from "@/src/components/ui/button";
-import ImageViewer from "../../ui/ImageViewer";
+import { ImageCarousel } from "../../ui/ImageCarousel";
 import { useLocale, useTranslations } from "next-intl";
 import { notify } from "@/src/lib/utils/toast";
 import Link from "next/link";
@@ -108,12 +108,12 @@ export default function ProjectList({ allProjects }: any) {
                 </motion.button>
               )}
             </AnimatePresence>
-            <Link 
+            <Link
               href="/dashboard/projects/new"
               className="bg-primary text-primary-foreground shadow-lg shadow-primary/20 h-10 py-2 px-6 inline-flex items-center justify-center rounded-md text-sm font-medium transition-all hover:shadow-xl hover:shadow-primary/30"
             >
-               <Plus className="mr-2 h-4 w-4" />
-               {t("add-title")}
+              <Plus className="mr-2 h-4 w-4" />
+              {t("add-title")}
             </Link>
           </div>
         </div>
@@ -156,19 +156,11 @@ export default function ProjectList({ allProjects }: any) {
 
               {/* Image */}
               <div className="col-span-2">
-                 <ImageViewer
-                    imageUrl={proj.imageLink}
-                    altText={locale === "ar" ? proj.title_ar : proj.title_en}
-                    className="h-16 w-24 rounded-lg ring-1 ring-border/50 hover:ring-primary/50 transition-all"
-                 >
-                      <Image
-                        src={proj.imageLink}
-                        alt={locale === "ar" ? proj.title_ar : proj.title_en}
-                        fill
-                        className="object-cover hover:scale-110 transition-transform duration-500"
-                        sizes="96px"
-                      />
-                 </ImageViewer>
+                <ImageCarousel
+                  images={[proj.coverImage]}
+                  title={locale === "ar" ? proj.title_ar : proj.title_en}
+                  className="h-16 w-24 rounded-lg ring-1 ring-border/50 hover:ring-primary/50 transition-all mb-0"
+                />
               </div>
 
               {/* Details */}

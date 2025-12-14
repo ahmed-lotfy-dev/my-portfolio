@@ -119,6 +119,6 @@ Unlike social platforms, this is a dedicated professional portfolio.
   published: true,
   repoLink: "https://github.com/ahmed-lotfy-dev/toota-portfolio",
   liveLink: "https://toota-art.ahmedlotfy.site",
-  imageLink: "https://images.ahmedlotfy.site/projects/Projects-screencapture-toota-art-ahmedlotfy-site-2025-12-01-21_53_25%20(Edited)-1765597181426.webp",
+  coverImage: "https://images.ahmedlotfy.site/projects/Projects-screencapture-toota-art-ahmedlotfy-site-2025-12-01-21_53_25%20(Edited)-1765597181426.webp",
   displayOrder: 6,
 }];

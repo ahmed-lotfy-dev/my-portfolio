@@ -63,7 +63,7 @@ function Upload({ setImageUrl, imageType, currentImageUrl, itemTitle }: UploadPr
       const formData = new FormData();
       formData.append("file", selectedFile);
       formData.append("image-type", imageType);
-      
+
       if (itemTitle) {
         formData.append("item-title", itemTitle);
       }
@@ -81,8 +81,8 @@ function Upload({ setImageUrl, imageType, currentImageUrl, itemTitle }: UploadPr
 
       if (data.success) {
         notify(`${data.message} (${data.stats.reduction} smaller)`, true);
-        setImageUrl(data.imageLink);
-        setPreviewUrl(data.imageLink);
+        setImageUrl(data.coverImage);
+        setPreviewUrl(data.coverImage);
       } else {
         notify(data.message, false);
       }

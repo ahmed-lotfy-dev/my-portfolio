@@ -108,7 +108,7 @@ I systematically optimized every aspect of the application:
   "published": true,
   "repoLink": "https://github.com/ahmed-lotfy-dev/my-portfolio",
   "liveLink": "https://ahmedlotfy.site",
-  "imageLink": "https://images.ahmedlotfy.site/projects/portfolio-cover.webp",
+  "coverImage": "https://images.ahmedlotfy.site/projects/portfolio-cover.webp",
   "displayOrder": 8,
   }
 ];

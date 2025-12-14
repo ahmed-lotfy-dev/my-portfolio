@@ -11,7 +11,7 @@ import {
 import { Eye } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { useState } from "react";
-import ImageViewer from "@/src/components/ui/ImageViewer";
+import { ImageCarousel } from "@/src/components/ui/ImageCarousel";
 
 // Define the type for certificates
 type Certificate = {
@@ -94,19 +94,11 @@ export default function CertificatesList({ certificates }: { certificates?: Cert
             >
               Close ✕
             </button>
-            <ImageViewer
-              imageUrl={selectedCertificate.imageLink}
-              altText={selectedCertificate.title}
+            <ImageCarousel
+              images={[selectedCertificate.imageLink]}
+              title={selectedCertificate.title}
               className="relative w-full aspect-4/3 rounded-2xl overflow-hidden shadow-2xl"
-            >
-              <Image
-                src={selectedCertificate.imageLink}
-                alt={selectedCertificate.title}
-                fill
-                className="object-contain"
-                sizes="(max-width: 768px) 100vw, 1200px"
-              />
-            </ImageViewer>
+            />
           </div>
         </div>
       )}

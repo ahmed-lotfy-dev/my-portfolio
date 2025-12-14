@@ -64,7 +64,7 @@ async function seed() {
       desc_ar: project.desc_ar,
       content_en: project.content_en,
       content_ar: project.content_ar,
-      imageLink: project.imageLink,
+      coverImage: project.coverImage,
       liveLink: project.liveLink,
       repoLink: project.repoLink,
       categories: project.categories,

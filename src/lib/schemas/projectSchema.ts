@@ -15,7 +15,8 @@ export async function getProjectSchema() {
     content_ar: z.string().optional(),
     repoLink: z.string().url({ message: t("repo_link_invalid") }),
     liveLink: z.string().url({ message: t("live_link_invalid") }),
-    imageLink: z.string().url({ message: t("image_link_required") }),
+    coverImage: z.string().url({ message: t("image_link_required") }),
+    images: z.array(z.string()).optional().default([]),
     categories: z.array(z.string()).optional().default([]),
   });
 }
