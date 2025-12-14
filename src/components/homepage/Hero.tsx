@@ -111,7 +111,7 @@ export default function Hero() {
                 quality={60}
                 alt={t("illustrationAlt")}
                 fill
-                sizes="(max-width: 768px) 280px, (max-width: 1200px) 400px, 500px"
+                sizes="(max-width: 640px) 280px, (max-width: 768px) 350px, (max-width: 1024px) 400px, 500px"
                 placeholder="blur"
               />
             </div>
