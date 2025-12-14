@@ -12,7 +12,7 @@ import { Toaster } from "@/src/components/ui/sonner";
 import UserButton from "@/src/components/dashboard-components/UserButton";
 import { getMessages, setRequestLocale } from "next-intl/server";
 
-import { inter, sora, tajawal } from "@/src/components/ui/fonts";
+import { inter, poppins, sora, tajawal } from "@/src/components/ui/fonts";
 import { ThemeProvider } from "next-themes";
 import { PostHogProvider } from "@/src/providers/postHogProvider";
 import { Suspense } from "react";
@@ -120,7 +120,7 @@ export default async function LocaleLayout({ children, params }: Props) {
         <link rel="dns-prefetch" href="https://us-assets.i.posthog.com" />
       </head>
       <body
-        className={`${inter.variable}  ${sora.variable} ${isArabic ? tajawal.variable : ""
+        className={`${inter.variable} ${poppins.variable} ${sora.variable} ${isArabic ? tajawal.variable : ""
           } antialiased font-main`}
         suppressHydrationWarning
       >

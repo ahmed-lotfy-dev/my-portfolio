@@ -45,8 +45,5 @@ sendgrid.env
 *.tsbuildinfo
 next-env.d.ts
 sendgrid.env
-generated_blog_posts
 .beads
 .gitattributes
-agent generate .md
-en
