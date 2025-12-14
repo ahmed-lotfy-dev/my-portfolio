@@ -5,13 +5,11 @@ import { cn } from "@/src/lib/utils";
 import Image from "next/image";
 import { shouldShowApk } from "@/src/lib/utils/projectUtils";
 import Link from "next/link";
-import ReactMarkdown from "react-markdown";
 import { ArrowLeft, ExternalLink, Github } from "lucide-react";
-import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
-import { vscDarkPlus } from "react-syntax-highlighter/dist/esm/styles/prism";
 import ImageViewer from "@/src/components/ui/ImageViewer";
 import { Button } from "@/src/components/ui/button";
 import StructuredData from "@/src/components/seo/StructuredData";
+import { MarkdownDisplay } from "@/src/components/ui/MarkdownDisplay";
 
 // Helper function to extract keywords from markdown content
 function extractKeywords(content: string, maxKeywords: number = 15): string[] {
@@ -241,162 +239,14 @@ export default async function ProjectDetailsPage({ params }: { params: Promise<{
 
                 {/* Markdown Content */}
                 <div className="max-w-3xl mx-auto">
-                    <div className="prose prose-lg md:prose-xl max-w-none 
-                    prose-headings:font-bold prose-headings:tracking-tight
-                    prose-p:text-muted-foreground prose-p:leading-loose
-                    prose-li:marker:text-primary
-                    ">
-                        {content ? (
-                            <ReactMarkdown
-                                components={{
-                                    img: ({ node, ...props }) => (
-                                        <div className="my-10">
-                                            <ImageViewer
-                                                imageUrl={(props.src as string) || ""}
-                                                altText={props.alt || "Project Image"}
-                                                className="relative w-full aspect-video rounded-3xl overflow-hidden shadow-2xl border border-white/10 bg-secondary/5 hover:ring-2 hover:ring-primary/50 transition-all"
-                                            >
-                                                <Image
-                                                    src={(props.src as string) || ""}
-                                                    alt={props.alt || "Project Image"}
-                                                    fill
-                                                    className="object-cover hover:scale-105 transition-transform duration-700"
-                                                />
-                                            </ImageViewer>
-                                            {props.alt && (
-                                                <p className="text-center text-sm text-muted-foreground mt-3 italic">
-                                                    {props.alt}
-                                                </p>
-                                            )}
-                                        </div>
-                                    ),
-                                    h1: ({ children }) => (
-                                        <h1 className="font-heading text-4xl md:text-5xl font-bold tracking-tight mb-10 mt-16 text-foreground">
-                                            {children}
-                                        </h1>
-                                    ),
-                                    h2: ({ children }) => (
-                                        <div className="group mt-16 mb-6">
-                                            <h2 className="font-heading flex items-center text-2xl md:text-3xl font-semibold tracking-tight text-foreground border-b border-border/40 pb-4">
-                                                {children}
-                                            </h2>
-                                        </div>
-                                    ),
-                                    h3: ({ children }) => (
-                                        <h3 className="font-heading text-xl md:text-2xl font-semibold mt-12 mb-4 text-foreground tracking-tight">
-                                            {children}
-                                        </h3>
-                                    ),
-                                    p: ({ children }) => (
-                                        <p className="leading-8 text-muted-foreground mb-6 text-lg md:text-xl font-normal">
-                                            {children}
-                                        </p>
-                                    ),
-                                    strong: ({ children }) => (
-                                        <strong className="font-semibold text-primary-foreground bg-primary px-2 py-0.5 rounded-md text-[0.9em] shadow-sm align-middle mx-1">
-                                            {children}
-                                        </strong>
-                                    ),
-                                    a: ({ href, children }) => (
-                                        <a
-                                            href={href}
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                            className="inline-flex items-center text-primary font-medium border-b-2 border-primary/20 hover:border-primary transition-all duration-300 hover:bg-primary/5 rounded-sm px-1 gap-1"
-                                        >
-                                            {children}
-                                            <ExternalLink className="w-3.5 h-3.5 opacity-50" />
-                                        </a>
-                                    ),
-                                    blockquote: ({ children }) => (
-                                        <blockquote className="relative border-l-4 border-l-primary bg-secondary/30 rounded-r-xl px-8 py-6 my-10 backdrop-blur-sm">
-                                            <div className="absolute top-0 right-0 p-3 opacity-10">
-                                                <svg width="40" height="40" viewBox="0 0 24 24" fill="currentColor"><path d="M14.017 21L14.017 18C14.017 16.8954 14.9124 16 16.017 16H19.017C19.5693 16 20.017 15.5523 20.017 15V9C20.017 8.44772 19.5693 8 19.017 8H15.017C14.4647 8 14.017 8.44772 14.017 9V11C14.017 11.5523 13.5693 12 13.017 12H12.017V5H22.017V15C22.017 16.4533 21.5231 17.7913 20.6873 18.8454C19.9868 19.7289 19.0567 20.4468 17.9942 20.8872C16.7323 21.4103 15.3528 21.4554 14.017 21ZM5.0166 21L5.0166 18C5.0166 16.8954 5.91203 16 7.0166 16H10.0166C10.5689 16 11.0166 15.5523 11.0166 15V9C11.0166 8.44772 10.5689 8 10.0166 8H6.0166C5.46432 8 5.0166 8.44772 5.0166 9V11C5.0166 11.5523 4.56889 12 4.0166 12H3.0166V5H13.0166V15C13.0166 16.4533 12.5227 17.7913 11.6869 18.8454C10.9864 19.7289 10.0563 20.4468 8.99378 20.8872C7.73191 21.4103 6.3524 21.4554 5.0166 21Z" /></svg>
-                                            </div>
-                                            <div className="text-xl font-medium leading-relaxed text-foreground italic">
-                                                {children}
-                                            </div>
-                                        </blockquote>
-                                    ),
-                                    ul: ({ children }) => (
-                                        <ul className="space-y-4 my-8 list-none pl-2">
-                                            {children}
-                                        </ul>
-                                    ),
-                                    li: ({ children }) => (
-                                        <li className="flex items-start gap-3 text-muted-foreground text-lg/relaxed group">
-                                            <span className="flex-shrink-0 mt-2.5 w-1.5 h-1.5 rounded-full bg-primary" />
-                                            <span className="group-hover:text-foreground transition-colors duration-200">
-                                                {children}
-                                            </span>
-                                        </li>
-                                    ),
-                                    code({ node, className, children, ...props }) {
-                                        const match = /language-(\w+)/.exec(className || '');
-                                        // eslint-disable-next-line @typescript-eslint/no-unused-vars
-                                        const { ref, ...rest } = props;
-                                        return match ? (
-                                            <div className="my-8 rounded-xl overflow-hidden shadow-2xl border border-white/10 bg-[#1e1e1e]">
-                                                {/* Mac-like Header */}
-                                                <div className="flex items-center gap-1.5 px-4 py-3 bg-[#252526] border-b border-white/5">
-                                                    <div className="w-3 h-3 rounded-full bg-[#FF5F56]" />
-                                                    <div className="w-3 h-3 rounded-full bg-[#FFBD2E]" />
-                                                    <div className="w-3 h-3 rounded-full bg-[#27C93F]" />
-                                                </div>
-                                                <SyntaxHighlighter
-                                                    style={vscDarkPlus as any}
-                                                    language={match[1]}
-                                                    PreTag="div"
-                                                    customStyle={{ margin: 0, background: 'transparent', padding: '1.5rem' }}
-                                                    {...rest}
-                                                >
-                                                    {String(children).replace(/\n$/, '')}
-                                                </SyntaxHighlighter>
-                                            </div>
-                                        ) : (
-                                            <code className="bg-secondary/50 text-primary px-1.5 py-0.5 rounded-md font-medium text-sm" {...props}>
-                                                {children}
-                                            </code>
-                                        );
-                                    },
-                                    table: ({ children }) => (
-                                        <div className="overflow-x-auto my-8 rounded-xl border border-border/50 shadow-lg">
-                                            <table className="w-full text-left text-sm">
-                                                {children}
-                                            </table>
-                                        </div>
-                                    ),
-                                    thead: ({ children }) => (
-                                        <thead className="bg-secondary/30 text-foreground font-semibold">
-                                            {children}
-                                        </thead>
-                                    ),
-                                    tr: ({ children }) => (
-                                        <tr className="border-b border-border/50 last:border-0 hover:bg-secondary/10 transition-colors">
-                                            {children}
-                                        </tr>
-                                    ),
-                                    th: ({ children }) => (
-                                        <th className="px-6 py-4 font-semibold text-foreground/90 uppercase tracking-wider text-xs">
-                                            {children}
-                                        </th>
-                                    ),
-                                    td: ({ children }) => (
-                                        <td className="px-6 py-4 text-muted-foreground whitespace-nowrap">
-                                            {children}
-                                        </td>
-                                    ),
-                                }}
-                            >
-                                {content}
-                            </ReactMarkdown>
-                        ) : (
-                            <div className="flex flex-col items-center justify-center py-24 text-center border-y border-dashed border-border/50 bg-card/30 rounded-3xl">
-                                <div className="text-4xl mb-4">✍️</div>
-                                <p className="text-xl text-muted-foreground font-medium">{t("case_study_coming_soon")}</p>
-                            </div>
-                        )}
-                    </div>
+                    {content ? (
+                        <MarkdownDisplay content={content} />
+                    ) : (
+                        <div className="flex flex-col items-center justify-center py-24 text-center border-y border-dashed border-border/50 bg-card/30 rounded-3xl">
+                            <div className="text-4xl mb-4">✍️</div>
+                            <p className="text-xl text-muted-foreground font-medium">{t("case_study_coming_soon")}</p>
+                        </div>
+                    )}
                 </div>
 
                 <div className="mt-32 pt-12 border-t border-border/20 text-center pb-8">
