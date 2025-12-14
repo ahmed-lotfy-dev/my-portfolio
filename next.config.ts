@@ -27,8 +27,10 @@ const nextConfig: NextConfig = {
   },
 
   reactCompiler: false,
+  swcMinify: true, // Enable SWC minification for better performance
   images: {
     formats: ["image/avif", "image/webp"],
+    minimumCacheTTL: 31536000, // 1 year - Aggressive caching for optimized images
     deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
     remotePatterns: [
@@ -54,6 +56,7 @@ const nextConfig: NextConfig = {
   skipTrailingSlashRedirect: true,
   async rewrites() {
     return [
+      // PostHog rewrites without locale
       {
         source: "/ingest/static/:path*",
         destination: "https://us-assets.i.posthog.com/static/:path*",
@@ -65,6 +68,28 @@ const nextConfig: NextConfig = {
       {
         source: "/ingest/decide",
         destination: "https://us.i.posthog.com/decide",
+      },
+      // PostHog rewrites with locale prefix
+      {
+        source: "/:locale/ingest/static/:path*",
+        destination: "https://us-assets.i.posthog.com/static/:path*",
+      },
+      {
+        source: "/:locale/ingest/:path*",
+        destination: "https://us.i.posthog.com/:path*",
+      },
+      {
+        source: "/:locale/ingest/decide",
+        destination: "https://us.i.posthog.com/decide",
+      },
+      // Redirect locale-prefixed SEO files to root
+      {
+        source: "/:locale/robots.txt",
+        destination: "/robots.txt",
+      },
+      {
+        source: "/:locale/sitemap.xml",
+        destination: "/sitemap.xml",
       },
     ];
   },

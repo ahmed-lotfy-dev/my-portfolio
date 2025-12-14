@@ -109,7 +109,7 @@ export default function Hero() {
                 src={HeroImage}
                 priority={true}
                 quality={75}
-                alt={t("Ahmed Lotfy Image")}
+                alt={t("illustrationAlt")}
                 fill
                 sizes="(max-width: 768px) 280px, (max-width: 1200px) 400px, 500px"
                 placeholder="blur"

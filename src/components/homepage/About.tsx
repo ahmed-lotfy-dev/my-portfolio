@@ -23,7 +23,7 @@ export default async function About() {
             src={myImage}
             width={400}
             height={400}
-            quality={85}
+            quality={75}
             alt="Ahmed Lotfy"
             className={`rounded-lg shadow-lg ${isRTL ? "scale-x-[-1]" : ""}`}
           />

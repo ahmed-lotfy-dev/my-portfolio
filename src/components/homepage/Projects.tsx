@@ -91,6 +91,8 @@ export default async function Projects() {
                         text={locale === "ar" ? proj.desc_ar : proj.desc_en}
                         maxLines={3}
                         className="text-muted-foreground text-sm leading-relaxed"
+                        readMoreText={t("readmore")}
+                        showLessText={t("showless")}
                       />
                       {proj.slug && (
                         <Link href={`/projects/${proj.slug}`} className="inline-flex items-center gap-1 text-primary text-sm font-medium mt-3 hover:underline underline-offset-4 w-fit group/link">

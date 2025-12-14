@@ -2,35 +2,38 @@
 
 import React, { useState, useRef, useEffect } from "react";
 import { Button } from "./button";
-import { useTranslations } from "next-intl";
 
 type ReadMoreTextProps = {
   text: string;
   maxLines?: number;
   className?: string;
+  readMoreText?: string;
+  showLessText?: string;
 };
 
 const ReadMoreText: React.FC<ReadMoreTextProps> = ({
   text,
   maxLines = 5,
   className,
+  readMoreText = "Read more",
+  showLessText = "Show less",
 }) => {
   const [isExpanded, setIsExpanded] = useState(false);
   const [isTruncated, setIsTruncated] = useState(false);
   const textRef = useRef<HTMLParagraphElement>(null);
-  const t = useTranslations("projects");
 
   useEffect(() => {
-    if (textRef.current) {
-      const lineHeight = parseFloat(
-        getComputedStyle(textRef.current).lineHeight
-      );
-      const maxHeight = lineHeight * maxLines;
-      if (textRef.current.scrollHeight > maxHeight) {
-        setIsTruncated(true);
-      } else {
-        setIsTruncated(false);
-      }
+    // Only run in browser environment
+    if (typeof window === 'undefined' || !textRef.current) return;
+
+    const lineHeight = parseFloat(
+      getComputedStyle(textRef.current).lineHeight
+    );
+    const maxHeight = lineHeight * maxLines;
+    if (textRef.current.scrollHeight > maxHeight) {
+      setIsTruncated(true);
+    } else {
+      setIsTruncated(false);
     }
   }, [text, maxLines]);
 
@@ -41,11 +44,11 @@ const ReadMoreText: React.FC<ReadMoreTextProps> = ({
   const style: React.CSSProperties = isExpanded
     ? {}
     : {
-        display: "-webkit-box",
-        WebkitLineClamp: maxLines,
-        WebkitBoxOrient: "vertical",
-        overflow: "hidden",
-      };
+      display: "-webkit-box",
+      WebkitLineClamp: maxLines,
+      WebkitBoxOrient: "vertical",
+      overflow: "hidden",
+    };
 
   return (
     <div className={className}>
@@ -63,7 +66,7 @@ const ReadMoreText: React.FC<ReadMoreTextProps> = ({
           onClick={toggleExpanded}
           className="p-0 h-auto mt-2 text-blue-900 dark:to-blue-300"
         >
-          {isExpanded ? t("showless") : t("readmore")}
+          {isExpanded ? showLessText : readMoreText}
         </Button>
       )}
     </div>

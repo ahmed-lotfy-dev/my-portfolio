@@ -100,23 +100,35 @@ export default async function LocaleLayout({ children, params }: Props) {
       className="scroll-smooth max-h-svh "
     >
       <head>
+        {/* Preload LCP image - Critical for performance */}
+        <link
+          rel="preload"
+          href="/_next/static/media/improved_hero_background.42272c44.webp"
+          as="image"
+          type="image/webp"
+          fetchPriority="high"
+        />
+
+        {/* Preconnect to external domains - Establish early connections */}
         <link
           rel="preconnect"
           href="https://images.ahmedlotfy.site"
           crossOrigin="anonymous"
         />
-        <link rel="dns-prefetch" href="https://images.ahmedlotfy.site" />
         <link
           rel="preconnect"
           href="https://us.i.posthog.com"
           crossOrigin="anonymous"
         />
-        <link rel="dns-prefetch" href="https://us.i.posthog.com" />
         <link
           rel="preconnect"
           href="https://us-assets.i.posthog.com"
           crossOrigin="anonymous"
         />
+
+        {/* DNS prefetch as fallback for older browsers */}
+        <link rel="dns-prefetch" href="https://images.ahmedlotfy.site" />
+        <link rel="dns-prefetch" href="https://us.i.posthog.com" />
         <link rel="dns-prefetch" href="https://us-assets.i.posthog.com" />
       </head>
       <body
