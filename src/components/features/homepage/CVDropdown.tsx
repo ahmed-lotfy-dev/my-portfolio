@@ -7,7 +7,7 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "../ui/dropdown-menu";
+} from "@/src/components/ui/dropdown-menu";
 import { Eye, Download } from "lucide-react";
 import Link from "next/link";
 import { useTranslations } from "next-intl";
@@ -23,8 +23,8 @@ export function CVDropdown({ children }: { children: React.ReactNode }) {
       <DropdownMenuContent className="w-56" align="start">
         <DropdownMenuLabel>{t("title")}</DropdownMenuLabel>
         <DropdownMenuSeparator />
-        
-        <DropdownMenuItem 
+
+        <DropdownMenuItem
           onClick={() => window.open("/Ahmed-Lotfy-CV.pdf", "_blank")}
           className="cursor-pointer gap-2"
         >

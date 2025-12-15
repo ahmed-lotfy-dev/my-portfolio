@@ -3,7 +3,7 @@ import { useEffect, useState, useCallback } from "react"
 import { useRouter } from "next/navigation"
 import { authClient } from "@/src/lib/auth-client"
 import { Button } from "@/src/components/ui/button"
-import UserButton from "@/src/components/dashboard-components/UserButton"
+import UserButton from "@/src/components/features/dashboard/layout/UserButton"
 import { useTranslations } from "use-intl"
 
 export default function SignInButtons({ className }: { className?: string }) {

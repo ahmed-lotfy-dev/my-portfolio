@@ -1,110 +1,108 @@
 "use client";
-import { ChangeEvent, useRef, useState, useActionState, useEffect } from "react";
-
-import { Input } from "@/src/components/ui/input";
-import { Label } from "@/src/components/ui/label";
-import { editCertificateAction } from "@/src/app/actions/certificatesActions";
-import Image from "next/image";
-import { notify } from "@/src/lib/utils/toast";
-
-import Submit from "@/src/components/ui/formSubmitBtn";
+import { useState, useRef, useActionState, useEffect } from "react";
 import {
   Dialog,
   DialogContent,
-  DialogTrigger,
-  DialogClose,
+  DialogDescription,
   DialogHeader,
   DialogTitle,
-  DialogDescription,
+  DialogTrigger,
 } from "@/src/components/ui/dialog";
-import { Upload } from "../Upload";
-import { Pencil, X } from "lucide-react";
+import Image from "next/image";
+import { useTranslations } from "next-intl";
+import { Input } from "@/src/components/ui/input";
+import { Label } from "@/src/components/ui/label";
+import { addCertificateAction } from "@/src/app/actions/certificatesActions";
+import { notify } from "@/src/lib/utils/toast";
+import Submit from "@/src/components/ui/formSubmitBtn";
+import { Upload } from "@/src/components/features/dashboard/uploads/Upload";
 import { authClient } from "@/src/lib/auth-client";
 import { motion, AnimatePresence } from "framer-motion";
+import { Plus, X } from "lucide-react";
 import { cn } from "@/src/lib/utils";
-import { useRouter } from "next/navigation";
 
-function EditCertificate({ EditedObject }: any) {
-  const { id } = EditedObject;
-  const [state, formAction] = useActionState(editCertificateAction, null);
-  const [editedCert, setEditedCert] = useState(EditedObject);
+function AddCertificateComponent() {
+  const t = useTranslations("certificates");
+  const [state, formAction] = useActionState(addCertificateAction, null);
   const [imageUrl, setImageUrl] = useState("");
   const [open, setOpen] = useState(false);
   const formRef = useRef<HTMLFormElement>(null);
-  const closeButtonRef = useRef<HTMLButtonElement>(null);
   const { data: session } = authClient.useSession();
   const user = session?.user;
-  const router = useRouter();
 
+  // Form field states to preserve values on validation errors
+  const [formData, setFormData] = useState({
+    title: "",
+    desc: "",
+    courseLink: "",
+    profLink: "",
+    completedAt: "",
+  });
+
+  // ✅ show toast when server action finishes
   useEffect(() => {
     if (state?.success) {
-      notify("Certificate updated successfully!", true);
+      notify("Certificate added successfully!", true);
       setOpen(false);
       setImageUrl("");
-      router.refresh();
+      setFormData({ title: "", desc: "", courseLink: "", profLink: "", completedAt: "" });
+      formRef.current?.reset();
     } else if (state?.message && !state?.success) {
       notify(state.message, false);
     } else if (state?.error && Object.keys(state.error).length > 0) {
       notify("Please fix the errors and try again.", false);
     }
-  }, [state, router]);
-
-  const InputHandler = (e: ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    setEditedCert((prevEditedCert: any) => {
-      return {
-        ...prevEditedCert,
-        [name]: value,
-      };
-    });
-  };
+  }, [state]);
 
   const inputClasses =
     "bg-background/50 border-white/10 focus:border-primary/50 focus:ring-primary/20 transition-all duration-300 hover:bg-background/80";
   const labelClasses = "text-sm font-medium text-muted-foreground mb-1.5 block";
 
   return (
-    <div key={editedCert.id} className="flex justify-center items-center">
+    <div className="flex justify-center items-center">
       <Dialog open={open} onOpenChange={setOpen}>
         <DialogTrigger asChild>
           <motion.button
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.9 }}
-            className="p-2 rounded-full bg-primary/10 text-primary hover:bg-primary/20 transition-colors"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            className="bg-primary text-primary-foreground shadow-lg shadow-primary/20 h-10 py-2 px-6 inline-flex items-center justify-center rounded-md text-sm font-medium transition-all hover:shadow-xl hover:shadow-primary/30"
           >
-            <Pencil size={16} />
+            <Plus className="mr-2 h-4 w-4" />
+            {t("add-title")}
           </motion.button>
         </DialogTrigger>
-        <DialogClose ref={closeButtonRef} className="hidden" />
 
         <DialogContent className="max-w-[700px] overflow-hidden p-0 bg-zinc-950 border-zinc-800 shadow-2xl sm:rounded-xl">
           <div className="max-h-[85vh] overflow-y-auto custom-scrollbar">
             <DialogHeader className="p-6 pb-4 sticky top-0 bg-zinc-950/95 backdrop-blur-md z-10 border-b border-zinc-800">
               <DialogTitle className="text-2xl font-bold text-foreground">
-                Edit Certificate
+                {t("add-title")}
               </DialogTitle>
               <DialogDescription className="text-muted-foreground">
-                Update certificate details
+                {t("add-desc")}
               </DialogDescription>
             </DialogHeader>
 
             <form
-              action={formAction}
               ref={formRef}
+              action={formAction}
               className="flex flex-col gap-6 p-6"
             >
               <div className="space-y-1">
                 <Label htmlFor="title" className={labelClasses}>
-                  Certificate Title
+                  {t("placeholders.title")}
                 </Label>
                 <Input
                   id="title"
                   className={inputClasses}
                   type="text"
                   name="title"
-                  placeholder="Certificate Title"
-                  value={editedCert.title}
-                  onChange={InputHandler}
+                  placeholder={t("placeholders.title")}
+                  value={formData.title}
+                  onChange={(e) =>
+                    setFormData({ ...formData, title: e.target.value })
+                  }
+                  required
                 />
                 {state?.error?.title && (
                   <p className="text-xs text-red-400 mt-1">
@@ -115,15 +113,19 @@ function EditCertificate({ EditedObject }: any) {
 
               <div className="space-y-1">
                 <Label htmlFor="desc" className={labelClasses}>
-                  Description
+                  {t("placeholders.description")}
                 </Label>
                 <Input
                   id="desc"
                   className={inputClasses}
+                  type="text"
                   name="desc"
-                  placeholder="Certificate Description"
-                  value={editedCert.desc}
-                  onChange={InputHandler}
+                  placeholder={t("placeholders.description")}
+                  value={formData.desc}
+                  onChange={(e) =>
+                    setFormData({ ...formData, desc: e.target.value })
+                  }
+                  required
                 />
                 {state?.error?.desc && (
                   <p className="text-xs text-red-400 mt-1">
@@ -134,19 +136,17 @@ function EditCertificate({ EditedObject }: any) {
 
               <div className="space-y-1">
                 <Label htmlFor="completedAt" className={labelClasses}>
-                  Completion Date
+                  {t("completed")}
                 </Label>
                 <Input
                   id="completedAt"
                   className={inputClasses}
                   type="date"
                   name="completedAt"
-                  value={
-                    editedCert.completedAt
-                      ? new Date(editedCert.completedAt).toISOString().split("T")[0]
-                      : ""
+                  value={formData.completedAt}
+                  onChange={(e) =>
+                    setFormData({ ...formData, completedAt: e.target.value })
                   }
-                  onChange={InputHandler}
                 />
                 {state?.error?.completedAt && (
                   <p className="text-xs text-red-400 mt-1">
@@ -158,16 +158,19 @@ function EditCertificate({ EditedObject }: any) {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="space-y-1">
                   <Label htmlFor="courseLink" className={labelClasses}>
-                    Course Link
+                    {t("placeholders.course_link")}
                   </Label>
                   <Input
                     id="courseLink"
                     className={inputClasses}
                     type="url"
                     name="courseLink"
-                    placeholder="Course Link"
-                    value={editedCert.courseLink}
-                    onChange={InputHandler}
+                    placeholder={t("placeholders.course_link")}
+                    value={formData.courseLink}
+                    onChange={(e) =>
+                      setFormData({ ...formData, courseLink: e.target.value })
+                    }
+                    required
                   />
                   {state?.error?.courseLink && (
                     <p className="text-xs text-red-400 mt-1">
@@ -178,16 +181,19 @@ function EditCertificate({ EditedObject }: any) {
 
                 <div className="space-y-1">
                   <Label htmlFor="profLink" className={labelClasses}>
-                    Proof Link
+                    {t("placeholders.proof_link")}
                   </Label>
                   <Input
                     id="profLink"
                     className={inputClasses}
                     type="url"
                     name="profLink"
-                    placeholder="Certificate Proof"
-                    value={editedCert.profLink}
-                    onChange={InputHandler}
+                    placeholder={t("placeholders.proof_link")}
+                    value={formData.profLink}
+                    onChange={(e) =>
+                      setFormData({ ...formData, profLink: e.target.value })
+                    }
+                    required
                   />
                   {state?.error?.profLink && (
                     <p className="text-xs text-red-400 mt-1">
@@ -202,17 +208,16 @@ function EditCertificate({ EditedObject }: any) {
                 <Upload
                   setImageUrl={setImageUrl}
                   imageType={"Certificates"}
-                  currentImageUrl={editedCert.imageLink}
-                  itemTitle={editedCert.title}
+                  itemTitle={formData.title}
                 />
                 {state?.error?.imageLink && (
                   <p className="text-xs text-red-400 mt-1">
-                    {state.error.imageLink._errors}
+                    {state.error.imageLink._errors[0]}
                   </p>
                 )}
 
                 <AnimatePresence>
-                  {(editedCert.imageLink || imageUrl) && (
+                  {imageUrl && (
                     <motion.div
                       initial={{ opacity: 0, scale: 0.9 }}
                       animate={{ opacity: 1, scale: 1 }}
@@ -220,26 +225,27 @@ function EditCertificate({ EditedObject }: any) {
                       className="relative mt-4 rounded-lg overflow-hidden border border-white/10 shadow-lg w-full max-w-md mx-auto aspect-video"
                     >
                       <Image
-                        src={imageUrl || editedCert.imageLink}
+                        src={imageUrl}
                         fill
                         className="object-cover"
                         alt="Certificate Preview"
                       />
+                      <button
+                        type="button"
+                        onClick={() => setImageUrl("")}
+                        className="absolute top-2 right-2 p-1 bg-black/50 hover:bg-red-500/80 rounded-full text-white transition-colors backdrop-blur-sm"
+                      >
+                        <X className="h-4 w-4" />
+                      </button>
                     </motion.div>
                   )}
                 </AnimatePresence>
-
-                <Input type="hidden" name="id" value={editedCert.id} />
-                <Input
-                  type="hidden"
-                  name="imageLink"
-                  value={imageUrl || editedCert.imageLink}
-                />
+                <Input type="hidden" name="imageLink" value={imageUrl} />
               </div>
 
               <div className="flex justify-end pt-4 border-t border-white/10">
                 <Submit
-                  btnText="Edit Certificate"
+                  btnText={t("add-title")}
                   className="bg-primary hover:bg-primary/90 text-white px-8 py-2 rounded-md shadow-lg shadow-primary/20 transition-all hover:shadow-primary/30 hover:scale-105"
                   type="submit"
                 />
@@ -252,4 +258,4 @@ function EditCertificate({ EditedObject }: any) {
   );
 }
 
-export { EditCertificate };
+export { AddCertificateComponent };

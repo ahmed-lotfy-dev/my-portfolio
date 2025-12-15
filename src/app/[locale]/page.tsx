@@ -1,12 +1,12 @@
 import { Suspense } from "react";
-import Certificates from "@/src/components/homepage/Certificates";
+import Certificates from "@/src/components/features/homepage/Certificates";
 import ProjectsSkeleton from "@/src/components/skeletons/ProjectsSkeleton";
 import CertificatesSkeleton from "@/src/components/skeletons/CertificatesSkeleton";
-import Hero from "@/src/components/homepage/Hero";
-import Projects from "@/src/components/homepage/Projects";
-import Skills from "@/src/components/homepage/Skills";
-import About from "@/src/components/homepage/About";
-import Contact from "@/src/components/homepage/Contact";
+import Hero from "@/src/components/features/homepage/Hero";
+import Projects from "@/src/components/features/homepage/Projects";
+import Skills from "@/src/components/features/homepage/Skills";
+import About from "@/src/components/features/homepage/About";
+import Contact from "@/src/components/features/homepage/Contact";
 import Container from "@/src/components/ui/Container";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import StructuredData from "@/src/components/seo/StructuredData";

@@ -1,15 +1,7 @@
 "use server";
 
-import { DeleteObjectCommand, S3Client } from "@aws-sdk/client-s3";
-
-const s3Client = new S3Client({
-  region: "auto",
-  endpoint: `https://${process.env.CF_ACCOUNT_ID}.r2.cloudflarestorage.com`,
-  credentials: {
-    accessKeyId: process.env.CF_ACCESS_KEY_ID,
-    secretAccessKey: process.env.CF_SECRET_ACCESS_KEY,
-  },
-});
+import { DeleteObjectCommand } from "@aws-sdk/client-s3";
+import { s3Client } from "@/src/lib/utils/s3Client";
 
 export async function DeleteFromS3(imageLink: string | undefined) {
   if (!imageLink) {

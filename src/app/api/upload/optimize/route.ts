@@ -1,27 +1,8 @@
-import { S3Client, PutObjectCommand, DeleteObjectCommand } from "@aws-sdk/client-s3";
+import { PutObjectCommand, DeleteObjectCommand } from "@aws-sdk/client-s3";
 import { auth } from "@/src/lib/auth";
 import { headers } from "next/headers";
 import sharp from "sharp";
-
-const s3Client = new S3Client({
-  region: "auto",
-  endpoint: `https://${process.env.CF_ACCOUNT_ID}.r2.cloudflarestorage.com`,
-  credentials: {
-    accessKeyId: process.env.CF_ACCESS_KEY_ID!,
-    secretAccessKey: process.env.CF_SECRET_ACCESS_KEY!,
-  },
-});
-
-function extractKeyFromUrl(url: string): string | null {
-  try {
-    const urlObj = new URL(url);
-    const pathname = urlObj.pathname;
-    return pathname.startsWith('/') ? pathname.slice(1) : pathname;
-  } catch (error) {
-    console.error("Failed to parse URL:", url, error);
-    return null;
-  }
-}
+import { s3Client, getBucketName, getImageUrl, extractKeyFromUrl } from "@/src/lib/utils/s3Client";
 
 export async function POST(request: Request): Promise<Response> {
   try {
@@ -61,7 +42,7 @@ export async function POST(request: Request): Promise<Response> {
           console.log("🗑️  Deleting old image:", oldKey);
           await s3Client.send(
             new DeleteObjectCommand({
-              Bucket: process.env.CF_BUCKET_NAME!,
+              Bucket: getBucketName(),
               Key: oldKey,
             })
           );
@@ -142,7 +123,7 @@ export async function POST(request: Request): Promise<Response> {
     // Upload to R2
     await s3Client.send(
       new PutObjectCommand({
-        Bucket: process.env.CF_BUCKET_NAME!,
+        Bucket: getBucketName(),
         Key: fileName,
         Body: optimizedBuffer,
         ContentType: "image/webp",
@@ -150,10 +131,7 @@ export async function POST(request: Request): Promise<Response> {
     );
 
     // Construct final URL
-    const subdomain = process.env
-      .CF_IMAGES_SUBDOMAIN!.trim()
-      .replace(/^https?:\/\//, "");
-    const imageUrl = `https://${subdomain}/${fileName}`;
+    const imageUrl = getImageUrl(fileName);
 
     console.log("🎉 Image uploaded successfully:", imageUrl);
 

@@ -17,10 +17,10 @@ import {
 import { cn } from "@/src/lib/utils";
 import { useTranslations, useLocale } from "next-intl";
 import UserButton from "./UserButton";
-import LanguageSwitcher from "../i18n/LanguageSwitcher";
-import ThemeToggle from "../ThemeToggle";
+import LanguageSwitcher from "@/src/components/i18n/LanguageSwitcher";
+import ThemeToggle from "@/src/components/shared/ThemeToggle";
 import { useState, useEffect } from "react";
-import { SignOutButton } from "@/src/components/auth/SignOutButton";
+import { SignOutButton } from "@/src/components/features/auth/SignOutButton";
 
 export default function Aside({ user }: { user: any }) {
   const pathname = usePathname();

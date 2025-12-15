@@ -1,5 +1,5 @@
 import Section from "@/src/components/ui/Section"
-import SignUpForm from "@/src/components/auth/SignUpForm"
+import SignUpForm from "@/src/components/features/auth/SignUpForm"
 
 export const metadata = {
   title: "Sign up",

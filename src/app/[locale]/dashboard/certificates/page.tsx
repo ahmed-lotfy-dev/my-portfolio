@@ -1,5 +1,5 @@
 import { Suspense } from "react";
-import CertificateListContainer from "@/src/components/dashboard-components/certificate/CertificateListContainer";
+import CertificateListContainer from "@/src/components/features/dashboard/certificates/CertificateListContainer";
 import DashboardTableSkeleton from "@/src/components/skeletons/DashboardTableSkeleton";
 
 export default function CertificatesPage() {

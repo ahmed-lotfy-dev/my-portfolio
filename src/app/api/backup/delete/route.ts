@@ -4,7 +4,8 @@ import { backupLogs } from "@/src/db/schema";
 import { eq } from "drizzle-orm";
 import { auth } from "@/src/lib/auth";
 import { headers } from "next/headers";
-import { S3Client, DeleteObjectCommand, DeleteObjectsCommand, ListObjectsV2Command } from "@aws-sdk/client-s3";
+import { DeleteObjectCommand, DeleteObjectsCommand, ListObjectsV2Command } from "@aws-sdk/client-s3";
+import { s3Client, getBucketName } from "@/src/lib/utils/s3Client";
 
 export async function POST(req: NextRequest) {
   try {
@@ -18,16 +19,6 @@ export async function POST(req: NextRequest) {
     if (!id) {
         return NextResponse.json({ success: false, message: 'Missing ID' }, { status: 400 });
     }
-
-    // Initialize S3 Client
-    const s3Client = new S3Client({
-      region: "auto",
-      endpoint: `https://${process.env.CF_ACCOUNT_ID}.r2.cloudflarestorage.com`,
-      credentials: {
-        accessKeyId: process.env.CF_ACCESS_KEY_ID!,
-        secretAccessKey: process.env.CF_SECRET_ACCESS_KEY!,
-      },
-    });
 
     // Delete from R2
     if (manifestPath) {

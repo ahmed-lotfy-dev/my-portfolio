@@ -1,5 +1,5 @@
 import { Suspense } from "react";
-import ProjectListContainer from "@/src/components/dashboard-components/project/ProjectListContainer";
+import ProjectListContainer from "@/src/components/features/dashboard/projects/ProjectListContainer";
 import DashboardTableSkeleton from "@/src/components/skeletons/DashboardTableSkeleton";
 
 export default function ProjectsPage({ }) {

@@ -6,21 +6,21 @@ import { usePathname } from "next/navigation";
 import { Menu, LogOut } from "lucide-react";
 import { authClient } from "@/src/lib/auth-client";
 import Image from "next/image";
-import ThemeToggle from "@/src/components/ThemeToggle";
+import ThemeToggle from "@/src/components/shared/ThemeToggle";
 import LanguageSwitcher from "@/src/components/i18n/LanguageSwitcher";
 import { useTheme } from "next-themes";
 import LogoLight from "@/public/Logo-Blue-Dot.png";
 import LogoDark from "@/public/Logo-Blue-Dot.png";
 import { useLocale, useTranslations } from "next-intl";
-import { Button } from "../ui/button";
-import { SignOutButton } from "@/src/components/auth/SignOutButton";
+import { Button } from "@/src/components/ui/button";
+import { SignOutButton } from "@/src/components/features/auth/SignOutButton";
 import {
   Sheet,
   SheetContent,
   SheetHeader,
   SheetTitle,
   SheetTrigger,
-} from "../ui/sheet";
+} from "@/src/components/ui/sheet";
 import { cn } from "@/src/lib/utils";
 
 const navLinks = [

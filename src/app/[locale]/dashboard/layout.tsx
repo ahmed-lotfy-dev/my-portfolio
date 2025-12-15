@@ -1,6 +1,6 @@
 import { cookies, headers } from "next/headers";
 import { SidebarInset, SidebarProvider } from "@/src/components/ui/sidebar";
-import Aside from "@/src/components/dashboard-components/Aside";
+import Aside from "@/src/components/features/dashboard/layout/Aside";
 import { auth } from "@/src/lib/auth";
 
 export default async function DashboardLayout({

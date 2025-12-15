@@ -14,7 +14,7 @@ import {
   updateProjectOrder,
 } from "@/src/app/actions/projectsActions";
 import { Button } from "@/src/components/ui/button";
-import { ImageCarousel } from "../../ui/ImageCarousel";
+import { ImageCarousel } from "@/src/components/ui/ImageCarousel";
 import { useLocale, useTranslations } from "next-intl";
 import { notify } from "@/src/lib/utils/toast";
 import { getProjectCoverImage } from "@/src/lib/constants/images";

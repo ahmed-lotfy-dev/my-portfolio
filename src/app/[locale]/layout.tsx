@@ -1,22 +1,22 @@
-import { ErrorBoundary } from "@/src/components/ErrorBoundary";
+import { ErrorBoundary } from "@/src/components/shared/ErrorBoundary";
 import { NextIntlClientProvider, hasLocale } from "next-intl";
 import { notFound } from "next/navigation";
 import { routing } from "@/src/i18n/routing";
 
 import "../globals.css";
 
-import { Nav } from "@/src/components/homepage/Nav";
+import { Nav } from "@/src/components/features/homepage/Nav";
 import type { Metadata } from "next";
 import { Toaster } from "@/src/components/ui/sonner";
-import UserButton from "@/src/components/dashboard-components/UserButton";
+import UserButton from "@/src/components/features/dashboard/layout/UserButton";
 import { getMessages, setRequestLocale } from "next-intl/server";
 
 import { inter, poppins, sora, tajawal } from "@/src/components/ui/fonts";
 import { ThemeProvider } from "next-themes";
 import { PostHogProvider } from "@/src/providers/postHogProvider";
 import { Suspense } from "react";
-import PostHogPageView from "@/src/components/PostHogPageView";
-import Footer from "@/src/components/homepage/Footer";
+import PostHogPageView from "@/src/components/shared/PostHogPageView";
+import Footer from "@/src/components/features/homepage/Footer";
 
 export const revalidate = 3600;
 

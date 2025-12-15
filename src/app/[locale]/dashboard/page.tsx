@@ -1,9 +1,9 @@
-import Welcome from "@/src/components/dashboard-components/Welcome"
+import Welcome from "@/src/components/features/dashboard/Welcome"
 import { auth } from "@/src/lib/auth"
 import { headers } from "next/headers"
 
 import { Suspense } from "react"
-import DashboardStats from "@/src/components/dashboard-components/DashboardStats"
+import DashboardStats from "@/src/components/features/dashboard/analytics/DashboardStats"
 import DashboardSkeleton from "@/src/components/skeletons/DashboardSkeleton"
 
 export default async function Page() {

@@ -1,19 +1,19 @@
-import SystemHealth from "@/src/components/dashboard-components/SystemHealth";
+import SystemHealth from "@/src/components/features/dashboard/analytics/SystemHealth";
 import { auth } from "@/src/lib/auth";
 import { headers } from "next/headers";
 import { redirect } from "next/navigation";
 
 export default async function BackupsPage() {
   const session = await auth.api.getSession({ headers: await headers() });
-  
+
   // Check if user is admin
   // We can reuse the same check or just pass the flag. 
   // Ideally, this page should be protected or at least the component handles it.
   const isAdmin = session?.user?.role === "ADMIN" || session?.user?.email === process.env.ADMIN_EMAIL;
 
   if (!isAdmin) {
-      // Optional: Redirect if strict admin only
-      // redirect("/dashboard");
+    // Optional: Redirect if strict admin only
+    // redirect("/dashboard");
   }
 
   return (
@@ -23,10 +23,10 @@ export default async function BackupsPage() {
         <p className="text-muted-foreground">Manage database and media backups. Restore points are stored in Cloudflare R2.</p>
       </div>
 
-      <SystemHealth 
+      <SystemHealth
         isAdmin={!!isAdmin}
         cfAccountId={process.env.CF_ACCOUNT_ID}
-        cfBucketName={process.env.CF_BUCKET_NAME} 
+        cfBucketName={process.env.CF_BUCKET_NAME}
       />
     </div>
   );

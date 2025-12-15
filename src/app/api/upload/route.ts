@@ -1,15 +1,7 @@
-import { S3Client, PutObjectCommand } from "@aws-sdk/client-s3";
+import { PutObjectCommand } from "@aws-sdk/client-s3";
 import { auth } from "@/src/lib/auth";
 import { headers } from "next/headers";
-
-const s3Client = new S3Client({
-  region: "auto",
-  endpoint: `https://${process.env.CF_ACCOUNT_ID}.r2.cloudflarestorage.com`,
-  credentials: {
-    accessKeyId: process.env.CF_ACCESS_KEY_ID!,
-    secretAccessKey: process.env.CF_SECRET_ACCESS_KEY!,
-  },
-});
+import { s3Client, getBucketName, getImageUrl } from "@/src/lib/utils/s3Client";
 
 export async function POST(request: Request): Promise<Response> {
   try {
@@ -35,23 +27,17 @@ export async function POST(request: Request): Promise<Response> {
 
     await s3Client.send(
       new PutObjectCommand({
-        Bucket: process.env.CF_BUCKET_NAME!,
+        Bucket: getBucketName(),
         Key: fileName,
         Body: fileData,
         ContentType: file.type,
       })
     );
 
-    // Remove any existing protocol and trim whitespace from CF_IMAGES_SUBDOMAIN
-    const subdomain = process.env
-      .CF_IMAGES_SUBDOMAIN!.trim() // Remove leading/trailing whitespace
-      .replace(/^https?:\/\//, ""); // Remove protocol if present
-
-    const imageUrl = `https://${subdomain}/${fileName}`;
+    const imageUrl = getImageUrl(fileName);
 
     console.log("🔍 Upload Debug Info:");
-    console.log("  Raw CF_IMAGES_SUBDOMAIN:", process.env.CF_IMAGES_SUBDOMAIN);
-    console.log("  Sanitized subdomain:", subdomain);
+    console.log("  File name:", fileName);
     console.log("  Final imageUrl:", imageUrl);
 
     return Response.json({

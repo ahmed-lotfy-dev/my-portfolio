@@ -14,7 +14,7 @@ import {
   DropdownMenuTrigger,
 } from "@/src/components/ui/dropdown-menu";
 import Link from "next/link";
-import { SignOutButton } from "@/src/components/auth/SignOutButton";
+import { SignOutButton } from "@/src/components/features/auth/SignOutButton";
 import { useTranslations } from "next-intl";
 import { authClient } from "@/src/lib/auth-client";
 

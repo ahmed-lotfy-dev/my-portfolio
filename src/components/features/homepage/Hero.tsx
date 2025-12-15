@@ -7,7 +7,7 @@ import { FileText, ArrowRight } from "lucide-react";
 import { CVDropdown } from "./CVDropdown";
 import { useTranslations } from "next-intl";
 import { motion } from "framer-motion";
-import { Button } from "../ui/button";
+import { Button } from "@/src/components/ui/button";
 import { cn } from "@/src/lib/utils";
 
 export default function Hero({ locale }: { locale: string }) {
