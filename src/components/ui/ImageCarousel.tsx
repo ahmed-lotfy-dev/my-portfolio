@@ -83,7 +83,7 @@ export function ImageCarousel({ images, title, isMobile = false, className }: Im
         className={cn(
           "relative w-full mx-auto mb-12 md:mb-16 select-none",
           isMobile
-            ? "max-w-sm md:max-w-md aspect-[9/19]"
+            ? "max-w-sm md:max-w-md aspect-9/19"
             : "max-w-5xl aspect-video",
           className
         )}
@@ -93,25 +93,27 @@ export function ImageCarousel({ images, title, isMobile = false, className }: Im
             {renderInlineImage(images[0], 0, true)}
           </div>
         ) : (
-          <Carousel
-            opts={{
-              align: "start",
-              loop: true,
-            }}
-            className="w-full h-full"
-          >
-            <CarouselContent className="h-full -ml-4">
-              {images.map((src, index) => (
-                <CarouselItem key={index} className="pl-4 h-full">
-                  <div className="w-full h-full shadow-2xl border border-white/10 ring-1 ring-white/10 bg-secondary/5 rounded-2xl md:rounded-4xl overflow-hidden">
-                    {renderInlineImage(src, index, index === 0)}
-                  </div>
-                </CarouselItem>
-              ))}
-            </CarouselContent>
-            <CarouselPrevious className="hidden md:flex -left-12 h-12 w-12 bg-black/20 hover:bg-black/40 border-white/10 text-white/70" />
-            <CarouselNext className="hidden md:flex -right-12 h-12 w-12 bg-black/20 hover:bg-black/40 border-white/10 text-white/70" />
-          </Carousel>
+          <div className="absolute inset-0">
+            <Carousel
+              opts={{
+                align: "start",
+                loop: true,
+              }}
+              className="w-full h-full"
+            >
+              <CarouselContent className="-ml-4 h-full items-stretch">
+                {images.map((src, index) => (
+                  <CarouselItem key={index} className="pl-4 flex">
+                    <div className="w-full shadow-2xl border border-white/10 ring-1 ring-white/10 bg-secondary/5 rounded-2xl md:rounded-4xl overflow-hidden p-1">
+                      {renderInlineImage(src, index, index === 0)}
+                    </div>
+                  </CarouselItem>
+                ))}
+              </CarouselContent>
+              <CarouselPrevious className="hidden md:flex -left-12 h-12 w-12 bg-black/20 hover:bg-black/40 border-white/10 text-white/70" />
+              <CarouselNext className="hidden md:flex -right-12 h-12 w-12 bg-black/20 hover:bg-black/40 border-white/10 text-white/70" />
+            </Carousel>
+          </div>
         )}
       </div>
 
