@@ -1,14 +1,14 @@
 "use client";
 
-import { ChangeEvent, useRef, useState } from "react";
+import { ChangeEvent, useRef, useState, Dispatch, SetStateAction } from "react";
 import { Input } from "@/src/components/ui/input";
 import { notify } from "@/src/lib/utils/toast";
 import { Button } from "@/src/components/ui/button";
 import { useTranslations } from "next-intl";
 import Image from "next/image";
-import { Loader2, Trash2, Star, Plus, Check } from "lucide-react";
+import { Loader2, Trash2, Star, Plus } from "lucide-react";
 import { cn } from "@/src/lib/utils";
-import { authClient } from "@/src/lib/auth-client";
+import { deleteImageFromProject } from "@/src/app/actions/deleteImageFromProject";
 
 import {
   AlertDialog,
@@ -22,6 +22,17 @@ import {
   AlertDialogTrigger,
 } from "@/src/components/ui/alert-dialog";
 
+type MultiImageUploadProps = {
+  images: string[];
+  setImages: Dispatch<SetStateAction<string[]>>;
+  primaryImage: string;
+  setPrimaryImage: (url: string) => void;
+  imageType: string;
+  itemSlug: string;
+  itemTitle?: string;
+  user?: any; // Pass user from server
+};
+
 export function MultiImageUpload({
   images,
   setImages,
@@ -30,10 +41,14 @@ export function MultiImageUpload({
   imageType,
   itemSlug,
   itemTitle,
+  user,
 }: MultiImageUploadProps) {
   const [isOptimizing, setIsOptimizing] = useState(false);
+  const [isDeleting, setIsDeleting] = useState<string | null>(null);
   const fileInputRef = useRef<HTMLInputElement | null>(null);
   const t = useTranslations("projects");
+
+  const isAdmin = user?.role === "ADMIN";
 
   const handleFileSelect = async (e: ChangeEvent<HTMLInputElement>) => {
     if (!e.target.files || e.target.files.length === 0) {
@@ -41,29 +56,62 @@ export function MultiImageUpload({
     }
 
     const files = Array.from(e.target.files);
+    setIsOptimizing(true);
 
-    // Validate all files
-    for (const file of files) {
-      if (!file.type.startsWith("image/")) {
-        notify(`Skipped ${file.name}: Not an image`, false);
-        continue;
+    try {
+      // Validate all files first
+      const validFiles: File[] = [];
+      for (const file of files) {
+        if (!file.type.startsWith("image/")) {
+          notify(`Skipped ${file.name}: Not an image`, false);
+          continue;
+        }
+        if (file.size > 10 * 1024 * 1024) {
+          notify(`Skipped ${file.name}: Too large (>10MB)`, false);
+          continue;
+        }
+        validFiles.push(file);
       }
-      if (file.size > 10 * 1024 * 1024) {
-        notify(`Skipped ${file.name}: Too large (>10MB)`, false);
-        continue;
+
+      if (validFiles.length === 0) {
+        setIsOptimizing(false);
+        return;
       }
 
-      await uploadFile(file);
-    }
+      // Upload all valid files in parallel
+      const uploadPromises = validFiles.map(file => uploadFile(file));
+      const results = await Promise.all(uploadPromises);
 
-    // Reset input
-    if (fileInputRef.current) {
-      fileInputRef.current.value = "";
+      // Filter out nulls (failed uploads)
+      const successfulUrls = results.filter((url): url is string => url !== null);
+
+      if (successfulUrls.length > 0) {
+        // Use functional state update - ONLY use prevImages, never the stale closure
+        setImages((prevImages) => {
+          const updatedImages = [...prevImages, ...successfulUrls];
+
+          // If it's the first image(s), make the first one primary automatically
+          if (prevImages.length === 0 && !primaryImage) {
+            setPrimaryImage(successfulUrls[0]);
+          }
+          return updatedImages;
+        });
+
+        notify(`Uploaded ${successfulUrls.length} image(s) successfully`, true);
+      }
+    } catch (error) {
+      console.error("Error processing uploads:", error);
+      notify("An error occurred during upload", false);
+    } finally {
+      setIsOptimizing(false);
+      // Reset input
+      if (fileInputRef.current) {
+        fileInputRef.current.value = "";
+      }
     }
   };
 
-  const uploadFile = async (file: File) => {
-    setIsOptimizing(true);
+  const uploadFile = async (file: File): Promise<string | null> => {
     try {
       const formData = new FormData();
       formData.append("file", file);
@@ -85,43 +133,55 @@ export function MultiImageUpload({
       const data = await response.json();
 
       if (data.success) {
-        notify(`Uploaded ${file.name}`, true);
-        const newUrl = data.coverImage;
-
-        // Add to images list
-        const newImages = [...images, newUrl];
-        setImages(newImages);
-
-        // If it's the first image, make it primary automatically
-        if (newImages.length === 1 && !primaryImage) {
-          setPrimaryImage(newUrl);
-        }
+        return data.coverImage;
       } else {
-        notify(data.message, false);
+        notify(`${file.name}: ${data.message}`, false);
+        return null;
       }
     } catch (error) {
-      console.error("Error uploading image:", error);
+      console.error(`Error uploading ${file.name}:`, error);
       notify(`Failed to upload ${file.name}`, false);
-    } finally {
-      setIsOptimizing(false);
+      return null;
     }
   };
 
-  const { data: session } = authClient.useSession();
-  const isAdmin = session?.user?.email === process.env.NEXT_PUBLIC_ADMIN_EMAIL;
 
-  const handleDelete = (urlToDelete: string) => {
+  const handleDelete = async (urlToDelete: string) => {
     if (!isAdmin) {
       notify("You have no privileges doing this", false);
       return;
     }
 
-    const newImages = images.filter(url => url !== urlToDelete);
-    setImages(newImages);
+    setIsDeleting(urlToDelete);
 
-    // If we deleted the primary image, pick the first available one (if any)
-    if (primaryImage === urlToDelete) {
-      setPrimaryImage(newImages.length > 0 ? newImages[0] : "");
+    try {
+      // Delete from R2 storage
+      const result = await deleteImageFromProject(urlToDelete);
+
+      if (!result.success) {
+        notify(result.message, false);
+        setIsDeleting(null);
+        return;
+      }
+
+      // Update state - remove from images array
+      setImages((prevImages) => {
+        const newImages = prevImages.filter(url => url !== urlToDelete);
+
+        // If we deleted the primary image, pick the first available one (if any)
+        if (primaryImage === urlToDelete) {
+          setPrimaryImage(newImages.length > 0 ? newImages[0] : "");
+        }
+        return newImages;
+      });
+
+      const fileName = urlToDelete.split('/').pop() || "Image";
+      notify(`Deleted ${fileName} successfully`, true);
+    } catch (error) {
+      console.error("Error deleting image:", error);
+      notify("Failed to delete image", false);
+    } finally {
+      setIsDeleting(null);
     }
   };
 
@@ -129,15 +189,18 @@ export function MultiImageUpload({
     <div className="space-y-4">
       {/* Grid of uploaded images */}
       {images.length > 0 && (
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mb-4">
+        <div className="grid grid-cols-2 sm:grid-cols-3 gap-6 mb-6">
           {images.map((url, index) => {
             const isPrimary = url === primaryImage;
+            const isBeingDeleted = isDeleting === url;
+
             return (
               <div
                 key={`${url}-${index}`}
                 className={cn(
-                  "relative aspect-video rounded-lg overflow-hidden border-2 group transition-all",
-                  isPrimary ? "border-primary ring-2 ring-primary/20" : "border-border hover:border-border/80"
+                  "group relative aspect-video w-full rounded-xl overflow-hidden border-2 bg-background shadow-sm transition-all hover:shadow-md",
+                  isPrimary ? "border-primary ring-2 ring-primary/20" : "border-border/50 hover:border-border",
+                  isBeingDeleted && "opacity-50"
                 )}
               >
                 <Image
@@ -150,7 +213,7 @@ export function MultiImageUpload({
                 {/* Actions Overlay */}
                 <div className="absolute inset-0 bg-black/60 opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity flex items-center justify-center gap-2">
                   {/* Make Primary Button */}
-                  {!isPrimary && (
+                  {!isPrimary && !isBeingDeleted && (
                     <Button
                       size="sm"
                       variant="secondary"
@@ -173,20 +236,24 @@ export function MultiImageUpload({
                         size="icon"
                         variant="destructive"
                         className="h-8 w-8 z-20"
+                        disabled={isBeingDeleted}
                         onClick={(e) => {
                           e.stopPropagation();
-                          // Don't preventDefault here, or Trigger won't work
                         }}
                       >
-                        <Trash2 className="w-4 h-4" />
+                        {isBeingDeleted ? (
+                          <Loader2 className="w-4 h-4 animate-spin" />
+                        ) : (
+                          <Trash2 className="w-4 h-4" />
+                        )}
                       </Button>
                     </AlertDialogTrigger>
                     <AlertDialogContent>
                       <AlertDialogHeader>
                         <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
                         <AlertDialogDescription>
-                          This check to prevent accidental deletions.
-                          The image will be removed from this project.
+                          This will permanently delete the image from storage.
+                          This action cannot be undone.
                         </AlertDialogDescription>
                       </AlertDialogHeader>
                       <AlertDialogFooter>
@@ -198,7 +265,7 @@ export function MultiImageUpload({
                           }}
                           className="bg-destructive hover:bg-destructive/90"
                         >
-                          Delete
+                          Delete Permanently
                         </AlertDialogAction>
                       </AlertDialogFooter>
                     </AlertDialogContent>
@@ -209,6 +276,16 @@ export function MultiImageUpload({
                 {isPrimary && (
                   <div className="absolute top-2 left-2 bg-primary text-primary-foreground text-xs font-bold px-2 py-1 rounded-full shadow-lg flex items-center gap-1">
                     <Star className="w-3 h-3 fill-current" /> Cover
+                  </div>
+                )}
+
+                {/* Deleting Overlay */}
+                {isBeingDeleted && (
+                  <div className="absolute inset-0 bg-black/80 flex items-center justify-center">
+                    <div className="text-white text-sm flex items-center gap-2">
+                      <Loader2 className="w-4 h-4 animate-spin" />
+                      Deleting...
+                    </div>
                   </div>
                 )}
               </div>
@@ -243,7 +320,7 @@ export function MultiImageUpload({
       <Input
         type="file"
         accept="image/*"
-        multiple // Allow selecting multiple files
+        multiple
         name="images-upload"
         onChange={handleFileSelect}
         ref={fileInputRef}
@@ -256,13 +333,3 @@ export function MultiImageUpload({
     </div>
   );
 }
-
-type MultiImageUploadProps = {
-  images: string[];
-  setImages: (images: string[]) => void;
-  primaryImage: string;
-  setPrimaryImage: (url: string) => void;
-  imageType: string;
-  itemSlug: string;
-  itemTitle?: string;
-};

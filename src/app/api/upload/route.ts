@@ -23,7 +23,7 @@ export async function POST(request: Request): Promise<Response> {
 
     const session = await auth.api.getSession({ headers: await headers() });
     const user = session?.user;
-    if (user?.email !== process.env.ADMIN_EMAIL) {
+    if (user?.role !== "ADMIN") {
       return Response.json({
         success: false,
         message: "You don't have permission to upload files",

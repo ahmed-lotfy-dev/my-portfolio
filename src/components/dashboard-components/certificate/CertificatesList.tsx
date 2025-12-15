@@ -31,7 +31,7 @@ function CertificateList({ allCertificates }: any) {
   const isArabic = locale === "ar";
 
   const { data: session } = authClient.useSession();
-  const isAdmin = session?.user?.email === process.env.NEXT_PUBLIC_ADMIN_EMAIL;
+  const isAdmin = session?.user?.role === "ADMIN";
 
   const handleDelete = async (id: string, title: string) => {
     if (!isAdmin) {

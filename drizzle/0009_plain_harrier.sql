@@ -1,0 +1,1 @@
+ALTER TABLE "projects" ALTER COLUMN "cover_image" DROP NOT NULL;

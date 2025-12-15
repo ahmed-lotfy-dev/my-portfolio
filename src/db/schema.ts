@@ -113,7 +113,7 @@ export const projects = pgTable("projects", {
   desc_ar: text("desc_ar").notNull(),
   repoLink: text("repo_link").notNull(),
   liveLink: text("live_link").notNull(),
-  coverImage: text("cover_image").notNull(),
+  coverImage: text("cover_image"),
   slug: text("slug").unique(),
   content_en: text("content_en"),
   content_ar: text("content_ar"),

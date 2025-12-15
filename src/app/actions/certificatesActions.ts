@@ -54,7 +54,7 @@ export async function addCertificateAction(state: any, data: FormData) {
   const user = session?.user;
   logger.debug("Session user:", user);
 
-  if (user?.email !== process.env.NEXT_PUBLIC_ADMIN_EMAIL) {
+  if (user?.role !== "ADMIN") {
     return {
       success: false,
       message: "You don't have privilege to add a certificate.",
@@ -111,7 +111,7 @@ export async function editCertificateAction(state: any, data: FormData) {
   const session = await auth.api.getSession({ headers: await headers() });
   const user = session?.user;
 
-  if (user?.email !== process.env.NEXT_PUBLIC_ADMIN_EMAIL) {
+  if (user?.role !== "ADMIN") {
     return {
       success: false,
       message: "You don't have privilege to edit a certificate.",
@@ -157,7 +157,7 @@ export async function deleteCertificateAction(certificateId: string) {
   const session = await auth.api.getSession({ headers: await headers() });
   const user = session?.user;
 
-  if (user?.email !== process.env.NEXT_PUBLIC_ADMIN_EMAIL) {
+  if (user?.role !== "ADMIN") {
     return {
       success: false,
       message: "You don't have privilege to delete a certificate.",

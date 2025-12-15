@@ -18,9 +18,9 @@ import { SignOutButton } from "@/src/components/auth/SignOutButton";
 import { useTranslations } from "next-intl";
 import { authClient } from "@/src/lib/auth-client";
 
-export default function UserButton({ className }: { className?: string }) {
+export default function UserButton({ className, user: initialUser }: { className?: string; user?: any }) {
   const { data: session } = authClient.useSession();
-  const user = session?.user;
+  const user = initialUser || session?.user;
   const t = useTranslations("nav");
 
   const defaultAvatar =

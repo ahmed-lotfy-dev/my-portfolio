@@ -50,6 +50,11 @@ const nextConfig: NextConfig = {
         hostname: "avatars.githubusercontent.com",
         port: "",
       },
+      {
+        protocol: "https",
+        hostname: "placehold.co",
+        port: "",
+      },
     ],
   },
   skipTrailingSlashRedirect: true,

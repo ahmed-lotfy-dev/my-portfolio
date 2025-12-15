@@ -17,6 +17,7 @@ import { Button } from "@/src/components/ui/button";
 import { ImageCarousel } from "../../ui/ImageCarousel";
 import { useLocale, useTranslations } from "next-intl";
 import { notify } from "@/src/lib/utils/toast";
+import { getProjectCoverImage } from "@/src/lib/constants/images";
 import Link from "next/link";
 import {
   Trash2,
@@ -82,7 +83,7 @@ export default function ProjectList({ allProjects }: any) {
   };
 
   const { data: session } = authClient.useSession();
-  const isAdmin = session?.user?.email === process.env.NEXT_PUBLIC_ADMIN_EMAIL;
+  const isAdmin = session?.user?.role === "ADMIN";
 
   const handleDelete = async (id: string) => {
     if (!isAdmin) {
@@ -176,7 +177,7 @@ export default function ProjectList({ allProjects }: any) {
               {/* Image */}
               <div className="col-span-2">
                 <ImageCarousel
-                  images={[proj.coverImage]}
+                  images={[getProjectCoverImage(proj.coverImage)]}
                   title={locale === "ar" ? proj.title_ar : proj.title_en}
                   className="h-16 w-24 rounded-lg ring-1 ring-border/50 hover:ring-primary/50 transition-all mb-0"
                 />

@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useState, ChangeEvent, useEffect } from "react";
@@ -22,12 +23,14 @@ interface ProjectFormProps {
   initialData?: any;
   action: any;
   mode: "create" | "edit";
+  user?: any;
 }
 
 export default function ProjectForm({
   initialData,
   action,
   mode,
+  user,
 }: ProjectFormProps) {
   const [state, formAction] = useActionState(action, null as any);
   const router = useRouter();
@@ -38,6 +41,16 @@ export default function ProjectForm({
   const [isSlugEdited, setIsSlugEdited] = useState(mode === "edit");
   const t = useTranslations("projects");
   const [helperImageUrl, setHelperImageUrl] = useState("");
+
+  // Safety net: specific logic to ensure a cover image is always selected if images exist
+  useEffect(() => {
+    if (!imageUrl && images.length > 0) {
+      setImageUrl(images[0]);
+    } else if (imageUrl && !images.includes(imageUrl) && images.length > 0) {
+      // If current cover image is not in the list (e.g. bug), pick the first one
+      setImageUrl(images[0]);
+    }
+  }, [images, imageUrl]);
 
   useEffect(() => {
     if (state && "success" in state && state.success) {
@@ -324,6 +337,7 @@ export default function ProjectForm({
                   imageType="Projects"
                   itemSlug={slug}
                   itemTitle={titleEn}
+                  user={user}
                 />
 
                 {/* Hidden Inputs for Form Submission */}

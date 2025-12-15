@@ -64,6 +64,13 @@
       "when": 1765732299356,
       "tag": "0008_chunky_prowler",
       "breakpoints": true
+    },
+    {
+      "idx": 9,
+      "version": "7",
+      "when": 1765800153293,
+      "tag": "0009_plain_harrier",
+      "breakpoints": true
     }
   ]
 }

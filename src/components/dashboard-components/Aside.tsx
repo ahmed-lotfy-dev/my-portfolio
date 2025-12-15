@@ -22,7 +22,7 @@ import ThemeToggle from "../ThemeToggle";
 import { useState, useEffect } from "react";
 import { SignOutButton } from "@/src/components/auth/SignOutButton";
 
-export default function Aside() {
+export default function Aside({ user }: { user: any }) {
   const pathname = usePathname();
   const t = useTranslations("dashboard.nav");
   const locale = useLocale();
@@ -169,7 +169,7 @@ export default function Aside() {
           )}
         >
           <div className={cn("flex items-center", isExpanded ? "mr-auto" : "")}>
-            <UserButton />
+            <UserButton user={user} />
           </div>
 
           <div

@@ -94,7 +94,7 @@ export async function addProjectAction(state: any, data: FormData) {
   const session = await auth.api.getSession({ headers: await headers() });
   const user = session?.user;
 
-  if (user?.email !== process.env.NEXT_PUBLIC_ADMIN_EMAIL) {
+  if (user?.role !== "ADMIN") {
     return {
       success: false,
       message: "You don't have privilege to add a project.",
@@ -242,7 +242,7 @@ export async function editProjectAction(state: any, data: FormData) {
   const session = await auth.api.getSession({ headers: await headers() });
   const user = session?.user;
 
-  if (user?.email !== process.env.NEXT_PUBLIC_ADMIN_EMAIL) {
+  if (user?.role !== "ADMIN") {
     return {
       success: false,
       message: "You don't have privilege to edit a project.",
@@ -275,8 +275,11 @@ export async function editProjectAction(state: any, data: FormData) {
       where: (p, { eq }) => eq(p.id, id),
     });
 
-    if (oldProject?.coverImage && oldProject.coverImage !== coverImage) {
-      logger.info("New image detected — deleting old one");
+    // Check if the old cover image is still in use (either as cover or in the gallery)
+    const isOldImageKept = images.includes(oldProject?.coverImage || "");
+    
+    if (oldProject?.coverImage && oldProject.coverImage !== coverImage && !isOldImageKept) {
+      logger.info("Old cover image removed from gallery — deleting from S3");
       await DeleteFromS3(oldProject.coverImage);
     }
 
@@ -346,7 +349,7 @@ export async function deleteProjectAction(id: string) {
   const session = await auth.api.getSession({ headers: await headers() });
   const user = session?.user;
 
-  if (user?.email !== process.env.NEXT_PUBLIC_ADMIN_EMAIL) {
+  if (user?.role !== "ADMIN") {
     return {
       success: false,
       message: "You don't have privilege to delete a project.",
@@ -370,7 +373,7 @@ export async function updateProjectOrder(items: { id: string; displayOrder: numb
   const session = await auth.api.getSession({ headers: await headers() });
   const user = session?.user;
 
-  if (user?.email !== process.env.NEXT_PUBLIC_ADMIN_EMAIL) {
+  if (user?.role !== "ADMIN") {
     return { success: false, message: "Unauthorized" };
   }
 

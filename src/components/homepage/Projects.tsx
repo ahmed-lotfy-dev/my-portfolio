@@ -9,6 +9,7 @@ import { getTranslations, getLocale } from "next-intl/server";
 import { ExternalLink, Github, ArrowRight } from "lucide-react";
 import ProjectCategories from "@/src/components/ui/ProjectCategories";
 import { shouldShowApk } from "@/src/lib/utils/projectUtils";
+import { getProjectCoverImage } from "@/src/lib/constants/images";
 
 type Project = {
   id: string;
@@ -17,7 +18,7 @@ type Project = {
   title_ar: string;
   desc_en: string;
   desc_ar: string;
-  coverImage: string;
+  coverImage: string | null;
   liveLink: string;
   repoLink: string;
   categories: string[];
@@ -62,7 +63,7 @@ export default async function Projects() {
                   <Link href={proj.slug ? `/projects/${proj.slug}` : proj.liveLink} target={proj.slug ? undefined : "_blank"} className="block">
                     <div className="relative w-full h-64 cursor-pointer overflow-hidden">
                       <Image
-                        src={proj.coverImage}
+                        src={getProjectCoverImage(proj.coverImage)}
                         alt={locale === "ar" ? proj.title_ar : proj.title_en}
                         fill
                         unoptimized={

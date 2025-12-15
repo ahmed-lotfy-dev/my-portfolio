@@ -15,9 +15,18 @@ export async function getProjectSchema() {
     content_ar: z.string().optional(),
     repoLink: z.string().url({ message: t("repo_link_invalid") }),
     liveLink: z.string().url({ message: t("live_link_invalid") }),
-    coverImage: z.string().url({ message: t("image_link_required") }),
+    coverImage: z.string().url({ message: t("image_link_required") }).optional().or(z.literal("")),
     images: z.array(z.string()).optional().default([]),
     categories: z.array(z.string()).optional().default([]),
+  }).refine((data) => {
+    // Ensure coverImage is always in the images array (if coverImage is provided)
+    if (data.coverImage && data.coverImage !== "" && data.images) {
+      return data.images.includes(data.coverImage);
+    }
+    return true;
+  }, {
+    message: "Cover image must be one of the project images",
+    path: ["coverImage"],
   });
 }
 

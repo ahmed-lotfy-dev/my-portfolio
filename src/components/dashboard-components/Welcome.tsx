@@ -12,7 +12,7 @@ export default function Welcome() {
   const { data } = use(sessionPromise);
   const user = data?.user;
 
-  const isAdmin = user?.email === process.env.NEXT_PUBLIC_ADMIN_EMAIL;
+  const isAdmin = user?.role === "ADMIN";
 
   return (
     <motion.div
