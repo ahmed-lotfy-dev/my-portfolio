@@ -5,11 +5,11 @@ import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { DeleteFromS3 } from "./deleteImageAction";
 import { getProjectSchema } from "../../lib/schemas/projectSchema";
-import { headers } from "next/headers";
-import { translateText } from "@/src/lib/utils/translate";
-import { auth } from "@/src/lib/auth";
+import { requireAdmin } from "@/src/lib/utils/authMiddleware";
+import { translateBidirectional } from "@/src/lib/utils/translationHelper";
+import { parseImageArray, parseCategories, parseBoolean, getString } from "@/src/lib/utils/formDataParser";
 import { projects } from "@/src/db/schema";
-import { desc, asc, eq } from "drizzle-orm";
+import { desc, eq } from "drizzle-orm";
 import { logger } from "@/src/lib/utils/logger";
 
 // ✅ Fetch all projects
@@ -59,47 +59,26 @@ export async function getProjectBySlug(slug: string) {
 
 // ✅ Add new project
 export async function addProjectAction(state: any, data: FormData) {
-  const title_en = data.get("title_en") as string;
-  const title_ar = data.get("title_ar") as string;
-  const desc_en = data.get("desc_en") as string;
-  const desc_ar = data.get("desc_ar") as string;
-  const repoLink = data.get("repoLink") as string;
-  const liveLink = data.get("liveLink") as string;
-  const coverImage = data.get("coverImage") as string;
-  const categoriesString = data.get("categories") as string;
-  const categories =
-    categoriesString?.split(",").map((tag) => tag.trim()) || [];
-  
-  /* Safe extraction of images array (defensive against File objects) */
-  const imagesEntries = data.getAll("images");
-  let images: string[] = [];
-  for (const entry of imagesEntries) {
-    if (typeof entry === "string") {
-      try {
-        const parsed = JSON.parse(entry);
-        if (Array.isArray(parsed)) {
-          images = parsed;
-          break;
-        }
-      } catch (e) { /* ignore invalid json */ }
-    }
+  // Check admin authorization
+  const authResult = await requireAdmin("You don't have privilege to add a project.");
+  if (!authResult.isAuthorized) {
+    return authResult;
   }
 
-  const published = data.get("published") === "true";
-  
-  const slug = data.get("slug") as string;
-  const content_en = data.get("content_en") as string;
-  const content_ar = data.get("content_ar") as string;
-
-  const session = await auth.api.getSession({ headers: await headers() });
-  const user = session?.user;
-
-  if (user?.role !== "ADMIN") {
-    return {
-      success: false,
-      message: "You don't have privilege to add a project.",
-    };
-  }
+  // Parse form data using utilities
+  const title_en = getString(data, "title_en");
+  const title_ar = getString(data, "title_ar");
+  const desc_en = getString(data, "desc_en");
+  const desc_ar = getString(data, "desc_ar");
+  const repoLink = getString(data, "repoLink");
+  const liveLink = getString(data, "liveLink");
+  const coverImage = getString(data, "coverImage");
+  const categories = parseCategories(data);
+  const images = parseImageArray(data);
+  const published = parseBoolean(data, "published", true);
+  const slug = getString(data, "slug");
+  const content_en = getString(data, "content_en");
+  const content_ar = getString(data, "content_ar");
 
   const schema = await getProjectSchema();
   const result = schema.safeParse({
@@ -123,51 +102,28 @@ export async function addProjectAction(state: any, data: FormData) {
   }
 
   try {
-    logger.debug("Original EN Title:", title_en);
-    logger.debug("Original AR Title:", title_ar);
-    logger.debug("Original EN Desc:", desc_en);
-    logger.debug("Original AR Desc:", desc_ar);
-
-    // Bidirectional translation for title
-    let finalTitleEn = title_en;
-    let finalTitleAr = title_ar;
-
-    if (!title_ar && title_en) {
-      // Translate EN → AR
-      finalTitleAr = await translateText(title_en, "ar");
-      logger.debug("Translated Title (EN→AR):", finalTitleAr);
-    } else if (!title_en && title_ar) {
-      // Translate AR → EN
-      finalTitleEn = await translateText(title_ar, "en");
-      logger.debug("Translated Title (AR→EN):", finalTitleEn);
-    }
-
-    // Bidirectional translation for description
-    let finalDescEn = desc_en;
-    let finalDescAr = desc_ar;
-
-    if (!desc_ar && desc_en) {
-      // Translate EN → AR
-      finalDescAr = await translateText(desc_en, "ar");
-      logger.debug("Translated Desc (EN→AR):", finalDescAr);
-    } else if (!desc_en && desc_ar) {
-      // Translate AR → EN
-      finalDescEn = await translateText(desc_ar, "en");
-      logger.debug("Translated Desc (AR→EN):", finalDescEn);
-    }
+    // Use translation helper for bidirectional translation
+    const translatedTitle = await translateBidirectional(
+      { en: title_en, ar: title_ar },
+      "Title"
+    );
+    const translatedDesc = await translateBidirectional(
+      { en: desc_en, ar: desc_ar },
+      "Description"
+    );
 
     await db.insert(projects).values({
-      title_en: finalTitleEn,
-      title_ar: finalTitleAr,
-      desc_en: finalDescEn,
-      desc_ar: finalDescAr,
+      title_en: translatedTitle.en,
+      title_ar: translatedTitle.ar,
+      desc_en: translatedDesc.en,
+      desc_ar: translatedDesc.ar,
       repoLink,
       liveLink,
       coverImage,
       images,
       categories,
       published,
-      slug: slug || title_en.toLowerCase().replace(/ /g, "-").replace(/[^\w-]+/g, ""),
+      slug: slug || translatedTitle.en.toLowerCase().replace(/ /g, "-").replace(/[^\w-]+/g, ""),
       content_en,
       content_ar,
       displayOrder: (
@@ -199,55 +155,30 @@ export async function addProjectAction(state: any, data: FormData) {
 
 // ✅ Edit project
 export async function editProjectAction(state: any, data: FormData) {
-  const id = data.get("id") as string;
-  const title_en = data.get("title_en") as string;
-  const title_ar = data.get("title_ar") as string;
-  const desc_en = data.get("desc_en") as string;
-  const desc_ar = data.get("desc_ar") as string;
-  const repoLink = data.get("repoLink") as string;
-  const liveLink = data.get("liveLink") as string;
-  const coverImage = data.get("coverImage") as string;
-  const categoriesString = data.get("categories") as string;
-  const categories =
-    categoriesString?.split(",").map((tag) => tag.trim()) || [];
+  // Check admin authorization
+  const authResult = await requireAdmin("You don't have privilege to edit a project.");
+  if (!authResult.isAuthorized) {
+    return authResult;
+  }
 
-  /* Safe extraction of images array (defensive against File objects) */
+  // Parse form data using utilities
+  const id = getString(data, "id");
+  const title_en = getString(data, "title_en");
+  const title_ar = getString(data, "title_ar");
+  const desc_en = getString(data, "desc_en");
+  const desc_ar = getString(data, "desc_ar");
+  const repoLink = getString(data, "repoLink");
+  const liveLink = getString(data, "liveLink");
+  const coverImage = getString(data, "coverImage");
+  const categories = parseCategories(data);
+  const images = parseImageArray(data);
+  const published = parseBoolean(data, "published", true);
+  const slug = getString(data, "slug");
+  const content_en = getString(data, "content_en");
+  const content_ar = getString(data, "content_ar");
+
   logger.debug("Project ID:", id);
-  logger.debug("FormData Keys:", Array.from(data.keys()));
-  logger.debug("coverImage raw value:", data.get("coverImage"));
-
-  const imagesEntries = data.getAll("images");
-  let images: string[] = [];
-  for (const entry of imagesEntries) {
-    if (typeof entry === "string") {
-      try {
-        const parsed = JSON.parse(entry);
-        if (Array.isArray(parsed)) {
-          images = parsed;
-          break;
-        }
-      } catch (e) { /* ignore invalid json */ }
-    }
-  }
-
-  const published = data.get("published") === "true";
-  
-  const slug = data.get("slug") as string;
-  const content_en = data.get("content_en") as string;
-  const content_ar = data.get("content_ar") as string;
-
-  logger.debug("Edit Project - Categories String:", categoriesString);
   logger.debug("Edit Project - Categories Array:", categories);
-
-  const session = await auth.api.getSession({ headers: await headers() });
-  const user = session?.user;
-
-  if (user?.role !== "ADMIN") {
-    return {
-      success: false,
-      message: "You don't have privilege to edit a project.",
-    };
-  }
 
   const schema = await getProjectSchema();
   const result = schema.safeParse({
@@ -283,47 +214,24 @@ export async function editProjectAction(state: any, data: FormData) {
       await DeleteFromS3(oldProject.coverImage);
     }
 
-    logger.debug("Original EN Title:", title_en);
-    logger.debug("Original AR Title:", title_ar);
-    logger.debug("Original EN Desc:", desc_en);
-    logger.debug("Original AR Desc:", desc_ar);
-
-    // Bidirectional translation for title
-    let finalTitleEn = title_en;
-    let finalTitleAr = title_ar;
-
-    if (!title_ar && title_en) {
-      // Translate EN → AR
-      finalTitleAr = await translateText(title_en, "ar");
-      logger.debug("Translated Title (EN→AR):", finalTitleAr);
-    } else if (!title_en && title_ar) {
-      // Translate AR → EN
-      finalTitleEn = await translateText(title_ar, "en");
-      logger.debug("Translated Title (AR→EN):", finalTitleEn);
-    }
-
-    // Bidirectional translation for description
-    let finalDescEn = desc_en;
-    let finalDescAr = desc_ar;
-
-    if (!desc_ar && desc_en) {
-      // Translate EN → AR
-      finalDescAr = await translateText(desc_en, "ar");
-      logger.debug("Translated Desc (EN→AR):", finalDescAr);
-    } else if (!desc_en && desc_ar) {
-      // Translate AR → EN
-      finalDescEn = await translateText(desc_ar, "en");
-      logger.debug("Translated Desc (AR→EN):", finalDescEn);
-    }
+    // Use translation helper for bidirectional translation
+    const translatedTitle = await translateBidirectional(
+      { en: title_en, ar: title_ar },
+      "Title"
+    );
+    const translatedDesc = await translateBidirectional(
+      { en: desc_en, ar: desc_ar },
+      "Description"
+    );
 
     await db
       .update(projects)
       .set({
-        title_en: finalTitleEn,
-        title_ar: finalTitleAr,
-        desc_en: finalDescEn,
-        desc_ar: finalDescAr,
-        slug: slug || finalTitleEn.toLowerCase().replace(/ /g, "-").replace(/[^\w-]+/g, ""),
+        title_en: translatedTitle.en,
+        title_ar: translatedTitle.ar,
+        desc_en: translatedDesc.en,
+        desc_ar: translatedDesc.ar,
+        slug: slug || translatedTitle.en.toLowerCase().replace(/ /g, "-").replace(/[^\w-]+/g, ""),
         content_en,
         content_ar,
         repoLink,
@@ -346,14 +254,10 @@ export async function editProjectAction(state: any, data: FormData) {
 
 // ✅ Delete project
 export async function deleteProjectAction(id: string) {
-  const session = await auth.api.getSession({ headers: await headers() });
-  const user = session?.user;
-
-  if (user?.role !== "ADMIN") {
-    return {
-      success: false,
-      message: "You don't have privilege to delete a project.",
-    };
+  // Check admin authorization
+  const authResult = await requireAdmin("You don't have privilege to delete a project.");
+  if (!authResult.isAuthorized) {
+    return authResult;
   }
 
   try {
@@ -370,11 +274,10 @@ export async function deleteProjectAction(id: string) {
 
 // ✅ Update project order
 export async function updateProjectOrder(items: { id: string; displayOrder: number }[]) {
-  const session = await auth.api.getSession({ headers: await headers() });
-  const user = session?.user;
-
-  if (user?.role !== "ADMIN") {
-    return { success: false, message: "Unauthorized" };
+  // Check admin authorization
+  const authResult = await requireAdmin();
+  if (!authResult.isAuthorized) {
+    return authResult;
   }
 
   try {

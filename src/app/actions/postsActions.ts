@@ -2,8 +2,8 @@
 
 import { postSchema } from "@/src/lib/schemas/postSchema"
 import { db } from "@/src/db"
-import { headers } from "next/headers"
-import { auth } from "@/src/lib/auth"
+import { requireAdmin } from "@/src/lib/utils/authMiddleware"
+import { getString, parseCategories } from "@/src/lib/utils/formDataParser"
 import { posts } from "@/src/db/schema"
 import { eq } from "drizzle-orm"
 
@@ -25,24 +25,20 @@ export async function getSinglePosts(postSlug: string) {
 }
 
 export async function addNewPost(formData: FormData) {
-  const title = formData.get("title") as string
-  const content = formData.get("content") as string
-  const published = formData.get("published") as string
-  const categories = formData.get("categories") as string
-  const imageLink = formData.get("imageLink") as string
+  // Check admin authorization
+  const authResult = await requireAdmin("You Don't Have Privilege To Add Post");
+  if (!authResult.isAuthorized) {
+    return authResult;
+}
+
+  const title = getString(formData, "title")
+  const content = getString(formData, "content")
+  const published = getString(formData, "published")
+  const categories = getString(formData, "categories")
+  const imageLink = getString(formData, "imageLink")
   const postsCategories = categories?.split(",")
   const isPublished = Boolean(published)
   const slug = title.replace(" ", "-") as string
-
-  const session = await auth.api.getSession({ headers: await headers() })
-  const user = session?.user
-
-  if (user?.role !== "ADMIN") {
-    return {
-      success: false,
-      message: "You Don't Have Privilige To Add Post",
-    }
-  }
 
   const result = postSchema.safeParse({
     title,
@@ -60,7 +56,7 @@ export async function addNewPost(formData: FormData) {
       title_ar: title,
       content_ar: content,
       slug,
-      author: user.id as string,
+      author: authResult.user.id as string,
       categories: postsCategories,
       published: isPublished,
       imageLink,

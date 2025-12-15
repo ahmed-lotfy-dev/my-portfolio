@@ -4,8 +4,8 @@ import { createCertificateSchema } from "../../lib/schemas/certificateSchema";
 import { db } from "@/src/db";
 import { revalidatePath } from "next/cache";
 import { DeleteFromS3 } from "./deleteImageAction";
-import { headers } from "next/headers";
-import { auth } from "@/src/lib/auth";
+import { requireAdmin } from "@/src/lib/utils/authMiddleware";
+import { getString } from "@/src/lib/utils/formDataParser";
 import { certificates } from "@/src/db/schema";
 import { eq } from "drizzle-orm";
 import { logger } from "@/src/lib/utils/logger";
@@ -31,12 +31,19 @@ export async function getSingleCertificate(id: string) {
 }
 
 export async function addCertificateAction(state: any, data: FormData) {
-  const title = data.get("title") as string;
-  const desc = data.get("desc") as string;
-  const courseLink = data.get("courseLink") as string;
-  const profLink = data.get("profLink") as string;
-  const imageLink = data.get("imageLink") as string;
-  const completedAtStr = data.get("completedAt") as string;
+  // Check admin authorization
+  const authResult = await requireAdmin("You don't have privilege to add a certificate.");
+  if (!authResult.isAuthorized) {
+    return authResult;
+  }
+
+  // Parse form data
+  const title = getString(data, "title");
+  const desc = getString(data, "desc");
+  const courseLink = getString(data, "courseLink");
+  const profLink = getString(data, "profLink");
+  const imageLink = getString(data, "imageLink");
+  const completedAtStr = getString(data, "completedAt");
 
   // Convert completedAt string to Date object if provided
   const completedAt = completedAtStr ? new Date(completedAtStr) : null;
@@ -49,17 +56,6 @@ export async function addCertificateAction(state: any, data: FormData) {
     imageLink,
     completedAt,
   });
-
-  const session = await auth.api.getSession({ headers: await headers() });
-  const user = session?.user;
-  logger.debug("Session user:", user);
-
-  if (user?.role !== "ADMIN") {
-    return {
-      success: false,
-      message: "You don't have privilege to add a certificate.",
-    };
-  }
 
   const schema = await createCertificateSchema();
   const result = schema.safeParse({
@@ -97,26 +93,23 @@ export async function addCertificateAction(state: any, data: FormData) {
 }
 
 export async function editCertificateAction(state: any, data: FormData) {
-  const id = data.get("id") as string;
-  const title = data.get("title") as string;
-  const desc = data.get("desc") as string;
-  const courseLink = data.get("courseLink") as string;
-  const profLink = data.get("profLink") as string;
-  const imageLink = data.get("imageLink") as string;
-  const completedAtStr = data.get("completedAt") as string;
+  // Check admin authorization
+  const authResult = await requireAdmin("You don't have privilege to edit a certificate.");
+  if (!authResult.isAuthorized) {
+    return authResult;
+  }
+
+  // Parse form data
+  const id = getString(data, "id");
+  const title = getString(data, "title");
+  const desc = getString(data, "desc");
+  const courseLink = getString(data, "courseLink");
+  const profLink = getString(data, "profLink");
+  const imageLink = getString(data, "imageLink");
+  const completedAtStr = getString(data, "completedAt");
 
   // Convert completedAt string to Date object if provided
   const completedAt = completedAtStr ? new Date(completedAtStr) : null;
-
-  const session = await auth.api.getSession({ headers: await headers() });
-  const user = session?.user;
-
-  if (user?.role !== "ADMIN") {
-    return {
-      success: false,
-      message: "You don't have privilege to edit a certificate.",
-    };
-  }
 
   const schema = await createCertificateSchema();
   const result = schema.safeParse({
@@ -154,14 +147,10 @@ export async function editCertificateAction(state: any, data: FormData) {
 }
 
 export async function deleteCertificateAction(certificateId: string) {
-  const session = await auth.api.getSession({ headers: await headers() });
-  const user = session?.user;
-
-  if (user?.role !== "ADMIN") {
-    return {
-      success: false,
-      message: "You don't have privilege to delete a certificate.",
-    };
+  // Check admin authorization
+  const authResult = await requireAdmin("You don't have privilege to delete a certificate.");
+  if (!authResult.isAuthorized) {
+    return authResult;
   }
 
   await db.delete(certificates).where(eq(certificates.id, certificateId));
