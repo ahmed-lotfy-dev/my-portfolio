@@ -22,6 +22,7 @@ export async function createCertificateSchema() {
       .url({ message: t("image_link_required") })
       .min(10, { message: t("image_link_required") }),
     completedAt: z.string().optional(),
+    published: z.boolean().optional().default(true),
   });
 }
 
@@ -40,4 +41,5 @@ export const CertificateSchema = z.object({
     .string()
     .url({ message: "Certificate image link is required" })
     .min(10, { message: "Certificate image link is required" }),
+  published: z.boolean().optional().default(true),
 });

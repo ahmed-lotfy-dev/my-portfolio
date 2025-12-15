@@ -1,5 +1,5 @@
 import { Card } from "@/src/components/ui/card"
-import { getAllCertificates } from "@/src/app/actions/certificatesActions"
+import { getAllCertificatesForDashboard } from "@/src/app/actions/certificatesActions";
 import { getAllProjects } from "@/src/app/actions/projectsActions"
 import { getPostHogAnalytics } from "@/src/app/actions/analytics"
 import AnalyticsDashboard from "@/src/components/features/dashboard/analytics/AnalyticsDashboard"
@@ -8,7 +8,7 @@ import { getTranslations } from "next-intl/server"
 
 export default async function DashboardStats() {
   const [{ allCertificates }, { allProjects }, analyticsData] = await Promise.all([
-    getAllCertificates(),
+    getAllCertificatesForDashboard(),
     getAllProjects(),
     getPostHogAnalytics(),
   ]);

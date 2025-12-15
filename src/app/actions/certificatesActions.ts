@@ -5,12 +5,23 @@ import { db } from "@/src/db";
 import { revalidatePath } from "next/cache";
 import { DeleteFromS3 } from "./deleteImageAction";
 import { requireAdmin } from "@/src/lib/utils/authMiddleware";
-import { getString } from "@/src/lib/utils/formDataParser";
+import { getString, parseBoolean } from "@/src/lib/utils/formDataParser";
 import { certificates } from "@/src/db/schema";
 import { eq } from "drizzle-orm";
 import { logger } from "@/src/lib/utils/logger";
 
 export async function getAllCertificates() {
+  try {
+    const allCertificates = await db.query.certificates.findMany({
+      where: (c, { eq }) => eq(c.published, true),
+    });
+    return { allCertificates };
+  } catch (error) {
+    return { error };
+  }
+}
+
+export async function getAllCertificatesForDashboard() {
   try {
     const allCertificates = await db.query.certificates.findMany();
     return { allCertificates };
@@ -44,6 +55,7 @@ export async function addCertificateAction(state: any, data: FormData) {
   const profLink = getString(data, "profLink");
   const imageLink = getString(data, "imageLink");
   const completedAtStr = getString(data, "completedAt");
+  const published = parseBoolean(data, "published", true);
 
   // Convert completedAt string to Date object if provided
   const completedAt = completedAtStr ? new Date(completedAtStr) : null;
@@ -65,6 +77,7 @@ export async function addCertificateAction(state: any, data: FormData) {
     profLink,
     imageLink,
     completedAt: completedAtStr,
+    published,
   });
 
   if (!result.success) {
@@ -80,6 +93,7 @@ export async function addCertificateAction(state: any, data: FormData) {
       profLink,
       imageLink,
       completedAt,
+      published,
     });
 
     logger.info("Certificate added successfully");
@@ -107,6 +121,7 @@ export async function editCertificateAction(state: any, data: FormData) {
   const profLink = getString(data, "profLink");
   const imageLink = getString(data, "imageLink");
   const completedAtStr = getString(data, "completedAt");
+  const published = parseBoolean(data, "published", true);
 
   // Convert completedAt string to Date object if provided
   const completedAt = completedAtStr ? new Date(completedAtStr) : null;
@@ -119,6 +134,7 @@ export async function editCertificateAction(state: any, data: FormData) {
     profLink,
     imageLink,
     completedAt: completedAtStr,
+    published,
   });
 
   if (!result.success) {
@@ -138,7 +154,7 @@ export async function editCertificateAction(state: any, data: FormData) {
 
   await db
     .update(certificates)
-    .set({ title, desc, courseLink, profLink, imageLink, completedAt })
+    .set({ title, desc, courseLink, profLink, imageLink, completedAt, published })
     .where(eq(certificates.id, id));
 
   await revalidatePath("/dashboard/certificates");

@@ -1,7 +1,7 @@
-import { getAllCertificates } from "@/src/app/actions/certificatesActions";
+import { getAllCertificatesForDashboard } from "@/src/app/actions/certificatesActions";
 import { CertificateList } from "./CertificatesList";
 
 export default async function CertificateListContainer() {
-  const { allCertificates } = await getAllCertificates();
+  const { allCertificates } = await getAllCertificatesForDashboard();
   return <CertificateList allCertificates={allCertificates} />;
 }

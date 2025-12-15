@@ -23,6 +23,7 @@ import { authClient } from "@/src/lib/auth-client";
 import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/src/lib/utils";
 import { useRouter } from "next/navigation";
+import { Switch } from "@/src/components/ui/switch";
 
 function EditCertificate({ EditedObject }: any) {
   const { id } = EditedObject;
@@ -153,6 +154,25 @@ function EditCertificate({ EditedObject }: any) {
                     {state.error.completedAt._errors[0]}
                   </p>
                 )}
+              </div>
+
+              <div className="flex items-center justify-between p-4 rounded-xl border border-white/10 bg-white/5">
+                <div className="space-y-0.5">
+                  <Label htmlFor="published" className="text-sm font-medium cursor-pointer">
+                    Published
+                  </Label>
+                  <p className="text-xs text-muted-foreground">
+                    Make this certificate visible on the homepage
+                  </p>
+                </div>
+                <Switch
+                  id="published"
+                  checked={editedCert.published ?? true}
+                  onCheckedChange={(checked) =>
+                    setEditedCert({ ...editedCert, published: checked })
+                  }
+                />
+                <input type="hidden" name="published" value={(editedCert.published ?? true).toString()} />
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">

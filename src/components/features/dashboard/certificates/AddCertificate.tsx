@@ -20,6 +20,7 @@ import { authClient } from "@/src/lib/auth-client";
 import { motion, AnimatePresence } from "framer-motion";
 import { Plus, X } from "lucide-react";
 import { cn } from "@/src/lib/utils";
+import { Switch } from "@/src/components/ui/switch";
 
 function AddCertificateComponent() {
   const t = useTranslations("certificates");
@@ -37,6 +38,7 @@ function AddCertificateComponent() {
     courseLink: "",
     profLink: "",
     completedAt: "",
+    published: true,
   });
 
   // ✅ show toast when server action finishes
@@ -45,7 +47,7 @@ function AddCertificateComponent() {
       notify("Certificate added successfully!", true);
       setOpen(false);
       setImageUrl("");
-      setFormData({ title: "", desc: "", courseLink: "", profLink: "", completedAt: "" });
+      setFormData({ title: "", desc: "", courseLink: "", profLink: "", completedAt: "", published: true });
       formRef.current?.reset();
     } else if (state?.message && !state?.success) {
       notify(state.message, false);
@@ -153,6 +155,25 @@ function AddCertificateComponent() {
                     {state.error.completedAt._errors[0]}
                   </p>
                 )}
+              </div>
+
+              <div className="flex items-center justify-between p-4 rounded-xl border border-white/10 bg-white/5">
+                <div className="space-y-0.5">
+                  <Label htmlFor="published" className="text-sm font-medium cursor-pointer">
+                    Published
+                  </Label>
+                  <p className="text-xs text-muted-foreground">
+                    Make this certificate visible on the homepage
+                  </p>
+                </div>
+                <Switch
+                  id="published"
+                  checked={formData.published}
+                  onCheckedChange={(checked) =>
+                    setFormData({ ...formData, published: checked })
+                  }
+                />
+                <input type="hidden" name="published" value={formData.published.toString()} />
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">

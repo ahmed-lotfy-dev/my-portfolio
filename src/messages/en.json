@@ -44,7 +44,20 @@
     ]
   },
   "footer": {
-    "rights": "All rights reserved."
+    "rights": "All rights reserved.",
+    "about_text": "Full-Stack Web & Mobile Software Developer passionate about building responsive and scalable applications.",
+    "quick_links": "Quick Links",
+    "connect": "Connect",
+    "legal": "Legal",
+    "built_with": "Built with",
+    "links": {
+      "home": "Home",
+      "projects": "Projects",
+      "certificates": "Certifications",
+      "contact": "Contact",
+      "privacy": "Privacy Policy",
+      "terms": "Terms of Service"
+    }
   },
   "projects": {
     "title": "My Projects",
@@ -95,6 +108,11 @@
   "certificates": {
     "title": "My Certificates",
     "description": "A collection of my certifications and qualifications. Hover over a card to see the certificate.",
+    "page_title": "Professional Certifications",
+    "page_description": "A comprehensive collection of professional development certificates and courses completed throughout my career.",
+    "total_certificates": "Certificates",
+    "no_certificates": "No certificates found.",
+    "back_to_home": "Back to Home",
     "add-title": "Add Certificate",
     "add-desc": "Fill in the details below to add a new certificate",
     "course": "Course",
@@ -167,7 +185,6 @@
       "dashboard": "Dashboard",
       "projects": "Projects",
       "certificates": "Certificates",
-      "certificates": "Certificates",
       "blog": "Add Post",
       "sign_out": "Sign Out"
     },
@@ -212,6 +229,10 @@
     "blogs": {
       "title": "Blog | Ahmed Lotfy",
       "description": "Read my thoughts on software development, web technologies, and more."
+    },
+    "certificates": {
+      "title": "Professional Certifications | Ahmed Lotfy",
+      "description": "Explore my professional development journey through certificates and courses in web development, software engineering, and modern technologies."
     }
   }
 }

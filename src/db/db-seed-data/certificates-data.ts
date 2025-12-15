@@ -8,6 +8,7 @@ export const certificatesData = [
       "https://drive.google.com/drive/folders/1FP8XyG7QuFQzhco6y5AlLUSlgcPVPCb0?usp=sharing",
     imageLink: "https://images.ahmedlotfy.site/certificates/Full-List.png",
     completedAt: new Date("2022-06-02"),
+    published: true,
   },
   {
     title: "Build Responsive Real World Websited With HTML and,CSS",
@@ -19,6 +20,7 @@ export const certificatesData = [
     imageLink:
       "https://images.ahmedlotfy.site/certificates/Build%20Responsive%20Real-World%20Website%20With%20HTML%20And%20CSS.jpg",
     completedAt: new Date("2022-05-25"),
+    published: true,
   },
   {
     title: "The Complete JavaScript Course 2022: From Zero to Expert!",
@@ -30,6 +32,7 @@ export const certificatesData = [
     imageLink:
       "https://images.ahmedlotfy.site/certificates/The%20Complete%20Javascript%202022%20From%20ZERO%20To%20EXPERT!.jpg",
     completedAt: new Date("2022-09-04"),
+    published: true,
   },
   {
     title: "React Development Cross-Skilling",
@@ -39,6 +42,7 @@ export const certificatesData = [
     imageLink:
       "https://images.ahmedlotfy.site/certificates/React%20cross%20skilling%20udacity%20certification.png",
     completedAt: new Date("2022-06-11"),
+    published: true,
   },
   {
     title: "Complete React Developer (w/ Redux, Hooks, GraphQL)",
@@ -49,6 +53,7 @@ export const certificatesData = [
     imageLink:
       "https://images.ahmedlotfy.site/certificates/Complete%20React%20Developer%20In%202023%20w(Redux%2CHooks).jpg",
     completedAt: new Date("2022-11-27"),
+    published: true,
   },
   {
     title: "NodeJS - The Complete Guide (MVC, REST APIs, GraphQL, Deno)",
@@ -59,6 +64,7 @@ export const certificatesData = [
     imageLink:
       "https://images.ahmedlotfy.site/certificates/NodeJS%20-%20The%20Complete%20Guide%20(MVC%2CREST%20APIs%2CGraphQL%2CDeno).jpg",
     completedAt: new Date("2022-12-28"),
+    published: true,
   },
   {
     title: "ChatGPT Basics Course",
@@ -69,6 +75,7 @@ export const certificatesData = [
     imageLink:
       "https://images.ahmedlotfy.site/certificates/Almadrasa%20chatgpt%20.png",
     completedAt: new Date("2023-01-06"),
+    published: false,
   },
   {
     title: "PHP Course - From Zero to Hero",
@@ -78,6 +85,7 @@ export const certificatesData = [
     imageLink:
       "https://images.ahmedlotfy.site/certificates/Screenshot%202025-11-03%20170200.png",
     completedAt: new Date("2025-11-03"),
+    published: true,
   },
   {
     title: "Laravel From Scratch",
@@ -87,5 +95,6 @@ export const certificatesData = [
     imageLink:
       "https://images.ahmedlotfy.site/certificates/laravel-certificate-placeholder.png",
     completedAt: new Date("2025-11-20"),
+    published: true,
   },
 ];

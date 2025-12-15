@@ -1,7 +1,5 @@
 import { Suspense } from "react";
-import Certificates from "@/src/components/features/homepage/Certificates";
 import ProjectsSkeleton from "@/src/components/skeletons/ProjectsSkeleton";
-import CertificatesSkeleton from "@/src/components/skeletons/CertificatesSkeleton";
 import Hero from "@/src/components/features/homepage/Hero";
 import Projects from "@/src/components/features/homepage/Projects";
 import Skills from "@/src/components/features/homepage/Skills";
@@ -103,9 +101,6 @@ export default async function HomePage({
       <Skills />
       <Suspense fallback={<ProjectsSkeleton />}>
         <Projects />
-      </Suspense>
-      <Suspense fallback={<CertificatesSkeleton />}>
-        <Certificates />
       </Suspense>
       <About />
       <Contact />

@@ -27,7 +27,7 @@ const navLinks = [
   { href: "/", label: "home" },
   { href: "/#projects", label: "projects" },
   { href: "/blogs", label: "blog" },
-  { href: "/#certificates", label: "certificates" },
+  { href: "/certificates", label: "certificates" },
   { href: "/#about", label: "about" },
   { href: "/#contact", label: "contact" },
   { href: "/dashboard", label: "dashboard" },

@@ -157,7 +157,7 @@ export default async function ProjectDetailsPage({ params }: { params: Promise<{
             </div>
 
             {/* Sticky Back Link - stays in place when scrolling */}
-            <div className="sticky top-24 z-30 mb-8 md:mb-12 pointer-events-none">
+            <div className="sticky top-28 z-30 mb-8 md:mb-12 pointer-events-none">
                 <Link
                     href="/#projects"
                     className="inline-flex items-center gap-3 text-muted-foreground hover:text-foreground transition-colors group backdrop-blur-xl bg-background/80 px-4 py-3 rounded-2xl border border-border/50 shadow-lg w-fit pointer-events-auto"

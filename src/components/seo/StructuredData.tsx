@@ -1,5 +1,5 @@
 interface StructuredDataProps {
-  type: 'Person' | 'WebSite' | 'Article' | 'CreativeWork' | 'EducationalOccupationalCredential'
+  type: 'Person' | 'WebSite' | 'Article' | 'CreativeWork' | 'EducationalOccupationalCredential' | 'CollectionPage'
   data: any
 }
 
@@ -96,6 +96,17 @@ export default function StructuredData({ type, data }: StructuredDataProps) {
           name: data.issuingOrganization,
           url: data.organizationUrl,
         },
+      }
+      break
+
+    case 'CollectionPage':
+      schema = {
+        '@context': 'https://schema.org',
+        '@type': 'CollectionPage',
+        name: data.name,
+        description: data.description,
+        url: data.url,
+        ...(data.numberOfItems !== undefined && { numberOfItems: data.numberOfItems }),
       }
       break
   }
