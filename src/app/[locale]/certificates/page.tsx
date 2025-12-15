@@ -2,10 +2,11 @@ import { getAllCertificates } from "@/src/app/actions/certificatesActions";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { routing } from "@/src/i18n/routing";
 import Link from "next/link";
-import { ArrowLeft, Award, ExternalLink, FileText, Search } from "lucide-react";
+import { Award, ExternalLink, FileText, Search } from "lucide-react";
 import { ImageCarousel } from "@/src/components/ui/ImageCarousel";
 import { cn } from "@/src/lib/utils";
 import StructuredData from "@/src/components/seo/StructuredData";
+import { BackButton } from "@/src/components/ui/BackButton";
 
 export const dynamic = "force-dynamic";
 
@@ -83,22 +84,11 @@ export default async function CertificatesPage({
 
       <div className="container mx-auto px-4 md:px-6 relative z-10 pt-24 md:pt-32">
         {/* Back Link */}
-        <Link
+        <BackButton
           href={`/${locale}`}
-          className="inline-flex items-center gap-3 text-muted-foreground hover:text-foreground transition-colors mb-8 md:mb-12 group"
-        >
-          <div className="p-2.5 rounded-full bg-secondary/50 group-hover:bg-primary/10 transition-colors border border-border/50">
-            <ArrowLeft
-              className={cn(
-                "w-5 h-5 transition-transform",
-                isArabic
-                  ? "scale-x-[-1] group-hover:translate-x-1"
-                  : "group-hover:-translate-x-1"
-              )}
-            />
-          </div>
-          <span className="font-medium text-lg">{t("back_to_home")}</span>
-        </Link>
+          label={t("back_to_home")}
+          locale={locale}
+        />
 
         {/* Page Header */}
         <div className="text-center mb-16 space-y-4">

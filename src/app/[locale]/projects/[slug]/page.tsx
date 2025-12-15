@@ -5,11 +5,12 @@ import { cn } from "@/src/lib/utils";
 import Image from "next/image";
 import { shouldShowApk } from "@/src/lib/utils/projectUtils";
 import Link from "next/link";
-import { ArrowLeft, ExternalLink, Github } from "lucide-react";
+import { ExternalLink, Github } from "lucide-react";
 import { Button } from "@/src/components/ui/button";
 import StructuredData from "@/src/components/seo/StructuredData";
 import { MarkdownDisplay } from "@/src/components/ui/MarkdownDisplay";
 import { ImageCarousel } from "@/src/components/ui/ImageCarousel";
+import { BackButton } from "@/src/components/ui/BackButton";
 
 // Helper function to extract keywords from markdown content
 function extractKeywords(content: string, maxKeywords: number = 15): string[] {
@@ -150,23 +151,14 @@ export default async function ProjectDetailsPage({ params }: { params: Promise<{
                 }}
             />
 
-            {/* Background Effects */}
-            <div className="fixed inset-0 pointer-events-none overflow-hidden">
-                <div className="absolute top-[-10%] right-[-10%] w-[500px] h-[500px] bg-primary/10 blur-[100px] rounded-full mix-blend-screen opacity-50" />
-                <div className="absolute bottom-[-10%] left-[-10%] w-[500px] h-[500px] bg-blue-500/10 blur-[100px] rounded-full mix-blend-screen opacity-50" />
-            </div>
 
-            {/* Sticky Back Link - stays in place when scrolling */}
-            <div className="sticky top-28 z-30 mb-8 md:mb-12 pointer-events-none">
-                <Link
+            {/* Back Link */}
+            <div className="container mx-auto px-4 md:px-6 pt-24 md:pt-32">
+                <BackButton
                     href="/#projects"
-                    className="inline-flex items-center gap-3 text-muted-foreground hover:text-foreground transition-colors group backdrop-blur-xl bg-background/80 px-4 py-3 rounded-2xl border border-border/50 shadow-lg w-fit pointer-events-auto"
-                >
-                    <div className="p-2.5 rounded-full bg-secondary/50 group-hover:bg-primary/10 transition-colors border border-border/50">
-                        <ArrowLeft className={cn("w-5 h-5 transition-transform", locale === "ar" ? "scale-x-[-1] group-hover:translate-x-1" : "group-hover:-translate-x-1")} />
-                    </div>
-                    <span className="font-medium text-lg">{t("back_to_portfolio")}</span>
-                </Link>
+                    label={t("back_to_portfolio")}
+                    locale={locale}
+                />
             </div>
 
             {/* Hero Section - Carousel or Single Image */}
