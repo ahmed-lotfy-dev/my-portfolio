@@ -184,12 +184,3 @@ describe("postSchema", () => {
     })
   })
 })
-
-// =========================================
-// INTENTIONAL FAILING TEST - DELETE AFTER CI VERIFICATION
-// =========================================
-describe("CI FAILURE TEST", () => {
-  it("should fail to verify CI catches errors", () => {
-    expect(true).toBe(false) // This WILL fail
-  })
-})
