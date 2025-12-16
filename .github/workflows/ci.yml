@@ -27,7 +27,4 @@ jobs:
 
       - name: Deploy to Dokploy
         run: |
-          curl -X POST "https://dokploy.ahmedlotfy.site/api/application.deploy" \
-            -H "x-api-key: ${{ secrets.DOKPLOY_API_KEY }}" \
-            -H "Content-Type: application/json" \
-            -d '{"applicationId":"3NdOKY7OBE7kc1WcHHzhg"}'
+          curl -X POST "https://dokploy.ahmedlotfy.site/api/deploy/3NdOKY7OBE7kc1WcHHzhg"
