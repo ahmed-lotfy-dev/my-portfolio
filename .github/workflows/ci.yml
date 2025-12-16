@@ -2,10 +2,9 @@ name: CI/CD
 
 on:
   push:
-    branches: [main]    # Run tests on every push
-    tags: ['*']         # Also run on tags
+    branches: [main]
   pull_request:
-  
+
 jobs:
   test:
     runs-on: ubuntu-latest
@@ -22,7 +21,7 @@ jobs:
   deploy:
     needs: test
     runs-on: ubuntu-latest
-    if: success() && startsWith(github.ref, 'refs/tags/')  # only deploy on tags
+    if: success() && github.ref == 'refs/heads/main'
     steps:
       - name: Deploy to Dokploy
         run: |
