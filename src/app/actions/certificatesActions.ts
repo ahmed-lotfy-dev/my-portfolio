@@ -1,6 +1,6 @@
 "use server";
 
-import { createCertificateSchema } from "../../lib/schemas/certificateSchema";
+import { getCertificateSchema } from "../../lib/schemas/certificateSchema";
 import { db } from "@/src/db";
 import { revalidatePath } from "next/cache";
 import { DeleteFromS3 } from "./deleteImageAction";
@@ -69,7 +69,9 @@ export async function addCertificateAction(state: any, data: FormData) {
     completedAt,
   });
 
-  const schema = await createCertificateSchema();
+  // Get locale from form data or default to 'en'
+  const locale = getString(data, "locale", "en");
+  const schema = await getCertificateSchema(locale);
   const result = schema.safeParse({
     title,
     desc,
@@ -126,7 +128,9 @@ export async function editCertificateAction(state: any, data: FormData) {
   // Convert completedAt string to Date object if provided
   const completedAt = completedAtStr ? new Date(completedAtStr) : null;
 
-  const schema = await createCertificateSchema();
+  // Get locale from form data or default to 'en'
+  const locale = getString(data, "locale", "en");
+  const schema = await getCertificateSchema(locale);
   const result = schema.safeParse({
     title,
     desc,

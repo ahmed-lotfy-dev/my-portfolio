@@ -2,7 +2,7 @@ import { z } from "zod";
 import { getTranslations } from "next-intl/server";
 
 // Pure async schema (no fallback)
-export async function getProjectSchema() {
+export async function getProjectSchema(lang: "en" | "ar") {
   const t = await getTranslations("projects.validation");
 
   return z.object({

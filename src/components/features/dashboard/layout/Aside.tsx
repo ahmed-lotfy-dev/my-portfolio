@@ -45,7 +45,10 @@ export default function Aside({ user }: { user: any }) {
     return () => window.removeEventListener("resize", checkMobile);
   }, []);
 
-  const navLinks = [
+  // Check if user is admin
+  const isAdmin = user?.role === "ADMIN" || user?.email === process.env.NEXT_PUBLIC_ADMIN_EMAIL;
+
+  const allNavLinks = [
     { href: "/", icon: IoHome, text: t("home") },
     { href: "/dashboard", icon: IoGrid, text: t("dashboard") },
     { href: "/dashboard/projects", icon: IoCode, text: t("projects") },
@@ -53,10 +56,14 @@ export default function Aside({ user }: { user: any }) {
       href: "/dashboard/certificates",
       icon: IoRibbon,
       text: t("certificates"),
+      adminOnly: true, // Only show to admin
     },
     { href: "/dashboard/blogs/new", icon: IoAddCircleSharp, text: t("blog") },
     { href: "/dashboard/backups", icon: IoSaveSharp, text: "Backups" },
   ];
+
+  // Filter to show only links that user has access to
+  const navLinks = allNavLinks.filter(link => !link.adminOnly || isAdmin);
 
   return (
     <aside
