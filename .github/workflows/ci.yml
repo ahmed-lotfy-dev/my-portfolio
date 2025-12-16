@@ -33,4 +33,4 @@ jobs:
                -H "accept: application/json" \
                -H "x-api-key: ${DOKPLOY_KEY}" \
                -H "Content-Type: application/json" \
-               -d "{\"applicationId\": \"${APP_ID}\"}"
+               -d '{"applicationId": "${APP_ID}"}'
