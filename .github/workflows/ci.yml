@@ -1,4 +1,4 @@
-name: CI
+name: CI/CD
 
 on:
   push:
@@ -8,7 +8,6 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
-
     steps:
       - uses: actions/checkout@v4
 
@@ -18,4 +17,17 @@ jobs:
 
       - run: bun install --frozen-lockfile
       - run: bun test
-      - run: bun run build
+
+  deploy:
+    needs: test
+    runs-on: ubuntu-latest
+    if: success()
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Deploy to Dokploy
+        run: |
+          curl -X POST "https://dokploy.ahmedlotfy.site/api/application.deploy" \
+            -H "x-api-key: ${{ secrets.DOKPLOY_API_KEY }}" \
+            -H "Content-Type: application/json" \
+            -d '{"applicationId":"3NdOKY7OBE7kc1WcHHzhg"}'
