@@ -27,4 +27,4 @@ jobs:
 
       - name: Deploy to Dokploy
         run: |
-          curl -X POST "https://dokploy.ahmedlotfy.site/api/deploy/IQ-l0VTiejbMJuC2HI1eJ"
+          curl -X POST "${{ secrets.DOKPLOY_WEBHOOK_URL }}"
