@@ -80,7 +80,7 @@ export async function addProjectAction(state: any, data: FormData) {
   const content_en = getString(data, "content_en");
   const content_ar = getString(data, "content_ar");
 
-  const schema = await getProjectSchema();
+  const schema = await getProjectSchema("en");
   const result = schema.safeParse({
     title_en,
     title_ar,
@@ -134,12 +134,12 @@ export async function addProjectAction(state: any, data: FormData) {
           .limit(1)
       ).at(0)?.max
         ? ((
-            await db
-              .select({ max: projects.displayOrder })
-              .from(projects)
-              .orderBy(desc(projects.displayOrder))
-              .limit(1)
-          ).at(0)?.max || 0) + 1
+          await db
+            .select({ max: projects.displayOrder })
+            .from(projects)
+            .orderBy(desc(projects.displayOrder))
+            .limit(1)
+        ).at(0)?.max || 0) + 1
         : 0,
     });
 
@@ -180,7 +180,7 @@ export async function editProjectAction(state: any, data: FormData) {
   logger.debug("Project ID:", id);
   logger.debug("Edit Project - Categories Array:", categories);
 
-  const schema = await getProjectSchema();
+  const schema = await getProjectSchema("en");
   const result = schema.safeParse({
     title_en,
     title_ar,
@@ -208,7 +208,7 @@ export async function editProjectAction(state: any, data: FormData) {
 
     // Check if the old cover image is still in use (either as cover or in the gallery)
     const isOldImageKept = images.includes(oldProject?.coverImage || "");
-    
+
     if (oldProject?.coverImage && oldProject.coverImage !== coverImage && !isOldImageKept) {
       logger.info("Old cover image removed from gallery — deleting from S3");
       await DeleteFromS3(oldProject.coverImage);
