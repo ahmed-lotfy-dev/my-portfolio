@@ -2,9 +2,10 @@ name: CI/CD
 
 on:
   push:
-    branches: [main]
+    branches: [main]    # Run tests on every push
+    tags: ['*']         # Also run on tags
   pull_request:
-
+  
 jobs:
   test:
     runs-on: ubuntu-latest
@@ -21,10 +22,9 @@ jobs:
   deploy:
     needs: test
     runs-on: ubuntu-latest
-    if: success()
+    if: success() && startsWith(github.ref, 'refs/tags/')  # only deploy on tags
     steps:
-      - uses: actions/checkout@v4
-
       - name: Deploy to Dokploy
         run: |
-          curl -X POST "${{ secrets.DOKPLOY_WEBHOOK_URL }}"
+          curl -X POST "${{ secrets.DOKPLOY_WEBHOOK_URL }}" \
+               -H "Content-Type: application/json"
