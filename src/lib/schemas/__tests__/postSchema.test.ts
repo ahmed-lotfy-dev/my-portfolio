@@ -184,3 +184,12 @@ describe("postSchema", () => {
     })
   })
 })
+
+// =========================================
+// INTENTIONAL FAILING TEST - VERIFY CI BLOCKS DEPLOY
+// =========================================
+describe("CI/CD FAILURE TEST", () => {
+  it("should fail to verify deploy gets skipped", () => {
+    expect(true).toBe(false) // This WILL fail - deploy should be SKIPPED
+  })
+})
