@@ -1,4 +1,5 @@
 import SystemHealth from "@/src/components/features/dashboard/analytics/SystemHealth";
+import { getBackupLogs } from "@/src/app/actions/backupActions";
 import { auth } from "@/src/lib/auth";
 import { headers } from "next/headers";
 import { redirect } from "next/navigation";
@@ -27,6 +28,7 @@ export default async function BackupsPage() {
         isAdmin={!!isAdmin}
         cfAccountId={process.env.CF_ACCOUNT_ID}
         cfBucketName={process.env.CF_BUCKET_NAME}
+        logsPromise={getBackupLogs()}
       />
     </div>
   );

@@ -15,12 +15,13 @@ interface SystemHealthProps {
   isAdmin: boolean;
   cfAccountId?: string;
   cfBucketName?: string;
+  logsPromise: ReturnType<typeof getBackupLogs>;
 }
 
-const initialLogsPromise = getBackupLogs();
 
-export default function SystemHealth({ isAdmin, cfAccountId, cfBucketName }: SystemHealthProps) {
-  const initialData = use(initialLogsPromise);
+
+export default function SystemHealth({ isAdmin, cfAccountId, cfBucketName, logsPromise }: SystemHealthProps) {
+  const initialData = use(logsPromise);
   const [logs, setLogs] = useState<BackupLog>(initialData.data || []);
   const [loading, setLoading] = useState(false);
   const [isPending, startTransition] = useTransition();
