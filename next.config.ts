@@ -24,7 +24,7 @@ const nextConfig: NextConfig = {
       "@radix-ui/react-tabs",
       "@radix-ui/react-tooltip",
     ],
-    
+
   },
   reactCompiler: false,
   images: {
