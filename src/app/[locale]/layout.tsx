@@ -6,7 +6,7 @@ import { routing } from "@/src/i18n/routing";
 import "../globals.css";
 
 import { Nav } from "@/src/components/features/homepage/Nav";
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Toaster } from "@/src/components/ui/sonner";
 import UserButton from "@/src/components/features/dashboard/layout/UserButton";
 import { getMessages, setRequestLocale } from "next-intl/server";
@@ -24,7 +24,12 @@ export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
 }
 
+export const viewport: Viewport = {
+  themeColor: "#09090b",
+};
+
 export const metadata: Metadata = {
+  manifest: "/manifest.webmanifest", // Explicitly link manifest, though Next.js usually finds manifest.ts
   metadataBase: new URL("https://ahmedlotfy.site"),
   title: {
     default: "Ahmed Lotfy – Full-Stack Software Engineer",
