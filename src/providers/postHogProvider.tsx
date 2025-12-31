@@ -19,6 +19,8 @@ export function PostHogProvider({ children }: { children: React.ReactNode }) {
           person_profiles: "identified_only",
           capture_pageview: true,
           capture_pageleave: true,
+          // Enable exception capture for error tracking
+          capture_exceptions: true,
           // Disable session recording by default for better performance
           // disable_session_recording: false,
           // Load script asynchronously

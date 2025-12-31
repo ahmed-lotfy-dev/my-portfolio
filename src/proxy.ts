@@ -62,6 +62,6 @@ export const config = {
     // Enable a comprehensive source matcher to ensure that
     // the middleware runs on all relevant paths
     // Exclude: API routes, Next.js internals, and static files from public folder
-    "/((?!api|_next/static|_next/image|.*\\.png|.*\\.jpg|.*\\.jpeg|.*\\.gif|.*\\.webp|.*\\.svg|.*\\.ico|.*\\.pdf|.*\\.webmanifest).*)",
+    "/((?!api|_next/static|_next/image|ingest|.*\\.png|.*\\.jpg|.*\\.jpeg|.*\\.gif|.*\\.webp|.*\\.svg|.*\\.ico|.*\\.pdf|.*\\.webmanifest).*)",
   ],
 };

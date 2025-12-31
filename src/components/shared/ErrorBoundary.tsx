@@ -2,6 +2,7 @@
 
 import { Component, ReactNode } from "react";
 import { logger } from "@/src/lib/utils/logger";
+import posthog from "posthog-js";
 
 interface ErrorBoundaryProps {
   children: ReactNode;
@@ -32,10 +33,19 @@ export class ErrorBoundary extends Component<
 
   componentDidCatch(error: Error, errorInfo: React.ErrorInfo) {
     logger.error("Error caught by boundary:", error, errorInfo);
+
+    // Capture error in PostHog
+    posthog.capture("error_boundary_triggered", {
+      error_message: error.message,
+      error_name: error.name,
+      component_stack: errorInfo.componentStack,
+    });
+    // Also use PostHog's exception capture
+    posthog.captureException(error);
+
     if (error.message.includes("Failed to find Server Action")) {
       window.location.reload();
     }
-    // TODO: Send to error tracking service (Sentry, etc.)
   }
 
   render() {
