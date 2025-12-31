@@ -31,6 +31,8 @@ type Props = {
     trend: { date: string; value: number }[];
     topPaths: { path: string; count: number }[];
     sources: { source: string; count: number }[];
+    topProjects: { name: string; path: string; count: number }[];
+    locations: { country: string; count: number }[];
   };
 };
 
@@ -49,7 +51,7 @@ export default function AnalyticsDashboard({ data }: Props) {
   return (
     <div className="space-y-6 w-full mt-6">
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-7">
-        
+
         {/* Main Trend Line Chart */}
         <Card className="col-span-4">
           <CardHeader>
@@ -134,13 +136,75 @@ export default function AnalyticsDashboard({ data }: Props) {
             </div>
             {/* Legend */}
             <div className="flex flex-wrap justify-center gap-2 mt-4">
-               {data.sources.map((entry, index) => (
+              {data.sources.map((entry, index) => (
                 <div key={index} className="flex items-center gap-1 text-xs">
                   <div className="w-2 h-2 rounded-full" style={{ backgroundColor: COLORS[index % COLORS.length] }} />
                   <span>{entry.source}</span>
                 </div>
               ))}
             </div>
+          </CardContent>
+        </Card>
+      </div>
+
+      <div className="grid gap-4 md:grid-cols-2">
+        {/* Top Projects Table */}
+        <Card>
+          <CardHeader>
+            <CardTitle>Top Projects</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <Table>
+              <TableHeader>
+                <TableRow>
+                  <TableHead>Project Name</TableHead>
+                  <TableHead className="text-right">Views</TableHead>
+                </TableRow>
+              </TableHeader>
+              <TableBody>
+                {data.topProjects.map((project, i) => (
+                  <TableRow key={i}>
+                    <TableCell className="font-medium capitalize">{project.name.replace(/-/g, ' ')}</TableCell>
+                    <TableCell className="text-right">{project.count}</TableCell>
+                  </TableRow>
+                ))}
+                {data.topProjects.length === 0 && (
+                  <TableRow>
+                    <TableCell colSpan={2} className="text-center text-muted-foreground">No project data yet</TableCell>
+                  </TableRow>
+                )}
+              </TableBody>
+            </Table>
+          </CardContent>
+        </Card>
+
+        {/* Visitor Locations Table */}
+        <Card>
+          <CardHeader>
+            <CardTitle>Visitor Locations</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <Table>
+              <TableHeader>
+                <TableRow>
+                  <TableHead>Country</TableHead>
+                  <TableHead className="text-right">Visitors</TableHead>
+                </TableRow>
+              </TableHeader>
+              <TableBody>
+                {data.locations.map((loc, i) => (
+                  <TableRow key={i}>
+                    <TableCell className="font-medium">{loc.country}</TableCell>
+                    <TableCell className="text-right">{loc.count}</TableCell>
+                  </TableRow>
+                ))}
+                {data.locations.length === 0 && (
+                  <TableRow>
+                    <TableCell colSpan={2} className="text-center text-muted-foreground">No location data yet</TableCell>
+                  </TableRow>
+                )}
+              </TableBody>
+            </Table>
           </CardContent>
         </Card>
       </div>
@@ -167,7 +231,7 @@ export default function AnalyticsDashboard({ data }: Props) {
               ))}
               {data.topPaths.length === 0 && (
                 <TableRow>
-                   <TableCell colSpan={2} className="text-center text-muted-foreground">No page view data yet</TableCell>
+                  <TableCell colSpan={2} className="text-center text-muted-foreground">No page view data yet</TableCell>
                 </TableRow>
               )}
             </TableBody>

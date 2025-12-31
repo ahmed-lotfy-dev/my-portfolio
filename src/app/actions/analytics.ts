@@ -7,14 +7,14 @@ export async function getPostHogAnalytics() {
 
   if (!projectId || !apiKey) {
     console.error("PostHog credentials missing");
-    return { uniqueVisitors: 0, trend: [], topPaths: [], sources: [] };
+    return { uniqueVisitors: 0, trend: [], topPaths: [], sources: [], topProjects: [], locations: [] };
   }
 
   if (apiKey.startsWith("phc_")) {
     console.error(
       "PostHog Error: You are using a Project API Key ('phc_...'). You must use a Personal API Key ('phx_...') to fetch insights."
     );
-    return { uniqueVisitors: 0, trend: [], topPaths: [], sources: [] };
+    return { uniqueVisitors: 0, trend: [], topPaths: [], sources: [], topProjects: [], locations: [] };
   }
 
   try {
@@ -43,10 +43,30 @@ export async function getPostHogAnalytics() {
       { headers, next: { revalidate: 3600 } }
     ).then((r) => r.json());
 
-    const [trendData, pathsData, sourcesData] = await Promise.all([
+    // 4. Top Projects
+    const projectsFilter = encodeURIComponent(
+      JSON.stringify([
+        { key: "$host", operator: "is_not", value: ["localhost:3000"] },
+        { key: "$pathname", operator: "icontains", value: "/projects/" },
+      ])
+    );
+    const projectsPromise = fetch(
+      `${host}/api/projects/${projectId}/insights/trend/?events=[{"id":"$pageview"}]&date_from=-7d&breakdown=$pathname&limit=5&properties=${projectsFilter}`,
+      { headers, next: { revalidate: 3600 } }
+    ).then((r) => r.json());
+
+    // 5. Visitor Locations
+    const locationsPromise = fetch(
+      `${host}/api/projects/${projectId}/insights/trend/?events=[{"id":"$pageview"}]&date_from=-7d&breakdown=$geoip_country_name&limit=5&properties=${properties}`,
+      { headers, next: { revalidate: 3600 } }
+    ).then((r) => r.json());
+
+    const [trendData, pathsData, sourcesData, projectsData, locationsData] = await Promise.all([
       trendPromise,
       pathsPromise,
       sourcesPromise,
+      projectsPromise,
+      locationsPromise,
     ]);
 
     // Process Trend Data
@@ -73,14 +93,36 @@ export async function getPostHogAnalytics() {
         count: item.count,
       })) || [];
 
+    // Process Top Projects
+    const topProjects =
+      projectsData.result?.map((item: any) => {
+        // Clean up project name from path (e.g., "/en/projects/my-app" -> "my-app")
+        const pathParts = item.label.split("/projects/");
+        const projectName = pathParts.length > 1 ? pathParts[1] : item.label;
+        return {
+          name: projectName,
+          path: item.label,
+          count: item.count
+        };
+      }) || [];
+
+    // Process Locations
+    const locations =
+      locationsData.result?.map((item: any) => ({
+        country: item.label,
+        count: item.count,
+      })) || [];
+
     return {
       uniqueVisitors: totalUniqueVisitors,
       trend,
       topPaths,
       sources,
+      topProjects,
+      locations,
     };
   } catch (error) {
     console.error("Error fetching PostHog analytics:", error);
-    return { uniqueVisitors: 0, trend: [], topPaths: [], sources: [] };
+    return { uniqueVisitors: 0, trend: [], topPaths: [], sources: [], topProjects: [], locations: [] };
   }
 }
