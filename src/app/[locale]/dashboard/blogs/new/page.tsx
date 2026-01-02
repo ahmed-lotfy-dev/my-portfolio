@@ -14,6 +14,7 @@ import {
   SelectValue,
 } from "@/src/components/ui/select"
 import { Textarea } from "@/src/components/ui/textarea"
+import posthog from "posthog-js"
 
 type Props = {}
 
@@ -25,7 +26,14 @@ const Page = (props: Props) => {
 
       <form
         action={async (formData) => {
-          await addNewPost(formData)
+          const result = await addNewPost(formData)
+          // Capture blog post creation event on success
+          if (result?.success) {
+            posthog.capture("blog_post_created", {
+              post_title: formData.get("title"),
+              published: formData.get("published") === "true",
+            })
+          }
         }}
         className="flex flex-col gap-5 w-full max-w-lg p-6 border rounded-lg shadow-sm bg-card"
       >

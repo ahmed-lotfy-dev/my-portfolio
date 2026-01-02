@@ -18,6 +18,7 @@ import { cn } from "@/src/lib/utils";
 import Image from "next/image";
 import { Button } from "@/src/components/ui/button";
 import { useRouter } from "next/navigation";
+import posthog from "posthog-js";
 
 interface ProjectFormProps {
   initialData?: any;
@@ -54,6 +55,13 @@ export default function ProjectForm({
 
   useEffect(() => {
     if (state && "success" in state && state.success) {
+      // Capture project create/update event
+      const eventName = mode === "create" ? "project_created" : "project_updated";
+      posthog.capture(eventName, {
+        project_title: titleEn,
+        project_slug: slug,
+        categories_count: images.length,
+      });
       notify(state.message, true);
       router.push("/dashboard/projects");
       router.refresh();

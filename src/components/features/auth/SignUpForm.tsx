@@ -6,6 +6,7 @@ import { Button } from "@/src/components/ui/button"
 import { Input } from "@/src/components/ui/input"
 import { Label } from "@/src/components/ui/label"
 import Link from "next/link"
+import posthog from "posthog-js"
 
 export default function SignUpForm() {
   const router = useRouter()
@@ -26,6 +27,16 @@ export default function SignUpForm() {
       })
       console.log("SIGNUP RESULT:", res)
       if (res.data?.user) {
+        // Identify new user in PostHog
+        posthog.identify(res.data.user.id, {
+          email: res.data.user.email,
+          name: res.data.user.name,
+        })
+        // Capture sign-up event
+        posthog.capture("user_signed_up", {
+          method: "email",
+          user_id: res.data.user.id,
+        })
         router.push("/")
         router.refresh()
       }
@@ -44,6 +55,10 @@ export default function SignUpForm() {
         provider: "google",
         fetchOptions: {
           onSuccess: () => {
+            // Capture sign-up event (identify will happen after redirect when user data is available)
+            posthog.capture("user_signed_up", {
+              method: "google",
+            })
             router.refresh()
           },
         },

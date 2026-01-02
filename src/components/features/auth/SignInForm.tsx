@@ -7,6 +7,7 @@ import { Input } from "@/src/components/ui/input"
 import { Label } from "@/src/components/ui/label"
 import Link from "next/link"
 import { FcGoogle } from "react-icons/fc"
+import posthog from "posthog-js"
 
 export default function SignInForm({ redirectTo }: { redirectTo?: string }) {
   const router = useRouter()
@@ -25,6 +26,16 @@ export default function SignInForm({ redirectTo }: { redirectTo?: string }) {
         fetchOptions: { redirect: "follow" },
       })
       if (res.data?.user) {
+        // Identify user in PostHog
+        posthog.identify(res.data.user.id, {
+          email: res.data.user.email,
+          name: res.data.user.name,
+        })
+        // Capture sign-in event
+        posthog.capture("user_signed_in", {
+          method: "email",
+          user_id: res.data.user.id,
+        })
         router.push("/")
         router.refresh()
       }
@@ -45,6 +56,16 @@ export default function SignInForm({ redirectTo }: { redirectTo?: string }) {
         fetchOptions: { redirect: "follow" },
       })
       if (res.data?.user) {
+        // Identify user in PostHog
+        posthog.identify(res.data.user.id, {
+          email: res.data.user.email,
+          name: res.data.user.name,
+        })
+        // Capture sign-in event
+        posthog.capture("user_signed_in", {
+          method: "guest",
+          user_id: res.data.user.id,
+        })
         router.push("/")
         router.refresh()
       }
@@ -63,6 +84,10 @@ export default function SignInForm({ redirectTo }: { redirectTo?: string }) {
         provider: "google",
         fetchOptions: {
           onSuccess: () => {
+            // Capture sign-in event (identify will happen after redirect when user data is available)
+            posthog.capture("user_signed_in", {
+              method: "google",
+            })
             router.push("/")
             router.refresh()
           },

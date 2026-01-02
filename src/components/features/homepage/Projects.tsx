@@ -10,6 +10,7 @@ import { ExternalLink, Github, ArrowRight } from "lucide-react";
 import ProjectCategories from "@/src/components/ui/ProjectCategories";
 import { shouldShowApk } from "@/src/lib/utils/projectUtils";
 import { getProjectCoverImage } from "@/src/lib/constants/images";
+import { ProjectLinkTracker } from "./ProjectLinkTracker";
 
 type Project = {
   id: string;
@@ -107,8 +108,11 @@ export default async function Projects() {
                     <ProjectCategories categories={proj.categories || []} />
 
                     <div className="flex gap-3 mt-4">
-                      <Link
+                      <ProjectLinkTracker
                         href={proj.liveLink}
+                        projectTitle={locale === "ar" ? proj.title_ar : proj.title_en}
+                        projectId={proj.id}
+                        linkType="live"
                         target="_blank"
                         className="flex-1"
                       >
@@ -118,9 +122,12 @@ export default async function Projects() {
                             ? t("apk")
                             : t("live")}
                         </Button>
-                      </Link>
-                      <Link
+                      </ProjectLinkTracker>
+                      <ProjectLinkTracker
                         href={proj.repoLink}
+                        projectTitle={locale === "ar" ? proj.title_ar : proj.title_en}
+                        projectId={proj.id}
+                        linkType="repo"
                         target="_blank"
                         className="flex-1"
                       >
@@ -131,7 +138,7 @@ export default async function Projects() {
                           <Github size={16} />
                           {t("repo")}
                         </Button>
-                      </Link>
+                      </ProjectLinkTracker>
                     </div>
                   </div>
                 </Card>

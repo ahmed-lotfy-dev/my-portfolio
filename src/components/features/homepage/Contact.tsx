@@ -9,6 +9,7 @@ import { Textarea } from "@/src/components/ui/textarea";
 import { Button } from "@/src/components/ui/button";
 import Submit from "@/src/components/ui/formSubmitBtn";
 import { useLocale, useTranslations } from "next-intl";
+import posthog from "posthog-js";
 
 export default function Contact() {
   const t = useTranslations("contact");
@@ -25,6 +26,10 @@ export default function Contact() {
 
   useEffect(() => {
     if (state?.success) {
+      // Capture contact form submission event
+      posthog.capture("contact_form_submitted", {
+        subject: formData.subject,
+      });
       notify("Email sent successfully, I'll contact you soon", true);
       setFormData({ name: "", email: "", subject: "", message: "" });
     } else if (state?.error && Object.keys(state.error).length > 0) {
@@ -54,13 +59,22 @@ export default function Contact() {
             <Link
               href="https://www.linkedin.com/in/ahmed-lotfy-dev/"
               target="_blank"
+              onClick={() => posthog.capture("social_link_clicked", { platform: "linkedin" })}
             >
               <IoLogoLinkedin className="w-8 h-8 text-blue-600 hover:text-blue-800" />
             </Link>
-            <Link href="https://github.com/ahmed-lotfy-dev" target="_blank">
+            <Link
+              href="https://github.com/ahmed-lotfy-dev"
+              target="_blank"
+              onClick={() => posthog.capture("social_link_clicked", { platform: "github" })}
+            >
               <IoLogoGithub className="w-8 h-8 text-gray-600 dark:text-gray-500 hover:text-gray-900 " />
             </Link>
-            <Link href="https://www.facebook.com/ahmed.lotfy00" target="_blank">
+            <Link
+              href="https://www.facebook.com/ahmed.lotfy00"
+              target="_blank"
+              onClick={() => posthog.capture("social_link_clicked", { platform: "facebook" })}
+            >
               <IoLogoFacebook className="w-8 h-8 text-blue-800 hover:text-blue-900" />
             </Link>
           </div>

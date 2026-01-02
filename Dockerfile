@@ -53,8 +53,8 @@ ENV NODE_ENV=production
 ENV NEXT_TELEMETRY_DISABLED=1
 
 # Create non-root user
-RUN groupadd --system --gid 1001 nodejs && \
-    useradd --system --uid 1001 -g nodejs nextjs
+RUN groupadd --gid 1001 nodejs && \
+    useradd --uid 1001 -g nodejs nextjs
 
 # Install PostgreSQL client for backup capabilities
 # Removing Node.js/npm installation and using Bun for PM2
@@ -98,7 +98,7 @@ ENV PORT=3000
 
 # Health check
 HEALTHCHECK --interval=30s --timeout=3s --start-period=40s --retries=3 \
-  CMD bun -e "fetch('http://localhost:3000/api/health').then(r => process.exit(r.status === 200 ? 0 : 1))" || exit 1
+    CMD bun -e "fetch('http://localhost:3000/api/health').then(r => process.exit(r.status === 200 ? 0 : 1))" || exit 1
 
 # Start with PM2 in no-daemon mode (keeps container running)
 CMD ["pm2", "start", "ecosystem.config.cjs", "--no-daemon"]

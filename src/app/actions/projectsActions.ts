@@ -19,7 +19,13 @@ export async function getAllProjects() {
       orderBy: [desc(projects.displayOrder), desc(projects.createdAt)],
     });
     return { allProjects };
-  } catch (error) {
+  } catch (error: any) {
+    // Check if it's a connection refused error (common during build time)
+    if (error?.code === "ECONNREFUSED" || error?.cause?.code === "ECONNREFUSED") {
+      logger.warn("Database connection refused (expected during build). Returning empty projects list.");
+      return { allProjects: [] };
+    }
+
     logger.error("Failed to fetch projects:", error);
     return { error };
   }
