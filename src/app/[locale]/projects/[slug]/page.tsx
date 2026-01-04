@@ -11,6 +11,7 @@ import StructuredData from "@/src/components/seo/StructuredData";
 import { MarkdownDisplay } from "@/src/components/ui/MarkdownDisplay";
 import { ImageCarousel } from "@/src/components/ui/ImageCarousel";
 import { BackButton } from "@/src/components/ui/BackButton";
+import { ProjectViewTracker } from "@/src/components/analytics/ProjectViewTracker";
 
 // Helper function to extract keywords from markdown content
 function extractKeywords(content: string, maxKeywords: number = 15): string[] {
@@ -225,6 +226,13 @@ export default async function ProjectDetailsPage({ params }: { params: Promise<{
                     {t("view_other_projects")}
                 </Link>
             </div>
+
+            {/* Analytics Tracking */}
+            <ProjectViewTracker
+                projectId={project.id}
+                projectTitle={title}
+                categories={project.categories}
+            />
         </article>
     );
 }
