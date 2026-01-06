@@ -14,12 +14,18 @@ export default function proxy(request: NextRequest) {
 
   const csp = [
     "default-src 'self'",
-    "script-src 'self' 'unsafe-eval' 'unsafe-inline' *.posthog.com *.googletagmanager.com",
-    "style-src 'self' 'unsafe-inline'",
-    "img-src 'self' data: https:",
-    "font-src 'self' data:",
-    "connect-src 'self' *.posthog.com *.googletagmanager.com",
+    "script-src 'self' 'unsafe-eval' 'unsafe-inline' *.googletagmanager.com *.posthog.com blob:;",
+    "style-src 'self' 'unsafe-inline';",
+    "img-src 'self' data: https: blob:;",
+    "font-src 'self' data:;",
+    "connect-src 'self' *.posthog.com https://us.i.posthog.com https://us-assets.i.posthog.com *.googletagmanager.com;",
+    "frame-src 'self' *.youtube.com;",
     "frame-ancestors 'self'",
+    "object-src 'none'",
+    "base-uri 'self'",
+    "form-action 'self'",
+    "block-all-mixed-content",
+    "upgrade-insecure-requests"
   ].join("; ");
 
   response.headers.set("Content-Security-Policy", csp);
