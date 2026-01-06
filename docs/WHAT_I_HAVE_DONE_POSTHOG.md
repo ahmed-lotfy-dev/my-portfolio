@@ -1,20 +1,33 @@
-# PostHog Tracking Fix - Jan 6, 2026
+# PostHog Tracking Fix & Dashboard Enhancements - Jan 6, 2026
 
-I fixed the issue where PostHog wasn't counting events across the site. Here's a quick breakdown of what was broken and how I fixed it.
+I've performed a second round of fixes to ensure PostHog works in your production Docker environment and to add the specific tracking metrics you requested.
 
-## The Problem
+## 1. Fixed Production Tracking (Docker)
 
-1. **CSP Mismatch**: The Content Security Policy in `src/proxy.ts` (the middleware) was way too strict. It was blocking PostHog's ingestion domains and script blobs, which meant events weren't being sent and some PostHog features couldn't load their workers.
-2. **Provider Race Condition**: Initializing PostHog inside a `useEffect` in the provider meant it wasn't always ready when components tried to fire events on mount.
+The primary issue was that the `NEXT_PUBLIC_POSTHOG_KEY` was missing during the Docker build process. I've updated the `Dockerfile` to accept this as a build argument.
 
-## The Fix
+- **Changes**: Modified `Dockerfile` to add `ARG NEXT_PUBLIC_POSTHOG_KEY`.
+- **Note**: You must pass the key during build (e.g., in Dokploy's "Build Arguments" section).
 
-- **Middleware Update**: Updated the CSP in `src/proxy.ts` to properly allow `*.posthog.com`, its ingestion domains, and added support for `blob:` scripts. I also synced it with the headers in `next.config.ts` to avoid conflicts.
-- **Immediate Initialization**: Refactored `src/providers/postHogProvider.tsx` to initialize PostHog immediately on module load (client-side only). This ensures the client is ready before any components start using it.
-- **Code Cleanup**: Removed unused imports and cleaned up the provider code.
+## 2. New "Interest" Metric (Time Spent)
 
-## Verification
+You wanted to know how much time visitors spend on projects. I've added an "Average Time Spent" calculation to the analytics.
 
-- Verified that CSP errors are gone from the console.
-- Confirmed network requests to `/ingest` are successful.
-- Events should now be showing up live in the PostHog dashboard.
+- **Changes**: Updated `src/app/actions/analytics.ts` to fetch average duration using `$pageleave` events.
+- **Changes**: Updated `AnalyticsDashboard.tsx` to display this in a new "Time Spent" column.
+
+## 3. Country & Visitor Tracking
+
+The dashboard home now properly processes and displays:
+
+- **Visitor Locations**: Top countries where your visitors come from.
+- **Top Projects**: Which specific projects are getting the most views.
+
+## 4. Stability
+
+- Added a key check in `PostHogProvider.tsx` with console warnings if the key is missing.
+- Refined the `proxy.ts` (middleware) to ensure no interference with ingestion.
+
+## Image Timeout Note
+
+The slow image processing (7s+) is likely due to server load or network lag between your server and `images.ahmedlotfy.site`. I recommend monitoring server resources during these slow requests.

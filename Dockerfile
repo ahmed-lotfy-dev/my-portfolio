@@ -28,7 +28,11 @@ RUN --mount=type=cache,target=/root/.bun/install/cache \
 # Copy source code
 COPY . .
 
-# Copy environment variables for build time
+# Set environment variables for build time
+ARG NEXT_PUBLIC_POSTHOG_KEY
+ARG NEXT_PUBLIC_POSTHOG_HOST
+ENV NEXT_PUBLIC_POSTHOG_KEY=$NEXT_PUBLIC_POSTHOG_KEY
+ENV NEXT_PUBLIC_POSTHOG_HOST=$NEXT_PUBLIC_POSTHOG_HOST
 ENV NEXT_TELEMETRY_DISABLED=1
 
 # Build the Next.js application

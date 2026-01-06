@@ -6,7 +6,9 @@ export async function getPostHogAnalytics() {
   const host = process.env.POSTHOG_HOST || "https://us.posthog.com";
 
   if (!projectId || !apiKey) {
-    console.error("PostHog credentials missing");
+    if (process.env.NODE_ENV === "development") {
+      console.warn("PostHog credentials missing (POSTHOG_PROJECT_ID or POSTHOG_PERSONAL_API_KEY)");
+    }
     return { uniqueVisitors: 0, trend: [], topPaths: [], sources: [], topProjects: [], locations: [] };
   }
 
@@ -61,12 +63,19 @@ export async function getPostHogAnalytics() {
       { headers, next: { revalidate: 3600 } }
     ).then((r) => r.json());
 
-    const [trendData, pathsData, sourcesData, projectsData, locationsData] = await Promise.all([
+    // 6. Project Duration (Interest)
+    const durationPromise = fetch(
+      `${host}/api/projects/${projectId}/insights/trend/?events=[{"id":"$pageleave","math":"avg","math_property":"$duration"}]&date_from=-7d&breakdown=$pathname&limit=10&properties=${projectsFilter}`,
+      { headers, next: { revalidate: 3600 } }
+    ).then((r) => r.json());
+
+    const [trendData, pathsData, sourcesData, projectsData, locationsData, durationData] = await Promise.all([
       trendPromise,
       pathsPromise,
       sourcesPromise,
       projectsPromise,
       locationsPromise,
+      durationPromise,
     ]);
 
     // Process Trend Data
@@ -99,10 +108,16 @@ export async function getPostHogAnalytics() {
         // Clean up project name from path (e.g., "/en/projects/my-app" -> "my-app")
         const pathParts = item.label.split("/projects/");
         const projectName = pathParts.length > 1 ? pathParts[1] : item.label;
+
+        // Find duration for this path
+        const durationItem = durationData.result?.find((d: any) => d.label === item.label);
+        const avgDuration = durationItem ? Math.round(durationItem.count) : 0;
+
         return {
           name: projectName,
           path: item.label,
-          count: item.count
+          count: item.count,
+          avgDuration,
         };
       }) || [];
 

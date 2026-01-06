@@ -151,7 +151,7 @@ export default function AnalyticsDashboard({ data }: Props) {
         {/* Top Projects Table */}
         <Card>
           <CardHeader>
-            <CardTitle>Top Projects</CardTitle>
+            <CardTitle>Top Projects (Interest)</CardTitle>
           </CardHeader>
           <CardContent>
             <Table>
@@ -159,6 +159,7 @@ export default function AnalyticsDashboard({ data }: Props) {
                 <TableRow>
                   <TableHead>Project Name</TableHead>
                   <TableHead className="text-right">Views</TableHead>
+                  <TableHead className="text-right">Time Spent</TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>
@@ -166,11 +167,14 @@ export default function AnalyticsDashboard({ data }: Props) {
                   <TableRow key={i}>
                     <TableCell className="font-medium capitalize">{project.name.replace(/-/g, ' ')}</TableCell>
                     <TableCell className="text-right">{project.count}</TableCell>
+                    <TableCell className="text-right">
+                      {(project as any).avgDuration ? `${Math.round((project as any).avgDuration)}s` : '-'}
+                    </TableCell>
                   </TableRow>
                 ))}
                 {data.topProjects.length === 0 && (
                   <TableRow>
-                    <TableCell colSpan={2} className="text-center text-muted-foreground">No project data yet</TableCell>
+                    <TableCell colSpan={3} className="text-center text-muted-foreground">No project data yet</TableCell>
                   </TableRow>
                 )}
               </TableBody>
