@@ -193,7 +193,19 @@
       "guest": "visitor",
       "admin_message": "You are an admin. Welcome!",
       "user_message": "You can browse the site, but you can't perform privileged actions."
-    }
+    },
+    "analytics_trend": "Analytics - 7 Days Trend",
+    "traffic_sources": "Traffic Sources",
+    "top_projects": "Top Projects (Interest)",
+    "visitor_locations": "Visitor Locations",
+    "top_pages": "Top Pages",
+    "project_name": "Project Name",
+    "views": "Views",
+    "time_spent": "Time Spent",
+    "country": "Country",
+    "visitors": "Visitors",
+    "page_path": "Page Path",
+    "no_data": "No data available yet"
   },
   "blogs": {
     "title": "My Blogs",

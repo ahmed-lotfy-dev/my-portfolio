@@ -35,13 +35,13 @@ export async function getPostHogAnalytics() {
 
     // 2. Top Paths (Most visited pages)
     const pathsPromise = fetch(
-      `${host}/api/projects/${projectId}/insights/trend/?events=[{"id":"$pageview"}]&date_from=-7d&breakdown=$pathname&limit=5&properties=${properties}`,
+      `${host}/api/projects/${projectId}/insights/trend/?events=[{"id":"$pageview","math":"total"}]&date_from=-7d&breakdown=$pathname&limit=5&properties=${properties}`,
       { headers, next: { revalidate: 3600 } }
     ).then((r) => r.json());
 
     // 3. Traffic Sources (Referrers)
     const sourcesPromise = fetch(
-      `${host}/api/projects/${projectId}/insights/trend/?events=[{"id":"$pageview"}]&date_from=-7d&breakdown=$referrer&limit=5&properties=${properties}`,
+      `${host}/api/projects/${projectId}/insights/trend/?events=[{"id":"$pageview","math":"total"}]&date_from=-7d&breakdown=$referrer&limit=5&properties=${properties}`,
       { headers, next: { revalidate: 3600 } }
     ).then((r) => r.json());
 
@@ -53,13 +53,13 @@ export async function getPostHogAnalytics() {
       ])
     );
     const projectsPromise = fetch(
-      `${host}/api/projects/${projectId}/insights/trend/?events=[{"id":"$pageview"}]&date_from=-7d&breakdown=$pathname&limit=5&properties=${projectsFilter}`,
+      `${host}/api/projects/${projectId}/insights/trend/?events=[{"id":"$pageview","math":"total"}]&date_from=-7d&breakdown=$pathname&limit=5&properties=${projectsFilter}`,
       { headers, next: { revalidate: 3600 } }
     ).then((r) => r.json());
 
     // 5. Visitor Locations
     const locationsPromise = fetch(
-      `${host}/api/projects/${projectId}/insights/trend/?events=[{"id":"$pageview"}]&date_from=-7d&breakdown=$geoip_country_name&limit=5&properties=${properties}`,
+      `${host}/api/projects/${projectId}/insights/trend/?events=[{"id":"$pageview","math":"total"}]&date_from=-7d&breakdown=$geoip_country_name&limit=5&properties=${properties}`,
       { headers, next: { revalidate: 3600 } }
     ).then((r) => r.json());
 

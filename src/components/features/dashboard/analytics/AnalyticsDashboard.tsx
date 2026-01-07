@@ -55,7 +55,7 @@ export default function AnalyticsDashboard({ data }: Props) {
         {/* Main Trend Line Chart */}
         <Card className="col-span-4">
           <CardHeader>
-            <CardTitle>{t("analytics")} - 7 Days Trend</CardTitle>
+            <CardTitle>{t("analytics_trend")}</CardTitle>
           </CardHeader>
           <CardContent className="pl-2">
             <div className="h-[300px] w-full">
@@ -100,7 +100,7 @@ export default function AnalyticsDashboard({ data }: Props) {
         {/* Traffic Sources Pie Chart */}
         <Card className="col-span-3">
           <CardHeader>
-            <CardTitle>Traffic Sources</CardTitle>
+            <CardTitle>{t("traffic_sources")}</CardTitle>
           </CardHeader>
           <CardContent>
             <div className="h-[300px] w-full flex items-center justify-center">
@@ -130,7 +130,7 @@ export default function AnalyticsDashboard({ data }: Props) {
                 </ResponsiveContainer>
               ) : (
                 <div className="flex h-full items-center justify-center text-muted-foreground">
-                  No data available
+                  {t("no_data")}
                 </div>
               )}
             </div>
@@ -151,15 +151,15 @@ export default function AnalyticsDashboard({ data }: Props) {
         {/* Top Projects Table */}
         <Card>
           <CardHeader>
-            <CardTitle>Top Projects (Interest)</CardTitle>
+            <CardTitle>{t("top_projects")}</CardTitle>
           </CardHeader>
           <CardContent>
             <Table>
               <TableHeader>
                 <TableRow>
-                  <TableHead>Project Name</TableHead>
-                  <TableHead className="text-right">Views</TableHead>
-                  <TableHead className="text-right">Time Spent</TableHead>
+                  <TableHead>{t("project_name")}</TableHead>
+                  <TableHead className="text-right">{t("views")}</TableHead>
+                  <TableHead className="text-right">{t("time_spent")}</TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>
@@ -174,7 +174,7 @@ export default function AnalyticsDashboard({ data }: Props) {
                 ))}
                 {data.topProjects.length === 0 && (
                   <TableRow>
-                    <TableCell colSpan={3} className="text-center text-muted-foreground">No project data yet</TableCell>
+                    <TableCell colSpan={3} className="text-center text-muted-foreground">{t("no_data")}</TableCell>
                   </TableRow>
                 )}
               </TableBody>
@@ -185,14 +185,14 @@ export default function AnalyticsDashboard({ data }: Props) {
         {/* Visitor Locations Table */}
         <Card>
           <CardHeader>
-            <CardTitle>Visitor Locations</CardTitle>
+            <CardTitle>{t("visitor_locations")}</CardTitle>
           </CardHeader>
           <CardContent>
             <Table>
               <TableHeader>
                 <TableRow>
-                  <TableHead>Country</TableHead>
-                  <TableHead className="text-right">Visitors</TableHead>
+                  <TableHead>{t("country")}</TableHead>
+                  <TableHead className="text-right">{t("visitors")}</TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>
@@ -204,7 +204,7 @@ export default function AnalyticsDashboard({ data }: Props) {
                 ))}
                 {data.locations.length === 0 && (
                   <TableRow>
-                    <TableCell colSpan={2} className="text-center text-muted-foreground">No location data yet</TableCell>
+                    <TableCell colSpan={2} className="text-center text-muted-foreground">{t("no_data")}</TableCell>
                   </TableRow>
                 )}
               </TableBody>
@@ -216,14 +216,14 @@ export default function AnalyticsDashboard({ data }: Props) {
       {/* Top Pages Table */}
       <Card>
         <CardHeader>
-          <CardTitle>Top Pages</CardTitle>
+          <CardTitle>{t("top_pages")}</CardTitle>
         </CardHeader>
         <CardContent>
           <Table>
             <TableHeader>
               <TableRow>
-                <TableHead>Page Path</TableHead>
-                <TableHead className="text-right">Views</TableHead>
+                <TableHead>{t("page_path")}</TableHead>
+                <TableHead className="text-right">{t("views")}</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
@@ -235,7 +235,7 @@ export default function AnalyticsDashboard({ data }: Props) {
               ))}
               {data.topPaths.length === 0 && (
                 <TableRow>
-                  <TableCell colSpan={2} className="text-center text-muted-foreground">No page view data yet</TableCell>
+                  <TableCell colSpan={2} className="text-center text-muted-foreground">{t("no_data")}</TableCell>
                 </TableRow>
               )}
             </TableBody>
