@@ -29,7 +29,7 @@ export async function getPostHogAnalytics() {
 
     // 1. Trend (Last 7 Days)
     const trendPromise = fetch(
-      `${host}/api/projects/${projectId}/insights/trend/?events=[{"id":"$pageview","math":"dau"}]&date_from=-7d&display=ActionsLineGraph&interval=day&properties=${properties}`,
+      `${host}/api/projects/${projectId}/insights/trend/?events=[{"id":"$pageview","math":"total"}]&date_from=-7d&display=ActionsLineGraph&interval=day&properties=${properties}`,
       { headers, next: { revalidate: 3600 } }
     ).then((r) => r.json());
 
@@ -103,23 +103,45 @@ export async function getPostHogAnalytics() {
       })) || [];
 
     // Process Top Projects
-    const topProjects =
-      projectsData.result?.map((item: any) => {
-        // Clean up project name from path (e.g., "/en/projects/my-app" -> "my-app")
-        const pathParts = item.label.split("/projects/");
-        const projectName = pathParts.length > 1 ? pathParts[1] : item.label;
+    const projectsMap = new Map<string, { name: string; path: string; count: number; totalDuration: number; visits: number }>();
 
-        // Find duration for this path
-        const durationItem = durationData.result?.find((d: any) => d.label === item.label);
-        const avgDuration = durationItem ? Math.round(durationItem.count) : 0;
+    projectsData.result?.forEach((item: any) => {
+      // Clean up project name from path (e.g., "/en/projects/my-app" -> "my-app")
+      const path = item.label;
+      const pathParts = path.split("/projects/");
+      if (pathParts.length <= 1) return;
 
-        return {
+      const projectName = pathParts[1].split(/[/?#]/)[0]; // Get core identifier
+
+      // Find duration for this path
+      const durationItem = durationData.result?.find((d: any) => d.label === path);
+      const avgDuration = durationItem ? durationItem.count : 0;
+
+      const existing = projectsMap.get(projectName);
+      if (existing) {
+        existing.count += item.count;
+        existing.totalDuration += avgDuration * item.count;
+        existing.visits += item.count;
+      } else {
+        projectsMap.set(projectName, {
           name: projectName,
-          path: item.label,
+          path: `/projects/${projectName}`, // Base path
           count: item.count,
-          avgDuration,
-        };
-      }) || [];
+          totalDuration: avgDuration * item.count,
+          visits: item.count
+        });
+      }
+    });
+
+    const topProjects = Array.from(projectsMap.values())
+      .map(p => ({
+        name: p.name,
+        path: p.path,
+        count: p.count,
+        avgDuration: p.visits > 0 ? Math.round(p.totalDuration / p.visits) : 0
+      }))
+      .sort((a, b) => b.count - a.count)
+      .slice(0, 5);
 
     // Process Locations
     const locations =
