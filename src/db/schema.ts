@@ -121,6 +121,26 @@ export const projects = pgTable("projects", {
   images: text("images").array(),
   published: boolean("published").notNull().default(true),
   displayOrder: integer("display_order").default(0),
+  completedAt: timestamp("completed_at"),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+  updatedAt: timestamp("updated_at")
+    .defaultNow()
+    .$onUpdate(() => new Date())
+    .notNull(),
+});
+
+export const experiences = pgTable("experiences", {
+  id: uuid("id").defaultRandom().primaryKey(),
+  company: text("company").notNull(),
+  role_en: text("role_en").notNull(),
+  role_ar: text("role_ar").notNull(),
+  description_en: text("description_en").notNull(),
+  description_ar: text("description_ar").notNull(),
+  date_en: text("date_en").notNull(),
+  date_ar: text("date_ar").notNull(),
+  tech_stack: text("tech_stack").array().notNull(),
+  displayOrder: integer("display_order").default(0),
+  published: boolean("published").notNull().default(true),
   createdAt: timestamp("created_at").defaultNow().notNull(),
   updatedAt: timestamp("updated_at")
     .defaultNow()

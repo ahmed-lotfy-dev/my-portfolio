@@ -119,7 +119,7 @@ export function ImageCarousel({ images, title, isMobile = false, className }: Im
 
       {/* Fullscreen Modal Viewer */}
       <Dialog open={open} onOpenChange={setOpen}>
-        <DialogContent hideClose className="w-[95vw] md:w-[85vw] h-[80vh] md:h-[85vh] max-w-none p-0 bg-transparent border-none shadow-none ring-0 focus:outline-none flex flex-col items-center justify-center pointer-events-none">
+        <DialogContent className="w-[95vw] md:w-[85vw] h-[80vh] md:h-[85vh] max-w-none p-0 bg-transparent border-none shadow-none ring-0 focus:outline-none flex flex-col items-center justify-center pointer-events-none">
           <DialogHeader className="sr-only">
             <DialogTitle>{title}</DialogTitle>
             <DialogDescription>Full view of {title}</DialogDescription>

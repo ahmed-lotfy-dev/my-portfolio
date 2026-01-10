@@ -2,6 +2,7 @@ import { Suspense } from "react";
 import ProjectsSkeleton from "@/src/components/skeletons/ProjectsSkeleton";
 import Hero from "@/src/components/features/homepage/Hero";
 import Projects from "@/src/components/features/homepage/Projects";
+import Experience from "@/src/components/features/homepage/Experience";
 import Skills from "@/src/components/features/homepage/Skills";
 import About from "@/src/components/features/homepage/About";
 import Contact from "@/src/components/features/homepage/Contact";
@@ -9,6 +10,7 @@ import Container from "@/src/components/ui/Container";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import StructuredData from "@/src/components/seo/StructuredData";
 import { routing } from "@/src/i18n/routing";
+
 export const dynamic = "force-dynamic";
 
 export function generateStaticParams() {
@@ -99,6 +101,7 @@ export default async function HomePage({
 
       <Hero locale={locale} />
       <Skills />
+      <Experience />
       <Suspense fallback={<ProjectsSkeleton />}>
         <Projects />
       </Suspense>

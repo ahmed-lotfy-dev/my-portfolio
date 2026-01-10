@@ -150,9 +150,35 @@
   "about": {
     "title": "About Me",
     "name": "Ahmed Lotfy",
-    "description1": "Hello, I'm Ahmed Lotfy, a Full-Stack Web & Mobile Software Developer with a background in PC maintenance. My journey into software development is driven by a passion for technology and continuous learning.",
-    "description2": "My experience in hardware gives me a unique perspective on software development, allowing me to approach problems with a holistic mindset.",
-    "description3": "I am actively seeking opportunities to contribute to innovative projects. If you're looking for a dedicated Full-Stack developer, I’d love to connect with you."
+    "description1": "I am a Full-Stack Engineer focused on building stable, production-ready applications. I specialize in the modern React ecosystem (Next.js, TypeScript) but I place equal emphasis on backend performance, database optimization, and DevOps practices using Docker and Linux.",
+    "description2": "My path to software engineering is rooted in a deep background in hardware and IT systems. Understanding the architecture beneath the code helps me build more efficient systems, debug complex infrastructure issues, and optimize resource usage from the ground up.",
+    "description3": "I prioritize reliability and long-term stability. I focus on building software that is scalable, resilient, and maintainable. I'm open to full-time opportunities or complex projects where I can contribute to shipping high-quality products."
+  },
+  "experience": {
+    "title": "Professional Experience",
+    "items": {
+      "0": {
+        "company": "Zamalek Store",
+        "role": "Lead Full-Stack Engineer (Contract)",
+        "date": "2024 — Present",
+        "description": "Architected and deployed a high-traffic e-commerce platform for a major retail brand. Engineered a hybrid cart system and integrated Paymob payment gateway, resulting in a 40% reduction in checkout drop-offs. Handled full DevOps pipeline using Docker and Cloudflare R2.",
+        "tech": "Next.js 16, PostgreSQL, BullMQ, Redis, Docker"
+      },
+      "1": {
+        "company": "Mohammed Ali (Captain X)",
+        "role": "Frontend Architect (Freelance)",
+        "date": "2024",
+        "description": "Designed and built a bilingual educational hub and trading portfolio. Focused heavily on SEO optimization and performance, achieving 95+ Core Web Vitals scores across mobile devices.",
+        "tech": "React, Bilingual Support, Performance Optimization"
+      },
+      "2": {
+        "company": "Toota Art Gallery",
+        "role": "Full-Stack Developer",
+        "date": "2023",
+        "description": "Developed a custom digital asset management system for a visual arts gallery. Implemented zero-egress object storage to minimize hosting costs while maintaining high-resolution image delivery.",
+        "tech": "Laravel, Livewire, Alpine.js, Cloudflare R2"
+      }
+    }
   },
   "contact": {
     "title": "Contact Me",
@@ -185,7 +211,9 @@
       "dashboard": "Dashboard",
       "projects": "Projects",
       "certificates": "Certificates",
+      "experiences": "Experiences",
       "blog": "Add Post",
+      "backups": "Backups",
       "sign_out": "Sign Out"
     },
     "welcome": {
@@ -206,6 +234,27 @@
     "visitors": "Visitors",
     "page_path": "Page Path",
     "no_data": "No data available yet"
+  },
+  "experiences": {
+    "title": "My Experiences",
+    "description": "Manage your professional experience timeline.",
+    "add-title": "Add Experience",
+    "add-desc": "Fill in the details to add a new experience.",
+    "edit-title": "Edit Experience",
+    "edit-desc": "Edit your experience details.",
+    "company": "Company",
+    "role_en": "Role (EN)",
+    "role_ar": "Role (AR)",
+    "date_en": "Date (EN)",
+    "date_ar": "Date (AR)",
+    "desc_en": "Description (EN)",
+    "desc_ar": "Description (AR)",
+    "tech_stack": "Tech Stack (comma separated)",
+    "displayOrder": "Display Order",
+    "published": "Published",
+    "back_to_experiences": "Back to Experiences",
+    "save": "Save Experience",
+    "delete": "Delete Experience"
   },
   "blogs": {
     "title": "My Blogs",
