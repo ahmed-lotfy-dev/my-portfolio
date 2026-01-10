@@ -6,6 +6,7 @@ import {
   integer,
   pgEnum,
   uniqueIndex,
+  index,
 } from "drizzle-orm/pg-core";
 import { relations } from "drizzle-orm";
 import { uuid } from "drizzle-orm/pg-core";
@@ -39,7 +40,9 @@ export const sessions = pgTable("sessions", {
   updatedAt: timestamp("updated_at")
     .$onUpdate(() => new Date())
     .notNull(),
-});
+}, (table) => ({
+  userIdIndex: index("sessions_user_id_idx").on(table.userId),
+}));
 
 export const accounts = pgTable(
   "accounts",
@@ -68,6 +71,7 @@ export const accounts = pgTable(
       table.providerId,
       table.accountId
     ),
+    userIdIndex: index("accounts_user_id_idx").on(table.userId),
   })
 );
 
@@ -102,8 +106,11 @@ export const posts = pgTable("posts", {
   updatedAt: timestamp("updated_at")
     .defaultNow()
     .$onUpdate(() => new Date())
+    .$onUpdate(() => new Date())
     .notNull(),
-});
+}, (table) => ({
+  authorIdIndex: index("posts_author_id_idx").on(table.author),
+}));
 
 export const projects = pgTable("projects", {
   id: uuid("id").defaultRandom().primaryKey(),
