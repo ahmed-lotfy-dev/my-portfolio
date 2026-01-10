@@ -165,7 +165,7 @@ export default function Contact() {
                       <Input
                         type="text"
                         name="name"
-                        className="rounded-2xl border-border/50 bg-background/50 focus:bg-background transition-all py-7 px-6 h-auto text-base shadow-inner"
+                        className="rounded-2xl border-border/50 bg-background/50 focus:bg-background transition-all py-4 px-6 h-auto text-base shadow-inner"
                         placeholder={t("placeholders.name")}
                         value={formData.name}
                         onChange={(e) => setFormData({ ...formData, name: e.target.value })}
@@ -178,7 +178,7 @@ export default function Contact() {
                       <Input
                         type="email"
                         name="email"
-                        className="rounded-2xl border-border/50 bg-background/50 focus:bg-background transition-all py-7 px-6 h-auto text-base shadow-inner"
+                        className="rounded-2xl border-border/50 bg-background/50 focus:bg-background transition-all py-4 px-6 h-auto text-base shadow-inner"
                         placeholder={t("placeholders.email")}
                         value={formData.email}
                         onChange={(e) => setFormData({ ...formData, email: e.target.value })}
@@ -192,7 +192,7 @@ export default function Contact() {
                     <Input
                       type="text"
                       name="subject"
-                      className="rounded-2xl border-border/50 bg-background/50 focus:bg-background transition-all py-7 px-6 h-auto text-base shadow-inner"
+                      className="rounded-2xl border-border/50 bg-background/50 focus:bg-background transition-all py-4 px-6 h-auto text-base shadow-inner"
                       placeholder={t("placeholders.subject")}
                       value={formData.subject}
                       onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
@@ -205,7 +205,7 @@ export default function Contact() {
                     <Textarea
                       name="message"
                       rows={5}
-                      className="rounded-2xl border-border/50 bg-background/50 focus:bg-background transition-all p-6 text-base resize-none shadow-inner"
+                      className="rounded-2xl border-border/50 bg-background/50 focus:bg-background transition-all p-4 text-base resize-none shadow-inner"
                       placeholder={t("placeholders.message")}
                       value={formData.message}
                       onChange={(e) => setFormData({ ...formData, message: e.target.value })}
@@ -214,7 +214,7 @@ export default function Contact() {
                   </div>
 
                   <div className="pt-4">
-                    <Submit btnText={t("send")} className="w-full md:w-auto min-w-[180px] rounded-xl py-6 text-sm font-bold tracking-widest uppercase shadow-lg shadow-primary/20 hover:shadow-primary/30 transition-all duration-300 transform hover:-translate-y-1">
+                    <Submit btnText={t("send")} className="w-full md:w-auto min-w-[180px] rounded-xl py-4 text-sm font-bold tracking-widest uppercase shadow-lg shadow-primary/20 hover:shadow-primary/30 transition-all duration-300 transform hover:-translate-y-1">
                       <Send className="w-4 h-4 ml-2 rtl:rotate-180" />
                     </Submit>
                   </div>
