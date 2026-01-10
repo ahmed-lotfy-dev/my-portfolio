@@ -10,9 +10,9 @@ export default defineConfig({
   test: {
     environment: "happy-dom",
     globals: true,
-    setupFiles: "./vitest.setup.ts",
+    setupFiles: path.resolve(__dirname, "./vitest.setup.ts"),
     browser: {
-      enabled: true,
+      enabled: false,
       provider: playwright(),
       instances: [
         { browser: 'chromium' },

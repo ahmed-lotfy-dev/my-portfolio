@@ -3,7 +3,7 @@
  * Provides safe, reusable parsers for common form data patterns
  */
 
-import { logger } from "@/src/lib/utils/logger";
+import { logger } from "@/lib/utils/logger";
 
 /**
  * Safely extracts and parses an image array from FormData
@@ -70,7 +70,7 @@ export function parseCategories(
   fieldName: string = "categories"
 ): string[] {
   const categoriesString = data.get(fieldName) as string;
-  
+
   if (!categoriesString) {
     return [];
   }
@@ -101,7 +101,7 @@ export function parseBoolean(
   defaultValue: boolean = false
 ): boolean {
   const value = data.get(fieldName);
-  
+
   if (value === null || value === undefined) {
     return defaultValue;
   }

@@ -1,8 +1,8 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from "vitest"
 import { parseBoolean, parseCategories, parseImageArray } from "../formDataParser";
-import { logger } from "@/src/lib/utils/logger";
+import { logger } from "@/lib/utils/logger";
 
-vi.mock("@/src/lib/utils/logger", () => ({
+vi.mock("@/lib/utils/logger", () => ({
   logger: {
     info: vi.fn(),
     warn: vi.fn(),
