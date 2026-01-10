@@ -59,7 +59,7 @@ export default function AnalyticsDashboard({ data }: Props) {
           </CardHeader>
           <CardContent className="pl-2">
             <div className="h-[300px] w-full">
-              <ResponsiveContainer width="100%" height="100%">
+              <ResponsiveContainer width="100%" height="100%" minWidth={0}>
                 <LineChart data={formattedTrend}>
                   <CartesianGrid strokeDasharray="3 3" opacity={0.3} />
                   <XAxis
@@ -105,7 +105,7 @@ export default function AnalyticsDashboard({ data }: Props) {
           <CardContent>
             <div className="h-[300px] w-full flex items-center justify-center">
               {data.sources.length > 0 ? (
-                <ResponsiveContainer width="100%" height="100%">
+                <ResponsiveContainer width="100%" height="100%" minWidth={0}>
                   <PieChart>
                     <Pie
                       data={data.sources}
