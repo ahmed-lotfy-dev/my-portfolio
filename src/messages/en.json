@@ -14,7 +14,8 @@
     "name": "Ahmed Lotfy",
     "title": "Senior Full-Stack Engineer",
     "description": "I help businesses build high-performance web applications that scale. Specializing in Next.js, Cloud Architecture, and E-commerce Solutions.",
-    "resume": "Book a Consultation",
+    "book_consultation": "Book a Consultation",
+    "resume": "My CV",
     "view_work": "View Work",
     "illustrationAlt": "Developer Illustration Hero Image",
     "available_work": "Available for new projects",
@@ -244,17 +245,26 @@
     }
   },
   "contact": {
-    "title": "Contact Me",
-    "description": "Have a question or want to work together? Send me a message.",
+    "title": "Contact",
+    "description": "Ready to turn your vision into a scalable reality. Reach out for a consultation, project inquiry, or just to say hi.",
+    "heading_part1": "Ready to scale ",
+    "heading_part2": "together?",
     "getInTouch": "Get in Touch",
-    "email": "Email: contact@ahmedlotfy.site",
-    "phone": "Phone: +201016037479",
+    "info_desc": "I'm currently available for new projects and technical consultations. Reach out and I'll get back to you within 24 hours.",
+    "email": "Email",
+    "phone": "LinkedIn",
     "send": "Send Message",
     "placeholders": {
-      "name": "Full Name",
-      "email": "Email Address",
-      "subject": "Message Subject",
+      "name": "Your Name",
+      "email": "Your Email",
+      "subject": "Subject",
       "message": "Write your message here..."
+    },
+    "labels": {
+      "name": "Your Name",
+      "email": "Email Address",
+      "subject": "Subject",
+      "message": "Your Message"
     },
     "validation": {
       "name_min": "The name must contain at least 5 characters.",
@@ -262,7 +272,7 @@
       "email_invalid": "Please enter a valid email address.",
       "subject_min": "Please add a subject for the message.",
       "message_min": "Please add a description for the message.",
-      "message_links": "Please write the message without links and make sure it is work-related only."
+      "message_links": "Please write the message without links."
     }
   },
   "dashboard": {

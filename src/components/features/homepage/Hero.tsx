@@ -65,30 +65,45 @@ export default function Hero({ locale }: { locale: string }) {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.5, duration: 0.5 }}
-            className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mt-4"
+            className="flex flex-col gap-6"
           >
-            <CVDropdown>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mt-4">
               <Button
                 size="lg"
                 className="rounded-xl shadow-lg shadow-primary/25 hover:shadow-primary/40 text-lg py-6 px-8 cursor-pointer"
+                asChild
               >
-                <FileText className="mr-2 h-5 w-5" />
-                {t("resume")}
+                <Link href="#contact">
+                  <span>{t("book_consultation")}</span>
+                  <ArrowRight
+                    className={cn("ml-2 h-5 w-5", isRTL && "rotate-180")}
+                  />
+                </Link>
               </Button>
-            </CVDropdown>
-            <Button
-              variant="outline"
-              size="lg"
-              className="rounded-xl backdrop-blur-sm bg-card/50 text-lg py-6 px-8"
-              asChild
-            >
-              <Link href="#projects">
-                <span>{t("view_work")}</span>
-                <ArrowRight
-                  className={cn("ml-2 h-5 w-5", isRTL && "rotate-180")}
-                />
-              </Link>
-            </Button>
+              <Button
+                variant="outline"
+                size="lg"
+                className="rounded-xl backdrop-blur-sm bg-card/50 text-lg py-6 px-8"
+                asChild
+              >
+                <Link href="#projects">
+                  <span>{t("view_work")}</span>
+                </Link>
+              </Button>
+            </div>
+
+            <div className="flex justify-center lg:justify-start">
+              <CVDropdown>
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  className="text-muted-foreground hover:text-primary transition-colors gap-2"
+                >
+                  <FileText className="h-4 w-4" />
+                  <span>{t("resume")}</span>
+                </Button>
+              </CVDropdown>
+            </div>
           </motion.div>
         </motion.div>
 
