@@ -7,7 +7,7 @@ node_modules/
 coverage/
 .nyc_output/
 
-# Next.js
+# Next.js - build will happen in container
 .next/
 out/
 build/
@@ -27,6 +27,7 @@ yarn-error.log*
 .env.development.local
 .env.test.local
 .env.production.local
+sendgrid.env
 
 # Vercel
 .vercel
@@ -67,9 +68,7 @@ CHANGELOG.md
 # Misc
 *.txt
 drizzle/
-scripts/*
-!scripts/backup-worker/
-.nixpacks.toml
-nixpacks.toml
-Dockerfile
-.dockerignore
+
+# Development/Build artifacts
+.beads/
+.gemini/

@@ -1,6 +1,6 @@
-# Nixpacks configuration for optimized Next.js builds
+# Nixpacks configuration for Next.js
 [phases.setup]
-nixPkgs = ["nodejs_22", "bun"]
+nixPkgs = ["bun"]
 
 [phases.install]
 cmds = ["bun install --frozen-lockfile"]
@@ -12,6 +12,6 @@ cmds = ["bun run build"]
 cmd = "bun .next/standalone/server.js"
 
 [variables]
+NODE_ENV = "production"
 PORT = "3000"
 HOSTNAME = "0.0.0.0"
-NODE_ENV = "production"

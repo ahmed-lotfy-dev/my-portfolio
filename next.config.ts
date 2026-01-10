@@ -2,7 +2,6 @@ import { NextConfig } from "next";
 import createNextIntlPlugin from "next-intl/plugin";
 import withPWAInit from "@ducanh2912/next-pwa";
 
-// 1. Define Content Security Policy (CSP)
 const cspDirectives = {
   "default-src": ["'self'"],
   "script-src": [
@@ -12,6 +11,7 @@ const cspDirectives = {
     "*.googletagmanager.com",
     "*.posthog.com",
     "https://static.cloudflareinsights.com",
+    "*.cloudflareinsights.com",
     "blob:",
   ],
   "script-src-elem": [
@@ -20,6 +20,7 @@ const cspDirectives = {
     "*.googletagmanager.com",
     "*.posthog.com",
     "https://static.cloudflareinsights.com",
+    "*.cloudflareinsights.com",
     "blob:",
   ],
   "style-src": ["'self'", "'unsafe-inline'"],
@@ -31,6 +32,7 @@ const cspDirectives = {
     "https://us.i.posthog.com",
     "https://us-assets.i.posthog.com",
     "https://static.cloudflareinsights.com",
+    "*.cloudflareinsights.com",
   ],
   "frame-src": ["'self'", "*.youtube.com"],
   "object-src": ["'none'"],
@@ -41,13 +43,11 @@ const cspDirectives = {
   "upgrade-insecure-requests": [],
 };
 
-// Convert CSP object to string
 const cspString = Object.entries(cspDirectives)
   .map(([key, values]) => `${key} ${values.join(" ")};`)
   .join(" ")
-  .replace(/\s+/g, " "); // Minify spaces
+  .replace(/\s+/g, " ");
 
-// 2. Define Security Headers
 const securityHeaders = [
   { key: "X-Frame-Options", value: "SAMEORIGIN" },
   { key: "X-Content-Type-Options", value: "nosniff" },
@@ -58,7 +58,6 @@ const securityHeaders = [
   { key: "Content-Security-Policy", value: cspString },
 ];
 
-/** @type {import('next').NextConfig} */
 const nextConfig: NextConfig = {
   output: "standalone",
   compress: true,
@@ -97,14 +96,12 @@ const nextConfig: NextConfig = {
 
   async rewrites() {
     return [
-      // PostHog Rewrites
       { source: "/ingest/static/:path*", destination: "https://us-assets.i.posthog.com/static/:path*" },
       { source: "/ingest/:path*", destination: "https://us.i.posthog.com/:path*" },
       { source: "/ingest/decide", destination: "https://us.i.posthog.com/decide" },
       { source: "/:locale/ingest/static/:path*", destination: "https://us-assets.i.posthog.com/static/:path*" },
       { source: "/:locale/ingest/:path*", destination: "https://us.i.posthog.com/:path*" },
       { source: "/:locale/ingest/decide", destination: "https://us.i.posthog.com/decide" },
-      // SEO Rewrites
       { source: "/:locale/robots.txt", destination: "/robots.txt" },
       { source: "/:locale/sitemap.xml", destination: "/sitemap.xml" },
     ];
@@ -123,8 +120,6 @@ const nextConfig: NextConfig = {
   },
 };
 
-// 3. Plugin Composition
-// This chains the plugins: Next Config -> Next Intl -> Next PWA
 const withPWA = withPWAInit({
   dest: "public",
   disable: process.env.NODE_ENV === "development",
