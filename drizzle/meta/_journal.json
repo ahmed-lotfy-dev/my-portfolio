@@ -78,6 +78,20 @@
       "when": 1765818703169,
       "tag": "0010_round_shriek",
       "breakpoints": true
+    },
+    {
+      "idx": 11,
+      "version": "7",
+      "when": 1768055088199,
+      "tag": "0011_premium_vampiro",
+      "breakpoints": true
+    },
+    {
+      "idx": 12,
+      "version": "7",
+      "when": 1768055150570,
+      "tag": "0012_married_romulus",
+      "breakpoints": true
     }
   ]
 }

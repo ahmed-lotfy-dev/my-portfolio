@@ -20,7 +20,7 @@ export default function Hero({ locale }: { locale: string }) {
       id="hero"
     >
       {/* Background Elements */}
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,var(--tw-gradient-stops))] from-primary/20 via-background to-background opacity-70" />
+      <div className="absolute inset-0 bg-hero-radial from-primary/20 via-background to-background opacity-70" />
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[500px] bg-primary/10 blur-[100px] rounded-full pointer-events-none" />
 
       <div className="container relative mx-auto flex flex-col-reverse gap-12 px-4 sm:px-6 lg:flex-row lg:items-center lg:justify-between">

@@ -29,22 +29,9 @@ export default async function About() {
           />
         </div>
         <div className="md:w-1/2 text-lg text-muted-foreground space-y-4">
-          <p className="mb-8">
-            I am a Full-Stack Engineer focused on building stable, production-ready applications.
-            I specialize in the modern React ecosystem (Next.js, TypeScript) but I place equal
-            emphasis on backend performance, database optimization, and DevOps practices using Docker and Linux.
-          </p>
-          <p className="mb-8">
-            My path to software engineering started with a deep background in hardware and IT systems.
-            Unlike many developers who only know code, I understand the machine underneath.
-            This experience allows me to write more efficient software, debug complex production
-            issues faster, and respect system resources.
-          </p>
-          <p className="mb-8">
-            I value reliability over hype. I build software that works, scales, and is easy to maintain.
-            I am currently available for full-time roles or complex freelance projects where I can
-            help teams ship high-quality products.
-          </p>
+          <p className="mb-8">{t("description1")}</p>
+          <p className="mb-8">{t("description2")}</p>
+          <p className="mb-8">{t("description3")}</p>
         </div>
       </div>
     </section>

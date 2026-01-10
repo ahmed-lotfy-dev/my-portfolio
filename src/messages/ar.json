@@ -4,30 +4,30 @@
     "projects": "المشاريع",
     "blog": "المدونة",
     "certificates": "الشهادات",
-    "about": "نبذة عني",
-    "contact": "اتصل بي",
+    "about": "عني",
+    "contact": "تواصل معايا",
     "dashboard": "لوحة التحكم",
-    "signin": "تسجيل الدخول",
-    "sign_out": "تسجيل الخروج"
+    "signin": "تسجيل دخول",
+    "sign_out": "خروج"
   },
   "hero": {
     "name": "أحمد لطفي",
-    "title": "مطور برمجيات ويب وموبايل (Full Stack)",
-    "description": "أبني تطبيقات ويب متجاوبة وقابلة للتوسع. دعنا نبتكر شيئًا مذهلًا معًا.",
-    "resume": "سيرتي الذاتية",
-    "view_work": "عرض المشاريع",
+    "title": "Full-Stack Web & Mobile Software Developer",
+    "description": "ببني تطبيقات ويب وموبايل Scalable و Responsive. تعالوا نعمل حاجة جامدة سوا.",
+    "resume": "السيرة الذاتية (CV)",
+    "view_work": "شوف شغلي",
     "illustrationAlt": "صورة توضيحية لمطور",
-    "available_work": "متاح للعمل",
+    "available_work": "متاح للشغل",
     "cv_modal": {
-      "title": "عرض السيرة الذاتية",
-      "description": "كيف تود عرض السيرة الذاتية؟",
-      "view_browser": "عرض في المتصفح",
+      "title": "عرض الـ CV",
+      "description": "تحب تشوف السيرة الذاتية إزاي؟",
+      "view_browser": "افتح في المتصفح",
       "download": "تحميل PDF"
     }
   },
   "skills": {
     "title": "مهاراتي",
-    "description": "نظرة سريعة على الأدوات والتقنيات التي أستخدمها أكثر.",
+    "description": "نظرة سريعة على الأدوات والـ Tech Stack اللي بستخدمهم أكتر حاجة.",
     "list": [
       "HTML",
       "CSS",
@@ -43,43 +43,43 @@
   },
   "footer": {
     "rights": "جميع الحقوق محفوظة.",
-    "about_text": "مطور برمجيات ويب وموبايل (Full Stack) شغوف ببناء تطبيقات متجاوبة وقابلة للتوسع.",
+    "about_text": "Full-Stack Web & Mobile Developer، بحب أبني تطبيقات Responsive و Scalable.",
     "quick_links": "روابط سريعة",
-    "connect": "تواصل معي",
+    "connect": "تواصل معايا",
     "legal": "قانوني",
     "built_with": "بني باستخدام",
     "links": {
       "home": "الرئيسية",
       "projects": "المشاريع",
       "certificates": "الشهادات",
-      "contact": "اتصل بي",
+      "contact": "تواصل معي",
       "privacy": "سياسة الخصوصية",
       "terms": "شروط الخدمة"
     }
   },
   "projects": {
     "title": "مشاريعي",
-    "description": "بعض المشاريع التي عملت عليها.",
-    "add-title": "إضافة مشروع",
-    "add-desc": "املأ التفاصيل أدناه لإضافة مشروع جديد.",
+    "description": "بعض من المشاريع اللي اشتغلت عليها.",
+    "add-title": "إضافة مشروع جديد",
+    "add-desc": "املأ التفاصيل دي عشان تضيف مشروع جديد.",
     "edit-title": "تعديل المشروع",
-    "edit-desc": "املأ التفاصيل أدناه لتعديل المشروع.",
-    "publish_toggle": "نشر في الصفحة الرئيسية",
-    "publish_toggle_desc": "إظهار هذا المشروع في الصفحة الرئيسية العامة",
+    "edit-desc": "عدل تفاصيل المشروع من هنا.",
+    "publish_toggle": "عرض في الصفحة الرئيسية",
+    "publish_toggle_desc": "إظهار المشروع ده في الصفحة الرئيسية",
     "upload": "رفع صورة المشروع",
-    "uploading": "يتم رفع الصورة...",
-    "select_image": "اختر صورة",
-    "optimizing": "جاري التحسين...",
+    "uploading": "بيترفع...",
+    "select_image": "اختار صورة",
+    "optimizing": "بيتحسن...",
     "upload_optimize": "رفع وتحسين",
-    "live": "الموقع الحي",
-    "repo": "المستودع",
-    "apk": "ملف التطبيق",
-    "back_to_portfolio": "العودة إلى المعرض",
-    "view_other_projects": "عرض مشاريع أخرى",
-    "view_code": "عرض الكود",
+    "live": "Live Site",
+    "repo": "GitHub Repo",
+    "apk": "ملف الـ APK",
+    "back_to_portfolio": "رجوع للمشاريع",
+    "view_other_projects": "شوف مشاريع تانية",
+    "view_code": "شوف الكود",
     "visit_live_site": "زيارة الموقع",
-    "view_case_study": "عرض تفاصيل المشروع",
-    "case_study_coming_soon": "تفاصيل المشروع يتم اضافتها قريبا.",
+    "view_case_study": "تفاصيل المشروع",
+    "case_study_coming_soon": "تفاصيل المشروع (Case Study) جاية قريب.",
     "readmore": "إقرأ المزيد",
     "showless": "إخفاء",
     "placeholders": {         
@@ -87,20 +87,20 @@
       "title_ar": "عنوان المشروع (AR)",
       "desc_en": "وصف المشروع (EN)",
       "desc_ar": "وصف المشروع (AR)",
-      "repo_link": "رابط مستودع المشروع",
-      "live_link": "رابط المشروع المباشر",
+      "repo_link": "رابط الـ GitHub Repo",
+      "live_link": "رابط الـ Live Site",
       "categories": "فئات المشروع",
-      "categories_helper": "الرجاء إدخال الفئات مفصولة بفواصل."
+      "categories_helper": "يا ريت تدخل الفئات وتفصل بينهم بفاصلة."
     },
     "validation": {
-      "title_en_required": "عنوان المشروع بالإنجليزيه مطلوب.",
-      "title_ar_required": "عنوان المشروع بالعربيه مطلوب.",
-      "desc_en_required": "الوصف بالإنجليزيه مطلوب.",
-      "desc_ar_required": "الوصف بالعربيه مطلوب.",
-      "repo_link_invalid": "رابط المستودع غير صالح.",
-      "live_link_invalid": "رابط الموقع غير صالح.",
+      "title_en_required": "عنوان المشروع بالـ English مطلوب.",
+      "title_ar_required": "عنوان المشروع بالعربي مطلوب.",
+      "desc_en_required": "الوصف بالـ English مطلوب.",
+      "desc_ar_required": "الوصف بالعربي مطلوب.",
+      "repo_link_invalid": "رابط الـ Repo مش صح.",
+      "live_link_invalid": "رابط الموقع مش صح.",
       "image_link_required": "رابط الصورة مطلوب.",
-      "categories_required": "مطلوب فئة واحدة على الأقل."
+      "categories_required": "لازم فئة واحدة على الأقل."
     }
   },
   "certificates": {
@@ -132,46 +132,72 @@
     "placeholders": {
       "title": "عنوان الشهادة",
       "description": "وصف الشهادة",
-      "course_link": "رابط الدورة",
+      "course_link": "رابط الكورس",
       "proof_link": "رابط إثبات الشهادة",
       "image": "صورة الشهادة",
-      "options": "الخيارات"
+      "options": "خيارات"
     },
     "validation": {
-      "title_required": "رابط عنوان الشهادة مطلوب.",
-      "desc_required": "وصف الشهادة مطلوب.",
-      "course_link_required": "رابط إثبات الدورة مطلوب.",
+      "title_required": "عنوان الشهادة مطلوب.",
+      "desc_required": "الوصف مطلوب.",
+      "course_link_required": "رابط الكورس مطلوب.",
       "prof_link_required": "رابط إثبات الشهادة مطلوب.",
       "image_link_required": "رابط صورة الشهادة مطلوب."
     }
   },
   "about": {
-    "title": "نبذة عني",
+    "title": "عني",
     "name": "أحمد لطفي",
-    "description1": "مرحبًا، أنا أحمد لطفي، مطور برمجيات ويب وموبايل (Full Stack) بخلفية في صيانة الحواسيب. شغفي بالتكنولوجيا ورغبتي في التعلم المستمر دفعاني إلى مجال تطوير البرمجيات.",
-    "description2": "خبرتي في الأجهزة تمنحني منظورًا فريدًا في تطوير البرمجيات وتمكنني من التعامل مع المشكلات بطريقة شمولية.",
-    "description3": "أسعى للحصول على فرص للمشاركة في مشاريع مبتكرة. إذا كنت تبحث عن مطور (Full Stack) مخلص، يسعدني التواصل معك."
+    "description1": "أنا Full-Stack Software Engineer بركز على بناء تطبيقات مستقرة وجاهزة للـ Production. بتخصص في الـ React Ecosystem الحديثة (Next.js، TypeScript) مع اهتمام كبير بالـ Backend Performance، والـ Database Optimization، وممارسات الـ DevOps باستخدام Docker و Linux.",
+    "description2": "بدايتي كانت في الهاردوير والـ IT، وده خلاني أفهم المكنة اللي الكود شغال عليها من جوه. الخبرة دي بتساعدني أكتب برمجيات أحسن، وأحل مشاكل الـ Production المعقدة، وأراعي موارد النظام (System Resources) في كل خطوة.",
+    "description3": "بهتم جداً بالموثوقية (Reliability) والاستقرار. ببني برمجيات شغالة، Scalable، وسهلة في صيانة. أنا حالياً متاح لشغل Full-time أو مشاريع Freelance تقيلة، أقدر من خلالها أساعد الفرق تطلع منتجات بجودة عالية."
+  },
+  "experience": {
+    "title": "الخبرة المهنية",
+    "items": {
+      "0": {
+        "company": "Zamalek Store",
+        "role": "Lead Full-Stack Engineer (Contract)",
+        "date": "2024 — دلوقتي",
+        "description": "صممت ونشرت E-commerce Platform لبراند مبيعات كبير. عملت Hybrid Cart System ودمجت Paymob Payment Gateway وده قلل الـ Checkout Drop-offs بنسبة 40٪. مسكت الـ DevOps Pipeline بالكامل باستخدام Docker و Cloudflare R2.",
+        "tech": "Next.js 16, PostgreSQL, BullMQ, Redis, Docker"
+      },
+      "1": {
+        "company": "محمد علي (Captain X)",
+        "role": "Frontend Architect (Freelance)",
+        "date": "2024",
+        "description": "صممت وبنيت Bilingual Educational Hub و Trading Portfolio. ركزت جداً على الـ SEO والـ Performance، وحققت سكور 95+ في الـ Core Web Vitals على الموبايل.",
+        "tech": "React, Bilingual Support, Performance Optimization"
+      },
+      "2": {
+        "company": "Toota Art Gallery",
+        "role": "Full-Stack Developer",
+        "date": "2023",
+        "description": "طورت نظام DAM (Digital Asset Management) لجاليري فنون بصرية. استخدمت Zero-egress Object Storage عشان أقلل تكاليف الاستضافة مع الحفاظ على كواليتي الصور.",
+        "tech": "Laravel, Livewire, Alpine.js, Cloudflare R2"
+      }
+    }
   },
   "contact": {
-    "title": "اتصل بي",
-    "description": "هل لديك سؤال أو ترغب في العمل معي؟ أرسل لي رسالة.",
-    "getInTouch": "تواصل معي",
-    "email": "بريد : contact@ahmedlotfy.site",
-    "phone": "الهاتف : ‎+201016037479‎",
-    "send": "إرسال الرسالة",
+    "title": "تواصل معايا",
+    "description": "عندك سؤال أو حابب نشتغل سوا؟ ابعتلي رسالة.",
+    "getInTouch": "خلينا على تواصل",
+    "email": "الإيميل : contact@ahmedlotfy.site",
+    "phone": "الموبايل : ‎+201016037479‎",
+    "send": "ابعت الرسالة",
     "placeholders": {
-      "name": "الاسم الكامل",
-      "email": "البريد الإلكتروني",
+      "name": "اسمك الكامل",
+      "email": "بريدك الإلكتروني",
       "subject": "موضوع الرسالة",
       "message": "اكتب رسالتك هنا..."
     },
     "validation": {
-      "name_min": "يجب أن يحتوي الاسم على 5 أحرف على الأقل.",
-      "name_max": "يجب ألا يتجاوز الاسم 80 حرفًا.",
-      "email_invalid": "يرجى إدخال بريد إلكتروني صالح.",
-      "subject_min": "من فضلك أضف موضوعًا للرسالة.",
-      "message_min": "من فضلك أضف وصفًا للرسالة.",
-      "message_links": "يرجى كتابة الرسالة بدون روابط وتكون متعلقة بالعمل فقط."
+      "name_min": "الاسم لازم يكون 5 حروف على الأقل.",
+      "name_max": "الاسم ميزيدش عن 80 حرف.",
+      "email_invalid": "العنوان ده مش إيميل صح.",
+      "subject_min": "يا ريت تكتب موضوع للرسالة.",
+      "message_min": "يا ريت تكتب وصف للرسالة.",
+      "message_links": "يا ريت الرسالة تكون من غير لينكات وتبع الشغل بس."
     }
   },
   "dashboard": {
@@ -180,69 +206,92 @@
     "analytics": "التحليلات",
     "nav": {
       "home": "الرئيسية",
-      "dashboard": "لوحة التحكم",
+      "dashboard": "Dashboard",
       "projects": "المشاريع",
       "certificates": "الشهادات",
+      "experiences": "الخبرات",
       "blog": "أضف بوست",
-      "sign_out": "تسجيل الخروج"
+      "backups": "النسخ الاحتياطية",
+      "sign_out": "خروج"
     },
     "welcome": {
-      "greeting": "مرحبًا بك يا {name}!",
+      "greeting": "منور يا {name}!",
       "guest": "زائر",
-      "admin_message": "أنت المسؤول، أهلاً بك!",
-      "user_message": "يمكنك تصفح الموقع، ولكن لا يمكنك تنفيذ الإجراءات التي تتطلب صلاحيات."
+      "admin_message": "أنت الـ Admin، أهلاً بيك!",
+      "user_message": "تقدر تتصفح الموقع، بس ملكش صلاحيات تعمل Toolbar Actions."
     },
-    "analytics_trend": "التحليلات - اتجاه 7 أيام",
-    "traffic_sources": "مصادر الزيارات",
-    "top_projects": "أهم المشاريع (الاهتمام)",
-    "visitor_locations": "مواقع الزوار",
-    "top_pages": "أهم الصفحات",
+    "analytics_trend": "التحليلات - آخر 7 أيام",
+    "traffic_sources": "Traffic Sources",
+    "top_projects": "أكتر مشاريع عليها تفاعل",
+    "visitor_locations": "أماكن الزوار",
+    "top_pages": "أكتر صفحات اتشافت",
     "project_name": "اسم المشروع",
-    "views": "المشاهدات",
-    "time_spent": "الوقت المستغرق",
+    "views": "Views",
+    "time_spent": "الوقت المقضي",
     "country": "الدولة",
     "visitors": "الزوار",
     "page_path": "مسار الصفحة",
-    "no_data": "لا توجد بيانات متاحة بعد"
+    "no_data": "مفيش بيانات لسه"
+  },
+  "experiences": {
+    "title": "خبراتي",
+    "description": "إدارة الجدول الزمني لخبراتك المهنية.",
+    "add-title": "إضافة خبرة",
+    "add-desc": "املأ التفاصيل لإضافة خبرة جديدة.",
+    "edit-title": "تعديل الخبرة",
+    "edit-desc": "تعديل تفاصيل الخبرة.",
+    "company": "الشركة",
+    "role_en": "الوظيفة (EN)",
+    "role_ar": "الوظيفة (AR)",
+    "date_en": "التاريخ (EN)",
+    "date_ar": "التاريخ (AR)",
+    "desc_en": "الوصف (EN)",
+    "desc_ar": "الوصف (AR)",
+    "tech_stack": "التقنيات (افصل بفاصلة)",
+    "displayOrder": "ترتيب العرض",
+    "published": "منشور",
+    "back_to_experiences": "الرجوع للخبرات",
+    "save": "حفظ الخبرة",
+    "delete": "حذف الخبرة"
   },
   "blogs": {
     "title": "مدوناتي",
-    "description": "هنا بعض المدونات التي كتبتها.",
-    "add-title": "إضافة منشور مدونة جديد",
-    "add-desc": "املأ التفاصيل أدناه لإضافة منشور مدونة جديد",
-    "upload": "تحميل صورة المدونة",
-    "uploading": "يتم تحميل الصورة",
-    "readmore": "اقرأ المزيد",
+    "description": "هنا شويه من المقالات اللي كتبتها.",
+    "add-title": "إضافة Blog Post جديد",
+    "add-desc": "املأ التفاصيل دي عشان تضيف بوست جديد",
+    "upload": "رفع صورة للمدونة",
+    "uploading": "الصورة بتترفع...",
+    "readmore": "إقرأ المزيد",
     "showless": "عرض أقل",
-    "post_title": "عنوان المنشور",
-    "post_content": "محتوى المنشور",
+    "post_title": "عنوان البوست",
+    "post_content": "محتوى البوست",
     "publish_state": "حالة النشر",
-    "select_publish_state": "اختر حالة النشر",
-    "upload_image": "تحميل صورة",
+    "select_publish_state": "اختار حالة النشر",
+    "upload_image": "رفع صورة",
     "categories": "الفئات",
-    "add_post": "إضافة منشور",
+    "add_post": "إضافة البوست",
     "placeholders": {
-      "title": "أدخل عنوان المنشور",
-      "content": "أدخل المحتوى",
-      "categories": "على سبيل المثال frontend, backend"
+      "title": "اكتب عنوان البوست",
+      "content": "اكتب المحتوى هنا...",
+      "categories": "مثلاً frontend, backend"
     },
     "validation": {
-      "title_required": "عنوان المدونة مطلوب",
-      "content_required": "محتوى المدونة مطلوب"
+      "title_required": "عنوان المدونة ضروري",
+      "content_required": "محتوى المدونة ضروري"
     }
   },
   "metadata": {
     "home": {
-      "title": "أحمد لطفي – مهندس برمجيات Full-Stack",
-      "description": "ملف أعمال أحمد لطفي – مهندس برمجيات Full-Stack. أقوم ببناء تطبيقات ويب متجاوبة وقابلة للتطوير."
+      "title": "أحمد لطفي – Full-Stack Software Engineer",
+      "description": "Portfolio أحمد لطفي – Full-Stack Software Engineer. ببني تطبيقات ويب Scalable و Responsive."
     },
     "blogs": {
       "title": "المدونة | أحمد لطفي",
-      "description": "اقرأ أفكاري حول تطوير البرمجيات وتقنيات الويب والمزيد."
+      "description": "اقرأ أفكاري عن السوفت وير، تقنيات الويب، وحاجات تانية كتير."
     },
     "certificates": {
       "title": "الشهادات المهنية | أحمد لطفي",
-      "description": "استكشف رحلة تطويري المهني من خلال الشهادات والدورات في تطوير الويب وهندسة البرمجيات والتقنيات الحديثة."
+      "description": "استكشف رحلة تعلمي من خلال الشهادات والكورسات في الـ Web Development و Software Engineering."
     }
   }
 }

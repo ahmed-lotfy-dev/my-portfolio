@@ -1,10 +1,10 @@
 import "dotenv/config"
 import { db } from "@/src/db/index"
-import { certificates, projects } from "@/src/db/schema"
+import { certificates, projects, experiences, users } from "@/src/db/schema"
 import { certificatesData } from "@/src/db/db-seed-data/certificates-data"
 import { projectsSeedData } from "@/src/db/db-seed-data/projects-seed"
+import { experiencesSeedData } from "@/src/db/db-seed-data/experiences-seed"
 import { auth } from "../lib/auth"
-import { users } from "@/src/db/schema"
 import { eq } from "drizzle-orm"
 
 async function seed() {
@@ -39,6 +39,7 @@ async function seed() {
   // Clear tables
   await db.delete(certificates)
   await db.delete(projects)
+  await db.delete(experiences)
 
   // Insert certificates
   await db.insert(certificates).values(
@@ -69,6 +70,24 @@ async function seed() {
       repoLink: project.repoLink,
       categories: project.categories,
       displayOrder: project.displayOrder,
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    }))
+  )
+
+  // Insert experiences
+  await db.insert(experiences).values(
+    experiencesSeedData.map((exp) => ({
+      company: exp.company,
+      role_en: exp.role_en,
+      role_ar: exp.role_ar,
+      description_en: exp.description_en,
+      description_ar: exp.description_ar,
+      date_en: exp.date_en,
+      date_ar: exp.date_ar,
+      tech_stack: exp.tech_stack,
+      displayOrder: exp.displayOrder,
+      published: exp.published,
       createdAt: new Date(),
       updatedAt: new Date(),
     }))

@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import {
   IoHome,
   IoCode,
@@ -13,6 +13,7 @@ import {
   IoChevronForward,
   IoLogOut,
   IoSaveSharp,
+  IoBriefcase,
 } from "react-icons/io5";
 import { cn } from "@/src/lib/utils";
 import { useTranslations, useLocale } from "next-intl";
@@ -26,10 +27,12 @@ export default function Aside({ user }: { user: any }) {
   const pathname = usePathname();
   const t = useTranslations("dashboard.nav");
   const locale = useLocale();
+  const [mounted, setMounted] = useState(false);
   const [isExpanded, setIsExpanded] = useState(true);
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
+    setMounted(true);
     const checkMobile = () => {
       const mobile = window.innerWidth < 768;
       setIsMobile(mobile);
@@ -45,25 +48,16 @@ export default function Aside({ user }: { user: any }) {
     return () => window.removeEventListener("resize", checkMobile);
   }, []);
 
-  // Check if user is admin
-  const isAdmin = user?.role === "ADMIN" || user?.email === process.env.NEXT_PUBLIC_ADMIN_EMAIL;
-
-  const allNavLinks = [
+  // Standardize the nav links list to be identical on server and client initial render
+  const navLinks = [
     { href: "/", icon: IoHome, text: t("home") },
     { href: "/dashboard", icon: IoGrid, text: t("dashboard") },
     { href: "/dashboard/projects", icon: IoCode, text: t("projects") },
-    {
-      href: "/dashboard/certificates",
-      icon: IoRibbon,
-      text: t("certificates"),
-      adminOnly: true, // Only show to admin
-    },
+    { href: "/dashboard/certificates", icon: IoRibbon, text: t("certificates") },
+    { href: "/dashboard/experiences", icon: IoBriefcase, text: t("experiences") },
     { href: "/dashboard/blogs/new", icon: IoAddCircleSharp, text: t("blog") },
-    { href: "/dashboard/backups", icon: IoSaveSharp, text: "Backups" },
+    { href: "/dashboard/backups", icon: IoSaveSharp, text: t("backups") },
   ];
-
-  // Filter to show only links that user has access to
-  const navLinks = allNavLinks.filter(link => !link.adminOnly || isAdmin);
 
   return (
     <aside
@@ -126,15 +120,17 @@ export default function Aside({ user }: { user: any }) {
                 className="relative group block"
                 title={!isExpanded ? link.text : undefined}
               >
-                {isActive && (
-                  <motion.div
-                    layoutId="activeNav"
-                    className="absolute inset-0 rounded-xl bg-primary/10 border border-primary/20 shadow-[0_0_20px_-5px_rgba(var(--primary),0.3)]"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                  />
-                )}
+                <AnimatePresence mode="wait">
+                  {isActive && (
+                    <motion.div
+                      layoutId="activeNav"
+                      className="absolute inset-0 rounded-xl bg-primary/10 border border-primary/20 shadow-[0_0_20px_-5px_rgba(var(--primary),0.3)]"
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      exit={{ opacity: 0 }}
+                    />
+                  )}
+                </AnimatePresence>
                 <div
                   className={cn(
                     "relative flex items-center gap-3 rounded-xl py-3 text-sm font-medium transition-colors",

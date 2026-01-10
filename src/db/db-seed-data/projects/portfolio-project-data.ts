@@ -110,5 +110,6 @@ I systematically optimized every aspect of the application:
   "liveLink": "https://ahmedlotfy.site",
   "coverImage": "https://images.ahmedlotfy.site/projects/portfolio-cover.webp",
   "displayOrder": 8,
-  }
+  "completedAt": new Date("2026-01-01"),
+}
 ];
