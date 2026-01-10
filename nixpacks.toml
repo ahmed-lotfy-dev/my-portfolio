@@ -9,4 +9,9 @@ cmds = ["bun install --frozen-lockfile"]
 cmds = ["bun run build"]
 
 [start]
-cmd = "node .next/standalone/server.js"
+cmd = "bun .next/standalone/server.js"
+
+[variables]
+PORT = "3000"
+HOSTNAME = "0.0.0.0"
+NODE_ENV = "production"
