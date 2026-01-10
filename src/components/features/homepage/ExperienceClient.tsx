@@ -4,6 +4,7 @@ import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import { Calendar, Briefcase, Sparkles } from "lucide-react";
 import Section from "@/src/components/ui/Section";
+import { useTranslations } from "next-intl";
 import { cn } from "@/src/lib/utils";
 
 interface ExperienceClientProps {
@@ -22,7 +23,7 @@ function ExperienceCard({ exp, index, isRTL }: { exp: any; index: number; isRTL:
       animate={isInView ? { opacity: 1, x: 0 } : {}}
       transition={{ duration: 0.8, delay: index * 0.1, ease: [0.21, 0.47, 0.32, 0.98] }}
       className={cn(
-        "relative flex flex-col md:flex-row gap-8 mb-20 last:mb-0",
+        "relative flex flex-col md:flex-row gap-8 mb-12 last:mb-0",
         index % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
       )}
     >
@@ -61,7 +62,6 @@ function ExperienceCard({ exp, index, isRTL }: { exp: any; index: number; isRTL:
         >
           {/* Subtle Accent Glow */}
           <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-30 transition-opacity">
-            <Sparkles className="w-12 h-12 text-primary" />
           </div>
 
           <div className={cn(
@@ -74,19 +74,19 @@ function ExperienceCard({ exp, index, isRTL }: { exp: any; index: number; isRTL:
             </span>
           </div>
 
-          <h3 className="text-2xl md:text-3xl font-black text-foreground mb-2 tracking-tight group-hover:text-primary transition-colors duration-300">
+          <h3 className="text-xl md:text-2xl font-black text-foreground mb-2 tracking-tight group-hover:text-primary transition-colors duration-300">
             {isRTL ? exp.role_ar : exp.role_en}
           </h3>
 
           <div className={cn(
-            "text-lg font-semibold text-muted-foreground/80 mb-6 flex items-center gap-2",
+            "text-base font-semibold text-muted-foreground/80 mb-6 flex items-center gap-2",
             index % 2 === 0 ? "md:justify-end" : "md:justify-start"
           )}>
-            <Briefcase className="w-5 h-5" />
+            <Briefcase className="w-4 h-4" />
             <span>{exp.company}</span>
           </div>
 
-          <p className="text-muted-foreground leading-relaxed mb-8 text-base font-medium opacity-90">
+          <p className="text-muted-foreground leading-relaxed mb-8 text-sm font-medium opacity-90">
             {isRTL ? exp.description_ar : exp.description_en}
           </p>
 
@@ -97,7 +97,7 @@ function ExperienceCard({ exp, index, isRTL }: { exp: any; index: number; isRTL:
             {exp.tech_stack.map((tech: string) => (
               <span
                 key={tech}
-                className="px-4 py-1.5 rounded-xl bg-background/50 text-[11px] font-bold text-primary/90 border border-primary/20 backdrop-blur-sm uppercase tracking-wider hover:bg-primary hover:text-primary-foreground transition-all duration-300 cursor-default"
+                className="px-2 py-0.5 rounded-md bg-secondary/30 text-sm font-medium text-muted-foreground border border-transparent hover:border-primary/20 hover:text-primary transition-all duration-300 cursor-default"
               >
                 {tech}
               </span>
@@ -113,22 +113,22 @@ function ExperienceCard({ exp, index, isRTL }: { exp: any; index: number; isRTL:
 }
 
 export default function ExperienceClient({ experiences, isRTL }: ExperienceClientProps) {
+  const t = useTranslations("experience");
   return (
     <Section className="py-32 px-4 relative overflow-hidden" id="experience">
       {/* Background Decor */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-primary/5 rounded-full blur-[120px] pointer-events-none" />
 
       <div className="container max-w-6xl mx-auto relative">
-        <div className="text-center mb-24 space-y-6">
+        <div className="text-center mb-32 space-y-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-primary/10 text-primary border border-primary/20 backdrop-blur-sm shadow-[0_0_20px_rgba(var(--primary),0.1)]"
+            className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-primary/10 text-primary border border-primary/20 backdrop-blur-sm shadow-[0_0_20px_rgba(var(--primary),0.1)]"
           >
-            <Sparkles className="w-4 h-4" />
-            <span className="text-xs font-black uppercase tracking-[0.3em]">
-              Professional Timeline
+            <span className="text-md font-black uppercase tracking-[0.3em]">
+              {t("label")}
             </span>
           </motion.div>
 
@@ -137,9 +137,9 @@ export default function ExperienceClient({ experiences, isRTL }: ExperienceClien
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
-            className="text-5xl md:text-7xl font-black tracking-tighter text-foreground"
+            className="text-4xl md:text-5xl font-black tracking-tighter text-foreground"
           >
-            My <span className="text-primary italic">Journey</span>
+            {t("heading_part1")} <span className="text-primary italic">{t("heading_part2")}</span>
           </motion.h2>
         </div>
 

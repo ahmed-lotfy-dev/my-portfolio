@@ -12,17 +12,76 @@
   },
   "hero": {
     "name": "أحمد لطفي",
-    "title": "Full-Stack Web & Mobile Software Developer",
-    "description": "ببني تطبيقات ويب وموبايل Scalable و Responsive. تعالوا نعمل حاجة جامدة سوا.",
-    "resume": "السيرة الذاتية (CV)",
+    "title": "Senior Full-Stack Engineer",
+    "description": "بساعد الشركات تبني تطبيقات ويب قوية بتتحمل الضغط العالي (Scalable). تخصصي Next.js، البنية السحابية (Cloud Architecture)، وحلول التجارة الإلكترونية.",
+    "resume": "احجز استشارة",
     "view_work": "شوف شغلي",
     "illustrationAlt": "صورة توضيحية لمطور",
-    "available_work": "متاح للشغل",
+    "available_work": "متاح لمشاريع جديدة",
     "cv_modal": {
       "title": "عرض الـ CV",
       "description": "تحب تشوف السيرة الذاتية إزاي؟",
       "view_browser": "افتح في المتصفح",
       "download": "تحميل PDF"
+    }
+  },
+  "tech_stack": {
+    "label": "الهيكلة البرمجية",
+    "title": "بنية تتحمل الضغط",
+    "description": "بختار التقنيات اللي بتضمن الأداء العالي، الأمان، وقابلية التوسع.",
+    "footer": "جاهز للإنتاج • آمن • قابل للتوسع",
+    "items": {
+      "nextjs": {
+        "title": "React & Next.js 16",
+        "desc": "بناء واجهات مستخدم معقدة باستخدام React 19 و Next.js Server Actions."
+      },
+      "typescript": {
+        "title": "TypeScript",
+        "desc": "أمان كامل للكود (Type Safety) لضمان عدم وجود أخطاء."
+      },
+      "database": {
+        "title": "PostgreSQL & MongoDB",
+        "desc": "تصميم قواعد بيانات مرنة باستخدام SQL و NoSQL مع التخزين المؤقت (Redis)."
+      },
+      "infra": {
+        "title": "Node.js & Cloud",
+        "desc": "بنية خلفية (Backend) قوية بـ Express، أمان بـ Auth0، ونشر باستخدام Docker."
+      }
+    }
+  },
+  "services": {
+    "label": "أنا بقدم إيه؟",
+    "title_part1": "حلول برمجية",
+    "title_part2": "ذات تأثير",
+    "description": "مش بكتب كود وخلاص؛ أنا بقدم حلول بيزنس متكاملة بتعتمد على هندسة برمجيات قوية وتصميم استراتيجي.",
+    "items": {
+      "webapp": {
+        "title": "تطبيقات ويب مخصصة",
+        "description": "تطبيقات ويب سريعة وآمنة وقابلة للتوسع (Scalable) مبنية بـ Next.js و Cloudflare. مثالية للـ SaaS والأدوات الداخلية.",
+        "features": {
+          "1": "بنية برمجية عالية الأداء",
+          "2": "معالجة بيانات في الوقت الفعلي",
+          "3": "أنظمة مصادقة ودفع آمنة"
+        }
+      },
+      "ecommerce": {
+        "title": "تحسين التجارة الإلكترونية",
+        "description": "زود مبيعاتك مع نظام تجارة إلكترونية مخصص. بحسن الـ Checkout Flows وسرعة الصفحة عشان أزود معدل التحويل (Conversion).",
+        "features": {
+          "1": "ربط Next.js مع Paymob/Stripe",
+          "2": "تحسين السلة والـ Checkout",
+          "3": "أنظمة إدارة المخزون"
+        }
+      },
+      "performance": {
+        "title": "تحسين الأداء (Performance)",
+        "description": "موقعك بطيء؟ بحسن الـ Core Web Vitals عشان أرفع ترتيبك في جوجل (SEO) وأحافظ على الزوار.",
+        "features": {
+          "1": "سكور 95+ في Core Web Vitals",
+          "2": "Server-Side Rendering (SSR)",
+          "3": "استراتيجيات Caching متقدمة"
+        }
+      }
     }
   },
   "skills": {
@@ -43,7 +102,7 @@
   },
   "footer": {
     "rights": "جميع الحقوق محفوظة.",
-    "about_text": "Full-Stack Web & Mobile Developer، بحب أبني تطبيقات Responsive و Scalable.",
+    "about_text": "Senior Full-Stack Engineer بركز على بناء حلول برمجية مربحة للبيزنس.",
     "quick_links": "روابط سريعة",
     "connect": "تواصل معايا",
     "legal": "قانوني",
@@ -58,8 +117,8 @@
     }
   },
   "projects": {
-    "title": "مشاريعي",
-    "description": "بعض من المشاريع اللي اشتغلت عليها.",
+    "title": "قصص نجاح",
+    "description": "مشاريع حديثة قدمت فيها قيمة حقيقية للبيزنس.",
     "add-title": "إضافة مشروع جديد",
     "add-desc": "املأ التفاصيل دي عشان تضيف مشروع جديد.",
     "edit-title": "تعديل المشروع",
@@ -141,19 +200,23 @@
       "title_required": "عنوان الشهادة مطلوب.",
       "desc_required": "الوصف مطلوب.",
       "course_link_required": "رابط الكورس مطلوب.",
-      "prof_link_required": "رابط إثبات الشهادة مطلوب.",
+      "proof_link_required": "رابط إثبات الشهادة مطلوب.",
       "image_link_required": "رابط صورة الشهادة مطلوب."
     }
   },
   "about": {
     "title": "عني",
     "name": "أحمد لطفي",
-    "description1": "أنا Full-Stack Software Engineer بركز على بناء تطبيقات مستقرة وجاهزة للـ Production. بتخصص في الـ React Ecosystem الحديثة (Next.js، TypeScript) مع اهتمام كبير بالـ Backend Performance، والـ Database Optimization، وممارسات الـ DevOps باستخدام Docker و Linux.",
-    "description2": "بدايتي كانت في الهاردوير والـ IT، وده خلاني أفهم المكنة اللي الكود شغال عليها من جوه. الخبرة دي بتساعدني أكتب برمجيات أحسن، وأحل مشاكل الـ Production المعقدة، وأراعي موارد النظام (System Resources) في كل خطوة.",
-    "description3": "بهتم جداً بالموثوقية (Reliability) والاستقرار. ببني برمجيات شغالة، Scalable، وسهلة في صيانة. أنا حالياً متاح لشغل Full-time أو مشاريع Freelance تقيلة، أقدر من خلالها أساعد الفرق تطلع منتجات بجودة عالية."
+    "description1": "أنا Senior Full-Stack Engineer بركز على حل مشاكل البيزنس. بتخصص في الـ React Ecosystem الحديثة (Next.js، TypeScript) بس بهتم بنفس القدر بالـ ROI، ومقاييس الأداء، واستقرار النظام (Reliability).",
+    "description2": "خلفيتي في الهاردوير والـ IT بتخليني أبني حلول مش مجرد كود، لكن بنية تحتية قوية.",
+    "description3": "بشارك الشركات لبناء برمجيات بتزود الأرباح، بتقلل التكاليف، وبتكبر بسهولة. أنا حالياً بقبل عملاء جدد لمشاريع ذات تأثير عالي (High-Impact Projects)."
   },
   "experience": {
-    "title": "الخبرة المهنية",
+    "title": "سجل النجاح",
+    "description": "تاريخ من تحقيق النتائج للعملاء.",
+    "label": "الخبرة المهنية",
+    "heading_part1": "رحلتي",
+    "heading_part2": "المهنية",
     "items": {
       "0": {
         "company": "Zamalek Store",

@@ -1,5 +1,9 @@
 # Feature Specification: Fix Arabic Skills Slider Layout
 
+**Feature Branch**: `001-fix-arabic-skills-layout`
+**Created**: 2025-01-10
+**Status**: Fixed/Deployed
+
 ## Requirement
 The "Skills" slider in the Arabic (RTL) version has a visual bug.
 - **Issue**: The content starts "too far to the left" (or creates a gap) and takes time to appear in the view.

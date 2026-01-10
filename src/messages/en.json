@@ -12,17 +12,76 @@
   },
   "hero": {
     "name": "Ahmed Lotfy",
-    "title": "Full-Stack Web & Mobile Software Developer",
-    "description": "I build responsive and scalable web and mobile applications. Let's create something amazing together.",
-    "resume": "My Cv",
+    "title": "Senior Full-Stack Engineer",
+    "description": "I help businesses build high-performance web applications that scale. Specializing in Next.js, Cloud Architecture, and E-commerce Solutions.",
+    "resume": "Book a Consultation",
     "view_work": "View Work",
     "illustrationAlt": "Developer Illustration Hero Image",
-    "available_work": "Available for work",
+    "available_work": "Available for new projects",
     "cv_modal": {
       "title": "View Resume",
       "description": "How would you like to view the resume?",
       "view_browser": "View in Browser",
       "download": "Download PDF"
+    }
+  },
+  "tech_stack": {
+    "label": "Architecture",
+    "title": "Built for Scale",
+    "description": "I choose technologies that prioritize performance, type safety, and developer experience.",
+    "footer": "Production Ready • Type Safe • Scalable",
+    "items": {
+      "nextjs": {
+        "title": "React & Next.js 16",
+        "desc": "Building complex UIs with React 19 features and Next.js Server Actions."
+      },
+      "typescript": {
+        "title": "TypeScript",
+        "desc": "End-to-end type safety ensuring bulletproof code reliability."
+      },
+      "database": {
+        "title": "PostgreSQL & MongoDB",
+        "desc": "Flexible data modeling with SQL and NoSQL solutions + Redis caching."
+      },
+      "infra": {
+        "title": "Node.js & Cloud",
+        "desc": "Scalable backends with Express, Auth0 security, and Dockerized deployments."
+      }
+    }
+  },
+  "services": {
+    "label": "What I Do",
+    "title_part1": "High-Impact",
+    "title_part2": "Solutions",
+    "description": "I don't just write code; I deliver business results through robust engineering and strategic design.",
+    "items": {
+      "webapp": {
+        "title": "Custom Web Applications",
+        "description": "Scalable, secure, and fast web applications built with Next.js and Cloudflare. Perfect for SaaS and internal tools.",
+        "features": {
+          "1": "High-Performance Architecture",
+          "2": "Real-time Data Processing",
+          "3": "Secure Authentication & Payments"
+        }
+      },
+      "ecommerce": {
+        "title": "E-commerce Optimization",
+        "description": "Boost your sales with a custom e-commerce stack. I optimize checkout flows and page speed to maximize conversions.",
+        "features": {
+          "1": "Next.js + Paymob/Stripe Integration",
+          "2": "Cart & Checkout Optimization",
+          "3": "Inventory Management Systems"
+        }
+      },
+      "performance": {
+        "title": "Performance Tuning",
+        "description": "Is your site slow? I optimize Core Web Vitals to improve your SEO rankings and user retention.",
+        "features": {
+          "1": "95+ Core Web Vitals Score",
+          "2": "Server-Side Rendering (SSR)",
+          "3": "Advanced Caching Strategies"
+        }
+      }
     }
   },
   "skills": {
@@ -45,7 +104,7 @@
   },
   "footer": {
     "rights": "All rights reserved.",
-    "about_text": "Full-Stack Web & Mobile Software Developer passionate about building responsive and scalable applications.",
+    "about_text": "Senior Full-Stack Engineer focused on building profitable software solutions.",
     "quick_links": "Quick Links",
     "connect": "Connect",
     "legal": "Legal",
@@ -60,8 +119,8 @@
     }
   },
   "projects": {
-    "title": "My Projects",
-    "description": "Here are some of the projects I've worked on.",
+    "title": "Success Stories",
+    "description": "Recent projects where I delivered tangible business value.",
     "add-title": "Add Project",
     "add-desc": "Fill in the details below to add a new project",
     "edit-title": "Edit Project",
@@ -150,12 +209,16 @@
   "about": {
     "title": "About Me",
     "name": "Ahmed Lotfy",
-    "description1": "I am a Full-Stack Engineer focused on building stable, production-ready applications. I specialize in the modern React ecosystem (Next.js, TypeScript) but I place equal emphasis on backend performance, database optimization, and DevOps practices using Docker and Linux.",
-    "description2": "My path to software engineering is rooted in a deep background in hardware and IT systems. Understanding the architecture beneath the code helps me build more efficient systems, debug complex infrastructure issues, and optimize resource usage from the ground up.",
-    "description3": "I prioritize reliability and long-term stability. I focus on building software that is scalable, resilient, and maintainable. I'm open to full-time opportunities or complex projects where I can contribute to shipping high-quality products."
+    "description1": "I am a Senior Full-Stack Engineer focused on solving business problems. I specialize in the modern React ecosystem (Next.js, TypeScript) but I place equal emphasis on ROI, performance metrics, and system reliability.",
+    "description2": "My path to software engineering is rooted in a deep background in hardware and IT systems. This allows me to architect solutions that are not just code, but robust infrastructure.",
+    "description3": "I partner with businesses to build software that drives revenue, reduces costs, and scales effortlessly. I am currently accepting new clients for high-impact projects."
   },
   "experience": {
-    "title": "Professional Experience",
+    "title": "Track Record",
+    "description": "A history of delivering results for clients.",
+    "label": "Professional History",
+    "heading_part1": "My",
+    "heading_part2": "Career",
     "items": {
       "0": {
         "company": "Zamalek Store",
