@@ -12,7 +12,7 @@
   },
   "hero": {
     "name": "Ahmed Lotfy",
-    "title": "Senior Full-Stack Engineer",
+    "title": "Full-Stack Software Engineer",
     "description": "I help businesses build high-performance web applications that scale. Specializing in Next.js, Cloud Architecture, and E-commerce Solutions.",
     "book_consultation": "Book a Consultation",
     "resume": "My CV",
@@ -105,7 +105,7 @@
   },
   "footer": {
     "rights": "All rights reserved.",
-    "about_text": "Senior Full-Stack Engineer focused on building profitable software solutions.",
+    "about_text": "Full-Stack Software Engineer focused on building profitable software solutions.",
     "quick_links": "Quick Links",
     "connect": "Connect",
     "legal": "Legal",
@@ -210,7 +210,7 @@
   "about": {
     "title": "About Me",
     "name": "Ahmed Lotfy",
-    "description1": "I am a Senior Full-Stack Engineer focused on solving business problems. I specialize in the modern React ecosystem (Next.js, TypeScript) but I place equal emphasis on ROI, performance metrics, and system reliability.",
+    "description1": "I am a Full-Stack Software Engineer focused on solving business problems. I specialize in the modern React ecosystem (Next.js, TypeScript) but I place equal emphasis on ROI, performance metrics, and system reliability.",
     "description2": "My path to software engineering is rooted in a deep background in hardware and IT systems. This allows me to architect solutions that are not just code, but robust infrastructure.",
     "description3": "I partner with businesses to build software that drives revenue, reduces costs, and scales effortlessly. I am currently accepting new clients for high-impact projects."
   },

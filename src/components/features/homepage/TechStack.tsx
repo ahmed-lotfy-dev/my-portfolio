@@ -10,7 +10,9 @@ export default function TechStack() {
   const t = useTranslations("tech_stack");
 
   return (
-    <Section className="py-24 relative" id="tech-stack">
+    <Section variant="default" className="py-24 relative overflow-hidden" id="tech-stack">
+      {/* Background Decor - Mesh Gradient */}
+      <div className="absolute bottom-0 right-0 w-[600px] h-[600px] bg-primary/5 rounded-full blur-[100px] pointer-events-none translate-y-1/2 translate-x-1/2" />
       <div className="container mx-auto px-4">
         {/* Header */}
         <div className="max-w-2xl mb-16">

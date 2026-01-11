@@ -12,7 +12,7 @@
   },
   "hero": {
     "name": "أحمد لطفي",
-    "title": "Senior Full-Stack Engineer",
+    "title": "Full-Stack Software Engineer",
     "description": "بساعد الشركات تبني تطبيقات ويب قوية بتتحمل الضغط العالي (Scalable). تخصصي Next.js، البنية السحابية (Cloud Architecture)، وحلول التجارة الإلكترونية.",
     "book_consultation": "احجز استشارة",
     "resume": "السيرة الذاتية",
@@ -103,7 +103,7 @@
   },
   "footer": {
     "rights": "جميع الحقوق محفوظة.",
-    "about_text": "Senior Full-Stack Engineer بركز على بناء حلول برمجية مربحة للبيزنس.",
+    "about_text": "Full-Stack Software Engineer بركز على بناء حلول برمجية مربحة للبيزنس.",
     "quick_links": "روابط سريعة",
     "connect": "تواصل معايا",
     "legal": "قانوني",
@@ -208,7 +208,7 @@
   "about": {
     "title": "عني",
     "name": "أحمد لطفي",
-    "description1": "أنا Senior Full-Stack Engineer بركز على حل مشاكل البيزنس. بتخصص في الـ React Ecosystem الحديثة (Next.js، TypeScript) بس بهتم بنفس القدر بالـ ROI، ومقاييس الأداء، واستقرار النظام (Reliability).",
+    "description1": "أنا Full-Stack Software Engineer بركز على حل مشاكل البيزنس. بتخصص في الـ React Ecosystem الحديثة (Next.js، TypeScript) بس بهتم بنفس القدر بالـ ROI، ومقاييس الأداء، واستقرار النظام (Reliability).",
     "description2": "خلفيتي في الهاردوير والـ IT بتخليني أبني حلول مش مجرد كود، لكن بنية تحتية قوية.",
     "description3": "بشارك الشركات لبناء برمجيات بتزود الأرباح، بتقلل التكاليف، وبتكبر بسهولة. أنا حالياً بقبل عملاء جدد لمشاريع ذات تأثير عالي (High-Impact Projects)."
   },

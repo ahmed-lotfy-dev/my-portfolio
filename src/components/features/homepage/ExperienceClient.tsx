@@ -115,9 +115,10 @@ function ExperienceCard({ exp, index, isRTL }: { exp: any; index: number; isRTL:
 export default function ExperienceClient({ experiences, isRTL }: ExperienceClientProps) {
   const t = useTranslations("experience");
   return (
-    <Section className="py-32 px-4 relative overflow-hidden" id="experience">
-      {/* Background Decor */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-primary/5 rounded-full blur-[120px] pointer-events-none" />
+    <Section variant="alternate" className="py-32 px-4 relative overflow-hidden" id="experience">
+      {/* Background Decor - Mesh Gradient */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-primary/5 rounded-full blur-[150px] pointer-events-none" />
+      <div className="absolute top-0 left-0 w-[400px] h-[400px] bg-secondary/5 rounded-full blur-[100px] pointer-events-none" />
 
       <div className="container max-w-6xl mx-auto relative">
         <div className="text-center mb-32 space-y-6">
