@@ -1,5 +1,7 @@
 "use client";
 
+import * as React from "react";
+
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/src/components/ui/button";
@@ -40,6 +42,12 @@ type Props = {
 };
 
 export default function ProjectsClient({ projects, locale, t }: Props) {
+  const [hasMounted, setHasMounted] = React.useState(false);
+
+  React.useEffect(() => {
+    setHasMounted(true);
+  }, []);
+
   const isRTL = locale === "ar";
 
   const containerVariants: Variants = {
@@ -67,7 +75,7 @@ export default function ProjectsClient({ projects, locale, t }: Props) {
   return (
     <motion.div
       variants={containerVariants}
-      initial="hidden"
+      initial={hasMounted ? "hidden" : false}
       whileInView="visible"
       viewport={{ once: true, margin: "-100px" }}
       className="w-full grid gap-8 grid-cols-[repeat(auto-fit,minmax(320px,1fr))] justify-items-stretch"

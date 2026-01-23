@@ -1,5 +1,6 @@
 "use client";
 
+import * as React from "react";
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import { Calendar, Briefcase, Sparkles } from "lucide-react";
@@ -113,6 +114,12 @@ function ExperienceCard({ exp, index, isRTL }: { exp: any; index: number; isRTL:
 }
 
 export default function ExperienceClient({ experiences, isRTL }: ExperienceClientProps) {
+  const [hasMounted, setHasMounted] = React.useState(false);
+
+  React.useEffect(() => {
+    setHasMounted(true);
+  }, []);
+
   const t = useTranslations("experience");
   return (
     <Section variant="alternate" className="py-32 px-4 relative overflow-hidden" id="experience">
@@ -123,7 +130,7 @@ export default function ExperienceClient({ experiences, isRTL }: ExperienceClien
       <div className="container max-w-6xl mx-auto relative">
         <div className="text-center mb-32 space-y-6">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={hasMounted ? { opacity: 0, y: 20 } : false}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-primary/10 text-primary border border-primary/20 backdrop-blur-sm shadow-[0_0_20px_rgba(var(--primary),0.1)]"
@@ -134,7 +141,7 @@ export default function ExperienceClient({ experiences, isRTL }: ExperienceClien
           </motion.div>
 
           <motion.h2
-            initial={{ opacity: 0, y: 30 }}
+            initial={hasMounted ? { opacity: 0, y: 30 } : false}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
