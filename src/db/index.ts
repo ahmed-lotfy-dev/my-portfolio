@@ -4,11 +4,11 @@ import * as schema from "./schema"
 
 const sslConfig = process.env.POSTGRES_SSL_CERT
   ? {
-    rejectUnauthorized: false, // Set to false to allow self-signed certs (e.g. Dokploy/IP connections)
+    rejectUnauthorized: false,
     ca: Buffer.from(process.env.POSTGRES_SSL_CERT, "base64").toString("utf-8"),
   }
   : {
-    rejectUnauthorized: false, // Still uses SSL even without a specific CA
+    rejectUnauthorized: false,
   }
 
 const pool = new Pool({
