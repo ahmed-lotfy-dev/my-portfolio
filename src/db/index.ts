@@ -2,14 +2,26 @@ import { drizzle } from "drizzle-orm/node-postgres"
 import { Pool } from "pg"
 import * as schema from "./schema"
 
-const sslConfig = process.env.POSTGRES_SSL_CERT
-  ? {
+const getSslConfig = () => {
+  const cert = process.env.POSTGRES_SSL_CERT;
+  if (!cert) return { rejectUnauthorized: false };
+
+  try {
+    // Defensively clean the string of quotes/newlines that Docker/Dokploy might add
+    const cleanCert = cert.trim().replace(/^["']|["']$/g, "").replace(/\s/g, "");
+    const ca = Buffer.from(cleanCert, "base64").toString("utf-8");
+
+    return {
       rejectUnauthorized: false,
-      ca: Buffer.from(process.env.POSTGRES_SSL_CERT, "base64").toString("utf-8"),
-    }
-  : {
-      rejectUnauthorized: false,
-    }
+      ca,
+    };
+  } catch (error) {
+    console.error("Critical: Failed to parse POSTGRES_SSL_CERT:", error);
+    return { rejectUnauthorized: false };
+  }
+};
+
+const sslConfig = getSslConfig();
 
 const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
