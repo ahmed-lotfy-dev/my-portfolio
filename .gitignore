@@ -48,3 +48,4 @@ sendgrid.env
 .beads
 .gitattributes
 audit-report.json
+certs/

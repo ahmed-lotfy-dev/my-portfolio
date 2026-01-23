@@ -56,7 +56,7 @@ function ExperienceCard({ exp, index, isRTL }: { exp: any; index: number; isRTL:
         <motion.div
           whileHover={{ y: -5, transition: { duration: 0.2 } }}
           className={cn(
-            "group p-6 md:p-8 rounded-[2rem] border border-border/50 bg-card/30 backdrop-blur-xl relative overflow-hidden transition-all duration-500 hover:border-primary/40 hover:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.3)] hover:bg-card/40",
+            "group p-6 md:p-8 rounded-4xl border border-border/50 bg-card/30 backdrop-blur-xl relative overflow-hidden transition-all duration-500 hover:border-primary/40 hover:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.3)] hover:bg-card/40",
             index % 2 === 0 ? "md:text-right" : "md:text-left text-left"
           )}
         >
@@ -148,7 +148,7 @@ export default function ExperienceClient({ experiences, isRTL }: ExperienceClien
           {/* Main Visual Timeline Line */}
           <div
             className={cn(
-              "absolute top-0 bottom-0 w-[2px] bg-gradient-to-b from-transparent via-primary/40 to-transparent",
+              "absolute top-0 bottom-0 w-[2px] bg-linear-to-b from-transparent via-primary/40 to-transparent",
               isRTL ? "right-[11px] md:right-1/2" : "left-[11px] md:left-1/2"
             )}
           >
@@ -163,7 +163,7 @@ export default function ExperienceClient({ experiences, isRTL }: ExperienceClien
                 repeat: Infinity,
                 ease: "linear",
               }}
-              className="absolute w-full h-40 bg-gradient-to-b from-transparent via-primary to-transparent shadow-[0_0_30px_rgba(var(--primary),0.8)]"
+              className="absolute w-full h-40 bg-linear-to-b from-transparent via-primary to-transparent shadow-[0_0_30px_rgba(var(--primary),0.8)]"
             />
           </div>
 
