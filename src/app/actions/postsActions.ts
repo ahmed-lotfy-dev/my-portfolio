@@ -18,7 +18,7 @@ const REPO_BRANCH = process.env.OBSIDIAN_REPO_BRANCH || "main";
 /**
  * Fetch all published posts with optional filtering
  */
-export async function getDbBlogPosts(filters?: { category?: string; tag?: string }) {
+export async function getDbBlogPosts(filters?: { category?: string; tag?: string; featuredOnly?: boolean }) {
   try {
     let whereClause = eq(posts.published, true);
 
@@ -28,6 +28,10 @@ export async function getDbBlogPosts(filters?: { category?: string; tag?: string
 
     if (filters?.tag) {
       whereClause = and(whereClause, arrayContains(posts.tags, [filters.tag])) as any;
+    }
+
+    if (filters?.featuredOnly) {
+      whereClause = and(whereClause, eq(posts.featured, true)) as any;
     }
 
     const results = await db.query.posts.findMany({
@@ -43,6 +47,7 @@ export async function getDbBlogPosts(filters?: { category?: string; tag?: string
       slug: post.slug,
       readingTime: post.readingTime || "5 min read",
       image: post.imageLink,
+      featured: post.featured,
     }));
   } catch (error) {
     console.error("[PostsAction] Error fetching listing:", error);
@@ -70,9 +75,25 @@ export async function getDbBlogPostBySlug(slug: string) {
       category: post.categories[0] || "uncategorized",
       slug: post.slug,
       readingTime: post.readingTime || "5 min read",
+      featured: post.featured,
     };
   } catch (error) {
     console.error(`[PostsAction] Error fetching post ${slug}:`, error);
+    return null;
+  }
+}
+
+/**
+ * Get the most recent sync timestamp
+ */
+export async function getLatestSyncDate() {
+  try {
+    const latestPost = await db.query.posts.findFirst({
+      orderBy: [desc(posts.lastSyncedAt)],
+    });
+    return latestPost?.lastSyncedAt || null;
+  } catch (error) {
+    console.error("[PostsAction] Error fetching sync date:", error);
     return null;
   }
 }
@@ -160,6 +181,7 @@ export async function syncBlogPosts() {
         slug: slug,
         imageLink: image,
         published: true,
+        featured: frontmatter.featured === true,
         categories: [category],
         tags: frontmatter.tags || [],
         readingTime: readingTime(body).text,
