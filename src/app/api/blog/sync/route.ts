@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { syncBlogPosts } from "@/src/app/actions/postsActions";
+import crypto from "crypto";
 
 /**
  * GitHub Webhook / Manual Trigger for Blog Sync
@@ -7,12 +8,24 @@ import { syncBlogPosts } from "@/src/app/actions/postsActions";
  */
 export async function POST(request: NextRequest) {
   try {
-    // 1. Basic Auth / Token check (Optional but highly recommended)
-    const authHeader = request.headers.get("authorization");
+    const payload = await request.text();
+    const signature = request.headers.get("x-hub-signature-256");
     const secret = process.env.SYNC_SECRET;
 
-    if (secret && authHeader !== `Bearer ${secret}`) {
-      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    // 1. Verify Signature (Industrial Standard)
+    if (secret && signature) {
+      const hmac = crypto.createHmac("sha256", secret);
+      const digest = "sha256=" + hmac.update(payload).digest("hex");
+
+      if (signature !== digest) {
+        return NextResponse.json({ error: "Invalid signature" }, { status: 401 });
+      }
+    } else if (secret && !signature) {
+      // If secret is set but no signature provided (and not a manual Bearer call)
+      const authHeader = request.headers.get("authorization");
+      if (authHeader !== `Bearer ${secret}`) {
+        return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+      }
     }
 
     // 2. Trigger Sync
