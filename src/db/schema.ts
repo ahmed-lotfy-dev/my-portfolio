@@ -101,6 +101,7 @@ export const posts = pgTable("posts", {
   imageLink: text("image_link"),
   originalLink: text("original_link"),
   published: boolean("published").notNull().default(false),
+  featured: boolean("featured").notNull().default(false),
   categories: text("categories").array().notNull(),
   tags: text("tags").array().notNull().default([]),
   readingTime: text("reading_time"),
