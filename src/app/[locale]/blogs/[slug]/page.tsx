@@ -1,9 +1,9 @@
-import {
-  deleteSinglePosts,
-  getSinglePosts,
-} from "@/src/app/actions/postsActions";
+import { getDbBlogPostBySlug } from "@/src/app/actions/postsActions";
+import MDXContent from "@/src/components/features/blog/MDXContent";
+import { Badge } from "@/src/components/ui/badge";
+import { Calendar, Clock, ChevronLeft, Share2 } from "lucide-react";
+import Link from "next/link";
 import { Button } from "@/src/components/ui/button";
-import { getLocale } from "next-intl/server";
 
 export async function generateMetadata({
   params,
@@ -11,28 +11,17 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const locale = await getLocale();
-  const postTitle = slug.replace("%20", " ");
-  const { singlePost } = await getSinglePosts(postTitle);
+  const post = await getDbBlogPostBySlug(slug);
 
-  if (!singlePost) {
+  if (!post) {
     return {
       title: "Post Not Found",
     };
   }
 
-  const title = locale === "ar" ? singlePost.title_ar : singlePost.title_en;
-  const description =
-    (locale === "ar"
-      ? singlePost.content_ar?.substring(0, 160)
-      : singlePost.content_en?.substring(0, 160)) || "";
-
   return {
-    title,
-    description,
-    openGraph: {
-      images: [singlePost.imageLink],
-    },
+    title: post.title,
+    description: post.content.substring(0, 160),
   };
 }
 
@@ -41,36 +30,84 @@ export default async function SinglePost(props: {
 }) {
   const params = await props.params;
   const { slug } = params;
-  const locale = await getLocale();
-  const postTitle = slug.replace("%20", " ");
-  const { singlePost } = await getSinglePosts(postTitle);
+  const post = await getDbBlogPostBySlug(slug);
 
-  const handleDelete = async () => {
-    if (singlePost?.id) {
-      const result = await deleteSinglePosts(singlePost.id);
-    }
-  };
-
-  const title = locale === "ar" ? singlePost?.title_ar : singlePost?.title_en;
-  const content =
-    locale === "ar" ? singlePost?.content_ar : singlePost?.content_en;
+  if (!post) {
+    return (
+      <div className="flex flex-col items-center justify-center h-screen pt-20">
+        <h1 className="text-4xl font-bold">Post Not Found</h1>
+        <Button asChild className="mt-8" variant="outline">
+          <Link href="/blogs">Back to Blog</Link>
+        </Button>
+      </div>
+    );
+  }
 
   return (
-    <div className="p-9 w-full h-svh flex flex-col gap-7 mt-28 max-w-6xl m-auto">
-      <h2>{title}</h2>
-      <p>{content}</p>
-      <p>
-        {singlePost?.createdAt?.toLocaleDateString("en-GB", {
-          year: "numeric",
-          month: "long",
-          day: "numeric",
-        })}
-      </p>
-      <h4>
-        {singlePost?.categories?.map((category) => (
-          <Button key={category}>{category}</Button>
-        ))}
-      </h4>
-    </div>
+    <article className="min-h-screen pt-32 pb-20 px-4">
+      <div className="max-w-4xl mx-auto">
+        {/* Navigation */}
+        <Link
+          href="/blogs"
+          className="inline-flex items-center text-sm text-gray-500 hover:text-primary transition-colors mb-8 group"
+        >
+          <ChevronLeft className="w-4 h-4 mr-1 transform group-hover:-translate-x-1 transition-transform" />
+          Back to all posts
+        </Link>
+
+        {/* Header */}
+        <header className="mb-12">
+          <Link href={`/blogs?category=${post.category}`}>
+            <Badge variant="secondary" className="mb-6 uppercase tracking-wider text-[10px] font-bold py-1 px-3 hover:bg-primary hover:text-white transition-colors cursor-pointer">
+              {post.category}
+            </Badge>
+          </Link>
+
+          <h1 className="text-4xl md:text-6xl font-black tracking-tight mb-8 leading-[1.1]">
+            {post.title}
+          </h1>
+
+          <div className="flex flex-wrap items-center gap-6 text-sm text-gray-500 border-y border-gray-100 dark:border-gray-800 py-6">
+            <div className="flex items-center gap-2">
+              <Calendar className="w-4 h-4" />
+              <time dateTime={post.date}>{post.date}</time>
+            </div>
+            <div className="flex items-center gap-2">
+              <Clock className="w-4 h-4" />
+              <span>{post.readingTime}</span>
+            </div>
+            <div className="ml-auto flex items-center gap-3">
+              <Button variant="ghost" size="icon" className="rounded-full">
+                <Share2 className="w-4 h-4" />
+              </Button>
+            </div>
+          </div>
+        </header>
+
+        {/* Content */}
+        <div className="relative">
+          <MDXContent content={post.content} />
+        </div>
+
+        {/* Footer info */}
+        <footer className="mt-20 pt-10 border-t border-gray-100 dark:border-gray-800">
+          <div className="flex flex-wrap gap-3">
+            {post.tags.map((tag) => (
+              <Link key={tag} href={`/blogs?tag=${tag}`}>
+                <Badge variant="outline" className="text-xs bg-gray-50 dark:bg-gray-900 px-3 py-1 hover:bg-primary/10 hover:text-primary transition-all cursor-pointer">
+                  #{tag}
+                </Badge>
+              </Link>
+            ))}
+          </div>
+
+          {post.updated && (
+            <p className="mt-8 text-xs text-gray-400 italic">
+              Last updated on {post.updated}
+            </p>
+          )}
+        </footer>
+      </div>
+    </article>
   );
 }
