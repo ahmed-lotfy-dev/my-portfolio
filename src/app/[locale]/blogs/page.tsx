@@ -1,4 +1,4 @@
-import { getDbBlogPosts } from "@/src/app/actions/postsActions";
+import { getDbBlogPosts, getLatestSyncDate } from "@/src/app/actions/postsActions";
 import {
   Card,
   CardContent,
@@ -10,7 +10,8 @@ import { Button } from "@/src/components/ui/button";
 import Link from "next/link";
 import { getTranslations } from "next-intl/server";
 import { Badge } from "@/src/components/ui/badge";
-import { Calendar, Clock, Tag } from "lucide-react";
+import { Calendar, Clock, Tag, RefreshCw, Star } from "lucide-react";
+import { formatDistanceToNow } from "date-fns";
 
 export async function generateMetadata({
   params,
@@ -28,18 +29,24 @@ export async function generateMetadata({
 
 export default async function PostsList(props: {
   params: Promise<{ locale: string }>;
-  searchParams: Promise<{ category?: string; tag?: string }>;
+  searchParams: Promise<{ category?: string; tag?: string; featured?: string }>;
 }) {
-  const { category, tag } = await props.searchParams;
+  const { category, tag, featured } = await props.searchParams;
+  const isFeaturedOnly = featured === "true";
 
   // Fetch from DB with filters
-  const filteredPosts = await getDbBlogPosts({ category, tag });
+  const filteredPosts = await getDbBlogPosts({
+    category,
+    tag,
+    featuredOnly: isFeaturedOnly
+  });
+  const syncDate = await getLatestSyncDate();
 
   // Get all categories for filter UI (could be optimized with a separate db call)
   const allPosts = await getDbBlogPosts();
   const categories = Array.from(new Set(allPosts.map((p) => p.category))).sort();
 
-  const activeFilter = category || (tag ? `#${tag}` : null);
+  const activeFilter = isFeaturedOnly ? "featured" : (category || (tag ? `#${tag}` : null));
 
   return (
     <div className="container mx-auto px-4 mt-28 max-w-6xl pb-20">
@@ -51,6 +58,12 @@ export default async function PostsList(props: {
           Insights, guides, and notes synced directly from my Obsidian vault.
           Covering DevOps, Linux, and Software Development.
         </p>
+        {syncDate && (
+          <div className="mt-4 flex items-center justify-center gap-2 text-xs text-gray-400 font-medium bg-gray-50 dark:bg-gray-900/50 px-3 py-1 rounded-full border border-gray-100 dark:border-gray-800">
+            <RefreshCw className="w-3 h-3 animate-spin-slow" />
+            <span>Synced {formatDistanceToNow(new Date(syncDate), { addSuffix: true })}</span>
+          </div>
+        )}
       </div>
 
       {/* Filter Navigation */}
@@ -63,6 +76,17 @@ export default async function PostsList(props: {
             className="rounded-full px-6"
           >
             <Link href="/blogs">All Posts</Link>
+          </Button>
+          <Button
+            asChild
+            variant={isFeaturedOnly ? "default" : "outline"}
+            size="sm"
+            className="rounded-full px-6 border-amber-200 dark:border-amber-900/50 hover:bg-amber-50 dark:hover:bg-amber-900/20"
+          >
+            <Link href="/blogs?featured=true" className="flex items-center gap-2">
+              <Star className={`w-3.5 h-3.5 ${isFeaturedOnly ? "fill-white" : "text-amber-500 fill-amber-500"}`} />
+              Featured
+            </Link>
           </Button>
           {categories.map((cat: string) => (
             <Button
@@ -95,8 +119,15 @@ export default async function PostsList(props: {
           {filteredPosts.map((post) => (
             <Card
               key={post.slug}
-              className="group flex flex-col h-full overflow-hidden border-none shadow-md hover:shadow-2xl transition-all duration-500 bg-white dark:bg-gray-900/50 backdrop-blur-sm"
+              className={`group flex flex-col h-full overflow-hidden border-none shadow-md hover:shadow-2xl transition-all duration-500 bg-white dark:bg-gray-900/50 backdrop-blur-sm relative ${post.featured ? "ring-1 ring-amber-500/20 dark:ring-amber-500/10 shadow-amber-500/5" : ""}`}
             >
+              {post.featured && (
+                <div className="absolute top-4 right-4 z-20">
+                  <div className="bg-amber-500 text-white p-1.5 rounded-full shadow-lg transform group-hover:scale-110 transition-transform duration-500">
+                    <Star className="w-3 h-3 fill-white" />
+                  </div>
+                </div>
+              )}
               <Link href={`/blogs/${post.slug}`} className="block relative overflow-hidden h-48 bg-linear-to-br from-gray-100 to-gray-200 dark:from-gray-800 dark:to-gray-900">
                 <CardHeader className="p-0 h-full flex items-center justify-center">
                   {post.image ? (
