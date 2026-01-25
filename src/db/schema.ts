@@ -89,27 +89,36 @@ export const verifications = pgTable("verifications", {
 
 export const posts = pgTable("posts", {
   id: uuid("id").defaultRandom().primaryKey(),
-  // New language-specific fields
+
+  // Content fields
   title_en: text("title_en").notNull(),
   content_en: text("content_en").notNull(),
-  title_ar: text("title_ar").notNull(),
-  content_ar: text("content_ar").notNull(),
+  title_ar: text("title_ar"),
+  content_ar: text("content_ar"),
 
-  // Existing fields
+  // Metadata
   slug: text("slug").notNull().unique(),
-  imageLink: text("image_link"), // Assuming a link, not always available in RSS
-  originalLink: text("original_link").notNull(), // A new field for the source link
+  imageLink: text("image_link"),
+  originalLink: text("original_link"),
   published: boolean("published").notNull().default(false),
   categories: text("categories").array().notNull(),
+  tags: text("tags").array().notNull().default([]),
+  readingTime: text("reading_time"),
+
+  // Tracking
+  source: text("source").default("obsidian"),
+  lastSyncedAt: timestamp("last_synced_at"),
   author: text("author_id"),
+
+  // Timestamps
   createdAt: timestamp("created_at").defaultNow().notNull(),
   updatedAt: timestamp("updated_at")
     .defaultNow()
     .$onUpdate(() => new Date())
-    .$onUpdate(() => new Date())
     .notNull(),
 }, (table) => ({
   authorIdIndex: index("posts_author_id_idx").on(table.author),
+  slugIndex: uniqueIndex("posts_slug_idx").on(table.slug),
 }));
 
 export const projects = pgTable("projects", {
