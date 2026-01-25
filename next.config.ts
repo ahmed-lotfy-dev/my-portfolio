@@ -87,6 +87,7 @@ const nextConfig: NextConfig = {
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
     remotePatterns: [
       { protocol: "https", hostname: "images.ahmedlotfy.site", port: "", pathname: "/**" },
+      { protocol: "https", hostname: "pub-49b2468145c64b14a4a172c257cf46b8.r2.dev", port: "", pathname: "/**" },
       { protocol: "https", hostname: "lh3.googleusercontent.com", port: "", pathname: "/a/**" },
       { protocol: "https", hostname: "avatars.githubusercontent.com", port: "" },
       { protocol: "https", hostname: "placehold.co", port: "" },
