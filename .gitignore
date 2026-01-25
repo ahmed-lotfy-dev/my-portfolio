@@ -49,3 +49,4 @@ sendgrid.env
 .gitattributes
 audit-report.json
 certs/
+docs/blog-images
