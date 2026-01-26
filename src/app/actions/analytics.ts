@@ -2,7 +2,7 @@
 
 export async function getPostHogAnalytics() {
   const projectId = process.env.POSTHOG_PROJECT_ID;
-  const apiKey = process.env.POSTHOG_PERSONAL_API_KEY;
+  const apiKey = process.env.POSTHOG_PERSONAL_API_KEY || process.env.POSTHOG_MCP_KEY;
   let host = process.env.POSTHOG_HOST;
 
   if (!host && process.env.NEXT_PUBLIC_POSTHOG_HOST) {
