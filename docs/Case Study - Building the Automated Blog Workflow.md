@@ -10,6 +10,7 @@ tags:
   - github
   - nextjs
 share: true
+featured: true
 ---
 
 # Building a Zero-Effort Obsidian to Portfolio Workflow

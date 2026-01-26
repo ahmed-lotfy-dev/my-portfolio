@@ -285,7 +285,7 @@
       "projects": "Projects",
       "certificates": "Certificates",
       "experiences": "Experiences",
-      "blog": "Add Post",
+      "blog": "Blog Management",
       "backups": "Backups",
       "sign_out": "Sign Out"
     },
@@ -306,7 +306,22 @@
     "country": "Country",
     "visitors": "Visitors",
     "page_path": "Page Path",
-    "no_data": "No data available yet"
+    "no_data": "No data available yet",
+    "blog": {
+      "title": "Blog Management",
+      "description": "Sync your blog posts with Obsidian and manage their status.",
+      "sync_button": "Sync with Obsidian",
+      "syncing": "Syncing...",
+      "last_synced": "Last Synced",
+      "total_posts": "Total Posts",
+      "table": {
+        "title": "Title",
+        "source": "Source",
+        "status": "Published",
+        "featured": "Featured",
+        "date": "Date"
+      }
+    }
   },
   "experiences": {
     "title": "My Experiences",

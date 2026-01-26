@@ -14,6 +14,7 @@ import {
   IoLogOut,
   IoSaveSharp,
   IoBriefcase,
+  IoChatboxEllipsesOutline
 } from "react-icons/io5";
 import { cn } from "@/src/lib/utils";
 import { useTranslations, useLocale } from "next-intl";
@@ -55,7 +56,7 @@ export default function Aside({ user }: { user: any }) {
     { href: "/dashboard/projects", icon: IoCode, text: t("projects") },
     { href: "/dashboard/certificates", icon: IoRibbon, text: t("certificates") },
     { href: "/dashboard/experiences", icon: IoBriefcase, text: t("experiences") },
-    { href: "/dashboard/blogs/new", icon: IoAddCircleSharp, text: t("blog") },
+    { href: "/dashboard/blogs", icon: IoChatboxEllipsesOutline, text: t("blog") },
     { href: "/dashboard/backups", icon: IoSaveSharp, text: t("backups") },
   ];
 

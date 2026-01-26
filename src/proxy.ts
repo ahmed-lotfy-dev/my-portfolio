@@ -18,7 +18,7 @@ export default function proxy(request: NextRequest) {
     "style-src 'self' 'unsafe-inline';",
     "img-src 'self' data: https: blob:;",
     "font-src 'self' data:;",
-    "connect-src 'self' *.posthog.com https://us.i.posthog.com https://us-assets.i.posthog.com *.googletagmanager.com;",
+    "connect-src 'self' *.posthog.com https://us.i.posthog.com https://us-assets.i.posthog.com https://eu.i.posthog.com https://eu-assets.i.posthog.com *.googletagmanager.com;",
     "frame-src 'self' *.youtube.com;",
     "frame-ancestors 'self'",
     "object-src 'none'",

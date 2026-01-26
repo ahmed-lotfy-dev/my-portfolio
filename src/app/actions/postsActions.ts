@@ -7,7 +7,7 @@ import { db } from "@/src/db"
 import { requireAdmin } from "@/src/lib/utils/authMiddleware"
 import { getString } from "@/src/lib/utils/formDataParser"
 import { posts } from "@/src/db/schema"
-import { eq, and, arrayContains, desc } from "drizzle-orm"
+import { eq, and, arrayContains, desc, notInArray } from "drizzle-orm"
 
 // Configuration
 const GITHUB_TOKEN = process.env.GITHUB_TOKEN;
@@ -129,6 +129,7 @@ export async function syncBlogPosts() {
     );
 
     let syncedCount = 0;
+    const syncedSlugs = new Set<string>();
 
     for (const file of markdownFiles) {
       const contentResponse = await fetch(
@@ -142,8 +143,6 @@ export async function syncBlogPosts() {
       const rawContent = Buffer.from(contentData.content, "base64").toString("utf8");
       const { data: frontmatter, content: body } = matter(rawContent);
 
-      if (frontmatter.share !== true) continue;
-
       const pathParts = file.path.split("/");
       const category = pathParts.length > 1 ? pathParts[0] : "uncategorized";
       const filename = pathParts[pathParts.length - 1];
@@ -153,6 +152,27 @@ export async function syncBlogPosts() {
         .toLowerCase()
         .replace(/[^a-z0-9]+/g, "-")
         .replace(/^-+|-+$/g, "");
+
+      const existing = await db.query.posts.findFirst({
+        where: eq(posts.slug, slug),
+      });
+
+      syncedSlugs.add(slug);
+
+      if (frontmatter.share !== true) {
+        if (existing && existing.published) {
+          await db
+            .update(posts)
+            .set({
+              published: false,
+              featured: false,
+              lastSyncedAt: new Date(),
+            })
+            .where(eq(posts.id, existing.id));
+          syncedCount++;
+        }
+        continue;
+      }
 
       const formatDate = (date: any) => {
         if (date instanceof Date) return date.toISOString().split("T")[0];
@@ -190,8 +210,6 @@ export async function syncBlogPosts() {
         createdAt: new Date(formatDate(frontmatter.date)),
       };
 
-      const existing = await db.query.posts.findFirst({ where: eq(posts.slug, slug) });
-
       if (existing) {
         await db.update(posts).set(postData).where(eq(posts.id, existing.id));
       } else {
@@ -201,7 +219,26 @@ export async function syncBlogPosts() {
       syncedCount++;
     }
 
-    return { success: true, count: syncedCount };
+    let reconciledCount = 0;
+    const allObsidianPosts = await db.query.posts.findMany({
+      where: and(eq(posts.source, "obsidian"), eq(posts.published, true)),
+    });
+
+    for (const post of allObsidianPosts) {
+      if (!syncedSlugs.has(post.slug)) {
+        await db
+          .update(posts)
+          .set({
+            published: false,
+            featured: false,
+            lastSyncedAt: new Date(),
+          })
+          .where(eq(posts.id, post.id));
+        reconciledCount++;
+      }
+    }
+
+    return { success: true, count: syncedCount, reconciled: reconciledCount };
   } catch (error) {
     console.error("[PostsAction] Sync failed:", error);
     throw error;
@@ -211,7 +248,9 @@ export async function syncBlogPosts() {
 // Legacy / Dashboard Dashboard Actions
 export async function getAllPosts() {
   try {
-    const allPosts = await db.query.posts.findMany();
+    const allPosts = await db.query.posts.findMany({
+      orderBy: [desc(posts.createdAt)],
+    });
     return { allPosts };
   } catch (error) {
     return { error };

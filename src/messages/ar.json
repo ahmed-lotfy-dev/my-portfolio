@@ -283,7 +283,7 @@
       "projects": "المشاريع",
       "certificates": "الشهادات",
       "experiences": "الخبرات",
-      "blog": "أضف بوست",
+      "blog": "إدارة المدونة",
       "backups": "النسخ الاحتياطية",
       "sign_out": "خروج"
     },
@@ -304,7 +304,22 @@
     "country": "الدولة",
     "visitors": "الزوار",
     "page_path": "مسار الصفحة",
-    "no_data": "مفيش بيانات لسه"
+    "no_data": "مفيش بيانات لسه",
+    "blog": {
+      "title": "إدارة المدونة",
+      "description": "قم بمزامنة مقالاتك مع Obsidian وإدارة حالتها.",
+      "sync_button": "مزامنة مع Obsidian",
+      "syncing": "جاري المزامنة...",
+      "last_synced": "آخر مزامنة",
+      "total_posts": "إجمالي المقالات",
+      "table": {
+        "title": "العنوان",
+        "source": "المصدر",
+        "status": "منشور",
+        "featured": "مميز",
+        "date": "التاريخ"
+      }
+    }
   },
   "experiences": {
     "title": "خبراتي",
