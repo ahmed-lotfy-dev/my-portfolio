@@ -1,3 +1,4 @@
+import { getDbBlogPosts, getLatestSyncDate } from "@/src/app/actions/postsActions";
 import { BlogCard } from "@/src/components/features/blog/BlogCard";
 import { Button } from "@/src/components/ui/button";
 import Link from "next/link";
@@ -6,7 +7,19 @@ import { Badge } from "@/src/components/ui/badge";
 import { Tag, RefreshCw, Star } from "lucide-react";
 import { formatDistanceToNow } from "date-fns";
 
-// ... (existing metadata code)
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "metadata.blogs" });
+
+  return {
+    title: t("title"),
+    description: t("description"),
+  };
+}
 
 export default async function PostsList(props: {
   params: Promise<{ locale: string }>;
@@ -25,7 +38,7 @@ export default async function PostsList(props: {
 
   // Get all categories for filter UI
   const allPosts = await getDbBlogPosts();
-  const categories = Array.from(new Set(allPosts.map((p) => p.category))).sort();
+  const categories = Array.from(new Set(allPosts.map((p) => p.category))).sort() as string[];
 
   const activeFilter = isFeaturedOnly ? "featured" : (category || (tag ? `#${tag}` : null));
 
