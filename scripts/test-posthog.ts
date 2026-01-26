@@ -1,5 +1,6 @@
 
-const projectId = "107401";
+const projectId = "107401"
+#allreafy rolled it was just for testing
 const apiKey = "phx_GVyJzEmQbYU3mgpxLmGvyBt2Man31zFmCof09x8302BVpR2";
 const host = "https://eu.posthog.com";
 
