@@ -8,6 +8,7 @@ import { requireAdmin } from "@/src/lib/utils/authMiddleware"
 import { getString } from "@/src/lib/utils/formDataParser"
 import { posts } from "@/src/db/schema"
 import { eq, and, arrayContains, desc, notInArray } from "drizzle-orm"
+import { revalidatePath } from "next/cache";
 
 // Configuration
 const GITHUB_TOKEN = process.env.GITHUB_TOKEN;
@@ -133,7 +134,7 @@ export async function syncBlogPosts() {
 
     for (const file of markdownFiles) {
       const contentResponse = await fetch(
-        `https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/${encodeURIComponent(file.path)}?ref=${REPO_BRANCH}`,
+        `https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/${encodeURIComponent(file.path)}?ref=${REPO_BRANCH}&t=${Date.now()}`,
         { headers, next: { revalidate: 0 } }
       );
 
@@ -210,9 +211,12 @@ export async function syncBlogPosts() {
         createdAt: new Date(formatDate(frontmatter.date)),
       };
 
+      // ... inside loop
       if (existing) {
+        console.log(`[Sync] Updating existing post: ${slug}`);
         await db.update(posts).set(postData).where(eq(posts.id, existing.id));
       } else {
+        console.log(`[Sync] Creating new post: ${slug}`);
         await db.insert(posts).values(postData);
       }
 
@@ -226,6 +230,7 @@ export async function syncBlogPosts() {
 
     for (const post of allObsidianPosts) {
       if (!syncedSlugs.has(post.slug)) {
+        console.log(`[Sync] Unpublishing removed post: ${post.slug}`);
         await db
           .update(posts)
           .set({
@@ -237,6 +242,10 @@ export async function syncBlogPosts() {
         reconciledCount++;
       }
     }
+
+    // Revalidate paths to reflect changes immediately
+    revalidatePath("/blogs");
+    revalidatePath("/", "layout");
 
     return { success: true, count: syncedCount, reconciled: reconciledCount };
   } catch (error) {
