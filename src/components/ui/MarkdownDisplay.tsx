@@ -10,7 +10,12 @@ interface MarkdownDisplayProps {
 
 export function MarkdownDisplay({ content, className }: MarkdownDisplayProps) {
   return (
-    <article className={cn("prose prose-lg dark:prose-invert max-w-none", className)}>
+    <article className={cn(
+      "prose prose-lg dark:prose-invert max-w-none",
+      "prose-headings:text-black prose-p:text-black prose-strong:text-black prose-li:text-black",
+      "dark:prose-headings:text-white dark:prose-p:text-gray-100 dark:prose-strong:text-white dark:prose-li:text-gray-100",
+      className
+    )}>
       <ReactMarkdown
         components={{
           code: ({ node, inline, className, children, ...rest }: {
@@ -31,7 +36,7 @@ export function MarkdownDisplay({ content, className }: MarkdownDisplayProps) {
                 {String(children).replace(/\n$/, '')}
               </SyntaxHighlighter>
             ) : (
-              <code className="relative rounded-md bg-secondary/60 px-2 py-1 font-mono text-sm font-medium text-primary" {...rest}>
+              <code className="relative rounded-md bg-muted px-2 py-1 font-mono text-sm font-medium text-primary dark:text-primary-foreground" {...rest}>
                 {children}
               </code>
             );

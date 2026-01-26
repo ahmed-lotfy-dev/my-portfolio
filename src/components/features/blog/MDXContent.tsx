@@ -44,7 +44,7 @@ const components = {
     );
   },
   pre: (props: any) => (
-    <pre className="rounded-lg overflow-hidden my-6 bg-[#1e1e1e]" {...props} />
+    <pre className="not-prose p-4 rounded-lg overflow-hidden my-6 bg-zinc-300 dark:bg-[#1e1e1e] text-zinc-900 dark:text-zinc-50 border border-zinc-400 dark:border-zinc-600" {...props} />
   ),
   img: ({ src, alt, ...props }: any) => (
     <span className="relative block w-full h-[400px] my-8 rounded-xl overflow-hidden shadow-lg border">
