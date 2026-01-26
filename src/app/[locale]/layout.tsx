@@ -17,6 +17,7 @@ import { PostHogProvider } from "@/src/providers/postHogProvider";
 import { Suspense } from "react";
 import PostHogPageView from "@/src/components/shared/PostHogPageView";
 import Footer from "@/src/components/features/homepage/Footer";
+import { PersonSchema } from "@/src/components/seo/PersonSchema";
 
 export const revalidate = 3600;
 
@@ -143,6 +144,7 @@ export default async function LocaleLayout({ children, params }: Props) {
         <link rel="dns-prefetch" href="https://images.ahmedlotfy.site" />
         <link rel="dns-prefetch" href="https://us.i.posthog.com" />
         <link rel="dns-prefetch" href="https://us-assets.i.posthog.com" />
+        <PersonSchema />
       </head>
       <body
         className={`${inter.variable} ${poppins.variable} ${sora.variable} ${isArabic ? tajawal.variable : ""
