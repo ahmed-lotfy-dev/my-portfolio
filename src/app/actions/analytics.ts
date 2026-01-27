@@ -9,52 +9,52 @@ export async function getPostHogAnalytics() {
     host = process.env.NEXT_PUBLIC_POSTHOG_HOST.replace(".i.", ".");
   }
 
-  host = host || "https://us.posthog.com";
+  host = host || (process.env.NEXT_PUBLIC_POSTHOG_HOST?.includes("eu.") ? "https://eu.posthog.com" : "https://us.posthog.com");
 
   if (!projectId || !apiKey) {
     if (process.env.NODE_ENV === "development") {
       console.warn("PostHog credentials missing (POSTHOG_PROJECT_ID or POSTHOG_PERSONAL_API_KEY)");
     }
-    return { uniqueVisitors: 0, trend: [], topPaths: [], sources: [], topProjects: [], locations: [] };
+    return { uniqueVisitors: 0, trend: [], topPaths: [], sources: [], topProjects: [], topBlogs: [], locations: [] };
   }
 
   if (apiKey.startsWith("phc_")) {
     console.error(
       "PostHog Error: You are using a Project API Key ('phc_...'). You must use a Personal API Key ('phx_...') to fetch insights."
     );
-    return { uniqueVisitors: 0, trend: [], topPaths: [], sources: [], topProjects: [], locations: [] };
+    return { uniqueVisitors: 0, trend: [], topPaths: [], sources: [], topProjects: [], topBlogs: [], locations: [] };
   }
 
   try {
     const headers = { Authorization: `Bearer ${apiKey}` };
 
-    // Common properties to exclude localhost
+    const isProduction = process.env.NODE_ENV === "production";
     const properties = encodeURIComponent(
-      JSON.stringify([{ key: "$host", operator: "is_not", value: ["localhost:3000"] }])
+      JSON.stringify(
+        isProduction
+          ? [{ key: "$host", operator: "is_not", value: ["localhost:3000", "localhost:3001"] }]
+          : []
+      )
     );
 
-    // 1. Trend (Last 7 Days)
     const trendPromise = fetch(
       `${host}/api/projects/${projectId}/insights/trend/?events=[{"id":"$pageview","math":"total"}]&date_from=-7d&display=ActionsLineGraph&interval=day&properties=${properties}`,
-      { headers, next: { revalidate: 3600 } }
+      { headers, next: { revalidate: 600 } }
     ).then((r) => r.json());
 
-    // 2. Top Paths (Most visited pages)
     const pathsPromise = fetch(
       `${host}/api/projects/${projectId}/insights/trend/?events=[{"id":"$pageview","math":"total"}]&date_from=-7d&breakdown=$pathname&limit=5&properties=${properties}`,
       { headers, next: { revalidate: 3600 } }
     ).then((r) => r.json());
 
-    // 3. Traffic Sources (Referrers)
     const sourcesPromise = fetch(
       `${host}/api/projects/${projectId}/insights/trend/?events=[{"id":"$pageview","math":"total"}]&date_from=-7d&breakdown=$referrer&limit=5&properties=${properties}`,
       { headers, next: { revalidate: 3600 } }
     ).then((r) => r.json());
 
-    // 4. Top Projects
     const projectsFilter = encodeURIComponent(
       JSON.stringify([
-        { key: "$host", operator: "is_not", value: ["localhost:3000"] },
+        ...(isProduction ? [{ key: "$host", operator: "is_not", value: ["localhost:3000", "localhost:3001"] }] : []),
         { key: "$pathname", operator: "icontains", value: "/projects/" },
       ])
     );
@@ -63,28 +63,37 @@ export async function getPostHogAnalytics() {
       { headers, next: { revalidate: 3600 } }
     ).then((r) => r.json());
 
-    // 5. Visitor Locations
     const locationsPromise = fetch(
       `${host}/api/projects/${projectId}/insights/trend/?events=[{"id":"$pageview","math":"total"}]&date_from=-7d&breakdown=$geoip_country_name&limit=5&properties=${properties}`,
       { headers, next: { revalidate: 3600 } }
     ).then((r) => r.json());
 
-    // 6. Project Duration (Interest)
     const durationPromise = fetch(
       `${host}/api/projects/${projectId}/insights/trend/?events=[{"id":"$pageleave","math":"avg","math_property":"$duration"}]&date_from=-7d&breakdown=$pathname&limit=10&properties=${projectsFilter}`,
-      { headers, next: { revalidate: 3600 } }
+      { headers, next: { revalidate: 600 } }
     ).then((r) => r.json());
 
-    const [trendData, pathsData, sourcesData, projectsData, locationsData, durationData] = await Promise.all([
+    const blogsFilter = encodeURIComponent(
+      JSON.stringify([
+        ...(isProduction ? [{ key: "$host", operator: "is_not", value: ["localhost:3000", "localhost:3001"] }] : []),
+        { key: "$pathname", operator: "icontains", value: "/blogs/" },
+      ])
+    );
+    const blogsPromise = fetch(
+      `${host}/api/projects/${projectId}/insights/trend/?events=[{"id":"$pageview","math":"total"}]&date_from=-7d&breakdown=$pathname&limit=5&properties=${blogsFilter}`,
+      { headers, next: { revalidate: 600 } }
+    ).then((r) => r.json());
+
+    const [trendData, pathsData, sourcesData, projectsData, locationsData, durationData, blogsData] = await Promise.all([
       trendPromise,
       pathsPromise,
       sourcesPromise,
       projectsPromise,
       locationsPromise,
       durationPromise,
+      blogsPromise,
     ]);
 
-    // Process Trend Data
     const totalUniqueVisitors =
       trendData.result?.[0]?.data?.reduce((a: number, b: number) => a + b, 0) ||
       0;
@@ -94,32 +103,27 @@ export async function getPostHogAnalytics() {
         value,
       })) || [];
 
-    // Process Top Paths
     const topPaths =
       pathsData.result?.map((item: any) => ({
         path: item.label,
         count: item.count,
       })) || [];
 
-    // Process Sources
     const sources =
       sourcesData.result?.map((item: any) => ({
         source: item.label === "$direct" ? "Direct" : item.label,
         count: item.count,
       })) || [];
 
-    // Process Top Projects
     const projectsMap = new Map<string, { name: string; path: string; count: number; totalDuration: number; visits: number }>();
 
     projectsData.result?.forEach((item: any) => {
-      // Clean up project name from path (e.g., "/en/projects/my-app" -> "my-app")
       const path = item.label;
       const pathParts = path.split("/projects/");
       if (pathParts.length <= 1) return;
 
-      const projectName = pathParts[1].split(/[/?#]/)[0]; // Get core identifier
+      const projectName = pathParts[1].split(/[/?#]/)[0];
 
-      // Find duration for this path
       const durationItem = durationData.result?.find((d: any) => d.label === path);
       const avgDuration = durationItem ? durationItem.count : 0;
 
@@ -131,7 +135,7 @@ export async function getPostHogAnalytics() {
       } else {
         projectsMap.set(projectName, {
           name: projectName,
-          path: `/projects/${projectName}`, // Base path
+          path: `/projects/${projectName}`,
           count: item.count,
           totalDuration: avgDuration * item.count,
           visits: item.count
@@ -149,7 +153,31 @@ export async function getPostHogAnalytics() {
       .sort((a, b) => b.count - a.count)
       .slice(0, 5);
 
-    // Process Locations
+    const blogsMap = new Map<string, { name: string; path: string; count: number }>();
+
+    blogsData.result?.forEach((item: any) => {
+      const path = item.label;
+      const pathParts = path.split("/blogs/");
+      if (pathParts.length <= 1) return;
+
+      const blogName = pathParts[1].split(/[/?#]/)[0];
+
+      const existing = blogsMap.get(blogName);
+      if (existing) {
+        existing.count += item.count;
+      } else {
+        blogsMap.set(blogName, {
+          name: blogName,
+          path: `/blogs/${blogName}`,
+          count: item.count
+        });
+      }
+    });
+
+    const topBlogs = Array.from(blogsMap.values())
+      .sort((a, b) => b.count - a.count)
+      .slice(0, 5);
+
     const locations =
       locationsData.result?.map((item: any) => ({
         country: item.label,
@@ -162,10 +190,11 @@ export async function getPostHogAnalytics() {
       topPaths,
       sources,
       topProjects,
+      topBlogs,
       locations,
     };
   } catch (error) {
     console.error("Error fetching PostHog analytics:", error);
-    return { uniqueVisitors: 0, trend: [], topPaths: [], sources: [], topProjects: [], locations: [] };
+    return { uniqueVisitors: 0, trend: [], topPaths: [], sources: [], topProjects: [], topBlogs: [], locations: [] };
   }
 }

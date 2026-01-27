@@ -8,16 +8,17 @@ if (typeof window !== "undefined") {
   const host = process.env.NEXT_PUBLIC_POSTHOG_HOST || "/ingest";
 
   if (key) {
+    const uiHost = process.env.NEXT_PUBLIC_POSTHOG_UI_HOST || 
+                   (host.includes("eu.") ? "https://eu.posthog.com" : "https://us.posthog.com");
+    
     posthog.init(key, {
       api_host: host,
-      ui_host: "https://us.posthog.com",
+      ui_host: uiHost,
       person_profiles: "identified_only",
-      capture_pageview: false,
+      capture_pageview: true,
       capture_pageleave: true,
       capture_exceptions: true,
     });
-  } else if (process.env.NODE_ENV === "development") {
-    console.warn("PostHog: NEXT_PUBLIC_POSTHOG_KEY is missing. Tracking disabled.");
   }
 }
 

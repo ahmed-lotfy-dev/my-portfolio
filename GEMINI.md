@@ -25,5 +25,7 @@ TypeScript 5.9, React 19, Next.js 16: Follow standard conventions
 
 - 001-fix-arabic-skills-layout: Added TypeScript 5.9, React 19, Next.js 16 + framer-motion, tailwindcss, next-intl
 
+- take security into consideration never commit and push secrets and scan before commit and push to public 
+
 <!-- MANUAL ADDITIONS START -->
 <!-- MANUAL ADDITIONS END -->

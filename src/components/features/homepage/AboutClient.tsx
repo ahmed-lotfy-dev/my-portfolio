@@ -51,7 +51,7 @@ export default function AboutClient({ myImage, isRTL }: Props) {
 
   return (
     <section className="relative py-24 sm:py-32 overflow-hidden bg-background" id="about">
-      {/* Decorative background elements */}
+
       <div className="absolute top-0 left-0 w-full h-full pointer-events-none overflow-hidden">
         <div className="absolute top-1/4 -left-20 w-80 h-80 bg-primary/5 rounded-full blur-[100px]" />
         <div className="absolute bottom-1/4 -right-20 w-80 h-80 bg-secondary/5 rounded-full blur-[100px]" />
@@ -65,7 +65,7 @@ export default function AboutClient({ myImage, isRTL }: Props) {
           viewport={{ once: true, margin: "-100px" }}
           className="flex flex-col lg:flex-row items-center gap-12 lg:gap-32"
         >
-          {/* Image Column */}
+
           <motion.div variants={imageVariants} className="relative group lg:w-5/12">
             <div className="absolute -inset-4 bg-linear-to-r from-primary/20 via-secondary/20 to-primary/20 rounded-[2.5rem] blur-2xl opacity-50 group-hover:opacity-100 transition duration-1000 group-hover:duration-500" />
             <div className="relative overflow-hidden rounded-4xl border border-border/50 bg-card/50 backdrop-blur-sm p-3 shadow-2xl">
@@ -73,14 +73,14 @@ export default function AboutClient({ myImage, isRTL }: Props) {
                 src={myImage}
                 width={400}
                 height={400}
-                quality={90}
+                quality={75}
                 alt="Ahmed Lotfy"
                 className={`rounded-2xl transition-transform duration-700 group-hover:scale-105 ${isRTL ? "scale-x-[-1]" : ""
                   }`}
               />
             </div>
 
-            {/* Floating Badges */}
+
             <motion.div
               animate={{ y: [0, -10, 0] }}
               transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
@@ -96,7 +96,7 @@ export default function AboutClient({ myImage, isRTL }: Props) {
             </motion.div>
           </motion.div>
 
-          {/* Content Column */}
+
           <div className="lg:w-1/2 space-y-10">
             <motion.div variants={itemVariants} className="space-y-4">
               <span className="inline-block px-4 py-1.5 rounded-full bg-primary/10 text-primary text-xs font-bold tracking-[0.2em] uppercase border border-primary/20 backdrop-blur-sm">
@@ -115,7 +115,7 @@ export default function AboutClient({ myImage, isRTL }: Props) {
               </p>
             </motion.div>
 
-            {/* Quick Stats Grid */}
+
             <motion.div variants={itemVariants} className="grid grid-cols-1 sm:grid-cols-3 gap-6 pt-4">
               {stats.map((stat, idx) => (
                 <div key={idx} className="group p-4 rounded-2xl border border-border/50 bg-card/20 hover:bg-card/40 hover:border-primary/30 transition-all duration-300">

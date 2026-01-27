@@ -32,6 +32,7 @@ type Props = {
     topPaths: { path: string; count: number }[];
     sources: { source: string; count: number }[];
     topProjects: { name: string; path: string; count: number }[];
+    topBlogs: { name: string; path: string; count: number }[];
     locations: { country: string; count: number }[];
   };
 };
@@ -39,7 +40,6 @@ type Props = {
 export default function AnalyticsDashboard({ data }: Props) {
   const t = useTranslations("dashboard");
 
-  // Format date for chart (e.g., "Dec 09")
   const formattedTrend = data.trend.map((item) => ({
     ...item,
     date: new Date(item.date).toLocaleDateString("en-US", {
@@ -52,7 +52,6 @@ export default function AnalyticsDashboard({ data }: Props) {
     <div className="space-y-6 w-full mt-6">
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-7">
 
-        {/* Main Trend Line Chart */}
         <Card className="col-span-4">
           <CardHeader>
             <CardTitle>{t("analytics_trend")}</CardTitle>
@@ -97,7 +96,6 @@ export default function AnalyticsDashboard({ data }: Props) {
           </CardContent>
         </Card>
 
-        {/* Traffic Sources Pie Chart */}
         <Card className="col-span-3">
           <CardHeader>
             <CardTitle>{t("traffic_sources")}</CardTitle>
@@ -134,7 +132,6 @@ export default function AnalyticsDashboard({ data }: Props) {
                 </div>
               )}
             </div>
-            {/* Legend */}
             <div className="flex flex-wrap justify-center gap-2 mt-4">
               {data.sources.map((entry, index) => (
                 <div key={index} className="flex items-center gap-1 text-xs">
@@ -147,8 +144,7 @@ export default function AnalyticsDashboard({ data }: Props) {
         </Card>
       </div>
 
-      <div className="grid gap-4 md:grid-cols-2">
-        {/* Top Projects Table */}
+      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
         <Card>
           <CardHeader>
             <CardTitle>{t("top_projects")}</CardTitle>
@@ -182,7 +178,35 @@ export default function AnalyticsDashboard({ data }: Props) {
           </CardContent>
         </Card>
 
-        {/* Visitor Locations Table */}
+        <Card>
+          <CardHeader>
+            <CardTitle>{t("top_blogs")}</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <Table>
+              <TableHeader>
+                <TableRow>
+                  <TableHead>{t("blog_title")}</TableHead>
+                  <TableHead className="text-right">{t("views")}</TableHead>
+                </TableRow>
+              </TableHeader>
+              <TableBody>
+                {data.topBlogs.map((blog, i) => (
+                  <TableRow key={i}>
+                    <TableCell className="font-medium capitalize">{blog.name.replace(/-/g, ' ')}</TableCell>
+                    <TableCell className="text-right">{blog.count}</TableCell>
+                  </TableRow>
+                ))}
+                {data.topBlogs.length === 0 && (
+                  <TableRow>
+                    <TableCell colSpan={2} className="text-center text-muted-foreground">{t("no_data")}</TableCell>
+                  </TableRow>
+                )}
+              </TableBody>
+            </Table>
+          </CardContent>
+        </Card>
+
         <Card>
           <CardHeader>
             <CardTitle>{t("visitor_locations")}</CardTitle>
@@ -213,7 +237,6 @@ export default function AnalyticsDashboard({ data }: Props) {
         </Card>
       </div>
 
-      {/* Top Pages Table */}
       <Card>
         <CardHeader>
           <CardTitle>{t("top_pages")}</CardTitle>

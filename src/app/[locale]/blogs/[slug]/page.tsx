@@ -5,6 +5,7 @@ import { Calendar, Clock, ChevronLeft, Share2 } from "lucide-react";
 import Link from "next/link";
 import { Button } from "@/src/components/ui/button";
 import { RelatedPosts } from "@/src/components/features/blog/RelatedPosts";
+import { BlogViewTracker } from "@/src/components/analytics/BlogViewTracker";
 
 export async function generateMetadata({
   params,
@@ -46,8 +47,12 @@ export default async function SinglePost(props: {
 
   return (
     <article className="min-h-screen pt-32 pb-20 px-4">
+      <BlogViewTracker
+        blogId={post.slug}
+        blogTitle={post.title}
+        categories={[post.category, ...post.tags]}
+      />
       <div className="max-w-4xl mx-auto">
-        {/* Navigation */}
         <Link
           href="/blogs"
           className="inline-flex items-center text-sm text-gray-500 hover:text-primary transition-colors mb-8 group"
@@ -56,7 +61,6 @@ export default async function SinglePost(props: {
           Back to all posts
         </Link>
 
-        {/* Header */}
         <header className="mb-12">
           <Link href={`/blogs?category=${post.category}`}>
             <Badge variant="secondary" className="mb-6 uppercase tracking-wider text-[10px] font-bold py-1 px-3 hover:bg-primary hover:text-white transition-colors cursor-pointer">
@@ -85,12 +89,10 @@ export default async function SinglePost(props: {
           </div>
         </header>
 
-        {/* Content */}
         <div className="relative">
           <MDXContent content={post.content} />
         </div>
 
-        {/* Footer info */}
         <footer className="mt-20 pt-10 border-t border-gray-100 dark:border-gray-800">
           <div className="flex flex-wrap gap-3">
             {post.tags.map((tag) => (
@@ -109,7 +111,6 @@ export default async function SinglePost(props: {
           )}
         </footer>
 
-        {/* Related Posts Section */}
         <RelatedPosts currentSlug={slug} category={post.category} />
       </div>
     </article>
