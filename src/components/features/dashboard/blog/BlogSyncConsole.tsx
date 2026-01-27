@@ -13,9 +13,18 @@ import {
   TableRow,
 } from "@/src/components/ui/table";
 import { Card, CardContent, CardHeader, CardTitle } from "@/src/components/ui/card";
-import { IoSync, IoCheckmarkCircle, IoCloseCircle, IoStar } from "react-icons/io5";
-import { syncBlogPosts } from "@/src/app/actions/postsActions";
+import {
+  IoSync,
+  IoCheckmarkCircle,
+  IoCloseCircle,
+  IoStar,
+  IoPencil,
+  IoTrash
+} from "react-icons/io5";
+import { syncBlogPosts, deleteSinglePosts } from "@/src/app/actions/postsActions";
 import { toast } from "sonner";
+import { useRouter } from "next/navigation";
+import { authClient } from "@/src/lib/auth-client";
 
 interface Post {
   id: string;
@@ -34,10 +43,17 @@ interface BlogSyncConsoleProps {
 
 export default function BlogSyncConsole({ initialPosts }: BlogSyncConsoleProps) {
   const t = useTranslations("dashboard.blog");
+  const router = useRouter();
+  const { data: session } = authClient.useSession();
+  const isAdmin = session?.user?.role === "ADMIN" || session?.user?.email === process.env.NEXT_PUBLIC_ADMIN_EMAIL;
   const [posts, setPosts] = useState<Post[]>(initialPosts);
   const [isSyncing, setIsSyncing] = useState(false);
 
   const handleSync = async () => {
+    if (!isAdmin) {
+      toast.error("Only admins can sync blog posts");
+      return;
+    }
     setIsSyncing(true);
     try {
       const result = await syncBlogPosts();
@@ -50,6 +66,36 @@ export default function BlogSyncConsole({ initialPosts }: BlogSyncConsoleProps) 
       toast.error("Failed to sync posts.");
     } finally {
       setIsSyncing(false);
+    }
+  };
+
+  const handleEdit = (postId: string) => {
+    if (!isAdmin) {
+      toast.error("Only admins can edit blog posts");
+      return;
+    }
+    router.push(`/dashboard/blogs/edit/${postId}`);
+  };
+
+  const handleDelete = async (postId: string, postTitle: string) => {
+    if (!isAdmin) {
+      toast.error("Only admins can delete blog posts");
+      return;
+    }
+
+    if (!confirm(`Are you sure you want to delete "${postTitle}"? This action cannot be undone.`)) {
+      return;
+    }
+
+    try {
+      const result = await deleteSinglePosts(postId);
+      if (result.success) {
+        toast.success(result.message);
+        setPosts(posts.filter(post => post.id !== postId));
+      }
+    } catch (error) {
+      console.error("Delete failed:", error);
+      toast.error("Failed to delete post.");
     }
   };
 
@@ -92,7 +138,7 @@ export default function BlogSyncConsole({ initialPosts }: BlogSyncConsoleProps) 
       <div className="flex justify-end">
         <Button
           onClick={handleSync}
-          disabled={isSyncing}
+          disabled={isSyncing || !isAdmin}
           className="gap-2"
         >
           <IoSync className={`h-4 w-4 ${isSyncing ? "animate-spin" : ""}`} />
@@ -109,6 +155,7 @@ export default function BlogSyncConsole({ initialPosts }: BlogSyncConsoleProps) 
               <TableHead>{t("table.status")}</TableHead>
               <TableHead>{t("table.featured")}</TableHead>
               <TableHead className="text-right">{t("table.date")}</TableHead>
+              <TableHead className="text-right">Actions</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
@@ -141,6 +188,26 @@ export default function BlogSyncConsole({ initialPosts }: BlogSyncConsoleProps) 
                 </TableCell>
                 <TableCell className="text-right">
                   {new Date(post.createdAt).toLocaleDateString()}
+                </TableCell>
+                <TableCell className="text-right">
+                  <div className="flex items-center justify-end gap-2">
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      onClick={() => handleEdit(post.id)}
+                      className="h-8 w-8 p-0"
+                    >
+                      <IoPencil className="h-4 w-4" />
+                    </Button>
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      onClick={() => handleDelete(post.id, post.title_en)}
+                      className="h-8 w-8 p-0 text-red-500 hover:text-red-700 hover:bg-red-50"
+                    >
+                      <IoTrash className="h-4 w-4" />
+                    </Button>
+                  </div>
                 </TableCell>
               </TableRow>
             ))}

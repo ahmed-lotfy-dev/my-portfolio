@@ -84,6 +84,34 @@ export async function getDbBlogPostBySlug(slug: string) {
   }
 }
 
+export async function getDbBlogPostById(id: string) {
+  try {
+    const post = await db.query.posts.findFirst({
+      where: eq(posts.id, id),
+    });
+
+    if (!post) return null;
+
+    return {
+      id: post.id,
+      title: post.title_en,
+      content: post.content_en,
+      date: post.createdAt.toISOString().split("T")[0],
+      updated: post.updatedAt?.toISOString().split("T")[0],
+      tags: post.tags,
+      category: post.categories[0] || "uncategorized",
+      slug: post.slug,
+      readingTime: post.readingTime || "5 min read",
+      featured: post.featured,
+      published: post.published,
+      imageLink: post.imageLink,
+    };
+  } catch (error) {
+    console.error(`[PostsAction] Error fetching post by ID ${id}:`, error);
+    return null;
+  }
+}
+
 /**
  * Get the most recent sync timestamp
  */
@@ -103,6 +131,9 @@ export async function getLatestSyncDate() {
  * Sync blog posts from GitHub repository
  */
 export async function syncBlogPosts() {
+  const authResult = await requireAdmin("You Don't Have Privilege To Sync Posts");
+  if (!authResult.isAuthorized) return authResult;
+
   if (!REPO_OWNER || !REPO_NAME) {
     throw new Error("Missing GitHub configuration");
   }
@@ -317,6 +348,7 @@ export async function addNewPost(formData: FormData) {
 }
 
 export async function updateSinglePosts(post: any) {
+  await requireAdmin()
   await db
     .update(posts)
     .set({
@@ -338,6 +370,7 @@ export async function updateSinglePosts(post: any) {
 }
 
 export async function deleteSinglePosts(id: string) {
+  await requireAdmin()
   await db.delete(posts).where(eq(posts.id, id))
 
   return {
