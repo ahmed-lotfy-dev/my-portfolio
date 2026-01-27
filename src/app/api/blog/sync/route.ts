@@ -40,7 +40,14 @@ export async function POST(request: NextRequest) {
     }
 
     // 2. Trigger Sync
-    const result = await syncBlogPosts();
+    const result = await syncBlogPosts({ skipAuth: true });
+
+    if (!result.success) {
+      return NextResponse.json(
+        { error: ("message" in result ? result.message : "Sync failed") },
+        { status: 401 }
+      );
+    }
 
     return NextResponse.json({
       message: "Sync completed successfully",

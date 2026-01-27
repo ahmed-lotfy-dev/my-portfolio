@@ -9,7 +9,14 @@ async function runSync() {
   console.log("🚀 Starting Blog Metadata Sync...");
 
   try {
-    const result = await syncBlogPosts();
+    const result = await syncBlogPosts({ skipAuth: true });
+
+    if (!result.success) {
+      console.error("❌ Sync failed!");
+      if ("message" in result) console.error(result.message);
+      process.exit(1);
+    }
+
     console.log(`✅ Success! Synced ${result.count} posts to the database.`);
     process.exit(0);
   } catch (error) {

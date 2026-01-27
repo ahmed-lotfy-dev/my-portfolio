@@ -130,9 +130,11 @@ export async function getLatestSyncDate() {
 /**
  * Sync blog posts from GitHub repository
  */
-export async function syncBlogPosts() {
-  const authResult = await requireAdmin("You Don't Have Privilege To Sync Posts");
-  if (!authResult.isAuthorized) return authResult;
+export async function syncBlogPosts(options?: { skipAuth?: boolean }) {
+  if (!options?.skipAuth) {
+    const authResult = await requireAdmin("You Don't Have Privilege To Sync Posts");
+    if (!authResult.isAuthorized) return authResult;
+  }
 
   if (!REPO_OWNER || !REPO_NAME) {
     throw new Error("Missing GitHub configuration");
