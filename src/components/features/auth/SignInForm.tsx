@@ -8,9 +8,11 @@ import { Label } from "@/src/components/ui/label"
 import Link from "next/link"
 import { FcGoogle } from "react-icons/fc"
 import posthog from "posthog-js"
+import { useLocale } from "next-intl"
 
 export default function SignInForm({ redirectTo }: { redirectTo?: string }) {
   const router = useRouter()
+  const locale = useLocale()
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [loading, setLoading] = useState(false)
@@ -77,21 +79,12 @@ export default function SignInForm({ redirectTo }: { redirectTo?: string }) {
   }
 
   const handleGoogle = async () => {
+    console.log("social login pressed")
     setLoading(true)
     setError(null)
     try {
       await authClient.signIn.social({
         provider: "google",
-        fetchOptions: {
-          onSuccess: () => {
-            // Capture sign-in event (identify will happen after redirect when user data is available)
-            posthog.capture("user_signed_in", {
-              method: "google",
-            })
-            router.push("/")
-            router.refresh()
-          },
-        },
       })
     } catch (e: any) {
       setError(e?.message ?? "Google sign-in failed")
@@ -127,6 +120,7 @@ export default function SignInForm({ redirectTo }: { redirectTo?: string }) {
           <div className="h-px bg-border" />
         </div>
         <Button
+          type="button"
           onClick={handleGoogle}
           disabled={loading}
           className="w-full flex items-center justify-center gap-2"

@@ -5,11 +5,9 @@ import { motion } from "framer-motion";
 import { authClient } from "@/src/lib/auth-client";
 import { use } from "react";
 
-const sessionPromise = authClient.getSession();
-
 export default function Welcome() {
   const t = useTranslations("dashboard.welcome");
-  const { data } = use(sessionPromise);
+  const { data } = authClient.useSession();
   const user = data?.user;
 
   const isAdmin = user?.role === "ADMIN";
