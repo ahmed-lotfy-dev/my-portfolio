@@ -2,6 +2,7 @@
 
 import { useEffect } from "react";
 import { usePostHog } from "posthog-js/react";
+import { incrementViews } from "@/src/app/actions/analytics";
 
 interface BlogViewTrackerProps {
   blogId: string;
@@ -13,6 +14,9 @@ export function BlogViewTracker({ blogId, blogTitle, categories }: BlogViewTrack
   const posthog = usePostHog();
 
   useEffect(() => {
+    // Increment DB views
+    incrementViews(blogId, "blog");
+
     if (posthog) {
       posthog.capture("blog_viewed", {
         blog_id: blogId,

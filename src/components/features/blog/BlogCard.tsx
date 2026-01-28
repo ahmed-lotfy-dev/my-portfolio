@@ -8,7 +8,7 @@ import {
 import { Button } from "@/src/components/ui/button";
 import Link from "next/link";
 import { Badge } from "@/src/components/ui/badge";
-import { Calendar, Clock, Tag, Star } from "lucide-react";
+import { Calendar, Clock, Tag, Star, Eye } from "lucide-react";
 
 interface BlogPost {
   title: string;
@@ -19,6 +19,7 @@ interface BlogPost {
   readingTime: string;
   image?: string | null;
   featured?: boolean;
+  views?: number;
 }
 
 interface BlogCardProps {
@@ -80,6 +81,10 @@ export function BlogCard({ post }: BlogCardProps) {
           <span className="flex items-center gap-1.5">
             <Clock className="w-3.5 h-3.5" />
             {post.readingTime}
+          </span>
+          <span className="flex items-center gap-1.5 text-primary/80">
+            <Eye className="w-3.5 h-3.5" />
+            {post.views || 0}
           </span>
         </div>
 

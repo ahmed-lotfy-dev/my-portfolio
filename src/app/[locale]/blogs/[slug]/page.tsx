@@ -1,7 +1,7 @@
 import { getDbBlogPostBySlug } from "@/src/app/actions/postsActions";
 import MDXContent from "@/src/components/features/blog/MDXContent";
 import { Badge } from "@/src/components/ui/badge";
-import { Calendar, Clock, ChevronLeft, Share2 } from "lucide-react";
+import { Calendar, Clock, ChevronLeft, Share2, Eye } from "lucide-react";
 import Link from "next/link";
 import { Button } from "@/src/components/ui/button";
 import { RelatedPosts } from "@/src/components/features/blog/RelatedPosts";
@@ -80,6 +80,10 @@ export default async function SinglePost(props: {
             <div className="flex items-center gap-2">
               <Clock className="w-4 h-4" />
               <span>{post.readingTime}</span>
+            </div>
+            <div className="flex items-center gap-2 text-primary/80">
+              <Eye className="w-4 h-4" />
+              <span>{post.views || 0} views</span>
             </div>
             <div className="ml-auto flex items-center gap-3">
               <Button variant="ghost" size="icon" className="rounded-full">

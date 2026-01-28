@@ -1,5 +1,33 @@
 "use server";
 
+import { db } from "@/src/db";
+import { posts, projects } from "@/src/db/schema";
+import { eq, sql } from "drizzle-orm";
+
+export async function incrementViews(id: string, type: "blog" | "project") {
+  try {
+    if (type === "blog") {
+      await db
+        .update(posts)
+        .set({
+          views: sql`${posts.views} + 1`,
+        })
+        .where(eq(posts.slug, id)); // Using slug as ID for blogs based on current usage
+    } else {
+      await db
+        .update(projects)
+        .set({
+          views: sql`${projects.views} + 1`,
+        })
+        .where(eq(projects.slug, id));
+    }
+    return { success: true };
+  } catch (error) {
+    console.error(`Error incrementing ${type} views:`, error);
+    return { success: false };
+  }
+}
+
 export async function getPostHogAnalytics() {
   const projectId = process.env.POSTHOG_PROJECT_ID;
   const apiKey = process.env.POSTHOG_PERSONAL_API_KEY || process.env.POSTHOG_MCP_KEY;
@@ -31,9 +59,13 @@ export async function getPostHogAnalytics() {
     const headers = { Authorization: `Bearer ${apiKey}` };
 
     const isProduction = process.env.NODE_ENV === "production";
+
+    // Allow including localhost data if explicitly requested or for debugging
+    const includeLocalhost = process.env.INCLUDE_LOCALHOST_ANALYTICS === "true";
+
     const properties = encodeURIComponent(
       JSON.stringify(
-        isProduction
+        isProduction && !includeLocalhost
           ? [{ key: "$host", operator: "is_not", value: ["localhost:3000", "localhost:3001"] }]
           : []
       )
@@ -56,7 +88,7 @@ export async function getPostHogAnalytics() {
 
     const projectsFilter = encodeURIComponent(
       JSON.stringify([
-        ...(isProduction ? [{ key: "$host", operator: "is_not", value: ["localhost:3000", "localhost:3001"] }] : []),
+        ...(isProduction && !includeLocalhost ? [{ key: "$host", operator: "is_not", value: ["localhost:3000", "localhost:3001"] }] : []),
         { key: "$pathname", operator: "icontains", value: "/projects/" },
       ])
     );
@@ -77,7 +109,7 @@ export async function getPostHogAnalytics() {
 
     const blogsFilter = encodeURIComponent(
       JSON.stringify([
-        ...(isProduction ? [{ key: "$host", operator: "is_not", value: ["localhost:3000", "localhost:3001"] }] : []),
+        ...(isProduction && !includeLocalhost ? [{ key: "$host", operator: "is_not", value: ["localhost:3000", "localhost:3001"] }] : []),
         { key: "$pathname", operator: "icontains", value: "/blogs/" },
       ])
     );

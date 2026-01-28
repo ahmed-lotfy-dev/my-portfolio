@@ -2,6 +2,7 @@
 
 import { useEffect } from "react";
 import { usePostHog } from "posthog-js/react";
+import { incrementViews } from "@/src/app/actions/analytics";
 
 interface ProjectViewTrackerProps {
   projectId: string;
@@ -13,6 +14,9 @@ export function ProjectViewTracker({ projectId, projectTitle, categories }: Proj
   const posthog = usePostHog();
 
   useEffect(() => {
+    // Increment DB views
+    incrementViews(projectId, "project");
+
     if (posthog) {
       posthog.capture("project_viewed", {
         project_id: projectId,

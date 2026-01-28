@@ -49,6 +49,7 @@ export async function getDbBlogPosts(filters?: { category?: string; tag?: string
       readingTime: post.readingTime || "5 min read",
       image: post.imageLink,
       featured: post.featured,
+      views: post.views,
     }));
   } catch (error) {
     console.error("[PostsAction] Error fetching listing:", error);
@@ -77,6 +78,7 @@ export async function getDbBlogPostBySlug(slug: string) {
       slug: post.slug,
       readingTime: post.readingTime || "5 min read",
       featured: post.featured,
+      views: post.views,
     };
   } catch (error) {
     console.error(`[PostsAction] Error fetching post ${slug}:`, error);

@@ -110,6 +110,7 @@ export const posts = pgTable("posts", {
   source: text("source").default("obsidian"),
   lastSyncedAt: timestamp("last_synced_at"),
   author: text("author_id"),
+  views: integer("views").default(0).notNull(),
 
   // Timestamps
   createdAt: timestamp("created_at").defaultNow().notNull(),
@@ -139,6 +140,7 @@ export const projects = pgTable("projects", {
   published: boolean("published").notNull().default(true),
   displayOrder: integer("display_order").default(0),
   completedAt: timestamp("completed_at"),
+  views: integer("views").default(0).notNull(),
   createdAt: timestamp("created_at").defaultNow().notNull(),
   updatedAt: timestamp("updated_at")
     .defaultNow()
