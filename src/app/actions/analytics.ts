@@ -31,15 +31,9 @@ export async function incrementViews(id: string, type: "blog" | "project") {
 export async function getPostHogAnalytics() {
   const projectId = process.env.POSTHOG_PROJECT_ID;
   const apiKey = process.env.POSTHOG_PERSONAL_API_KEY || process.env.POSTHOG_MCP_KEY;
-  let host = process.env.POSTHOG_HOST;
 
-  if (!host && process.env.NEXT_PUBLIC_POSTHOG_HOST) {
-    host = process.env.NEXT_PUBLIC_POSTHOG_HOST.includes("eu.i.posthog.com")
-      ? "https://eu.posthog.com"
-      : "https://us.posthog.com";
-  }
-
-  host = host || "https://us.posthog.com";
+  // Default to EU host as that's what the user is using
+  let host = process.env.POSTHOG_HOST || "https://eu.posthog.com";
 
   if (!projectId || !apiKey) {
     if (process.env.NODE_ENV === "development") {
@@ -57,19 +51,17 @@ export async function getPostHogAnalytics() {
 
   try {
     const headers = { Authorization: `Bearer ${apiKey}` };
-
     const isProduction = process.env.NODE_ENV === "production";
 
-    // Allow including localhost data if explicitly requested or for debugging
+    // Simplified properties filter: only exclude localhost if we're in production and not debugging
     const includeLocalhost = process.env.INCLUDE_LOCALHOST_ANALYTICS === "true";
 
-    const properties = encodeURIComponent(
-      JSON.stringify(
-        isProduction && !includeLocalhost
-          ? [{ key: "$host", operator: "is_not", value: ["localhost:3000", "localhost:3001"] }]
-          : []
-      )
-    );
+    const filterConditions = [];
+    if (isProduction && !includeLocalhost) {
+      filterConditions.push({ key: "$host", operator: "is_not", value: ["localhost:3000", "localhost:3001", "127.0.0.1:3000"] });
+    }
+
+    const properties = encodeURIComponent(JSON.stringify(filterConditions));
 
     const trendPromise = fetch(
       `${host}/api/projects/${projectId}/insights/trend/?events=[{"id":"$pageview","math":"total"}]&date_from=-7d&display=ActionsLineGraph&interval=day&properties=${properties}`,
@@ -88,7 +80,7 @@ export async function getPostHogAnalytics() {
 
     const projectsFilter = encodeURIComponent(
       JSON.stringify([
-        ...(isProduction && !includeLocalhost ? [{ key: "$host", operator: "is_not", value: ["localhost:3000", "localhost:3001"] }] : []),
+        ...filterConditions,
         { key: "$pathname", operator: "icontains", value: "/projects/" },
       ])
     );
@@ -109,7 +101,7 @@ export async function getPostHogAnalytics() {
 
     const blogsFilter = encodeURIComponent(
       JSON.stringify([
-        ...(isProduction && !includeLocalhost ? [{ key: "$host", operator: "is_not", value: ["localhost:3000", "localhost:3001"] }] : []),
+        ...filterConditions,
         { key: "$pathname", operator: "icontains", value: "/blogs/" },
       ])
     );
