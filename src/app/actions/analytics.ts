@@ -12,14 +12,14 @@ export async function incrementViews(id: string, type: "blog" | "project") {
         .set({
           views: sql`${posts.views} + 1`,
         })
-        .where(eq(posts.slug, id)); // Using slug as ID for blogs based on current usage
+        .where(eq(posts.slug, id));
     } else {
       await db
         .update(projects)
         .set({
           views: sql`${projects.views} + 1`,
         })
-        .where(eq(projects.slug, id));
+        .where(eq(projects.id, id));
     }
     return { success: true };
   } catch (error) {
@@ -53,7 +53,8 @@ export async function getPostHogAnalytics() {
     const headers = { Authorization: `Bearer ${apiKey}` };
     const isProduction = process.env.NODE_ENV === "production";
 
-    // Simplified properties filter: only exclude localhost if we're in production and not debugging
+    // This block ensures we don't count localhost/dev visits in your production dashboard
+    // to keep your numbers clean. Set INCLUDE_LOCALHOST_ANALYTICS=true in .env to see them.
     const includeLocalhost = process.env.INCLUDE_LOCALHOST_ANALYTICS === "true";
 
     const filterConditions = [];
