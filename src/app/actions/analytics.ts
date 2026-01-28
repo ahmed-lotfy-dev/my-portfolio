@@ -52,9 +52,6 @@ export async function getPostHogAnalytics() {
   try {
     const headers = { Authorization: `Bearer ${apiKey}` };
     const isProduction = process.env.NODE_ENV === "production";
-
-    // This block ensures we don't count localhost/dev visits in your production dashboard
-    // to keep your numbers clean. Set INCLUDE_LOCALHOST_ANALYTICS=true in .env to see them.
     const includeLocalhost = process.env.INCLUDE_LOCALHOST_ANALYTICS === "true";
 
     const filterConditions = [];
