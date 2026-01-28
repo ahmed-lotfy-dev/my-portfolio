@@ -6,10 +6,12 @@ export async function getPostHogAnalytics() {
   let host = process.env.POSTHOG_HOST;
 
   if (!host && process.env.NEXT_PUBLIC_POSTHOG_HOST) {
-    host = process.env.NEXT_PUBLIC_POSTHOG_HOST.replace(".i.", ".");
+    host = process.env.NEXT_PUBLIC_POSTHOG_HOST.includes("eu.i.posthog.com")
+      ? "https://eu.posthog.com"
+      : "https://us.posthog.com";
   }
 
-  host = host || (process.env.NEXT_PUBLIC_POSTHOG_HOST?.includes("eu.") ? "https://eu.posthog.com" : "https://us.posthog.com");
+  host = host || "https://us.posthog.com";
 
   if (!projectId || !apiKey) {
     if (process.env.NODE_ENV === "development") {

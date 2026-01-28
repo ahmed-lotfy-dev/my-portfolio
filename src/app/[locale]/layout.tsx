@@ -130,20 +130,20 @@ export default async function LocaleLayout({ children, params }: Props) {
         />
         <link
           rel="preconnect"
-          href="https://us.i.posthog.com"
+          href="https://eu.i.posthog.com"
           crossOrigin="anonymous"
         />
         <link
           rel="preconnect"
-          href="https://us-assets.i.posthog.com"
+          href="https://eu-assets.i.posthog.com"
           crossOrigin="anonymous"
         />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         {/* DNS prefetch as fallback for older browsers */}
         <link rel="dns-prefetch" href="https://images.ahmedlotfy.site" />
-        <link rel="dns-prefetch" href="https://us.i.posthog.com" />
-        <link rel="dns-prefetch" href="https://us-assets.i.posthog.com" />
+        <link rel="dns-prefetch" href="https://eu.i.posthog.com" />
+        <link rel="dns-prefetch" href="https://eu-assets.i.posthog.com" />
         <PersonSchema />
       </head>
       <body
