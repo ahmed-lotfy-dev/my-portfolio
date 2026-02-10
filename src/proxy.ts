@@ -18,11 +18,13 @@ export async function proxy(request: NextRequest) {
 
   const csp = [
     "default-src 'self'",
-    "script-src 'self' 'unsafe-eval' 'unsafe-inline' *.googletagmanager.com *.posthog.com *.google.com *.gstatic.com blob:;",
+    // Keep this in sync with next.config.ts CSP
+    "script-src 'self' 'unsafe-eval' 'unsafe-inline' *.googletagmanager.com *.posthog.com https://eu.i.posthog.com https://static.cloudflareinsights.com *.cloudflareinsights.com blob:;",
+    "script-src-elem 'self' 'unsafe-inline' *.googletagmanager.com *.posthog.com https://eu.i.posthog.com https://static.cloudflareinsights.com *.cloudflareinsights.com blob:;",
     "style-src 'self' 'unsafe-inline' *.google.com *.gstatic.com;",
     "img-src 'self' data: https: blob:;",
     "font-src 'self' data: *.gstatic.com;",
-    "connect-src 'self' *.posthog.com https://us.i.posthog.com https://us-assets.i.posthog.com https://eu.i.posthog.com https://eu-assets.i.posthog.com *.googletagmanager.com *.google.com;",
+    "connect-src 'self' *.posthog.com https://us.i.posthog.com https://us-assets.i.posthog.com https://eu.i.posthog.com https://eu-assets.i.posthog.com https://static.cloudflareinsights.com *.cloudflareinsights.com *.googletagmanager.com *.google.com;",
     "frame-src 'self' *.youtube.com *.google.com;",
     "object-src 'none'",
     "base-uri 'self'",
