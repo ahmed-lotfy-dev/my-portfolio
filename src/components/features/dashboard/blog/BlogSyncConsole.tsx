@@ -16,7 +16,6 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/src/components/ui/ca
 import {
   IoSync,
   IoCheckmarkCircle,
-  IoCloseCircle,
   IoStar,
   IoPencil,
   IoTrash
@@ -45,7 +44,7 @@ export default function BlogSyncConsole({ initialPosts }: BlogSyncConsoleProps) 
   const t = useTranslations("dashboard.blog");
   const router = useRouter();
   const { data: session } = authClient.useSession();
-  const isAdmin = session?.user?.role === "ADMIN" || session?.user?.email === process.env.NEXT_PUBLIC_ADMIN_EMAIL;
+  const isAdmin = session?.user?.role === "ADMIN";
   const [posts, setPosts] = useState<Post[]>(initialPosts);
   const [isSyncing, setIsSyncing] = useState(false);
 

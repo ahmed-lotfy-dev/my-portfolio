@@ -39,7 +39,7 @@
 - **Bun** - Fast JavaScript runtime
 
 ### Database & Storage
-- **PostgreSQL** - Primary database with Kysely query builder
+- **PostgreSQL** - Primary database with Drizzle ORM
 - **Cloudflare R2** - Object storage for images and backups
 - **Better Auth** - Modern authentication solution
 
@@ -51,7 +51,6 @@
 
 ### DevOps & Monitoring
 - **Docker** - Containerized deployment
-- **PM2** - Process management for backup worker
 - **PostHog** - Product analytics
 - **Sharp** - High-performance image processing
 
@@ -80,13 +79,13 @@ cp .env.example .env.local
 bun run db:migrate
 
 # Seed initial data
-bun run db:seed
+bun run seed
 
 # Start development server
 bun run dev
 ```
 
-Visit `http://localhost:3001`
+Visit `http://localhost:3000`
 
 ## 🔧 Configuration
 
@@ -130,8 +129,7 @@ my-portfolio/
 │   │   └── db-seed-data/    # Seed data
 │   └── lib/                  # Utilities and helpers
 ├── scripts/
-│   ├── backup-worker/        # Automated backup system
-│   └── optimize-images.ts    # Image optimization script
+│   └── backup-worker/        # Automated backup system
 ├── public/
 │   └── images/
 │       ├── optimized/        # WebP images
@@ -206,7 +204,7 @@ bun run build        # Build for production
 bun run start        # Start production server
 bun run lint         # Run ESLint
 bun run db:migrate   # Run database migrations
-bun run db:seed      # Seed database
+bun run seed         # Seed database
 ```
 
 ### Adding New Content

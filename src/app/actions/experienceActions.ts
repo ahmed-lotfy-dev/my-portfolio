@@ -4,14 +4,12 @@ import { db } from "@/src/db/index";
 import { experiences } from "@/src/db/schema";
 import { eq, desc, and } from "drizzle-orm";
 import { revalidatePath } from "next/cache";
-import { auth } from "@/src/lib/auth";
-import { headers } from "next/headers";
+import { requireAdmin } from "@/src/lib/utils/authMiddleware";
 
 async function checkAdmin() {
-  const session = await auth.api.getSession({ headers: await headers() });
-  const isAdmin = session?.user?.role === "ADMIN" || session?.user?.email === process.env.NEXT_PUBLIC_ADMIN_EMAIL;
-  if (!isAdmin) throw new Error("Unauthorized");
-  return session;
+  const authResult = await requireAdmin("Unauthorized");
+  if (!authResult.isAuthorized) throw new Error(authResult.message);
+  return authResult.user;
 }
 
 export async function getExperiences(publishedOnly = false) {

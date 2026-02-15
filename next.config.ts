@@ -6,7 +6,6 @@ const cspDirectives = {
   "default-src": ["'self'"],
   "script-src": [
     "'self'",
-    "'unsafe-eval'",
     "'unsafe-inline'",
     "*.googletagmanager.com",
     "*.posthog.com",
@@ -119,7 +118,7 @@ const nextConfig: NextConfig = {
       { source: "/images/:path*", headers: [cacheHeaders] },
       { source: "/favicon.ico", headers: [cacheHeaders] },
       { source: "/fonts/:path*", headers: [cacheHeaders] },
-      { source: "/api/:path*", headers: [{ key: "Cache-Control", value: "public, s-maxage=60, stale-while-revalidate=300" }] },
+      { source: "/api/:path*", headers: [{ key: "Cache-Control", value: "private, no-store, no-cache, must-revalidate" }] },
       { source: "/:path*", headers: securityHeaders },
     ];
   },

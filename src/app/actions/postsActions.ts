@@ -352,7 +352,9 @@ export async function addNewPost(formData: FormData) {
 }
 
 export async function updateSinglePosts(post: any) {
-  await requireAdmin()
+  const authResult = await requireAdmin("You Don't Have Privilege To Update Post");
+  if (!authResult.isAuthorized) return authResult;
+
   await db
     .update(posts)
     .set({
@@ -374,7 +376,9 @@ export async function updateSinglePosts(post: any) {
 }
 
 export async function deleteSinglePosts(id: string) {
-  await requireAdmin()
+  const authResult = await requireAdmin("You Don't Have Privilege To Delete Post");
+  if (!authResult.isAuthorized) return authResult;
+
   await db.delete(posts).where(eq(posts.id, id))
 
   return {

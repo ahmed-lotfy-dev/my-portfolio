@@ -2,7 +2,6 @@
 
 import { db } from "@/src/db";
 import { revalidatePath } from "next/cache";
-import { redirect } from "next/navigation";
 import { DeleteFromS3 } from "./deleteImageAction";
 import { getProjectSchema } from "../../lib/schemas/projectSchema";
 import { requireAdmin } from "@/src/lib/utils/authMiddleware";
@@ -117,6 +116,11 @@ export async function addProjectAction(state: any, data: FormData) {
       { en: desc_en, ar: desc_ar },
       "Description"
     );
+    const [orderInfo] = await db
+      .select({ max: projects.displayOrder })
+      .from(projects)
+      .orderBy(desc(projects.displayOrder))
+      .limit(1);
 
     await db.insert(projects).values({
       title_en: translatedTitle.en,
@@ -132,21 +136,7 @@ export async function addProjectAction(state: any, data: FormData) {
       slug: slug || translatedTitle.en.toLowerCase().replace(/ /g, "-").replace(/[^\w-]+/g, ""),
       content_en,
       content_ar,
-      displayOrder: (
-        await db
-          .select({ max: projects.displayOrder })
-          .from(projects)
-          .orderBy(desc(projects.displayOrder))
-          .limit(1)
-      ).at(0)?.max
-        ? ((
-          await db
-            .select({ max: projects.displayOrder })
-            .from(projects)
-            .orderBy(desc(projects.displayOrder))
-            .limit(1)
-        ).at(0)?.max || 0) + 1
-        : 0,
+      displayOrder: (orderInfo?.max ?? -1) + 1,
     });
 
     logger.info("Project added successfully");

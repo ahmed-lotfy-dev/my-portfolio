@@ -19,7 +19,7 @@ export async function proxy(request: NextRequest) {
   const csp = [
     "default-src 'self'",
     // Keep this in sync with next.config.ts CSP
-    "script-src 'self' 'unsafe-eval' 'unsafe-inline' *.googletagmanager.com *.posthog.com https://eu.i.posthog.com https://static.cloudflareinsights.com *.cloudflareinsights.com blob:;",
+    `script-src 'self' ${isDev ? "'unsafe-eval'" : ""} 'unsafe-inline' *.googletagmanager.com *.posthog.com https://eu.i.posthog.com https://static.cloudflareinsights.com *.cloudflareinsights.com blob:;`,
     "script-src-elem 'self' 'unsafe-inline' *.googletagmanager.com *.posthog.com https://eu.i.posthog.com https://static.cloudflareinsights.com *.cloudflareinsights.com blob:;",
     "style-src 'self' 'unsafe-inline' *.google.com *.gstatic.com;",
     "img-src 'self' data: https: blob:;",
