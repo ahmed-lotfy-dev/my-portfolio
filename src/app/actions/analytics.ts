@@ -3,7 +3,6 @@
 import { db } from "@/src/db";
 import { posts, projects } from "@/src/db/schema";
 import { eq, sql } from "drizzle-orm";
-import { cache } from "react";
 
 export async function incrementViews(id: string, type: "blog" | "project") {
   try {
@@ -57,12 +56,30 @@ async function fetchPosthogJson(url: string, headers: { Authorization: string },
   return response.json();
 }
 
-export const getPostHogAnalytics = cache(async function getPostHogAnalytics() {
+async function fetchPosthogJsonSafe(
+  url: string,
+  headers: { Authorization: string },
+  revalidate: number
+) {
+  try {
+    return await fetchPosthogJson(url, headers, revalidate);
+  } catch (error) {
+    console.error("PostHog request failed for URL:", url, error);
+    return { result: [] };
+  }
+}
+
+export async function getPostHogAnalytics() {
   const projectId = process.env.POSTHOG_PROJECT_ID;
   const apiKey = process.env.POSTHOG_PERSONAL_API_KEY || process.env.POSTHOG_MCP_KEY;
 
-  // Default to EU host as that's what the user is using
-  let host = process.env.POSTHOG_HOST || "https://eu.posthog.com";
+  const ingestionHost = process.env.NEXT_PUBLIC_POSTHOG_HOST || "";
+  const inferredApiHost = ingestionHost.includes("eu.") ? "https://eu.posthog.com" : "https://us.posthog.com";
+  const host = (
+    process.env.POSTHOG_HOST ||
+    process.env.NEXT_PUBLIC_POSTHOG_UI_HOST ||
+    inferredApiHost
+  ).replace(/\/$/, "");
 
   if (!projectId || !apiKey) {
     if (process.env.NODE_ENV === "development") {
@@ -90,19 +107,19 @@ export const getPostHogAnalytics = cache(async function getPostHogAnalytics() {
 
     const properties = encodeURIComponent(JSON.stringify(filterConditions));
 
-    const trendPromise = fetchPosthogJson(
+    const trendPromise = fetchPosthogJsonSafe(
       `${host}/api/projects/${projectId}/insights/trend/?events=[{"id":"$pageview","math":"total"}]&date_from=-7d&display=ActionsLineGraph&interval=day&properties=${properties}`,
       headers,
       600
     );
 
-    const pathsPromise = fetchPosthogJson(
+    const pathsPromise = fetchPosthogJsonSafe(
       `${host}/api/projects/${projectId}/insights/trend/?events=[{"id":"$pageview","math":"total"}]&date_from=-7d&breakdown=$pathname&limit=5&properties=${properties}`,
       headers,
       3600
     );
 
-    const sourcesPromise = fetchPosthogJson(
+    const sourcesPromise = fetchPosthogJsonSafe(
       `${host}/api/projects/${projectId}/insights/trend/?events=[{"id":"$pageview","math":"total"}]&date_from=-7d&breakdown=$referrer&limit=5&properties=${properties}`,
       headers,
       3600
@@ -114,19 +131,19 @@ export const getPostHogAnalytics = cache(async function getPostHogAnalytics() {
         { key: "$pathname", operator: "icontains", value: "/projects/" },
       ])
     );
-    const projectsPromise = fetchPosthogJson(
+    const projectsPromise = fetchPosthogJsonSafe(
       `${host}/api/projects/${projectId}/insights/trend/?events=[{"id":"$pageview","math":"total"}]&date_from=-7d&breakdown=$pathname&limit=5&properties=${projectsFilter}`,
       headers,
       3600
     );
 
-    const locationsPromise = fetchPosthogJson(
+    const locationsPromise = fetchPosthogJsonSafe(
       `${host}/api/projects/${projectId}/insights/trend/?events=[{"id":"$pageview","math":"total"}]&date_from=-7d&breakdown=$geoip_country_name&limit=5&properties=${properties}`,
       headers,
       3600
     );
 
-    const durationPromise = fetchPosthogJson(
+    const durationPromise = fetchPosthogJsonSafe(
       `${host}/api/projects/${projectId}/insights/trend/?events=[{"id":"$pageleave","math":"avg","math_property":"$duration"}]&date_from=-7d&breakdown=$pathname&limit=10&properties=${projectsFilter}`,
       headers,
       600
@@ -138,7 +155,7 @@ export const getPostHogAnalytics = cache(async function getPostHogAnalytics() {
         { key: "$pathname", operator: "icontains", value: "/blogs/" },
       ])
     );
-    const blogsPromise = fetchPosthogJson(
+    const blogsPromise = fetchPosthogJsonSafe(
       `${host}/api/projects/${projectId}/insights/trend/?events=[{"id":"$pageview","math":"total"}]&date_from=-7d&breakdown=$pathname&limit=5&properties=${blogsFilter}`,
       headers,
       600
@@ -259,4 +276,4 @@ export const getPostHogAnalytics = cache(async function getPostHogAnalytics() {
     console.error("Error fetching PostHog analytics:", error);
     return EMPTY_ANALYTICS;
   }
-});
+}

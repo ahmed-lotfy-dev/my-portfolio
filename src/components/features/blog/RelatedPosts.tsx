@@ -6,9 +6,10 @@ import Link from "next/link";
 interface RelatedPostsProps {
   currentSlug: string;
   category: string;
+  locale: string;
 }
 
-export async function RelatedPosts({ currentSlug, category }: RelatedPostsProps) {
+export async function RelatedPosts({ currentSlug, category, locale }: RelatedPostsProps) {
   const allRelated = await getDbBlogPosts({ category });
 
   // Filter out current post and take top 3
@@ -25,13 +26,13 @@ export async function RelatedPosts({ currentSlug, category }: RelatedPostsProps)
           More Like This
         </h2>
         <Button asChild variant="link" className="text-primary p-0 h-auto">
-          <Link href={`/blogs?category=${category}`}>View All in {category} →</Link>
+          <Link href={`/${locale}/blogs?category=${encodeURIComponent(category)}`}>View All in {category} →</Link>
         </Button>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {relatedPosts.map((post) => (
-          <BlogCard key={post.slug} post={post} />
+          <BlogCard key={post.slug} post={post} locale={locale} />
         ))}
       </div>
     </section>

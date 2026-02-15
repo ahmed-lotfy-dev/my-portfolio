@@ -14,10 +14,26 @@ export async function generateMetadata({
 }) {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "metadata.blogs" });
+  const baseUrl = "https://ahmedlotfy.site";
 
   return {
     title: t("title"),
     description: t("description"),
+    openGraph: {
+      title: t("title"),
+      description: t("description"),
+      url: `${baseUrl}/${locale}/blogs`,
+      siteName: "Ahmed Lotfy Portfolio",
+      locale: locale === "ar" ? "ar_EG" : "en_US",
+      type: "website",
+    },
+    alternates: {
+      canonical: `${baseUrl}/${locale}/blogs`,
+      languages: {
+        en: "/en/blogs",
+        ar: "/ar/blogs",
+      },
+    },
   };
 }
 
@@ -25,6 +41,7 @@ export default async function PostsList(props: {
   params: Promise<{ locale: string }>;
   searchParams: Promise<{ category?: string; tag?: string; featured?: string }>;
 }) {
+  const { locale } = await props.params;
   const { category, tag, featured } = await props.searchParams;
   const isFeaturedOnly = featured === "true";
 
@@ -69,7 +86,7 @@ export default async function PostsList(props: {
             size="sm"
             className="rounded-full px-6"
           >
-            <Link href="/blogs">All Posts</Link>
+            <Link href={`/${locale}/blogs`}>All Posts</Link>
           </Button>
           <Button
             asChild
@@ -77,7 +94,7 @@ export default async function PostsList(props: {
             size="sm"
             className="rounded-full px-6 border-amber-200 dark:border-amber-900/50 hover:bg-amber-50 dark:hover:bg-amber-900/20"
           >
-            <Link href="/blogs?featured=true" className="flex items-center gap-2">
+            <Link href={`/${locale}/blogs?featured=true`} className="flex items-center gap-2">
               <Star className={`w-3.5 h-3.5 ${isFeaturedOnly ? "fill-white" : "text-amber-500 fill-amber-500"}`} />
               Featured
             </Link>
@@ -90,7 +107,7 @@ export default async function PostsList(props: {
               size="sm"
               className="rounded-full px-6"
             >
-              <Link href={`/blogs?category=${cat}`}>
+              <Link href={`/${locale}/blogs?category=${encodeURIComponent(cat)}`}>
                 {cat.charAt(0).toUpperCase() + cat.slice(1)}
               </Link>
             </Button>
@@ -102,7 +119,7 @@ export default async function PostsList(props: {
             <Badge variant="secondary" className="px-4 py-1.5 flex items-center gap-2 text-sm">
               <Tag className="w-3.5 h-3.5" />
               Showing posts tagged: <span className="font-bold">#{tag}</span>
-              <Link href="/blogs" className="ml-1 hover:text-primary transition-colors">✕</Link>
+              <Link href={`/${locale}/blogs`} className="ml-1 hover:text-primary transition-colors">✕</Link>
             </Badge>
           </div>
         )}
@@ -111,7 +128,7 @@ export default async function PostsList(props: {
       {filteredPosts.length > 0 ? (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {filteredPosts.map((post) => (
-            <BlogCard key={post.slug} post={post} />
+            <BlogCard key={post.slug} post={post} locale={locale} />
           ))}
         </div>
       ) : (
@@ -119,7 +136,7 @@ export default async function PostsList(props: {
           <p className="text-2xl font-medium text-gray-400">No matching notes found</p>
           <p className="text-gray-500 mt-2">Try clearing the filters to see all content.</p>
           <Button asChild variant="link" className="mt-4">
-            <Link href="/blogs">Clear all filters</Link>
+            <Link href={`/${locale}/blogs`}>Clear all filters</Link>
           </Button>
         </div>
       )}

@@ -119,7 +119,10 @@ export default async function CertificatesPage({
                 className="group relative flex flex-col overflow-hidden rounded-xl border border-border bg-card/50 backdrop-blur-sm transition-all hover:border-primary/50 hover:shadow-lg hover:shadow-primary/5 hover:-translate-y-1"
               >
                 {/* Image Section */}
-                <div className="relative aspect-video w-full overflow-hidden bg-muted/50">
+                <Link
+                  href={`/${locale}/certificates/${cert.id}`}
+                  className="relative aspect-video w-full overflow-hidden bg-muted/50 block"
+                >
                   {cert.imageLink ? (
                     <ImageCarousel
                       images={[cert.imageLink]}
@@ -131,15 +134,14 @@ export default async function CertificatesPage({
                       <Award className="h-12 w-12 opacity-20" />
                     </div>
                   )}
-                </div>
+                </Link>
 
                 {/* Content Section */}
                 <div className="flex flex-1 flex-col p-6 gap-3">
-                  <h3
-                    className="font-semibold text-xl leading-tight text-foreground line-clamp-2 min-h-14"
-                    title={cert.title}
-                  >
-                    {cert.title}
+                  <h3 className="font-semibold text-xl leading-tight text-foreground line-clamp-2 min-h-14" title={cert.title}>
+                    <Link href={`/${locale}/certificates/${cert.id}`} className="hover:text-primary transition-colors">
+                      {cert.title}
+                    </Link>
                   </h3>
 
                   <p className="text-sm text-muted-foreground font-medium">

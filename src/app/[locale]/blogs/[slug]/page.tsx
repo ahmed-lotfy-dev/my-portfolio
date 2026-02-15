@@ -10,10 +10,11 @@ import { BlogViewTracker } from "@/src/components/analytics/BlogViewTracker";
 export async function generateMetadata({
   params,
 }: {
-  params: Promise<{ slug: string }>;
+  params: Promise<{ locale: string; slug: string }>;
 }) {
-  const { slug } = await params;
+  const { locale, slug } = await params;
   const post = await getDbBlogPostBySlug(slug);
+  const baseUrl = "https://ahmedlotfy.site";
 
   if (!post) {
     return {
@@ -24,14 +25,29 @@ export async function generateMetadata({
   return {
     title: post.title,
     description: post.content.substring(0, 160),
+    openGraph: {
+      title: post.title,
+      description: post.content.substring(0, 160),
+      url: `${baseUrl}/${locale}/blogs/${slug}`,
+      siteName: "Ahmed Lotfy Portfolio",
+      locale: locale === "ar" ? "ar_EG" : "en_US",
+      type: "article",
+    },
+    alternates: {
+      canonical: `${baseUrl}/${locale}/blogs/${slug}`,
+      languages: {
+        en: `/en/blogs/${slug}`,
+        ar: `/ar/blogs/${slug}`,
+      },
+    },
   };
 }
 
 export default async function SinglePost(props: {
-  params: Promise<{ slug: string }>;
+  params: Promise<{ locale: string; slug: string }>;
 }) {
   const params = await props.params;
-  const { slug } = params;
+  const { locale, slug } = params;
   const post = await getDbBlogPostBySlug(slug);
 
   if (!post) {
@@ -39,7 +55,7 @@ export default async function SinglePost(props: {
       <div className="flex flex-col items-center justify-center h-screen pt-20">
         <h1 className="text-4xl font-bold">Post Not Found</h1>
         <Button asChild className="mt-8" variant="outline">
-          <Link href="/blogs">Back to Blog</Link>
+          <Link href={`/${locale}/blogs`}>Back to Blog</Link>
         </Button>
       </div>
     );
@@ -54,7 +70,7 @@ export default async function SinglePost(props: {
       />
       <div className="max-w-4xl mx-auto">
         <Link
-          href="/blogs"
+          href={`/${locale}/blogs`}
           className="inline-flex items-center text-sm text-gray-500 hover:text-primary transition-colors mb-8 group"
         >
           <ChevronLeft className="w-4 h-4 mr-1 transform group-hover:-translate-x-1 transition-transform" />
@@ -62,7 +78,7 @@ export default async function SinglePost(props: {
         </Link>
 
         <header className="mb-12">
-          <Link href={`/blogs?category=${post.category}`}>
+          <Link href={`/${locale}/blogs?category=${encodeURIComponent(post.category)}`}>
             <Badge variant="secondary" className="mb-6 uppercase tracking-wider text-[10px] font-bold py-1 px-3 hover:bg-primary hover:text-white transition-colors cursor-pointer">
               {post.category}
             </Badge>
@@ -100,7 +116,7 @@ export default async function SinglePost(props: {
         <footer className="mt-20 pt-10 border-t border-gray-100 dark:border-gray-800">
           <div className="flex flex-wrap gap-3">
             {post.tags.map((tag) => (
-              <Link key={tag} href={`/blogs?tag=${tag}`}>
+              <Link key={tag} href={`/${locale}/blogs?tag=${encodeURIComponent(tag)}`}>
                 <Badge variant="outline" className="text-xs bg-gray-50 dark:bg-gray-900 px-3 py-1 hover:bg-primary/10 hover:text-primary transition-all cursor-pointer">
                   #{tag}
                 </Badge>
@@ -115,7 +131,7 @@ export default async function SinglePost(props: {
           )}
         </footer>
 
-        <RelatedPosts currentSlug={slug} category={post.category} />
+        <RelatedPosts currentSlug={slug} category={post.category} locale={locale} />
       </div>
     </article>
   );

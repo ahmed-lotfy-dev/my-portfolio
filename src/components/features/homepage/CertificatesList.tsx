@@ -9,7 +9,7 @@ import {
   HoverCardTrigger,
 } from "@/src/components/ui/hover-card";
 import { Eye } from "lucide-react";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { useState } from "react";
 import { ImageCarousel } from "@/src/components/ui/ImageCarousel";
 
@@ -28,6 +28,7 @@ type Certificate = {
 export default function CertificatesList({ certificates }: { certificates?: Certificate[] }) {
   const [selectedCertificate, setSelectedCertificate] = useState<Certificate | null>(null);
   const [showImageViewer, setShowImageViewer] = useState(false);
+  const locale = useLocale();
 
   const handleEyeClick = (e: React.MouseEvent, cert: any) => {
     e.preventDefault();
@@ -40,7 +41,7 @@ export default function CertificatesList({ certificates }: { certificates?: Cert
     <>
       <div className="container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {certificates?.map((cert: any) => (
-          <Link key={cert.id} href={`/certificates/${cert.id}`}>
+          <Link key={cert.id} href={`/${locale}/certificates/${cert.id}`}>
             <HoverCard>
               <HoverCardTrigger asChild>
                 <Card className="flex flex-col justify-between overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer hover:scale-[1.02] hover:border-primary/50">

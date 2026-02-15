@@ -24,13 +24,23 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const allCertificates = await db.select({
     id: certificates.id,
     updatedAt: certificates.updatedAt,
-  }).from(certificates)
+  }).from(certificates).where(eq(certificates.published, true))
+
+  // Keep a stable, data-driven lastModified across sitemap entries.
+  const knownTimestamps = [
+    ...allProjects.map((item) => item.updatedAt?.getTime()),
+    ...allPosts.map((item) => item.updatedAt?.getTime()),
+    ...allCertificates.map((item) => item.updatedAt?.getTime()),
+  ].filter((value): value is number => typeof value === 'number');
+  const siteLastModified = knownTimestamps.length
+    ? new Date(Math.max(...knownTimestamps))
+    : new Date('2025-01-01T00:00:00.000Z');
 
   // Static pages - Homepage and main sections
   const staticPages = [
     {
       url: baseUrl,
-      lastModified: new Date(),
+      lastModified: siteLastModified,
       changeFrequency: 'weekly' as const,
       priority: 1,
       alternates: {
@@ -42,7 +52,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     },
     {
       url: `${baseUrl}/en`,
-      lastModified: new Date(),
+      lastModified: siteLastModified,
       changeFrequency: 'weekly' as const,
       priority: 1,
       alternates: {
@@ -54,7 +64,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     },
     {
       url: `${baseUrl}/ar`,
-      lastModified: new Date(),
+      lastModified: siteLastModified,
       changeFrequency: 'weekly' as const,
       priority: 1,
       alternates: {
@@ -67,7 +77,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     // Projects listing page
     {
       url: `${baseUrl}/en/projects`,
-      lastModified: new Date(),
+      lastModified: siteLastModified,
       changeFrequency: 'weekly' as const,
       priority: 0.9,
       alternates: {
@@ -79,7 +89,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     },
     {
       url: `${baseUrl}/ar/projects`,
-      lastModified: new Date(),
+      lastModified: siteLastModified,
       changeFrequency: 'weekly' as const,
       priority: 0.9,
       alternates: {
@@ -92,7 +102,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     // Blogs listing page
     {
       url: `${baseUrl}/en/blogs`,
-      lastModified: new Date(),
+      lastModified: siteLastModified,
       changeFrequency: 'weekly' as const,
       priority: 0.9,
       alternates: {
@@ -104,7 +114,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     },
     {
       url: `${baseUrl}/ar/blogs`,
-      lastModified: new Date(),
+      lastModified: siteLastModified,
       changeFrequency: 'weekly' as const,
       priority: 0.9,
       alternates: {
@@ -117,7 +127,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     // Certificates listing page
     {
       url: `${baseUrl}/en/certificates`,
-      lastModified: new Date(),
+      lastModified: siteLastModified,
       changeFrequency: 'monthly' as const,
       priority: 0.8,
       alternates: {
@@ -129,7 +139,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     },
     {
       url: `${baseUrl}/ar/certificates`,
-      lastModified: new Date(),
+      lastModified: siteLastModified,
       changeFrequency: 'monthly' as const,
       priority: 0.8,
       alternates: {
@@ -139,13 +149,61 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         },
       },
     },
+    {
+      url: `${baseUrl}/en/privacy`,
+      lastModified: siteLastModified,
+      changeFrequency: 'yearly' as const,
+      priority: 0.2,
+      alternates: {
+        languages: {
+          en: `${baseUrl}/en/privacy`,
+          ar: `${baseUrl}/ar/privacy`,
+        },
+      },
+    },
+    {
+      url: `${baseUrl}/ar/privacy`,
+      lastModified: siteLastModified,
+      changeFrequency: 'yearly' as const,
+      priority: 0.2,
+      alternates: {
+        languages: {
+          en: `${baseUrl}/en/privacy`,
+          ar: `${baseUrl}/ar/privacy`,
+        },
+      },
+    },
+    {
+      url: `${baseUrl}/en/terms`,
+      lastModified: siteLastModified,
+      changeFrequency: 'yearly' as const,
+      priority: 0.2,
+      alternates: {
+        languages: {
+          en: `${baseUrl}/en/terms`,
+          ar: `${baseUrl}/ar/terms`,
+        },
+      },
+    },
+    {
+      url: `${baseUrl}/ar/terms`,
+      lastModified: siteLastModified,
+      changeFrequency: 'yearly' as const,
+      priority: 0.2,
+      alternates: {
+        languages: {
+          en: `${baseUrl}/en/terms`,
+          ar: `${baseUrl}/ar/terms`,
+        },
+      },
+    },
   ]
 
   // Project pages (both languages)
   const projectPages = allProjects.flatMap(project => [
     {
       url: `${baseUrl}/en/projects/${project.slug}`,
-      lastModified: project.updatedAt,
+      lastModified: project.updatedAt ?? siteLastModified,
       changeFrequency: 'monthly' as const,
       priority: 0.8,
       alternates: {
@@ -157,7 +215,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     },
     {
       url: `${baseUrl}/ar/projects/${project.slug}`,
-      lastModified: project.updatedAt,
+      lastModified: project.updatedAt ?? siteLastModified,
       changeFrequency: 'monthly' as const,
       priority: 0.8,
       alternates: {
@@ -173,7 +231,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const blogPages = allPosts.flatMap(post => [
     {
       url: `${baseUrl}/en/blogs/${post.slug}`,
-      lastModified: post.updatedAt,
+      lastModified: post.updatedAt ?? siteLastModified,
       changeFrequency: 'monthly' as const,
       priority: 0.6,
       alternates: {
@@ -185,7 +243,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     },
     {
       url: `${baseUrl}/ar/blogs/${post.slug}`,
-      lastModified: post.updatedAt,
+      lastModified: post.updatedAt ?? siteLastModified,
       changeFrequency: 'monthly' as const,
       priority: 0.6,
       alternates: {
@@ -201,7 +259,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const certificatePages = allCertificates.flatMap(cert => [
     {
       url: `${baseUrl}/en/certificates/${cert.id}`,
-      lastModified: cert.updatedAt,
+      lastModified: cert.updatedAt ?? siteLastModified,
       changeFrequency: 'yearly' as const,
       priority: 0.5,
       alternates: {
@@ -213,7 +271,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     },
     {
       url: `${baseUrl}/ar/certificates/${cert.id}`,
-      lastModified: cert.updatedAt,
+      lastModified: cert.updatedAt ?? siteLastModified,
       changeFrequency: 'yearly' as const,
       priority: 0.5,
       alternates: {

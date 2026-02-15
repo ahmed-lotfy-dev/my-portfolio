@@ -11,12 +11,18 @@ import StructuredData from "@/src/components/seo/StructuredData";
 export async function generateMetadata({
   params,
 }: {
-  params: Promise<{ slug: string }>;
+  params: Promise<{ locale: string; slug: string }>;
 }) {
-  const { slug } = await params;
+  const { locale, slug } = await params;
   const { certificate } = await getSingleCertificate(slug);
+  const baseUrl = "https://ahmedlotfy.site";
 
   if (!certificate) {
+    return {
+      title: "Certificate Not Found",
+    };
+  }
+  if (!certificate.published) {
     return {
       title: "Certificate Not Found",
     };
@@ -28,7 +34,9 @@ export async function generateMetadata({
     openGraph: {
       title: certificate.title,
       description: `Certificate: ${certificate.title} - ${certificate.desc}`,
+      url: `${baseUrl}/${locale}/certificates/${slug}`,
       images: [certificate.imageLink],
+      locale: locale === "ar" ? "ar_EG" : "en_US",
       type: 'article',
     },
     twitter: {
@@ -36,6 +44,13 @@ export async function generateMetadata({
       title: certificate.title,
       description: `Certificate: ${certificate.title} - ${certificate.desc}`,
       images: [certificate.imageLink],
+    },
+    alternates: {
+      canonical: `${baseUrl}/${locale}/certificates/${slug}`,
+      languages: {
+        en: `/en/certificates/${slug}`,
+        ar: `/ar/certificates/${slug}`,
+      },
     },
   };
 }
@@ -50,6 +65,9 @@ export default async function CertificatePage(props: { params: Promise<{ slug: s
   ]);
 
   if (!certificate) {
+    return notFound();
+  }
+  if (!certificate.published) {
     return notFound();
   }
 
@@ -78,7 +96,7 @@ export default async function CertificatePage(props: { params: Promise<{ slug: s
       <div className="container mx-auto px-4 md:px-6 relative z-10 pt-24 md:pt-32">
         {/* Back Link */}
         <Link
-          href="/#certificates"
+          href={`/${locale}#certificates`}
           className="inline-flex items-center gap-3 text-muted-foreground hover:text-foreground transition-colors mb-8 md:mb-12 group"
         >
           <div className="p-2.5 rounded-full bg-secondary/50 group-hover:bg-primary/10 transition-colors border border-border/50">
@@ -159,7 +177,7 @@ export default async function CertificatePage(props: { params: Promise<{ slug: s
         {/* Bottom Navigation */}
         <div className="mt-32 pt-12 border-t border-border/20 text-center pb-8">
           <Link
-            href="/#certificates"
+            href={`/${locale}#certificates`}
             className="text-muted-foreground hover:text-primary transition-colors text-sm font-medium tracking-widest uppercase hover:underline underline-offset-4"
           >
             {t("back_to_certificates")}

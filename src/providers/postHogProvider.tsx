@@ -9,18 +9,19 @@ function initPostHog() {
   if (posthogInitialized) return;
 
   const key = process.env.NEXT_PUBLIC_POSTHOG_KEY;
-  const host = process.env.NEXT_PUBLIC_POSTHOG_HOST || "/ingest";
+  const configuredHost = process.env.NEXT_PUBLIC_POSTHOG_HOST;
+  const apiHost = configuredHost?.startsWith("/") ? configuredHost : "/ingest";
 
   if (!key) return;
 
   const uiHost = process.env.NEXT_PUBLIC_POSTHOG_UI_HOST ||
-    (host.includes("eu.") ? "https://eu.posthog.com" : "https://us.posthog.com");
+    (configuredHost?.includes("eu.") ? "https://eu.posthog.com" : "https://us.posthog.com");
 
   posthog.init(key, {
-    api_host: host,
+    api_host: apiHost,
     ui_host: uiHost,
     person_profiles: "identified_only",
-    capture_pageview: true,
+    capture_pageview: false,
     capture_pageleave: true,
     capture_exceptions: true,
   });
