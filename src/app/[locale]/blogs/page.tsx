@@ -7,6 +7,8 @@ import { Badge } from "@/src/components/ui/badge";
 import { Tag, RefreshCw, Star } from "lucide-react";
 import { formatDistanceToNow } from "date-fns";
 
+export const dynamic = "force-dynamic";
+
 export async function generateMetadata({
   params,
 }: {
