@@ -1,8 +1,6 @@
 import { getProjectBySlug } from "@/src/app/actions/projectsActions";
 import { notFound } from "next/navigation";
 import { getLocale, getTranslations } from "next-intl/server";
-import { cn } from "@/src/lib/utils";
-import Image from "next/image";
 import { shouldShowApk } from "@/src/lib/utils/projectUtils";
 import Link from "next/link";
 import { ExternalLink, Github } from "lucide-react";
@@ -119,9 +117,11 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 
 export default async function ProjectDetailsPage({ params }: { params: Promise<{ slug: string }> }) {
     const { slug } = await params;
-    const { project } = await getProjectBySlug(slug);
-    const locale = await getLocale();
-    const t = await getTranslations("projects");
+    const [{ project }, locale, t] = await Promise.all([
+        getProjectBySlug(slug),
+        getLocale(),
+        getTranslations("projects"),
+    ]);
 
     if (!project) {
         return notFound();

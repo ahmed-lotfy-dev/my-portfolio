@@ -7,15 +7,15 @@ import Link from "next/link"
 import { getTranslations } from "next-intl/server"
 
 export default async function DashboardStats() {
-  const [{ allCertificates }, { allProjects }, analyticsData] = await Promise.all([
+  const [{ allCertificates }, { allProjects }, analyticsData, t] = await Promise.all([
     getAllCertificatesForDashboard(),
     getAllProjects(),
     getPostHogAnalytics(),
+    getTranslations("dashboard"),
   ]);
 
   const projectsCount = allProjects?.length || 0;
   const certificatesCount = allCertificates?.length || 0;
-  const t = await getTranslations("dashboard");
 
   return (
     <>

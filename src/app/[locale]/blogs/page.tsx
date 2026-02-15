@@ -28,16 +28,16 @@ export default async function PostsList(props: {
   const { category, tag, featured } = await props.searchParams;
   const isFeaturedOnly = featured === "true";
 
-  // Fetch from DB with filters
-  const filteredPosts = await getDbBlogPosts({
-    category,
-    tag,
-    featuredOnly: isFeaturedOnly
-  });
-  const syncDate = await getLatestSyncDate();
+  const [filteredPosts, syncDate, allPosts] = await Promise.all([
+    getDbBlogPosts({
+      category,
+      tag,
+      featuredOnly: isFeaturedOnly
+    }),
+    getLatestSyncDate(),
+    getDbBlogPosts(),
+  ]);
 
-  // Get all categories for filter UI
-  const allPosts = await getDbBlogPosts();
   const categories = Array.from(new Set(allPosts.map((p) => p.category))).sort() as string[];
 
   const activeFilter = isFeaturedOnly ? "featured" : (category || (tag ? `#${tag}` : null));

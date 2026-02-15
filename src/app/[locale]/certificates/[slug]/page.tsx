@@ -2,7 +2,6 @@ import { getSingleCertificate } from "@/src/app/actions/certificatesActions";
 import { notFound } from "next/navigation";
 import { getLocale, getTranslations } from "next-intl/server";
 import { cn } from "@/src/lib/utils";
-import Image from "next/image";
 import Link from "next/link";
 import { ArrowLeft, ExternalLink, Award } from "lucide-react";
 import { ImageCarousel } from "@/src/components/ui/ImageCarousel";
@@ -44,9 +43,11 @@ export async function generateMetadata({
 export default async function CertificatePage(props: { params: Promise<{ slug: string }> }) {
   const params = await props.params;
   const { slug } = params;
-  const { certificate } = await getSingleCertificate(slug);
-  const locale = await getLocale();
-  const t = await getTranslations("certificates");
+  const [{ certificate }, locale, t] = await Promise.all([
+    getSingleCertificate(slug),
+    getLocale(),
+    getTranslations("certificates"),
+  ]);
 
   if (!certificate) {
     return notFound();
@@ -168,4 +169,3 @@ export default async function CertificatePage(props: { params: Promise<{ slug: s
     </article>
   );
 }
-

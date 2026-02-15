@@ -13,11 +13,9 @@ import { getMessages, setRequestLocale } from "next-intl/server";
 
 import { inter, poppins, sora, tajawal } from "@/src/components/ui/fonts";
 import { ThemeProvider } from "next-themes";
-import { PostHogProvider } from "@/src/providers/postHogProvider";
-import { Suspense } from "react";
-import PostHogPageView from "@/src/components/shared/PostHogPageView";
 import Footer from "@/src/components/features/homepage/Footer";
 import { PersonSchema } from "@/src/components/seo/PersonSchema";
+import PostHogClient from "@/src/components/shared/PostHogClient";
 
 export const revalidate = 3600;
 
@@ -98,6 +96,7 @@ export default async function LocaleLayout({ children, params }: Props) {
   const { locale } = await params;
   setRequestLocale(locale); // Enable SSG for next-intl
   const isArabic = locale === "ar";
+  const isPostHogEnabled = Boolean(process.env.NEXT_PUBLIC_POSTHOG_KEY);
 
   if (!hasLocale(routing.locales, locale)) {
     notFound();
@@ -151,24 +150,31 @@ export default async function LocaleLayout({ children, params }: Props) {
           } antialiased font-main`}
         suppressHydrationWarning
       >
-        <PostHogProvider>
-          <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-            <NextIntlClientProvider messages={messages}>
-              <ErrorBoundary>
+        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+          <NextIntlClientProvider messages={messages}>
+            <ErrorBoundary>
+              {isPostHogEnabled ? (
+                <PostHogClient>
+                  <div className="relative">
+                    <Nav>
+                      <UserButton className="flex absolute right-16 md:ml-5 md:static" />
+                    </Nav>
+                    {children}
+                    <Footer />
+                  </div>
+                </PostHogClient>
+              ) : (
                 <div className="relative">
                   <Nav>
                     <UserButton className="flex absolute right-16 md:ml-5 md:static" />
                   </Nav>
-                  <Suspense fallback={null}>
-                    <PostHogPageView />
-                  </Suspense>
                   {children}
                   <Footer />
                 </div>
-              </ErrorBoundary>
-            </NextIntlClientProvider>
-          </ThemeProvider>
-        </PostHogProvider>
+              )}
+            </ErrorBoundary>
+          </NextIntlClientProvider>
+        </ThemeProvider>
         <Toaster />
       </body>
     </html>

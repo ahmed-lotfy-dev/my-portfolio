@@ -8,18 +8,16 @@ export default function PostHogPageView() {
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const posthog = usePostHog();
+  const search = searchParams.toString();
+
   useEffect(() => {
-    // Track pageviews
     if (pathname && posthog) {
-      let url = window.origin + pathname;
-      if (searchParams.toString()) {
-        url = url + `?${searchParams.toString()}`;
-      }
+      const url = `${window.origin}${pathname}${search ? `?${search}` : ""}`;
       posthog.capture("$pageview", {
         $current_url: url,
       });
     }
-  }, [pathname, searchParams, posthog]);
+  }, [pathname, search, posthog]);
 
   return null;
 }
