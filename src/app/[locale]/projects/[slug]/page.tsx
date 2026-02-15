@@ -7,7 +7,7 @@ import { ExternalLink, Github } from "lucide-react";
 import { Button } from "@/src/components/ui/button";
 import StructuredData from "@/src/components/seo/StructuredData";
 import { MarkdownDisplay } from "@/src/components/ui/MarkdownDisplay";
-import { ImageCarousel } from "@/src/components/ui/ImageCarousel";
+import { ImagePreviewer } from "@/src/components/ui/ImagePreviewer";
 import { BackButton } from "@/src/components/ui/BackButton";
 import { ProjectViewTracker } from "@/src/components/analytics/ProjectViewTracker";
 
@@ -162,10 +162,10 @@ export default async function ProjectDetailsPage({ params }: { params: Promise<{
                 />
             </div>
 
-            {/* Hero Section - Carousel or Single Image */}
+            {/* Hero Section - Image Previewer */}
             <div className="mb-12 md:mb-16">
-                <ImageCarousel
-                    images={(project.images && project.images.length > 1) ? project.images : (project.coverImage ? [project.coverImage] : [])}
+                <ImagePreviewer
+                    images={project.images && project.images.length > 0 ? project.images : project.coverImage}
                     title={title}
                     isMobile={isMobile}
                 />

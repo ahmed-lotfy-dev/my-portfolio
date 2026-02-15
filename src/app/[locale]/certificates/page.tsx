@@ -3,7 +3,7 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 import { routing } from "@/src/i18n/routing";
 import Link from "next/link";
 import { Award, ExternalLink, FileText, Search } from "lucide-react";
-import { ImageCarousel } from "@/src/components/ui/ImageCarousel";
+import { ImagePreviewer } from "@/src/components/ui/ImagePreviewer";
 import { cn } from "@/src/lib/utils";
 import StructuredData from "@/src/components/seo/StructuredData";
 import { BackButton } from "@/src/components/ui/BackButton";
@@ -124,8 +124,8 @@ export default async function CertificatesPage({
                   className="relative aspect-video w-full overflow-hidden bg-muted/50 block"
                 >
                   {cert.imageLink ? (
-                    <ImageCarousel
-                      images={[cert.imageLink]}
+                    <ImagePreviewer
+                      images={cert.imageLink}
                       title={cert.title}
                       className="w-full h-full mb-0"
                     />

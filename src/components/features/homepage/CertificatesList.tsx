@@ -11,7 +11,7 @@ import {
 import { Eye } from "lucide-react";
 import { useLocale, useTranslations } from "next-intl";
 import { useState } from "react";
-import { ImageCarousel } from "@/src/components/ui/ImageCarousel";
+import { ImagePreviewer } from "@/src/components/ui/ImagePreviewer";
 
 // Define the type for certificates
 type Certificate = {
@@ -95,8 +95,8 @@ export default function CertificatesList({ certificates }: { certificates?: Cert
             >
               Close ✕
             </button>
-            <ImageCarousel
-              images={[selectedCertificate.imageLink]}
+            <ImagePreviewer
+              images={selectedCertificate.imageLink}
               title={selectedCertificate.title}
               className="relative w-full aspect-4/3 rounded-2xl overflow-hidden shadow-2xl"
             />

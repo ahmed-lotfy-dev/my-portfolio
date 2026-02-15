@@ -14,7 +14,7 @@ import {
   updateProjectOrder,
 } from "@/src/app/actions/projectsActions";
 import { Button } from "@/src/components/ui/button";
-import { ImageCarousel } from "@/src/components/ui/ImageCarousel";
+import { ImagePreviewer } from "@/src/components/ui/ImagePreviewer";
 import { useLocale, useTranslations } from "next-intl";
 import { notify } from "@/src/lib/utils/toast";
 import { getProjectCoverImage } from "@/src/lib/constants/images";
@@ -176,8 +176,8 @@ export default function ProjectList({ allProjects }: any) {
 
               {/* Image */}
               <div className="col-span-2">
-                <ImageCarousel
-                  images={[getProjectCoverImage(proj.coverImage)]}
+                <ImagePreviewer
+                  images={getProjectCoverImage(proj.coverImage)}
                   title={locale === "ar" ? proj.title_ar : proj.title_en}
                   className="h-16 w-24 rounded-lg ring-1 ring-border/50 hover:ring-primary/50 transition-all mb-0"
                 />

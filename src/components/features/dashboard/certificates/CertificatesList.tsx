@@ -4,7 +4,7 @@ import Link from "next/link";
 import { authClient } from "@/src/lib/auth-client";
 import { deleteCertificateAction } from "@/src/app/actions/certificatesActions";
 import { EditCertificate } from "./EditCertificate";
-import { ImageCarousel } from "@/src/components/ui/ImageCarousel";
+import { ImagePreviewer } from "@/src/components/ui/ImagePreviewer";
 import { useLocale, useTranslations } from "next-intl";
 import { motion, AnimatePresence } from "framer-motion";
 import { ExternalLink, Trash2, Award, FileText } from "lucide-react";
@@ -75,8 +75,8 @@ function CertificateList({ allCertificates }: any) {
               {/* Image Section */}
               <div className="relative aspect-video w-full overflow-hidden bg-muted/50">
                 {cert.imageLink ? (
-                  <ImageCarousel
-                    images={[cert.imageLink]}
+                  <ImagePreviewer
+                    images={cert.imageLink}
                     title={cert.title}
                     className="w-full h-full mb-0"
                   />

@@ -4,7 +4,7 @@ import { getLocale, getTranslations } from "next-intl/server";
 import { cn } from "@/src/lib/utils";
 import Link from "next/link";
 import { ArrowLeft, ExternalLink, Award } from "lucide-react";
-import { ImageCarousel } from "@/src/components/ui/ImageCarousel";
+import { ImagePreviewer } from "@/src/components/ui/ImagePreviewer";
 import { Button } from "@/src/components/ui/button";
 import StructuredData from "@/src/components/seo/StructuredData";
 
@@ -106,8 +106,8 @@ export default async function CertificatePage(props: { params: Promise<{ slug: s
         </Link>
 
         {/* Certificate Image - Large and Zoomable */}
-        <ImageCarousel
-          images={[certificate.imageLink]}
+        <ImagePreviewer
+          images={certificate.imageLink}
           title={certificate.title}
           className="relative w-full max-w-4xl mx-auto aspect-4/3 rounded-2xl md:rounded-3xl shadow-2xl border border-white/10 mb-12 md:mb-16 ring-1 ring-white/10 bg-secondary/5 hover:ring-primary/50 transition-all overflow-hidden"
         />
