@@ -96,7 +96,10 @@ export default async function LocaleLayout({ children, params }: Props) {
   const { locale } = await params;
   setRequestLocale(locale); // Enable SSG for next-intl
   const isArabic = locale === "ar";
-  const isPostHogEnabled = Boolean(process.env.NEXT_PUBLIC_POSTHOG_KEY);
+  const posthogApiKey = process.env.NEXT_PUBLIC_POSTHOG_KEY || process.env.POSTHOG_PROJECT_API_KEY || "";
+  const posthogIngestHost = process.env.NEXT_PUBLIC_POSTHOG_HOST || process.env.POSTHOG_INGEST_HOST || "/ingest";
+  const posthogUiHost = process.env.NEXT_PUBLIC_POSTHOG_UI_HOST || process.env.POSTHOG_HOST;
+  const isPostHogEnabled = Boolean(posthogApiKey);
 
   if (!hasLocale(routing.locales, locale)) {
     notFound();
@@ -154,7 +157,11 @@ export default async function LocaleLayout({ children, params }: Props) {
           <NextIntlClientProvider messages={messages}>
             <ErrorBoundary>
               {isPostHogEnabled ? (
-                <PostHogClient>
+                <PostHogClient
+                  apiKey={posthogApiKey}
+                  ingestHost={posthogIngestHost}
+                  uiHost={posthogUiHost}
+                >
                   <div className="relative">
                     <Nav>
                       <UserButton className="flex absolute right-16 md:ml-5 md:static" />

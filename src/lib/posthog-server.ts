@@ -4,10 +4,17 @@ let posthogClient: PostHog | null = null;
 
 export function getPostHogClient() {
   if (!posthogClient) {
+    const projectApiKey = process.env.POSTHOG_PROJECT_API_KEY || process.env.NEXT_PUBLIC_POSTHOG_KEY;
+    const ingestHost = process.env.POSTHOG_INGEST_HOST || process.env.NEXT_PUBLIC_POSTHOG_HOST;
+
+    if (!projectApiKey) {
+      throw new Error("Missing PostHog project API key. Set POSTHOG_PROJECT_API_KEY.");
+    }
+
     posthogClient = new PostHog(
-      process.env.NEXT_PUBLIC_POSTHOG_KEY!,
+      projectApiKey,
       {
-        host: process.env.NEXT_PUBLIC_POSTHOG_HOST,
+        host: ingestHost,
         flushAt: 1,
         flushInterval: 0
       }

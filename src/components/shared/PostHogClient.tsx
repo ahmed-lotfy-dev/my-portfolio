@@ -4,9 +4,16 @@ import { Suspense } from "react";
 import { PostHogProvider } from "@/src/providers/postHogProvider";
 import PostHogPageView from "@/src/components/shared/PostHogPageView";
 
-export default function PostHogClient({ children }: { children: React.ReactNode }) {
+type PostHogClientProps = {
+  children: React.ReactNode;
+  apiKey: string;
+  ingestHost?: string;
+  uiHost?: string;
+};
+
+export default function PostHogClient({ children, apiKey, ingestHost, uiHost }: PostHogClientProps) {
   return (
-    <PostHogProvider>
+    <PostHogProvider apiKey={apiKey} ingestHost={ingestHost} uiHost={uiHost}>
       {children}
       <Suspense fallback={null}>
         <PostHogPageView />

@@ -5,16 +5,22 @@ import { PostHogProvider as PHProvider } from "posthog-js/react";
 
 let posthogInitialized = false;
 
-function initPostHog() {
+type PostHogConfig = {
+  apiKey: string;
+  ingestHost?: string;
+  uiHost?: string;
+};
+
+function initPostHog(config: PostHogConfig) {
   if (posthogInitialized) return;
 
-  const key = process.env.NEXT_PUBLIC_POSTHOG_KEY;
-  const configuredHost = process.env.NEXT_PUBLIC_POSTHOG_HOST;
+  const key = config.apiKey;
+  const configuredHost = config.ingestHost;
   const apiHost = configuredHost?.startsWith("/") ? configuredHost : "/ingest";
 
   if (!key) return;
 
-  const uiHost = process.env.NEXT_PUBLIC_POSTHOG_UI_HOST ||
+  const uiHost = config.uiHost ||
     (configuredHost?.includes("eu.") ? "https://eu.posthog.com" : "https://us.posthog.com");
 
   posthog.init(key, {
@@ -28,10 +34,20 @@ function initPostHog() {
   posthogInitialized = true;
 }
 
-export function PostHogProvider({ children }: { children: React.ReactNode }) {
+export function PostHogProvider({
+  children,
+  apiKey,
+  ingestHost,
+  uiHost,
+}: {
+  children: React.ReactNode;
+  apiKey: string;
+  ingestHost?: string;
+  uiHost?: string;
+}) {
   useEffect(() => {
-    initPostHog();
-  }, []);
+    initPostHog({ apiKey, ingestHost, uiHost });
+  }, [apiKey, ingestHost, uiHost]);
 
   return <PHProvider client={posthog}>{children}</PHProvider>;
 }
