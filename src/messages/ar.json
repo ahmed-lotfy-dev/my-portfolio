@@ -5,6 +5,7 @@
     "blog": "المدونة",
     "certificates": "الشهادات",
     "about": "عني",
+    "testimonials": "آراء العملاء",
     "contact": "تواصل معايا",
     "dashboard": "لوحة التحكم",
     "signin": "تسجيل دخول",
@@ -283,6 +284,7 @@
       "projects": "المشاريع",
       "certificates": "الشهادات",
       "experiences": "الخبرات",
+      "testimonials": "آراء العملاء",
       "blog": "إدارة المدونة",
       "backups": "النسخ الاحتياطية",
       "sign_out": "خروج"
@@ -343,6 +345,21 @@
     "back_to_experiences": "الرجوع للخبرات",
     "save": "حفظ الخبرة",
     "delete": "حذف الخبرة"
+  },
+  "testimonials_dashboard": {
+    "title": "آراء العملاء",
+    "description": "إدارة آراء العملاء المعروضة في الصفحة الرئيسية.",
+    "add-title": "إضافة رأي عميل",
+    "edit-title": "تعديل رأي عميل",
+    "name": "اسم العميل",
+    "role": "المنصب / الدور",
+    "quote_en": "النص (EN)",
+    "quote_ar": "النص (AR)",
+    "displayOrder": "ترتيب العرض",
+    "published": "منشور",
+    "show_in_portfolio": "إظهار في البورتفوليو",
+    "save": "حفظ رأي العميل",
+    "empty": "لا توجد آراء عملاء."
   },
   "blogs": {
     "title": "مدوناتي",

@@ -8,7 +8,6 @@ import {
   IoCode,
   IoGrid,
   IoRibbon,
-  IoAddCircleSharp,
   IoChevronBack,
   IoChevronForward,
   IoLogOut,
@@ -23,14 +22,18 @@ import LanguageSwitcher from "@/src/components/i18n/LanguageSwitcher";
 import ThemeToggle from "@/src/components/shared/ThemeToggle";
 import { useState, useEffect } from "react";
 import { SignOutButton } from "@/src/components/features/auth/SignOutButton";
+import { authClient } from "@/src/lib/auth-client";
 
 export default function Aside({ user }: { user: any }) {
   const pathname = usePathname();
   const t = useTranslations("dashboard.nav");
   const locale = useLocale();
+  const { data: session } = authClient.useSession();
   const [mounted, setMounted] = useState(false);
   const [isExpanded, setIsExpanded] = useState(true);
   const [isMobile, setIsMobile] = useState(false);
+  const currentUser = user || session?.user;
+  const isAdmin = currentUser?.role === "ADMIN";
 
   useEffect(() => {
     setMounted(true);
@@ -56,6 +59,7 @@ export default function Aside({ user }: { user: any }) {
     { href: "/dashboard/projects", icon: IoCode, text: t("projects") },
     { href: "/dashboard/certificates", icon: IoRibbon, text: t("certificates") },
     { href: "/dashboard/experiences", icon: IoBriefcase, text: t("experiences") },
+    ...(isAdmin ? [{ href: "/dashboard/testimonials", icon: IoRibbon, text: t("testimonials") }] : []),
     { href: "/dashboard/blogs", icon: IoChatboxEllipsesOutline, text: t("blog") },
     { href: "/dashboard/backups", icon: IoSaveSharp, text: t("backups") },
   ];

@@ -6,6 +6,7 @@ import Projects from "@/src/components/features/homepage/Projects";
 import Experience from "@/src/components/features/homepage/Experience";
 import TechStack from "@/src/components/features/homepage/TechStack";
 import About from "@/src/components/features/homepage/About";
+import Testimonials from "@/src/components/features/homepage/Testimonials";
 import Contact from "@/src/components/features/homepage/Contact";
 import Container from "@/src/components/ui/Container";
 import { getTranslations, setRequestLocale } from "next-intl/server";
@@ -108,6 +109,7 @@ export default async function HomePage({
         <Projects />
       </Suspense>
       <About />
+      <Testimonials />
       <Contact />
     </Container>
   );

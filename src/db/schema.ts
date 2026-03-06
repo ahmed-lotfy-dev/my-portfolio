@@ -183,6 +183,21 @@ export const certificates = pgTable("certificates", {
     .notNull(),
 });
 
+export const testimonials = pgTable("testimonials", {
+  id: uuid("id").defaultRandom().primaryKey(),
+  name: text("name").notNull(),
+  role: text("role").notNull(),
+  quote_en: text("quote_en").notNull(),
+  quote_ar: text("quote_ar").notNull(),
+  displayOrder: integer("display_order").default(0),
+  published: boolean("published").notNull().default(true),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+  updatedAt: timestamp("updated_at")
+    .defaultNow()
+    .$onUpdate(() => new Date())
+    .notNull(),
+});
+
 export const backupLogs = pgTable("backup_logs", {
   id: uuid("id").defaultRandom().primaryKey(),
   status: text("status").notNull(), // PENDING, SUCCESS, FAILED

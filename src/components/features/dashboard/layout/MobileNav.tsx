@@ -14,15 +14,20 @@ import {
   IoCode,
   IoGrid,
   IoRibbon,
-  IoAddCircleSharp,
+  IoBriefcase,
+  IoChatboxEllipsesOutline,
+  IoSaveSharp,
   IoMenu,
 } from "react-icons/io5"
 import { cn } from "@/src/lib/utils"
 import { useTranslations } from "next-intl"
+import { authClient } from "@/src/lib/auth-client"
 
 export default function MobileNav() {
   const pathname = usePathname()
   const t = useTranslations("dashboard.nav")
+  const { data: session } = authClient.useSession()
+  const isAdmin = session?.user?.role === "ADMIN"
   const navLinks = [
     { href: "/", icon: IoHome, text: t("home") },
     { href: "/dashboard", icon: IoGrid, text: t("dashboard") },
@@ -32,7 +37,10 @@ export default function MobileNav() {
       icon: IoRibbon,
       text: t("certificates"),
     },
-    { href: "/dashboard/blogs/new", icon: IoAddCircleSharp, text: t("blog") },
+    { href: "/dashboard/experiences", icon: IoBriefcase, text: t("experiences") },
+    ...(isAdmin ? [{ href: "/dashboard/testimonials", icon: IoRibbon, text: t("testimonials") }] : []),
+    { href: "/dashboard/blogs", icon: IoChatboxEllipsesOutline, text: t("blog") },
+    { href: "/dashboard/backups", icon: IoSaveSharp, text: t("backups") },
   ]
   return (
     <Sheet>

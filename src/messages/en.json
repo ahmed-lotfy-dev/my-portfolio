@@ -5,6 +5,7 @@
     "blog": "Blog",
     "certificates": "Certificates",
     "about": "About",
+    "testimonials": "Testimonials",
     "contact": "Contact",
     "dashboard": "Dashboard",
     "signin": "Sign In",
@@ -285,6 +286,7 @@
       "projects": "Projects",
       "certificates": "Certificates",
       "experiences": "Experiences",
+      "testimonials": "Testimonials",
       "blog": "Blog Management",
       "backups": "Backups",
       "sign_out": "Sign Out"
@@ -345,6 +347,21 @@
     "back_to_experiences": "Back to Experiences",
     "save": "Save Experience",
     "delete": "Delete Experience"
+  },
+  "testimonials_dashboard": {
+    "title": "Testimonials",
+    "description": "Manage client testimonials shown on your homepage.",
+    "add-title": "Add Testimonial",
+    "edit-title": "Edit Testimonial",
+    "name": "Client Name",
+    "role": "Client Role",
+    "quote_en": "Quote (EN)",
+    "quote_ar": "Quote (AR)",
+    "displayOrder": "Display Order",
+    "published": "Published",
+    "show_in_portfolio": "Show in portfolio",
+    "save": "Save Testimonial",
+    "empty": "No testimonials found."
   },
   "blogs": {
     "title": "My Blogs",

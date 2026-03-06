@@ -1,9 +1,10 @@
 import "dotenv/config"
 import { db } from "@/src/db/index"
-import { certificates, projects, experiences, users } from "@/src/db/schema"
+import { certificates, projects, experiences, testimonials, users } from "@/src/db/schema"
 import { certificatesData } from "@/src/db/db-seed-data/certificates-data"
 import { projectsSeedData } from "@/src/db/db-seed-data/projects-seed"
 import { experiencesSeedData } from "@/src/db/db-seed-data/experiences-seed"
+import { testimonialsSeedData } from "@/src/db/db-seed-data/testimonials-seed"
 import { auth } from "../lib/auth"
 import { eq } from "drizzle-orm"
 
@@ -40,6 +41,7 @@ async function seed() {
   await db.delete(certificates)
   await db.delete(projects)
   await db.delete(experiences)
+  await db.delete(testimonials)
 
   // Insert certificates
   await db.insert(certificates).values(
@@ -88,6 +90,20 @@ async function seed() {
       tech_stack: exp.tech_stack,
       displayOrder: exp.displayOrder,
       published: exp.published,
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    }))
+  )
+
+  // Insert testimonials
+  await db.insert(testimonials).values(
+    testimonialsSeedData.map((item) => ({
+      name: item.name,
+      role: item.role,
+      quote_en: item.quote_en,
+      quote_ar: item.quote_ar,
+      displayOrder: item.displayOrder,
+      published: item.published,
       createdAt: new Date(),
       updatedAt: new Date(),
     }))
