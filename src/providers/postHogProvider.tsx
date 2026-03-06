@@ -15,16 +15,14 @@ function initPostHog(config: PostHogConfig) {
   if (posthogInitialized) return;
 
   const key = config.apiKey;
-  const configuredHost = config.ingestHost;
-  const apiHost = configuredHost?.startsWith("/") ? configuredHost : "/ingest";
-
   if (!key) return;
 
-  const uiHost = config.uiHost ||
-    (configuredHost?.includes("eu.") ? "https://eu.posthog.com" : "https://us.posthog.com");
+  const uiHost =
+    config.uiHost ||
+    (config.ingestHost?.includes("eu.") ? "https://eu.posthog.com" : "https://us.posthog.com");
 
   posthog.init(key, {
-    api_host: apiHost,
+    api_host: "/ingest",
     ui_host: uiHost,
     person_profiles: "identified_only",
     capture_pageview: false,
