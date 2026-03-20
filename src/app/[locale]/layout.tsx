@@ -1,3 +1,4 @@
+import dynamic from "next/dynamic";
 import { ErrorBoundary } from "@/src/components/shared/ErrorBoundary";
 import { NextIntlClientProvider, hasLocale } from "next-intl";
 import { notFound } from "next/navigation";
@@ -13,7 +14,9 @@ import { getMessages, setRequestLocale } from "next-intl/server";
 
 import { inter, poppins, sora, tajawal } from "@/src/components/ui/fonts";
 import { ThemeProvider } from "next-themes";
-import Footer from "@/src/components/features/homepage/Footer";
+const Footer = dynamic(() => import("@/src/components/features/homepage/Footer"), {
+  ssr: true,
+});
 import { PersonSchema } from "@/src/components/seo/PersonSchema";
 import PostHogClient from "@/src/components/shared/PostHogClient";
 import ServerActionRecovery from "@/src/components/shared/ServerActionRecovery";
@@ -117,7 +120,6 @@ export default async function LocaleLayout({ children, params }: Props) {
       className="scroll-smooth max-h-svh "
     >
       <head>
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link rel="dns-prefetch" href="https://images.ahmedlotfy.site" />
         <PersonSchema />
       </head>

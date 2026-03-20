@@ -96,7 +96,7 @@ export default async function Hero({ locale }: { locale: string }) {
                 quality={75}
                 alt={t("illustrationAlt")}
                 fill
-                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 500px"
+                sizes="(max-width: 640px) 280px, (max-width: 768px) 400px, 500px"
                 placeholder="blur"
               />
             </div>
