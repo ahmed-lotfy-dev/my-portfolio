@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { motion, Variants } from "framer-motion";
+import { motion, Variants } from "motion/react";
 import { useTranslations } from "next-intl";
 import { Sparkles, Trophy, Target, Zap } from "lucide-react";
 import { StaticImageData } from "next/image";

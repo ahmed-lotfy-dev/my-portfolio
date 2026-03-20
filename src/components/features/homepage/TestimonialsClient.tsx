@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 import { Quote, Star } from "lucide-react";
 import Section from "@/src/components/ui/Section";
 import { cn } from "@/src/lib/utils";

@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import { useRef } from "react";
-import { motion, useInView } from "framer-motion";
+import { motion, useInView } from "motion/react";
 import { Calendar, Briefcase, Sparkles } from "lucide-react";
 import Section from "@/src/components/ui/Section";
 import { useTranslations } from "next-intl";

@@ -12,7 +12,7 @@ import { MultiImageUpload } from "@/src/components/features/dashboard/uploads/Mu
 import { notify } from "@/src/lib/utils/toast";
 import { useActionState } from "react";
 import { useTranslations } from "next-intl";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence } from "motion/react";
 import { X, Copy, Image as ImageIcon } from "lucide-react";
 import { cn } from "@/src/lib/utils";
 import Image from "next/image";

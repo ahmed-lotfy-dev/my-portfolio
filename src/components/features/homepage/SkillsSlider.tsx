@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { motion, useAnimationFrame, useMotionValue } from "framer-motion";
+import { motion, useAnimationFrame, useMotionValue } from "motion/react";
 import { useRef, useState, useEffect } from "react";
 
 interface Skill {

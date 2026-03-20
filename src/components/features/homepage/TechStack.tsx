@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 import { useTranslations } from "next-intl";
 import { Code, Database, Globe, Layers, Server } from "lucide-react";
 import Section from "@/src/components/ui/Section";

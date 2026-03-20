@@ -20,7 +20,7 @@ import {
 import { Upload } from "@/src/components/features/dashboard/uploads/Upload";
 import { Pencil, X } from "lucide-react";
 import { authClient } from "@/src/lib/auth-client";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence } from "motion/react";
 import { cn } from "@/src/lib/utils";
 import { useRouter } from "next/navigation";
 import { Switch } from "@/src/components/ui/switch";

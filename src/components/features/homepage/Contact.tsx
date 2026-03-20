@@ -10,7 +10,7 @@ import { Textarea } from "@/src/components/ui/textarea";
 import Submit from "@/src/components/ui/formSubmitBtn";
 import { useLocale, useTranslations } from "next-intl";
 import posthog from "posthog-js";
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 import { cn } from "@/src/lib/utils";
 
 export default function Contact() {

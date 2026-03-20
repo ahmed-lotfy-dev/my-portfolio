@@ -6,7 +6,7 @@ import HeroImage from "@/public/images/optimized/About-Image.webp";
 import { FileText, ArrowRight } from "lucide-react";
 import { CVDropdown } from "./CVDropdown";
 import { useTranslations } from "next-intl";
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 import { Button } from "@/src/components/ui/button";
 import { cn } from "@/src/lib/utils";
 

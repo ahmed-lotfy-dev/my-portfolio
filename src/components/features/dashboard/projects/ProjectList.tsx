@@ -8,7 +8,7 @@ import {
   useDragControls,
   motion,
   AnimatePresence,
-} from "framer-motion";
+} from "motion/react";
 import {
   deleteProjectAction,
   updateProjectOrder,

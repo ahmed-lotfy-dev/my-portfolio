@@ -12,7 +12,7 @@ import ProjectCategories from "@/src/components/ui/ProjectCategories";
 import { shouldShowApk } from "@/src/lib/utils/projectUtils";
 import { getProjectCoverImage } from "@/src/lib/constants/images";
 import { ProjectLinkTracker } from "./ProjectLinkTracker";
-import { motion, Variants } from "framer-motion";
+import { motion, Variants } from "motion/react";
 
 type Project = {
   id: string;

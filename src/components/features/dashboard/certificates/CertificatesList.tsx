@@ -6,7 +6,7 @@ import { deleteCertificateAction } from "@/src/app/actions/certificatesActions";
 import { EditCertificate } from "./EditCertificate";
 import { ImagePreviewer } from "@/src/components/ui/ImagePreviewer";
 import { useLocale, useTranslations } from "next-intl";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence } from "motion/react";
 import { ExternalLink, Trash2, Award, FileText } from "lucide-react";
 import { AddCertificateComponent } from "./AddCertificate";
 import Image from "next/image";

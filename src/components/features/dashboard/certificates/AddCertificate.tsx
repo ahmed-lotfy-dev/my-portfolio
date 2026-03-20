@@ -17,7 +17,7 @@ import { notify } from "@/src/lib/utils/toast";
 import Submit from "@/src/components/ui/formSubmitBtn";
 import { Upload } from "@/src/components/features/dashboard/uploads/Upload";
 import { authClient } from "@/src/lib/auth-client";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence } from "motion/react";
 import { Plus, X } from "lucide-react";
 import { cn } from "@/src/lib/utils";
 import { Switch } from "@/src/components/ui/switch";
