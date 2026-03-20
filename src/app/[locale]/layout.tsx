@@ -8,8 +8,8 @@ import "../globals.css";
 
 import { Nav } from "@/src/components/features/homepage/Nav";
 import type { Metadata, Viewport } from "next";
-import { Toaster } from "@/src/components/ui/sonner";
-import UserButton from "@/src/components/features/dashboard/layout/UserButton";
+const Toaster = dynamic(() => import("@/src/components/ui/sonner").then(m => m.Toaster), { ssr: false });
+const UserButton = dynamic(() => import("@/src/components/features/dashboard/layout/UserButton"), { ssr: false });
 import { getMessages, setRequestLocale } from "next-intl/server";
 
 import { inter, poppins, sora, tajawal } from "@/src/components/ui/fonts";
