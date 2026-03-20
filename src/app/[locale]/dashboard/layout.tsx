@@ -2,8 +2,15 @@ import { cookies, headers } from "next/headers";
 import { SidebarInset, SidebarProvider } from "@/src/components/ui/sidebar";
 import Aside from "@/src/components/features/dashboard/layout/Aside";
 import { auth } from "@/src/lib/auth";
+import type { Metadata } from "next";
 
 export const dynamic = "force-dynamic";
+export const metadata: Metadata = {
+  robots: {
+    index: false,
+    follow: false,
+  },
+};
 
 export default async function DashboardLayout({
   children,

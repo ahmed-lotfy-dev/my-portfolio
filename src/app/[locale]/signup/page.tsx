@@ -1,8 +1,13 @@
 import Section from "@/src/components/ui/Section"
 import SignUpForm from "@/src/components/features/auth/SignUpForm"
+import type { Metadata } from "next";
 
-export const metadata = {
+export const metadata: Metadata = {
   title: "Sign up",
+  robots: {
+    index: false,
+    follow: false,
+  },
 }
 
 export default function SignUpPage() {

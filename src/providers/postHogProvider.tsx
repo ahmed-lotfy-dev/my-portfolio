@@ -17,17 +17,23 @@ function initPostHog(config: PostHogConfig) {
   const key = config.apiKey;
   if (!key) return;
 
+  const apiHost =
+    config.ingestHost && config.ingestHost.trim().length > 0
+      ? config.ingestHost.replace(/\/$/, "")
+      : "/ingest";
+
   const uiHost =
     config.uiHost ||
     (config.ingestHost?.includes("eu.") ? "https://eu.posthog.com" : "https://us.posthog.com");
 
   posthog.init(key, {
-    api_host: "/ingest",
+    api_host: apiHost,
     ui_host: uiHost,
     person_profiles: "identified_only",
     capture_pageview: false,
     capture_pageleave: true,
     capture_exceptions: true,
+    autocapture: true,
   });
   posthogInitialized = true;
 }

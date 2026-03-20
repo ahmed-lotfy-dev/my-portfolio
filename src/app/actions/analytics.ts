@@ -76,8 +76,8 @@ export async function getPostHogAnalytics() {
   const ingestionHost = process.env.NEXT_PUBLIC_POSTHOG_HOST || "";
   const inferredApiHost = ingestionHost.includes("eu.") ? "https://eu.posthog.com" : "https://us.posthog.com";
   const host = (
-    process.env.POSTHOG_HOST ||
     process.env.NEXT_PUBLIC_POSTHOG_UI_HOST ||
+    process.env.POSTHOG_HOST ||
     inferredApiHost
   ).replace(/\/$/, "");
 

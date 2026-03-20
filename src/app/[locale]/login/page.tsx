@@ -1,8 +1,13 @@
 import Section from "@/src/components/ui/Section"
 import SignInForm from "@/src/components/features/auth/SignInForm"
+import type { Metadata } from "next";
 
-export const metadata = {
+export const metadata: Metadata = {
   title: "Login",
+  robots: {
+    index: false,
+    follow: false,
+  },
 }
 
 export default function LoginPage() {
