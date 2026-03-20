@@ -23,6 +23,7 @@ export const sora = Sora({
   subsets: ["latin"],
   variable: "--font-sora",
   display: "swap",
+  preload: false,
 });
 
 // Arabic font with all required weights
@@ -31,4 +32,5 @@ export const tajawal = Tajawal({
   variable: "--font-tajawal",
   weight: ["400", "500", "700"],
   display: "swap",
+  preload: false,
 });

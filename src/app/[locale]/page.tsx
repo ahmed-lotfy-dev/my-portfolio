@@ -1,13 +1,16 @@
+import nextDynamic from "next/dynamic";
 import { Suspense } from "react";
 import ProjectsSkeleton from "@/src/components/skeletons/ProjectsSkeleton";
 import Hero from "@/src/components/features/homepage/Hero";
-import Services from "@/src/components/features/homepage/Services";
 import Projects from "@/src/components/features/homepage/Projects";
-import Experience from "@/src/components/features/homepage/Experience";
-import TechStack from "@/src/components/features/homepage/TechStack";
-import About from "@/src/components/features/homepage/About";
-import Testimonials from "@/src/components/features/homepage/Testimonials";
-import Contact from "@/src/components/features/homepage/Contact";
+
+const Services = nextDynamic(() => import("@/src/components/features/homepage/Services"));
+const Experience = nextDynamic(() => import("@/src/components/features/homepage/Experience"));
+const TechStack = nextDynamic(() => import("@/src/components/features/homepage/TechStack"));
+const About = nextDynamic(() => import("@/src/components/features/homepage/About"));
+const Testimonials = nextDynamic(() => import("@/src/components/features/homepage/Testimonials"));
+const Contact = nextDynamic(() => import("@/src/components/features/homepage/Contact"));
+
 import Container from "@/src/components/ui/Container";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import StructuredData from "@/src/components/seo/StructuredData";
