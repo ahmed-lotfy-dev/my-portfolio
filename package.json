@@ -20,6 +20,20 @@
     "sync:blog": "tsx src/scripts/sync-blog.ts",
     "migrate-r2": "tsx src/scripts/migrate-r2-to-folders.ts"
   },
+  "browserslist": {
+    "production": [
+      "last 2 Chrome versions",
+      "last 2 Firefox versions",
+      "last 2 Safari versions",
+      "not dead"
+    ],
+    "development": [
+      "last 1 Chrome version",
+      "last 1 Firefox version",
+      "last 1 Safari version",
+      "not dead"
+    ]
+  },
   "dependencies": {
     "@aws-sdk/s3-request-presigner": "^3.995.0",
     "@ducanh2912/next-pwa": "^10.2.9",
