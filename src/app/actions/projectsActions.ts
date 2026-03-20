@@ -140,7 +140,8 @@ export async function addProjectAction(state: any, data: FormData) {
     });
 
     logger.info("Project added successfully");
-    await revalidatePath("/dashboard/projects");
+    revalidatePath("/[locale]/dashboard/projects", "layout");
+    revalidatePath("/[locale]/projects", "layout");
 
     return { success: true, message: "Project added successfully" };
   } catch (error) {
@@ -239,7 +240,8 @@ export async function editProjectAction(state: any, data: FormData) {
       })
       .where(eq(projects.id, id));
 
-    await revalidatePath("/dashboard/projects");
+    revalidatePath("/[locale]/dashboard/projects", "layout");
+    revalidatePath("/[locale]/projects", "layout");
     logger.info("Project updated successfully");
     return { success: true, message: "Project updated successfully" };
   } catch (error) {
@@ -258,7 +260,8 @@ export async function deleteProjectAction(id: string) {
 
   try {
     await db.delete(projects).where(eq(projects.id, id));
-    await revalidatePath("/dashboard/projects");
+    revalidatePath("/[locale]/dashboard/projects", "layout");
+    revalidatePath("/[locale]/projects", "layout");
 
     logger.info("Project deleted:", id);
     return { success: true, message: "Project deleted successfully" };
@@ -277,19 +280,22 @@ export async function updateProjectOrder(items: { id: string; displayOrder: numb
   }
 
   try {
-    await Promise.all(
-      items.map((item) =>
-        db
+    // Use a transaction for atomic bulk updates
+    await db.transaction(async (tx) => {
+      for (const item of items) {
+        await tx
           .update(projects)
           .set({ displayOrder: item.displayOrder })
-          .where(eq(projects.id, item.id))
-      )
-    );
+          .where(eq(projects.id, item.id));
+      }
+    });
 
-    revalidatePath("/dashboard/projects");
+    revalidatePath("/[locale]/dashboard/projects", "layout");
+    revalidatePath("/[locale]/projects", "layout");
+    
     return { success: true, message: "Order updated successfully" };
   } catch (error) {
     logger.error("Failed to update order:", error);
-    return { success: false, message: "Failed to update order" };
+    return { success: false, message: "Failed to update order in database" };
   }
 }

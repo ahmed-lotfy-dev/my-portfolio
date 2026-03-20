@@ -70,10 +70,10 @@ export default function ProjectList({ allProjects }: any) {
 
       const result = await updateProjectOrder(updates);
       if (result.success) {
-        notify("Order updated successfully", true);
+        notify(result.message || "Order updated successfully", true);
         setHasOrderChanged(false);
       } else {
-        notify("Failed to update order", false);
+        notify(result.message || "Failed to update order", false);
       }
     } catch (error) {
       notify("Error saving order", false);
