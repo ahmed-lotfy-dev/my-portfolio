@@ -14,7 +14,9 @@ async function checkAdmin() {
 
 function sanitizeDisplayOrder(displayOrder?: number) {
   if (typeof displayOrder !== "number" || Number.isNaN(displayOrder)) return 0;
-  return Math.max(0, Math.trunc(displayOrder));
+  // We clamp to >= 0 anyway, so `Math.floor` matches `Math.trunc` for positive values
+  // and still clamps negatives to 0.
+  return Math.max(0, Math.floor(displayOrder));
 }
 
 export async function getTestimonials(publishedOnly = false) {

@@ -199,89 +199,100 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     },
   ]
 
+  type SitemapEntry = (typeof staticPages)[number];
+
   // Project pages (both languages)
-  const projectPages = allProjects.flatMap(project => [
-    {
-      url: `${baseUrl}/en/projects/${project.slug}`,
-      lastModified: project.updatedAt ?? siteLastModified,
-      changeFrequency: 'monthly' as const,
-      priority: 0.8,
-      alternates: {
-        languages: {
-          en: `${baseUrl}/en/projects/${project.slug}`,
-          ar: `${baseUrl}/ar/projects/${project.slug}`,
+  const projectPages: SitemapEntry[] = allProjects.reduce<SitemapEntry[]>((acc, project) => {
+    acc.push(
+      {
+        url: `${baseUrl}/en/projects/${project.slug}`,
+        lastModified: project.updatedAt ?? siteLastModified,
+        changeFrequency: 'monthly' as const,
+        priority: 0.8,
+        alternates: {
+          languages: {
+            en: `${baseUrl}/en/projects/${project.slug}`,
+            ar: `${baseUrl}/ar/projects/${project.slug}`,
+          },
         },
       },
-    },
-    {
-      url: `${baseUrl}/ar/projects/${project.slug}`,
-      lastModified: project.updatedAt ?? siteLastModified,
-      changeFrequency: 'monthly' as const,
-      priority: 0.8,
-      alternates: {
-        languages: {
-          en: `${baseUrl}/en/projects/${project.slug}`,
-          ar: `${baseUrl}/ar/projects/${project.slug}`,
+      {
+        url: `${baseUrl}/ar/projects/${project.slug}`,
+        lastModified: project.updatedAt ?? siteLastModified,
+        changeFrequency: 'monthly' as const,
+        priority: 0.8,
+        alternates: {
+          languages: {
+            en: `${baseUrl}/en/projects/${project.slug}`,
+            ar: `${baseUrl}/ar/projects/${project.slug}`,
+          },
         },
-      },
-    },
-  ])
+      }
+    );
+    return acc;
+  }, [])
 
   // Blog pages (both languages)
-  const blogPages = allPosts.flatMap(post => [
-    {
-      url: `${baseUrl}/en/blogs/${post.slug}`,
-      lastModified: post.updatedAt ?? siteLastModified,
-      changeFrequency: 'monthly' as const,
-      priority: 0.6,
-      alternates: {
-        languages: {
-          en: `${baseUrl}/en/blogs/${post.slug}`,
-          ar: `${baseUrl}/ar/blogs/${post.slug}`,
+  const blogPages: SitemapEntry[] = allPosts.reduce<SitemapEntry[]>((acc, post) => {
+    acc.push(
+      {
+        url: `${baseUrl}/en/blogs/${post.slug}`,
+        lastModified: post.updatedAt ?? siteLastModified,
+        changeFrequency: 'monthly' as const,
+        priority: 0.6,
+        alternates: {
+          languages: {
+            en: `${baseUrl}/en/blogs/${post.slug}`,
+            ar: `${baseUrl}/ar/blogs/${post.slug}`,
+          },
         },
       },
-    },
-    {
-      url: `${baseUrl}/ar/blogs/${post.slug}`,
-      lastModified: post.updatedAt ?? siteLastModified,
-      changeFrequency: 'monthly' as const,
-      priority: 0.6,
-      alternates: {
-        languages: {
-          en: `${baseUrl}/en/blogs/${post.slug}`,
-          ar: `${baseUrl}/ar/blogs/${post.slug}`,
+      {
+        url: `${baseUrl}/ar/blogs/${post.slug}`,
+        lastModified: post.updatedAt ?? siteLastModified,
+        changeFrequency: 'monthly' as const,
+        priority: 0.6,
+        alternates: {
+          languages: {
+            en: `${baseUrl}/en/blogs/${post.slug}`,
+            ar: `${baseUrl}/ar/blogs/${post.slug}`,
+          },
         },
-      },
-    },
-  ])
+      }
+    );
+    return acc;
+  }, [])
 
   // Certificate pages (both languages)
-  const certificatePages = allCertificates.flatMap(cert => [
-    {
-      url: `${baseUrl}/en/certificates/${cert.id}`,
-      lastModified: cert.updatedAt ?? siteLastModified,
-      changeFrequency: 'yearly' as const,
-      priority: 0.5,
-      alternates: {
-        languages: {
-          en: `${baseUrl}/en/certificates/${cert.id}`,
-          ar: `${baseUrl}/ar/certificates/${cert.id}`,
+  const certificatePages: SitemapEntry[] = allCertificates.reduce<SitemapEntry[]>((acc, cert) => {
+    acc.push(
+      {
+        url: `${baseUrl}/en/certificates/${cert.id}`,
+        lastModified: cert.updatedAt ?? siteLastModified,
+        changeFrequency: 'yearly' as const,
+        priority: 0.5,
+        alternates: {
+          languages: {
+            en: `${baseUrl}/en/certificates/${cert.id}`,
+            ar: `${baseUrl}/ar/certificates/${cert.id}`,
+          },
         },
       },
-    },
-    {
-      url: `${baseUrl}/ar/certificates/${cert.id}`,
-      lastModified: cert.updatedAt ?? siteLastModified,
-      changeFrequency: 'yearly' as const,
-      priority: 0.5,
-      alternates: {
-        languages: {
-          en: `${baseUrl}/en/certificates/${cert.id}`,
-          ar: `${baseUrl}/ar/certificates/${cert.id}`,
+      {
+        url: `${baseUrl}/ar/certificates/${cert.id}`,
+        lastModified: cert.updatedAt ?? siteLastModified,
+        changeFrequency: 'yearly' as const,
+        priority: 0.5,
+        alternates: {
+          languages: {
+            en: `${baseUrl}/en/certificates/${cert.id}`,
+            ar: `${baseUrl}/ar/certificates/${cert.id}`,
+          },
         },
-      },
-    },
-  ])
+      }
+    );
+    return acc;
+  }, [])
 
   return [
     ...staticPages,
