@@ -16,6 +16,7 @@ import { ThemeProvider } from "next-themes";
 import Footer from "@/src/components/features/homepage/Footer";
 import { PersonSchema } from "@/src/components/seo/PersonSchema";
 import PostHogClient from "@/src/components/shared/PostHogClient";
+import ServerActionRecovery from "@/src/components/shared/ServerActionRecovery";
 
 export const revalidate = 3600;
 
@@ -127,6 +128,7 @@ export default async function LocaleLayout({ children, params }: Props) {
       >
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <NextIntlClientProvider messages={messages}>
+            <ServerActionRecovery />
             <ErrorBoundary>
               {isPostHogEnabled ? (
                 <PostHogClient

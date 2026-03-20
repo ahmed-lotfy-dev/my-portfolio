@@ -52,13 +52,13 @@ const ChartContainer = React.forwardRef<
         data-chart={chartId}
         ref={ref}
         className={cn(
-          "flex aspect-video justify-center text-xs chart-container",
+          "chart-container flex aspect-video w-full min-w-0 min-h-[220px] justify-center overflow-hidden text-xs",
           className
         )}
         {...props}
       >
         <ChartStyle id={chartId} config={config} />
-        <RechartsPrimitive.ResponsiveContainer>
+        <RechartsPrimitive.ResponsiveContainer width="100%" height="100%" minWidth={0}>
           {children}
         </RechartsPrimitive.ResponsiveContainer>
       </div>

@@ -7,7 +7,6 @@ import {
   YAxis,
   CartesianGrid,
   Tooltip,
-  ResponsiveContainer,
   PieChart,
   Pie,
   Cell,
@@ -22,6 +21,7 @@ import {
   TableRow,
 } from "@/src/components/ui/table";
 import { useTranslations } from "next-intl";
+import SafeResponsiveChart from "@/src/components/ui/safe-responsive-chart";
 
 const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042", "#8884d8"];
 
@@ -52,13 +52,13 @@ export default function AnalyticsDashboard({ data }: Props) {
     <div className="space-y-6 w-full mt-6">
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-7">
 
-        <Card className="col-span-4">
+        <Card className="col-span-4 min-w-0">
           <CardHeader>
             <CardTitle>{t("analytics_trend")}</CardTitle>
           </CardHeader>
           <CardContent className="pl-2">
-            <div className="h-[300px] w-full">
-              <ResponsiveContainer width="100%" height="100%" minWidth={0}>
+            <div className="h-[300px] w-full min-w-0">
+              <SafeResponsiveChart>
                 <LineChart data={formattedTrend}>
                   <CartesianGrid strokeDasharray="3 3" opacity={0.3} />
                   <XAxis
@@ -91,19 +91,19 @@ export default function AnalyticsDashboard({ data }: Props) {
                     activeDot={{ r: 8 }}
                   />
                 </LineChart>
-              </ResponsiveContainer>
+              </SafeResponsiveChart>
             </div>
           </CardContent>
         </Card>
 
-        <Card className="col-span-3">
+        <Card className="col-span-3 min-w-0">
           <CardHeader>
             <CardTitle>{t("traffic_sources")}</CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="h-[300px] w-full flex items-center justify-center">
+            <div className="flex h-[300px] w-full min-w-0 items-center justify-center">
               {data.sources.length > 0 ? (
-                <ResponsiveContainer width="100%" height="100%" minWidth={0}>
+                <SafeResponsiveChart>
                   <PieChart>
                     <Pie
                       data={data.sources}
@@ -125,7 +125,7 @@ export default function AnalyticsDashboard({ data }: Props) {
                     </Pie>
                     <Tooltip />
                   </PieChart>
-                </ResponsiveContainer>
+                </SafeResponsiveChart>
               ) : (
                 <div className="flex h-full items-center justify-center text-muted-foreground">
                   {t("no_data")}

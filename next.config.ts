@@ -119,6 +119,8 @@ const nextConfig: NextConfig = {
       { source: "/favicon.ico", headers: [cacheHeaders] },
       { source: "/fonts/:path*", headers: [cacheHeaders] },
       { source: "/api/:path*", headers: [{ key: "Cache-Control", value: "private, no-store, no-cache, must-revalidate" }] },
+      { source: "/dashboard/:path*", headers: [{ key: "Cache-Control", value: "private, no-store, no-cache, must-revalidate" }] },
+      { source: "/:locale/dashboard/:path*", headers: [{ key: "Cache-Control", value: "private, no-store, no-cache, must-revalidate" }] },
       { source: "/:path*", headers: securityHeaders },
     ];
   },
