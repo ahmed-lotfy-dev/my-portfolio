@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "motion/react";
+import { m } from "motion/react";
 
 type Props = {
   children: React.ReactNode;
@@ -23,12 +23,12 @@ export default function HeroAnimations({ children, delay = 0, type = "fade-up" }
   const selected = variants[type];
 
   return (
-    <motion.div
+    <m.div
       initial={selected.initial}
       animate={selected.animate}
       transition={{ delay, duration: 0.5, ease: "easeOut" }}
     >
       {children}
-    </motion.div>
+    </m.div>
   );
 }

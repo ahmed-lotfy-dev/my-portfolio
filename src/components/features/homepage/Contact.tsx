@@ -10,7 +10,7 @@ import { Textarea } from "@/src/components/ui/textarea";
 import Submit from "@/src/components/ui/formSubmitBtn";
 import { useLocale, useTranslations } from "next-intl";
 import posthog from "posthog-js";
-import { motion } from "motion/react";
+import { m } from "motion/react";
 import { cn } from "@/src/lib/utils";
 
 export default function Contact() {
@@ -76,7 +76,7 @@ export default function Contact() {
 
       <div className="container relative mx-auto px-4 z-10">
         <div className="max-w-4xl mx-auto text-center mb-16 space-y-4">
-          <motion.div
+          <m.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -84,8 +84,8 @@ export default function Contact() {
           >
             <Sparkles className="w-3.5 h-3.5" />
             <span>{t("title")}</span>
-          </motion.div>
-          <motion.h2
+          </m.div>
+          <m.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -94,8 +94,8 @@ export default function Contact() {
           >
             {t("heading_part1")}
             <span className="text-primary italic">{t("heading_part2")}</span>
-          </motion.h2>
-          <motion.p
+          </m.h2>
+          <m.p
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -103,12 +103,12 @@ export default function Contact() {
             className="text-base text-muted-foreground leading-relaxed max-w-xl mx-auto"
           >
             {t("description")}
-          </motion.p>
+          </m.p>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
           {/* Info Side */}
-          <motion.div
+          <m.div
             initial={{ opacity: 0, x: isRTL ? 30 : -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
@@ -147,7 +147,7 @@ export default function Contact() {
           </motion.div>
 
           {/* Form Side */}
-          <motion.div
+          <m.div
             initial={{ opacity: 0, x: isRTL ? -30 : 30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
@@ -221,7 +221,7 @@ export default function Contact() {
                 </form>
               </div>
             </div>
-          </motion.div>
+          </m.div>
         </div>
       </div>
     </section>

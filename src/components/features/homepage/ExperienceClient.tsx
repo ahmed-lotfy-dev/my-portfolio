@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import { useRef } from "react";
-import { motion, useInView } from "motion/react";
+import { m, useInView } from "motion/react";
 import { Calendar, Briefcase, Sparkles } from "lucide-react";
 import Section from "@/src/components/ui/Section";
 import { useTranslations } from "next-intl";
@@ -18,7 +18,7 @@ function ExperienceCard({ exp, index, isRTL }: { exp: any; index: number; isRTL:
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <motion.div
+    <m.div
       ref={ref}
       initial={{ opacity: 0, x: index % 2 === 0 ? (isRTL ? 50 : -50) : (isRTL ? -50 : 50) }}
       animate={isInView ? { opacity: 1, x: 0 } : {}}
@@ -35,7 +35,7 @@ function ExperienceCard({ exp, index, isRTL }: { exp: any; index: number; isRTL:
           isRTL ? "right-[11px] md:right-1/2 md:translate-x-1/2" : "left-[11px] md:left-1/2 md:-translate-x-1/2"
         )}
       >
-        <motion.div
+        <m.div
           animate={{
             scale: [1, 1.2, 1],
             opacity: [0.5, 1, 0.5],
@@ -54,7 +54,7 @@ function ExperienceCard({ exp, index, isRTL }: { exp: any; index: number; isRTL:
 
       {/* Content Layer */}
       <div className={cn("md:w-1/2", isRTL ? "pr-10 md:pr-0" : "pl-10 md:pl-0")}>
-        <motion.div
+        <m.div
           whileHover={{ y: -5, transition: { duration: 0.2 } }}
           className={cn(
             "group p-6 md:p-8 rounded-4xl border border-border/50 bg-card/30 backdrop-blur-xl relative overflow-hidden transition-all duration-500 hover:border-primary/40 hover:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.3)] hover:bg-card/40",
@@ -104,12 +104,12 @@ function ExperienceCard({ exp, index, isRTL }: { exp: any; index: number; isRTL:
               </span>
             ))}
           </div>
-        </motion.div>
+        </m.div>
       </div>
 
       {/* Spacer */}
       <div className="hidden md:block md:w-1/2" />
-    </motion.div>
+    </m.div>
   );
 }
 
@@ -129,7 +129,7 @@ export default function ExperienceClient({ experiences, isRTL }: ExperienceClien
 
       <div className="container max-w-6xl mx-auto relative">
         <div className="text-center mb-32 space-y-6">
-          <motion.div
+          <m.div
             initial={hasMounted ? { opacity: 0, y: 20 } : false}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -138,9 +138,9 @@ export default function ExperienceClient({ experiences, isRTL }: ExperienceClien
             <span className="text-md font-black uppercase tracking-[0.3em]">
               {t("label")}
             </span>
-          </motion.div>
+          </m.div>
 
-          <motion.h2
+          <m.h2
             initial={hasMounted ? { opacity: 0, y: 30 } : false}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -148,7 +148,7 @@ export default function ExperienceClient({ experiences, isRTL }: ExperienceClien
             className="text-4xl md:text-5xl font-black tracking-tighter text-foreground"
           >
             {t("heading_part1")} <span className="text-primary italic">{t("heading_part2")}</span>
-          </motion.h2>
+          </m.h2>
         </div>
 
         <div className="relative">
@@ -160,7 +160,7 @@ export default function ExperienceClient({ experiences, isRTL }: ExperienceClien
             )}
           >
             {/* Animated Light Beam */}
-            <motion.div
+            <m.div
               animate={{
                 top: ["0%", "100%"],
                 opacity: [0, 1, 0],

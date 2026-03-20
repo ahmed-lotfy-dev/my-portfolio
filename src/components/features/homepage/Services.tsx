@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "motion/react";
+import { m } from "motion/react";
 import { Code2, ShoppingBag, Gauge, ArrowRight } from "lucide-react";
 import Section from "@/src/components/ui/Section";
 import { useTranslations } from "next-intl";
@@ -33,15 +33,15 @@ export default function Services() {
       <div className="container relative mx-auto px-4">
         {/* Header */}
         <div className="text-center max-w-2xl mx-auto mb-20">
-          <motion.h2
+          <m.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             className="inline-block px-4 py-1.5 rounded-full bg-primary/10 text-primary text-sm font-medium tracking-wide uppercase border border-primary/20 backdrop-blur-sm mb-6"
           >
             {t("label")}
-          </motion.h2>
-          <motion.h3
+          </m.h2>
+          <m.h3
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -49,8 +49,8 @@ export default function Services() {
             className="text-4xl md:text-5xl font-black tracking-tight text-foreground mb-6"
           >
             {t("title_part1")} <span className="text-primary">{t("title_part2")}</span>
-          </motion.h3>
-          <motion.p
+          </m.h3>
+          <m.p
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -58,13 +58,13 @@ export default function Services() {
             className="text-lg text-muted-foreground leading-relaxed"
           >
             {t("description")}
-          </motion.p>
+          </m.p>
         </div>
 
         {/* Grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {items.map((item, index) => (
-            <motion.div
+            <m.div
               key={item.key}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -93,7 +93,7 @@ export default function Services() {
                   </li>
                 ))}
               </ul>
-            </motion.div>
+            </m.div>
           ))}
         </div>
       </div>

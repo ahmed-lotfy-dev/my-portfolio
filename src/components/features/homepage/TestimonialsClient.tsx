@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "motion/react";
+import { m } from "motion/react";
 import { Quote, Star } from "lucide-react";
 import Section from "@/src/components/ui/Section";
 import { cn } from "@/src/lib/utils";
@@ -24,7 +24,7 @@ export default function TestimonialsClient({ isRTL, testimonials }: Testimonials
 
       <div className="container mx-auto max-w-6xl relative">
         <div className="text-center mb-14 space-y-5">
-          <motion.span
+          <m.span
             initial={{ opacity: 0, y: 18 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -32,9 +32,9 @@ export default function TestimonialsClient({ isRTL, testimonials }: Testimonials
           >
             <Star className="w-3.5 h-3.5" />
             Testimonials
-          </motion.span>
+          </m.span>
 
-          <motion.h2
+          <m.h2
             initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -42,7 +42,7 @@ export default function TestimonialsClient({ isRTL, testimonials }: Testimonials
             className="text-4xl md:text-5xl font-black tracking-tight"
           >
             Client <span className="text-primary italic">Feedback</span>
-          </motion.h2>
+          </m.h2>
           <p className="max-w-2xl mx-auto text-muted-foreground">
             Real testimonials from your dashboard. English and Arabic are both shown for each record.
           </p>
@@ -50,7 +50,7 @@ export default function TestimonialsClient({ isRTL, testimonials }: Testimonials
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {testimonials.map((testimonial, cardIndex) => (
-            <motion.article
+            <m.article
               key={testimonial.id}
               initial={{ opacity: 0, y: 28 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -75,7 +75,7 @@ export default function TestimonialsClient({ isRTL, testimonials }: Testimonials
                 <p className="text-foreground font-bold text-lg">{testimonial.name}</p>
                 <p className="text-sm text-primary font-semibold">{testimonial.role}</p>
               </div>
-            </motion.article>
+            </m.article>
           ))}
         </div>
       </div>

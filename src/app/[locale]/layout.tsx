@@ -20,6 +20,7 @@ const Footer = dynamic(() => import("@/src/components/features/homepage/Footer")
 import { PersonSchema } from "@/src/components/seo/PersonSchema";
 import PostHogClient from "@/src/components/shared/PostHogClient";
 import ServerActionRecovery from "@/src/components/shared/ServerActionRecovery";
+import { LazyMotion, domAnimation } from "motion/react";
 
 export const revalidate = 3600;
 
@@ -130,14 +131,24 @@ export default async function LocaleLayout({ children, params }: Props) {
       >
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <NextIntlClientProvider messages={messages}>
-            <ServerActionRecovery />
-            <ErrorBoundary>
-              {isPostHogEnabled ? (
-                <PostHogClient
-                  apiKey={posthogApiKey}
-                  ingestHost={posthogIngestHost}
-                  uiHost={posthogUiHost}
-                >
+            <LazyMotion features={domAnimation} strict>
+              <ServerActionRecovery />
+              <ErrorBoundary>
+                {isPostHogEnabled ? (
+                  <PostHogClient
+                    apiKey={posthogApiKey}
+                    ingestHost={posthogIngestHost}
+                    uiHost={posthogUiHost}
+                  >
+                    <div className="relative">
+                      <Nav>
+                        <UserButton className="flex absolute right-16 md:ml-5 md:static" />
+                      </Nav>
+                      {children}
+                      <Footer />
+                    </div>
+                  </PostHogClient>
+                ) : (
                   <div className="relative">
                     <Nav>
                       <UserButton className="flex absolute right-16 md:ml-5 md:static" />
@@ -145,17 +156,9 @@ export default async function LocaleLayout({ children, params }: Props) {
                     {children}
                     <Footer />
                   </div>
-                </PostHogClient>
-              ) : (
-                <div className="relative">
-                  <Nav>
-                    <UserButton className="flex absolute right-16 md:ml-5 md:static" />
-                  </Nav>
-                  {children}
-                  <Footer />
-                </div>
-              )}
-            </ErrorBoundary>
+                )}
+              </ErrorBoundary>
+            </LazyMotion>
           </NextIntlClientProvider>
         </ThemeProvider>
         <Toaster />

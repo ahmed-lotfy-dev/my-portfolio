@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "motion/react";
+import { m } from "motion/react";
 import { useTranslations } from "next-intl";
 import { Code, Database, Globe, Layers, Server } from "lucide-react";
 import Section from "@/src/components/ui/Section";
@@ -16,7 +16,7 @@ export default function TechStack() {
       <div className="container mx-auto px-4">
         {/* Header */}
         <div className="max-w-2xl mb-16">
-          <motion.div
+          <m.div
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
@@ -26,16 +26,16 @@ export default function TechStack() {
             <span className="font-bold uppercase tracking-widest text-sm">
               {t("label")}
             </span>
-          </motion.div>
-          <motion.h2
+          </m.div>
+          <m.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             className="text-4xl md:text-5xl font-black tracking-tight text-foreground"
           >
             {t("title")}
-          </motion.h2>
-          <motion.p
+          </m.h2>
+          <m.p
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -43,13 +43,13 @@ export default function TechStack() {
             className="mt-4 text-lg text-muted-foreground"
           >
             {t("description")}
-          </motion.p>
+          </m.p>
         </div>
 
         {/* Bento Grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {/* Item 1: Next.js */}
-          <motion.div
+          <m.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -75,10 +75,10 @@ export default function TechStack() {
               </div>
             </div>
             <div className="absolute -bottom-10 -right-10 w-40 h-40 bg-foreground/5 rounded-full blur-3xl group-hover:bg-foreground/10 transition-colors duration-500" />
-          </motion.div>
+          </m.div>
 
           {/* Item 2: TypeScript */}
-          <motion.div
+          <m.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -104,10 +104,10 @@ export default function TechStack() {
               </div>
             </div>
             <div className="absolute -bottom-10 -right-10 w-40 h-40 bg-foreground/5 rounded-full blur-3xl group-hover:bg-foreground/10 transition-colors duration-500" />
-          </motion.div>
+          </m.div>
 
           {/* Item 3: Database */}
-          <motion.div
+          <m.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -133,10 +133,10 @@ export default function TechStack() {
               </div>
             </div>
             <div className="absolute -bottom-10 -right-10 w-40 h-40 bg-foreground/5 rounded-full blur-3xl group-hover:bg-foreground/10 transition-colors duration-500" />
-          </motion.div>
+          </m.div>
 
           {/* Item 4: Infra */}
-          <motion.div
+          <m.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -162,11 +162,11 @@ export default function TechStack() {
               </div>
             </div>
             <div className="absolute -bottom-10 -right-10 w-40 h-40 bg-foreground/5 rounded-full blur-3xl group-hover:bg-foreground/10 transition-colors duration-500" />
-          </motion.div>
+          </m.div>
         </div>
 
         {/* Bottom Tagline */}
-        <motion.div
+        <m.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
@@ -174,7 +174,7 @@ export default function TechStack() {
           className="mt-12 text-center"
         >
           <p className="text-sm font-mono text-muted-foreground/60 uppercase tracking-widest">{t("footer")}</p>
-        </motion.div>
+        </m.div>
       </div>
     </Section>
   );
