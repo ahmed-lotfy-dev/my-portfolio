@@ -19,58 +19,56 @@ export default function Hero({ locale }: { locale: string }) {
       className="relative overflow-hidden bg-background py-20 sm:py-32"
       id="hero"
     >
-      {/* Background Elements */}
       <div className="absolute inset-0 bg-hero-radial from-primary/30 via-background to-background opacity-80" />
-      <div className="absolute -top-40 left-1/2 -translate-x-1/2 w-[1200px] h-[600px] bg-primary/20 blur-[120px] rounded-full pointer-events-none" />
+      <div className="absolute -top-40 left-1/2 h-[600px] w-[1200px] -translate-x-1/2 rounded-full bg-primary/20 blur-[120px] pointer-events-none" />
 
       <div className="container relative mx-auto flex flex-col-reverse gap-12 px-4 sm:px-6 lg:flex-row lg:items-center lg:justify-between">
-        {/* Text Content */}
         <motion.div
-          initial={{ opacity: 0, x: isRTL ? 50 : -50 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-          className="flex flex-col gap-6 text-center lg:text-start lg:w-1/2"
+          initial={{ opacity: 0, y: 24 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.55, ease: "easeOut" }}
+          className="flex flex-col gap-6 text-center lg:w-1/2 lg:text-start"
         >
           <div className="space-y-4">
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 18 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2, duration: 0.5 }}
+              transition={{ delay: 0.08, duration: 0.45, ease: "easeOut" }}
             >
-              <h2 className="inline-block px-4 py-1.5 rounded-full bg-primary/10 text-primary text-sm font-medium tracking-wide uppercase border border-primary/20 backdrop-blur-sm">
+              <h2 className="inline-block rounded-full border border-primary/20 bg-primary/10 px-4 py-1.5 text-sm font-medium tracking-wide text-primary uppercase backdrop-blur-sm">
                 {t("title")}
               </h2>
             </motion.div>
 
             <motion.h1
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 18 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.3, duration: 0.5 }}
-              className="text-4xl sm:text-5xl lg:text-7xl font-extrabold tracking-tight text-foreground font-main leading-tight"
+              transition={{ delay: 0.14, duration: 0.5, ease: "easeOut" }}
+              className="font-main text-4xl leading-tight font-extrabold tracking-tight text-foreground sm:text-5xl lg:text-7xl"
             >
               {t("name")}
             </motion.h1>
           </div>
 
           <motion.p
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 18 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.4, duration: 0.5 }}
-            className="text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto lg:mx-0 leading-relaxed"
+            transition={{ delay: 0.2, duration: 0.5, ease: "easeOut" }}
+            className="mx-auto max-w-2xl text-lg leading-relaxed text-muted-foreground sm:text-xl lg:mx-0"
           >
             {t("description")}
           </motion.p>
 
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 18 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.5, duration: 0.5 }}
+            transition={{ delay: 0.26, duration: 0.5, ease: "easeOut" }}
             className="flex flex-col gap-6"
           >
-            <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mt-4">
+            <div className="mt-4 flex flex-col justify-center gap-4 sm:flex-row lg:justify-start">
               <Button
                 size="lg"
-                className="rounded-xl shadow-lg shadow-primary/25 hover:shadow-primary/40 text-lg py-6 px-8 cursor-pointer"
+                className="cursor-pointer rounded-xl px-8 py-6 text-lg shadow-lg shadow-primary/25 hover:shadow-primary/40"
                 asChild
               >
                 <Link href="#contact">
@@ -83,7 +81,7 @@ export default function Hero({ locale }: { locale: string }) {
               <Button
                 variant="outline"
                 size="lg"
-                className="rounded-xl backdrop-blur-sm bg-card/50 text-lg py-6 px-8"
+                className="rounded-xl bg-card/50 px-8 py-6 text-lg backdrop-blur-sm"
                 asChild
               >
                 <Link href="#projects">
@@ -97,7 +95,7 @@ export default function Hero({ locale }: { locale: string }) {
                 <Button
                   variant="ghost"
                   size="sm"
-                  className="text-muted-foreground hover:text-primary transition-colors gap-2"
+                  className="gap-2 text-muted-foreground transition-colors hover:text-primary"
                 >
                   <FileText className="h-4 w-4" />
                   <span>{t("resume")}</span>
@@ -107,16 +105,15 @@ export default function Hero({ locale }: { locale: string }) {
           </motion.div>
         </motion.div>
 
-        {/* Image Content */}
         <motion.div
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-          className="relative lg:w-1/2 flex justify-center lg:justify-end"
+          initial={{ opacity: 0, y: 24 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.12, duration: 0.55, ease: "easeOut" }}
+          className="relative flex justify-center lg:w-1/2 lg:justify-end"
         >
-          <div className="relative w-[280px] h-[280px] sm:w-[400px] sm:h-[400px] lg:w-[500px] lg:h-[500px]">
-            <div className="absolute inset-0 rounded-full bg-linear-to-tr from-primary to-secondary blur-3xl opacity-20 motion-safe:will-change-transform" />
-            <div className="relative w-full h-full rounded-2xl overflow-hidden border border-white/10 shadow-2xl shadow-primary/10 bg-card/10 backdrop-blur-sm">
+          <div className="relative h-[280px] w-[280px] sm:h-[400px] sm:w-[400px] lg:h-[500px] lg:w-[500px]">
+            <div className="absolute inset-0 rounded-full bg-linear-to-tr from-primary to-secondary opacity-15 blur-3xl" />
+            <div className="relative h-full w-full overflow-hidden rounded-2xl border border-white/10 bg-card/10 shadow-2xl shadow-primary/10 backdrop-blur-sm">
               <Image
                 className={`object-cover ${isRTL ? "scale-x-[-1]" : ""}`}
                 src={HeroImage}
@@ -130,16 +127,16 @@ export default function Hero({ locale }: { locale: string }) {
               />
             </div>
 
-            {/* Floating Badge */}
             <motion.div
-              initial={{ y: 20, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              transition={{ delay: 1, duration: 0.5 }}
-              className={`absolute -bottom-6 md:bottom-10 bg-card/80 backdrop-blur-xl border border-border p-4 rounded-2xl shadow-xl flex items-center gap-3 will-change-transform ${isRTL ? "-right-6 md:-right-10" : "-left-6 md:-left-10"
-                }`}
+              initial={{ opacity: 0, y: 14 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.36, duration: 0.45, ease: "easeOut" }}
+              className={`absolute -bottom-6 flex items-center gap-3 rounded-2xl border border-border bg-card/80 p-4 shadow-xl backdrop-blur-xl ${
+                isRTL ? "-right-6 md:-right-10 md:bottom-10" : "-left-6 md:-left-10 md:bottom-10"
+              }`}
             >
-              <div className="w-3 h-3 rounded-full bg-green-500 animate-pulse" />
-              <span className="font-medium text-sm text-foreground">
+              <div className="h-3 w-3 rounded-full bg-green-500" />
+              <span className="text-sm font-medium text-foreground">
                 {t("available_work")}
               </span>
             </motion.div>
