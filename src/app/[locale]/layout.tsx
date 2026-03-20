@@ -8,8 +8,7 @@ import "../globals.css";
 
 import { Nav } from "@/src/components/features/homepage/Nav";
 import type { Metadata, Viewport } from "next";
-const Toaster = dynamic(() => import("@/src/components/ui/sonner").then(m => m.Toaster), { ssr: false });
-const UserButton = dynamic(() => import("@/src/components/features/dashboard/layout/UserButton"), { ssr: false });
+import { DynamicToaster, DynamicUserButton } from "@/src/components/shared/ClientSideComponents";
 import { getMessages, setRequestLocale } from "next-intl/server";
 
 import { inter, poppins, sora, tajawal } from "@/src/components/ui/fonts";
@@ -142,7 +141,7 @@ export default async function LocaleLayout({ children, params }: Props) {
                   >
                     <div className="relative">
                       <Nav>
-                        <UserButton className="flex absolute right-16 md:ml-5 md:static" />
+                        <DynamicUserButton className="flex absolute right-16 md:ml-5 md:static" />
                       </Nav>
                       {children}
                       <Footer />
@@ -151,7 +150,7 @@ export default async function LocaleLayout({ children, params }: Props) {
                 ) : (
                   <div className="relative">
                     <Nav>
-                      <UserButton className="flex absolute right-16 md:ml-5 md:static" />
+                      <DynamicUserButton className="flex absolute right-16 md:ml-5 md:static" />
                     </Nav>
                     {children}
                     <Footer />
@@ -161,7 +160,7 @@ export default async function LocaleLayout({ children, params }: Props) {
             </LazyMotion>
           </NextIntlClientProvider>
         </ThemeProvider>
-        <Toaster />
+        <DynamicToaster />
       </body>
     </html>
   );
