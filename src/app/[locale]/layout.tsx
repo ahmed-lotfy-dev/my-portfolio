@@ -140,18 +140,14 @@ export default async function LocaleLayout({ children, params }: Props) {
                     uiHost={posthogUiHost}
                   >
                     <div className="relative">
-                      <Nav>
-                        <DynamicUserButton className="flex absolute right-16 md:ml-5 md:static" />
-                      </Nav>
+                      <Nav />
                       {children}
                       <Footer />
                     </div>
                   </PostHogClient>
                 ) : (
                   <div className="relative">
-                    <Nav>
-                      <DynamicUserButton className="flex absolute right-16 md:ml-5 md:static" />
-                    </Nav>
+                    <Nav />
                     {children}
                     <Footer />
                   </div>
@@ -160,7 +156,6 @@ export default async function LocaleLayout({ children, params }: Props) {
             </LazyMotion>
           </NextIntlClientProvider>
         </ThemeProvider>
-        <DynamicToaster />
       </body>
     </html>
   );

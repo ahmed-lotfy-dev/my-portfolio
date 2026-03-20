@@ -19,6 +19,11 @@ import {
   SheetTrigger,
 } from "@/src/components/ui/sheet";
 import { cn } from "@/src/lib/utils";
+import dynamic from "next/dynamic";
+
+const UserButton = dynamic(() => import("@/src/components/features/dashboard/layout/UserButton"), { 
+  ssr: false 
+});
 
 const navLinks = [
   { href: "/", label: "home" },
@@ -30,7 +35,7 @@ const navLinks = [
   { href: "/dashboard", label: "dashboard" },
 ];
 
-export function Nav({ children }: { children: React.ReactNode }) {
+export function Nav() {
   const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
@@ -98,16 +103,7 @@ export function Nav({ children }: { children: React.ReactNode }) {
         <div className="hidden md:flex items-center gap-2 border-s ps-4 ms-4">
           <ThemeToggle />
           <LanguageSwitcher />
-          {session && (
-            <SignOutButton
-              variant="ghost"
-              size="icon"
-              title="Sign Out"
-            >
-              <LogOut className="h-5 w-5" />
-              <span className="sr-only">Sign out</span>
-            </SignOutButton>
-          )}
+          <UserButton className="ms-2" />
         </div>
 
         {/* Mobile Navigation */}
