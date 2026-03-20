@@ -1,36 +1,64 @@
-// src/components/ui/fonts.ts
-import { Inter, Poppins, Sora, Tajawal } from "next/font/google";
+import localFont from "next/font/local";
 
-// Main body font - preload for better LCP
-export const inter = Inter({
-  subsets: ["latin"],
+// Main body font - preloaded automatically by Next.js if used in layout
+export const inter = localFont({
+  src: "../../app/fonts/inter/Inter-Variable.ttf",
   variable: "--font-inter",
-  weight: ["400", "500", "600"],
   display: "swap",
-  preload: true,
 });
 
 // Heading font
-export const poppins = Poppins({
-  subsets: ["latin"],
+export const poppins = localFont({
+  src: [
+    {
+      path: "../../app/fonts/poppins/Poppins-Regular.ttf",
+      weight: "400",
+      style: "normal",
+    },
+    {
+      path: "../../app/fonts/poppins/Poppins-Medium.ttf",
+      weight: "500",
+      style: "normal",
+    },
+    {
+      path: "../../app/fonts/poppins/Poppins-SemiBold.ttf",
+      weight: "600",
+      style: "normal",
+    },
+    {
+      path: "../../app/fonts/poppins/Poppins-Bold.ttf",
+      weight: "700",
+      style: "normal",
+    },
+  ],
   variable: "--font-poppins",
-  weight: ["600", "700"],
   display: "swap",
-  preload: true,
 });
 
-export const sora = Sora({
-  subsets: ["latin"],
+export const sora = localFont({
+  src: "../../app/fonts/sora/Sora-Variable.ttf",
   variable: "--font-sora",
   display: "swap",
-  preload: false,
 });
 
-// Arabic font with all required weights
-export const tajawal = Tajawal({
-  subsets: ["arabic"],
+export const tajawal = localFont({
+  src: [
+    {
+      path: "../../app/fonts/tajawal/Tajawal-Regular.ttf",
+      weight: "400",
+      style: "normal",
+    },
+    {
+      path: "../../app/fonts/tajawal/Tajawal-Medium.ttf",
+      weight: "500",
+      style: "normal",
+    },
+    {
+      path: "../../app/fonts/tajawal/Tajawal-Bold.ttf",
+      weight: "700",
+      style: "normal",
+    },
+  ],
   variable: "--font-tajawal",
-  weight: ["400", "500", "700"],
   display: "swap",
-  preload: false,
 });
