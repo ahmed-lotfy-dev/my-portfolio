@@ -115,12 +115,13 @@ export default function Hero({ locale }: { locale: string }) {
           className="relative lg:w-1/2 flex justify-center lg:justify-end"
         >
           <div className="relative w-[280px] h-[280px] sm:w-[400px] sm:h-[400px] lg:w-[500px] lg:h-[500px]">
-            <div className="absolute inset-0 rounded-full bg-linear-to-tr from-primary to-secondary blur-3xl opacity-20 animate-pulse" />
+            <div className="absolute inset-0 rounded-full bg-linear-to-tr from-primary to-secondary blur-3xl opacity-20 motion-safe:will-change-transform" />
             <div className="relative w-full h-full rounded-2xl overflow-hidden border border-white/10 shadow-2xl shadow-primary/10 bg-card/10 backdrop-blur-sm">
               <Image
                 className={`object-cover ${isRTL ? "scale-x-[-1]" : ""}`}
                 src={HeroImage}
-                priority={true}
+                priority
+                fetchPriority="high"
                 quality={75}
                 alt={t("illustrationAlt")}
                 fill
@@ -134,7 +135,7 @@ export default function Hero({ locale }: { locale: string }) {
               initial={{ y: 20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ delay: 1, duration: 0.5 }}
-              className={`absolute -bottom-6 md:bottom-10 bg-card/80 backdrop-blur-xl border border-border p-4 rounded-2xl shadow-xl flex items-center gap-3 ${isRTL ? "-right-6 md:-right-10" : "-left-6 md:-left-10"
+              className={`absolute -bottom-6 md:bottom-10 bg-card/80 backdrop-blur-xl border border-border p-4 rounded-2xl shadow-xl flex items-center gap-3 will-change-transform ${isRTL ? "-right-6 md:-right-10" : "-left-6 md:-left-10"
                 }`}
             >
               <div className="w-3 h-3 rounded-full bg-green-500 animate-pulse" />
