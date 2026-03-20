@@ -144,7 +144,7 @@ export default function Contact() {
                 </a>
               ))}
             </div>
-          </motion.div>
+          </m.div>
 
           {/* Form Side */}
           <m.div
