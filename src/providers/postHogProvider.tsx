@@ -29,6 +29,12 @@ function initPostHog(config: PostHogConfig) {
     capture_pageleave: true,
     capture_exceptions: true,
     autocapture: true,
+    // Lighthouse was flagging PostHog Session Replay (rrweb-record) and Surveys assets as
+    // "Legacy JavaScript" that weren’t needed for this site (recording already not working).
+    // These flags prevent PostHog from loading those dependencies.
+    disable_session_recording: true,
+    disable_surveys: true,
+    disable_external_dependency_loading: true,
     loaded: (client) => {
       posthogInitialized = true;
       client.capture("$pageview", {
