@@ -115,6 +115,9 @@ const nextConfig: NextConfig = {
     const cacheHeaders = { key: "Cache-Control", value: "public, max-age=31536000, immutable" };
     return [
       { source: "/_next/static/:path*", headers: [cacheHeaders] },
+      // Cloudflare Email Address Protection decoder script is injected automatically.
+      // Cache it aggressively to avoid repeated revalidation and to improve Lighthouse caching audits.
+      { source: "/cloudflare-static/email-decode.min.js", headers: [cacheHeaders] },
       { source: "/images/:path*", headers: [cacheHeaders] },
       { source: "/favicon.ico", headers: [cacheHeaders] },
       { source: "/fonts/:path*", headers: [cacheHeaders] },
