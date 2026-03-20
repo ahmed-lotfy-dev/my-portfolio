@@ -72,3 +72,11 @@ drizzle/
 # Development/Build artifacts
 .beads/
 .gemini/
+# Extra local/build-only folders
+certs/
+db_backup/
+docs/
+specs/
+.opencode/
+.specify/
+.posthog-events.json
