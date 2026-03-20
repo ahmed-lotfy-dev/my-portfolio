@@ -8,9 +8,6 @@ import { authClient } from "@/src/lib/auth-client";
 import Image from "next/image";
 import ThemeToggle from "@/src/components/shared/ThemeToggle";
 import LanguageSwitcher from "@/src/components/i18n/LanguageSwitcher";
-import { useTheme } from "next-themes";
-import LogoLight from "@/public/Logo-Blue-Dot.png";
-import LogoDark from "@/public/Logo-Blue-Dot.png";
 import { useLocale, useTranslations } from "next-intl";
 import { Button } from "@/src/components/ui/button";
 import { SignOutButton } from "@/src/components/features/auth/SignOutButton";
@@ -36,8 +33,6 @@ const navLinks = [
 export function Nav({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
-  const { resolvedTheme } = useTheme();
-  const [mounted, setMounted] = useState(false);
   const [open, setOpen] = useState(false);
   const { data: session } = authClient.useSession();
 
@@ -53,20 +48,17 @@ export function Nav({ children }: { children: React.ReactNode }) {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
   if (pathname.includes("dashboard")) return null;
 
   const Logo = (
     <Link href="/" className="flex items-center gap-2">
       <Image
-        src={!mounted || resolvedTheme === "light" ? LogoLight : LogoDark}
+        src="/as-mark.svg"
         width={40}
         height={40}
-        alt="Logo"
+        alt="AS Logo"
         className="object-contain"
+        priority
       />
       <span className="font-bold text-xl tracking-tight hidden sm:block">
         Ahmed Lotfy
@@ -134,10 +126,10 @@ export function Nav({ children }: { children: React.ReactNode }) {
               <SheetHeader className="text-left border-b pb-4 mb-4">
                 <SheetTitle className="flex items-center gap-2">
                   <Image
-                    src={!mounted || resolvedTheme === "light" ? LogoLight : LogoDark}
+                    src="/as-mark.svg"
                     width={32}
                     height={32}
-                    alt="Logo"
+                    alt="AS Logo"
                   />
                   <span>Ahmed Lotfy</span>
                 </SheetTitle>
