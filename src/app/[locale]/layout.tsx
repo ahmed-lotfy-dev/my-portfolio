@@ -10,8 +10,7 @@ import { Nav } from "@/src/components/features/homepage/Nav";
 import type { Metadata, Viewport } from "next";
 import { getMessages, setRequestLocale } from "next-intl/server";
 
-import { inter, poppins, sora, tajawal } from "@/src/components/ui/fonts";
-import { ThemeProvider } from "next-themes";
+import { inter, poppins, sora, tajawal, playfair } from "@/src/components/ui/fonts";
 const Footer = dynamic(() => import("@/src/components/features/homepage/Footer"), {
   ssr: true,
 });
@@ -19,6 +18,7 @@ import { PersonSchema } from "@/src/components/seo/PersonSchema";
 import PostHogClient from "@/src/components/shared/PostHogClient";
 import ServerActionRecovery from "@/src/components/shared/ServerActionRecovery";
 import { LazyMotion, domAnimation } from "motion/react";
+import { Toaster } from "@/src/components/ui/sonner";
 
 export const revalidate = 3600;
 
@@ -34,13 +34,13 @@ export const metadata: Metadata = {
   manifest: "/manifest.webmanifest",
   metadataBase: new URL("https://ahmedlotfy.site"),
   title: {
-    default: "Ahmed Lotfy – Full-Stack Software Engineer",
-    template: "%s | Ahmed Lotfy",
+    default: "Ahmed Shoman – Full-Stack Software Engineer",
+    template: "%s | Ahmed Shoman",
   },
   description:
-    "Portfolio of Ahmed Lotfy – Full-Stack Software Engineer. I build responsive and scalable web applications.",
+    "Portfolio of Ahmed Shoman – Full-Stack Software Engineer. I build responsive and scalable web applications.",
   keywords: [
-    "Ahmed Lotfy",
+    "Ahmed Shoman",
     "Full-Stack Developer",
     "Software Engineer",
     "Portfolio",
@@ -49,28 +49,28 @@ export const metadata: Metadata = {
     "Next.js",
     "Node.js",
   ],
-  authors: [{ name: "Ahmed Lotfy", url: "https://ahmedlotfy.site" }],
+  authors: [{ name: "Ahmed Shoman", url: "https://ahmedlotfy.site" }],
   openGraph: {
     type: "website",
     url: "https://ahmedlotfy.site",
-    title: "Ahmed Lotfy – Full-Stack Software Engineer",
+    title: "Ahmed Shoman – Full-Stack Software Engineer",
     description:
-      "Portfolio of Ahmed Lotfy – Full-Stack Software Engineer. I build responsive and scalable web applications.",
-    siteName: "Ahmed Lotfy Portfolio",
+      "Portfolio of Ahmed Shoman – Full-Stack Software Engineer. I build responsive and scalable web applications.",
+    siteName: "Ahmed Shoman Portfolio",
     images: [
       {
         url: "https://ahmedlotfy.site/og-image.png",
         width: 1200,
         height: 630,
-        alt: "Ahmed Lotfy – Full-Stack Software Engineer",
+        alt: "Ahmed Shoman – Full-Stack Software Engineer",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Ahmed Lotfy – Full-Stack Software Engineer",
+    title: "Ahmed Shoman – Full-Stack Software Engineer",
     description:
-      "Portfolio of Ahmed Lotfy – Full-Stack Software Engineer. I build responsive and scalable web applications.",
+      "Portfolio of Ahmed Shoman – Full-Stack Software Engineer. I build responsive and scalable web applications.",
     images: ["https://ahmedlotfy.site/og-image.png"],
   },
   robots: {
@@ -116,46 +116,45 @@ export default async function LocaleLayout({ children, params }: Props) {
       lang={locale}
       dir={isArabic ? "rtl" : "ltr"}
       suppressHydrationWarning
-      className="scroll-smooth max-h-svh "
+      className="dark scroll-smooth max-h-svh"
     >
       <head>
         <link rel="dns-prefetch" href="https://images.ahmedlotfy.site" />
         <PersonSchema />
       </head>
       <body
-        className={`${inter.variable} ${poppins.variable} ${sora.variable} ${isArabic ? tajawal.variable : ""
+        className={`${inter.variable} ${poppins.variable} ${sora.variable} ${playfair.variable} ${isArabic ? tajawal.variable : ""
           } antialiased font-main`}
         suppressHydrationWarning
       >
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-          <NextIntlClientProvider messages={messages}>
-            <LazyMotion features={domAnimation} strict>
-              <ServerActionRecovery />
-              <ErrorBoundary>
-                {isPostHogEnabled ? (
-                  <PostHogClient
-                    apiKey={posthogApiKey}
-                    ingestHost={posthogIngestHost}
-                    uiHost={posthogUiHost}
-                  >
-                    <div className="relative">
-                      <Nav />
-                      {children}
-                      <Footer />
-                    </div>
-                  </PostHogClient>
-                ) : (
+        <NextIntlClientProvider messages={messages}>
+          <LazyMotion features={domAnimation} strict>
+            <ServerActionRecovery />
+            <ErrorBoundary>
+              {isPostHogEnabled ? (
+                <PostHogClient
+                  apiKey={posthogApiKey}
+                  ingestHost={posthogIngestHost}
+                  uiHost={posthogUiHost}
+                >
                   <div className="relative">
                     <Nav />
                     {children}
                     <Footer />
                   </div>
+                </PostHogClient>
+              ) : (
+                <div className="relative">
+                  <Nav />
+                  {children}
+                    <Footer />
+                  </div>
                 )}
               </ErrorBoundary>
             </LazyMotion>
+            <Toaster richColors closeButton position="top-center" />
           </NextIntlClientProvider>
-        </ThemeProvider>
-      </body>
+        </body>
     </html>
   );
 }

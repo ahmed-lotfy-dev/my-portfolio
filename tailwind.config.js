@@ -98,9 +98,10 @@ export default {
         colors: "background-color, color",
       },
       fontFamily: {
-        main: "var(--main-font)",
-        heading: "var(--heading-font)",
-        arabic: "var(--arabic-font)",
+        main: "var(--font-inter)",
+        heading: "var(--font-playfair), var(--font-poppins)",
+        arabic: "var(--font-tajawal)",
+        serif: ["var(--font-playfair)", "serif"],
       },
       typography: (theme) => ({
         DEFAULT: {

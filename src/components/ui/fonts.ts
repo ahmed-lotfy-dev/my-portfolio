@@ -1,4 +1,10 @@
-import { Inter, Poppins, Sora, Tajawal } from "next/font/google";
+import { Inter, Poppins, Sora, Tajawal, Playfair_Display } from "next/font/google";
+
+export const playfair = Playfair_Display({
+  subsets: ["latin"],
+  variable: "--font-playfair",
+  display: "swap",
+});
 
 // Main body font - preloaded for better LCP
 export const inter = Inter({

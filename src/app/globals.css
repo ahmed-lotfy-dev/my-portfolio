@@ -1,72 +1,99 @@
-/* === FONT IMPORTS === */
 @import "tailwindcss";
 
 @custom-variant dark (&:is(.dark *));
 
-/* === THEME DEFINITIONS === */
 @theme {
-  /* Use Next.js optimized font variables instead of external imports */
-  --font-heading: var(--font-poppins), sans-serif;
+  --font-heading: var(--font-playfair), var(--font-poppins), sans-serif;
   --font-body: var(--font-inter), sans-serif;
   --font-arabic: var(--font-tajawal), sans-serif;
   --radius: 1rem;
 
-  /* Brand colors */
-  --color-primary: hsl(215 100% 45%);
-  --color-primary-foreground: hsl(0 0% 100%);
-  --color-secondary: hsl(200 100% 45%);
-  --color-secondary-foreground: hsl(215 60% 12%);
-  --color-destructive: hsl(0 84% 60%);
+  --color-primary: hsl(43 74% 62%);
+  --color-primary-light: hsl(45 72% 72%);
+  --color-primary-dark: hsl(39 62% 46%);
+  --color-primary-foreground: hsl(24 24% 8%);
+  --color-secondary: hsl(28 18% 14%);
+  --color-secondary-foreground: hsl(42 45% 86%);
+  --color-accent: hsl(36 28% 18%);
+  --color-accent-foreground: hsl(42 52% 88%);
+  --color-destructive: hsl(0 68% 56%);
+  --color-destructive-foreground: hsl(0 0% 100%);
+  --color-success: hsl(145 42% 48%);
+  --color-error: hsl(0 68% 56%);
+  --color-info: hsl(42 68% 58%);
+  --color-warning: hsl(38 78% 58%);
 
-  /* Base color variables */
-  --color-background: hsl(220 30% 96%);
-  /* Subtle cool gray for futuristic feel */
-  --color-foreground: hsl(215 60% 12%);
-  --color-card: hsl(0 0% 100%);
-  --color-card-foreground: hsl(215 60% 12%);
-  --color-muted: hsl(210 40% 96%);
-  /* Optimized Muted Text for Readability (WCAG AA) */
-  --color-muted-foreground: hsl(215 25% 40%);
-  --color-border: hsl(214 32% 91%);
-  --color-ring: hsl(215 100% 45%);
-  --color-popover: hsl(0 0% 100%);
-  --color-popover-foreground: hsl(215 60% 12%);
-  /* === Tell Tailwind to use these for bg/fg utilities === */
+  --color-background: hsl(24 14% 7%);
+  --color-foreground: hsl(42 34% 92%);
+  --color-card: hsl(28 15% 10%);
+  --color-card-foreground: hsl(42 34% 92%);
+  --color-popover: hsl(28 16% 9%);
+  --color-popover-foreground: hsl(42 34% 92%);
+  --color-muted: hsl(28 12% 14%);
+  --color-muted-foreground: hsl(40 16% 68%);
+  --color-border: hsl(34 18% 20%);
+  --color-input: hsl(34 18% 20%);
+  --color-ring: hsl(43 74% 62%);
+
   --color-bg-background: var(--color-background);
   --color-bg-foreground: var(--color-foreground);
   --color-bg-card: var(--color-card);
   --color-bg-muted: var(--color-muted);
   --color-text-foreground: var(--color-foreground);
   --color-border-border: var(--color-border);
+
+  --background: 24 14% 7%;
+  --foreground: 42 34% 92%;
+  --card: 28 15% 10%;
+  --card-foreground: 42 34% 92%;
+  --popover: 28 16% 9%;
+  --popover-foreground: 42 34% 92%;
+  --primary: 43 74% 62%;
+  --primary-foreground: 24 24% 8%;
+  --secondary: 28 18% 14%;
+  --secondary-foreground: 42 45% 86%;
+  --muted: 28 12% 14%;
+  --muted-foreground: 40 16% 68%;
+  --accent: 36 28% 18%;
+  --accent-foreground: 42 52% 88%;
+  --destructive: 0 68% 56%;
+  --destructive-foreground: 0 0% 100%;
+  --border: 34 18% 20%;
+  --input: 34 18% 20%;
+  --ring: 43 74% 62%;
 }
 
 @layer base {
+  :root,
   .dark {
-    --color-background: hsl(222 47% 11%);
-    --color-foreground: hsl(215 60% 98%);
-    --color-card: hsl(222 47% 13%);
-    /* Slightly lighter than bg */
-    --color-card-foreground: hsl(215 60% 98%);
-    --color-popover: hsl(222 47% 11%);
-    --color-popover-foreground: hsl(215 60% 98%);
-    --color-primary: hsl(215 100% 60%);
-    /* Button Text: White in Dark Mode (as requested) */
-    --color-primary-foreground: hsl(0 0% 100%);
-    --color-accent: hsl(217 33% 17%);
-    --color-accent-foreground: hsl(215 60% 98%);
-    --color-border: hsl(217 33% 20%);
-    --color-muted: hsl(217 33% 17%);
-    /* Optimized Dark Muted Text */
-    --color-muted-foreground: hsl(215 30% 70%);
+    --sidebar: hsl(28 16% 9%);
+    --sidebar-foreground: hsl(42 34% 92%);
+    --sidebar-primary: hsl(43 74% 62%);
+    --sidebar-primary-foreground: hsl(24 24% 8%);
+    --sidebar-accent: hsl(34 18% 16%);
+    --sidebar-accent-foreground: hsl(42 34% 92%);
+    --sidebar-border: hsl(34 18% 20%);
+    --sidebar-ring: hsl(43 74% 62%);
   }
-}
 
-/* === BASE STYLES === */
-@layer base {
   html {
     font-family: var(--font-body);
     color: var(--color-foreground);
-    background-color: var(--color-background, white);
+    background:
+      radial-gradient(circle at top, hsl(43 74% 62% / 0.08), transparent 36%),
+      linear-gradient(180deg, hsl(28 18% 10%), hsl(24 14% 7%) 28%);
+    background-color: var(--color-background);
+  }
+
+  body {
+    margin: 0;
+    min-height: 100vh;
+    background: transparent;
+    color: hsl(var(--foreground));
+  }
+
+  * {
+    @apply border-border outline-ring/50;
   }
 
   h1,
@@ -89,15 +116,14 @@
   }
 
   a:hover {
-    color: color-mix(in srgb, var(--color-primary) 80%, white);
+    color: var(--color-primary-light);
   }
 
-  body {
-    margin: 0;
-    min-height: 100vh;
+  ::selection {
+    background: hsl(var(--primary) / 0.22);
+    color: hsl(var(--foreground));
   }
 
-  /* GPU acceleration for animations */
   .animate-pulse,
   .animate-spin,
   [data-motion] {
@@ -105,34 +131,11 @@
     transform: translateZ(0);
   }
 
-  /* Optimize compositing for frequently animated elements */
   @media (prefers-reduced-motion: no-preference) {
     * {
       scroll-behavior: smooth;
     }
   }
-}
-
-:root {
-  --sidebar: hsl(0 0% 98%);
-  --sidebar-foreground: hsl(240 5.3% 26.1%);
-  --sidebar-primary: hsl(240 5.9% 10%);
-  --sidebar-primary-foreground: hsl(0 0% 98%);
-  --sidebar-accent: hsl(240 4.8% 95.9%);
-  --sidebar-accent-foreground: hsl(240 5.9% 10%);
-  --sidebar-border: hsl(220 13% 91%);
-  --sidebar-ring: hsl(217.2 91.2% 59.8%);
-}
-
-.dark {
-  --sidebar: hsl(240 5.9% 10%);
-  --sidebar-foreground: hsl(240 4.8% 95.9%);
-  --sidebar-primary: hsl(224.3 76.3% 48%);
-  --sidebar-primary-foreground: hsl(0 0% 100%);
-  --sidebar-accent: hsl(240 3.7% 15.9%);
-  --sidebar-accent-foreground: hsl(240 4.8% 95.9%);
-  --sidebar-border: hsl(240 3.7% 15.9%);
-  --sidebar-ring: hsl(217.2 91.2% 59.8%);
 }
 
 @theme inline {
@@ -169,13 +172,30 @@
 }
 
 @layer base {
-  * {
-    @apply border-border outline-ring/50;
-  }
-
   body {
     @apply bg-background text-foreground;
   }
 }
 
-@layer components {}
+@layer components {
+  .glass-premium {
+    @apply border border-primary/10 bg-card/72 shadow-2xl backdrop-blur-xl;
+  }
+
+  .text-gold {
+    @apply text-primary;
+  }
+
+  .bg-gold {
+    @apply bg-primary text-primary-foreground;
+  }
+
+  .gold-sheen {
+    background-image: linear-gradient(
+      135deg,
+      hsl(var(--primary) / 0.2),
+      transparent 35%,
+      hsl(var(--primary) / 0.08)
+    );
+  }
+}

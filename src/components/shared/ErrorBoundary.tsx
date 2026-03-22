@@ -56,16 +56,16 @@ export class ErrorBoundary extends Component<
 
       return (
         <div className="flex min-h-screen items-center justify-center p-4">
-          <div className="max-w-md text-center">
-            <h2 className="mb-4 text-2xl font-bold text-red-600">
+          <div className="max-w-md rounded-3xl border border-border bg-card/80 p-8 text-center shadow-xl backdrop-blur-xl">
+            <h2 className="mb-4 text-2xl font-bold text-destructive">
               Something went wrong
             </h2>
-            <p className="mb-6 text-gray-600 dark:text-gray-400">
+            <p className="mb-6 text-muted-foreground">
               We're sorry for the inconvenience. Please try refreshing the page.
             </p>
             <button
               onClick={() => window.location.reload()}
-              className="rounded-md bg-primary px-4 py-2 text-white hover:bg-primary/90"
+              className="rounded-md bg-primary px-4 py-2 text-primary-foreground hover:bg-primary/90"
             >
               Refresh Page
             </button>
