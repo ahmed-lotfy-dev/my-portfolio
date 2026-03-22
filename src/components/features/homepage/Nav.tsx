@@ -21,30 +21,30 @@ const UserButton = dynamic(
 );
 
 const navContainerVariants: Variants = {
-  hidden: { opacity: 0, y: -50 },
+  hidden: { opacity: 0, y: -15 },
   visible: {
     opacity: 1,
     y: 0,
     transition: {
       type: "spring",
-      stiffness: 80,
-      damping: 20,
-      staggerChildren: 0.15,
-      delayChildren: 0.3,
+      stiffness: 150,
+      damping: 24,
+      staggerChildren: 0.08,
+      delayChildren: 0.2,
     },
   },
 };
 
 const navItemVariants: Variants = {
-  hidden: { opacity: 0, y: -30, filter: "blur(12px)" },
+  hidden: { opacity: 0, y: -10, scale: 0.98 },
   visible: {
     opacity: 1,
     y: 0,
-    filter: "blur(0px)",
+    scale: 1,
     transition: {
       type: "spring",
-      stiffness: 100,
-      damping: 18,
+      stiffness: 180,
+      damping: 22,
     },
   },
 };
