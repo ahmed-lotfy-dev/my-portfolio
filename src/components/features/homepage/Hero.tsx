@@ -81,7 +81,7 @@ export default function Hero({ locale }: { locale: string }) {
       <section
         className="relative flex flex-1 items-center border-b border-border/40 px-4 pb-20 pt-10 md:pt-16"
       >
-        <div className="container relative z-10 mx-auto px-4 md:px-6">
+        <div className="container relative z-10 mx-auto max-w-7xl px-4 md:px-6">
           <m.div
             className={cn("flex flex-col items-center gap-8 lg:flex-row lg:gap-16", isRTL ? "lg:flex-row-reverse" : "")}
             variants={containerVariants}
@@ -102,7 +102,7 @@ export default function Hero({ locale }: { locale: string }) {
 
               <m.h1
                 variants={itemVariants}
-                className="text-balance font-heading text-[clamp(5rem,15vw,12rem)] font-black leading-[0.8] tracking-tighter text-white drop-shadow-2xl uppercase"
+                className="text-balance font-heading text-[clamp(3.5rem,10vw,7.5rem)] font-black leading-[0.9] tracking-tighter text-white drop-shadow-2xl uppercase"
               >
                 {t("name")}
               </m.h1>
