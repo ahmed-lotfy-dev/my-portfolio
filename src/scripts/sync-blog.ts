@@ -1,5 +1,5 @@
 import "dotenv/config";
-import { syncBlogPosts } from "../app/actions/postsActions";
+import { syncBlogPosts } from "../app/actions/posts/mutations";
 
 /**
  * CLI Script for Manual Blog Sync

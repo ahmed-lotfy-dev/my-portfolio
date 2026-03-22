@@ -12,12 +12,12 @@ import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { Input } from "@/src/components/ui/input";
 import { Label } from "@/src/components/ui/label";
-import { addCertificateAction } from "@/src/app/actions/certificatesActions";
+import { addCertificateAction } from "@/src/app/actions/certificates/mutations";
 import { notify } from "@/src/lib/utils/toast";
 import Submit from "@/src/components/ui/formSubmitBtn";
 import { Upload } from "@/src/components/features/dashboard/uploads/Upload";
 import { authClient } from "@/src/lib/auth-client";
-import { motion, AnimatePresence } from "motion/react";
+import { m, AnimatePresence } from "motion/react";
 import { Plus, X } from "lucide-react";
 import { cn } from "@/src/lib/utils";
 import { Switch } from "@/src/components/ui/switch";
@@ -64,14 +64,14 @@ function AddCertificateComponent() {
     <div className="flex justify-center items-center">
       <Dialog open={open} onOpenChange={setOpen}>
         <DialogTrigger asChild>
-          <motion.button
+          <m.button
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             className="bg-primary text-primary-foreground shadow-lg shadow-primary/20 h-10 py-2 px-6 inline-flex items-center justify-center rounded-md text-sm font-medium transition-all hover:shadow-xl hover:shadow-primary/30"
           >
             <Plus className="mr-2 h-4 w-4" />
             {t("add-title")}
-          </motion.button>
+          </m.button>
         </DialogTrigger>
 
         <DialogContent className="max-w-[700px] overflow-hidden p-0 bg-zinc-950 border-zinc-800 shadow-2xl sm:rounded-xl">
@@ -239,7 +239,7 @@ function AddCertificateComponent() {
 
                 <AnimatePresence>
                   {imageUrl && (
-                    <motion.div
+                    <m.div
                       initial={{ opacity: 0, scale: 0.9 }}
                       animate={{ opacity: 1, scale: 1 }}
                       exit={{ opacity: 0, scale: 0.9 }}
@@ -258,7 +258,7 @@ function AddCertificateComponent() {
                       >
                         <X className="h-4 w-4" />
                       </button>
-                    </motion.div>
+                    </m.div>
                   )}
                 </AnimatePresence>
                 <Input type="hidden" name="imageLink" value={imageUrl} />

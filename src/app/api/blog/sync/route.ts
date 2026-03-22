@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { syncBlogPosts } from "@/src/app/actions/postsActions";
+import { syncBlogPosts } from "@/src/app/actions/posts/mutations";
 import crypto from "crypto";
 
 /**

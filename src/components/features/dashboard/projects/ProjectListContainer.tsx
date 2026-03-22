@@ -1,4 +1,4 @@
-import { getAllProjects } from "@/src/app/actions/projectsActions";
+import { getAllProjects } from "@/src/app/actions/projects/queries";
 import ProjectList from "./ProjectList";
 
 export default async function ProjectListContainer() {

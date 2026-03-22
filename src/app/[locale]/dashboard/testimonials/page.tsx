@@ -1,4 +1,4 @@
-import { getTestimonials } from "@/src/app/actions/testimonialsActions";
+import { getTestimonials } from "@/src/app/actions/testimonials/queries";
 import TestimonialList from "@/src/components/features/dashboard/testimonials/TestimonialList";
 import { auth } from "@/src/lib/auth";
 import { headers } from "next/headers";

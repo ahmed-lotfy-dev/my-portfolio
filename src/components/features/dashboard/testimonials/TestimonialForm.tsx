@@ -12,7 +12,7 @@ import Link from "next/link";
 import {
   createTestimonial,
   updateTestimonial,
-} from "@/src/app/actions/testimonialsActions";
+} from "@/src/app/actions/testimonials/mutations";
 
 const testimonialSchema = z.object({
   name: z.string().min(1, "Name is required"),

@@ -6,15 +6,15 @@ import { authClient } from "@/src/lib/auth-client";
 import {
   Reorder,
   useDragControls,
-  motion,
+  m,
   AnimatePresence,
 } from "motion/react";
 import {
   deleteProjectAction,
   updateProjectOrder,
-} from "@/src/app/actions/projectsActions";
+} from "@/src/app/actions/projects/mutations";
 import { Button } from "@/src/components/ui/button";
-import { ImagePreviewer } from "@/src/components/ui/ImagePreviewer";
+import { ProjectThumbnail } from "./ProjectThumbnail";
 import { useLocale, useTranslations } from "next-intl";
 import { notify } from "@/src/lib/utils/toast";
 import { getProjectCoverImage } from "@/src/lib/constants/images";
@@ -111,7 +111,7 @@ export default function ProjectList({ allProjects }: any) {
           <div className="flex items-center gap-3">
             <AnimatePresence>
               {hasOrderChanged && (
-                <motion.button
+                <m.button
                   initial={{ opacity: 0, scale: 0.9 }}
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0, scale: 0.9 }}
@@ -125,7 +125,7 @@ export default function ProjectList({ allProjects }: any) {
                     <Save className="h-4 w-4" />
                   )}
                   Save Order
-                </motion.button>
+                </m.button>
               )}
             </AnimatePresence>
             <Link
@@ -176,10 +176,10 @@ export default function ProjectList({ allProjects }: any) {
 
               {/* Image */}
               <div className="col-span-2">
-                <ImagePreviewer
-                  images={getProjectCoverImage(proj.coverImage)}
+                <ProjectThumbnail
+                  coverImage={proj.coverImage}
                   title={locale === "ar" ? proj.title_ar : proj.title_en}
-                  className="h-16 w-24 rounded-lg ring-1 ring-border/50 hover:ring-primary/50 transition-all mb-0"
+                  className="h-16 w-24"
                 />
               </div>
 

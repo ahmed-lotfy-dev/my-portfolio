@@ -1,4 +1,4 @@
-import { addProjectAction } from "@/src/app/actions/projectsActions";
+import { addProjectAction } from "@/src/app/actions/projects/mutations";
 import ProjectForm from "@/src/components/features/dashboard/projects/ProjectForm";
 import { auth } from "@/src/lib/auth";
 import { headers } from "next/headers";

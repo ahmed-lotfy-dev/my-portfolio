@@ -2,11 +2,11 @@
 
 import Link from "next/link";
 import { authClient } from "@/src/lib/auth-client";
-import { deleteCertificateAction } from "@/src/app/actions/certificatesActions";
+import { deleteCertificateAction } from "@/src/app/actions/certificates/mutations";
 import { EditCertificate } from "./EditCertificate";
 import { ImagePreviewer } from "@/src/components/ui/ImagePreviewer";
 import { useLocale, useTranslations } from "next-intl";
-import { motion, AnimatePresence } from "motion/react";
+import { m, AnimatePresence } from "motion/react";
 import { ExternalLink, Trash2, Award, FileText } from "lucide-react";
 import { AddCertificateComponent } from "./AddCertificate";
 import Image from "next/image";
@@ -64,7 +64,7 @@ function CertificateList({ allCertificates }: any) {
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
         <AnimatePresence>
           {allCertificates?.map((cert: any, index: number) => (
-            <motion.div
+            <m.div
               key={cert.id}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -161,7 +161,7 @@ function CertificateList({ allCertificates }: any) {
                   </div>
                 </div>
               </div>
-            </motion.div>
+            </m.div>
           ))}
         </AnimatePresence>
       </div>

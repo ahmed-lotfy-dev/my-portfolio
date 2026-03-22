@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { motion, AnimatePresence } from "motion/react";
+import { m, AnimatePresence } from "motion/react";
 import {
   IoHome,
   IoCode,
@@ -19,7 +19,6 @@ import { cn } from "@/src/lib/utils";
 import { useTranslations, useLocale } from "next-intl";
 import UserButton from "./UserButton";
 import LanguageSwitcher from "@/src/components/i18n/LanguageSwitcher";
-import ThemeToggle from "@/src/components/shared/ThemeToggle";
 import { useState, useEffect } from "react";
 import { SignOutButton } from "@/src/components/features/auth/SignOutButton";
 import { authClient } from "@/src/lib/auth-client";
@@ -127,7 +126,7 @@ export default function Aside({ user }: { user: any }) {
               >
                 <AnimatePresence mode="wait">
                   {isActive && (
-                    <motion.div
+                    <m.div
                       layoutId="activeNav"
                       className="absolute inset-0 rounded-xl bg-primary/10 border border-primary/20 shadow-[0_0_20px_-5px_rgba(var(--primary),0.3)]"
                       initial={{ opacity: 0 }}
@@ -186,7 +185,6 @@ export default function Aside({ user }: { user: any }) {
               isExpanded ? "" : "flex-col"
             )}
           >
-            <ThemeToggle />
             <LanguageSwitcher />
             <SignOutButton
               className="p-2 rounded-md hover:bg-muted text-white hover:text-destructive transition-colors cursor-pointer h-9 w-9"

@@ -141,6 +141,8 @@ export const projects = pgTable("projects", {
   displayOrder: integer("display_order").default(0),
   completedAt: timestamp("completed_at"),
   views: integer("views").default(0).notNull(),
+  embedUrl: text("embed_url"),
+  featureVideo: text("feature_video"),
   createdAt: timestamp("created_at").defaultNow().notNull(),
   updatedAt: timestamp("updated_at")
     .defaultNow()

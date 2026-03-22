@@ -1,8 +1,9 @@
+
 "use server";
 
 import { db } from "@/src/db/index";
 import { experiences } from "@/src/db/schema";
-import { eq, desc, and } from "drizzle-orm";
+import { eq } from "drizzle-orm";
 import { revalidatePath } from "next/cache";
 import { requireAdmin } from "@/src/lib/utils/authMiddleware";
 
@@ -10,17 +11,6 @@ async function checkAdmin() {
   const authResult = await requireAdmin("Unauthorized");
   if (!authResult.isAuthorized) throw new Error(authResult.message);
   return authResult.user;
-}
-
-export async function getExperiences(publishedOnly = false) {
-  if (publishedOnly) {
-    return await db
-      .select()
-      .from(experiences)
-      .where(eq(experiences.published, true))
-      .orderBy(desc(experiences.displayOrder));
-  }
-  return await db.select().from(experiences).orderBy(desc(experiences.displayOrder));
 }
 
 export async function createExperience(data: any) {
@@ -48,9 +38,4 @@ export async function deleteExperience(id: string) {
   await db.delete(experiences).where(eq(experiences.id, id));
   revalidatePath("/[locale]/dashboard/experiences", "layout");
   revalidatePath("/[locale]", "layout");
-}
-
-export async function getExperienceById(id: string) {
-  const result = await db.select().from(experiences).where(eq(experiences.id, id));
-  return result[0];
 }

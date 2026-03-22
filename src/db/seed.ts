@@ -23,7 +23,7 @@ async function seed() {
       body: {
         email: "elshenawy19@gmail.com",
         password: "ahmedlotfy",
-        name: "Ahmed Lotfy",
+        name: "Ahmed Shoman",
       },
     });
     // Set the user's role to admin

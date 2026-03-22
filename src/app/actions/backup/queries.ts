@@ -1,4 +1,5 @@
-'use server'
+
+"use server";
 
 import { db } from "@/src/db";
 import { backupLogs } from "@/src/db/schema";

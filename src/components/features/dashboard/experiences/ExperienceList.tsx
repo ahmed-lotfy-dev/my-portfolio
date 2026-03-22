@@ -4,7 +4,7 @@ import { useTranslations } from "next-intl";
 import { IoAdd, IoPencil, IoTrash, IoEyeOff, IoBriefcase } from "react-icons/io5";
 import Link from "next/link";
 import { useLocale } from "next-intl";
-import { deleteExperience } from "@/src/app/actions/experienceActions";
+import { deleteExperience } from "@/src/app/actions/experiences/mutations";
 import { toast } from "sonner";
 import { useState } from "react";
 import {

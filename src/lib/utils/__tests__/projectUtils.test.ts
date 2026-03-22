@@ -54,5 +54,11 @@ describe("shouldShowApk", () => {
       expect(shouldShowApk(["api"])).toBe(false);
       expect(shouldShowApk(["design", "prototype"])).toBe(false);
     });
+
+    it("should not treat WhatsApp API as a mobile “app” category", () => {
+      expect(shouldShowApk(["Next.js 14", "WhatsApp API", "TypeScript"])).toBe(
+        false,
+      );
+    });
   });
 });

@@ -9,7 +9,7 @@ import { Label } from "@/src/components/ui/label";
 import { Textarea } from "@/src/components/ui/textarea";
 import { Switch } from "@/src/components/ui/switch";
 import { Card, CardContent, CardHeader, CardTitle } from "@/src/components/ui/card";
-import { updateSinglePosts } from "@/src/app/actions/postsActions";
+import { updateSinglePosts } from "@/src/app/actions/posts/mutations";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 

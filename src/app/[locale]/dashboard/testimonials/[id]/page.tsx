@@ -1,4 +1,4 @@
-import { getTestimonialById } from "@/src/app/actions/testimonialsActions";
+import { getTestimonialById } from "@/src/app/actions/testimonials/queries";
 import TestimonialForm from "@/src/components/features/dashboard/testimonials/TestimonialForm";
 import { notFound } from "next/navigation";
 

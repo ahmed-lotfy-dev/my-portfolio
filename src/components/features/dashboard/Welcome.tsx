@@ -1,7 +1,7 @@
 "use client";
 
 import { useTranslations } from "next-intl";
-import { motion } from "motion/react";
+import { m } from "motion/react";
 import { authClient } from "@/src/lib/auth-client";
 import { use } from "react";
 
@@ -13,24 +13,24 @@ export default function Welcome() {
   const isAdmin = user?.role === "ADMIN";
 
   return (
-    <motion.div
+    <m.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
-      className="w-full relative overflow-hidden rounded-xl  border border-blue p-8  shadow-1xl"
+      className="relative w-full overflow-hidden rounded-xl border border-border bg-card/70 p-8 shadow-xl"
     >
 
       <div className="relative z-10 flex flex-col gap-4">
-        <motion.h2
+        <m.h2
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ delay: 0.2 }}
           className="text-4xl font-bold text-foreground tracking-tight"
         >
           {t("greeting", { name: user?.name || t("guest") })}
-        </motion.h2>
+        </m.h2>
 
-        <motion.div
+        <m.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.4 }}
@@ -44,8 +44,8 @@ export default function Welcome() {
           ) : (
             <p>{t("user_message")}</p>
           )}
-        </motion.div>
+        </m.div>
       </div>
-    </motion.div>
+    </m.div>
   );
 }

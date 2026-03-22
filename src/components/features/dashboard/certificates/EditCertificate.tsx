@@ -3,7 +3,7 @@ import { ChangeEvent, useRef, useState, useActionState, useEffect } from "react"
 
 import { Input } from "@/src/components/ui/input";
 import { Label } from "@/src/components/ui/label";
-import { editCertificateAction } from "@/src/app/actions/certificatesActions";
+import { editCertificateAction } from "@/src/app/actions/certificates/mutations";
 import Image from "next/image";
 import { notify } from "@/src/lib/utils/toast";
 
@@ -20,7 +20,7 @@ import {
 import { Upload } from "@/src/components/features/dashboard/uploads/Upload";
 import { Pencil, X } from "lucide-react";
 import { authClient } from "@/src/lib/auth-client";
-import { motion, AnimatePresence } from "motion/react";
+import { m, AnimatePresence } from "motion/react";
 import { cn } from "@/src/lib/utils";
 import { useRouter } from "next/navigation";
 import { Switch } from "@/src/components/ui/switch";
@@ -68,13 +68,13 @@ function EditCertificate({ EditedObject }: any) {
     <div key={editedCert.id} className="flex justify-center items-center">
       <Dialog open={open} onOpenChange={setOpen}>
         <DialogTrigger asChild>
-          <motion.button
+          <m.button
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
             className="p-2 rounded-full bg-primary/10 text-primary hover:bg-primary/20 transition-colors"
           >
             <Pencil size={16} />
-          </motion.button>
+          </m.button>
         </DialogTrigger>
         <DialogClose ref={closeButtonRef} className="hidden" />
 
@@ -233,7 +233,7 @@ function EditCertificate({ EditedObject }: any) {
 
                 <AnimatePresence>
                   {(editedCert.imageLink || imageUrl) && (
-                    <motion.div
+                    <m.div
                       initial={{ opacity: 0, scale: 0.9 }}
                       animate={{ opacity: 1, scale: 1 }}
                       exit={{ opacity: 0, scale: 0.9 }}
@@ -245,7 +245,7 @@ function EditCertificate({ EditedObject }: any) {
                         className="object-cover"
                         alt="Certificate Preview"
                       />
-                    </motion.div>
+                    </m.div>
                   )}
                 </AnimatePresence>
 

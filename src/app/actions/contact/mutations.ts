@@ -1,4 +1,5 @@
-"use server"
+
+"use server";
 
 import { getContactSchema } from "@/src/lib/schemas/contactSchema"
 import { Resend } from "resend"
@@ -12,7 +13,6 @@ export async function contactAction(state: any, formData: FormData) {
   const message = formData.get("message")
   const locale = (formData.get("locale") as string) || "en"
 
-  // Build localized schema dynamically
   const schema = await getContactSchema(locale)
   const result = schema.safeParse({ name, email, subject, message })
 

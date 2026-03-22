@@ -1,4 +1,4 @@
-import { getAllCertificatesForDashboard } from "@/src/app/actions/certificatesActions";
+import { getAllCertificatesForDashboard } from "@/src/app/actions/certificates/queries";
 import { CertificateList } from "./CertificatesList";
 
 export default async function CertificateListContainer() {

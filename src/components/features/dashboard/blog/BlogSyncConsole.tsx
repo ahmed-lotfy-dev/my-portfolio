@@ -20,7 +20,7 @@ import {
   IoPencil,
   IoTrash
 } from "react-icons/io5";
-import { syncBlogPosts, deleteSinglePosts } from "@/src/app/actions/postsActions";
+import { syncBlogPosts, deleteSinglePosts } from "@/src/app/actions/posts/mutations";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 import { authClient } from "@/src/lib/auth-client";

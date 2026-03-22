@@ -1,4 +1,4 @@
-import { getExperiences } from "@/src/app/actions/experienceActions";
+import { getExperiences } from "@/src/app/actions/experiences/queries";
 import ExperienceList from "@/src/components/features/dashboard/experiences/ExperienceList";
 import { auth } from "@/src/lib/auth";
 import { headers } from "next/headers";

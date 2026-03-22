@@ -1,4 +1,4 @@
-import { getExperienceById } from "@/src/app/actions/experienceActions";
+import { getExperienceById } from "@/src/app/actions/experiences/queries";
 import ExperienceForm from "@/src/components/features/dashboard/experiences/ExperienceForm";
 import { notFound } from "next/navigation";
 

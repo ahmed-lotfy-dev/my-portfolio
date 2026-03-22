@@ -1,7 +1,7 @@
 "use client"
 
 import { useTranslations } from "next-intl"
-import { addNewPost } from "@/src/app/actions/postsActions"
+import { addNewPost } from "@/src/app/actions/posts/mutations"
 import Submit from "@/src/components/ui/formSubmitBtn"
 import { Input } from "@/src/components/ui/input"
 import {

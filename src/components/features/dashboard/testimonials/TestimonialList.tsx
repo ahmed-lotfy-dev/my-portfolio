@@ -11,7 +11,7 @@ import {
   IoEyeOff,
   IoChatboxEllipses,
 } from "react-icons/io5";
-import { deleteTestimonial } from "@/src/app/actions/testimonialsActions";
+import { deleteTestimonial } from "@/src/app/actions/testimonials/mutations";
 import {
   AlertDialog,
   AlertDialogAction,

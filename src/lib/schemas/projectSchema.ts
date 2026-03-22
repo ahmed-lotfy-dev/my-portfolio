@@ -18,6 +18,8 @@ export async function getProjectSchema(lang: "en" | "ar") {
     coverImage: z.string().url({ message: t("image_link_required") }).optional().or(z.literal("")),
     images: z.array(z.string()).optional().default([]),
     categories: z.array(z.string()).optional().default([]),
+    embedUrl: z.string().url({ message: "Invalid embed URL" }).optional().or(z.literal("")),
+    featureVideo: z.string().url({ message: "Invalid video URL" }).optional().or(z.literal("")),
   }).refine((data) => {
     // Ensure coverImage is always in the images array (if coverImage is provided)
     if (data.coverImage && data.coverImage !== "" && data.images) {

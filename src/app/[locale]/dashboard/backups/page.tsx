@@ -1,5 +1,5 @@
 import SystemHealth from "@/src/components/features/dashboard/analytics/SystemHealth";
-import { getBackupLogs } from "@/src/app/actions/backupActions";
+import { getBackupLogs } from "@/src/app/actions/backup/queries";
 import { auth } from "@/src/lib/auth";
 import { headers } from "next/headers";
 import { redirect } from "next/navigation";

@@ -1,4 +1,5 @@
-import { editProjectAction, getSingleProject } from "@/src/app/actions/projectsActions";
+import { getSingleProject } from "@/src/app/actions/projects/queries";
+import { editProjectAction } from "@/src/app/actions/projects/mutations";
 import ProjectForm from "@/src/components/features/dashboard/projects/ProjectForm";
 import { notFound } from "next/navigation";
 import { auth } from "@/src/lib/auth";

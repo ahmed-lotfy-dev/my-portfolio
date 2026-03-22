@@ -9,7 +9,7 @@ vi.mock("next-intl/server", () => ({
 
 // Helper function to create valid contact data
 const createValidContact = (overrides = {}): any => ({
-  name: "Ahmed Lotfy",
+  name: "Ahmed Shoman",
   email: "ahmed@example.com",
   subject: "Project Inquiry",
   message: "I would like to discuss a potential project with you.",
@@ -31,7 +31,7 @@ describe("getContactSchema", () => {
     { value: "", shouldPass: false, msg: "name_min" },
     { value: "Ahme", shouldPass: false, msg: "name_min" }, // 4 chars
     { value: "Ahmed", shouldPass: true }, // exactly 5 chars
-    { value: "Ahmed Lotfy", shouldPass: true }, // normal
+    { value: "Ahmed Shoman", shouldPass: true }, // normal
     { value: "a".repeat(80), shouldPass: true }, // exactly 80 chars
     { value: "a".repeat(81), shouldPass: false, msg: "name_max" }, // 81 chars
   ]

@@ -1,4 +1,4 @@
-import { getDbBlogPostBySlug, getDbBlogPostById } from "@/src/app/actions/postsActions";
+import { getDbBlogPostById } from "@/src/app/actions/posts/queries";
 import BlogForm from "@/src/components/features/dashboard/blog/BlogForm";
 import { getTranslations } from "next-intl/server";
 

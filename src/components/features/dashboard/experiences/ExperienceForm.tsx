@@ -10,7 +10,7 @@ import { toast } from "sonner";
 import {
   createExperience,
   updateExperience,
-} from "@/src/app/actions/experienceActions";
+} from "@/src/app/actions/experiences/mutations";
 import { IoArrowBack, IoSave } from "react-icons/io5";
 import Link from "next/link";
 

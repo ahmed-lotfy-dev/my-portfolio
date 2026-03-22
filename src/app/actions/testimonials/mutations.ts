@@ -1,8 +1,9 @@
+
 "use server";
 
 import { db } from "@/src/db";
 import { testimonials } from "@/src/db/schema";
-import { and, desc, eq } from "drizzle-orm";
+import { eq } from "drizzle-orm";
 import { revalidatePath } from "next/cache";
 import { requireAdmin } from "@/src/lib/utils/authMiddleware";
 
@@ -14,34 +15,7 @@ async function checkAdmin() {
 
 function sanitizeDisplayOrder(displayOrder?: number) {
   if (typeof displayOrder !== "number" || Number.isNaN(displayOrder)) return 0;
-  // We clamp to >= 0 anyway, so `Math.floor` matches `Math.trunc` for positive values
-  // and still clamps negatives to 0.
   return Math.max(0, Math.floor(displayOrder));
-}
-
-export async function getTestimonials(publishedOnly = false) {
-  if (publishedOnly) {
-    return db
-      .select()
-      .from(testimonials)
-      .where(and(eq(testimonials.published, true)))
-      .orderBy(desc(testimonials.displayOrder), desc(testimonials.createdAt));
-  }
-
-  return db
-    .select()
-    .from(testimonials)
-    .orderBy(desc(testimonials.displayOrder), desc(testimonials.createdAt));
-}
-
-export async function getTestimonialById(id: string) {
-  const result = await db
-    .select()
-    .from(testimonials)
-    .where(eq(testimonials.id, id))
-    .limit(1);
-
-  return result[0];
 }
 
 export async function createTestimonial(data: {

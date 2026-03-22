@@ -1,4 +1,4 @@
-import { getAllPosts } from "@/src/app/actions/postsActions";
+import { getAllPosts } from "@/src/app/actions/posts/queries";
 import BlogSyncConsole from "@/src/components/features/dashboard/blog/BlogSyncConsole";
 import { useTranslations } from "next-intl";
 import { getTranslations } from "next-intl/server";
