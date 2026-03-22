@@ -45,11 +45,15 @@ const containerVariants = {
 };
 
 const itemVariants = {
-  hidden: { opacity: 0, x: -20 },
+  hidden: { opacity: 0, y: -20 },
   visible: {
     opacity: 1,
-    x: 0,
-    transition: { type: "spring" as const, bounce: 0.3, duration: 0.6 },
+    y: 0,
+    transition: { 
+      type: "spring" as const, 
+      stiffness: 260, 
+      damping: 20 
+    },
   },
 };
 
@@ -80,7 +84,7 @@ export function MobileNav({
 
       <SheetContent
         side={isRTL ? "left" : "right"}
-        className="w-[92vw] max-w-sm border-l border-primary/10 bg-[linear-gradient(180deg,rgba(15,12,10,0.98),rgba(10,8,7,0.98))] p-0 shadow-2xl backdrop-blur-3xl"
+        className="w-[92vw] max-w-sm border-l border-primary/10 bg-[linear-gradient(180deg,rgba(15,12,10,0.98),rgba(10,8,7,0.98))] p-0 shadow-2xl backdrop-blur-3xl [&>button]:hidden"
       >
         <div className="flex flex-col h-full overflow-hidden">
           <SheetHeader className="relative border-b border-primary/10 px-6 py-6 text-left">

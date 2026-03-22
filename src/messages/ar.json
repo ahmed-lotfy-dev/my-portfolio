@@ -95,6 +95,14 @@
       "CSS",
       "JavaScript",
       "React",
+      "React Native",
+      "Next.js",
+      "TypeScript",
+      "Drizzle ORM",
+      "Better Auth",
+      "WhatsApp API",
+      "PostgreSQL",
+      "Cloudflare R2",
       "Node.js",
       "MongoDB",
       "GraphQL",
@@ -233,20 +241,27 @@
     "heading_part2": "المهنية",
     "items": {
       "0": {
-        "company": "Zamalek Store",
-        "role": "Lead Full-Stack Engineer (Contract)",
-        "date": "2024 — دلوقتي",
-        "description": "صممت ونشرت E-commerce Platform لبراند مبيعات كبير. عملت Hybrid Cart System ودمجت Paymob Payment Gateway وده قلل الـ Checkout Drop-offs بنسبة 40٪. مسكت الـ DevOps Pipeline بالكامل باستخدام Docker و Cloudflare R2.",
-        "tech": "Next.js 16, PostgreSQL, BullMQ, Redis, Docker"
+        "company": "The Drive Center",
+        "role": "Senior Software Architect & Full-Stack Engineer",
+        "date": "مايو ٢٠٢٤ — دلوقتي",
+        "description": "صممت ونفذت نظام فني متكامل لمركز صيانة سيارات متخصص. شملت المنصة نظام حجز ذكي، تتبع لحالة المركبات، وربط مع WhatsApp API. تم تحسين الموقع لمحركات البحث المحلية والأداء العالي باستخدام Next.js 16 و Drizzle ORM. النتيجة: تقليل الأعباء الإدارية بنسبة ٤٠٪.",
+        "tech": "Next.js 16, TypeScript, PostgreSQL, Drizzle ORM, Better Auth, Cloudflare R2, WhatsApp API"
       },
       "1": {
+        "company": "Zamalek Store",
+        "role": "Lead Full-Stack Engineer",
+        "date": "أكتوبر — ديسمبر ٢٠٢٤",
+        "description": "تحول رقمي لعلامة تجارية كبرى للملابس. قمت ببناء محرك تجارة إلكترونية عالي الأداء (Next.js 16) يتعامل مع حركة مرور عالية. دمجت مدفوعات Paymob وسير عمل محلي. النتيجة: انخفاض بنسبة 40% في ترك سلة التسوق وزيادة كبيرة في حجم المبيعات عبر الإنترنت من خلال التوفر على مدار الساعة طوال أيام الأسبوع.",
+        "tech": "Next.js 16, PostgreSQL, BullMQ, Redis, Docker"
+      },
+      "2": {
         "company": "محمد علي (Captain X)",
         "role": "Frontend Architect (Freelance)",
         "date": "2024",
         "description": "صممت وبنيت Bilingual Educational Hub و Trading Portfolio. ركزت جداً على الـ SEO والـ Performance، وحققت سكور 95+ في الـ Core Web Vitals على الموبايل.",
         "tech": "React, Bilingual Support, Performance Optimization"
       },
-      "2": {
+      "3": {
         "company": "Toota Art Gallery",
         "role": "Full-Stack Developer",
         "date": "2023",

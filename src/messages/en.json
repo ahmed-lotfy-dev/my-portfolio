@@ -97,6 +97,12 @@
       "React",
       "React Native",
       "Next.js",
+      "TypeScript",
+      "Drizzle ORM",
+      "Better Auth",
+      "WhatsApp API",
+      "PostgreSQL",
+      "Cloudflare R2",
       "Node.js",
       "MongoDB",
       "GraphQL",
@@ -235,20 +241,27 @@
     "heading_part2": "Career",
     "items": {
       "0": {
-        "company": "Zamalek Store",
-        "role": "Lead Full-Stack Engineer (Contract)",
-        "date": "2024 — Present",
-        "description": "Architected and deployed a high-traffic e-commerce platform for a major retail brand. Engineered a hybrid cart system and integrated Paymob payment gateway, resulting in a 40% reduction in checkout drop-offs. Handled full DevOps pipeline using Docker and Cloudflare R2.",
-        "tech": "Next.js 16, PostgreSQL, BullMQ, Redis, Docker"
+        "company": "The Drive Center",
+        "role": "Senior Software Architect & Full-Stack Engineer",
+        "date": "May 2024 — Present",
+        "description": "Architected a high-performance automotive SaaS platform with automated booking, vehicle tracking, and WhatsApp API integration. Optimized for Local SEO and performance using Next.js 16 and Drizzle ORM. Resulted in a 40% reduction in administrative overhead.",
+        "tech": "Next.js 16, TypeScript, PostgreSQL, Drizzle ORM, Better Auth, Cloudflare R2, WhatsApp API"
       },
       "1": {
+        "company": "Zamalek Store",
+        "role": "Lead Full-Stack Engineer",
+        "date": "Oct — Dec 2024",
+        "description": "Digital transformation for a major clothing brand. Built a high-performance e-commerce engine (Next.js 16) handling high traffic. Integrated Paymob payments and localized workflows. Result: 40% reduction in cart abandonment and significant increase in online sales volume through 24/7 availability.",
+        "tech": "Next.js 16, PostgreSQL, BullMQ, Redis, Docker"
+      },
+      "2": {
         "company": "Mohammed Ali (Captain X)",
         "role": "Frontend Architect (Freelance)",
         "date": "2024",
         "description": "Designed and built a bilingual educational hub and trading portfolio. Focused heavily on SEO optimization and performance, achieving 95+ Core Web Vitals scores across mobile devices.",
         "tech": "React, Bilingual Support, Performance Optimization"
       },
-      "2": {
+      "3": {
         "company": "Toota Art Gallery",
         "role": "Full-Stack Developer",
         "date": "2023",

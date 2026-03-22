@@ -44,7 +44,7 @@ export default function AboutClient({ myImage, isRTL }: Props) {
 
   const stats = [
     { icon: Trophy, label: "Experience", value: "2 Years", color: "text-primary" },
-    { icon: Target, label: "Projects", value: "8 Projects", color: "text-primary-light" },
+    { icon: Target, label: "Projects", value: "9 Projects", color: "text-primary-light" },
     { icon: Zap, label: "Performance", value: "95+ Score", color: "text-primary-dark" },
   ];
 
