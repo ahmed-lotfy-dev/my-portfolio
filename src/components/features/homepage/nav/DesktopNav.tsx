@@ -36,21 +36,10 @@ export function DesktopNav({
     },
   };
 
-  const itemVariants = {
-    hidden: { opacity: 0, y: -20 },
-    visible: { 
-      opacity: 1, 
-      y: 0,
-      transition: {
-        type: "spring" as const,
-        stiffness: 260,
-        damping: 20
-      }
-    },
-  };
+
 
   return (
-    <m.div 
+    <m.div
       variants={containerVariants}
       initial="hidden"
       animate="visible"
@@ -62,7 +51,7 @@ export function DesktopNav({
         const isHovered = hoveredPath === link.href;
 
         return (
-          <m.div key={link.href} variants={itemVariants}>
+          <div key={link.href}>
             <Link
               href={localizeHref(locale, link.href)}
               className={cn(
@@ -72,43 +61,43 @@ export function DesktopNav({
               )}
               onMouseEnter={() => setHoveredPath(link.href)}
             >
-                {/* Shared Hover Pill */}
-                {isHovered && (
-                  <m.div
-                    layoutId="nav-pill"
-                    className="absolute inset-0 z-0 rounded-full bg-primary/10"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                    transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
-                  />
-                )}
+              {/* Shared Hover Pill */}
+              {isHovered && (
+                <m.div
+                  layoutId="nav-pill"
+                  className="absolute inset-0 z-0 rounded-full bg-primary/10"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+                />
+              )}
 
-                {/* Active Bloom Indicator */}
+              {/* Active Bloom Indicator */}
+              {active && (
+                <m.div
+                  layoutId="active-indicator"
+                  className="absolute -bottom-[2px] left-1/2 h-[2px] w-4 -translate-x-1/2 rounded-full bg-primary shadow-[0_0_12px_rgba(212,175,55,0.8)]"
+                  transition={{ type: "spring", bounce: 0.3, duration: 0.5 }}
+                />
+              )}
+
+              <span className="relative z-10">{t(link.label)}</span>
+
+              {/* Premium Active Glow Bloom */}
+              <AnimatePresence>
                 {active && (
                   <m.div
-                    layoutId="active-indicator"
-                    className="absolute -bottom-[2px] left-1/2 h-[2px] w-4 -translate-x-1/2 rounded-full bg-primary shadow-[0_0_12px_rgba(212,175,55,0.8)]"
-                    transition={{ type: "spring", bounce: 0.3, duration: 0.5 }}
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0, scale: 0.8 }}
+                    className="absolute inset-0 z-0 rounded-full bg-primary/5 blur-sm"
+                    suppressHydrationWarning
                   />
                 )}
-
-                <span className="relative z-10">{t(link.label)}</span>
-                
-                {/* Premium Active Glow Bloom */}
-                <AnimatePresence>
-                  {active && (
-                    <m.div
-                      initial={{ opacity: 0, scale: 0.8 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      exit={{ opacity: 0, scale: 0.8 }}
-                      className="absolute inset-0 z-0 rounded-full bg-primary/5 blur-sm"
-                      suppressHydrationWarning
-                    />
-                  )}
-                </AnimatePresence>
-              </Link>
-          </m.div>
+              </AnimatePresence>
+            </Link>
+          </div>
         );
       })}
     </m.div>
