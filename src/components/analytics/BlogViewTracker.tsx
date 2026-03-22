@@ -2,7 +2,7 @@
 
 import { useEffect } from "react";
 import { usePostHog } from "posthog-js/react";
-import { incrementViews } from "@/src/app/actions/analytics";
+import { incrementViews } from "@/src/app/actions/analytics/mutations";
 
 interface BlogViewTrackerProps {
   blogId: string;

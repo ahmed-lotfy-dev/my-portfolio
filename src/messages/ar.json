@@ -12,7 +12,7 @@
     "sign_out": "خروج"
   },
   "hero": {
-    "name": "أحمد لطفي",
+    "name": "أحمد شومان",
     "title": "Full-Stack Software Engineer",
     "description": "بساعد الشركات تبني تطبيقات ويب قوية بتتحمل الضغط العالي (Scalable). تخصصي Next.js، البنية السحابية (Cloud Architecture)، وحلول التجارة الإلكترونية.",
     "book_consultation": "احجز استشارة",
@@ -127,6 +127,9 @@
     "edit-desc": "عدل تفاصيل المشروع من هنا.",
     "publish_toggle": "عرض في الصفحة الرئيسية",
     "publish_toggle_desc": "إظهار المشروع ده في الصفحة الرئيسية",
+    "view_project": "عرض الصفحة العامة",
+    "delete_all": "حذف كل الصور",
+    "delete_all_confirm": "هل أنت متأكد من حذف كل الصور؟ سيتم مسحها نهائياً من التخزين السحابي.",
     "upload": "رفع صورة المشروع",
     "uploading": "بيترفع...",
     "select_image": "اختار صورة",
@@ -134,6 +137,12 @@
     "upload_optimize": "رفع وتحسين",
     "live": "Live Site",
     "repo": "GitHub Repo",
+    "gallery": "معرض الصور",
+    "set_cover": "تعيين كغلاف",
+    "already_cover": "صورة الغلاف",
+    "embed_url": "رابط تضمين (Social Embed)",
+    "feature_video": "رابط فيديو خارجي أو مرفوع",
+    "featured_image": "صورة المشروع المميزة (Gifts/Video cover)",
     "apk": "ملف الـ APK",
     "back_to_portfolio": "رجوع للمشاريع",
     "view_other_projects": "شوف مشاريع تانية",
@@ -149,9 +158,11 @@
       "desc_en": "وصف المشروع (EN)",
       "desc_ar": "وصف المشروع (AR)",
       "repo_link": "رابط الـ GitHub Repo",
-      "live_link": "رابط الـ Live Site",
-      "categories": "فئات المشروع",
-      "categories_helper": "يا ريت تدخل الفئات وتفصل بينهم بفاصلة."
+      "live_link": "Project Live Link",
+      "categories": "Project Categories",
+      "embed_url": "Social Link (YouTube, LinkedIn, etc.)",
+      "feature_video": "Video URL (.mp4 or external link)",
+      "categories_helper": "Please enter categories as comma-separated values."
     },
     "validation": {
       "title_en_required": "عنوان المشروع بالـ English مطلوب.",
@@ -208,7 +219,7 @@
   },
   "about": {
     "title": "عني",
-    "name": "أحمد لطفي",
+    "name": "أحمد شومان",
     "description1": "أنا Full-Stack Software Engineer بركز على حل مشاكل البيزنس. بتخصص في الـ React Ecosystem الحديثة (Next.js، TypeScript) بس بهتم بنفس القدر بالـ ROI، ومقاييس الأداء، واستقرار النظام (Reliability).",
     "description2": "خلفيتي في الهاردوير والـ IT بتخليني أبني حلول مش مجرد كود، لكن بنية تحتية قوية.",
     "description3": "بشارك الشركات لبناء برمجيات بتزود الأرباح، بتقلل التكاليف، وبتكبر بسهولة. أنا حالياً بقبل عملاء جدد لمشاريع ذات تأثير عالي (High-Impact Projects)."
@@ -389,15 +400,15 @@
   },
   "metadata": {
     "home": {
-      "title": "أحمد لطفي – Full-Stack Software Engineer",
-      "description": "Portfolio أحمد لطفي – Full-Stack Software Engineer. ببني تطبيقات ويب Scalable و Responsive."
+      "title": "أحمد شومان – Full-Stack Software Engineer",
+      "description": "Portfolio أحمد شومان – Full-Stack Software Engineer. ببني تطبيقات ويب Scalable و Responsive."
     },
     "blogs": {
-      "title": "المدونة | أحمد لطفي",
+      "title": "المدونة | أحمد شومان",
       "description": "اقرأ أفكاري عن السوفت وير، تقنيات الويب، وحاجات تانية كتير."
     },
     "certificates": {
-      "title": "الشهادات المهنية | أحمد لطفي",
+      "title": "الشهادات المهنية | أحمد شومان",
       "description": "استكشف رحلة تعلمي من خلال الشهادات والكورسات في الـ Web Development و Software Engineering."
     }
   }
