@@ -148,3 +148,5 @@ const withPWA = withPWAInit({
 const withNextIntl = createNextIntlPlugin();
 
 export default withPWA(withNextIntl(nextConfig));
+
+// Force Turbopack to hard restart
