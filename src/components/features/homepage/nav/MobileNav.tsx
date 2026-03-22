@@ -3,7 +3,8 @@
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowUpRight, LogOut, Menu } from "lucide-react";
+import { ArrowUpRight, LogOut, Menu, X } from "lucide-react";
+import { m, AnimatePresence } from "motion/react";
 
 import { SignOutButton } from "@/src/components/features/auth/SignOutButton";
 import { Button } from "@/src/components/ui/button";
@@ -14,6 +15,7 @@ import {
   SheetHeader,
   SheetTitle,
   SheetTrigger,
+  SheetClose,
 } from "@/src/components/ui/sheet";
 import { cn } from "@/src/lib/utils";
 
@@ -29,6 +31,26 @@ type MobileNavProps = {
   normalizedPath: string;
   t: (key: string) => string;
   userSlot: React.ReactNode;
+};
+
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1,
+      delayChildren: 0.2,
+    },
+  },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, x: -20 },
+  visible: {
+    opacity: 1,
+    x: 0,
+    transition: { type: "spring" as const, bounce: 0.3, duration: 0.6 },
+  },
 };
 
 export function MobileNav({
@@ -49,82 +71,119 @@ export function MobileNav({
         <Button
           variant="outline"
           size="icon"
-          className="h-10 w-10 rounded-full border-primary/10 bg-background/30"
+          className="h-10 w-10 rounded-full border-primary/15 bg-background/40 shadow-xl backdrop-blur-xl transition-all active:scale-95"
         >
-          <Menu className="h-5 w-5" />
+          <Menu className="h-5 w-5 text-primary" />
           <span className="sr-only">Open navigation</span>
         </Button>
       </SheetTrigger>
 
       <SheetContent
         side={isRTL ? "left" : "right"}
-        className="w-[92vw] max-w-sm border-border bg-[linear-gradient(180deg,rgba(29,23,18,0.98),rgba(21,17,14,0.98))] p-0"
+        className="w-[92vw] max-w-sm border-l border-primary/10 bg-[linear-gradient(180deg,rgba(15,12,10,0.98),rgba(10,8,7,0.98))] p-0 shadow-2xl backdrop-blur-3xl"
       >
-        <SheetHeader className="border-b border-primary/10 px-6 py-5 text-left">
-          <SheetTitle className="flex items-center gap-3">
-            <div className="relative flex h-11 w-11 items-center justify-center rounded-[1rem] border border-primary/15 bg-secondary">
-              <Image
-                src="/as-mark.svg"
-                width={24}
-                height={24}
-                alt="Ahmed Shoman logo"
-                className="object-contain"
-              />
+        <div className="flex flex-col h-full overflow-hidden">
+          <SheetHeader className="relative border-b border-primary/10 px-6 py-6 text-left">
+            <div className="flex items-center justify-between">
+              <SheetTitle className="flex items-center gap-3">
+                <div className="relative flex h-11 w-11 items-center justify-center rounded-2xl border border-primary/15 bg-black/40 shadow-inner">
+                  <Image
+                    src="/as-mark.svg"
+                    width={26}
+                    height={26}
+                    alt="Ahmed Shoman logo"
+                    className="object-contain"
+                  />
+                </div>
+                <div className="flex flex-col">
+                  <span className="font-heading text-lg font-black tracking-tight text-white leading-tight">Ahmed Shoman</span>
+                  <span className="text-[10px] font-bold uppercase tracking-widest text-primary/70">Pro Portfolio</span>
+                </div>
+              </SheetTitle>
+              <SheetClose className="rounded-full bg-primary/10 p-2 text-primary hover:bg-primary/20 transition-colors">
+                <X className="h-4 w-4" />
+                <span className="sr-only">Close</span>
+              </SheetClose>
             </div>
-            <span className="font-heading text-lg">Ahmed Shoman</span>
-          </SheetTitle>
-          <SheetDescription>
-            Portfolio navigation and quick actions.
-          </SheetDescription>
-        </SheetHeader>
+            <SheetDescription className="mt-2 text-xs font-medium text-muted-foreground/60 italic">
+              Experience modern digital architecture.
+            </SheetDescription>
+          </SheetHeader>
 
-        <div className="flex h-full flex-col px-4 pb-6 pt-4">
-          <div className="flex flex-col gap-2">
-            {links.map((link) => {
-              const active = isActiveLink(link, normalizedPath, activeSection);
+          <m.div 
+            className="flex flex-1 flex-col px-4 pb-8 pt-6"
+            variants={containerVariants}
+            initial="hidden"
+            animate={open ? "visible" : "hidden"}
+          >
+            <div className="flex flex-col gap-2">
+              {links.map((link) => {
+                const active = isActiveLink(link, normalizedPath, activeSection);
 
-              return (
-                <Button
-                  key={link.href}
-                  variant="ghost"
-                  asChild
-                  className={cn(
-                    "group h-12 justify-between rounded-[1rem] px-4 text-base transition-all duration-300",
-                    active
-                      ? "bg-primary text-primary-foreground shadow-[0_16px_40px_-22px_hsl(var(--primary))]"
-                      : "text-foreground hover:bg-primary/10 hover:text-primary-light"
-                  )}
-                  onClick={() => setOpen(false)}
-                >
-                  <Link href={localizeHref(locale, link.href)}>
-                    <span>{t(link.label)}</span>
-                    <ArrowUpRight
+                return (
+                  <m.div key={link.href} variants={itemVariants}>
+                    <Button
+                      variant="ghost"
+                      asChild
                       className={cn(
-                        "h-4 w-4 transition-transform duration-300",
+                        "group relative h-14 w-full justify-between overflow-hidden rounded-[1.25rem] px-5 text-base font-semibold transition-all duration-500",
                         active
-                          ? "text-primary-foreground"
-                          : "text-muted-foreground group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-primary"
+                          ? "bg-primary/10 text-primary shadow-inner"
+                          : "text-muted-foreground hover:bg-white/5 hover:text-white"
                       )}
-                    />
-                  </Link>
-                </Button>
-              );
-            })}
-          </div>
+                      onClick={() => setOpen(false)}
+                      // @ts-ignore - spring feedback
+                      whileTap={{ scale: 0.98 }}
+                    >
+                      <Link href={localizeHref(locale, link.href)}>
+                        <span className="relative z-10 flex items-center gap-3">
+                          {active && (
+                            <m.span 
+                              layoutId="mobile-active-dot"
+                              className="h-1.5 w-1.5 rounded-full bg-primary shadow-[0_0_8px_hsl(var(--primary))]"
+                            />
+                          )}
+                          {t(link.label)}
+                        </span>
+                        
+                        <ArrowUpRight
+                          className={cn(
+                            "h-5 w-5 transition-all duration-500",
+                            active
+                              ? "translate-x-0 translate-y-0 opacity-100 text-primary"
+                              : "translate-x-2 -translate-y-2 opacity-0 group-hover:translate-x-0 group-hover:translate-y-0 group-hover:opacity-100 group-hover:text-primary"
+                          )}
+                        />
 
-          <div className="mt-6 rounded-[1.5rem] border border-primary/10 bg-background/35 p-4">
-            <div className="mb-3">{userSlot}</div>
-            {hasSession && (
-              <SignOutButton
-                variant="ghost"
-                className="h-11 w-full justify-start rounded-2xl px-4 text-base text-destructive transition-colors hover:bg-destructive/10 hover:text-destructive"
-                onClick={() => setOpen(false)}
-              >
-                <LogOut className="me-2 h-4 w-4" />
-                {t("sign_out") || "Sign Out"}
-              </SignOutButton>
-            )}
-          </div>
+                        {active && (
+                          <m.div
+                            layoutId="mobile-active-bg"
+                            className="absolute inset-0 z-0 bg-primary/5 blur-xl"
+                          />
+                        )}
+                      </Link>
+                    </Button>
+                  </m.div>
+                );
+              })}
+            </div>
+
+            <div className="mt-auto">
+              <div className="rounded-[1.75rem] border border-primary/10 bg-black/40 p-4 shadow-xl backdrop-blur-md">
+                <div className="mb-4">{userSlot}</div>
+                {hasSession && (
+                  <SignOutButton
+                    variant="ghost"
+                    className="h-12 w-full justify-start rounded-2xl px-5 text-base font-bold text-destructive/80 transition-all hover:bg-destructive/10 hover:text-destructive"
+                    onClick={() => setOpen(false)}
+                  >
+                    <LogOut className="me-3 h-5 w-5" />
+                    {t("sign_out") || "Sign Out"}
+                  </SignOutButton>
+                )}
+              </div>
+            </div>
+          </m.div>
         </div>
       </SheetContent>
     </Sheet>
