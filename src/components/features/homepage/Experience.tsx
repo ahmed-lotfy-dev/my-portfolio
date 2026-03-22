@@ -1,5 +1,5 @@
 import { getLocale } from "next-intl/server";
-import { getExperiences } from "@/src/app/actions/experienceActions";
+import { getExperiences } from "@/src/app/actions/experiences/queries";
 import ExperienceClient from "./ExperienceClient";
 
 export default async function Experience() {

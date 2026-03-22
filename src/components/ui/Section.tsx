@@ -3,7 +3,7 @@ import { cn } from "@/src/lib/utils"
 
 type SectionProps = React.HTMLAttributes<HTMLElement> & {
   id?: string;
-  variant?: "default" | "surface" | "alternate";
+  variant?: "default" | "surface" | "alternate" | "transparent";
 }
 
 export default function Section({
@@ -17,6 +17,7 @@ export default function Section({
     default: "bg-background",
     surface: "bg-muted/10 border-y border-border/50",
     alternate: "bg-linear-to-b from-background to-primary/5 border-y border-primary/10",
+    transparent: "bg-transparent border-0",
   }
 
   return (

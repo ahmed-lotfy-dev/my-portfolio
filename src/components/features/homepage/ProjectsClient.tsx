@@ -11,8 +11,9 @@ import { ExternalLink, Github, ArrowRight } from "lucide-react";
 import ProjectCategories from "@/src/components/ui/ProjectCategories";
 import { shouldShowApk } from "@/src/lib/utils/projectUtils";
 import { getProjectCoverImage } from "@/src/lib/constants/images";
+import { safeMediaUrl } from "@/src/lib/utils/mediaUrl";
 import { ProjectLinkTracker } from "./ProjectLinkTracker";
-import { motion, Variants } from "motion/react";
+import { m, Variants } from "motion/react";
 
 type Project = {
   id: string;
@@ -73,7 +74,7 @@ export default function ProjectsClient({ projects, locale, t }: Props) {
   };
 
   return (
-    <motion.div
+    <m.div
       variants={containerVariants}
       initial={hasMounted ? "hidden" : false}
       whileInView="visible"
@@ -86,7 +87,7 @@ export default function ProjectsClient({ projects, locale, t }: Props) {
           const showApk = shouldShowApk(proj.categories);
 
           return (
-            <motion.div key={proj.id} variants={itemVariants}>
+            <m.div key={proj.id} variants={itemVariants}>
               <Card className="group flex h-full flex-col justify-between overflow-hidden border-border bg-card/50 backdrop-blur-sm hover:border-primary/50 hover:shadow-2xl hover:shadow-primary/10 transition-all duration-500">
                 <Link
                   href={proj.slug ? `/projects/${proj.slug}` : proj.liveLink}
@@ -95,7 +96,7 @@ export default function ProjectsClient({ projects, locale, t }: Props) {
                 >
                   <div className="relative w-full h-64 cursor-pointer overflow-hidden">
                     <Image
-                      src={getProjectCoverImage(proj.coverImage)}
+                      src={safeMediaUrl(getProjectCoverImage(proj.coverImage))}
                       alt={locale === "ar" ? proj.title_ar : proj.title_en}
                       fill
                       unoptimized={
@@ -179,9 +180,9 @@ export default function ProjectsClient({ projects, locale, t }: Props) {
                   </div>
                 </div>
               </Card>
-            </motion.div>
+            </m.div>
           );
         })}
-    </motion.div>
+    </m.div>
   );
 }

@@ -20,21 +20,21 @@ const components = {
       return <div className="my-4" {...props} />;
     }
 
-    return <p className="leading-relaxed mb-4 text-gray-800 dark:text-gray-200" {...props} />;
+    return <p className="mb-4 leading-relaxed text-foreground/90" {...props} />;
   },
   ul: (props: any) => <ul className="list-disc pl-6 mb-4 space-y-2" {...props} />,
   ol: (props: any) => <ol className="list-decimal pl-6 mb-4 space-y-2" {...props} />,
   li: (props: any) => <li {...props} />,
   blockquote: (props: any) => (
     <blockquote
-      className="border-l-4 border-primary pl-4 py-1 italic bg-gray-50 dark:bg-gray-900 my-6 rounded-r-2xl"
+      className="my-6 rounded-r-2xl border-l-4 border-primary bg-card/80 py-1 pl-4 italic"
       {...props}
     />
   ),
   code: ({ className, children, ...props }: any) => {
     const isInline = !className?.includes("language-");
     return isInline ? (
-      <code className="bg-gray-100 dark:bg-gray-800 rounded px-1.5 py-0.5 font-mono text-sm" {...props}>
+      <code className="rounded bg-secondary px-1.5 py-0.5 font-mono text-sm text-primary-light" {...props}>
         {children}
       </code>
     ) : (
@@ -44,17 +44,17 @@ const components = {
     );
   },
   pre: (props: any) => (
-    <pre className="not-prose p-4 rounded-lg overflow-hidden my-6 bg-zinc-300 dark:bg-[#1e1e1e] text-zinc-900 dark:text-zinc-50 border border-zinc-400 dark:border-zinc-600" {...props} />
+    <pre className="not-prose my-6 overflow-hidden rounded-lg border border-border bg-secondary p-4 text-foreground" {...props} />
   ),
   img: ({ src, alt, ...props }: any) => (
     <span className="relative block w-full h-[400px] my-8 rounded-xl overflow-hidden shadow-lg border">
-      <img
-        src={src}
-        alt={alt || "Blog image"}
-        className="w-full h-full object-cover"
-        loading="lazy"
-      />
-      {alt && <span className="absolute bottom-0 left-0 right-0 bg-black/50 text-white text-xs p-2 text-center backdrop-blur-sm block">{alt}</span>}
+        <img
+          src={src}
+          alt={alt || "Blog image"}
+          className="w-full h-full object-cover"
+          loading="lazy"
+        />
+      {alt && <span className="absolute bottom-0 left-0 right-0 block bg-black/50 p-2 text-center text-xs text-white backdrop-blur-sm">{alt}</span>}
     </span>
   ),
   a: (props: any) => (
@@ -69,7 +69,7 @@ const components = {
   div: ({ className, children, ...props }: any) => {
     if (className === "callout") {
       return (
-        <div className="p-4 my-6 rounded-lg border-l-4 bg-gray-50 dark:bg-gray-800 border-blue-500 shadow-sm" {...props}>
+        <div className="my-6 rounded-lg border-l-4 border-primary bg-card/75 p-4 shadow-sm" {...props}>
           {children}
         </div>
       );
@@ -84,7 +84,7 @@ interface MDXContentProps {
 
 export default function MDXContent({ content }: MDXContentProps) {
   return (
-    <div className="prose prose-lg dark:prose-invert max-w-none prose-pre:p-0 prose-headings:scroll-mt-20">
+    <div className="prose prose-lg max-w-none prose-pre:p-0 prose-headings:scroll-mt-20 prose-invert">
       <MDXRemote
         source={content}
         components={components}

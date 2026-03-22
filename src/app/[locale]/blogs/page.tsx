@@ -1,4 +1,4 @@
-import { getDbBlogPosts, getLatestSyncDate } from "@/src/app/actions/postsActions";
+import { getDbBlogPosts, getLatestSyncDate } from "@/src/app/actions/posts/queries";
 import { BlogCard } from "@/src/components/features/blog/BlogCard";
 import { Button } from "@/src/components/ui/button";
 import Link from "next/link";
@@ -25,7 +25,7 @@ export async function generateMetadata({
       title: t("title"),
       description: t("description"),
       url: `${baseUrl}/${locale}/blogs`,
-      siteName: "Ahmed Lotfy Portfolio",
+      siteName: "Ahmed Shoman Portfolio",
       locale: locale === "ar" ? "ar_EG" : "en_US",
       type: "website",
     },
@@ -64,15 +64,15 @@ export default async function PostsList(props: {
   return (
     <div className="container mx-auto px-4 mt-28 max-w-6xl pb-20">
       <div className="flex flex-col items-center mb-12 text-center">
-        <h1 className="text-5xl font-extrabold tracking-tight mb-4 bg-linear-to-r from-primary to-blue-600 bg-clip-text text-transparent">
+        <h1 className="mb-4 bg-linear-to-r from-primary via-primary-light to-primary-dark bg-clip-text text-5xl font-extrabold tracking-tight text-transparent">
           Obsidian Notes & Blog
         </h1>
-        <p className="text-gray-500 max-w-2xl text-lg">
+        <p className="max-w-2xl text-lg text-muted-foreground">
           Insights, guides, and notes synced directly from my Obsidian vault.
           Covering DevOps, Linux, and Software Development.
         </p>
         {syncDate && (
-          <div className="mt-4 flex items-center justify-center gap-2 text-xs text-gray-400 font-medium bg-gray-50 dark:bg-gray-900/50 px-3 py-1 rounded-full border border-gray-100 dark:border-gray-800">
+          <div className="mt-4 flex items-center justify-center gap-2 rounded-full border border-border bg-card/70 px-3 py-1 text-xs font-medium text-muted-foreground backdrop-blur-sm">
             <RefreshCw className="w-3 h-3 animate-spin-slow" />
             <span>Synced {formatDistanceToNow(new Date(syncDate), { addSuffix: true })}</span>
           </div>
@@ -94,10 +94,10 @@ export default async function PostsList(props: {
             asChild
             variant={isFeaturedOnly ? "default" : "outline"}
             size="sm"
-            className="rounded-full px-6 border-amber-200 dark:border-amber-900/50 hover:bg-amber-50 dark:hover:bg-amber-900/20"
+            className="rounded-full border-primary/25 px-6 hover:bg-primary/10"
           >
             <Link href={`/${locale}/blogs?featured=true`} className="flex items-center gap-2">
-              <Star className={`w-3.5 h-3.5 ${isFeaturedOnly ? "fill-white" : "text-amber-500 fill-amber-500"}`} />
+              <Star className={`h-3.5 w-3.5 ${isFeaturedOnly ? "fill-primary-foreground" : "fill-primary text-primary"}`} />
               Featured
             </Link>
           </Button>
@@ -134,9 +134,9 @@ export default async function PostsList(props: {
           ))}
         </div>
       ) : (
-        <div className="text-center py-32 bg-gray-50 dark:bg-gray-800/10 rounded-3xl border-2 border-dashed border-gray-200 dark:border-gray-800">
-          <p className="text-2xl font-medium text-gray-400">No matching notes found</p>
-          <p className="text-gray-500 mt-2">Try clearing the filters to see all content.</p>
+        <div className="rounded-3xl border-2 border-dashed border-border bg-card/40 py-32 text-center">
+          <p className="text-2xl font-medium text-muted-foreground">No matching notes found</p>
+          <p className="mt-2 text-muted-foreground">Try clearing the filters to see all content.</p>
           <Button asChild variant="link" className="mt-4">
             <Link href={`/${locale}/blogs`}>Clear all filters</Link>
           </Button>

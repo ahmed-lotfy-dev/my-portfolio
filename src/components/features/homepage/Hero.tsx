@@ -1,120 +1,187 @@
+"use client";
+
 import Link from "next/link";
 import Image from "next/image";
 import HeroImage from "@/public/images/optimized/About-Image.webp";
 import { FileText, ArrowRight } from "lucide-react";
 import { CVDropdown } from "./CVDropdown";
-import { getTranslations } from "next-intl/server";
+import { useTranslations } from "next-intl";
 import { Button } from "@/src/components/ui/button";
 import { cn } from "@/src/lib/utils";
-import HeroAnimations from "@/src/components/features/homepage/HeroAnimations";
+import { m, useMotionValue, useSpring, AnimatePresence } from "motion/react";
+import type { Variants } from "motion/react";
+import { Nav } from "./Nav";
+import { SeasonalBackground } from "./seasonal/SeasonalBackground";
 
-export default async function Hero({ locale }: { locale: string }) {
-  const t = await getTranslations("hero");
+const containerVariants: Variants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.12,
+      delayChildren: 0.5,
+    },
+  },
+};
+
+const itemVariants: Variants = {
+  hidden: { opacity: 0, y: -30 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      type: "spring",
+      stiffness: 100,
+      damping: 15,
+    },
+  },
+};
+
+const imageVariants: Variants = {
+  hidden: { opacity: 0, scale: 0.95 },
+  visible: {
+    opacity: 1,
+    scale: 1,
+    transition: {
+      delay: 1.3,
+      duration: 0.5,
+      ease: "easeOut",
+    },
+  },
+};
+
+
+export default function Hero({ locale }: { locale: string }) {
+  const t = useTranslations("hero");
   const isRTL = locale === "ar";
 
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
+
+  const springX = useSpring(mouseX, { stiffness: 50, damping: 20 });
+  const springY = useSpring(mouseY, { stiffness: 50, damping: 20 });
+
+  function handleMouseMove({ currentTarget, clientX, clientY }: React.MouseEvent) {
+    const { left, top } = currentTarget.getBoundingClientRect();
+    mouseX.set(clientX - left);
+    mouseY.set(clientY - top);
+  }
+
   return (
-    <section
-      className="relative overflow-hidden bg-background py-20 sm:py-32"
+    <div
+      className="group relative flex min-h-screen w-full flex-col overflow-hidden bg-background"
       id="hero"
+      onMouseMove={handleMouseMove}
     >
-      <div className="absolute inset-0 bg-hero-radial from-primary/30 via-background to-background opacity-80" />
-      <div className="absolute -top-40 left-1/2 h-[600px] w-[1200px] -translate-x-1/2 rounded-full bg-primary/20 blur-[120px] pointer-events-none" />
+      <SeasonalBackground />
 
-      <div className="container relative mx-auto flex flex-col-reverse gap-12 px-4 sm:px-6 lg:flex-row lg:items-center lg:justify-between">
-        <div className="flex flex-col gap-6 text-center lg:w-1/2 lg:text-start">
-          <div className="space-y-4">
-            <HeroAnimations delay={0.08} type="fade-up">
-              <h2 className="inline-block rounded-full border border-primary/20 bg-primary/10 px-4 py-1.5 text-sm font-medium tracking-wide text-primary uppercase backdrop-blur-sm">
-                {t("title")}
-              </h2>
-            </HeroAnimations>
+      {/* Integrated Navigation */}
+      <Nav variant="integrated" />
 
-            {/* Removing motion from H1 for instant FCP/LCP */}
-            <h1 className="font-main text-4xl leading-tight font-extrabold tracking-tight text-foreground sm:text-5xl lg:text-7xl">
-              {t("name")}
-            </h1>
-          </div>
+      <section
+        className="relative flex flex-1 items-center border-b border-border/40 px-4 pb-20 pt-10 md:pt-16"
+      >
+        <div className="container relative z-10 mx-auto px-4 md:px-6">
+          <m.div
+            className={cn("flex flex-col items-center gap-8 lg:flex-row lg:gap-16", isRTL ? "lg:flex-row-reverse" : "")}
+            variants={containerVariants}
+            initial="hidden"
+            animate="visible"
+          >
+            {/* Content Side */}
+            <m.div
+              className="relative z-20 w-full space-y-6 text-center md:space-y-8 lg:w-[55%] lg:text-start"
+              variants={containerVariants}
+            >
+              <m.div
+                variants={itemVariants}
+                className="inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-4 py-2 font-semibold tracking-wide text-primary shadow-sm backdrop-blur-md"
+              >
+                <span className="text-sm font-bold tracking-wide uppercase">{t("available_work")}</span>
+              </m.div>
 
-          <HeroAnimations delay={0.2} type="fade-up">
-            <p className="mx-auto max-w-2xl text-lg leading-relaxed text-muted-foreground sm:text-xl lg:mx-0">
-              {t("description")}
-            </p>
-          </HeroAnimations>
+              <m.h1
+                variants={itemVariants}
+                className="text-balance font-heading text-[clamp(5rem,15vw,12rem)] font-black leading-[0.8] tracking-tighter text-white drop-shadow-2xl uppercase"
+              >
+                {t("name")}
+              </m.h1>
 
-          <HeroAnimations delay={0.26} type="fade-up">
-            <div className="flex flex-col gap-6">
-              <div className="mt-4 flex flex-col justify-center gap-4 sm:flex-row lg:justify-start">
+              <m.p
+                variants={itemVariants}
+                className="mx-auto max-w-[95%] text-[clamp(1.1rem,1.8vw,1.5rem)] font-medium leading-relaxed text-muted-foreground/80 lg:mx-0"
+              >
+                {t("description")}
+              </m.p>
+
+              <m.div
+                variants={itemVariants}
+                className="mt-6 flex flex-col items-center justify-center gap-4 pt-4 sm:flex-row lg:justify-start"
+              >
                 <Button
                   size="lg"
-                  className="cursor-pointer rounded-xl px-8 py-6 text-lg shadow-lg shadow-primary/25 hover:shadow-primary/40"
+                  className="group relative h-14 cursor-pointer overflow-hidden rounded-2xl border-none bg-primary px-8 font-black text-primary-foreground shadow-2xl shadow-primary/20 transition-all hover:-translate-y-1 hover:bg-primary/90 hover:shadow-primary/40 active:scale-95"
                   asChild
                 >
                   <Link href="#contact">
-                    <span>{t("book_consultation")}</span>
-                    <ArrowRight
-                      className={cn("ml-2 h-5 w-5", isRTL && "rotate-180")}
-                    />
+                    <span className="relative z-10 flex items-center gap-2">
+                      {t("book_consultation")}
+                      <ArrowRight
+                        className={cn("h-5 w-5 transition-transform group-hover:translate-x-1", isRTL && "rotate-180 group-hover:-translate-x-1")}
+                      />
+                    </span>
                   </Link>
                 </Button>
+
                 <Button
                   variant="outline"
                   size="lg"
-                  className="rounded-xl bg-card/50 px-8 py-6 text-lg backdrop-blur-sm"
+                  className="h-14 cursor-pointer rounded-2xl border-primary/20 bg-primary/5 px-8 font-bold text-primary transition-all hover:-translate-y-1 hover:border-primary/40 hover:bg-primary/10 active:scale-95"
                   asChild
                 >
                   <Link href="#projects">
                     <span>{t("view_work")}</span>
                   </Link>
                 </Button>
-              </div>
 
-              <div className="flex justify-center lg:justify-start">
-                <CVDropdown>
-                  <Button
-                    variant="ghost"
-                    size="sm"
-                    className="gap-2 text-muted-foreground transition-colors hover:text-primary"
-                  >
-                    <FileText className="h-4 w-4" />
-                    <span>{t("resume")}</span>
-                  </Button>
-                </CVDropdown>
+                <div className="flex justify-center pt-2 sm:pt-0">
+                  <CVDropdown>
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      className="h-14 gap-2 rounded-2xl px-6 text-muted-foreground transition-colors hover:text-primary"
+                    >
+                      <FileText className="h-5 w-5" />
+                      <span className="font-bold">{t("resume")}</span>
+                    </Button>
+                  </CVDropdown>
+                </div>
+              </m.div>
+            </m.div>
+
+            {/* Image Side - Restored Original Aesthetic */}
+            <m.div
+              className="relative flex w-full items-center justify-center p-4 lg:w-[40%] lg:p-0"
+              variants={imageVariants}
+            >
+              <div className="relative w-full max-w-[380px]">
+                <div className="absolute -inset-4 rounded-[3rem] bg-linear-to-tr from-primary/30 to-transparent opacity-60 blur-3xl -z-10" />
+                <div className="group relative aspect-square w-full overflow-hidden rounded-[2.5rem] border-2 border-white/5 bg-black/10 shadow-2xl">
+                  <Image
+                    src={HeroImage}
+                    alt={t("illustrationAlt")}
+                    fill
+                    priority
+                    className={cn("object-cover transition-transform duration-[2s] ease-out group-hover:scale-105", isRTL && "scale-x-[-1]")}
+                    sizes="(max-width: 1024px) 100vw, 45vw"
+                    placeholder="blur"
+                  />
+                </div>
               </div>
-            </div>
-          </HeroAnimations>
+            </m.div>
+          </m.div>
         </div>
-
-        <div className="relative flex justify-center lg:w-1/2 lg:justify-end">
-          <div className="relative h-[280px] w-[280px] sm:h-[400px] sm:w-[400px] lg:h-[500px] lg:w-[500px]">
-            <div className="absolute inset-0 rounded-full bg-linear-to-tr from-primary to-secondary opacity-15 blur-3xl" />
-            <div className="relative h-full w-full overflow-hidden rounded-2xl border border-white/10 bg-card/10 shadow-2xl shadow-primary/10 backdrop-blur-sm">
-              <Image
-                className={`object-cover ${isRTL ? "scale-x-[-1]" : ""}`}
-                src={HeroImage}
-                priority
-                fetchPriority="high"
-                quality={75}
-                alt={t("illustrationAlt")}
-                fill
-                sizes="(max-width: 640px) 280px, (max-width: 768px) 400px, 500px"
-                placeholder="blur"
-              />
-            </div>
-
-            <HeroAnimations delay={0.36} type="fade-up">
-              <div
-                className={`absolute -bottom-6 flex items-center gap-3 rounded-2xl border border-border bg-card/80 p-4 shadow-xl backdrop-blur-xl ${isRTL ? "-right-6 md:-right-10 md:bottom-10" : "-left-6 md:-left-10 md:bottom-10"
-                  }`}
-              >
-                <div className="h-3 w-3 rounded-full bg-green-500" />
-                <span className="text-sm font-medium text-foreground">
-                  {t("available_work")}
-                </span>
-              </div>
-            </HeroAnimations>
-          </div>
-        </div>
-      </div>
-    </section>
+      </section>
+    </div>
   );
 }

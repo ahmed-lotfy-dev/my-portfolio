@@ -1,4 +1,4 @@
-import { getProjectBySlug } from "@/src/app/actions/projectsActions";
+import { getProjectBySlug } from "@/src/app/actions/projects/queries";
 import { notFound } from "next/navigation";
 import { getLocale, getTranslations } from "next-intl/server";
 import { shouldShowApk } from "@/src/lib/utils/projectUtils";
@@ -7,9 +7,23 @@ import { ExternalLink, Github } from "lucide-react";
 import { Button } from "@/src/components/ui/button";
 import StructuredData from "@/src/components/seo/StructuredData";
 import { MarkdownDisplay } from "@/src/components/ui/MarkdownDisplay";
-import { ImagePreviewer } from "@/src/components/ui/ImagePreviewer";
+import { ImageCarousel } from "@/src/components/ui/ImageCarousel";
 import { BackButton } from "@/src/components/ui/BackButton";
 import { ProjectViewTracker } from "@/src/components/analytics/ProjectViewTracker";
+import { isNonEmptyUrl, safeMediaUrl } from "@/src/lib/utils/mediaUrl";
+
+// Helper for YouTube embeds
+function getEmbedUrl(url: string) {
+    if (!url) return "";
+    if (url.includes('youtube.com/watch?v=')) {
+        return url.replace('watch?v=', 'embed/');
+    }
+    if (url.includes('youtu.be/')) {
+        const id = url.split('/').pop();
+        return `https://www.youtube.com/embed/${id}`;
+    }
+    return url;
+}
 
 // Helper function to extract keywords from markdown content
 function extractKeywords(content: string, maxKeywords: number = 15): string[] {
@@ -65,17 +79,17 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     const allKeywords = [...new Set([...categoryKeywords, ...contentKeywords])].join(', ');
 
     return {
-        title: `${title} | Ahmed Lotfy`,
+        title: `${title} | Ahmed Shoman`,
         description: description,
         keywords: allKeywords,
-        authors: [{ name: 'Ahmed Lotfy' }],
-        creator: 'Ahmed Lotfy',
-        publisher: 'Ahmed Lotfy',
+        authors: [{ name: 'Ahmed Shoman' }],
+        creator: 'Ahmed Shoman',
+        publisher: 'Ahmed Shoman',
         openGraph: {
             title: title,
             description: description,
             url: `https://ahmedlotfy.site/${locale}/projects/${slug}`,
-            siteName: 'Ahmed Lotfy Portfolio',
+            siteName: 'Ahmed Shoman Portfolio',
             images: [
                 {
                     url: project.coverImage,
@@ -132,6 +146,17 @@ export default async function ProjectDetailsPage({ params }: { params: Promise<{
     const desc = locale === "ar" ? project.desc_ar : project.desc_en;
     const isMobile = shouldShowApk(project.categories);
 
+    const embedUrl = isNonEmptyUrl(project.embedUrl) ? project.embedUrl!.trim() : "";
+    const featureVideo = isNonEmptyUrl(project.featureVideo) ? project.featureVideo!.trim() : "";
+
+    const galleryImages = [project.coverImage, ...(project.images || [])]
+        .filter((img): img is string => typeof img === "string" && img.trim().length > 0)
+        .map((img) => safeMediaUrl(img.trim()))
+        .filter((img, index, self) => self.indexOf(img) === index);
+
+    const showEmbed = Boolean(embedUrl);
+    const showHostedVideo = Boolean(featureVideo) && !showEmbed;
+
     return (
         <article className="min-h-screen pb-20 bg-background text-foreground selection:bg-primary/20">
             {/* Structured Data for SEO */}
@@ -142,7 +167,7 @@ export default async function ProjectDetailsPage({ params }: { params: Promise<{
                     description: desc,
                     image: project.coverImage,
                     url: `https://ahmedlotfy.site/${locale}/projects/${slug}`,
-                    authorName: 'Ahmed Lotfy',
+                    authorName: 'Ahmed Shoman',
                     authorUrl: 'https://ahmedlotfy.site',
                     createdDate: project.createdAt?.toISOString(),
                     modifiedDate: project.updatedAt?.toISOString(),
@@ -162,13 +187,41 @@ export default async function ProjectDetailsPage({ params }: { params: Promise<{
                 />
             </div>
 
-            {/* Hero Section - Image Previewer */}
-            <div className="mb-12 md:mb-16">
-                <ImagePreviewer
-                    images={project.images && project.images.length > 0 ? project.images : project.coverImage}
-                    title={title}
-                    isMobile={isMobile}
-                />
+            {/* Featured media: optional embed/video (not exclusive) + image carousel when URLs exist */}
+            <div className="mb-12 md:mb-16 container mx-auto px-4 md:px-6 space-y-8 md:space-y-12">
+                {(showEmbed || showHostedVideo) && (
+                    <div className="max-w-5xl mx-auto aspect-video rounded-3xl overflow-hidden shadow-2xl border border-white/10 bg-black/40">
+                        {showEmbed ? (
+                            <iframe
+                                src={getEmbedUrl(embedUrl)}
+                                className="w-full h-full"
+                                title={`${title} — demo`}
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                allowFullScreen
+                            />
+                        ) : (
+                            <video
+                                src={safeMediaUrl(featureVideo)}
+                                className="w-full h-full object-contain"
+                                controls
+                                playsInline
+                                preload="metadata"
+                                poster={
+                                    project.coverImage?.trim()
+                                        ? safeMediaUrl(project.coverImage.trim())
+                                        : undefined
+                                }
+                            />
+                        )}
+                    </div>
+                )}
+                {galleryImages.length > 0 && (
+                    <ImageCarousel
+                        images={galleryImages}
+                        title={title}
+                        isMobile={isMobile}
+                    />
+                )}
             </div>
 
             {/* Header Content */}

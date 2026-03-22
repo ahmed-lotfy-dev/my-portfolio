@@ -1,4 +1,4 @@
-import { getDbBlogPosts } from "@/src/app/actions/postsActions";
+import { getDbBlogPosts } from "@/src/app/actions/posts/queries";
 import { BlogCard } from "@/src/components/features/blog/BlogCard";
 import { Button } from "@/src/components/ui/button";
 import Link from "next/link";
@@ -20,9 +20,9 @@ export async function RelatedPosts({ currentSlug, category, locale }: RelatedPos
   if (relatedPosts.length === 0) return null;
 
   return (
-    <section className="mt-24 mb-10 border-t border-dashed border-gray-200 dark:border-gray-800 pt-16">
+    <section className="mt-24 mb-10 border-t border-dashed border-border pt-16">
       <div className="flex items-center justify-between mb-8">
-        <h2 className="text-2xl font-bold bg-linear-to-r from-primary to-blue-600 bg-clip-text text-transparent">
+        <h2 className="bg-linear-to-r from-primary via-primary-light to-primary-dark bg-clip-text text-2xl font-bold text-transparent">
           More Like This
         </h2>
         <Button asChild variant="link" className="text-primary p-0 h-auto">

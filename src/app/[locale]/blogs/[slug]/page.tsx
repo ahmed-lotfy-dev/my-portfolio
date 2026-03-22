@@ -1,4 +1,4 @@
-import { getDbBlogPostBySlug } from "@/src/app/actions/postsActions";
+import { getDbBlogPostBySlug } from "@/src/app/actions/posts/queries";
 import MDXContent from "@/src/components/features/blog/MDXContent";
 import { Badge } from "@/src/components/ui/badge";
 import { Calendar, Clock, ChevronLeft, Share2, Eye } from "lucide-react";
@@ -29,7 +29,7 @@ export async function generateMetadata({
       title: post.title,
       description: post.content.substring(0, 160),
       url: `${baseUrl}/${locale}/blogs/${slug}`,
-      siteName: "Ahmed Lotfy Portfolio",
+      siteName: "Ahmed Shoman Portfolio",
       locale: locale === "ar" ? "ar_EG" : "en_US",
       type: "article",
     },
@@ -71,7 +71,7 @@ export default async function SinglePost(props: {
       <div className="max-w-4xl mx-auto">
         <Link
           href={`/${locale}/blogs`}
-          className="inline-flex items-center text-sm text-gray-500 hover:text-primary transition-colors mb-8 group"
+          className="group mb-8 inline-flex items-center text-sm text-muted-foreground transition-colors hover:text-primary"
         >
           <ChevronLeft className="w-4 h-4 mr-1 transform group-hover:-translate-x-1 transition-transform" />
           Back to all posts
@@ -88,7 +88,7 @@ export default async function SinglePost(props: {
             {post.title}
           </h1>
 
-          <div className="flex flex-wrap items-center gap-6 text-sm text-gray-500 border-y border-gray-100 dark:border-gray-800 py-6">
+          <div className="flex flex-wrap items-center gap-6 border-y border-border py-6 text-sm text-muted-foreground">
             <div className="flex items-center gap-2">
               <Calendar className="w-4 h-4" />
               <time dateTime={post.date}>{post.date}</time>
@@ -113,11 +113,11 @@ export default async function SinglePost(props: {
           <MDXContent content={post.content} />
         </div>
 
-        <footer className="mt-20 pt-10 border-t border-gray-100 dark:border-gray-800">
+        <footer className="mt-20 border-t border-border pt-10">
           <div className="flex flex-wrap gap-3">
             {post.tags.map((tag) => (
               <Link key={tag} href={`/${locale}/blogs?tag=${encodeURIComponent(tag)}`}>
-                <Badge variant="outline" className="text-xs bg-gray-50 dark:bg-gray-900 px-3 py-1 hover:bg-primary/10 hover:text-primary transition-all cursor-pointer">
+                <Badge variant="outline" className="cursor-pointer bg-card px-3 py-1 text-xs transition-all hover:bg-primary/10 hover:text-primary">
                   #{tag}
                 </Badge>
               </Link>
@@ -125,7 +125,7 @@ export default async function SinglePost(props: {
           </div>
 
           {post.updated && (
-            <p className="mt-8 text-xs text-gray-400 italic">
+            <p className="mt-8 text-xs italic text-muted-foreground">
               Last updated on {post.updated}
             </p>
           )}

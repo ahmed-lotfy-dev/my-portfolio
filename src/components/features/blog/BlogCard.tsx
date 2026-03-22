@@ -30,17 +30,17 @@ interface BlogCardProps {
 export function BlogCard({ post, locale }: BlogCardProps) {
   return (
     <Card
-      className={`group flex flex-col h-full overflow-hidden border-none shadow-md hover:shadow-2xl transition-all duration-500 bg-white dark:bg-gray-900/50 backdrop-blur-sm relative ${post.featured ? "ring-1 ring-amber-500/20 dark:ring-amber-500/10 shadow-amber-500/5" : ""
+      className={`relative flex h-full flex-col overflow-hidden border border-border/60 bg-card/80 shadow-md backdrop-blur-sm transition-all duration-500 hover:border-primary/20 hover:shadow-2xl ${post.featured ? "ring-1 ring-primary/20 shadow-primary/5" : ""
         }`}
     >
       {post.featured && (
         <div className="absolute top-4 right-4 z-20">
-          <div className="bg-amber-500 text-white p-1.5 rounded-full shadow-lg transform group-hover:scale-110 transition-transform duration-500">
-            <Star className="w-3 h-3 fill-white" />
+          <div className="rounded-full bg-primary p-1.5 text-primary-foreground shadow-lg transition-transform duration-500 group-hover:scale-110">
+            <Star className="h-3 w-3 fill-primary-foreground" />
           </div>
         </div>
       )}
-      <Link href={`/${locale}/blogs/${post.slug}`} className="block relative overflow-hidden h-48 bg-linear-to-br from-gray-100 to-gray-200 dark:from-gray-800 dark:to-gray-900">
+      <Link href={`/${locale}/blogs/${post.slug}`} className="relative block h-48 overflow-hidden bg-linear-to-br from-secondary via-card to-accent">
         <CardHeader className="p-0 h-full flex items-center justify-center">
           {post.image ? (
             <img
@@ -52,10 +52,10 @@ export function BlogCard({ post, locale }: BlogCardProps) {
           ) : (
             <>
               <div className="absolute inset-0 opacity-10 group-hover:opacity-20 transition-opacity duration-500">
-                <div className="absolute inset-0 bg-[radial-gradient(#3b82f6_1px,transparent_1px)] bg-size-[20px_20px]" />
+                <div className="absolute inset-0 bg-[radial-gradient(hsl(var(--primary))_1px,transparent_1px)] bg-size-[20px_20px]" />
               </div>
               <div className="z-10 text-center p-6">
-                <div className="inline-block p-3 rounded-2xl bg-white/80 dark:bg-gray-800/80 backdrop-blur-md shadow-sm mb-3">
+                <div className="mb-3 inline-block rounded-2xl bg-card/85 p-3 backdrop-blur-md shadow-sm">
                   <Tag className="w-6 h-6 text-primary" />
                 </div>
                 <Badge variant="outline" className="text-xs uppercase tracking-widest font-bold">
@@ -74,7 +74,7 @@ export function BlogCard({ post, locale }: BlogCardProps) {
           </Link>
         </CardTitle>
 
-        <div className="flex items-center gap-4 text-xs text-gray-500 mb-6 font-medium">
+        <div className="mb-6 flex items-center gap-4 text-xs font-medium text-muted-foreground">
           <span className="flex items-center gap-1.5">
             <Calendar className="w-3.5 h-3.5" />
             {post.date}
@@ -94,7 +94,7 @@ export function BlogCard({ post, locale }: BlogCardProps) {
             <Link
               key={t}
               href={`/${locale}/blogs?tag=${encodeURIComponent(t)}`}
-              className="text-[10px] uppercase tracking-wider font-extrabold px-2 py-0.5 rounded bg-primary/10 text-primary hover:bg-primary hover:text-white transition-all duration-300"
+              className="rounded bg-primary/10 px-2 py-0.5 text-[10px] font-extrabold uppercase tracking-wider text-primary transition-all duration-300 hover:bg-primary hover:text-primary-foreground"
             >
               #{t}
             </Link>

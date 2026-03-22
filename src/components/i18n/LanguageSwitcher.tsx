@@ -30,7 +30,7 @@ export default function LanguageSwitcher() {
       aria-label="Toggle language"
       title={locale === "en" ? "Switch to Arabic" : "Switch to English"}
       onClick={handleSwitch}
-      className="font-arabic inline-flex h-9 w-12 items-center justify-center rounded-md border border-border bg-transparent text-foreground shadow-sm transition-colors hover:bg-primary/10 dark:hover:bg-primary/20 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background"
+      className="font-arabic inline-flex h-10 min-w-[4.25rem] items-center justify-center rounded-full border border-primary/10 bg-transparent px-4 text-muted-foreground transition-all duration-300 hover:border-primary/25 hover:bg-primary/10 hover:text-primary focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background"
     >
       <span className="sr-only">
         {locale === "en" ? "Switch to Arabic" : "Switch to English"}

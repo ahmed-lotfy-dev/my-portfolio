@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Terms of Service",
-  description: "Terms of service for Ahmed Lotfy portfolio.",
+  description: "Terms of service for Ahmed Shoman portfolio.",
 };
 
 export default function TermsPage() {

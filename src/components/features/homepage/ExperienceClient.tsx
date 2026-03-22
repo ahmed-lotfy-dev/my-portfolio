@@ -122,7 +122,7 @@ export default function ExperienceClient({ experiences, isRTL }: ExperienceClien
 
   const t = useTranslations("experience");
   return (
-    <Section variant="alternate" className="py-32 px-4 relative overflow-hidden" id="experience">
+    <Section variant="transparent" className="py-32 px-4 relative overflow-hidden" id="experience">
       {/* Background Decor - Mesh Gradient */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-primary/5 rounded-full blur-[150px] pointer-events-none" />
       <div className="absolute top-0 left-0 w-[400px] h-[400px] bg-secondary/5 rounded-full blur-[100px] pointer-events-none" />

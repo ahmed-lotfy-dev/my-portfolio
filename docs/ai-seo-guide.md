@@ -37,7 +37,7 @@ AI agents love structured data. It translates your "human" website into a "machi
 {
   "@context": "https://schema.org",
   "@type": "Person",
-  "name": "Ahmed Lotfy",
+  "name": "Ahmed Shoman",
   "jobTitle": "Full-Stack Software Engineer",
   "url": "https://ahmedlotfy.site",
   "sameAs": [
@@ -52,7 +52,7 @@ AI agents love structured data. It translates your "human" website into a "machi
 }
 </script>
 ```
-*   **Why**: When someone asks ChatGPT *"Who is Ahmed Lotfy developer?"*, it retrieves this exact JSON object to formulate a confident answer.
+*   **Why**: When someone asks ChatGPT *"Who is Ahmed Shoman developer?"*, it retrieves this exact JSON object to formulate a confident answer.
 
 ### B. "About" Page Density
 LLMs hallucinate less when you provide dense, factual context.
@@ -64,7 +64,7 @@ LLMs hallucinate less when you provide dense, factual context.
 ### C. The "Context" File (Optional but Pro)
 Some developers now add a `/llms.txt` file (proposed standard).
 *   **Concept**: A text file specifically for bots that summarizes the entire site structure without HTML noise.
-*   **Content**: "Ahmed Lotfy is a Full Stack Engineer. His projects include X, Y, Z. His blog covers A, B."
+*   **Content**: "Ahmed Shoman is a Full Stack Engineer. His projects include X, Y, Z. His blog covers A, B."
 
 ### D. Blog Content Strategy for AI
 Don't just write for clicks; write for **embeddings** (semantic similarity).
@@ -75,6 +75,6 @@ Don't just write for clicks; write for **embeddings** (semantic similarity).
 
 ## 3. Verification Checklist
 
-1.  **Perplexity Test**: Ask Perplexity.ai *"Who is Ahmed Lotfy software engineer?"*. If it quotes your site, you are indexed.
+1.  **Perplexity Test**: Ask Perplexity.ai *"Who is Ahmed Shoman software engineer?"*. If it quotes your site, you are indexed.
 2.  **Indexing Speed**: Submit your sitemap to Google Search Console. Bing (which powers ChatGPT search features) also has a Webmaster Tool—submit there too.
 3.  **Backlinks**: AI models trust "authoritative" nodes. Links from GitHub, LinkedIn, and even generic dev.to articles pointing to your site increase your "Knowledge Graph" weight.

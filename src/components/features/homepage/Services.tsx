@@ -25,7 +25,7 @@ export default function Services() {
   const t = useTranslations("services");
 
   return (
-    <Section variant="surface" className="py-24 sm:py-32 relative overflow-hidden" id="services">
+    <Section variant="transparent" className="py-24 sm:py-32 relative overflow-hidden" id="services">
       {/* Background Decor - Mesh Gradient */}
       <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-primary/10 rounded-full blur-[120px] pointer-events-none -translate-y-1/2 translate-x-1/2" />
       <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-secondary/10 rounded-full blur-[100px] pointer-events-none translate-y-1/2 -translate-x-1/2" />

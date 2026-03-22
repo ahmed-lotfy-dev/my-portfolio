@@ -16,7 +16,6 @@ const Footer = dynamic(() => import("@/src/components/features/homepage/Footer")
 });
 import { PersonSchema } from "@/src/components/seo/PersonSchema";
 import PostHogClient from "@/src/components/shared/PostHogClient";
-import ServerActionRecovery from "@/src/components/shared/ServerActionRecovery";
 import { LazyMotion, domAnimation } from "motion/react";
 import { Toaster } from "@/src/components/ui/sonner";
 
@@ -129,7 +128,6 @@ export default async function LocaleLayout({ children, params }: Props) {
       >
         <NextIntlClientProvider messages={messages}>
           <LazyMotion features={domAnimation} strict>
-            <ServerActionRecovery />
             <ErrorBoundary>
               {isPostHogEnabled ? (
                 <PostHogClient

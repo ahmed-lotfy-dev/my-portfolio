@@ -19,7 +19,7 @@ type Testimonial = {
 };
 export default function TestimonialsClient({ isRTL, testimonials }: TestimonialsClientProps) {
   return (
-    <Section id="testimonials" variant="surface" className="py-28 relative overflow-hidden">
+    <Section id="testimonials" variant="transparent" className="py-28 relative overflow-hidden">
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[300px] bg-primary/5 blur-[120px] pointer-events-none" />
 
       <div className="container mx-auto max-w-6xl relative">

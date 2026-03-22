@@ -1,6 +1,6 @@
 import Section from "@/src/components/ui/Section";
 import { getTranslations, getLocale } from "next-intl/server";
-import { getAllProjects } from "@/src/app/actions/projectsActions";
+import { getAllProjects } from "@/src/app/actions/projects/queries";
 import ProjectsClient from "./ProjectsClient";
 
 export default async function Projects() {
@@ -19,7 +19,7 @@ export default async function Projects() {
 
   return (
     <Section
-      variant="surface"
+      variant="transparent"
       className="relative overflow-hidden"
       id="projects"
     >

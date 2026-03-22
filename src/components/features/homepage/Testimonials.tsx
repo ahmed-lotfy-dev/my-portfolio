@@ -1,5 +1,5 @@
 import { getLocale } from "next-intl/server";
-import { getTestimonials } from "@/src/app/actions/testimonialsActions";
+import { getTestimonials } from "@/src/app/actions/testimonials/queries";
 import TestimonialsClient from "./TestimonialsClient";
 
 export default async function Testimonials() {

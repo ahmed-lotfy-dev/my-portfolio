@@ -1,4 +1,4 @@
-import { getAllCertificates } from "@/src/app/actions/certificatesActions";
+import { getAllCertificates } from "@/src/app/actions/certificates/queries";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { routing } from "@/src/i18n/routing";
 import Link from "next/link";
@@ -26,12 +26,12 @@ export async function generateMetadata({
   return {
     title: t("title"),
     description: t("description"),
-    keywords: "certificates, certifications, courses, learning, professional development, Ahmed Lotfy",
+    keywords: "certificates, certifications, courses, learning, professional development, Ahmed Shoman",
     openGraph: {
       title: t("title"),
       description: t("description"),
       url: `${baseUrl}/${locale}/certificates`,
-      siteName: "Ahmed Lotfy Portfolio",
+      siteName: "Ahmed Shoman Portfolio",
       locale: locale === "ar" ? "ar_EG" : "en_US",
       type: "website",
     },
@@ -69,8 +69,8 @@ export default async function CertificatesPage({
       <StructuredData
         type="CollectionPage"
         data={{
-          name: "Professional Certificates - Ahmed Lotfy",
-          description: "Collection of professional development certificates and courses completed by Ahmed Lotfy",
+          name: "Professional Certificates - Ahmed Shoman",
+          description: "Collection of professional development certificates and courses completed by Ahmed Shoman",
           url: `https://ahmedlotfy.site/${locale}/certificates`,
           numberOfItems: allCertificates?.length || 0,
         }}
@@ -79,7 +79,7 @@ export default async function CertificatesPage({
       {/* Background Effects */}
       <div className="fixed inset-0 pointer-events-none overflow-hidden">
         <div className="absolute top-[-10%] right-[-10%] w-[500px] h-[500px] bg-primary/10 blur-[100px] rounded-full mix-blend-screen opacity-50" />
-        <div className="absolute bottom-[-10%] left-[-10%] w-[500px] h-[500px] bg-blue-500/10 blur-[100px] rounded-full mix-blend-screen opacity-50" />
+        <div className="absolute bottom-[-10%] left-[-10%] w-[500px] h-[500px] bg-accent/40 blur-[100px] rounded-full mix-blend-screen opacity-50" />
       </div>
 
       <div className="container mx-auto px-4 md:px-6 relative z-10 pt-24 md:pt-32">

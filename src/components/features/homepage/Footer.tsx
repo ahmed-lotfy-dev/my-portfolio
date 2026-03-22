@@ -59,7 +59,7 @@ export default function Footer() {
             <div className="lg:col-span-2 space-y-6">
               <div className="space-y-4">
                 <h3 className="text-2xl md:text-3xl font-bold text-foreground tracking-tight">
-                  Ahmed Lotfy
+                  Ahmed Shoman
                 </h3>
                 <p className="text-base text-muted-foreground leading-relaxed max-w-md">
                   {t("about_text")}
@@ -176,7 +176,7 @@ export default function Footer() {
           <div className="flex flex-col lg:flex-row items-center justify-between gap-6">
             {/* Copyright */}
             <div className="flex flex-col md:flex-row items-center gap-2 text-sm text-muted-foreground">
-              <p>© {currentYear} Ahmed Lotfy.</p>
+              <p>© {currentYear} Ahmed Shoman.</p>
               <span className="hidden md:inline">•</span>
               <p className="flex items-center gap-1.5">
                 {t("rights")}

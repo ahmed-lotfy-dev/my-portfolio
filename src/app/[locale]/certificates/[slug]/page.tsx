@@ -1,4 +1,4 @@
-import { getSingleCertificate } from "@/src/app/actions/certificatesActions";
+import { getSingleCertificate } from "@/src/app/actions/certificates/queries";
 import { notFound } from "next/navigation";
 import { getLocale, getTranslations } from "next-intl/server";
 import { cn } from "@/src/lib/utils";
@@ -29,7 +29,7 @@ export async function generateMetadata({
   }
 
   return {
-    title: `${certificate.title} | Ahmed Lotfy`,
+    title: `${certificate.title} | Ahmed Shoman`,
     description: `Certificate: ${certificate.title} - ${certificate.desc}`,
     openGraph: {
       title: certificate.title,
@@ -90,7 +90,7 @@ export default async function CertificatePage(props: { params: Promise<{ slug: s
       {/* Background Effects */}
       <div className="fixed inset-0 pointer-events-none overflow-hidden">
         <div className="absolute top-[-10%] right-[-10%] w-[500px] h-[500px] bg-primary/10 blur-[100px] rounded-full mix-blend-screen opacity-50" />
-        <div className="absolute bottom-[-10%] left-[-10%] w-[500px] h-[500px] bg-blue-500/10 blur-[100px] rounded-full mix-blend-screen opacity-50" />
+        <div className="absolute bottom-[-10%] left-[-10%] w-[500px] h-[500px] bg-accent/40 blur-[100px] rounded-full mix-blend-screen opacity-50" />
       </div>
 
       <div className="container mx-auto px-4 md:px-6 relative z-10 pt-24 md:pt-32">

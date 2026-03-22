@@ -26,6 +26,8 @@ const cspDirectives = {
   ],
   "style-src": ["'self'", "'unsafe-inline'"],
   "img-src": ["'self'", "data:", "https:", "blob:"],
+  // default-src is 'self' only; without media-src, <video src="https://..."> is blocked.
+  "media-src": ["'self'", "https:", "blob:"],
   "font-src": ["'self'", "data:"],
   "connect-src": [
     "'self'",
@@ -37,7 +39,8 @@ const cspDirectives = {
     "https://static.cloudflareinsights.com",
     "*.cloudflareinsights.com",
   ],
-  "frame-src": ["'self'", "*.youtube.com"],
+  // Project embeds are admin-controlled; allow HTTPS players (YouTube, Vimeo, Drive previews, etc.).
+  "frame-src": ["'self'", "https:"],
   "object-src": ["'none'"],
   "base-uri": ["'self'"],
   "form-action": ["'self'"],

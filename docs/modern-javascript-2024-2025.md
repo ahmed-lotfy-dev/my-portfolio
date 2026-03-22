@@ -903,7 +903,7 @@ const rawUser: RawUser = {
 };
 
 const displayUser = transformUser(rawUser);
-// { fullName: 'Ahmed Lotfy', email: 'ahmed@example.com', isAdult: true }
+// { fullName: 'Ahmed Shoman', email: 'ahmed@example.com', isAdult: true }
 ```
 
 ### Async Pipeline Pattern

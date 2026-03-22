@@ -1,4 +1,4 @@
-import { getAllCertificates } from "@/src/app/actions/certificatesActions";
+import { getAllCertificates } from "@/src/app/actions/certificates/queries";
 import { getTranslations } from "next-intl/server";
 import CertificatesList from "./CertificatesList";
 

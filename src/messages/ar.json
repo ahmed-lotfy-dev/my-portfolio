@@ -9,17 +9,18 @@
     "contact": "تواصل معايا",
     "dashboard": "لوحة التحكم",
     "signin": "تسجيل دخول",
-    "sign_out": "خروج"
+    "sign_out": "خروج",
+    "menu": "القائمة"
   },
   "hero": {
     "name": "أحمد شومان",
-    "title": "Full-Stack Software Engineer",
-    "description": "بساعد الشركات تبني تطبيقات ويب قوية بتتحمل الضغط العالي (Scalable). تخصصي Next.js، البنية السحابية (Cloud Architecture)، وحلول التجارة الإلكترونية.",
+    "title": "كبير معماري البرمجيات ومطور Full-Stack",
+    "description": "بناء أنظمة رقمية عالية الأداء باستخدام Next.js 16 وبنيات سحابية متطورة. أركز على القابلية للتوسع، والأداء، وتجارب المستخدم الفاخرة.",
     "book_consultation": "احجز استشارة",
     "resume": "السيرة الذاتية",
     "view_work": "شوف شغلي",
     "illustrationAlt": "صورة توضيحية لمطور",
-    "available_work": "متاح لمشاريع جديدة",
+    "available_work": "Fullstack Software Engineer",
     "cv_modal": {
       "title": "عرض الـ CV",
       "description": "تحب تشوف السيرة الذاتية إزاي؟",

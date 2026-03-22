@@ -15,33 +15,43 @@ import {
 } from "@/src/components/ui/dropdown-menu";
 import Link from "next/link";
 import { SignOutButton } from "@/src/components/features/auth/SignOutButton";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { authClient } from "@/src/lib/auth-client";
+import { cn } from "@/src/lib/utils";
 
 export default function UserButton({ className, user: initialUser }: { className?: string; user?: any }) {
   const { data: session } = authClient.useSession();
   const user = initialUser || session?.user;
   const t = useTranslations("nav");
+  const locale = useLocale();
 
   const defaultAvatar =
     "https://api.dicebear.com/7.x/thumbs/svg?seed=guest&radius=50&backgroundType=gradientLinear&shapeColor=%23CBD5E1&mouth=smile";
 
   if (!user) {
     return (
-      <div className={className}>
-        <Link href="/login">
-          <Button variant="outline">{t("signin")}</Button>
+      <div className={cn("shrink-0", className)}>
+        <Link href={`/${locale}/login`}>
+          <Button
+            variant="ghost"
+            className="h-10 rounded-full border border-primary/10 bg-transparent px-4 font-medium text-primary transition-all duration-300 hover:border-primary/25 hover:bg-primary/10 hover:text-primary-light"
+          >
+            {t("signin")}
+          </Button>
         </Link>
       </div>
     );
   }
 
   return (
-    <div className={className}>
+    <div className={cn("shrink-0", className)}>
       <DropdownMenu modal={false}>
         <DropdownMenuTrigger asChild>
-          <Button variant="ghost" className="relative h-9 w-9 rounded-full p-0">
-            <Avatar className="h-9 w-9 ring-1 ring-gray-300 dark:ring-neutral-700">
+          <Button
+            variant="ghost"
+            className="relative h-10 w-10 rounded-full border border-primary/10 bg-transparent p-0 transition-all duration-300 hover:border-primary/25 hover:bg-primary/10"
+          >
+            <Avatar className="h-10 w-10 ring-1 ring-primary/10">
               <AvatarImage
                 src={user.image ?? defaultAvatar}
                 alt={user.name ?? "User"}

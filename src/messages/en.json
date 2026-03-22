@@ -9,17 +9,18 @@
     "contact": "Contact",
     "dashboard": "Dashboard",
     "signin": "Sign In",
-    "sign_out": "Sign Out"
+    "sign_out": "Sign Out",
+    "menu": "Menu"
   },
   "hero": {
     "name": "Ahmed Shoman",
-    "title": "Full-Stack Software Engineer",
-    "description": "I help businesses build high-performance web applications that scale. Specializing in Next.js, Cloud Architecture, and E-commerce Solutions.",
+    "title": "Senior Software Architect & Full-Stack Engineer",
+    "description": "Building high-performance digital ecosystems with Next.js 16 and Cloud-Native architectures. Focused on scalability, performance, and premium user experiences.",
     "book_consultation": "Book a Consultation",
     "resume": "My CV",
     "view_work": "View Work",
-    "illustrationAlt": "Developer Illustration Hero Image",
-    "available_work": "Available for new projects",
+    "illustrationAlt": "Senior Software Architect Portrait",
+    "available_work": "Fullstack Software Engineer",
     "cv_modal": {
       "title": "View Resume",
       "description": "How would you like to view the resume?",

@@ -5,6 +5,7 @@ import Hero from "@/src/components/features/homepage/Hero";
 import About from "@/src/components/features/homepage/About";
 import Services from "@/src/components/features/homepage/Services";
 import Projects from "@/src/components/features/homepage/Projects";
+import { HomeSectionBand } from "@/src/components/features/homepage/HomeSectionBand";
 
 const TechStack = nextDynamic(() => import("@/src/components/features/homepage/TechStack"));
 const Experience = nextDynamic(() => import("@/src/components/features/homepage/Experience"));
@@ -34,15 +35,15 @@ export async function generateMetadata({
   return {
     title: t("title"),
     description: t("description"),
-    keywords: 'Ahmed Lotfy, Full Stack Developer, Next.js, React, TypeScript, Node.js, PostgreSQL, Web Development, Software Engineer, Portfolio, مطور ويب, مطور برمجيات',
-    authors: [{ name: 'Ahmed Lotfy', url: baseUrl }],
-    creator: 'Ahmed Lotfy',
-    publisher: 'Ahmed Lotfy',
+    keywords: 'Ahmed Shoman, Full Stack Developer, Next.js, React, TypeScript, Node.js, PostgreSQL, Web Development, Software Engineer, Portfolio, مطور ويب, مطور برمجيات',
+    authors: [{ name: 'Ahmed Shoman', url: baseUrl }],
+    creator: 'Ahmed Shoman',
+    publisher: 'Ahmed Shoman',
     openGraph: {
       title: t("title"),
       description: t("description"),
       url: `${baseUrl}/${locale}`,
-      siteName: 'Ahmed Lotfy Portfolio',
+      siteName: 'Ahmed Shoman Portfolio',
       locale: locale === 'ar' ? 'ar_EG' : 'en_US',
       type: 'website',
     },
@@ -71,12 +72,12 @@ export default async function HomePage({
   setRequestLocale(locale);
 
   return (
-    <Container className="font-main min-h-screen bg-background text-foreground">
+    <div className="font-main min-h-screen bg-background text-foreground">
       {/* Structured Data for SEO */}
       <StructuredData
         type="Person"
         data={{
-          name: 'Ahmed Lotfy',
+          name: 'Ahmed Shoman',
           url: 'https://ahmedlotfy.site',
           image: 'https://ahmedlotfy.site/ahmed-lotfy.jpg',
           jobTitle: 'Full Stack Developer',
@@ -94,26 +95,42 @@ export default async function HomePage({
       <StructuredData
         type="WebSite"
         data={{
-          name: 'Ahmed Lotfy Portfolio',
+          name: 'Ahmed Shoman Portfolio',
           url: 'https://ahmedlotfy.site',
           description: locale === 'ar'
-            ? 'معرض أعمال أحمد لطفي - مطور ويب متخصص في بناء تطبيقات ويب حديثة'
-            : 'Ahmed Lotfy Portfolio - Full Stack Developer building modern web applications',
+            ? 'معرض أعمال أحمد شومان - مطور ويب متخصص في بناء تطبيقات ويب حديثة'
+            : 'Ahmed Shoman Portfolio - Full Stack Developer building modern web applications',
           languages: ['en', 'ar'],
-          authorName: 'Ahmed Lotfy',
+          authorName: 'Ahmed Shoman',
         }}
       />
 
       <Hero locale={locale} />
-      <Services />
-      <TechStack />
-      <Experience />
-      <Suspense fallback={<ProjectsSkeleton />}>
-        <Projects />
-      </Suspense>
-      <About />
-      <Testimonials />
-      <Contact />
-    </Container>
+
+      <Container>
+        <div className="space-y-6 py-12 lg:py-20">
+          <HomeSectionBand variant="warm">
+            <Services />
+            <TechStack />
+          </HomeSectionBand>
+
+          <HomeSectionBand variant="editorial">
+            <Experience />
+            <Suspense fallback={<ProjectsSkeleton />}>
+              <Projects />
+            </Suspense>
+          </HomeSectionBand>
+
+          <HomeSectionBand variant="deep">
+            <About />
+            <Testimonials />
+          </HomeSectionBand>
+
+          <HomeSectionBand variant="warm">
+            <Contact />
+          </HomeSectionBand>
+        </div>
+      </Container>
+    </div>
   );
 }

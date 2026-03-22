@@ -1,7 +1,7 @@
 "use client";
 
 import { useActionState, useState, useEffect } from "react";
-import { contactAction } from "@/src/app/actions/contactAction";
+import { contactAction } from "@/src/app/actions/contact/mutations";
 import { notify } from "@/src/lib/utils/toast";
 import { IoLogoLinkedin, IoLogoGithub } from "react-icons/io5";
 import { Mail, Send, MessageSquare, Sparkles } from "lucide-react";
@@ -45,14 +45,14 @@ export default function Contact() {
       label: "Email",
       value: "contact@ahmedlotfy.site",
       href: "mailto:contact@ahmedlotfy.site",
-      color: "text-blue-500",
+      color: "text-primary",
     },
     {
       icon: IoLogoLinkedin,
       label: "LinkedIn",
       value: "ahmed-lotfy-dev",
       href: "https://www.linkedin.com/in/ahmed-lotfy-dev/",
-      color: "text-blue-600",
+      color: "text-primary-light",
     },
     {
       icon: IoLogoGithub,
@@ -65,7 +65,7 @@ export default function Contact() {
 
   return (
     <section
-      className="relative py-24 overflow-hidden bg-background border-t border-border/40"
+      className="relative overflow-hidden py-24"
       id="contact"
     >
       {/* Background Decor */}
@@ -161,7 +161,7 @@ export default function Contact() {
 
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                     <div className="space-y-3">
-                      <label className="text-sm font-bold text-foreground/70 ml-1 tracking-wide">{t("labels.name")}</label>
+                    <label className="text-sm font-bold text-foreground/70 ml-1 tracking-wide">{t("labels.name")}</label>
                       <Input
                         type="text"
                         name="name"
@@ -174,7 +174,7 @@ export default function Contact() {
                     </div>
 
                     <div className="space-y-3">
-                      <label className="text-sm font-bold text-foreground/70 ml-1 tracking-wide">{t("labels.email")}</label>
+                    <label className="text-sm font-bold text-foreground/70 ml-1 tracking-wide">{t("labels.email")}</label>
                       <Input
                         type="email"
                         name="email"

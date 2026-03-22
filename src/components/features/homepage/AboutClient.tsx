@@ -43,13 +43,13 @@ export default function AboutClient({ myImage, isRTL }: Props) {
   };
 
   const stats = [
-    { icon: Trophy, label: "Experience", value: "2 Years", color: "text-blue-500" },
-    { icon: Target, label: "Projects", value: "8 Projects", color: "text-emerald-500" },
-    { icon: Zap, label: "Performance", value: "95+ Score", color: "text-amber-500" },
+    { icon: Trophy, label: "Experience", value: "2 Years", color: "text-primary" },
+    { icon: Target, label: "Projects", value: "8 Projects", color: "text-primary-light" },
+    { icon: Zap, label: "Performance", value: "95+ Score", color: "text-primary-dark" },
   ];
 
   return (
-    <section className="relative overflow-hidden bg-background py-24 sm:py-32" id="about">
+    <section className="relative overflow-hidden py-24 sm:py-32" id="about">
       <div className="pointer-events-none absolute top-0 left-0 h-full w-full overflow-hidden">
         <div className="absolute top-1/4 -left-20 h-80 w-80 rounded-full bg-primary/5 blur-[100px]" />
         <div className="absolute right-0 bottom-1/4 h-80 w-80 translate-x-1/4 rounded-full bg-secondary/5 blur-[100px]" />
@@ -71,7 +71,7 @@ export default function AboutClient({ myImage, isRTL }: Props) {
                 width={400}
                 height={400}
                 quality={75}
-                alt="Ahmed Lotfy"
+                alt="Ahmed Shoman"
                 className={`rounded-2xl transition-transform duration-500 group-hover:scale-[1.01] ${!isRTL ? "-scale-x-100" : ""}`}
               />
             </div>

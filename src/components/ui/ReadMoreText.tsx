@@ -64,7 +64,7 @@ const ReadMoreText: React.FC<ReadMoreTextProps> = ({
         <Button
           variant="link"
           onClick={toggleExpanded}
-          className="p-0 h-auto mt-2 text-blue-900 dark:to-blue-300"
+          className="mt-2 h-auto p-0 text-primary"
         >
           {isExpanded ? showLessText : readMoreText}
         </Button>
