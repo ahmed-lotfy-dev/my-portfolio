@@ -7,7 +7,7 @@ import { ArrowUpRight, LogOut, Menu, X } from "lucide-react";
 import { m, AnimatePresence } from "motion/react";
 
 import { SignOutButton } from "@/src/components/features/auth/SignOutButton";
-import { Button } from "@/src/components/ui/button";
+import { Button, buttonVariants } from "@/src/components/ui/button";
 import {
   Sheet,
   SheetContent,
@@ -127,20 +127,17 @@ export function MobileNav({
 
                 return (
                   <m.div key={link.href} variants={itemVariants}>
-                    <Button
-                      variant="ghost"
-                      asChild
+                    <Link
+                      href={localizeHref(locale, link.href)}
                       className={cn(
+                        buttonVariants({ variant: "ghost" }),
                         "group relative h-14 w-full justify-between overflow-hidden rounded-[1.25rem] px-5 text-base font-semibold transition-all duration-500",
                         active
                           ? "bg-primary/10 text-primary shadow-inner"
                           : "text-muted-foreground hover:bg-white/5 hover:text-white"
                       )}
                       onClick={() => setOpen(false)}
-                      // @ts-ignore - spring feedback
-                      whileTap={{ scale: 0.98 }}
                     >
-                      <Link href={localizeHref(locale, link.href)}>
                         <span className="relative z-10 flex items-center gap-3">
                           {active && (
                             <m.span 
@@ -168,7 +165,6 @@ export function MobileNav({
                           />
                         )}
                       </Link>
-                    </Button>
                   </m.div>
                 );
               })}
