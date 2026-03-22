@@ -109,6 +109,11 @@
     direction: rtl;
   }
 
+  button,
+  [role="button"] {
+    cursor: pointer;
+  }
+
   a {
     color: var(--color-primary);
     text-decoration: none;
