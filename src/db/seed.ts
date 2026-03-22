@@ -96,18 +96,20 @@ async function seed() {
   )
 
   // Insert testimonials
-  await db.insert(testimonials).values(
-    testimonialsSeedData.map((item) => ({
-      name: item.name,
-      role: item.role,
-      quote_en: item.quote_en,
-      quote_ar: item.quote_ar,
-      displayOrder: item.displayOrder,
-      published: item.published,
-      createdAt: new Date(),
-      updatedAt: new Date(),
-    }))
-  )
+  if (testimonialsSeedData.length > 0) {
+    await db.insert(testimonials).values(
+      testimonialsSeedData.map((item: any) => ({
+        name: item.name,
+        role: item.role,
+        quote_en: item.quote_en,
+        quote_ar: item.quote_ar,
+        displayOrder: item.displayOrder,
+        published: item.published,
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      }))
+    )
+  }
 
   console.log("✅ Seeding finished.")
   process.exit(0)

@@ -29,7 +29,7 @@ export function HomeSectionBand({
   return (
     <section
       className={cn(
-        "relative isolate overflow-hidden rounded-[2rem] border shadow-[0_28px_90px_-52px_rgba(0,0,0,0.95)]",
+        "relative isolate overflow-hidden rounded-4xl border shadow-[0_28px_90px_-52px_rgba(0,0,0,0.95)]",
         variantClasses[variant],
         className
       )}

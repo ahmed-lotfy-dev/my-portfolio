@@ -13,7 +13,8 @@ import {
   IoLogOut,
   IoSaveSharp,
   IoBriefcase,
-  IoChatboxEllipsesOutline
+  IoChatboxEllipsesOutline,
+  IoPerson
 } from "react-icons/io5";
 import { cn } from "@/src/lib/utils";
 import { useTranslations, useLocale } from "next-intl";
@@ -58,6 +59,7 @@ export default function Aside({ user }: { user: any }) {
     { href: "/dashboard/projects", icon: IoCode, text: t("projects") },
     { href: "/dashboard/certificates", icon: IoRibbon, text: t("certificates") },
     { href: "/dashboard/experiences", icon: IoBriefcase, text: t("experiences") },
+    { href: "/dashboard/profile", icon: IoPerson, text: t("profile") || "Profile" },
     ...(isAdmin ? [{ href: "/dashboard/testimonials", icon: IoRibbon, text: t("testimonials") }] : []),
     { href: "/dashboard/blogs", icon: IoChatboxEllipsesOutline, text: t("blog") },
     { href: "/dashboard/backups", icon: IoSaveSharp, text: t("backups") },

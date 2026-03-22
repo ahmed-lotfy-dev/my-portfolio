@@ -18,6 +18,7 @@ import { SignOutButton } from "@/src/components/features/auth/SignOutButton";
 import { useLocale, useTranslations } from "next-intl";
 import { authClient } from "@/src/lib/auth-client";
 import { cn } from "@/src/lib/utils";
+import { IoPerson } from "react-icons/io5";
 
 export default function UserButton({ className, user: initialUser }: { className?: string; user?: any }) {
   const { data: session } = authClient.useSession();
@@ -74,6 +75,16 @@ export default function UserButton({ className, user: initialUser }: { className
               </p>
             </div>
           </DropdownMenuLabel>
+
+          <DropdownMenuItem asChild>
+            <Link
+              href={`/${locale}/dashboard/profile`}
+              className="w-full justify-start cursor-pointer hover:bg-primary/10 transition-colors flex items-center gap-2 px-2 py-1.5 rounded-sm"
+            >
+              <IoPerson className="h-4 w-4" />
+              <span>{t("profile") || "Profile"}</span>
+            </Link>
+          </DropdownMenuItem>
 
           <DropdownMenuItem asChild>
             <SignOutButton

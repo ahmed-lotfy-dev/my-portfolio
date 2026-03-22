@@ -350,6 +350,16 @@
         "featured": "Featured",
         "date": "Date"
       }
+    },
+    "profile": {
+      "title": "Account Settings",
+      "subtitle": "Manage your public profile and account details.",
+      "name_label": "Display Name",
+      "email_label": "Email Address",
+      "avatar_label": "Profile Picture",
+      "update_button": "Update Profile",
+      "success_msg": "Profile updated successfully!",
+      "error_msg": "Failed to update profile. Please try again."
     }
   },
   "experiences": {

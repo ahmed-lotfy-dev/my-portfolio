@@ -76,14 +76,52 @@ export function Nav({ variant = "floating" }: NavProps) {
 
   const isIntegrated = variant === "integrated";
 
+  const mobileVariant: Variants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { 
+      opacity: 1, 
+      y: 0,
+      transition: {
+        staggerChildren: 0.08,
+        delayChildren: 0.2,
+        type: "spring",
+        stiffness: 150,
+        damping: 24,
+      }
+    }
+  };
+
+  const desktopVariant: Variants = {
+    hidden: { opacity: 0, y: -20 },
+    visible: { 
+      opacity: 1, 
+      y: 0,
+      transition: {
+        staggerChildren: 0.08,
+        delayChildren: 0.2,
+        type: "spring",
+        stiffness: 150,
+        damping: 24,
+      }
+    }
+  };
+
   return (
     <m.nav
       ref={navRef}
       className={cn(
-        "z-50 px-2 pt-4 sm:px-4 md:pt-6 lg:px-8",
-        isIntegrated ? "relative w-full" : "fixed inset-x-0 top-0"
+        "z-50 w-full transition-all duration-300",
+        isIntegrated 
+          ? "relative px-2 pt-4 sm:px-4 md:pt-6 lg:px-8" 
+          : "fixed left-0 right-0 md:top-0 max-md:bottom-6 max-md:px-4"
       )}
-      variants={navContainerVariants}
+      variants={
+        isIntegrated 
+          ? navContainerVariants 
+          : (mounted && typeof window !== "undefined" && window.innerWidth < 768) 
+            ? mobileVariant 
+            : desktopVariant
+      }
       initial={mounted ? (isIntegrated ? "visible" : "hidden") : "visible"}
       animate={mounted ? "visible" : "visible"}
       suppressHydrationWarning
@@ -93,22 +131,30 @@ export function Nav({ variant = "floating" }: NavProps) {
           "container relative mx-auto flex h-16 w-full items-center justify-between transition-all duration-700 md:h-20 px-4 md:px-8 max-w-7xl rounded-[2.5rem]",
           isIntegrated
             ? scrollerLayoutStyles(scrolled)
-            : islandLayoutStyles(scrolled)
+            : islandLayoutStyles(scrolled),
+          // Mobile specific bottom nav tweaks
+          !isIntegrated && "max-md:h-14 max-md:rounded-4xl max-md:shadow-2xl max-md:border-primary/20 max-md:bg-black/80 max-md:backdrop-blur-2xl"
         )}
       >
-        {/* Top Glow Edge - Senior UI/UX Premium Detail */}
-        <div className="absolute inset-x-12 top-0 h-px bg-linear-to-r from-transparent via-primary/40 to-transparent opacity-50 blur-sm" />
+        {/* Top Glow Edge - Desktop/Integrated Only */}
+        <div className={cn(
+          "absolute inset-x-12 top-0 h-px bg-linear-to-r from-transparent via-primary/40 to-transparent opacity-50 blur-sm",
+          !isIntegrated && "max-md:hidden"
+        )} />
 
-        {/* Left: Brand */}
+        {/* Brand - Visible on Desktop, Hidden on Mobile Bottom Nav */}
         <m.div 
           variants={navItemVariants} 
-          className="relative z-10 flex flex-1 items-center justify-start"
+          className={cn(
+            "relative z-10 flex flex-1 items-center justify-start",
+            !isIntegrated && "max-md:hidden"
+          )}
           suppressHydrationWarning
         >
           <NavBrand locale={locale} />
         </m.div>
 
-        {/* Center: Main Navigation */}
+        {/* Center: Main Navigation (Desktop Only) */}
         <m.div 
           variants={navItemVariants} 
           className="relative z-10 hidden flex-1 items-center justify-center md:flex"
@@ -123,7 +169,20 @@ export function Nav({ variant = "floating" }: NavProps) {
           />
         </m.div>
 
-        {/* Right: Actions */}
+        {/* Mobile: Centered Action or Brand Mini (Bottom Nav Style) */}
+        <m.div
+          variants={navItemVariants}
+          className={cn(
+            "relative z-10 hidden items-center justify-center flex-1",
+            !isIntegrated && "max-md:flex"
+          )}
+        >
+          <div className="flex items-center justify-center w-10 h-10 border rounded-xl bg-primary/10 border-primary/20">
+            <NavBrand locale={locale} />
+          </div>
+        </m.div>
+
+        {/* Right Actions / Mobile Menu Toggle */}
         <m.div 
           variants={navItemVariants} 
           className="relative z-10 flex flex-1 items-center justify-end gap-2 sm:gap-4"
@@ -142,7 +201,7 @@ export function Nav({ variant = "floating" }: NavProps) {
             </div>
           </div>
 
-          <div className="flex items-center gap-2 md:hidden">
+          <div className="flex items-center gap-3 md:hidden">
             <LanguageSwitcher />
             <MobileNav
               activeSection={activeSection}

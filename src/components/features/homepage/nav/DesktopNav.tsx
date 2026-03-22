@@ -2,7 +2,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { m, AnimatePresence } from "motion/react";
 
-import { Button } from "@/src/components/ui/button";
+import { buttonVariants } from "@/src/components/ui/button";
 import { cn } from "@/src/lib/utils";
 
 import type { NavLink } from "./config";
@@ -63,16 +63,15 @@ export function DesktopNav({
 
         return (
           <m.div key={link.href} variants={itemVariants}>
-            <Button
-              variant="ghost"
-              asChild
+            <Link
+              href={localizeHref(locale, link.href)}
               className={cn(
+                buttonVariants({ variant: "ghost" }),
                 "group relative h-9 px-4 text-sm font-medium transition-colors duration-300 rounded-full",
                 active ? "text-primary" : "text-muted-foreground hover:text-foreground"
               )}
               onMouseEnter={() => setHoveredPath(link.href)}
             >
-              <Link href={localizeHref(locale, link.href)}>
                 {/* Shared Hover Pill */}
                 {isHovered && (
                   <m.div
@@ -109,7 +108,6 @@ export function DesktopNav({
                   )}
                 </AnimatePresence>
               </Link>
-            </Button>
           </m.div>
         );
       })}
