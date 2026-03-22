@@ -77,6 +77,7 @@ export function DesktopNav({
                     animate={{ opacity: 1, scale: 1 }}
                     exit={{ opacity: 0, scale: 0.8 }}
                     className="absolute inset-0 z-0 rounded-full bg-primary/5 blur-sm"
+                    suppressHydrationWarning
                   />
                 )}
               </AnimatePresence>

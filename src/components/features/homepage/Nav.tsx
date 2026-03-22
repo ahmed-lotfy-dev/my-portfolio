@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useRef } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
 import { authClient } from "@/src/lib/auth-client";
 import LanguageSwitcher from "@/src/components/i18n/LanguageSwitcher";
@@ -54,6 +54,7 @@ export type NavProps = {
 };
 
 export function Nav({ variant = "floating" }: NavProps) {
+  const [mounted, setMounted] = useState(false);
   const pathname = usePathname();
   const t = useTranslations("nav");
   const locale = useLocale();
@@ -64,6 +65,10 @@ export function Nav({ variant = "floating" }: NavProps) {
   
   const navRef = useRef<HTMLElement>(null);
   const isHomePage = normalizedPath === "" || normalizedPath === "/" || normalizedPath === `/${locale}`;
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   // Hide the global floating nav on the home page
   if (isHomePage && variant === "floating") return null;
@@ -79,8 +84,9 @@ export function Nav({ variant = "floating" }: NavProps) {
         isIntegrated ? "relative w-full" : "fixed inset-x-0 top-0"
       )}
       variants={navContainerVariants}
-      initial={isIntegrated ? "visible" : "hidden"}
-      animate="visible"
+      initial={mounted ? (isIntegrated ? "visible" : "hidden") : "visible"}
+      animate={mounted ? "visible" : "visible"}
+      suppressHydrationWarning
     >
       <div
         className={cn(
@@ -94,12 +100,20 @@ export function Nav({ variant = "floating" }: NavProps) {
         <div className="absolute inset-x-12 top-0 h-px bg-linear-to-r from-transparent via-primary/40 to-transparent opacity-50 blur-sm" />
 
         {/* Left: Brand */}
-        <m.div variants={navItemVariants} className="relative z-10 flex flex-1 items-center justify-start">
+        <m.div 
+          variants={navItemVariants} 
+          className="relative z-10 flex flex-1 items-center justify-start"
+          suppressHydrationWarning
+        >
           <NavBrand locale={locale} />
         </m.div>
 
         {/* Center: Main Navigation */}
-        <m.div variants={navItemVariants} className="relative z-10 hidden flex-1 items-center justify-center md:flex">
+        <m.div 
+          variants={navItemVariants} 
+          className="relative z-10 hidden flex-1 items-center justify-center md:flex"
+          suppressHydrationWarning
+        >
           <DesktopNav
             activeSection={activeSection}
             links={navLinks}
@@ -110,7 +124,11 @@ export function Nav({ variant = "floating" }: NavProps) {
         </m.div>
 
         {/* Right: Actions */}
-        <m.div variants={navItemVariants} className="relative z-10 flex flex-1 items-center justify-end gap-2 sm:gap-4">
+        <m.div 
+          variants={navItemVariants} 
+          className="relative z-10 flex flex-1 items-center justify-end gap-2 sm:gap-4"
+          suppressHydrationWarning
+        >
           <div className="hidden items-center gap-2 md:flex">
             <div className={cn(
               "flex h-[3.4rem] items-center gap-3 rounded-[1.7rem] p-1.5 transition-all duration-500",

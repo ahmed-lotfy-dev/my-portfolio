@@ -115,6 +115,7 @@ export function MobileNav({
             variants={containerVariants}
             initial="hidden"
             animate={open ? "visible" : "hidden"}
+            suppressHydrationWarning
           >
             <div className="flex flex-col gap-2">
               {links.map((link) => {
@@ -159,6 +160,7 @@ export function MobileNav({
                           <m.div
                             layoutId="mobile-active-bg"
                             className="absolute inset-0 z-0 bg-primary/5 blur-xl"
+                            suppressHydrationWarning
                           />
                         )}
                       </Link>
