@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight, LogOut, Menu, X } from "lucide-react";
@@ -172,7 +172,14 @@ export function MobileNav({
 
             <div className="mt-auto">
               <div className="rounded-[1.75rem] border border-primary/10 bg-black/40 p-4 shadow-xl backdrop-blur-md">
-                <div className="mb-4">{userSlot}</div>
+                <div className="mb-4">
+                  {React.isValidElement(userSlot) 
+                    ? React.cloneElement(userSlot as React.ReactElement<any>, { 
+                        isInline: true, 
+                        onItemClick: () => setOpen(false) 
+                      })
+                    : userSlot}
+                </div>
                 {hasSession && (
                   <SignOutButton
                     variant="ghost"

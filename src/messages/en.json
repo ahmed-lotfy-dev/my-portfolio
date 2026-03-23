@@ -10,7 +10,9 @@
     "dashboard": "Dashboard",
     "signin": "Sign In",
     "sign_out": "Sign Out",
-    "menu": "Menu"
+    "menu": "Menu",
+    "profile": "Profile",
+    "settings": "Settings"
   },
   "hero": {
     "name": "Ahmed Shoman",
@@ -314,6 +316,7 @@
       "testimonials": "Testimonials",
       "blog": "Blog Management",
       "backups": "Backups",
+      "profile": "Profile",
       "sign_out": "Sign Out"
     },
     "welcome": {

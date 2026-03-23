@@ -36,8 +36,6 @@ export function DesktopNav({
     },
   };
 
-
-
   return (
     <m.div
       variants={containerVariants}
