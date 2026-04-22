@@ -122,6 +122,7 @@ export default async function LocaleLayout({ children, params }: Props) {
 <head>
           <link rel="dns-prefetch" href="https://images.ahmedlotfy.site" />
           <link rel="preconnect" href="https://images.ahmedlotfy.site" />
+          <link rel="preload" as="image" href="/images/optimized/About-Image.webp" />
           <PersonSchema />
          <OrganizationSchema />
        </head>

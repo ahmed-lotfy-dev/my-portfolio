@@ -163,7 +163,7 @@ export default function Hero({ locale }: { locale: string }) {
               className="relative flex w-full items-center justify-center order-first lg:order-last lg:w-[40%] p-4 lg:p-0"
               variants={imageVariants}
             >
-              <div className="relative w-full max-w-[280px] sm:max-w-[320px] lg:max-w-[380px]">
+              <div className="relative w-full max-w-[200px] sm:max-w-[250px] lg:max-w-[380px]">
                 <div className="absolute -inset-4 rounded-[3rem] bg-linear-to-tr from-primary/30 to-transparent opacity-60 blur-3xl -z-10" />
                 <div className="group relative aspect-square w-full overflow-hidden rounded-[2.5rem] border-2 border-white/5 bg-black/10 shadow-2xl">
                   <Image
@@ -174,8 +174,7 @@ export default function Hero({ locale }: { locale: string }) {
                     loading="eager"
                     fetchPriority="high"
                     className={cn("object-cover transition-transform duration-[2s] ease-out group-hover:scale-105", isRTL && "scale-x-[-1]")}
-                    sizes="(max-width: 768px) 80vw, (max-width: 1024px) 50vw, 45vw"
-                    placeholder="blur"
+                    sizes="(max-width: 640px) 70vw, (max-width: 1024px) 50vw, 45vw"
                   />
                 </div>
               </div>
