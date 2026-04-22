@@ -172,6 +172,8 @@ export default function Hero({ locale }: { locale: string }) {
                     alt={t("illustrationAlt")}
                     fill
                     priority
+                    loading="eager"
+                    fetchPriority="high"
                     className={cn("object-cover transition-transform duration-[2s] ease-out group-hover:scale-105", isRTL && "scale-x-[-1]")}
                     sizes="(max-width: 1024px) 100vw, 45vw"
                     placeholder="blur"

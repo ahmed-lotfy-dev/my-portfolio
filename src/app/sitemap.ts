@@ -255,38 +255,36 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
      return acc;
    }, [])
 
-  // Certificate pages (both languages)
-  const certificatePages: SitemapEntry[] = allCertificates.reduce<SitemapEntry[]>((acc, cert) => {
-    acc.push(
-      {
-        url: `${baseUrl}/en/certificates/${cert.id}`,
-        lastModified: cert.updatedAt ?? siteLastModified,
-        changeFrequency: 'yearly' as const,
-        priority: 0.5,
-        alternates: {
-          languages: {
-            en: `${baseUrl}/en/certificates/${cert.id}`,
-            ar: `${baseUrl}/ar/certificates/${cert.id}`,
-            'x-default': `${baseUrl}/en/certificates/${cert.id}`,
-          },
-        },
-      },
-      {
-        url: `${baseUrl}/ar/certificates/${cert.id}`,
-        lastModified: cert.updatedAt ?? siteLastModified,
-        changeFrequency: 'yearly' as const,
-        priority: 0.5,
-        alternates: {
-          languages: {
-            en: `${baseUrl}/en/certificates/${cert.id}`,
-            ar: `${baseUrl}/ar/certificates/${cert.id}`,
-            'x-default': `${baseUrl}/en/certificates/${cert.id}`,
-          },
-        },
-      }
-    );
-    return acc;
-  }, [])
+   // Certificate pages (both languages)
+   const certificatePages: SitemapEntry[] = allCertificates.reduce<SitemapEntry[]>((acc, cert) => {
+     acc.push(
+       {
+         url: `${baseUrl}/en/certificates/${cert.id}`,
+         lastModified: cert.updatedAt ?? siteLastModified,
+         changeFrequency: 'yearly' as const,
+         priority: 0.5,
+         alternates: {
+           languages: {
+             en: `${baseUrl}/en/certificates/${cert.id}`,
+             ar: `${baseUrl}/ar/certificates/${cert.id}`,
+           },
+         },
+       },
+       {
+         url: `${baseUrl}/ar/certificates/${cert.id}`,
+         lastModified: cert.updatedAt ?? siteLastModified,
+         changeFrequency: 'yearly' as const,
+         priority: 0.5,
+         alternates: {
+           languages: {
+             en: `${baseUrl}/en/certificates/${cert.id}`,
+             ar: `${baseUrl}/ar/certificates/${cert.id}`,
+           },
+         },
+       }
+     );
+     return acc;
+   }, [])
 
   const categoryEntries = Array.from(
     allPosts.reduce(
