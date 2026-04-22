@@ -6,8 +6,25 @@ const handleI18n = createMiddleware(routing);
 
 export async function proxy(request: NextRequest) {
   const pathname = request.nextUrl.pathname;
+  const acceptHeader = request.headers.get("accept") || "";
 
-  if (pathname === "/robots.txt" || pathname === "/sitemap.xml") {
+  if (
+    acceptHeader.includes("text/markdown") &&
+    (pathname === "/" || pathname === "/en" || pathname === "/ar")
+  ) {
+    const locale = pathname === "/ar" ? "ar" : "en";
+    const url = request.nextUrl.clone();
+    url.pathname = "/_agent/home.md";
+    url.searchParams.set("locale", locale);
+    return NextResponse.rewrite(url);
+  }
+
+  if (
+    pathname === "/robots.txt" ||
+    pathname === "/sitemap.xml" ||
+    pathname.startsWith("/.well-known/") ||
+    pathname.startsWith("/_agent/")
+  ) {
     return NextResponse.next();
   }
 
@@ -54,6 +71,6 @@ export async function proxy(request: NextRequest) {
 
 export const config = {
   matcher: [
-    "/((?!api|_next/static|_next/image|ingest|robots\\.txt|sitemap\\.xml|.*\\.png|.*\\.jpg|.*\\.jpeg|.*\\.gif|.*\\.webp|.*\\.svg|.*\\.ico|.*\\.pdf|.*\\.webmanifest).*)",
+    "/((?!api|_next/static|_next/image|ingest|\\.well-known|_agent|robots\\.txt|sitemap\\.xml|.*\\.png|.*\\.jpg|.*\\.jpeg|.*\\.gif|.*\\.webp|.*\\.svg|.*\\.ico|.*\\.pdf|.*\\.webmanifest).*)",
   ],
 };

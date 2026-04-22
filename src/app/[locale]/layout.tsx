@@ -18,6 +18,7 @@ import { PersonSchema } from "@/src/components/seo/PersonSchema";
 import PostHogClient from "@/src/components/shared/PostHogClient";
 import { LazyMotion, domAnimation } from "motion/react";
 import { Toaster } from "@/src/components/ui/sonner";
+import { WebMcpProvider } from "@/src/components/agent/WebMcpProvider";
 
 export const revalidate = 3600;
 
@@ -127,6 +128,7 @@ export default async function LocaleLayout({ children, params }: Props) {
         suppressHydrationWarning
       >
         <NextIntlClientProvider messages={messages}>
+          <WebMcpProvider />
           <LazyMotion features={domAnimation} strict>
             <ErrorBoundary>
               {isPostHogEnabled ? (
