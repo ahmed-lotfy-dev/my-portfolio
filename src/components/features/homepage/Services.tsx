@@ -1,9 +1,7 @@
-"use client";
-
 import { Code2, ShoppingBag, Gauge } from "lucide-react";
 import Section from "@/src/components/ui/Section";
 import { useTranslations } from "next-intl";
-import { m } from "motion/react";
+import { cn } from "@/src/lib/utils";
 
 const items = [
   {
@@ -32,44 +30,29 @@ export default function Services() {
       <div className="container relative mx-auto px-4">
         {/* Header */}
         <div className="text-center max-w-2xl mx-auto mb-20">
-          <m.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            className="inline-block px-4 py-1.5 rounded-full bg-primary/10 text-primary text-sm font-medium tracking-wide uppercase border border-primary/20 backdrop-blur-sm mb-6"
-          >
+          <h2 className="inline-block px-4 py-1.5 rounded-full bg-primary/10 text-primary text-sm font-medium tracking-wide uppercase border border-primary/20 backdrop-blur-sm mb-6 animate-fade-in-up">
             {t("label")}
-          </m.h2>
-          <m.h3
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ delay: 0.1 }}
-            className="text-4xl md:text-5xl font-black tracking-tight text-foreground mb-6"
-          >
+          </h2>
+          <h3 className="text-4xl md:text-5xl font-black tracking-tight text-foreground mb-6 animate-fade-in-up delay-100">
             {t("title_part1")} <span className="text-primary">{t("title_part2")}</span>
-          </m.h3>
-          <m.p
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ delay: 0.2 }}
-            className="text-lg text-muted-foreground leading-relaxed"
-          >
+          </h3>
+          <p className="text-lg text-muted-foreground leading-relaxed animate-fade-in-up delay-200">
             {t("description")}
-          </m.p>
+          </p>
         </div>
 
         {/* Grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {items.map((item, index) => (
-            <m.div
+            <div
               key={item.key}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-50px" }}
-              transition={{ delay: index * 0.1 + 0.3 }}
-              className="group relative p-8 rounded-4xl border border-border/50 bg-card/30 backdrop-blur-sm hover:border-primary/50 hover:bg-card/50 transition-all duration-300"
+              className={cn(
+                "group relative p-8 rounded-4xl border border-border/50 bg-card/30 backdrop-blur-sm hover:border-primary/50 hover:bg-card/50 transition-all duration-300",
+                "animate-fade-in-up",
+                index === 0 && "delay-300",
+                index === 1 && "delay-400",
+                index === 2 && "delay-500"
+              )}
             >
               <div className="mb-6 inline-flex p-4 rounded-2xl bg-primary/10 text-primary group-hover:scale-110 transition-transform duration-300">
                 <item.icon className="w-8 h-8" />
@@ -91,7 +74,7 @@ export default function Services() {
                   </li>
                 ))}
               </ul>
-            </m.div>
+            </div>
           ))}
         </div>
       </div>

@@ -4,7 +4,6 @@ import { useTranslations } from "next-intl";
 import { Code, Database, Globe, Layers, Server } from "lucide-react";
 import Section from "@/src/components/ui/Section";
 import { cn } from "@/src/lib/utils";
-import { m } from "motion/react";
 
 export default function TechStack() {
   const t = useTranslations("tech_stack");
@@ -16,47 +15,29 @@ export default function TechStack() {
       <div className="container mx-auto px-4">
         {/* Header */}
         <div className="max-w-2xl mb-16">
-          <m.div
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            className="flex items-center gap-2 text-primary mb-4"
-          >
+          <div className="flex items-center gap-2 text-primary mb-4 animate-fade-in-left">
             <Layers className="w-5 h-5" />
             <span className="font-bold uppercase tracking-widest text-sm">
               {t("label")}
             </span>
-          </m.div>
-          <m.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            className="text-4xl md:text-5xl font-black tracking-tight text-foreground"
-          >
+          </div>
+          <h2 className="text-4xl md:text-5xl font-black tracking-tight text-foreground animate-fade-in-up delay-100">
             {t("title")}
-          </m.h2>
-          <m.p
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ delay: 0.1 }}
-            className="mt-4 text-lg text-muted-foreground"
-          >
+          </h2>
+          <p className="mt-4 text-lg text-muted-foreground animate-fade-in-up delay-200">
             {t("description")}
-          </m.p>
+          </p>
         </div>
 
         {/* Bento Grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {/* Item 1: Next.js */}
-          <m.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-50px" }}
+          <div
             className={cn(
               "group relative overflow-hidden rounded-3xl border border-border/50 p-8 backdrop-blur-sm transition-all duration-500 hover:shadow-2xl",
               "md:col-span-2",
-              "bg-linear-to-br from-primary/10 via-card/90 to-secondary/70"
+              "bg-linear-to-br from-primary/10 via-card/90 to-secondary/70",
+              "animate-fade-in-up delay-300"
             )}
           >
             <div className="relative z-10 flex flex-col h-full justify-between gap-8">
@@ -73,18 +54,15 @@ export default function TechStack() {
               </div>
             </div>
             <div className="absolute -bottom-10 -right-10 w-40 h-40 bg-foreground/5 rounded-full blur-3xl group-hover:bg-foreground/10 transition-colors duration-500" />
-          </m.div>
+          </div>
 
           {/* Item 2: TypeScript */}
-          <m.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-50px" }}
-            transition={{ delay: 0.1 }}
+          <div
             className={cn(
               "group relative overflow-hidden rounded-3xl border border-border/50 p-8 backdrop-blur-sm transition-all duration-500 hover:shadow-2xl",
               "md:col-span-1",
-              "bg-linear-to-br from-primary/12 to-secondary/85"
+              "bg-linear-to-br from-primary/12 to-secondary/85",
+              "animate-fade-in-up delay-400"
             )}
           >
             <div className="relative z-10 flex flex-col h-full justify-between gap-8">
@@ -101,18 +79,15 @@ export default function TechStack() {
               </div>
             </div>
             <div className="absolute -bottom-10 -right-10 w-40 h-40 bg-foreground/5 rounded-full blur-3xl group-hover:bg-foreground/10 transition-colors duration-500" />
-          </m.div>
+          </div>
 
           {/* Item 3: Database */}
-          <m.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-50px" }}
-            transition={{ delay: 0.2 }}
+          <div
             className={cn(
               "group relative overflow-hidden rounded-3xl border border-border/50 p-8 backdrop-blur-sm transition-all duration-500 hover:shadow-2xl",
               "md:col-span-1",
-              "bg-linear-to-br from-secondary/95 to-accent/90"
+              "bg-linear-to-br from-secondary/95 to-accent/90",
+              "animate-fade-in-up delay-500"
             )}
           >
             <div className="relative z-10 flex flex-col h-full justify-between gap-8">
@@ -129,18 +104,15 @@ export default function TechStack() {
               </div>
             </div>
             <div className="absolute -bottom-10 -right-10 w-40 h-40 bg-foreground/5 rounded-full blur-3xl group-hover:bg-foreground/10 transition-colors duration-500" />
-          </m.div>
+          </div>
 
           {/* Item 4: Infra */}
-          <m.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-50px" }}
-            transition={{ delay: 0.3 }}
+          <div
             className={cn(
               "group relative overflow-hidden rounded-3xl border border-border/50 p-8 backdrop-blur-sm transition-all duration-500 hover:shadow-2xl",
               "md:col-span-2",
-              "bg-linear-to-br from-accent/90 to-primary/10"
+              "bg-linear-to-br from-accent/90 to-primary/10",
+              "animate-fade-in-up delay-500"
             )}
           >
             <div className="relative z-10 flex flex-col h-full justify-between gap-8">
@@ -157,19 +129,13 @@ export default function TechStack() {
               </div>
             </div>
             <div className="absolute -bottom-10 -right-10 w-40 h-40 bg-foreground/5 rounded-full blur-3xl group-hover:bg-foreground/10 transition-colors duration-500" />
-          </m.div>
+          </div>
         </div>
 
         {/* Bottom Tagline */}
-        <m.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ delay: 0.5 }}
-          className="mt-12 text-center"
-        >
+        <div className="mt-12 text-center animate-fade-in delay-500">
           <p className="text-sm font-mono text-muted-foreground/60 uppercase tracking-widest">{t("footer")}</p>
-        </m.div>
+        </div>
       </div>
     </Section>
   );
