@@ -32,9 +32,9 @@ export default function SafeResponsiveChart({ className, children }: Props) {
   }, []);
 
   return (
-    <div ref={containerRef} className={cn("h-full w-full min-w-0 min-h-0", className)}>
+    <div ref={containerRef} className={cn("h-full w-full min-w-0 min-h-[220px]", className)}>
       {isReady ? (
-        <ResponsiveContainer width="100%" height="100%" minWidth={0}>
+        <ResponsiveContainer width="100%" height="100%" minWidth={0} minHeight={undefined}>
           {children}
         </ResponsiveContainer>
       ) : null}

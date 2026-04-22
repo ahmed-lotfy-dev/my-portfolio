@@ -118,6 +118,7 @@ export default async function LocaleLayout({ children, params }: Props) {
       dir={isArabic ? "rtl" : "ltr"}
       suppressHydrationWarning
       className="dark scroll-smooth max-h-svh"
+      data-scroll-behavior="smooth"
     >
 <head>
           <link rel="dns-prefetch" href="https://images.ahmedlotfy.site" />

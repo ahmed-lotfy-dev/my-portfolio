@@ -116,8 +116,10 @@ const nextConfig: NextConfig = {
 
   async headers() {
     const cacheHeaders = { key: "Cache-Control", value: "public, max-age=31536000, immutable" };
+    const isDevelopment = process.env.NODE_ENV === "development";
     return [
-      { source: "/_next/static/:path*", headers: [cacheHeaders] },
+      // Only apply custom cache headers in production
+      ...(!isDevelopment ? [{ source: "/_next/static/:path*", headers: [cacheHeaders] }] : []),
       // Cloudflare Email Address Protection decoder script is injected automatically.
       // Cache it aggressively to avoid repeated revalidation and to improve Lighthouse caching audits.
       { source: "/cloudflare-static/email-decode.min.js", headers: [cacheHeaders] },
@@ -134,7 +136,7 @@ const nextConfig: NextConfig = {
 
 const withPWA = withPWAInit({
   dest: "public",
-  disable: process.env.NODE_ENV === "development",
+  disable: true, // Always disable in development to prevent caching issues
   cacheOnFrontEndNav: false,
   aggressiveFrontEndNavCaching: false,
   reloadOnOnline: true,
