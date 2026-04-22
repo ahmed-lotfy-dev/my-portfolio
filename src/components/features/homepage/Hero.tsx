@@ -2,8 +2,6 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import HeroImage280 from "@/public/images/optimized/About-Image-280w.webp";
-import HeroImage400 from "@/public/images/optimized/About-Image-400w.webp";
 import HeroImage from "@/public/images/optimized/About-Image.webp";
 import { FileText, ArrowRight } from "lucide-react";
 import { CVDropdown } from "./CVDropdown";
@@ -175,7 +173,6 @@ export default function Hero({ locale }: { locale: string }) {
                     priority
                     loading="eager"
                     fetchPriority="high"
-                    srcSet="/images/optimized/About-Image-280w.webp 280w, /images/optimized/About-Image-400w.webp 400w, /images/optimized/About-Image-640w.webp 640w"
                     className={cn("object-cover transition-transform duration-[2s] ease-out group-hover:scale-105", isRTL && "scale-x-[-1]")}
                     sizes="(max-width: 768px) 80vw, (max-width: 1024px) 50vw, 45vw"
                     placeholder="blur"
