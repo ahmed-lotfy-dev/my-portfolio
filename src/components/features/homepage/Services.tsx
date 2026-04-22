@@ -1,10 +1,9 @@
 "use client";
 
-import { m } from "motion/react";
-import { Code2, ShoppingBag, Gauge, ArrowRight } from "lucide-react";
+import { Code2, ShoppingBag, Gauge } from "lucide-react";
 import Section from "@/src/components/ui/Section";
 import { useTranslations } from "next-intl";
-import { cn } from "@/src/lib/utils";
+import { m } from "motion/react";
 
 const items = [
   {
@@ -36,7 +35,7 @@ export default function Services() {
           <m.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, margin: "-100px" }}
             className="inline-block px-4 py-1.5 rounded-full bg-primary/10 text-primary text-sm font-medium tracking-wide uppercase border border-primary/20 backdrop-blur-sm mb-6"
           >
             {t("label")}
@@ -44,7 +43,7 @@ export default function Services() {
           <m.h3
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, margin: "-100px" }}
             transition={{ delay: 0.1 }}
             className="text-4xl md:text-5xl font-black tracking-tight text-foreground mb-6"
           >
@@ -53,7 +52,7 @@ export default function Services() {
           <m.p
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, margin: "-100px" }}
             transition={{ delay: 0.2 }}
             className="text-lg text-muted-foreground leading-relaxed"
           >
@@ -68,9 +67,8 @@ export default function Services() {
               key={item.key}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
+              viewport={{ once: true, margin: "-50px" }}
               transition={{ delay: index * 0.1 + 0.3 }}
-              whileHover={{ y: -10 }}
               className="group relative p-8 rounded-4xl border border-border/50 bg-card/30 backdrop-blur-sm hover:border-primary/50 hover:bg-card/50 transition-all duration-300"
             >
               <div className="mb-6 inline-flex p-4 rounded-2xl bg-primary/10 text-primary group-hover:scale-110 transition-transform duration-300">

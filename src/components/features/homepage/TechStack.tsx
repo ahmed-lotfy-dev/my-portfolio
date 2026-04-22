@@ -1,10 +1,10 @@
 "use client";
 
-import { m } from "motion/react";
 import { useTranslations } from "next-intl";
 import { Code, Database, Globe, Layers, Server } from "lucide-react";
 import Section from "@/src/components/ui/Section";
 import { cn } from "@/src/lib/utils";
+import { m } from "motion/react";
 
 export default function TechStack() {
   const t = useTranslations("tech_stack");
@@ -19,7 +19,7 @@ export default function TechStack() {
           <m.div
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, margin: "-100px" }}
             className="flex items-center gap-2 text-primary mb-4"
           >
             <Layers className="w-5 h-5" />
@@ -30,7 +30,7 @@ export default function TechStack() {
           <m.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, margin: "-100px" }}
             className="text-4xl md:text-5xl font-black tracking-tight text-foreground"
           >
             {t("title")}
@@ -38,7 +38,7 @@ export default function TechStack() {
           <m.p
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, margin: "-100px" }}
             transition={{ delay: 0.1 }}
             className="mt-4 text-lg text-muted-foreground"
           >
@@ -52,9 +52,7 @@ export default function TechStack() {
           <m.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0 }}
-            whileHover={{ y: -5 }}
+            viewport={{ once: true, margin: "-50px" }}
             className={cn(
               "group relative overflow-hidden rounded-3xl border border-border/50 p-8 backdrop-blur-sm transition-all duration-500 hover:shadow-2xl",
               "md:col-span-2",
@@ -81,9 +79,8 @@ export default function TechStack() {
           <m.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, margin: "-50px" }}
             transition={{ delay: 0.1 }}
-            whileHover={{ y: -5 }}
             className={cn(
               "group relative overflow-hidden rounded-3xl border border-border/50 p-8 backdrop-blur-sm transition-all duration-500 hover:shadow-2xl",
               "md:col-span-1",
@@ -110,9 +107,8 @@ export default function TechStack() {
           <m.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, margin: "-50px" }}
             transition={{ delay: 0.2 }}
-            whileHover={{ y: -5 }}
             className={cn(
               "group relative overflow-hidden rounded-3xl border border-border/50 p-8 backdrop-blur-sm transition-all duration-500 hover:shadow-2xl",
               "md:col-span-1",
@@ -139,9 +135,8 @@ export default function TechStack() {
           <m.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, margin: "-50px" }}
             transition={{ delay: 0.3 }}
-            whileHover={{ y: -5 }}
             className={cn(
               "group relative overflow-hidden rounded-3xl border border-border/50 p-8 backdrop-blur-sm transition-all duration-500 hover:shadow-2xl",
               "md:col-span-2",
@@ -169,7 +164,7 @@ export default function TechStack() {
         <m.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
+          viewport={{ once: true, margin: "-100px" }}
           transition={{ delay: 0.5 }}
           className="mt-12 text-center"
         >
