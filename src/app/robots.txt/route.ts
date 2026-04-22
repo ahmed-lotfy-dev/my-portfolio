@@ -1,17 +1,8 @@
 import { absoluteUrl, siteConfig } from "@/src/lib/agent-ready/site"
 
-const robotsBody = `User-Agent: *
+const robotsBody = `User-agent: *
 Allow: /
-Disallow: /api/
-Disallow: /en/login
-Disallow: /ar/login
-Disallow: /en/signup
-Disallow: /ar/signup
-Disallow: /en/dashboard/
-Disallow: /ar/dashboard/
-Content-Signal: ai-train=no, search=yes, ai-input=yes
 
-Host: ${siteConfig.baseUrl}
 Sitemap: ${absoluteUrl("/sitemap.xml")}
 `
 
