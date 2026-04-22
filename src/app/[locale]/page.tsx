@@ -117,7 +117,7 @@ export default async function HomePage({
       <Hero locale={locale} />
 
       <Container>
-        <div className="space-y-6 py-12 lg:py-20">
+        <main className="space-y-6 py-12 lg:py-20">
           <HomeSectionBand variant="warm">
             <Services />
             <TechStack />
@@ -138,7 +138,7 @@ export default async function HomePage({
           <HomeSectionBand variant="warm">
             <Contact />
           </HomeSectionBand>
-        </div>
+        </main>
       </Container>
     </div>
   );
