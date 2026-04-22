@@ -18,32 +18,32 @@ const containerVariants: Variants = {
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.08,
-      delayChildren: 0.3,
+      staggerChildren: 0.05,
+      delayChildren: 0.2,
     },
   },
 };
 
 const itemVariants: Variants = {
-  hidden: { opacity: 0, y: -20 },
+  hidden: { opacity: 0, y: -15 },
   visible: {
     opacity: 1,
     y: 0,
     transition: {
-      duration: 0.4,
+      duration: 0.3,
       ease: "easeOut",
     },
   },
 };
 
 const imageVariants: Variants = {
-  hidden: { opacity: 0, scale: 0.95 },
+  hidden: { opacity: 0, scale: 0.92 },
   visible: {
     opacity: 1,
     scale: 1,
     transition: {
-      delay: 0.8,
-      duration: 0.4,
+      delay: 0.4,
+      duration: 0.35,
       ease: "easeOut",
     },
   },
@@ -82,12 +82,12 @@ export default function Hero({ locale }: { locale: string }) {
       >
         <div className="container relative z-10 mx-auto max-w-7xl px-4 md:px-6">
           <m.div
-            className={cn("flex flex-col items-center gap-8 lg:flex-row lg:gap-16", isRTL ? "lg:flex-row-reverse" : "")}
+            className={cn("flex flex-col-reverse items-center gap-8 lg:flex-row lg:gap-16", isRTL ? "lg:flex-row-reverse" : "")}
             variants={containerVariants}
             initial="hidden"
             animate="visible"
           >
-            {/* Content Side */}
+            {/* Content Side - Below image on mobile, left on desktop */}
             <m.div
               className="relative z-20 w-full space-y-6 text-center md:space-y-8 lg:w-[55%] lg:text-start"
               variants={containerVariants}
@@ -158,12 +158,12 @@ export default function Hero({ locale }: { locale: string }) {
               </m.div>
             </m.div>
 
-            {/* Image Side - Restored Original Aesthetic */}
+            {/* Image Side - Above text on mobile, right on desktop */}
             <m.div
-              className="relative flex w-full items-center justify-center p-4 lg:w-[40%] lg:p-0"
+              className="relative flex w-full items-center justify-center order-first lg:order-last lg:w-[40%] p-4 lg:p-0"
               variants={imageVariants}
             >
-              <div className="relative w-full max-w-[380px]">
+              <div className="relative w-full max-w-[280px] sm:max-w-[320px] lg:max-w-[380px]">
                 <div className="absolute -inset-4 rounded-[3rem] bg-linear-to-tr from-primary/30 to-transparent opacity-60 blur-3xl -z-10" />
                 <div className="group relative aspect-square w-full overflow-hidden rounded-[2.5rem] border-2 border-white/5 bg-black/10 shadow-2xl">
                   <Image
@@ -174,7 +174,7 @@ export default function Hero({ locale }: { locale: string }) {
                     loading="eager"
                     fetchPriority="high"
                     className={cn("object-cover transition-transform duration-[2s] ease-out group-hover:scale-105", isRTL && "scale-x-[-1]")}
-                    sizes="(max-width: 1024px) 100vw, 45vw"
+                    sizes="(max-width: 768px) 80vw, (max-width: 1024px) 50vw, 45vw"
                     placeholder="blur"
                   />
                 </div>
