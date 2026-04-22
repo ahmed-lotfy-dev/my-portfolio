@@ -7,10 +7,18 @@ import Services from "@/src/components/features/homepage/Services";
 import Projects from "@/src/components/features/homepage/Projects";
 import { HomeSectionBand } from "@/src/components/features/homepage/HomeSectionBand";
 
-const TechStack = nextDynamic(() => import("@/src/components/features/homepage/TechStack"));
-const Experience = nextDynamic(() => import("@/src/components/features/homepage/Experience"));
-const Testimonials = nextDynamic(() => import("@/src/components/features/homepage/Testimonials"));
-const Contact = nextDynamic(() => import("@/src/components/features/homepage/Contact"));
+const TechStack = nextDynamic(() => import("@/src/components/features/homepage/TechStack"), {
+  loading: () => <div className="min-h-[400px]" />,
+});
+const Experience = nextDynamic(() => import("@/src/components/features/homepage/Experience"), {
+  loading: () => <div className="min-h-[400px]" />,
+});
+const Testimonials = nextDynamic(() => import("@/src/components/features/homepage/Testimonials"), {
+  loading: () => <div className="min-h-[300px]" />,
+});
+const Contact = nextDynamic(() => import("@/src/components/features/homepage/Contact"), {
+  loading: () => <div className="min-h-[300px]" />,
+});
 
 import Container from "@/src/components/ui/Container";
 import { getTranslations, setRequestLocale } from "next-intl/server";

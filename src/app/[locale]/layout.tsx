@@ -6,7 +6,9 @@ import { routing } from "@/src/i18n/routing";
 
 import "../globals.css";
 
-import { Nav } from "@/src/components/features/homepage/Nav";
+const Nav = dynamic(() => import("@/src/components/features/homepage/Nav"), {
+  ssr: false,
+});
 import type { Metadata, Viewport } from "next";
 import { getMessages, setRequestLocale } from "next-intl/server";
 
