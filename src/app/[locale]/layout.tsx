@@ -119,9 +119,10 @@ export default async function LocaleLayout({ children, params }: Props) {
       suppressHydrationWarning
       className="dark scroll-smooth max-h-svh"
     >
-       <head>
-         <link rel="dns-prefetch" href="https://images.ahmedlotfy.site" />
-         <PersonSchema />
+<head>
+          <link rel="dns-prefetch" href="https://images.ahmedlotfy.site" />
+          <link rel="preconnect" href="https://images.ahmedlotfy.site" />
+          <PersonSchema />
          <OrganizationSchema />
        </head>
       <body
