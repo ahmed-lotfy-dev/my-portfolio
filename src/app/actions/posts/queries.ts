@@ -4,6 +4,7 @@
 import { db } from "@/src/db";
 import { posts } from "@/src/db/schema";
 import { eq, and, arrayContains, desc } from "drizzle-orm";
+import { slugifyBlogTaxonomy } from "@/src/lib/utils/blog-taxonomy";
 
 export async function getDbBlogPosts(filters?: { category?: string; tag?: string; featuredOnly?: boolean }) {
   try {
@@ -32,6 +33,54 @@ export async function getDbBlogPosts(filters?: { category?: string; tag?: string
     console.error("[PostsAction] Error fetching listing:", error);
     return [];
   }
+}
+
+export async function getDbBlogCategories() {
+  try {
+    const results = await db.query.posts.findMany({
+      where: eq(posts.published, true),
+      columns: {
+        categories: true,
+        updatedAt: true,
+      },
+      orderBy: [desc(posts.createdAt)],
+    });
+
+    const counts = new Map<string, { name: string; slug: string; count: number; updatedAt?: Date | null }>();
+
+    for (const post of results) {
+      for (const category of post.categories || []) {
+        const normalized = category.trim();
+        if (!normalized) continue;
+
+        const existing = counts.get(normalized);
+        if (existing) {
+          existing.count += 1;
+          if (post.updatedAt && (!existing.updatedAt || post.updatedAt > existing.updatedAt)) {
+            existing.updatedAt = post.updatedAt;
+          }
+          continue;
+        }
+
+        counts.set(normalized, {
+          name: normalized,
+          slug: slugifyBlogTaxonomy(normalized),
+          count: 1,
+          updatedAt: post.updatedAt,
+        });
+      }
+    }
+
+    return Array.from(counts.values()).sort((a, b) => b.count - a.count || a.name.localeCompare(b.name));
+  } catch (error) {
+    console.error("[PostsAction] Error fetching categories:", error);
+    return [];
+  }
+}
+
+export async function getDbBlogCategoryBySlug(categorySlug: string) {
+  const categories = await getDbBlogCategories();
+  return categories.find((category) => category.slug === categorySlug) ?? null;
 }
 
 export async function getDbBlogPostBySlug(slug: string) {

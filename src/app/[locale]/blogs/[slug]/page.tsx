@@ -8,6 +8,7 @@ import { RelatedPosts } from "@/src/components/features/blog/RelatedPosts";
 import { BlogViewTracker } from "@/src/components/analytics/BlogViewTracker";
 import StructuredData from "@/src/components/seo/StructuredData";
 import { BreadcrumbSchema } from "@/src/components/seo/BreadcrumbSchema";
+import { buildBlogCategoryPath } from "@/src/lib/utils/blog-taxonomy";
 
 export async function generateMetadata({
   params,
@@ -110,7 +111,7 @@ export default async function SinglePost(props: {
         </Link>
 
         <header className="mb-12">
-          <Link href={`/${locale}/blogs?category=${encodeURIComponent(post.category)}`}>
+          <Link href={buildBlogCategoryPath(locale, post.category)}>
             <Badge variant="secondary" className="mb-6 uppercase tracking-wider text-[10px] font-bold py-1 px-3 hover:bg-primary hover:text-white transition-colors cursor-pointer">
               {post.category}
             </Badge>

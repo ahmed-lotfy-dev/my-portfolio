@@ -191,8 +191,8 @@ export default async function ProjectDetailsPage({ params }: { params: Promise<{
             {/* Back Link */}
             <div className="container mx-auto px-4 md:px-6 pt-24 md:pt-32">
                 <BackButton
-                    href="/#projects"
-                    label={t("back_to_portfolio")}
+                    href={`/${locale}/projects`}
+                    label={locale === "ar" ? "رجوع للمشاريع" : "Back to Projects"}
                     locale={locale}
                 />
             </div>
@@ -285,8 +285,8 @@ export default async function ProjectDetailsPage({ params }: { params: Promise<{
             </div>
 
             <div className="mt-32 pt-12 border-t border-border/20 text-center pb-8">
-                <Link href="/#projects" className="text-muted-foreground hover:text-primary transition-colors text-sm font-medium tracking-widest uppercase hover:underline underline-offset-4">
-                    {t("view_other_projects")}
+                <Link href={`/${locale}/projects`} className="text-muted-foreground hover:text-primary transition-colors text-sm font-medium tracking-widest uppercase hover:underline underline-offset-4">
+                    {locale === "ar" ? "شوف كل المشاريع" : "View All Projects"}
                 </Link>
             </div>
 

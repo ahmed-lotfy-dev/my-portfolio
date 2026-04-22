@@ -2,6 +2,7 @@ import { getDbBlogPosts } from "@/src/app/actions/posts/queries";
 import { BlogCard } from "@/src/components/features/blog/BlogCard";
 import { Button } from "@/src/components/ui/button";
 import Link from "next/link";
+import { buildBlogCategoryPath } from "@/src/lib/utils/blog-taxonomy";
 
 interface RelatedPostsProps {
   currentSlug: string;
@@ -26,7 +27,7 @@ export async function RelatedPosts({ currentSlug, category, locale }: RelatedPos
           More Like This
         </h2>
         <Button asChild variant="link" className="text-primary p-0 h-auto">
-          <Link href={`/${locale}/blogs?category=${encodeURIComponent(category)}`}>View All in {category} →</Link>
+          <Link href={buildBlogCategoryPath(locale, category)}>View All in {category} →</Link>
         </Button>
       </div>
 

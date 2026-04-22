@@ -90,7 +90,7 @@ export default function ProjectsClient({ projects, locale, t }: Props) {
             <m.div key={proj.id} variants={itemVariants}>
               <Card className="group flex h-full flex-col justify-between overflow-hidden border-border bg-card/50 backdrop-blur-sm hover:border-primary/50 hover:shadow-2xl hover:shadow-primary/10 transition-all duration-500">
                 <Link
-                  href={proj.slug ? `/projects/${proj.slug}` : proj.liveLink}
+                  href={proj.slug ? `/${locale}/projects/${proj.slug}` : proj.liveLink}
                   target={proj.slug ? undefined : "_blank"}
                   className="block overflow-hidden"
                 >
@@ -115,7 +115,7 @@ export default function ProjectsClient({ projects, locale, t }: Props) {
                 <div className="p-6 flex flex-col grow gap-4">
                   <div>
                     <Link
-                      href={proj.slug ? `/projects/${proj.slug}` : proj.liveLink}
+                      href={proj.slug ? `/${locale}/projects/${proj.slug}` : proj.liveLink}
                       target={proj.slug ? undefined : "_blank"}
                     >
                       <h3 className="text-2xl font-bold text-foreground mb-2 group-hover:text-primary transition-colors cursor-pointer antialiased">
@@ -131,7 +131,7 @@ export default function ProjectsClient({ projects, locale, t }: Props) {
                     />
                     {proj.slug && (
                       <Link
-                        href={`/projects/${proj.slug}`}
+                        href={`/${locale}/projects/${proj.slug}`}
                         className="inline-flex items-center gap-1 text-primary text-sm font-medium mt-3 hover:underline underline-offset-4 w-fit group/link"
                       >
                         {t.view_case_study}

@@ -6,6 +6,7 @@ import { getTranslations } from "next-intl/server";
 import { Badge } from "@/src/components/ui/badge";
 import { Tag, RefreshCw, Star } from "lucide-react";
 import { formatDistanceToNow } from "date-fns";
+import { buildBlogCategoryPath } from "@/src/lib/utils/blog-taxonomy";
 
 export const dynamic = "force-dynamic";
 
@@ -110,7 +111,7 @@ export default async function PostsList(props: {
               size="sm"
               className="rounded-full px-6"
             >
-              <Link href={`/${locale}/blogs?category=${encodeURIComponent(cat)}`}>
+              <Link href={buildBlogCategoryPath(locale, cat)}>
                 {cat.charAt(0).toUpperCase() + cat.slice(1)}
               </Link>
             </Button>
