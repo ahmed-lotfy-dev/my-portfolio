@@ -44,9 +44,10 @@ export async function generateMetadata({
     alternates: {
       canonical: `${baseUrl}/${locale}/certificates`,
       languages: {
-        en: "/en/certificates",
-        ar: "/ar/certificates",
+        en: `${baseUrl}/en/certificates`,
+        ar: `${baseUrl}/ar/certificates`,
       },
+      xDefault: `${baseUrl}/en/certificates`,
     },
   };
 }
@@ -61,20 +62,48 @@ export default async function CertificatesPage({
   const t = await getTranslations("certificates");
   const isArabic = locale === "ar";
 
-  const { allCertificates } = await getAllCertificates();
+   const { allCertificates } = await getAllCertificates();
 
-  return (
-    <main className="min-h-screen pb-20 bg-background text-foreground selection:bg-primary/20">
-      {/* Structured Data */}
-      <StructuredData
-        type="CollectionPage"
-        data={{
-          name: "Professional Certificates - Ahmed Shoman",
-          description: "Collection of professional development certificates and courses completed by Ahmed Shoman",
-          url: `https://ahmedlotfy.site/${locale}/certificates`,
-          numberOfItems: allCertificates?.length || 0,
-        }}
-      />
+   const baseUrl = "https://ahmedlotfy.site";
+
+   return (
+     <main className="min-h-screen pb-20 bg-background text-foreground selection:bg-primary/20">
+       {/* Structured Data */}
+       <StructuredData
+         type="CollectionPage"
+         data={{
+           name: "Professional Certificates - Ahmed Shoman",
+           description: "Collection of professional development certificates and courses completed by Ahmed Shoman",
+           url: `https://ahmedlotfy.site/${locale}/certificates`,
+           numberOfItems: allCertificates?.length || 0,
+         }}
+       />
+       {/* Additional schema for certificates as items */}
+       {allCertificates && allCertificates.length > 0 && (
+         <script
+           type="application/ld+json"
+           dangerouslySetInnerHTML={{
+             __html: JSON.stringify({
+               "@context": "https://schema.org",
+               "@type": "ItemList",
+               itemListElement: allCertificates.map((cert: any, index: number) => ({
+                 "@type": "ListItem",
+                 position: index + 1,
+                 item: {
+                   "@type": "EducationalOccupationalCredential",
+                   name: cert.title,
+                   description: cert.desc,
+                   image: cert.imageLink,
+                   url: `https://ahmedlotfy.site/${locale}/certificates/${cert.id}`,
+                   credentialCategory: "Certificate",
+                   recognizedBy: cert.desc,
+                   dateCreated: cert.createdAt?.toISOString(),
+                 },
+               })),
+             }),
+           }}
+         />
+       )}
 
       {/* Background Effects */}
       <div className="fixed inset-0 pointer-events-none overflow-hidden">

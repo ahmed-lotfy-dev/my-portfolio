@@ -6,6 +6,7 @@ import Link from "next/link";
 import { ExternalLink, Github } from "lucide-react";
 import { Button } from "@/src/components/ui/button";
 import StructuredData from "@/src/components/seo/StructuredData";
+import { BreadcrumbSchema } from "@/src/components/seo/BreadcrumbSchema";
 import { MarkdownDisplay } from "@/src/components/ui/MarkdownDisplay";
 import { ImageCarousel } from "@/src/components/ui/ImageCarousel";
 import { BackButton } from "@/src/components/ui/BackButton";
@@ -122,9 +123,10 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
         alternates: {
             canonical: `https://ahmedlotfy.site/${locale}/projects/${slug}`,
             languages: {
-                'en': `/en/projects/${slug}`,
-                'ar': `/ar/projects/${slug}`,
+                'en': `https://ahmedlotfy.site/en/projects/${slug}`,
+                'ar': `https://ahmedlotfy.site/ar/projects/${slug}`,
             },
+            xDefault: `https://ahmedlotfy.site/en/projects/${slug}`,
         },
     };
 }
@@ -160,22 +162,30 @@ export default async function ProjectDetailsPage({ params }: { params: Promise<{
     return (
         <article className="min-h-screen pb-20 bg-background text-foreground selection:bg-primary/20">
             {/* Structured Data for SEO */}
-            <StructuredData
-                type="CreativeWork"
-                data={{
-                    title: title,
-                    description: desc,
-                    image: project.coverImage,
-                    url: `https://ahmedlotfy.site/${locale}/projects/${slug}`,
-                    authorName: 'Ahmed Shoman',
-                    authorUrl: 'https://ahmedlotfy.site',
-                    createdDate: project.createdAt?.toISOString(),
-                    modifiedDate: project.updatedAt?.toISOString(),
-                    keywords: project.categories.join(', '),
-                    categories: project.categories,
-                    language: locale === 'ar' ? 'ar' : 'en',
-                }}
-            />
+             <StructuredData
+                 type="CreativeWork"
+                 data={{
+                     title: title,
+                     description: desc,
+                     image: project.coverImage,
+                     url: `https://ahmedlotfy.site/${locale}/projects/${slug}`,
+                     authorName: 'Ahmed Shoman',
+                     authorUrl: 'https://ahmedlotfy.site',
+                     createdDate: project.createdAt?.toISOString(),
+                     modifiedDate: project.updatedAt?.toISOString(),
+                     keywords: project.categories.join(', '),
+                     categories: project.categories,
+                     language: locale === 'ar' ? 'ar' : 'en',
+                 }}
+             />
+             {/* Breadcrumb Structured Data */}
+             <BreadcrumbSchema
+               items={[
+                 { label: 'Home', url: `/${locale}` },
+                 { label: 'Projects', url: `/${locale}/projects` },
+                 { label: title, url: `/${locale}/projects/${slug}` },
+               ]}
+             />
 
 
             {/* Back Link */}

@@ -7,6 +7,7 @@ import { ArrowLeft, ExternalLink, Award } from "lucide-react";
 import { ImagePreviewer } from "@/src/components/ui/ImagePreviewer";
 import { Button } from "@/src/components/ui/button";
 import StructuredData from "@/src/components/seo/StructuredData";
+import { BreadcrumbSchema } from "@/src/components/seo/BreadcrumbSchema";
 
 export async function generateMetadata({
   params,
@@ -48,9 +49,10 @@ export async function generateMetadata({
     alternates: {
       canonical: `${baseUrl}/${locale}/certificates/${slug}`,
       languages: {
-        en: `/en/certificates/${slug}`,
-        ar: `/ar/certificates/${slug}`,
+        en: `${baseUrl}/en/certificates/${slug}`,
+        ar: `${baseUrl}/ar/certificates/${slug}`,
       },
+      xDefault: `${baseUrl}/en/certificates/${slug}`,
     },
   };
 }
@@ -73,19 +75,27 @@ export default async function CertificatePage(props: { params: Promise<{ slug: s
 
   return (
     <article className="min-h-screen pb-20 bg-background text-foreground selection:bg-primary/20">
-      {/* Structured Data for SEO */}
-      <StructuredData
-        type="EducationalOccupationalCredential"
-        data={{
-          name: certificate.title,
-          description: certificate.desc,
-          image: certificate.imageLink,
-          url: `https://ahmedlotfy.site/${locale}/certificates/${slug}`,
-          credentialCategory: 'Certificate',
-          recognizedBy: certificate.desc,
-          dateCreated: certificate.createdAt?.toISOString(),
-        }}
-      />
+       {/* Structured Data for SEO */}
+       <StructuredData
+         type="EducationalOccupationalCredential"
+         data={{
+           name: certificate.title,
+           description: certificate.desc,
+           image: certificate.imageLink,
+           url: `https://ahmedlotfy.site/${locale}/certificates/${slug}`,
+           credentialCategory: 'Certificate',
+           recognizedBy: certificate.desc,
+           dateCreated: certificate.createdAt?.toISOString(),
+         }}
+       />
+       {/* Breadcrumb Structured Data */}
+       <BreadcrumbSchema
+         items={[
+           { label: 'Home', url: `/${locale}` },
+           { label: 'Certificates', url: `/${locale}/certificates` },
+           { label: certificate.title, url: `/${locale}/certificates/${slug}` },
+         ]}
+       />
 
       {/* Background Effects */}
       <div className="fixed inset-0 pointer-events-none overflow-hidden">

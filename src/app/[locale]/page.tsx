@@ -59,6 +59,7 @@ export async function generateMetadata({
         'en': '/en',
         'ar': '/ar',
       },
+      xDefault: baseUrl,
     },
   };
 }

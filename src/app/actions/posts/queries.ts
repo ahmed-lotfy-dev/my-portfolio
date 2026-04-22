@@ -49,6 +49,7 @@ export async function getDbBlogPostBySlug(slug: string) {
       readingTime: post.readingTime || "5 min read",
       featured: post.featured,
       views: post.views,
+      imageLink: post.imageLink,
     };
   } catch (error) {
     console.error(`[PostsAction] Error fetching post ${slug}:`, error);

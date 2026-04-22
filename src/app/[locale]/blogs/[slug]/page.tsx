@@ -6,6 +6,8 @@ import Link from "next/link";
 import { Button } from "@/src/components/ui/button";
 import { RelatedPosts } from "@/src/components/features/blog/RelatedPosts";
 import { BlogViewTracker } from "@/src/components/analytics/BlogViewTracker";
+import StructuredData from "@/src/components/seo/StructuredData";
+import { BreadcrumbSchema } from "@/src/components/seo/BreadcrumbSchema";
 
 export async function generateMetadata({
   params,
@@ -36,9 +38,10 @@ export async function generateMetadata({
     alternates: {
       canonical: `${baseUrl}/${locale}/blogs/${slug}`,
       languages: {
-        en: `/en/blogs/${slug}`,
-        ar: `/ar/blogs/${slug}`,
+        en: `${baseUrl}/en/blogs/${slug}`,
+        ar: `${baseUrl}/ar/blogs/${slug}`,
       },
+      xDefault: `${baseUrl}/en/blogs/${slug}`,
     },
   };
 }
@@ -50,24 +53,53 @@ export default async function SinglePost(props: {
   const { locale, slug } = params;
   const post = await getDbBlogPostBySlug(slug);
 
-  if (!post) {
-    return (
-      <div className="flex flex-col items-center justify-center h-screen pt-20">
-        <h1 className="text-4xl font-bold">Post Not Found</h1>
-        <Button asChild className="mt-8" variant="outline">
-          <Link href={`/${locale}/blogs`}>Back to Blog</Link>
-        </Button>
-      </div>
-    );
-  }
+   if (!post) {
+     return (
+       <div className="flex flex-col items-center justify-center h-screen pt-20">
+         <h1 className="text-4xl font-bold">Post Not Found</h1>
+         <Button asChild className="mt-8" variant="outline">
+           <Link href={`/${locale}/blogs`}>Back to Blog</Link>
+         </Button>
+       </div>
+     );
+   }
 
-  return (
-    <article className="min-h-screen pt-32 pb-20 px-4">
-      <BlogViewTracker
-        blogId={post.slug}
-        blogTitle={post.title}
-        categories={[post.category, ...post.tags]}
-      />
+   const baseUrl = "https://ahmedlotfy.site";
+   const localePath = `/${locale}/blogs/${slug}`;
+   const publishedDate = new Date(post.date);
+   const modifiedDate = post.updated ? new Date(post.updated) : publishedDate;
+
+   return (
+     <article className="min-h-screen pt-32 pb-20 px-4">
+       <BlogViewTracker
+         blogId={post.slug}
+         blogTitle={post.title}
+         categories={[post.category, ...post.tags]}
+       />
+       {/* Article Structured Data */}
+       <StructuredData
+         type="Article"
+         data={{
+           title: post.title,
+           description: post.content.substring(0, 160),
+           image: post.imageLink || `${baseUrl}/og-image.png`,
+           publishedDate: publishedDate.toISOString(),
+           modifiedDate: modifiedDate.toISOString(),
+           authorName: 'Ahmed Shoman',
+           authorUrl: baseUrl,
+           keywords: `${post.category}, ${post.tags.join(', ')}`,
+           categories: [post.category],
+           language: locale === 'ar' ? 'ar' : 'en',
+         }}
+       />
+       {/* Breadcrumb Structured Data */}
+       <BreadcrumbSchema
+         items={[
+           { label: 'Home', url: `/${locale}` },
+           { label: 'Blogs', url: `/${locale}/blogs` },
+           { label: post.title, url: `/${locale}/blogs/${slug}` },
+         ]}
+       />
       <div className="max-w-4xl mx-auto">
         <Link
           href={`/${locale}/blogs`}

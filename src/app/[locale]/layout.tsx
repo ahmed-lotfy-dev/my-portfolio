@@ -10,15 +10,16 @@ import { Nav } from "@/src/components/features/homepage/Nav";
 import type { Metadata, Viewport } from "next";
 import { getMessages, setRequestLocale } from "next-intl/server";
 
-import { inter, poppins, sora, tajawal, playfair } from "@/src/components/ui/fonts";
-const Footer = dynamic(() => import("@/src/components/features/homepage/Footer"), {
-  ssr: true,
-});
-import { PersonSchema } from "@/src/components/seo/PersonSchema";
-import PostHogClient from "@/src/components/shared/PostHogClient";
-import { LazyMotion, domAnimation } from "motion/react";
-import { Toaster } from "@/src/components/ui/sonner";
-import { WebMcpProvider } from "@/src/components/agent/WebMcpProvider";
+ import { inter, poppins, sora, tajawal, playfair } from "@/src/components/ui/fonts";
+ const Footer = dynamic(() => import("@/src/components/features/homepage/Footer"), {
+   ssr: true,
+ });
+ import { PersonSchema } from "@/src/components/seo/PersonSchema";
+ import { OrganizationSchema } from "@/src/components/seo/OrganizationSchema";
+ import PostHogClient from "@/src/components/shared/PostHogClient";
+ import { LazyMotion, domAnimation } from "motion/react";
+ import { Toaster } from "@/src/components/ui/sonner";
+ import { WebMcpProvider } from "@/src/components/agent/WebMcpProvider";
 
 export const revalidate = 3600;
 
@@ -118,10 +119,11 @@ export default async function LocaleLayout({ children, params }: Props) {
       suppressHydrationWarning
       className="dark scroll-smooth max-h-svh"
     >
-      <head>
-        <link rel="dns-prefetch" href="https://images.ahmedlotfy.site" />
-        <PersonSchema />
-      </head>
+       <head>
+         <link rel="dns-prefetch" href="https://images.ahmedlotfy.site" />
+         <PersonSchema />
+         <OrganizationSchema />
+       </head>
       <body
         className={`${inter.variable} ${poppins.variable} ${sora.variable} ${playfair.variable} ${isArabic ? tajawal.variable : ""
           } antialiased font-main`}
