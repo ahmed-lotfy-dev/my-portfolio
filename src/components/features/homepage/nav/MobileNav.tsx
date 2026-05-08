@@ -96,7 +96,7 @@ export function MobileNav({
                     width={32}
                     height={32}
                     alt="Ahmed Shoman logo"
-                    className="object-contain text-black dark:text-primary"
+                    className="object-contain"
                   />
                 </div>
                 <div className="flex flex-col">

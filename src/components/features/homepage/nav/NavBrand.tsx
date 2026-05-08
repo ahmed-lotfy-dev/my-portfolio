@@ -18,7 +18,7 @@ export function NavBrand({ locale }: NavBrandProps) {
             fill
             sizes="56px"
             alt="Ahmed Shoman logo"
-            className="relative z-10 object-contain text-black dark:text-primary"
+            className="relative z-10 object-contain"
             priority
           />
         </div>

@@ -1,6 +1,19 @@
 <svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <g transform="translate(40, 40) scale(0.85)">
-    <path d="M40 420 L216 60 L392 420 H310 L216 240 L122 420 H40 Z" fill="currentColor"/>
-    <path d="M480 140 C480 80, 420 60, 380 60 C320 60, 280 100, 280 160 C280 220, 340 240, 380 260 C420 280, 480 300, 480 360 C480 420, 420 460, 360 460 C300 460, 260 420, 260 380" stroke="currentColor" stroke-width="65" stroke-linecap="butt" stroke-linejoin="round" fill="none"/>
+  <defs>
+    <linearGradient id="gold-premium" x1="0" y1="0" x2="512" y2="512" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#D4AF37"/>
+      <stop offset="0.3" stop-color="#FCF6BA"/>
+      <stop offset="0.6" stop-color="#B8860B"/>
+      <stop offset="1" stop-color="#804A00"/>
+    </linearGradient>
+  </defs>
+  
+  <g fill="url(#gold-premium)" transform="translate(25, 25) scale(0.9)">
+    <!-- A -->
+    <path d="M40 450L180 80L320 450H260L180 270L100 450H40Z" />
+    <path d="M120 340H240" stroke="url(#gold-premium)" stroke-width="25"/>
+    
+    <!-- S (Scaled to fit) -->
+    <path d="M340 400C390 400 440 375 440 325C440 275 410 260 370 245C330 230 300 215 300 170C300 125 340 110 380 110C420 110 450 125 450 170H400C400 160 395 155 385 155C375 155 370 160 370 170C370 185 380 195 420 210C460 225 500 250 500 325C500 400 450 450 385 450C320 450 280 410 280 360H340C340 385 355 400 380 400Z" />
   </g>
 </svg>
