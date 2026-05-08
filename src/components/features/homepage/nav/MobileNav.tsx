@@ -95,12 +95,12 @@ export function MobileNav({
                     src="/as-mark.svg"
                     width={32}
                     height={32}
-                    alt="Ahmed Shoman logo"
+                    alt="Ahmed Lotfy logo"
                     className="object-contain"
                   />
                 </div>
                 <div className="flex flex-col">
-                  <span className="font-heading text-lg font-black tracking-tight text-white leading-tight">Ahmed Shoman</span>
+                  <span className="font-heading text-lg font-black tracking-tight text-white leading-tight">Ahmed Lotfy</span>
                   <span className="text-[10px] font-bold uppercase tracking-widest text-primary/70">Pro Portfolio</span>
                 </div>
               </SheetTitle>

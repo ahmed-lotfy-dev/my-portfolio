@@ -1,5 +1,28 @@
 # https://ahmedlotfy.site/robots.txt
 User-agent: *
 Allow: /
+Disallow: /_next/static/
+Disallow: /cdn-cgi/
+Disallow: /api/
+Disallow: /dashboard/
+Disallow: /*.woff2$
+Disallow: /*.json$
+Disallow: /*.xml$
+
+# Block AI crawlers from hoovering static junk but allow content
+User-agent: GPTBot
+Disallow: /_next/static/
+Disallow: /cdn-cgi/
+Disallow: /api/
+
+User-agent: Claude-Web
+Disallow: /_next/static/
+Disallow: /cdn-cgi/
+Disallow: /api/
+
+User-agent: CCBot
+Disallow: /_next/static/
+Disallow: /cdn-cgi/
+Disallow: /api/
 
 Sitemap: https://ahmedlotfy.site/sitemap.xml

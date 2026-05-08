@@ -2,6 +2,8 @@ import Section from "@/src/components/ui/Section";
 import { getTranslations, getLocale } from "next-intl/server";
 import { getAllProjects } from "@/src/app/actions/projects/queries";
 import ProjectsClient from "./ProjectsClient";
+import Link from "next/link";
+import { ArrowRight } from "lucide-react";
 
 export default async function Projects() {
   const { allProjects: projects } = await getAllProjects();
@@ -36,6 +38,16 @@ export default async function Projects() {
         </div>
 
         <ProjectsClient projects={projects ?? []} locale={locale} t={translations} />
+
+        <div className="mt-12 text-center">
+          <Link
+            href={`/${locale}/projects`}
+            className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-primary/30 bg-primary/5 text-primary font-semibold hover:bg-primary/10 hover:border-primary/50 transition-all group"
+          >
+            View All Projects
+            <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+          </Link>
+        </div>
       </div>
     </Section>
   );

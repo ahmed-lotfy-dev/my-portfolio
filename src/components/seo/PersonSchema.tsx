@@ -3,7 +3,7 @@ export function PersonSchema() {
     "@context": "https://schema.org",
     "@type": "Person",
     "@id": "https://ahmedlotfy.site/#person",
-    name: "Ahmed Shoman",
+    name: "Ahmed Lotfy",
     jobTitle: "Full-Stack Software Engineer",
     url: "https://ahmedlotfy.site",
     image: "https://ahmedlotfy.site/og-image.png",

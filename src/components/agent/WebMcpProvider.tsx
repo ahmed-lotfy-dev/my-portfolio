@@ -82,7 +82,7 @@ export function WebMcpProvider() {
       },
       {
         name: "open_resume",
-        description: "Open Ahmed Shoman's resume PDF.",
+        description: "Open Ahmed Lotfy's resume PDF.",
         inputSchema: {
           type: "object",
           properties: {},

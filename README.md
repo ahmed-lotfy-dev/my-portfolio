@@ -1,4 +1,4 @@
-# Ahmed Shoman - Portfolio
+# Ahmed Lotfy - Portfolio
 
 > Modern, high-performance portfolio built with Next.js 16, featuring a 91/100 Lighthouse score and production-grade architecture.
 

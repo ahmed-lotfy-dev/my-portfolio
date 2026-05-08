@@ -1,7 +1,7 @@
 import { MetadataRoute } from 'next'
 import { eq } from 'drizzle-orm'
 import { db } from '@/src/db'
-import { projects, posts, certificates } from '@/src/db/schema'
+import { projects, posts } from '@/src/db/schema'
 import { slugifyBlogTaxonomy } from '@/src/lib/utils/blog-taxonomy'
 
 export const dynamic = 'force-dynamic'
@@ -22,23 +22,16 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     categories: posts.categories,
   }).from(posts).where(eq(posts.published, true))
 
-  // Fetch all certificates
-  const allCertificates = await db.select({
-    id: certificates.id,
-    updatedAt: certificates.updatedAt,
-  }).from(certificates).where(eq(certificates.published, true))
-
   // Keep a stable, data-driven lastModified across sitemap entries.
   const knownTimestamps = [
     ...allProjects.map((item) => item.updatedAt?.getTime()),
     ...allPosts.map((item) => item.updatedAt?.getTime()),
-    ...allCertificates.map((item) => item.updatedAt?.getTime()),
   ].filter((value): value is number => typeof value === 'number');
   const siteLastModified = knownTimestamps.length
     ? new Date(Math.max(...knownTimestamps))
     : new Date('2025-01-01T00:00:00.000Z');
 
-   // Static pages - Homepage and main sections
+   // Static pages - core content only
    const staticPages = [
      {
        url: `${baseUrl}/en`,
@@ -63,45 +56,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
            ar: `${baseUrl}/ar`,
          },
        },
-     },
-     // AI Agent sitemap
-     {
-       url: `${baseUrl}/en/ai-sitemap.json`,
-       lastModified: siteLastModified,
-       changeFrequency: 'daily' as const,
-       priority: 0.3,
-     },
-     {
-       url: `${baseUrl}/ar/ai-sitemap.json`,
-       lastModified: siteLastModified,
-       changeFrequency: 'daily' as const,
-       priority: 0.3,
-     },
-     // RSS / Atom feed
-     {
-       url: `${baseUrl}/en/feed.xml`,
-       lastModified: siteLastModified,
-       changeFrequency: 'daily' as const,
-       priority: 0.3,
-     },
-     {
-       url: `${baseUrl}/ar/feed.xml`,
-       lastModified: siteLastModified,
-       changeFrequency: 'daily' as const,
-       priority: 0.3,
-     },
-     // OpenSearch
-     {
-       url: `${baseUrl}/en/opensearch.xml`,
-       lastModified: siteLastModified,
-       changeFrequency: 'monthly' as const,
-       priority: 0.1,
-     },
-     {
-       url: `${baseUrl}/ar/opensearch.xml`,
-       lastModified: siteLastModified,
-       changeFrequency: 'monthly' as const,
-       priority: 0.1,
      },
      // Blogs listing page
      {
@@ -155,12 +109,62 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
          },
        },
      },
-     // Certificates listing page
+     // About page
+    {
+      url: `${baseUrl}/en/about`,
+      lastModified: siteLastModified,
+      changeFrequency: 'monthly' as const,
+      priority: 0.8,
+      alternates: {
+        languages: {
+          en: `${baseUrl}/en/about`,
+          ar: `${baseUrl}/ar/about`,
+        },
+      },
+    },
+    {
+      url: `${baseUrl}/ar/about`,
+      lastModified: siteLastModified,
+      changeFrequency: 'monthly' as const,
+      priority: 0.8,
+      alternates: {
+        languages: {
+          en: `${baseUrl}/en/about`,
+          ar: `${baseUrl}/ar/about`,
+        },
+      },
+    },
+    // Contact page
+    {
+      url: `${baseUrl}/en/contact`,
+      lastModified: siteLastModified,
+      changeFrequency: 'monthly' as const,
+      priority: 0.7,
+      alternates: {
+        languages: {
+          en: `${baseUrl}/en/contact`,
+          ar: `${baseUrl}/ar/contact`,
+        },
+      },
+    },
+    {
+      url: `${baseUrl}/ar/contact`,
+      lastModified: siteLastModified,
+      changeFrequency: 'monthly' as const,
+      priority: 0.7,
+      alternates: {
+        languages: {
+          en: `${baseUrl}/en/contact`,
+          ar: `${baseUrl}/ar/contact`,
+        },
+      },
+    },
+    // Certificates listing page (individual certificate pages have thin content and are excluded)
      {
        url: `${baseUrl}/en/certificates`,
        lastModified: siteLastModified,
        changeFrequency: 'monthly' as const,
-       priority: 0.8,
+       priority: 0.5,
        alternates: {
          languages: {
            en: `${baseUrl}/en/certificates`,
@@ -172,7 +176,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
        url: `${baseUrl}/ar/certificates`,
        lastModified: siteLastModified,
        changeFrequency: 'monthly' as const,
-       priority: 0.8,
+       priority: 0.5,
        alternates: {
          languages: {
            en: `${baseUrl}/en/certificates`,
@@ -263,14 +267,14 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
      return acc;
    }, [])
 
-   // Blog pages (both languages)
+   // Blog pages (both languages) — these are the site's richest content
    const blogPages: SitemapEntry[] = allPosts.reduce<SitemapEntry[]>((acc, post) => {
      acc.push(
        {
          url: `${baseUrl}/en/blogs/${post.slug}`,
          lastModified: post.updatedAt ?? siteLastModified,
          changeFrequency: 'monthly' as const,
-         priority: 0.6,
+         priority: 0.8,
          alternates: {
            languages: {
              en: `${baseUrl}/en/blogs/${post.slug}`,
@@ -282,42 +286,11 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
          url: `${baseUrl}/ar/blogs/${post.slug}`,
          lastModified: post.updatedAt ?? siteLastModified,
          changeFrequency: 'monthly' as const,
-         priority: 0.6,
+         priority: 0.8,
          alternates: {
            languages: {
              en: `${baseUrl}/en/blogs/${post.slug}`,
              ar: `${baseUrl}/ar/blogs/${post.slug}`,
-           },
-         },
-       }
-     );
-     return acc;
-   }, [])
-
-   // Certificate pages (both languages)
-   const certificatePages: SitemapEntry[] = allCertificates.reduce<SitemapEntry[]>((acc, cert) => {
-     acc.push(
-       {
-         url: `${baseUrl}/en/certificates/${cert.id}`,
-         lastModified: cert.updatedAt ?? siteLastModified,
-         changeFrequency: 'yearly' as const,
-         priority: 0.5,
-         alternates: {
-           languages: {
-             en: `${baseUrl}/en/certificates/${cert.id}`,
-             ar: `${baseUrl}/ar/certificates/${cert.id}`,
-           },
-         },
-       },
-       {
-         url: `${baseUrl}/ar/certificates/${cert.id}`,
-         lastModified: cert.updatedAt ?? siteLastModified,
-         changeFrequency: 'yearly' as const,
-         priority: 0.5,
-         alternates: {
-           languages: {
-             en: `${baseUrl}/en/certificates/${cert.id}`,
-             ar: `${baseUrl}/ar/certificates/${cert.id}`,
            },
          },
        }
@@ -385,7 +358,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ...staticPages,
     ...projectPages,
     ...blogPages,
-    ...certificatePages,
     ...categoryPages,
   ]
 }

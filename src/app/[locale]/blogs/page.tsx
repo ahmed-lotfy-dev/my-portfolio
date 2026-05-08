@@ -26,7 +26,7 @@ export async function generateMetadata({
       title: t("title"),
       description: t("description"),
       url: `${baseUrl}/${locale}/blogs`,
-      siteName: "Ahmed Shoman Portfolio",
+      siteName: "Ahmed Lotfy Portfolio",
       locale: locale === "ar" ? "ar_EG" : "en_US",
       type: "website",
     },

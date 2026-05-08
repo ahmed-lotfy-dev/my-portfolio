@@ -81,17 +81,17 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     const allKeywords = [...new Set([...categoryKeywords, ...contentKeywords])].join(', ');
 
     return {
-        title: `${title} | Ahmed Shoman`,
+        title: `${title} | Ahmed Lotfy`,
         description: description,
         keywords: allKeywords,
-        authors: [{ name: 'Ahmed Shoman' }],
-        creator: 'Ahmed Shoman',
-        publisher: 'Ahmed Shoman',
+        authors: [{ name: 'Ahmed Lotfy' }],
+        creator: 'Ahmed Lotfy',
+        publisher: 'Ahmed Lotfy',
         openGraph: {
             title: title,
             description: description,
             url: `https://ahmedlotfy.site/${locale}/projects/${slug}`,
-            siteName: 'Ahmed Shoman Portfolio',
+            siteName: 'Ahmed Lotfy Portfolio',
             images: [
                 {
                     url: project.coverImage,
@@ -170,7 +170,7 @@ export default async function ProjectDetailsPage({ params }: { params: Promise<{
                      description: desc,
                      image: project.coverImage,
                      url: `https://ahmedlotfy.site/${locale}/projects/${slug}`,
-                     authorName: 'Ahmed Shoman',
+                     authorName: 'Ahmed Lotfy',
                      authorUrl: 'https://ahmedlotfy.site',
                      createdDate: project.createdAt?.toISOString(),
                      modifiedDate: project.updatedAt?.toISOString(),

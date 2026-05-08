@@ -15,7 +15,7 @@
     "settings": "الإعدادات"
   },
   "hero": {
-    "name": "أحمد شومان",
+    "name": "أحمد لطفي",
     "title": "كبير معماري البرمجيات ومطور Full-Stack",
     "description": "بناء أنظمة رقمية عالية الأداء باستخدام Next.js 16 وبنيات سحابية متطورة. أركز على القابلية للتوسع، والأداء، وتجارب المستخدم الفاخرة.",
     "book_consultation": "احجز استشارة",
@@ -126,7 +126,8 @@
       "home": "الرئيسية",
       "projects": "المشاريع",
       "certificates": "الشهادات",
-      "contact": "تواصل معي",
+      "blog": "المدونة",
+      "contact": "التواصل",
       "privacy": "سياسة الخصوصية",
       "terms": "شروط الخدمة"
     }
@@ -232,7 +233,7 @@
   },
   "about": {
     "title": "عني",
-    "name": "أحمد شومان",
+    "name": "أحمد لطفي",
     "description1": "أنا Full-Stack Software Engineer بركز على حل مشاكل البيزنس. بتخصص في الـ React Ecosystem الحديثة (Next.js، TypeScript) بس بهتم بنفس القدر بالـ ROI، ومقاييس الأداء، واستقرار النظام (Reliability).",
     "description2": "خلفيتي في الهاردوير والـ IT بتخليني أبني حلول مش مجرد كود، لكن بنية تحتية قوية.",
     "description3": "بشارك الشركات لبناء برمجيات بتزود الأرباح، بتقلل التكاليف، وبتكبر بسهولة. أنا حالياً بقبل عملاء جدد لمشاريع ذات تأثير عالي (High-Impact Projects)."
@@ -431,16 +432,24 @@
   },
   "metadata": {
     "home": {
-      "title": "أحمد شومان – Full-Stack Software Engineer",
-      "description": "Portfolio أحمد شومان – Full-Stack Software Engineer. ببني تطبيقات ويب Scalable و Responsive."
+      "title": "أحمد لطفي – Full-Stack Software Engineer",
+      "description": "Portfolio أحمد لطفي – Full-Stack Software Engineer. ببني تطبيقات ويب Scalable و Responsive."
     },
     "blogs": {
-      "title": "المدونة | أحمد شومان",
+      "title": "المدونة | أحمد لطفي",
       "description": "اقرأ أفكاري عن السوفت وير، تقنيات الويب، وحاجات تانية كتير."
     },
     "certificates": {
-      "title": "الشهادات المهنية | أحمد شومان",
+      "title": "الشهادات المهنية | أحمد لطفي",
       "description": "استكشف رحلة تعلمي من خلال الشهادات والكورسات في الـ Web Development و Software Engineering."
+    },
+    "about": {
+      "title": "عنّي | أحمد لطفي",
+      "description": "تعرف على أحمد لطفي — مهندس برمجيات Full-Stack متخصص في Next.js و TypeScript وبناء تطبيقات ويب قابلة للتطوير."
+    },
+    "contact": {
+      "title": "تواصل | أحمد لطفي",
+      "description": "تواصل مع أحمد لطفي. أنا منفتح على مشاريع freelance وتعاونات وفرص استشارية."
     }
   }
 }

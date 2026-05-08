@@ -9,7 +9,7 @@ function getServerCard() {
       version: "1.0.0",
     },
     description:
-      "Discovery metadata for Ahmed Shoman's portfolio. Browser-native tools are exposed through WebMCP, and well-known documents describe the current public API and auth surface.",
+      "Discovery metadata for Ahmed Lotfy's portfolio. Browser-native tools are exposed through WebMCP, and well-known documents describe the current public API and auth surface.",
     transport: {
       type: "webmcp",
       url: absoluteUrl("/"),

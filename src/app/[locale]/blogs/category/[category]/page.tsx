@@ -42,7 +42,7 @@ export async function generateMetadata({
       title,
       description,
       url: `${baseUrl}${categoryPath}`,
-      siteName: "Ahmed Shoman Portfolio",
+      siteName: "Ahmed Lotfy Portfolio",
       locale: locale === "ar" ? "ar_EG" : "en_US",
       type: "website",
     },
@@ -88,7 +88,7 @@ export default async function BlogCategoryPage({
       <StructuredData
         type="CollectionPage"
         data={{
-          name: `${category.name} Articles - Ahmed Shoman`,
+          name: `${category.name} Articles - Ahmed Lotfy`,
           description:
             locale === "ar"
               ? `صفحة أرشيف تجمع المقالات الموجودة تحت تصنيف ${category.name}.`

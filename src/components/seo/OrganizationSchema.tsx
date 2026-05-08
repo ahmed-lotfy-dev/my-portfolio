@@ -3,7 +3,7 @@ export function OrganizationSchema() {
     "@context": "https://schema.org",
     "@type": "Organization",
     "@id": "https://ahmedlotfy.site/#organization",
-    name: "Ahmed Shoman",
+    name: "Ahmed Lotfy",
     url: "https://ahmedlotfy.site",
     logo: "https://ahmedlotfy.site/icon.png",
     sameAs: [
@@ -19,7 +19,7 @@ export function OrganizationSchema() {
     },
     founder: {
       "@type": "Person",
-      name: "Ahmed Shoman",
+      name: "Ahmed Lotfy",
       jobTitle: "Full-Stack Software Engineer",
       url: "https://ahmedlotfy.site",
     },

@@ -30,7 +30,7 @@ export async function generateMetadata({
   }
 
   return {
-    title: `${certificate.title} | Ahmed Shoman`,
+    title: `${certificate.title} | Ahmed Lotfy`,
     description: `Certificate: ${certificate.title} - ${certificate.desc}`,
     openGraph: {
       title: certificate.title,

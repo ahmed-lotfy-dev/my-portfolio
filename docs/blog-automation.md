@@ -1,93 +1,128 @@
 # Blog Automation Pipeline
 
-Automatically fetches AI/fullstack/mobile dev news, rewrites as original blog posts via an AI agent, and saves to the portfolio at ahmedlotfy.site.
+Automated pipeline that fetches AI/fullstack/mobile dev news, generates original blog posts via NVIDIA NIM API, and publishes to ahmedlotfy.site.
 
-## How It Works
+## Architecture
 
 ```
 RSS Feeds (14 sources)
     │
     ▼
-┌─────────────────────────┐
-│  fetch-news.ts          │  runs `bun run fetch:news`
-│  - Fetches 12 RSS feeds │
-│  - Deduplicates by URL  │
-│  - Filters last 24h     │
-│  - Skips existing slugs │
-│  - Outputs JSON         │
-└────────┬────────────────┘
+┌──────────────────────────────┐
+│  fetch-news.ts                │  bun run fetch:news
+│  - Fetches 14 RSS feeds      │
+│  - Deduplicates by URL       │
+│  - Filters last 24h          │
+│  - Skips existing slugs      │
+│  - Outputs JSON cache        │
+└────────┬─────────────────────┘
          │
          ▼
-┌─────────────────────────┐
-│  AI Agent (Hermes cron) │  runs daily at 8:00 AM
-│  - Reads JSON           │
-│  - Selects 2-3 articles │
-│  - Generates blog posts │
-│    with proper frontmatter
-│  - Saves .md files      │
-└────────┬────────────────┘
+┌──────────────────────────────┐
+│  generate-posts.ts            │  bun run generate:posts
+│  - Reads news cache (JSON)   │
+│  - Picks 2-3 unblogged       │
+│  - Calls NVIDIA NIM API      │
+│    (Llama 3.3 70B Instruct)  │
+│  - Writes .md files with     │
+│    YAML frontmatter          │
+└────────┬─────────────────────┘
          │
          ▼
-┌─────────────────────────┐
-│  ingest-blogs.ts        │  runs `bun run ingest:blogs`
-│  - Scans content/blogs/ │
-│  - Parses frontmatter   │
-│  - Upserts to PostgreSQL│
-│    via Drizzle ORM      │
-└────────┬────────────────┘
+┌──────────────────────────────┐
+│  ingest-blogs.ts              │  bun run ingest:blogs
+│  - Scans content/blogs/      │
+│  - Parses frontmatter        │
+│  - Upserts to PostgreSQL     │
+│    via Drizzle ORM           │
+└────────┬─────────────────────┘
          │
          ▼
     ahmedlotfy.site
     (sitemap auto-updates)
 ```
 
-## Testing the Pipeline
+## Quick Start
 
-### Quick test (fetch news only):
+### Single command (full pipeline):
 ```bash
 cd /mnt/hdd/projects/my-portfolio
-bun run fetch:news
+bun run run:blog
 ```
-This downloads latest articles from all 14 sources, deduplicates, and saves to `.hermes/news-cache/latest-news.json`
 
-### Full pipeline test (manual):
-To simulate what the cron job does at 8 AM, run the cron job manually:
+This runs all three steps in sequence: fetch → generate → ingest.
+
+### Step by step:
 ```bash
-hermes cron run 38a4dd81438c
+bun run fetch:news        # Fetch latest articles → .hermes/news-cache/latest-news.json
+bun run generate:posts    # Generate blog .md files via NVIDIA NIM → src/content/blogs/
+bun run ingest:blogs      # Upsert .md files into PostgreSQL via Drizzle
 ```
-Or trigger via the Hermes Workspace UI (http://localhost:3000 → Cron Jobs → Run).
 
-The cron agent will:
-1. Run `bun run fetch:news`
-2. Read the JSON
-3. Generate 2-3 blog posts in `src/content/blogs/<slug>.md`
-4. Run `bun run ingest:blogs`
+## Scripts
 
-### Verify the output:
+| Script | Command | Description |
+|--------|---------|-------------|
+| `fetch:news` | `bun run fetch:news` | Fetch RSS feeds, deduplicate, cache to JSON |
+| `generate:posts` | `bun run generate:posts` | Read cache, call NVIDIA NIM, write .md files |
+| `ingest:blogs` | `bun run ingest:blogs` | Parse .md frontmatter, upsert to PostgreSQL |
+| `run:blog` | `bun run run:blog` | Full pipeline (fetch → generate → ingest) |
 
-**Blog files created:**
+## Configuration
+
+### Environment Variables (`.env`)
+```
+NVIDIA_API_KEY=nvapi-...     # Required for generation step
+DATABASE_URL=postgresql://... # Required for ingest step (already configured)
+```
+
+### News Cache
+- Location: `.hermes/news-cache/latest-news.json`
+- Contains deduplicated articles from the latest fetch
+- Overwritten on each `fetch:news` run
+
+### Blog Output
+- Location: `src/content/blogs/<slug>.md`
+- Each file has YAML frontmatter (title, date, tags, image, share, featured, description)
+- Slug = filename = kebab-case of the article title
+
+## NVIDIA NIM API Details
+
+- **Endpoint**: `https://integrate.api.nvidia.com/v1/chat/completions`
+- **Model**: `meta/llama-3.3-70b-instruct` (free tier)
+- **Auth**: Bearer token via `NVIDIA_API_KEY` environment variable
+- **Parameters**: temperature 0.7, max_tokens 3072, 60s timeout
+- **Rate limit**: Generates up to 3 posts per run sequentially
+
+## Production Deployment (Dokploy)
+
+### Setup on Dokploy server:
+
+1. **Add to Environment Variables**
+   - `NVIDIA_API_KEY` = your NVIDIA NIM API key
+
+2. **Set up system cron** (SSH into your VPS):
+   ```bash
+   crontab -e
+   ```
+   Add:
+   ```cron
+   0 8 * * * cd /path/to/portfolio && /usr/local/bin/bun run run:blog >> /var/log/blog-automation.log 2>&1
+   ```
+
+   Or if using Dokploy's built-in cron:
+   - Add a cron task in Dokploy dashboard
+   - Command: `cd /app && bun run run:blog`
+   - Schedule: `0 8 * * *`
+
+### Manual run on production:
 ```bash
-ls -la src/content/blogs/
+ssh your-vps
+cd /path/to/portfolio
+bun run run:blog
 ```
 
-**Content quality** — each file has YAML frontmatter (title, date, tags, image, share) and body:
-```bash
-head -15 src/content/blogs/<new-post>.md
-```
-
-**Ingested into database:**
-```bash
-# Via Drizzle Studio
-bun run studio
-
-# Or direct SQL
-psql "$DATABASE_URL" -c "SELECT title_en, slug, created_at FROM posts ORDER BY created_at DESC LIMIT 5;"
-```
-
-**On the live site:**
-Visit https://ahmedlotfy.site/en/blogs — new posts appear with correct date, tags, and content.
-
-## RSS Sources (12 feeds)
+## RSS Sources (14 feeds)
 
 | Source | URL | Category |
 |--------|-----|----------|
@@ -106,14 +141,6 @@ Visit https://ahmedlotfy.site/en/blogs — new posts appear with correct date, t
 | Expo Blog | expo.dev/blog/rss.xml | mobile |
 | Next.js Blog | nextjs.org/feed.xml | frontend |
 
-## Cron Job Details
-
-- **Schedule**: Daily at 8:00 AM (`0 8 * * *`)
-- **Workdir**: `/mnt/hdd/projects/my-portfolio`
-- **Auto-deliver**: Local (logged, no notification)
-- **Max posts per run**: 3
-- **Stale news cutoff**: 24 hours
-
 ## Adding New Sources
 
 Edit `RSS_FEEDS` array in `src/scripts/fetch-news.ts`:
@@ -121,32 +148,38 @@ Edit `RSS_FEEDS` array in `src/scripts/fetch-news.ts`:
 { url: "https://example.com/feed.xml", source: "My Source", category: "ai" },
 ```
 
-Categories currently used: `ai`, `tech`, `frontend`, `fullstack`, `mobile`, `devops`
+Categories used: `ai`, `tech`, `frontend`, `fullstack`, `mobile`, `devops`
 
 ## File Structure
 
 ```
-src/scripts/fetch-news.ts     # News aggregation from RSS
-src/scripts/ingest-blogs.ts   # .md → PostgreSQL upsert
-src/content/blogs/             # Generated .md files
-.hermes/news-cache/            # Latest news JSON cache
+src/scripts/fetch-news.ts       # News aggregation from RSS
+src/scripts/generate-posts.ts   # Blog generation via NVIDIA NIM
+src/scripts/ingest-blogs.ts     # .md → PostgreSQL upsert
+src/content/blogs/               # Generated .md files
+.hermes/news-cache/              # Latest news JSON cache
+docs/blog-automation.md          # This document
 ```
 
-## Cron Job Management
+## Troubleshooting
 
-```bash
-# List jobs
-hermes cron list
+### "NVIDIA_API_KEY not set"
+Add to `.env`: `NVIDIA_API_KEY=nvapi-your-key-here`
 
-# Run manually (immediate)
-hermes cron run 38a4dd81438c
+### "No news cache found"
+Run `bun run fetch:news` first to populate the cache.
 
-# Pause daily automation
-hermes cron pause 38a4dd81438c
+### API returns errors
+- Check your NVIDIA API key is valid
+- The free tier has rate limits — wait a minute between runs
+- Verify the model name is correct: `meta/llama-3.3-70b-instruct`
 
-# Resume
-hermes cron resume 38a4dd81438c
+### No articles selected for generation
+- All articles in the cache may already have blog posts
+- Run `bun run fetch:news` again to get fresh articles
+- Check `src/content/blogs/` for existing slugs
 
-# Remove cron job
-hermes cron remove 38a4dd81438c
-```
+### Ingest fails
+- Check `DATABASE_URL` is set in `.env`
+- Verify the PostgreSQL server is reachable
+- The Drizzle schema expects `posts` table — run migrations if needed

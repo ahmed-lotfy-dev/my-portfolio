@@ -20,6 +20,8 @@
     "sync:blog": "tsx src/scripts/sync-blog.ts",
     "migrate-r2": "tsx src/scripts/migrate-r2-to-folders.ts",
     "fetch:news": "tsx src/scripts/fetch-news.ts",
+    "generate:posts": "tsx src/scripts/generate-posts.ts",
+    "run:blog": "bun run fetch:news && bun run generate:posts && bun run ingest:blogs",
     "ingest:blogs": "tsx src/scripts/ingest-blogs.ts"
   },
   "browserslist": {

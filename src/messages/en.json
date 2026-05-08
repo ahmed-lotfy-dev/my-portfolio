@@ -15,7 +15,7 @@
     "settings": "Settings"
   },
   "hero": {
-    "name": "Ahmed Shoman",
+    "name": "Ahmed Lotfy",
     "title": "Senior Software Architect & Full-Stack Engineer",
     "description": "Building high-performance digital ecosystems with Next.js 16 and Cloud-Native architectures. Focused on scalability, performance, and premium user experiences.",
     "book_consultation": "Book a Consultation",
@@ -126,6 +126,7 @@
       "home": "Home",
       "projects": "Projects",
       "certificates": "Certifications",
+      "blog": "Blog",
       "contact": "Contact",
       "privacy": "Privacy Policy",
       "terms": "Terms of Service"
@@ -232,7 +233,7 @@
   },
   "about": {
     "title": "About Me",
-    "name": "Ahmed Shoman",
+    "name": "Ahmed Lotfy",
     "description1": "I am a Full-Stack Software Engineer focused on solving business problems. I specialize in the modern React ecosystem (Next.js, TypeScript) but I place equal emphasis on ROI, performance metrics, and system reliability.",
     "description2": "My path to software engineering is rooted in a deep background in hardware and IT systems. This allows me to architect solutions that are not just code, but robust infrastructure.",
     "description3": "I partner with businesses to build software that drives revenue, reduces costs, and scales effortlessly. I am currently accepting new clients for high-impact projects."
@@ -431,16 +432,24 @@
   },
   "metadata": {
     "home": {
-      "title": "Ahmed Shoman – Full-Stack Software Engineer",
-      "description": "Portfolio of Ahmed Shoman – Full-Stack Software Engineer. I build responsive and scalable web applications."
+      "title": "Ahmed Lotfy – Full-Stack Software Engineer",
+      "description": "Portfolio of Ahmed Lotfy – Full-Stack Software Engineer. I build responsive and scalable web applications."
     },
     "blogs": {
-      "title": "Blog | Ahmed Shoman",
+      "title": "Blog | Ahmed Lotfy",
       "description": "Read my thoughts on software development, web technologies, and more."
     },
     "certificates": {
-      "title": "Professional Certifications | Ahmed Shoman",
+      "title": "Professional Certifications | Ahmed Lotfy",
       "description": "Explore my professional development journey through certificates and courses in web development, software engineering, and modern technologies."
+    },
+    "about": {
+      "title": "About Me | Ahmed Lotfy",
+      "description": "Learn about Ahmed Lotfy — a Full-Stack Software Engineer specializing in Next.js, TypeScript, and building scalable web applications."
+    },
+    "contact": {
+      "title": "Contact | Ahmed Lotfy",
+      "description": "Get in touch with Ahmed Lotfy. I'm open to freelance projects, collaborations, and consulting opportunities."
     }
   }
 }

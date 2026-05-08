@@ -148,7 +148,7 @@ This portfolio is **exceptionally well-built** with advanced features including:
 | Feature | Status | Notes |
 |---------|--------|-------|
 | Semantic HTML | Good | `<section>`, `<article>`, `<main>`, `<header>`, `<footer>`, `<nav>` used throughout |
-| Alt text | Good | Hero: `t("illustrationAlt")`, About: `"Ahmed Shoman"`, projects: dynamic alt |
+| Alt text | Good | Hero: `t("illustrationAlt")`, About: `"Ahmed Lotfy"`, projects: dynamic alt |
 | ARIA labels | Partial | Language switcher: `aria-label="Toggle language"` + `sr-only`; footer social links: `aria-label` |
 | Skip links | ❌ Missing | No skip-to-content link found |
 | Form labels | Partial | Contact form uses `<label>` but without `htmlFor` attribute |

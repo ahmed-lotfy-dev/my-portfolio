@@ -18,9 +18,9 @@ export default function Footer() {
 
   const quickLinks = [
     { href: `/${locale}`, label: t("links.home"), icon: Home },
-    { href: `/${locale}#projects`, label: t("links.projects"), icon: Briefcase },
+    { href: `/${locale}/projects`, label: t("links.projects"), icon: Briefcase },
     { href: `/${locale}/certificates`, label: t("links.certificates"), icon: Award },
-    { href: `/${locale}#contact`, label: t("links.contact"), icon: MessageSquare },
+    { href: `/${locale}/blogs`, label: t("links.blog"), icon: MessageSquare },
   ];
 
   const socialLinks = [
@@ -60,7 +60,7 @@ export default function Footer() {
             <div className="lg:col-span-2 space-y-6">
               <div className="space-y-4">
                 <h3 className="text-2xl md:text-3xl font-bold text-foreground tracking-tight">
-                  Ahmed Shoman
+                  Ahmed Lotfy
                 </h3>
                 <p className="text-base text-muted-foreground leading-relaxed max-w-md">
                   {t("about_text")}
@@ -177,7 +177,7 @@ export default function Footer() {
           <div className="flex flex-col lg:flex-row items-center justify-between gap-6">
             {/* Copyright */}
             <div className="flex flex-col md:flex-row items-center gap-2 text-sm text-muted-foreground">
-              <p>© {currentYear} Ahmed Shoman.</p>
+              <p>© {currentYear} Ahmed Lotfy.</p>
               <span className="hidden md:inline">•</span>
               <p className="flex items-center gap-1.5">
                 {t("rights")}

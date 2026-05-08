@@ -138,7 +138,7 @@ export default function Hero({ locale }: { locale: string }) {
                   className="h-14 cursor-pointer rounded-2xl border-primary/20 bg-primary/5 px-8 font-bold text-primary transition-all hover:-translate-y-1 hover:border-primary/40 hover:bg-primary/10 active:scale-95"
                   asChild
                 >
-                  <Link href="#projects">
+                  <Link href="/projects">
                     <span>{t("view_work")}</span>
                   </Link>
                 </Button>

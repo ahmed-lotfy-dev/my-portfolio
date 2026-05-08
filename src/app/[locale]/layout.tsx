@@ -35,13 +35,13 @@ export const metadata: Metadata = {
   manifest: "/manifest.webmanifest",
   metadataBase: new URL("https://ahmedlotfy.site"),
   title: {
-    default: "Ahmed Shoman – Full-Stack Software Engineer",
-    template: "%s | Ahmed Shoman",
+    default: "Ahmed Lotfy – Full-Stack Software Engineer",
+    template: "%s | Ahmed Lotfy",
   },
   description:
-    "Portfolio of Ahmed Shoman – Full-Stack Software Engineer. I build responsive and scalable web applications.",
+    "Portfolio of Ahmed Lotfy – Full-Stack Software Engineer. I build responsive and scalable web applications.",
   keywords: [
-    "Ahmed Shoman",
+    "Ahmed Lotfy",
     "Full-Stack Developer",
     "Software Engineer",
     "Portfolio",
@@ -49,33 +49,33 @@ export const metadata: Metadata = {
     "React",
     "Next.js",
     "Node.js",
-    "أحمد شومان",
+    "أحمد لطفي",
     "مطور ويب",
     "مهندس برمجيات",
     "تطوير الويب",
   ],
-  authors: [{ name: "Ahmed Shoman", url: "https://ahmedlotfy.site" }],
+  authors: [{ name: "Ahmed Lotfy", url: "https://ahmedlotfy.site" }],
   openGraph: {
     type: "website",
     url: "https://ahmedlotfy.site",
-    title: "Ahmed Shoman – Full-Stack Software Engineer",
+    title: "Ahmed Lotfy – Full-Stack Software Engineer",
     description:
-      "Portfolio of Ahmed Shoman – Full-Stack Software Engineer. I build responsive and scalable web applications.",
-    siteName: "Ahmed Shoman Portfolio",
+      "Portfolio of Ahmed Lotfy – Full-Stack Software Engineer. I build responsive and scalable web applications.",
+    siteName: "Ahmed Lotfy Portfolio",
     images: [
       {
         url: "https://ahmedlotfy.site/og-image.png",
         width: 1200,
         height: 630,
-        alt: "Ahmed Shoman – Full-Stack Software Engineer",
+        alt: "Ahmed Lotfy – Full-Stack Software Engineer",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Ahmed Shoman – Full-Stack Software Engineer",
+    title: "Ahmed Lotfy – Full-Stack Software Engineer",
     description:
-      "Portfolio of Ahmed Shoman – Full-Stack Software Engineer. I build responsive and scalable web applications.",
+      "Portfolio of Ahmed Lotfy – Full-Stack Software Engineer. I build responsive and scalable web applications.",
     images: ["https://ahmedlotfy.site/og-image.png"],
   },
   robots: {
@@ -127,8 +127,8 @@ export default async function LocaleLayout({ children, params }: Props) {
           <link rel="dns-prefetch" href="https://images.ahmedlotfy.site" />
           <link rel="preconnect" href="https://images.ahmedlotfy.site" />
           <link rel="preload" as="image" href="/images/optimized/About-Image.webp" />
-          <link rel="alternate" type="application/atom+xml" title="Ahmed Shoman Blog & Portfolio (Atom Feed)" href="/feed.xml" />
-          <link rel="search" type="application/opensearchdescription+xml" title="Ahmed Shoman Portfolio" href="/opensearch.xml" />
+          <link rel="alternate" type="application/atom+xml" title="Ahmed Lotfy Blog & Portfolio (Atom Feed)" href="/feed.xml" />
+          <link rel="search" type="application/opensearchdescription+xml" title="Ahmed Lotfy Portfolio" href="/opensearch.xml" />
           <PersonSchema />
          <OrganizationSchema />
        </head>

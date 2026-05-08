@@ -33,7 +33,7 @@ export async function generateMetadata({
       title,
       description,
       url: `${baseUrl}/${locale}/projects`,
-      siteName: "Ahmed Shoman Portfolio",
+      siteName: "Ahmed Lotfy Portfolio",
       locale: locale === "ar" ? "ar_EG" : "en_US",
       type: "website",
     },
@@ -79,11 +79,11 @@ export default async function ProjectsPage({
       <StructuredData
         type="CollectionPage"
         data={{
-          name: "Project Archive - Ahmed Shoman",
+          name: "Project Archive - Ahmed Lotfy",
           description:
             locale === "ar"
-              ? "صفحة تجمع المشاريع المنشورة ودراسات الحالة الخاصة بأحمد شومان."
-              : "An archive of Ahmed Shoman's published projects and case studies.",
+              ? "صفحة تجمع المشاريع المنشورة ودراسات الحالة الخاصة بأحمد لطفي."
+              : "An archive of Ahmed Lotfy's published projects and case studies.",
           url: `https://ahmedlotfy.site/${locale}/projects`,
           numberOfItems: publishedProjects.length,
         }}

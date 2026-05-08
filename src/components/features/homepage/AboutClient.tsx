@@ -71,7 +71,7 @@ export default function AboutClient({ myImage, isRTL }: Props) {
                 width={400}
                 height={400}
                 quality={75}
-                alt="Ahmed Shoman"
+                alt="Ahmed Lotfy"
                 style={{ width: "auto", height: "auto" }}
                 className={`rounded-2xl transition-transform duration-500 group-hover:scale-[1.01] ${!isRTL ? "-scale-x-100" : ""}`}
               />

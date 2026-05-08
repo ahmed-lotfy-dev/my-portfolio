@@ -40,21 +40,21 @@ export async function generateMetadata({
   const t = await getTranslations({ locale, namespace: "metadata.home" });
   const baseUrl = 'https://ahmedlotfy.site';
 
-  const enKeywords = 'Ahmed Shoman, Ahmed Lotfy, Full Stack Developer, Next.js Developer, React Developer, TypeScript, Node.js, PostgreSQL, Web Development, Software Engineer, Portfolio, Frontend Developer, Backend Developer, MERN Stack, JavaScript, TailwindCSS, Docker, API Development, Ahmed Shoman Portfolio, Web Developer Egypt, Next.js Expert, React Expert, Full Stack Web Developer, Modern Web Applications, Software Engineer Portfolio';
-  const arKeywords = 'أحمد شومان, أحمد لطفي, مطور ويب, مطور برمجيات, مطور تطبيقات ويب, مبرمج, مطور مواقع, مهندس برمجيات, تطوير الويب, برمجة, تصميم مواقع, خبرة في Next.js, خبرة في React, تطبيقات ويب حديثة, متخصص واجهات أمامية, متخصص خلفيات, قواعد بيانات, استضافة وتطوير';
+  const enKeywords = 'Ahmed Lotfy, Ahmed Lotfy, Full Stack Developer, Next.js Developer, React Developer, TypeScript, Node.js, PostgreSQL, Web Development, Software Engineer, Portfolio, Frontend Developer, Backend Developer, MERN Stack, JavaScript, TailwindCSS, Docker, API Development, Ahmed Lotfy Portfolio, Web Developer Egypt, Next.js Expert, React Expert, Full Stack Web Developer, Modern Web Applications, Software Engineer Portfolio';
+  const arKeywords = 'أحمد لطفي, أحمد لطفي, مطور ويب, مطور برمجيات, مطور تطبيقات ويب, مبرمج, مطور مواقع, مهندس برمجيات, تطوير الويب, برمجة, تصميم مواقع, خبرة في Next.js, خبرة في React, تطبيقات ويب حديثة, متخصص واجهات أمامية, متخصص خلفيات, قواعد بيانات, استضافة وتطوير';
 
   return {
     title: t("title"),
     description: t("description"),
     keywords: enKeywords + ', ' + arKeywords,
-    authors: [{ name: 'Ahmed Shoman', url: baseUrl }],
-    creator: 'Ahmed Shoman',
-    publisher: 'Ahmed Shoman',
+    authors: [{ name: 'Ahmed Lotfy', url: baseUrl }],
+    creator: 'Ahmed Lotfy',
+    publisher: 'Ahmed Lotfy',
     openGraph: {
       title: t("title"),
       description: t("description"),
       url: `${baseUrl}/${locale}`,
-      siteName: 'Ahmed Shoman Portfolio',
+      siteName: 'Ahmed Lotfy Portfolio',
       locale: locale === 'ar' ? 'ar_EG' : 'en_US',
       type: 'website',
     },
@@ -89,7 +89,7 @@ export default async function HomePage({
       <StructuredData
         type="Person"
         data={{
-          name: 'Ahmed Shoman',
+          name: 'Ahmed Lotfy',
           url: 'https://ahmedlotfy.site',
           image: 'https://ahmedlotfy.site/ahmed-lotfy.jpg',
           jobTitle: 'Full Stack Developer',
@@ -107,13 +107,13 @@ export default async function HomePage({
       <StructuredData
         type="WebSite"
         data={{
-          name: 'Ahmed Shoman Portfolio',
+          name: 'Ahmed Lotfy Portfolio',
           url: 'https://ahmedlotfy.site',
           description: locale === 'ar'
-            ? 'معرض أعمال أحمد شومان - مطور ويب متخصص في بناء تطبيقات ويب حديثة'
-            : 'Ahmed Shoman Portfolio - Full Stack Developer building modern web applications',
+            ? 'معرض أعمال أحمد لطفي - مطور ويب متخصص في بناء تطبيقات ويب حديثة'
+            : 'Ahmed Lotfy Portfolio - Full Stack Developer building modern web applications',
           languages: ['en', 'ar'],
-          authorName: 'Ahmed Shoman',
+          authorName: 'Ahmed Lotfy',
         }}
       />
 

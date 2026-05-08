@@ -59,7 +59,7 @@ export async function GET() {
     <updated>${post.updatedAt?.toISOString() ?? ''}</updated>
     <summary type="text">${escapeXml(summary)}</summary>
     <author>
-      <name>Ahmed Shoman</name>
+      <name>Ahmed Lotfy</name>
       <uri>${baseUrl}</uri>
     </author>
     ${post.categories?.map((cat) => `    <category term="${escapeXml(cat)}"/>`).join('\n') ?? ''}
@@ -73,17 +73,17 @@ export async function GET() {
       xmlns:opensearch="http://a9.com/-/spec/opensearch/1.1/"
       xml:lang="en">
   <id>${escapeXml(baseUrl)}/feed.xml</id>
-  <title>Ahmed Shoman - Blog & Portfolio</title>
-  <subtitle>Technical blog posts about web development, programming, and technology by Ahmed Shoman</subtitle>
+  <title>Ahmed Lotfy - Blog & Portfolio</title>
+  <subtitle>Technical blog posts about web development, programming, and technology by Ahmed Lotfy</subtitle>
   <link href="${escapeXml(baseUrl)}/feed.xml" rel="self" type="application/atom+xml"/>
   <link href="${escapeXml(baseUrl)}/en/blogs" rel="alternate" type="text/html"/>
   <link href="${escapeXml(baseUrl)}/ar/blogs" rel="alternate" type="text/html" hreflang="ar"/>
   <icon>${escapeXml(baseUrl)}/favicon.ico</icon>
   <logo>${escapeXml(baseUrl)}/ahmed-lotfy.jpg</logo>
-  <rights>Copyright ${new Date().getFullYear()} Ahmed Shoman</rights>
+  <rights>Copyright ${new Date().getFullYear()} Ahmed Lotfy</rights>
   <updated>${allPosts[0]?.updatedAt?.toISOString() ?? new Date().toISOString()}</updated>
   <author>
-    <name>Ahmed Shoman</name>
+    <name>Ahmed Lotfy</name>
     <uri>${baseUrl}</uri>
     <email>ahmed@ahmedlotfy.site</email>
   </author>

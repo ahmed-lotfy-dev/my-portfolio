@@ -17,7 +17,7 @@ export function NavBrand({ locale }: NavBrandProps) {
             src="/as-mark.svg"
             fill
             sizes="56px"
-            alt="Ahmed Shoman logo"
+            alt="Ahmed Lotfy logo"
             className="relative z-10 object-contain"
             priority
           />

@@ -26,12 +26,12 @@ export async function generateMetadata({
   return {
     title: t("title"),
     description: t("description"),
-    keywords: "certificates, certifications, courses, learning, professional development, Ahmed Shoman",
+    keywords: "certificates, certifications, courses, learning, professional development, Ahmed Lotfy",
     openGraph: {
       title: t("title"),
       description: t("description"),
       url: `${baseUrl}/${locale}/certificates`,
-      siteName: "Ahmed Shoman Portfolio",
+      siteName: "Ahmed Lotfy Portfolio",
       locale: locale === "ar" ? "ar_EG" : "en_US",
       type: "website",
     },
@@ -72,8 +72,8 @@ export default async function CertificatesPage({
        <StructuredData
          type="CollectionPage"
          data={{
-           name: "Professional Certificates - Ahmed Shoman",
-           description: "Collection of professional development certificates and courses completed by Ahmed Shoman",
+           name: "Professional Certificates - Ahmed Lotfy",
+           description: "Collection of professional development certificates and courses completed by Ahmed Lotfy",
            url: `https://ahmedlotfy.site/${locale}/certificates`,
            numberOfItems: allCertificates?.length || 0,
          }}

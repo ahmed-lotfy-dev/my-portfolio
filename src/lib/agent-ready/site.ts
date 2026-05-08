@@ -1,6 +1,6 @@
 export const siteConfig = {
-  name: "Ahmed Shoman Portfolio",
-  owner: "Ahmed Shoman",
+  name: "Ahmed Lotfy Portfolio",
+  owner: "Ahmed Lotfy",
   baseUrl: "https://ahmedlotfy.site",
   repositoryUrl: "https://github.com/ahmed-lotfy-dev/my-portfolio",
   defaultLocale: "en",
