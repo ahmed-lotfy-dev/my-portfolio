@@ -64,6 +64,27 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
          },
        },
      },
+     // AI Agent sitemap
+     {
+       url: `${baseUrl}/ai-sitemap.json`,
+       lastModified: siteLastModified,
+       changeFrequency: 'daily' as const,
+       priority: 0.3,
+     },
+     // RSS / Atom feed
+     {
+       url: `${baseUrl}/feed.xml`,
+       lastModified: siteLastModified,
+       changeFrequency: 'daily' as const,
+       priority: 0.3,
+     },
+     // OpenSearch
+     {
+       url: `${baseUrl}/opensearch.xml`,
+       lastModified: siteLastModified,
+       changeFrequency: 'monthly' as const,
+       priority: 0.1,
+     },
      // Blogs listing page
      {
        url: `${baseUrl}/en/blogs`,

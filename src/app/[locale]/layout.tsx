@@ -49,6 +49,10 @@ export const metadata: Metadata = {
     "React",
     "Next.js",
     "Node.js",
+    "أحمد شومان",
+    "مطور ويب",
+    "مهندس برمجيات",
+    "تطوير الويب",
   ],
   authors: [{ name: "Ahmed Shoman", url: "https://ahmedlotfy.site" }],
   openGraph: {
@@ -120,10 +124,12 @@ export default async function LocaleLayout({ children, params }: Props) {
       className="dark scroll-smooth max-h-svh"
       data-scroll-behavior="smooth"
     >
-<head>
+      <head>
           <link rel="dns-prefetch" href="https://images.ahmedlotfy.site" />
           <link rel="preconnect" href="https://images.ahmedlotfy.site" />
           <link rel="preload" as="image" href="/images/optimized/About-Image.webp" />
+          <link rel="alternate" type="application/atom+xml" title="Ahmed Shoman Blog & Portfolio (Atom Feed)" href="/feed.xml" />
+          <link rel="search" type="application/opensearchdescription+xml" title="Ahmed Shoman Portfolio" href="/opensearch.xml" />
           <PersonSchema />
          <OrganizationSchema />
        </head>
