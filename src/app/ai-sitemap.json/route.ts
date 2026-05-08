@@ -11,26 +11,34 @@ export async function GET(): Promise<Response> {
   // Fetch all content from database
   const allProjects = await db.select({
     slug: projects.slug,
-    title: projects.title,
-    description: projects.description,
+    title_en: projects.title_en,
+    title_ar: projects.title_ar,
+    desc_en: projects.desc_en,
+    desc_ar: projects.desc_ar,
     updatedAt: projects.updatedAt,
-    tags: projects.tags,
+    categories: projects.categories,
   }).from(projects).where(eq(projects.published, true))
 
   const allPosts = await db.select({
     slug: posts.slug,
-    title: posts.title,
-    description: posts.description,
+    title_en: posts.title_en,
+    title_ar: posts.title_ar,
+    content_en: posts.content_en,
+    content_ar: posts.content_ar,
     updatedAt: posts.updatedAt,
     categories: posts.categories,
+    tags: posts.tags,
   }).from(posts).where(eq(posts.published, true))
 
   const allCertificates = await db.select({
     id: certificates.id,
     title: certificates.title,
-    description: certificates.description,
-    issuedAt: certificates.issuedAt,
-    issuer: certificates.issuer,
+    desc: certificates.desc,
+    imageLink: certificates.imageLink,
+    courseLink: certificates.courseLink,
+    profLink: certificates.profLink,
+    completedAt: certificates.completedAt,
+    updatedAt: certificates.updatedAt,
   }).from(certificates).where(eq(certificates.published, true))
 
   // Build AI-friendly structured sitemap
@@ -40,8 +48,8 @@ export async function GET(): Promise<Response> {
     site: {
       name: 'Ahmed Shoman Portfolio',
       nameArabic: 'معرض أعمال أحمد شومان',
-      description: 'Full Stack Developer specializing in Next.js, React, TypeScript, Node.js, and modern web technologies',
-      descriptionArabic: 'مطور ويب متخصص في Next.js و React و TypeScript و Node.js والتقنيات الحديثة',
+      description: 'Full Stack Developer portfolio showcasing projects, technical blog posts, and professional certifications',
+      descriptionArabic: 'معرض أعمال مطور ويب كامل يعرض المشاريع والمقالات التقنية والشهادات المهنية',
       url: baseUrl,
       author: {
         name: 'Ahmed Shoman',
@@ -129,22 +137,21 @@ export async function GET(): Promise<Response> {
       slug: project.slug,
       url: `${baseUrl}/en/projects/${project.slug}`,
       urlArabic: `${baseUrl}/ar/projects/${project.slug}`,
-      title: project.title,
-      titleArabic: project.title, // Would need translation lookup
-      description: project.description,
-      descriptionArabic: project.description, // Would need translation lookup
-      tags: project.tags || [],
+      title: project.title_en,
+      titleArabic: project.title_ar,
+      description: project.desc_en,
+      descriptionArabic: project.desc_ar,
+      categories: project.categories || [],
       lastModified: project.updatedAt?.toISOString(),
     })),
     blogPosts: allPosts.map(post => ({
       slug: post.slug,
       url: `${baseUrl}/en/blogs/${post.slug}`,
       urlArabic: `${baseUrl}/ar/blogs/${post.slug}`,
-      title: post.title,
-      titleArabic: post.title, // Would need translation lookup
-      description: post.description,
-      descriptionArabic: post.description, // Would need translation lookup
+      title: post.title_en,
+      titleArabic: post.title_ar || post.title_en,
       categories: post.categories || [],
+      tags: post.tags || [],
       lastModified: post.updatedAt?.toISOString(),
     })),
     certificates: allCertificates.map(cert => ({
@@ -152,11 +159,8 @@ export async function GET(): Promise<Response> {
       url: `${baseUrl}/en/certificates/${cert.id}`,
       urlArabic: `${baseUrl}/ar/certificates/${cert.id}`,
       title: cert.title,
-      titleArabic: cert.title, // Would need translation lookup
-      description: cert.description,
-      descriptionArabic: cert.description, // Would need translation lookup
-      issuer: cert.issuer,
-      issuedAt: cert.issuedAt?.toISOString(),
+      description: cert.desc,
+      completedAt: cert.completedAt?.toISOString(),
     })),
     skills: [
       // Frontend

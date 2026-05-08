@@ -346,7 +346,7 @@ This portfolio is **exceptionally well-built** with advanced features including:
 **Status:** ⚠️ Dark-only - Light mode not available
 
 **Recommendation:** Consider adding light mode toggle for user preference
-
+ 
 ---
 
 ## 16. Animations/UX
