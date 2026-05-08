@@ -18,7 +18,9 @@
     "studio": "bunx drizzle-kit studio",
     "seed": "tsx src/db/seed.ts",
     "sync:blog": "tsx src/scripts/sync-blog.ts",
-    "migrate-r2": "tsx src/scripts/migrate-r2-to-folders.ts"
+    "migrate-r2": "tsx src/scripts/migrate-r2-to-folders.ts",
+    "fetch:news": "tsx src/scripts/fetch-news.ts",
+    "ingest:blogs": "tsx src/scripts/ingest-blogs.ts"
   },
   "browserslist": {
     "production": [
