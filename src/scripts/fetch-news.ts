@@ -13,9 +13,13 @@ const RSS_FEEDS: { url: string; source: string; category: string }[] = [
   { url: "https://developers.googleblog.com/feeds/posts/default", source: "Google Developers", category: "fullstack" },
   { url: "https://dev.to/feed/tag/ai", source: "Dev.to AI", category: "ai" },
   { url: "https://dev.to/feed/tag/react", source: "Dev.to React", category: "frontend" },
+  { url: "https://dev.to/feed/tag/reactnative", source: "Dev.to React Native", category: "mobile" },
   { url: "https://dev.to/feed/tag/fullstack", source: "Dev.to Fullstack", category: "fullstack" },
   { url: "https://react.statuscode.com/rss", source: "React Status", category: "frontend" },
   { url: "https://stackoverflow.blog/feed/", source: "Stack Overflow", category: "fullstack" },
+  { url: "https://reactnative.dev/blog/feed.xml", source: "React Native Blog", category: "mobile" },
+  { url: "https://expo.dev/blog/rss.xml", source: "Expo Blog", category: "mobile" },
+  { url: "https://nextjs.org/feed.xml", source: "Next.js Blog", category: "frontend" },
 ];
 
 const CONTENT_DIR = join(import.meta.dirname, "..", "content", "blogs");
