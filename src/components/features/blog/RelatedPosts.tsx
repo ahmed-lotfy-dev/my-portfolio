@@ -3,6 +3,7 @@ import { BlogCard } from "@/src/components/features/blog/BlogCard";
 import { Button } from "@/src/components/ui/button";
 import Link from "next/link";
 import { buildBlogCategoryPath } from "@/src/lib/utils/blog-taxonomy";
+import { getTranslations } from "next-intl/server";
 
 interface RelatedPostsProps {
   currentSlug: string;
@@ -11,7 +12,8 @@ interface RelatedPostsProps {
 }
 
 export async function RelatedPosts({ currentSlug, category, locale }: RelatedPostsProps) {
-  const allRelated = await getDbBlogPosts({ category });
+  const t = await getTranslations({ locale, namespace: "blog_page" });
+  const allRelated = await getDbBlogPosts({ category, locale });
 
   // Filter out current post and take top 3
   const relatedPosts = allRelated
@@ -24,10 +26,10 @@ export async function RelatedPosts({ currentSlug, category, locale }: RelatedPos
     <section className="mt-24 mb-10 border-t border-dashed border-border pt-16">
       <div className="flex items-center justify-between mb-8">
         <h2 className="bg-linear-to-r from-primary via-primary-light to-primary-dark bg-clip-text text-2xl font-bold text-transparent">
-          More Like This
+          {t("more_like_this")}
         </h2>
         <Button asChild variant="link" className="text-primary p-0 h-auto">
-          <Link href={buildBlogCategoryPath(locale, category)}>View All in {category} →</Link>
+          <Link href={buildBlogCategoryPath(locale, category)}>{t("view_all_in")} {category} →</Link>
         </Button>
       </div>
 

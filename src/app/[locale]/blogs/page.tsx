@@ -53,30 +53,32 @@ export default async function PostsList(props: {
     getDbBlogPosts({
       category,
       tag,
-      featuredOnly: isFeaturedOnly
+      featuredOnly: isFeaturedOnly,
+      locale
     }),
     getLatestSyncDate(),
-    getDbBlogPosts(),
+    getDbBlogPosts({ locale }),
   ]);
 
   const categories = Array.from(new Set(allPosts.map((p) => p.category))).sort() as string[];
 
   const activeFilter = isFeaturedOnly ? "featured" : (category || (tag ? `#${tag}` : null));
 
+  const t = await getTranslations({ locale, namespace: "blog_page" });
+
   return (
     <div className="container mx-auto px-4 mt-28 max-w-6xl pb-20">
       <div className="flex flex-col items-center mb-12 text-center">
         <h1 className="mb-4 bg-linear-to-r from-primary via-primary-light to-primary-dark bg-clip-text text-5xl font-extrabold tracking-tight text-transparent">
-          Obsidian Notes & Blog
+          {t("title")}
         </h1>
         <p className="max-w-2xl text-lg text-muted-foreground">
-          Insights, guides, and notes synced directly from my Obsidian vault.
-          Covering DevOps, Linux, and Software Development.
+          {t("description")}
         </p>
         {syncDate && (
           <div className="mt-4 flex items-center justify-center gap-2 rounded-full border border-border bg-card/70 px-3 py-1 text-xs font-medium text-muted-foreground backdrop-blur-sm">
             <RefreshCw className="w-3 h-3 animate-spin-slow" />
-            <span>Synced {formatDistanceToNow(new Date(syncDate), { addSuffix: true })}</span>
+            <span>{t("synced")} {formatDistanceToNow(new Date(syncDate), { addSuffix: true })}</span>
           </div>
         )}
       </div>
@@ -90,7 +92,7 @@ export default async function PostsList(props: {
             size="sm"
             className="rounded-full px-6"
           >
-            <Link href={`/${locale}/blogs`}>All Posts</Link>
+            <Link href={`/${locale}/blogs`}>{t("all_posts")}</Link>
           </Button>
           <Button
             asChild
@@ -100,7 +102,7 @@ export default async function PostsList(props: {
           >
             <Link href={`/${locale}/blogs?featured=true`} className="flex items-center gap-2">
               <Star className={`h-3.5 w-3.5 ${isFeaturedOnly ? "fill-primary-foreground" : "fill-primary text-primary"}`} />
-              Featured
+              {t("featured")}
             </Link>
           </Button>
           {categories.map((cat: string) => (
@@ -122,13 +124,11 @@ export default async function PostsList(props: {
           <div className="mt-6 flex justify-center">
             <Badge variant="secondary" className="px-4 py-1.5 flex items-center gap-2 text-sm">
               <Tag className="w-3.5 h-3.5" />
-              Showing posts tagged: <span className="font-bold">#{tag}</span>
+              {t("showing_tagged")} <span className="font-bold">#{tag}</span>
               <Link href={`/${locale}/blogs`} className="ml-1 hover:text-primary transition-colors">✕</Link>
             </Badge>
           </div>
         )}
-      </div>
-
       {filteredPosts.length > 0 ? (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {filteredPosts.map((post) => (
@@ -137,13 +137,14 @@ export default async function PostsList(props: {
         </div>
       ) : (
         <div className="rounded-3xl border-2 border-dashed border-border bg-card/40 py-32 text-center">
-          <p className="text-2xl font-medium text-muted-foreground">No matching notes found</p>
-          <p className="mt-2 text-muted-foreground">Try clearing the filters to see all content.</p>
+          <p className="text-2xl font-medium text-muted-foreground">{t("no_results_title")}</p>
+          <p className="mt-2 text-muted-foreground">{t("no_results_desc")}</p>
           <Button asChild variant="link" className="mt-4">
-            <Link href={`/${locale}/blogs`}>Clear all filters</Link>
+            <Link href={`/${locale}/blogs`}>{t("clear_filters")}</Link>
           </Button>
         </div>
       )}
+    </div>
     </div>
   );
 }

@@ -430,6 +430,26 @@
       "content_required": "Blog content is required"
     }
   },
+  "blog_page": {
+    "title": "Obsidian Notes & Blog",
+    "description": "Insights, guides, and notes synced directly from my Obsidian vault. Covering DevOps, Linux, and Software Development.",
+    "synced": "Synced",
+    "all_posts": "All Posts",
+    "featured": "Featured",
+    "showing_tagged": "Showing posts tagged:",
+    "no_results_title": "No matching notes found",
+    "no_results_desc": "Try clearing the filters to see all content.",
+    "clear_filters": "Clear all filters",
+    "more_like_this": "More Like This",
+    "view_all_in": "View All in",
+    "min_read": "min read",
+    "views": "views",
+    "read_full_post": "Read Full Post",
+    "post_not_found": "Post Not Found",
+    "back_to_blog": "Back to Blog",
+    "back_to_all_posts": "Back to all posts",
+    "last_updated_on": "Last updated on"
+  },
   "metadata": {
     "home": {
       "title": "Ahmed Lotfy – Full-Stack Software Engineer",

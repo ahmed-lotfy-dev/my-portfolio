@@ -430,6 +430,26 @@
       "content_required": "محتوى المدونة ضروري"
     }
   },
+  "blog_page": {
+    "title": "ملاحظات ومدونات Obsidian",
+    "description": "أفكار، أدلة، وملاحظات متزامنة مباشرة من الـ Obsidian vault بتاعي. بغطي فيها الـ DevOps والـ Linux وتطوير السوفت وير.",
+    "synced": "اتعملها Sync",
+    "all_posts": "كل المقالات",
+    "featured": "مميز",
+    "showing_tagged": "عرض المقالات بـ tag:",
+    "no_results_title": "مفيش نتائج",
+    "no_results_desc": "جرب تشيل الفلاتر عشان تشوف كل المحتوى.",
+    "clear_filters": "امسح كل الفلاتر",
+    "more_like_this": "مقالات مشابهة",
+    "view_all_in": "عرض الكل في",
+    "min_read": "دقايق قراءة",
+    "views": "مشاهدة",
+    "read_full_post": "اقرأ المقال كامل",
+    "post_not_found": "المقال مش موجود",
+    "back_to_blog": "الرجوع للمدونة",
+    "back_to_all_posts": "الرجوع لكل المقالات",
+    "last_updated_on": "آخر تحديث في"
+  },
   "metadata": {
     "home": {
       "title": "أحمد لطفي – Full-Stack Software Engineer",

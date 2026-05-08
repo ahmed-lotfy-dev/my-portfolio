@@ -9,6 +9,7 @@ import { Button } from "@/src/components/ui/button";
 import Link from "next/link";
 import { Badge } from "@/src/components/ui/badge";
 import { Calendar, Clock, Tag, Star, Eye } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 interface BlogPost {
   title: string;
@@ -28,6 +29,8 @@ interface BlogCardProps {
 }
 
 export function BlogCard({ post, locale }: BlogCardProps) {
+  const t = useTranslations("blog_page");
+
   return (
     <Card
       className={`relative flex h-full flex-col overflow-hidden border border-border/60 bg-card/80 shadow-md backdrop-blur-sm transition-all duration-500 hover:border-primary/20 hover:shadow-2xl ${post.featured ? "ring-1 ring-primary/20 shadow-primary/5" : ""
@@ -81,11 +84,11 @@ export function BlogCard({ post, locale }: BlogCardProps) {
           </span>
           <span className="flex items-center gap-1.5">
             <Clock className="w-3.5 h-3.5" />
-            {post.readingTime}
+            {post.readingTime.replace(" min read", "")} {t("min_read")}
           </span>
           <span className="flex items-center gap-1.5 text-primary/80">
             <Eye className="w-3.5 h-3.5" />
-            {post.views || 0}
+            {post.views || 0} {t("views")}
           </span>
         </div>
 
@@ -105,7 +108,7 @@ export function BlogCard({ post, locale }: BlogCardProps) {
       <CardFooter className="p-6 pt-0">
         <Button asChild className="w-full group/btn relative overflow-hidden" variant="ghost">
           <Link href={`/${locale}/blogs/${post.slug}`} className="flex items-center justify-between w-full">
-            <span className="font-bold">Read Full Post</span>
+            <span className="font-bold">{t("read_full_post")}</span>
             <span className="transform group-hover/btn:translate-x-1 transition-transform">→</span>
           </Link>
         </Button>

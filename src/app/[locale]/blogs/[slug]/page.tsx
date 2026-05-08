@@ -9,14 +9,16 @@ import { BlogViewTracker } from "@/src/components/analytics/BlogViewTracker";
 import StructuredData from "@/src/components/seo/StructuredData";
 import { BreadcrumbSchema } from "@/src/components/seo/BreadcrumbSchema";
 import { buildBlogCategoryPath } from "@/src/lib/utils/blog-taxonomy";
+import { getTranslations } from "next-intl/server";
 
 export async function generateMetadata({
   params,
 }: {
-  params: Promise<{ locale: string; slug: string }>;
+  params: Promise<{ locale: string; slug
+    : string }>;
 }) {
   const { locale, slug } = await params;
-  const post = await getDbBlogPostBySlug(slug);
+  const post = await getDbBlogPostBySlug(slug, locale);
   const baseUrl = "https://ahmedlotfy.site";
 
   if (!post) {
@@ -52,14 +54,16 @@ export default async function SinglePost(props: {
 }) {
   const params = await props.params;
   const { locale, slug } = params;
-  const post = await getDbBlogPostBySlug(slug);
+  const post = await getDbBlogPostBySlug(slug, locale);
+
+   const t = await getTranslations({ locale, namespace: "blog_page" });
 
    if (!post) {
      return (
        <div className="flex flex-col items-center justify-center h-screen pt-20">
-         <h1 className="text-4xl font-bold">Post Not Found</h1>
+         <h1 className="text-4xl font-bold">{t("post_not_found")}</h1>
          <Button asChild className="mt-8" variant="outline">
-           <Link href={`/${locale}/blogs`}>Back to Blog</Link>
+           <Link href={`/${locale}/blogs`}>{t("back_to_blog")}</Link>
          </Button>
        </div>
      );
@@ -107,7 +111,7 @@ export default async function SinglePost(props: {
           className="group mb-8 inline-flex items-center text-sm text-muted-foreground transition-colors hover:text-primary"
         >
           <ChevronLeft className="w-4 h-4 mr-1 transform group-hover:-translate-x-1 transition-transform" />
-          Back to all posts
+          {t("back_to_all_posts")}
         </Link>
 
         <header className="mb-12">
@@ -128,11 +132,11 @@ export default async function SinglePost(props: {
             </div>
             <div className="flex items-center gap-2">
               <Clock className="w-4 h-4" />
-              <span>{post.readingTime}</span>
+              <span>{post.readingTime.replace(" min read", "")} {t("min_read")}</span>
             </div>
             <div className="flex items-center gap-2 text-primary/80">
               <Eye className="w-4 h-4" />
-              <span>{post.views || 0} views</span>
+              <span>{post.views || 0} {t("views")}</span>
             </div>
             <div className="ml-auto flex items-center gap-3">
               <Button variant="ghost" size="icon" className="rounded-full">
@@ -159,7 +163,7 @@ export default async function SinglePost(props: {
 
           {post.updated && (
             <p className="mt-8 text-xs italic text-muted-foreground">
-              Last updated on {post.updated}
+              {t("last_updated_on")} {post.updated}
             </p>
           )}
         </footer>

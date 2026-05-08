@@ -6,7 +6,7 @@ import { posts } from "@/src/db/schema";
 import { eq, and, arrayContains, desc } from "drizzle-orm";
 import { slugifyBlogTaxonomy } from "@/src/lib/utils/blog-taxonomy";
 
-export async function getDbBlogPosts(filters?: { category?: string; tag?: string; featuredOnly?: boolean }) {
+export async function getDbBlogPosts(filters?: { category?: string; tag?: string; featuredOnly?: boolean; locale?: string }) {
   try {
     let whereClause = eq(posts.published, true);
     if (filters?.category) whereClause = and(whereClause, arrayContains(posts.categories, [filters.category])) as any;
@@ -19,7 +19,7 @@ export async function getDbBlogPosts(filters?: { category?: string; tag?: string
     });
 
     return results.map(post => ({
-      title: post.title_en,
+      title: filters?.locale === "ar" && post.title_ar ? post.title_ar : post.title_en,
       date: post.createdAt.toISOString().split("T")[0],
       tags: post.tags,
       category: post.categories[0] || "uncategorized",
@@ -83,13 +83,13 @@ export async function getDbBlogCategoryBySlug(categorySlug: string) {
   return categories.find((category) => category.slug === categorySlug) ?? null;
 }
 
-export async function getDbBlogPostBySlug(slug: string) {
+export async function getDbBlogPostBySlug(slug: string, locale: string = "en") {
   try {
     const post = await db.query.posts.findFirst({ where: eq(posts.slug, slug) });
     if (!post) return null;
     return {
-      title: post.title_en,
-      content: post.content_en,
+      title: locale === "ar" && post.title_ar ? post.title_ar : post.title_en,
+      content: locale === "ar" && post.content_ar ? post.content_ar : post.content_en,
       date: post.createdAt.toISOString().split("T")[0],
       updated: post.updatedAt?.toISOString().split("T")[0],
       tags: post.tags,
