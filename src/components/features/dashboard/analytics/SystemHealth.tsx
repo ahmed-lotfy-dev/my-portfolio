@@ -87,26 +87,6 @@ export default function SystemHealth({ isAdmin, cfAccountId, cfBucketName, logsP
     }
   };
 
-  const downloadCompleteBackup = async (log: any) => {
-    try {
-      const timestamp = log.path?.split('/')[2]?.replace('_manifest.json', '');
-      if (!timestamp) {
-        alert('Cannot determine backup timestamp');
-        return;
-      }
-
-      const params = new URLSearchParams();
-      if (log.type === 'full' || log.type === 'sql') params.append('sql', `backup/sql/db_${timestamp}.dump`);
-      if (log.type === 'full' || log.type === 'media') params.append('media', `backup/media/${timestamp}/`);
-      params.append('timestamp', timestamp);
-
-      window.open(`/api/backup/zip?${params.toString()}`, '_blank');
-    } catch (e) {
-      console.error(e);
-      alert('Error preparing backup download');
-    }
-  };
-
   const getR2Link = (path: string) => {
     if (!cfAccountId || !cfBucketName) return '#';
     return `https://dash.cloudflare.com/${cfAccountId}/r2/buckets/${cfBucketName}/objects?prefix=${encodeURIComponent(path)}`;
@@ -144,7 +124,6 @@ export default function SystemHealth({ isAdmin, cfAccountId, cfBucketName, logsP
             logs={logs}
             loading={loading}
             onDownload={downloadBackup}
-            onDownloadComplete={downloadCompleteBackup}
             onDelete={deleteBackup}
             getR2Link={getR2Link}
           />

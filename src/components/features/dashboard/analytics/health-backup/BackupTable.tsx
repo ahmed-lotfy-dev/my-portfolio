@@ -11,7 +11,6 @@ interface BackupTableProps {
   logs: BackupLog;
   loading: boolean;
   onDownload: (key: string) => void;
-  onDownloadComplete: (log: any) => void;
   onDelete: (id: string, path: string | null, type: string) => void;
   getR2Link: (path: string) => string;
 }
@@ -20,7 +19,6 @@ export function BackupTable({
   logs,
   loading,
   onDownload,
-  onDownloadComplete,
   onDelete,
   getR2Link
 }: BackupTableProps) {
@@ -75,15 +73,6 @@ export function BackupTable({
                   <div className="flex items-center justify-end gap-1">
                     {log.status === 'SUCCESS' && log.path && (
                       <>
-                        <Button
-                          size="icon"
-                          variant="ghost"
-                          onClick={() => onDownloadComplete(log)}
-                          title="Download complete backup as ZIP"
-                          className="h-8 w-8 text-primary hover:bg-primary/10 hover:text-primary-light"
-                        >
-                          <HardDrive className="w-4 h-4" />
-                        </Button>
                         <Button
                           size="icon"
                           variant="ghost"
