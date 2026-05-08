@@ -27,7 +27,9 @@
       "title": "عرض الـ CV",
       "description": "تحب تشوف السيرة الذاتية إزاي؟",
       "view_browser": "افتح في المتصفح",
-      "download": "تحميل PDF"
+      "download": "تحميل PDF",
+      "download_ats": "تحميل CV للتوظيف (.docx)",
+      "ats_description": "صيغة متوافقة مع أنظمة التوظيف ATS"
     }
   },
   "tech_stack": {

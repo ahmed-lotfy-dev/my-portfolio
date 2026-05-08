@@ -27,7 +27,9 @@
       "title": "View Resume",
       "description": "How would you like to view the resume?",
       "view_browser": "View in Browser",
-      "download": "Download PDF"
+      "download": "Download PDF",
+      "download_ats": "Download ATS CV (.docx)",
+      "ats_description": "ATS-friendly format for job applications"
     }
   },
   "tech_stack": {

@@ -93,10 +93,10 @@ export function MobileNav({
                 <div className="relative flex h-11 w-11 items-center justify-center rounded-2xl border border-primary/15 bg-black/40 shadow-inner">
                   <Image
                     src="/as-mark.svg"
-                    width={26}
-                    height={26}
+                    width={32}
+                    height={32}
                     alt="Ahmed Shoman logo"
-                    className="object-contain"
+                    className="object-contain text-black dark:text-primary"
                   />
                 </div>
                 <div className="flex flex-col">
