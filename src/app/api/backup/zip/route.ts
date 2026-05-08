@@ -3,6 +3,7 @@ import { auth } from "@/src/lib/auth";
 import { headers } from "next/headers";
 import { GetObjectCommand, ListObjectsV2Command } from "@aws-sdk/client-s3";
 import { Readable } from 'stream';
+// @ts-expect-error - @types/archiver v7 lacks ZipArchive but archiver v8 exports it
 import { ZipArchive } from 'archiver';
 import { s3Client, getBucketName } from "@/src/lib/utils/s3Client";
 
