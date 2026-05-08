@@ -1,4 +1,3 @@
-import { MetadataRoute } from 'next'
 import { eq } from 'drizzle-orm'
 import { db } from '@/src/db'
 import { projects, posts, certificates } from '@/src/db/schema'
@@ -6,7 +5,7 @@ import { projects, posts, certificates } from '@/src/db/schema'
 export const dynamic = 'force-dynamic'
 
 // AI Agent-friendly Sitemap - Enhanced for AI crawlers and search engines
-export default async function aiSitemap(): Promise<Response> {
+export async function GET(): Promise<Response> {
   const baseUrl = 'https://ahmedlotfy.site'
 
   // Fetch all content from database
