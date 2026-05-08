@@ -111,6 +111,9 @@ const nextConfig: NextConfig = {
       { source: "/:locale/ingest/decide", destination: "https://eu.i.posthog.com/decide" },
       { source: "/:locale/robots.txt", destination: "/robots.txt" },
       { source: "/:locale/sitemap.xml", destination: "/sitemap.xml" },
+      { source: "/:locale/feed.xml", destination: "/feed.xml" },
+      { source: "/:locale/ai-sitemap.json", destination: "/ai-sitemap.json" },
+      { source: "/:locale/opensearch.xml", destination: "/opensearch.xml" },
     ];
   },
 

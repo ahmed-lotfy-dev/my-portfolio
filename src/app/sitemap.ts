@@ -66,21 +66,39 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
      },
      // AI Agent sitemap
      {
-       url: `${baseUrl}/ai-sitemap.json`,
+       url: `${baseUrl}/en/ai-sitemap.json`,
+       lastModified: siteLastModified,
+       changeFrequency: 'daily' as const,
+       priority: 0.3,
+     },
+     {
+       url: `${baseUrl}/ar/ai-sitemap.json`,
        lastModified: siteLastModified,
        changeFrequency: 'daily' as const,
        priority: 0.3,
      },
      // RSS / Atom feed
      {
-       url: `${baseUrl}/feed.xml`,
+       url: `${baseUrl}/en/feed.xml`,
+       lastModified: siteLastModified,
+       changeFrequency: 'daily' as const,
+       priority: 0.3,
+     },
+     {
+       url: `${baseUrl}/ar/feed.xml`,
        lastModified: siteLastModified,
        changeFrequency: 'daily' as const,
        priority: 0.3,
      },
      // OpenSearch
      {
-       url: `${baseUrl}/opensearch.xml`,
+       url: `${baseUrl}/en/opensearch.xml`,
+       lastModified: siteLastModified,
+       changeFrequency: 'monthly' as const,
+       priority: 0.1,
+     },
+     {
+       url: `${baseUrl}/ar/opensearch.xml`,
        lastModified: siteLastModified,
        changeFrequency: 'monthly' as const,
        priority: 0.1,
