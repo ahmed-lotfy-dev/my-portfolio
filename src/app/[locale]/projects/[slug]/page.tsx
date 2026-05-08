@@ -3,7 +3,8 @@ import { notFound } from "next/navigation";
 import { getLocale, getTranslations } from "next-intl/server";
 import { shouldShowApk } from "@/src/lib/utils/projectUtils";
 import Link from "next/link";
-import { ExternalLink, Github } from "lucide-react";
+import { ExternalLink } from "lucide-react";
+import { IoLogoGithub } from "react-icons/io5";
 import { Button } from "@/src/components/ui/button";
 import StructuredData from "@/src/components/seo/StructuredData";
 import { BreadcrumbSchema } from "@/src/components/seo/BreadcrumbSchema";
@@ -265,7 +266,7 @@ export default async function ProjectDetailsPage({ params }: { params: Promise<{
                     {project.repoLink && (
                         <Button asChild variant="outline" size="lg" className="rounded-full text-md h-12 px-8 backdrop-blur-sm border-white/10 hover:bg-secondary/10 transition-all hover:-translate-y-1">
                             <a href={project.repoLink} target="_blank">
-                                <Github className="w-5 h-5 me-2.5" /> {t("view_code")}
+                                <IoLogoGithub className="w-5 h-5 me-2.5" /> {t("view_code")}
                             </a>
                         </Button>
                     )}

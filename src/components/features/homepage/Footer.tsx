@@ -1,8 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { Github, Mail, Award, Home, Briefcase, MessageSquare, ArrowUpRight, Heart } from "lucide-react";
-import { IoLogoLinkedin } from "react-icons/io5";
+import { Mail, Award, Home, Briefcase, MessageSquare, ArrowUpRight, Heart } from "lucide-react";
+import { IoLogoGithub, IoLogoLinkedin } from "react-icons/io5";
 import { useTranslations, useLocale } from "next-intl";
 import { usePathname } from "next/navigation";
 import { Separator } from "@/src/components/ui/separator";
@@ -27,7 +27,7 @@ export default function Footer() {
     {
       href: "https://github.com/ahmed-lotfy-dev",
       label: "GitHub",
-      icon: Github,
+      icon: IoLogoGithub,
       ariaLabel: "GitHub Profile",
     },
     {

@@ -7,7 +7,8 @@ import Link from "next/link";
 import { Button } from "@/src/components/ui/button";
 import { Card } from "@/src/components/ui/card";
 import ReadMoreText from "@/src/components/ui/ReadMoreText";
-import { ExternalLink, Github, ArrowRight } from "lucide-react";
+import { ExternalLink, ArrowRight } from "lucide-react";
+import { IoLogoGithub } from "react-icons/io5";
 import ProjectCategories from "@/src/components/ui/ProjectCategories";
 import { shouldShowApk } from "@/src/lib/utils/projectUtils";
 import { getProjectCoverImage } from "@/src/lib/constants/images";
@@ -173,7 +174,7 @@ export default function ProjectsClient({ projects, locale, t }: Props) {
                         variant="outline"
                         className="w-full gap-2 bg-transparent border-border hover:bg-muted text-primary"
                       >
-                        <Github size={16} />
+                        <IoLogoGithub size={16} />
                         {t.repo}
                       </Button>
                     </ProjectLinkTracker>
