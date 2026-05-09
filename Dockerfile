@@ -23,6 +23,24 @@ COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 RUN bun run build
 
+# --- CRON STAGE ---
+FROM oven/bun:1.3.10-alpine AS cron
+WORKDIR /app
+
+# Install dependencies
+COPY package.json bun.lock ./
+RUN bun install --frozen-lockfile
+
+# Copy the source code (needed to run the scripts)
+COPY . .
+
+# Create the cron job (runs daily at 5:00 AM and 3:00 PM)
+# We redirect output to stdout/stderr so you can view it via `docker logs`
+RUN echo "0 5,15 * * * cd /app && bun run run:blog > /proc/1/fd/1 2>/proc/1/fd/2" > /etc/crontabs/root
+
+# Run the cron daemon in the foreground
+CMD ["crond", "-f", "-d", "8"]
+
 FROM node:22-alpine AS runner
 WORKDIR /app
 
@@ -58,20 +76,4 @@ HEALTHCHECK --interval=30s --timeout=5s --start-period=20s --retries=3 \
 
 CMD ["node", "server.js"]
 
-# --- CRON STAGE ---
-FROM oven/bun:1.3.10-alpine AS cron
-WORKDIR /app
 
-# Install dependencies
-COPY package.json bun.lock ./
-RUN bun install --frozen-lockfile
-
-# Copy the source code (needed to run the scripts)
-COPY . .
-
-# Create the cron job (runs daily at 5:00 AM and 3:00 PM)
-# We redirect output to stdout/stderr so you can view it via `docker logs`
-RUN echo "0 5,15 * * * cd /app && bun run run:blog > /proc/1/fd/1 2>/proc/1/fd/2" > /etc/crontabs/root
-
-# Run the cron daemon in the foreground
-CMD ["crond", "-f", "-d", "8"]
