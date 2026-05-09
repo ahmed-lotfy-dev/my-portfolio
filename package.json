@@ -16,15 +16,15 @@
     "db:introspect": "drizzle-kit introspect",
     "db:migrate": "drizzle-kit generate && drizzle-kit push",
     "studio": "bunx drizzle-kit studio",
-    "seed": "tsx src/db/seed.ts",
-    "sync:blog": "tsx src/scripts/sync-blog.ts",
-    "migrate-r2": "tsx src/scripts/migrate-r2-to-folders.ts",
-    "fetch:news": "tsx src/scripts/fetch-news.ts",
-    "generate:posts": "tsx src/scripts/generate-posts.ts",
+    "seed": "bun src/db/seed.ts",
+    "sync:blog": "bun src/scripts/sync-blog.ts",
+    "migrate-r2": "bun src/scripts/migrate-r2-to-folders.ts",
+    "fetch:news": "bun src/scripts/fetch-news.ts",
+    "generate:posts": "bun src/scripts/generate-posts.ts",
     "run:blog": "bun run fetch:news && bun run generate:posts",
-    "ingest:blogs": "tsx src/scripts/ingest-blogs.ts",
-    "translate:posts": "tsx src/scripts/translate-posts.ts",
-    "pull:blogs": "tsx src/scripts/pull-blogs.ts"
+    "ingest:blogs": "bun src/scripts/ingest-blogs.ts",
+    "translate:posts": "bun src/scripts/translate-posts.ts",
+    "pull:blogs": "bun src/scripts/pull-blogs.ts"
   },
   "browserslist": {
     "production": [
