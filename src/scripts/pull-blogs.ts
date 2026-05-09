@@ -39,19 +39,7 @@ async function main() {
     mkdirSync(CONTENT_DIR, { recursive: true });
   }
 
-  const allPosts = await db.query.posts.findMany({
-    columns: {
-      id: true,
-      slug: true,
-      title_en: true,
-      content_en: true,
-      imageLink: true,
-      published: true,
-      featured: true,
-      tags: true,
-      createdAt: true,
-    },
-  });
+  const allPosts = await db.query.posts.findMany();
 
   if (allPosts.length === 0) {
     console.log("No posts found in the database.");
