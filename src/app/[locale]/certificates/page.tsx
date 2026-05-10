@@ -8,7 +8,7 @@ import { cn } from "@/src/lib/utils";
 import StructuredData from "@/src/components/seo/StructuredData";
 import { BackButton } from "@/src/components/ui/BackButton";
 
-export const dynamic = "force-dynamic";
+export const revalidate = 3600;
 
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));

@@ -13,7 +13,6 @@ Disallow: /dashboard/
 # Block static assets to preserve crawl budget
 Disallow: /*.woff2$
 Disallow: /*.json$
-Disallow: /*.xml$
 
 # Googlebot gets full access (just block junk)
 User-agent: Googlebot
