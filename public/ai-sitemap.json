@@ -1,0 +1,50 @@
+{
+  "source": "https://ahmedlotfy.site/ai-sitemap.json",
+  "name": "Ahmed Lotfy Portfolio - AI-Optimized Content Index",
+  "description": "Structured content index for AI crawlers (GPTBot, Claude-Web, CCBot). Contains links to all public pages, blog posts, and projects.",
+  "lastUpdated": "2026-05-10T00:00:00Z",
+  "contentTypes": [
+    {
+      "type": "page",
+      "label": "About / Home",
+      "url": "https://ahmedlotfy.site/en",
+      "url_ar": "https://ahmedlotfy.site/ar",
+      "description": "Full-Stack Developer portfolio home page"
+    },
+    {
+      "type": "page",
+      "label": "Projects",
+      "url": "https://ahmedlotfy.site/en/projects",
+      "url_ar": "https://ahmedlotfy.site/ar/projects",
+      "description": "Portfolio projects and case studies"
+    },
+    {
+      "type": "page",
+      "label": "Blog",
+      "url": "https://ahmedlotfy.site/en/blogs",
+      "url_ar": "https://ahmedlotfy.site/ar/blogs",
+      "description": "Technical blog posts about web development"
+    },
+    {
+      "type": "page",
+      "label": "About Me",
+      "url": "https://ahmedlotfy.site/en/about",
+      "url_ar": "https://ahmedlotfy.site/ar/about",
+      "description": "About Ahmed Lotfy - experience and background"
+    },
+    {
+      "type": "page",
+      "label": "Contact",
+      "url": "https://ahmedlotfy.site/en/contact",
+      "url_ar": "https://ahmedlotfy.site/ar/contact",
+      "description": "Contact information and booking"
+    },
+    {
+      "type": "page",
+      "label": "Certificates",
+      "url": "https://ahmedlotfy.site/en/certificates",
+      "url_ar": "https://ahmedlotfy.site/ar/certificates",
+      "description": "Professional certificates and credentials"
+    }
+  ]
+}
