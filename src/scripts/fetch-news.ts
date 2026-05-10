@@ -1,5 +1,5 @@
 import "dotenv/config";
-import { readFileSync, writeFileSync, readdirSync, existsSync, mkdirSync } from "fs";
+import { readFileSync, writeFileSync, readdirSync, existsSync } from "fs";
 import { join, parse } from "path";
 import { XMLParser } from "fast-xml-parser";
 
@@ -23,8 +23,7 @@ const RSS_FEEDS: { url: string; source: string; category: string }[] = [
 ];
 
 const CONTENT_DIR = join(import.meta.dirname, "..", "content", "blogs");
-const OUTPUT_DIR = join(import.meta.dirname, "..", "..", ".hermes", "news-cache");
-const OUTPUT_FILE = join(OUTPUT_DIR, "latest-news.json");
+const OUTPUT_FILE = "/tmp/news-cache.json";
 
 // ── Helpers ───────────────────────────────────────────────────────────────
 
@@ -165,12 +164,6 @@ async function main() {
   // Sort by published date (newest first)
   news.sort((a, b) => new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime());
 
-  // Ensure output directory exists
-  if (!existsSync(OUTPUT_DIR)) {
-    mkdirSync(OUTPUT_DIR, { recursive: true });
-  }
-
-  // Write output
   writeFileSync(OUTPUT_FILE, JSON.stringify(news, null, 2));
 
   console.log(`\n━━━ Summary ━━━`);

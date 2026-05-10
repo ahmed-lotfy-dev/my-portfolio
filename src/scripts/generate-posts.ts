@@ -27,7 +27,7 @@ const MAX_RETRIES = 3;
 const RETRY_DELAY_MS = 15_000;
 const CHUNK_WORD_LIMIT = 400;
 
-const NEWS_CACHE = join(import.meta.dirname, "..", "..", ".hermes", "news-cache", "latest-news.json");
+const NEWS_CACHE = "/tmp/news-cache.json";
 const MAX_POSTS_PER_RUN = 3;
 
 const NIM_API = "https://integrate.api.nvidia.com/v1/chat/completions";

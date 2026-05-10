@@ -78,9 +78,6 @@ COPY --from=builder --chown=nextjs:nodejs /app/public ./public
 COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
 COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
 
-# Ensure /app is writable by nextjs (needed for .hermes cache dir)
-RUN chown nextjs:nodejs /app
-
 USER nextjs
 EXPOSE 3000
 
