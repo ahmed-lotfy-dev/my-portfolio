@@ -35,7 +35,7 @@ export default function Contact() {
       notify(isRTL ? "تم إرسال رسالتك بنجاح، سأتواصل معك قريباً" : "Email sent successfully, I'll contact you soon", true);
       setFormData({ name: "", email: "", subject: "", message: "" });
     } else if (state?.error && Object.keys(state.error).length > 0) {
-      notify(isRTL ? "يرجى تصحيح الأخطاء والمحاولة مرة أخرى" : "Please fix the errors and try again.", false);
+      notify(isRTL ? "تحقق من الحقول بالأسفل لمعرفة التفاصيل" : "Check the fields below for details.", false);
     }
   }, [state, isRTL, formData.subject]);
 

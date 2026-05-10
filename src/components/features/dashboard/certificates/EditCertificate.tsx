@@ -46,7 +46,7 @@ function EditCertificate({ EditedObject }: any) {
     } else if (state?.message && !state?.success) {
       notify(state.message, false);
     } else if (state?.error && Object.keys(state.error).length > 0) {
-      notify("Please fix the errors and try again.", false);
+      notify("Check the fields below for details.", false);
     }
   }, [state, router]);
 
