@@ -28,7 +28,7 @@ const RETRY_DELAY_MS = 15_000;
 const CHUNK_WORD_LIMIT = 400;
 
 const NEWS_CACHE = "/tmp/news-cache.json";
-const MAX_POSTS_PER_RUN = 3;
+const MAX_POSTS_PER_RUN = 8;
 
 const NIM_API = "https://integrate.api.nvidia.com/v1/chat/completions";
 const NIM_MODEL = "meta/llama-3.3-70b-instruct";
@@ -50,6 +50,12 @@ const SKIP_TITLE_PATTERNS = [
   /\b(earnings|revenue|profit|quarterly)\s+(report|call|beat|miss)\b/i,
   /\b(buy|purchase|get)\s+(old|aged|verified)\s+\w+\s+(accounts|profiles)\b/i,
   /\b(cheap|discount|affordable)\s+\w+(\s+\w+)?\s+(accounts|followers|views|likes)\b/i,
+  // Gambling / casino
+  /\b(bonus|bonuses?|casino|gambling|bet|betting|poker|slot)\b/i,
+  /\b(win\s+(real\s+)?money|cash\s+(prize|out)|payout|jackpot|free\s+spins?)\b/i,
+  /\b(registration\s+bonus|deposit\s+bonus|no\s+deposit|welcome\s+(bonus|offer))\b/i,
+  /\b(crypto\s+(gambling|casino|bet))|(bitcoin\s+(casino|gambling))\b/i,
+  /\b(forex|trading\s+(signal|strategy|bot)|signal\s+group)\b/i,
 ];
 
 const TRANSLATE_SYSTEM = `You are a native Egyptian Arabic technical writer. Translate English developer blog posts into Egyptian colloquial Arabic (عامية مصرية).
@@ -91,8 +97,31 @@ async function getExistingSlugs(): Promise<Set<string>> {
   return new Set(rows.map((r) => r.slug));
 }
 
+const RELEVANCE_KEYWORDS = [
+  "react", "react native", "expo", "nextjs", "typescript", "javascript",
+  "tailwind", "node", "api", "graphql", "postgresql", "docker",
+  "fullstack", "frontend", "mobile", "web", "app",
+  "ai", "machine learning", "llm", "gpt", "openai", "claude",
+  "cursor", "copilot", "dev tools", "ide", "vscode",
+  "deploy", "ci/cd", "devops", "cloud",
+];
+
+function scoreRelevance(item: NewsItem): number {
+  const lower = (item.title + " " + item.summary).toLowerCase();
+  let score = 0;
+  for (const kw of RELEVANCE_KEYWORDS) {
+    if (lower.includes(kw)) score += 2;
+  }
+
+  const catScores: Record<string, number> = {
+    ai: 15, frontend: 10, fullstack: 12, mobile: 10, tech: 5, devops: 3,
+  };
+  score += catScores[item.category] ?? 0;
+
+  return score;
+}
+
 function pickArticles(items: NewsItem[], existing: Set<string>): NewsItem[] {
-  const priority = ["ai", "frontend", "fullstack", "mobile", "tech", "devops"];
   const fresh = items.filter((a) => {
     if (existing.has(a.slug)) return false;
     for (const p of SKIP_TITLE_PATTERNS) {
@@ -100,14 +129,25 @@ function pickArticles(items: NewsItem[], existing: Set<string>): NewsItem[] {
     }
     return true;
   });
-  fresh.sort((a, b) => {
-    const ai = priority.indexOf(a.category);
-    const bi = priority.indexOf(b.category);
-    const diff = (ai === -1 ? 99 : ai) - (bi === -1 ? 99 : bi);
-    if (diff !== 0) return diff;
-    return new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime();
-  });
-  return fresh.slice(0, MAX_POSTS_PER_RUN);
+
+  // Score + deduplicate by topic similarity
+  const scored = fresh.map((a) => ({ item: a, score: scoreRelevance(a) }));
+  scored.sort((a, b) => b.score - a.score || new Date(b.item.publishedAt).getTime() - new Date(a.item.publishedAt).getTime());
+
+  // Deduplicate: skip articles whose title shares >60% words with a higher-ranked one
+  const picked: NewsItem[] = [];
+  for (const { item } of scored) {
+    const words = new Set(item.title.toLowerCase().split(/\s+/));
+    const tooSimilar = picked.some((p) => {
+      const pWords = p.title.toLowerCase().split(/\s+/);
+      const overlap = [...words].filter((w) => pWords.includes(w)).length;
+      return overlap / Math.max(words.size, pWords.size) > 0.6;
+    });
+    if (!tooSimilar) picked.push(item);
+    if (picked.length >= MAX_POSTS_PER_RUN) break;
+  }
+
+  return picked;
 }
 
 function parseFrontmatterFromMarkdown(md: string): ParsedPost {
@@ -285,7 +325,7 @@ async function main() {
     const today = new Date().toISOString().split("T")[0];
     const img = CATEGORY_IMAGES[article.category] ?? CATEGORY_IMAGES.fullstack;
 
-    const generateSystem = `You are a technical blog writer for ahmedlotfy.site, a fullstack developer portfolio. Write original, SEO-optimized blog posts based on news articles.
+    const generateSystem = `You are Ahmed Lotfy — a senior fullstack engineer (React, Next.js, TypeScript, Node.js) and React Native / Expo mobile developer. You write technical blog posts for your portfolio ahmedlotfy.site. Your readers are other devs who want practical, actionable insights.
 
 OUTPUT FORMAT — output ONLY the complete markdown below, nothing before or after:
 ---
@@ -312,13 +352,15 @@ description: "An SEO-optimized 2-3 sentence description of what this post covers
 (wrap up with actionable advice and a forward-looking statement)
 
 Requirements:
-- 600-1000 words total
+- 500-800 words — concise, no fluff
 - ORIGINAL writing — paraphrase and extend, never copy the source
-- Professional but engaging tone, like a senior dev sharing insights
-- 4-6 relevant lowercase hyphenated tags (e.g. react, typescript, ai, fullstack)
+- Tone: senior dev sharing practical war stories and insights with other devs
+- Include at least one code snippet, CLI command, or config example if relevant
+- 4-6 relevant lowercase hyphenated tags (e.g. react, typescript, ai, fullstack, react-native, expo)
 - Can use one emoji prefix in title (🔥 🚀 ⚡ 🏗️ 🎯 💡 🧠)
 - Use the exact image URL above, do not change it
-- Do NOT wrap the output in code blocks — output raw markdown only`;
+- Do NOT wrap the output in code blocks — output raw markdown only
+- NEVER write about gambling, casinos, bonuses, betting, or money games`;
 
     const generateUser = `Write a blog post based on this news article:
 
