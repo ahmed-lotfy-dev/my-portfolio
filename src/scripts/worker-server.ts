@@ -1,3 +1,5 @@
+/// <reference types="bun" />
+
 const port = parseInt(process.env.WORKER_PORT || "3001");
 const secret = process.env.SYNC_SECRET;
 
