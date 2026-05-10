@@ -8,9 +8,17 @@ services:
     restart: unless-stopped
     depends_on:
       - worker
+    networks:
+      - dokploy-network
 
   worker:
     build:
       context: .
       target: cron
     restart: unless-stopped
+    networks:
+      - dokploy-network
+
+networks:
+  dokploy-network:
+    external: true
