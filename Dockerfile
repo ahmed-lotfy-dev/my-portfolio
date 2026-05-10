@@ -72,6 +72,7 @@ RUN curl -fsSL https://bun.sh/install | bash && \
 COPY --from=builder --chown=nextjs:nodejs /app/package.json /app/bun.lock ./
 COPY --from=builder --chown=nextjs:nodejs /app/tsconfig.json ./
 COPY --from=builder --chown=nextjs:nodejs /app/src/scripts ./src/scripts
+COPY --from=builder --chown=nextjs:nodejs /app/src/db ./src/db
 RUN /usr/local/bin/bun install --frozen-lockfile --production
 
 COPY --from=builder --chown=nextjs:nodejs /app/public ./public
