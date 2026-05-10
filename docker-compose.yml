@@ -10,6 +10,8 @@ services:
       - worker
     networks:
       - dokploy-network
+    env_file:
+      - .env
 
   worker:
     build:
@@ -18,6 +20,8 @@ services:
     restart: unless-stopped
     networks:
       - dokploy-network
+    env_file:
+      - .env
 
 networks:
   dokploy-network:
