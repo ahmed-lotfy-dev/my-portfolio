@@ -61,8 +61,18 @@ ENV NEXT_PUBLIC_POSTHOG_KEY=$NEXT_PUBLIC_POSTHOG_KEY \
     BETTER_AUTH_SECRET=$BETTER_AUTH_SECRET \
     BETTER_AUTH_URL=$BETTER_AUTH_URL
 
-RUN apk add --no-cache libc6-compat wget
+RUN apk add --no-cache libc6-compat wget curl bash
 RUN addgroup -S nodejs -g 1001 && adduser -S nextjs -u 1001 -G nodejs
+
+# Install Bun globally (needed for blog automation cron)
+RUN curl -fsSL https://bun.sh/install | bash && \
+    ln -sf /root/.bun/bin/bun /usr/local/bin/bun
+
+# Copy blog automation scripts + config (before USER switch for permissions)
+COPY --from=builder --chown=nextjs:nodejs /app/package.json /app/bun.lock ./
+COPY --from=builder --chown=nextjs:nodejs /app/tsconfig.json ./
+COPY --from=builder --chown=nextjs:nodejs /app/src/scripts ./src/scripts
+RUN /usr/local/bin/bun install --frozen-lockfile --production
 
 COPY --from=builder --chown=nextjs:nodejs /app/public ./public
 COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
