@@ -431,8 +431,8 @@
     }
   },
   "blog_page": {
-    "title": "Obsidian Notes & Blog",
-    "description": "Insights, guides, and notes synced directly from my Obsidian vault. Covering DevOps, Linux, and Software Development.",
+    "title": "Blog & Articles",
+    "description": "Insights, guides, and technical articles on DevOps, Linux, Full-Stack Development, and Software Engineering.",
     "synced": "Synced",
     "all_posts": "All Posts",
     "featured": "Featured",
