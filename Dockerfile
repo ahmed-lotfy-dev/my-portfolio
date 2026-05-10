@@ -23,23 +23,25 @@ COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 RUN bun run build
 
-# --- CRON STAGE ---
+# --- WORKER STAGE (crond + HTTP server for blog + backup automation) ---
 FROM oven/bun:1.3.10-alpine AS cron
 WORKDIR /app
 
-# Install dependencies
 COPY package.json bun.lock ./
 RUN bun install --frozen-lockfile
 
-# Copy the source code (needed to run the scripts)
 COPY . .
 
-# Create the cron job (runs daily at 5:00 AM and 3:00 PM)
-# We redirect output to stdout/stderr so you can view it via `docker logs`
-RUN echo "0 5,15 * * * cd /app && bun run run:blog > /proc/1/fd/1 2>/proc/1/fd/2" > /etc/crontabs/root
+RUN chmod +x scripts/start-worker.sh
 
-# Run the cron daemon in the foreground
-CMD ["crond", "-f", "-d", "8"]
+# Blog: daily at 5:00 AM and 3:00 PM
+# Backup: every Sunday at 3:00 AM
+RUN echo "0 5,15 * * * cd /app && bun run run:blog > /proc/1/fd/1 2>/proc/1/fd/2" > /etc/crontabs/root && \
+    echo "0 3 * * 0 cd /app && bun scripts/backup-worker/dist/index.js --type=full > /proc/1/fd/1 2>/proc/1/fd/2" >> /etc/crontabs/root
+
+EXPOSE 3001
+
+CMD ["/bin/sh", "scripts/start-worker.sh"]
 
 FROM node:22-alpine AS runner
 WORKDIR /app
@@ -61,19 +63,8 @@ ENV NEXT_PUBLIC_POSTHOG_KEY=$NEXT_PUBLIC_POSTHOG_KEY \
     BETTER_AUTH_SECRET=$BETTER_AUTH_SECRET \
     BETTER_AUTH_URL=$BETTER_AUTH_URL
 
-RUN apk add --no-cache libc6-compat wget curl bash
+RUN apk add --no-cache libc6-compat wget
 RUN addgroup -S nodejs -g 1001 && adduser -S nextjs -u 1001 -G nodejs
-
-# Install Bun globally (needed for blog automation cron)
-RUN curl -fsSL https://bun.sh/install | bash && \
-    cp /root/.bun/bin/bun /usr/local/bin/bun
-
-# Copy blog automation scripts + config (before USER switch for permissions)
-COPY --from=builder --chown=nextjs:nodejs /app/package.json /app/bun.lock ./
-COPY --from=builder --chown=nextjs:nodejs /app/tsconfig.json ./
-COPY --from=builder --chown=nextjs:nodejs /app/src/scripts ./src/scripts
-COPY --from=builder --chown=nextjs:nodejs /app/src/db ./src/db
-RUN /usr/local/bin/bun install --frozen-lockfile --production
 
 COPY --from=builder --chown=nextjs:nodejs /app/public ./public
 COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
@@ -86,5 +77,3 @@ HEALTHCHECK --interval=30s --timeout=5s --start-period=20s --retries=3 \
   CMD wget -q --spider http://127.0.0.1:${PORT}/ || exit 1
 
 CMD ["node", "server.js"]
-
-

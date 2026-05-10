@@ -7,11 +7,13 @@ services:
       target: runner
     ports:
       - "3000:3000"
-    env_file: 
+    env_file:
       - .env
     restart: unless-stopped
+    depends_on:
+      - worker
 
-  blog-cron:
+  worker:
     build:
       context: .
       target: cron
