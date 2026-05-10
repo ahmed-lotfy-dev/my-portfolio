@@ -66,7 +66,7 @@ RUN addgroup -S nodejs -g 1001 && adduser -S nextjs -u 1001 -G nodejs
 
 # Install Bun globally (needed for blog automation cron)
 RUN curl -fsSL https://bun.sh/install | bash && \
-    ln -sf /root/.bun/bin/bun /usr/local/bin/bun
+    cp /root/.bun/bin/bun /usr/local/bin/bun
 
 # Copy blog automation scripts + config (before USER switch for permissions)
 COPY --from=builder --chown=nextjs:nodejs /app/package.json /app/bun.lock ./
