@@ -128,7 +128,7 @@ export default function Contact() {
               </p>
             </div>
 
-            <div className="space-y-5">
+            <address className="space-y-5 not-italic">
               {contactMethods.map((method, idx) => (
                 <a
                   key={idx}
@@ -150,7 +150,7 @@ export default function Contact() {
                   </div>
                 </a>
               ))}
-            </div>
+            </address>
           </m.div>
 
           {/* Form Side — 7 cols */}

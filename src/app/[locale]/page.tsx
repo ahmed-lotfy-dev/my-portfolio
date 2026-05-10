@@ -84,7 +84,7 @@ export default async function HomePage({
   setRequestLocale(locale);
 
   return (
-    <div className="font-main min-h-screen bg-background text-foreground">
+    <main className="font-main min-h-screen bg-background text-foreground">
       {/* Structured Data for SEO */}
       <StructuredData
         type="Person"
@@ -120,7 +120,7 @@ export default async function HomePage({
       <Hero locale={locale} />
 
       <Container>
-        <main className="space-y-6 py-12 lg:py-20">
+        <div className="space-y-6 py-12 lg:py-20">
           <HomeSectionBand variant="warm">
             <Services />
             <TechStack />
@@ -141,8 +141,8 @@ export default async function HomePage({
           <HomeSectionBand variant="warm">
             <Contact />
           </HomeSectionBand>
-        </main>
+        </div>
       </Container>
-    </div>
+    </main>
   );
 }

@@ -44,7 +44,7 @@ export default function CertificatesList({ certificates }: { certificates?: Cert
           <Link key={cert.id} href={`/${locale}/certificates/${cert.id}`}>
             <HoverCard>
               <HoverCardTrigger asChild>
-                <Card className="flex flex-col justify-between overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer hover:scale-[1.02] hover:border-primary/50">
+                <Card as="article" className="flex flex-col justify-between overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer hover:scale-[1.02] hover:border-primary/50">
                   <div className="p-6 flex flex-col grow">
                     <div className="flex items-start justify-between gap-2 mb-2">
                       <div className="min-w-0 flex-1">

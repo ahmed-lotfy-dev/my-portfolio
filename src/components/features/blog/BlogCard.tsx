@@ -32,7 +32,7 @@ export function BlogCard({ post, locale }: BlogCardProps) {
   const t = useTranslations("blog_page");
 
   return (
-    <Card
+    <Card as="article"
       className={`relative flex h-full flex-col overflow-hidden border border-border/60 bg-card/80 shadow-md backdrop-blur-sm transition-all duration-500 hover:border-primary/20 hover:shadow-2xl ${post.featured ? "ring-1 ring-primary/20 shadow-primary/5" : ""
         }`}
     >
@@ -78,10 +78,10 @@ export function BlogCard({ post, locale }: BlogCardProps) {
         </CardTitle>
 
         <div className="mb-6 flex items-center gap-4 text-xs font-medium text-muted-foreground">
-          <span className="flex items-center gap-1.5">
+          <time dateTime={post.date} className="flex items-center gap-1.5">
             <Calendar className="w-3.5 h-3.5" />
             {post.date}
-          </span>
+          </time>
           <span className="flex items-center gap-1.5">
             <Clock className="w-3.5 h-3.5" />
             {post.readingTime.replace(" min read", "")} {t("min_read")}

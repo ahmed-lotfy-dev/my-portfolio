@@ -24,6 +24,7 @@ import { syncBlogPosts, deleteSinglePosts } from "@/src/app/actions/posts/mutati
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 import { authClient } from "@/src/lib/auth-client";
+import { DeleteConfirmationDialog } from "@/src/components/shared/DeleteConfirmationDialog";
 
 interface Post {
   id: string;
@@ -76,16 +77,11 @@ export default function BlogSyncConsole({ initialPosts }: BlogSyncConsoleProps) 
     router.push(`/dashboard/blogs/edit/${postId}`);
   };
 
-  const handleDelete = async (postId: string, postTitle: string) => {
+  const handleDelete = async (postId: string) => {
     if (!isAdmin) {
       toast.error("Only admins can delete blog posts");
       return;
     }
-
-    if (!confirm(`Are you sure you want to delete "${postTitle}"? This action cannot be undone.`)) {
-      return;
-    }
-
     try {
       const result = await deleteSinglePosts(postId);
       if (result.success) {
@@ -198,14 +194,20 @@ export default function BlogSyncConsole({ initialPosts }: BlogSyncConsoleProps) 
                     >
                       <IoPencil className="h-4 w-4" />
                     </Button>
-                    <Button
-                      variant="ghost"
-                      size="sm"
-                      onClick={() => handleDelete(post.id, post.title_en)}
-                      className="h-8 w-8 p-0 text-red-500 hover:text-red-700 hover:bg-red-50"
-                    >
-                      <IoTrash className="h-4 w-4" />
-                    </Button>
+                    <DeleteConfirmationDialog
+                      itemName={post.title_en}
+                      itemType="blog post"
+                      onConfirm={() => handleDelete(post.id)}
+                      trigger={
+                        <Button
+                          variant="ghost"
+                          size="sm"
+                          className="h-8 w-8 p-0 text-red-500 hover:text-red-700 hover:bg-red-50"
+                        >
+                          <IoTrash className="h-4 w-4" />
+                        </Button>
+                      }
+                    />
                   </div>
                 </TableCell>
               </TableRow>

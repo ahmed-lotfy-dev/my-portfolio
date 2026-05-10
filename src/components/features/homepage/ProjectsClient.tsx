@@ -89,7 +89,7 @@ export default function ProjectsClient({ projects, locale, t }: Props) {
 
           return (
             <m.div key={proj.id} variants={itemVariants}>
-              <Card className="group flex h-full flex-col justify-between overflow-hidden border-border bg-card/50 backdrop-blur-sm hover:border-primary/50 hover:shadow-2xl hover:shadow-primary/10 transition-all duration-500">
+              <Card as="article" className="group flex h-full flex-col justify-between overflow-hidden border-border bg-card/50 backdrop-blur-sm hover:border-primary/50 hover:shadow-2xl hover:shadow-primary/10 transition-all duration-500">
                 <Link
                   href={proj.slug ? `/${locale}/projects/${proj.slug}` : proj.liveLink}
                   target={proj.slug ? undefined : "_blank"}

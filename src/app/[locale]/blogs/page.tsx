@@ -67,7 +67,7 @@ export default async function PostsList(props: {
   const t = await getTranslations({ locale, namespace: "blog_page" });
 
   return (
-    <div className="container mx-auto px-4 mt-28 max-w-6xl pb-20">
+    <main className="container mx-auto px-4 mt-28 max-w-6xl pb-20">
       <div className="flex flex-col items-center mb-12 text-center">
         <h1 className="mb-4 bg-linear-to-r from-primary via-primary-light to-primary-dark bg-clip-text text-5xl font-extrabold tracking-tight text-transparent">
           {t("title")}
@@ -144,7 +144,6 @@ export default async function PostsList(props: {
           </Button>
         </div>
       )}
-    </div>
-    </div>
+    </main>
   );
 }

@@ -67,7 +67,7 @@ export default function Hero({ locale }: { locale: string }) {
   }
 
   return (
-    <div
+    <header
       className="group relative flex min-h-screen w-full flex-col overflow-hidden bg-background"
       id="hero"
       onMouseMove={handleMouseMove}
@@ -182,6 +182,6 @@ export default function Hero({ locale }: { locale: string }) {
           </m.div>
         </div>
       </section>
-    </div>
+    </header>
   );
 }

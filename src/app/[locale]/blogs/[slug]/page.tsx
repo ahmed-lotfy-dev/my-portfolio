@@ -151,7 +151,7 @@ export default async function SinglePost(props: {
         </div>
 
         <footer className="mt-20 border-t border-border pt-10">
-          <div className="flex flex-wrap gap-3">
+          <nav aria-label="Tags" className="flex flex-wrap gap-3">
             {post.tags.map((tag) => (
               <Link key={tag} href={`/${locale}/blogs?tag=${encodeURIComponent(tag)}`}>
                 <Badge variant="outline" className="cursor-pointer bg-card px-3 py-1 text-xs transition-all hover:bg-primary/10 hover:text-primary">
@@ -159,12 +159,12 @@ export default async function SinglePost(props: {
                 </Badge>
               </Link>
             ))}
-          </div>
+          </nav>
 
           {post.updated && (
-            <p className="mt-8 text-xs italic text-muted-foreground">
+            <time dateTime={post.updated} className="mt-8 block text-xs italic text-muted-foreground">
               {t("last_updated_on")} {post.updated}
-            </p>
+            </time>
           )}
         </footer>
 
