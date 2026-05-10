@@ -141,7 +141,7 @@ function pickArticles(items: NewsItem[], existing: Set<string>): NewsItem[] {
     const tooSimilar = picked.some((p) => {
       const pWords = p.title.toLowerCase().split(/\s+/);
       const overlap = [...words].filter((w) => pWords.includes(w)).length;
-      return overlap / Math.max(words.size, pWords.size) > 0.6;
+      return overlap / Math.max(words.size, pWords.length) > 0.6;
     });
     if (!tooSimilar) picked.push(item);
     if (picked.length >= MAX_POSTS_PER_RUN) break;
