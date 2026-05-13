@@ -5,60 +5,59 @@ const robotsBody = `# Robots.txt for Ahmed Lotfy Portfolio
 
 User-agent: *
 Allow: /
-Disallow: /_next/static/
 Disallow: /cdn-cgi/
 Disallow: /api/
 Disallow: /dashboard/
-
-# Block static assets to preserve crawl budget
-Disallow: /*.woff2$
-Disallow: /*.json$
+Allow: /ai-sitemap.json
 
 # Googlebot gets full access (just block junk)
 User-agent: Googlebot
 Allow: /
-Disallow: /_next/static/
 Disallow: /cdn-cgi/
 Disallow: /api/
 Disallow: /dashboard/
+Allow: /_next/static/
+Allow: /_next/image/
 Crawl-delay: 1
 
 # AI crawlers - allow content, block static junk
 User-agent: GPTBot
 Allow: /
-Disallow: /_next/static/
 Disallow: /cdn-cgi/
 Disallow: /api/
+Allow: /ai-sitemap.json
 
 User-agent: ChatGPT-User
 Allow: /
-Disallow: /_next/static/
 Disallow: /cdn-cgi/
 Disallow: /api/
+Allow: /ai-sitemap.json
 
 User-agent: Claude-Web
 Allow: /
-Disallow: /_next/static/
 Disallow: /cdn-cgi/
 Disallow: /api/
+Allow: /ai-sitemap.json
 
 User-agent: CCBot
 Allow: /
-Disallow: /_next/static/
 Disallow: /cdn-cgi/
 Disallow: /api/
+Allow: /ai-sitemap.json
 
 # Other search engines
 User-agent: Bingbot
 Allow: /
-Disallow: /_next/static/
 Disallow: /cdn-cgi/
+Allow: /_next/static/
+Allow: /_next/image/
 Crawl-delay: 1
 
 User-agent: Applebot
 Allow: /
-Disallow: /_next/static/
 Disallow: /cdn-cgi/
+Allow: /_next/static/
+Allow: /_next/image/
 
 User-agent: Twitterbot
 Allow: /
@@ -84,6 +83,10 @@ Disallow: /
 
 # Sitemaps
 Sitemap: ${absoluteUrl("/sitemap.xml")}
+Sitemap: ${absoluteUrl("/ai-sitemap.json")}
+
+# AI content preferences
+Content-Signal: ai-train=no, search=yes, ai-input=yes
 
 # Crawl delay for respectful crawlers
 Crawl-delay: 1

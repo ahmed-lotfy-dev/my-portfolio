@@ -126,8 +126,8 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
             languages: {
                 'en': `https://ahmedlotfy.site/en/projects/${slug}`,
                 'ar': `https://ahmedlotfy.site/ar/projects/${slug}`,
+                'x-default': `https://ahmedlotfy.site/en/projects/${slug}`,
             },
-            xDefault: `https://ahmedlotfy.site/en/projects/${slug}`,
         },
     };
 }
