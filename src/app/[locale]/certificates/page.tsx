@@ -46,8 +46,8 @@ export async function generateMetadata({
       languages: {
         en: `${baseUrl}/en/certificates`,
         ar: `${baseUrl}/ar/certificates`,
+        "x-default": `${baseUrl}/en/certificates`,
       },
-      xDefault: `${baseUrl}/en/certificates`,
     },
   };
 }
