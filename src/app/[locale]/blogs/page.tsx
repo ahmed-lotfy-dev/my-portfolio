@@ -35,8 +35,8 @@ export async function generateMetadata({
       languages: {
         en: `${baseUrl}/en/blogs`,
         ar: `${baseUrl}/ar/blogs`,
+        "x-default": `${baseUrl}/en/blogs`,
       },
-      xDefault: `${baseUrl}/en/blogs`,
     },
   };
 }
