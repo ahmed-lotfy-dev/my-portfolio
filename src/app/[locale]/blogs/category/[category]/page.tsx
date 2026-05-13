@@ -57,8 +57,8 @@ export async function generateMetadata({
       languages: {
         en: `${baseUrl}${buildBlogCategoryPath("en", category.name)}`,
         ar: `${baseUrl}${buildBlogCategoryPath("ar", category.name)}`,
+        "x-default": `${baseUrl}${buildBlogCategoryPath("en", category.name)}`,
       },
-      xDefault: `${baseUrl}${buildBlogCategoryPath("en", category.name)}`,
     },
   };
 }
