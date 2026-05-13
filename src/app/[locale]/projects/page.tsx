@@ -48,8 +48,8 @@ export async function generateMetadata({
       languages: {
         en: `${baseUrl}/en/projects`,
         ar: `${baseUrl}/ar/projects`,
+        "x-default": `${baseUrl}/en/projects`,
       },
-      xDefault: `${baseUrl}/en/projects`,
     },
   };
 }
