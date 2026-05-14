@@ -28,7 +28,7 @@ const RETRY_DELAY_MS = 15_000;
 const CHUNK_WORD_LIMIT = 400;
 
 const NEWS_CACHE = "/tmp/news-cache.json";
-const MAX_POSTS_PER_RUN = 8;
+const MAX_POSTS_PER_RUN = 3;
 
 const NIM_API = "https://integrate.api.nvidia.com/v1/chat/completions";
 const NIM_MODEL = "meta/llama-3.3-70b-instruct";
@@ -44,18 +44,53 @@ const CATEGORY_IMAGES: Record<string, string> = {
 };
 
 const SKIP_TITLE_PATTERNS = [
+  // ── Topical alignment gate ──────────────────────────────────────────
+  // Anything not about software engineering → skip immediately
+
+  // Financial / stock market (NO financial advice)
   /\b(stock|investing|investor|billionaire|dividend|ipo|shareholder)\b/i,
-  /\b(motley fool|seeking alpha|fool\.com|nasdaq|nyse|wall street)\b/i,
+  /\b(motley\s*fool|seeking\s*alpha|fool\.com|nasdaq|nyse|wall\s*street)\b/i,
   /\b(buy|sell|rating|upgrade|downgrade)\s+(the\s+)?(stock|shares)\b/i,
   /\b(earnings|revenue|profit|quarterly)\s+(report|call|beat|miss)\b/i,
-  /\b(buy|purchase|get)\s+(old|aged|verified)\s+\w+\s+(accounts|profiles)\b/i,
-  /\b(cheap|discount|affordable)\s+\w+(\s+\w+)?\s+(accounts|followers|views|likes)\b/i,
-  // Gambling / casino
+
+  // Legal / medical / repair (no E-E-A-T in these domains)
+  /\b(law\s*(yer|firm|practice)|attorney|legal|mediation|divorce|custody|family\s*law)\b/i,
+  /\b(medical|doctor|hospital|patient|diagnosis|therapy|clinical|medication|pharma)\b/i,
+
+  // Vape / e-cig / physical products / dropshipping
+  /\b(vape|vaping|e-?cig|mr\s*fog|mr fog|disposable|nicotine|dropshipping)\b/i,
+
+  // Repair services (phone, laptop, etc.)
+  /\b(repair\s+(shop|service|cost|price|guide)|ifixit|screen\s*repair|battery\s*replace|phone\s*repair|laptop\s*repair|macbook\s*repair)\b/i,
+
+  // Gambling / casino / betting
   /\b(bonus|bonuses?|casino|gambling|bet|betting|poker|slot)\b/i,
   /\b(win\s+(real\s+)?money|cash\s+(prize|out)|payout|jackpot|free\s+spins?)\b/i,
   /\b(registration\s+bonus|deposit\s+bonus|no\s+deposit|welcome\s+(bonus|offer))\b/i,
   /\b(crypto\s+(gambling|casino|bet))|(bitcoin\s+(casino|gambling))\b/i,
   /\b(forex|trading\s+(signal|strategy|bot)|signal\s+group)\b/i,
+
+  // News republishing (no original insight — just summarizing news)
+  /\b(reaches?\s+\$\d+\s+(million|billion|settlement)|reaches?\s+(\d+\s+)?(year|month|decade)\s+(anniversary|milestone))\b/i,
+  /\b(the\s+(jerusalem|new\s+york|los\s+angeles|washington|chicago|times|post|sun|mirror|guardian|independent|telegraph))\b/i,
+  /\b(reuters|associated\s*press|bloomberg|ap\s*news|bbc\s*news|cnn|msnbc|fox\s*news)\b/i,
+
+  // Affiliate marketing / e-commerce
+  /\b(affiliate\s+(marketing|earn|income)|earn\s+\$?\d+\s*(a|per|each|every)|make\s+money\s+(online|from|with))\b/i,
+
+  // SEO spam / keyword stuffing / agency promotion
+  /\b(seo\s+(agency|expert|service|company)|digital\s+marketing\s+(agency|service))\b/i,
+  /\b(buy\s+(old|aged|verified)\s+\w+\s+(accounts|profiles|followers))\b/i,
+  /\b(cheap|discount|affordable)\s+\w+(\s+\w+)?\s+(accounts|followers|views|likes|subscribers)\b/i,
+
+  // Foreign languages (not English/Arabic)
+  /\b(français|française|francaise|deutsch|español|espanol|português|portugues|italiano|日本語|中文|русский|tiếng\s*việt)\b/i,
+
+  // Phone-specific repair (iPhone, Samsung, etc.) — not dev content
+  /\b(iphone\s+\d+\s*(pro|max|plus)?\s*repair|samsung\s+repair|screen\s+replacement)\b/i,
+
+  // Dropshipping / product reviews (zero dev value)
+  /\b(best\s+(places?\s+to\s+)?buy|top\s+\d+\s+(best|places))\b.*\b(online|review|cheap|price)\b/i,
 ];
 
 const TRANSLATE_SYSTEM = `You are a native Egyptian Arabic technical writer. Translate English developer blog posts into Egyptian colloquial Arabic (عامية مصرية).
@@ -114,7 +149,7 @@ function scoreRelevance(item: NewsItem): number {
   }
 
   const catScores: Record<string, number> = {
-    ai: 15, frontend: 10, fullstack: 12, mobile: 10, tech: 5, devops: 3,
+    frontend: 15, fullstack: 14, mobile: 12, ai: 8, devops: 8, tech: 3,
   };
   score += catScores[item.category] ?? 0;
 
@@ -325,7 +360,9 @@ async function main() {
     const today = new Date().toISOString().split("T")[0];
     const img = CATEGORY_IMAGES[article.category] ?? CATEGORY_IMAGES.fullstack;
 
-    const generateSystem = `You are a technical writer for ahmedlotfy.site. Analyze a news article and write an original blog post as tech commentary — NOT a personal diary. Write in third person unless quoting someone. Never claim the reader (Ahmed) built, created, or experienced something they didn't.
+    const generateSystem = `You are a technical writer for ahmedlotfy.site — a senior full-stack developer's portfolio. Analyze a news article and write an original blog post as tech commentary. The site MUST stay focused on software engineering topics ONLY — no news republishing, no legal/medical/financial content, no product reviews.
+
+TOPICAL ALIGNMENT GATE — Before writing, check: "Is this about software engineering, web/mobile development, dev tools, architecture, or programming?" If NO, return nothing (empty output).
 
 OUTPUT FORMAT — output ONLY the complete markdown below, nothing before or after:
 ---
@@ -360,7 +397,8 @@ Requirements:
 - Can use one emoji prefix in title (🔥 🚀 ⚡ 🏗️ 🎯 💡 🧠)
 - Use the exact image URL above, do not change it
 - Do NOT wrap the output in code blocks — output raw markdown only
-- NEVER write about gambling, casinos, bonuses, betting, or money games
+- STRICT: Only write about software engineering topics. Skip everything else.
+- NEVER write about: law, medical, finance, stocks, vapes, gambling, casinos, betting, news events, politics, affiliate marketing, e-commerce products, phone repair, physical products, or SEO agencies
 - NEVER write "I built" or "I created" or claim personal experience with a tool or project
 - Always attribute work to the actual creator: "Tanner Linsley built..." or "the team at Vercel released..." — never "I built this."`;
 

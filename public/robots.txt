@@ -1,0 +1,90 @@
+# robots.txt for ahmedlotfy.site
+# Optimized for search engines, AI crawlers, and crawl budget
+# This file lives in source code at public/robots.txt — survives deployments
+
+User-agent: *
+Allow: /
+Disallow: /cdn-cgi/
+Disallow: /api/
+Disallow: /dashboard/
+Disallow: /_next/static/
+Disallow: /_next/image/
+Disallow: /*.woff2$
+Disallow: /*.json$
+Disallow: /*.xml$
+
+# Googlebot - full access to content, block static junk
+User-agent: Googlebot
+Allow: /
+Disallow: /cdn-cgi/
+Disallow: /api/
+Disallow: /dashboard/
+Disallow: /_next/static/
+Disallow: /*.woff2$
+Disallow: /*.json$
+Disallow: /*.xml$
+Crawl-delay: 1
+
+# AI crawlers - allow content, block API and static
+User-agent: GPTBot
+Allow: /
+Disallow: /cdn-cgi/
+Disallow: /api/
+Disallow: /dashboard/
+Disallow: /_next/static/
+Allow: /ai-sitemap.json
+
+User-agent: ChatGPT-User
+Allow: /
+Disallow: /cdn-cgi/
+Disallow: /api/
+Disallow: /dashboard/
+Disallow: /_next/static/
+Allow: /ai-sitemap.json
+
+User-agent: Claude-Web
+Allow: /
+Disallow: /cdn-cgi/
+Disallow: /api/
+Disallow: /dashboard/
+Disallow: /_next/static/
+Allow: /ai-sitemap.json
+
+User-agent: PerplexityBot
+Allow: /
+Disallow: /cdn-cgi/
+Disallow: /api/
+Disallow: /_next/static/
+
+# Social crawlers
+User-agent: Twitterbot
+Allow: /
+
+User-agent: LinkedInBot
+Allow: /
+
+User-agent: FacebookBot
+Allow: /
+
+# Block known bad crawlers (scrapers, SEO spam tools)
+User-agent: AhrefsBot
+Disallow: /
+
+User-agent: SemrushBot
+Disallow: /
+
+User-agent: MJ12bot
+Disallow: /
+
+User-agent: DotBot
+Disallow: /
+
+User-agent: Bytespider
+Disallow: /
+
+# Sitemaps
+Sitemap: https://ahmedlotfy.site/sitemap.xml
+Sitemap: https://ahmedlotfy.site/ai-sitemap.json
+
+# Crawl delay for respectful crawlers
+Crawl-delay: 1

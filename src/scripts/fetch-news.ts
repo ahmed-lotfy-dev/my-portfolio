@@ -5,21 +5,31 @@ import { XMLParser } from "fast-xml-parser";
 
 // ── Config ────────────────────────────────────────────────────────────────
 const RSS_FEEDS: { url: string; source: string; category: string }[] = [
-  // AI & ML news
-  { url: "https://news.google.com/rss/search?q=artificial+intelligence&hl=en-US&gl=US&ceid=US:en", source: "Google News AI", category: "ai" },
+  // REMOVED: Google News AI - returns financial/stock/news republishing content that is toxic for SEO
+  // Only use developer-focused feeds that produce content relevant to a senior full-stack portfolio
+
+  // Core dev platforms & engineering blogs
   { url: "https://hnrss.org/frontpage?points=50", source: "HackerNews", category: "tech" },
   { url: "https://github.blog/engineering/feed/", source: "GitHub Engineering", category: "devops" },
   { url: "https://blog.vercel.com/feed.xml", source: "Vercel", category: "frontend" },
   { url: "https://developers.googleblog.com/feeds/posts/default", source: "Google Developers", category: "fullstack" },
-  { url: "https://dev.to/feed/tag/ai", source: "Dev.to AI", category: "ai" },
-  { url: "https://dev.to/feed/tag/react", source: "Dev.to React", category: "frontend" },
-  { url: "https://dev.to/feed/tag/reactnative", source: "Dev.to React Native", category: "mobile" },
-  { url: "https://dev.to/feed/tag/fullstack", source: "Dev.to Fullstack", category: "fullstack" },
-  { url: "https://react.statuscode.com/rss", source: "React Status", category: "frontend" },
   { url: "https://stackoverflow.blog/feed/", source: "Stack Overflow", category: "fullstack" },
+
+  // Frontend & React ecosystem
+  { url: "https://dev.to/feed/tag/react", source: "Dev.to React", category: "frontend" },
+  { url: "https://react.statuscode.com/rss", source: "React Status", category: "frontend" },
+  { url: "https://nextjs.org/feed.xml", source: "Next.js Blog", category: "frontend" },
   { url: "https://reactnative.dev/blog/feed.xml", source: "React Native Blog", category: "mobile" },
   { url: "https://expo.dev/blog/rss.xml", source: "Expo Blog", category: "mobile" },
-  { url: "https://nextjs.org/feed.xml", source: "Next.js Blog", category: "frontend" },
+
+  // Mobile & cross-platform
+  { url: "https://dev.to/feed/tag/reactnative", source: "Dev.to React Native", category: "mobile" },
+  { url: "https://dev.to/feed/tag/fullstack", source: "Dev.to Fullstack", category: "fullstack" },
+
+  // AI & dev tools (quality feeds only)
+  { url: "https://dev.to/feed/tag/ai", source: "Dev.to AI", category: "ai" },
+  { url: "https://dev.to/feed/tag/webdev", source: "Dev.to WebDev", category: "fullstack" },
+  { url: "https://dev.to/feed/tag/typescript", source: "Dev.to TypeScript", category: "frontend" },
 ];
 
 const CONTENT_DIR = join(import.meta.dirname, "..", "content", "blogs");

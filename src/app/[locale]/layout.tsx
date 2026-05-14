@@ -35,11 +35,11 @@ export const metadata: Metadata = {
   manifest: "/manifest.webmanifest",
   metadataBase: new URL("https://ahmedlotfy.site"),
   title: {
-    default: "Ahmed Lotfy – Full-Stack Software Engineer",
+    default: "Ahmed Lotfy – Senior Full-Stack Software Engineer & Next.js Expert",
     template: "%s | Ahmed Lotfy",
   },
   description:
-    "Portfolio of Ahmed Lotfy – Full-Stack Software Engineer. I build responsive and scalable web applications.",
+    "Portfolio of Ahmed Lotfy, a senior full-stack software engineer specializing in Next.js, React, TypeScript, Node.js, and PostgreSQL. Building high-performance, scalable web applications and cloud-native architectures.",
   keywords: [
     "Ahmed Lotfy",
     "Full-Stack Developer",
@@ -58,9 +58,9 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     url: "https://ahmedlotfy.site",
-    title: "Ahmed Lotfy – Full-Stack Software Engineer",
+    title: "Ahmed Lotfy – Senior Full-Stack Software Engineer & Next.js Expert",
     description:
-      "Portfolio of Ahmed Lotfy – Full-Stack Software Engineer. I build responsive and scalable web applications.",
+      "Portfolio of Ahmed Lotfy, a senior full-stack software engineer specializing in Next.js, React, TypeScript, Node.js, and PostgreSQL.",
     siteName: "Ahmed Lotfy Portfolio",
     images: [
       {
@@ -73,9 +73,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Ahmed Lotfy – Full-Stack Software Engineer",
+    title: "Ahmed Lotfy – Senior Full-Stack Software Engineer & Next.js Expert",
     description:
-      "Portfolio of Ahmed Lotfy – Full-Stack Software Engineer. I build responsive and scalable web applications.",
+      "Portfolio of Ahmed Lotfy, a senior full-stack software engineer specializing in Next.js, React, TypeScript, Node.js, and PostgreSQL.",
     images: ["https://ahmedlotfy.site/og-image.png"],
   },
   robots: {

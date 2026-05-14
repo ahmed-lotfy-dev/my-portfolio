@@ -1,7 +1,7 @@
 import { MetadataRoute } from 'next'
 import { eq } from 'drizzle-orm'
 import { db } from '@/src/db'
-import { projects, posts, certificates } from '@/src/db/schema'
+import { projects, posts } from '@/src/db/schema'
 import { slugifyBlogTaxonomy } from '@/src/lib/utils/blog-taxonomy'
 
 export const dynamic = 'force-dynamic'
@@ -372,43 +372,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ]
   })
 
-  // Certificate detail pages
-  const allCertificates = await db.select({
-    id: certificates.id,
-    updatedAt: certificates.updatedAt,
-  }).from(certificates).where(eq(certificates.published, true))
-
-  const certificatePages: SitemapEntry[] = allCertificates.reduce<SitemapEntry[]>((acc, cert) => {
-    acc.push(
-      {
-        url: `${baseUrl}/en/certificates/${cert.id}`,
-        lastModified: cert.updatedAt ?? siteLastModified,
-        changeFrequency: 'monthly' as const,
-        priority: 0.5,
-          alternates: {
-            languages: {
-              en: `${baseUrl}/en/certificates/${cert.id}`,
-              ar: `${baseUrl}/ar/certificates/${cert.id}`,
-              'x-default': `${baseUrl}/en/certificates/${cert.id}`,
-            },
-          },
-        },
-        {
-          url: `${baseUrl}/ar/certificates/${cert.id}`,
-          lastModified: cert.updatedAt ?? siteLastModified,
-          changeFrequency: 'monthly' as const,
-          priority: 0.5,
-          alternates: {
-            languages: {
-              en: `${baseUrl}/en/certificates/${cert.id}`,
-              ar: `${baseUrl}/ar/certificates/${cert.id}`,
-              'x-default': `${baseUrl}/en/certificates/${cert.id}`,
-            },
-          },
-        }
-    )
-    return acc
-  }, [])
+  // ── Certificate detail pages REMOVED from sitemap ──
+  // Certificate detail pages use UUID-based URLs and contain thin content
+  // (name + date + ~50 words). Google treats these as low-value pages and
+  // including them in the sitemap drags down site-wide quality signals.
+  // The certificates listing page (above) provides sufficient crawl access.
+  const certificatePages: SitemapEntry[] = []
 
   return [
     ...staticPages,

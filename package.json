@@ -24,7 +24,8 @@
     "run:blog": "bun run fetch:news && bun run generate:posts",
     "ingest:blogs": "bun src/scripts/ingest-blogs.ts",
     "translate:posts": "bun src/scripts/translate-posts.ts",
-    "pull:blogs": "bun src/scripts/pull-blogs.ts"
+    "pull:blogs": "bun src/scripts/pull-blogs.ts",
+    "cleanup:toxic": "bun src/scripts/cleanup-toxic-posts.ts"
   },
   "browserslist": {
     "production": [
