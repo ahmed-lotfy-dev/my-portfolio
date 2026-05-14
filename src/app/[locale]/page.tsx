@@ -40,7 +40,7 @@ export async function generateMetadata({
   const t = await getTranslations({ locale, namespace: "metadata.home" });
   const baseUrl = 'https://ahmedlotfy.site';
 
-  const enKeywords = 'Ahmed Lotfy, Ahmed Lotfy, Full Stack Developer, Next.js Developer, React Developer, TypeScript, Node.js, PostgreSQL, Web Development, Software Engineer, Portfolio, Frontend Developer, Backend Developer, MERN Stack, JavaScript, TailwindCSS, Docker, API Development, Ahmed Lotfy Portfolio, Web Developer Egypt, Next.js Expert, React Expert, Full Stack Web Developer, Modern Web Applications, Software Engineer Portfolio';
+  const enKeywords = 'Ahmed Lotfy, Senior Full-Stack Software Engineer, Full Stack Developer, Next.js Developer, React Developer, TypeScript, Node.js, PostgreSQL, Web Development, Software Engineer, Portfolio, Frontend Developer, Backend Developer, MERN Stack, JavaScript, TailwindCSS, Docker, API Development, Ahmed Lotfy Portfolio, Web Developer Egypt, Next.js Expert, React Expert, Full Stack Web Developer, Modern Web Applications, Software Engineer Portfolio';
   const arKeywords = 'أحمد لطفي, أحمد لطفي, مطور ويب, مطور برمجيات, مطور تطبيقات ويب, مبرمج, مطور مواقع, مهندس برمجيات, تطوير الويب, برمجة, تصميم مواقع, خبرة في Next.js, خبرة في React, تطبيقات ويب حديثة, متخصص واجهات أمامية, متخصص خلفيات, قواعد بيانات, استضافة وتطوير';
 
   return {
@@ -101,7 +101,7 @@ export default async function HomePage({
           name: 'Ahmed Lotfy',
           url: 'https://ahmedlotfy.site',
           image: 'https://ahmedlotfy.site/ahmed-lotfy.jpg',
-          jobTitle: 'Full Stack Developer',
+          jobTitle: 'Senior Full-Stack Software Engineer',
           description: locale === 'ar'
             ? 'مطور ويب متخصص في Next.js و React و TypeScript'
             : 'Full Stack Developer specializing in Next.js, React, and TypeScript',

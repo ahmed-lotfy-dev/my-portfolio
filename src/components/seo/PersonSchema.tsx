@@ -4,7 +4,7 @@ export function PersonSchema() {
     "@type": "Person",
     "@id": "https://ahmedlotfy.site/#person",
     name: "Ahmed Lotfy",
-    jobTitle: "Full-Stack Software Engineer",
+    jobTitle: "Senior Full-Stack Software Engineer",
     url: "https://ahmedlotfy.site",
     image: "https://ahmedlotfy.site/og-image.png",
     sameAs: [
