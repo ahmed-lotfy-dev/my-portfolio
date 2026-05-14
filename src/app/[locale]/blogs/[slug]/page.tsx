@@ -37,6 +37,21 @@ export async function generateMetadata({
       siteName: "Ahmed Lotfy Portfolio",
       locale: locale === "ar" ? "ar_EG" : "en_US",
       type: "article",
+      images: [
+        {
+          url: post.imageLink || `${baseUrl}/og-image.png`,
+          width: 1200,
+          height: 630,
+          alt: post.title,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: post.title,
+      description: post.content.substring(0, 160),
+      creator: "@ahmedlotfy_dev",
+      images: [post.imageLink || `${baseUrl}/og-image.png`],
     },
     alternates: {
       canonical: `${baseUrl}/${locale}/blogs/${slug}`,
