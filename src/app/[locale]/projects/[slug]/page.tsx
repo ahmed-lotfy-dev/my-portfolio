@@ -179,6 +179,18 @@ export default async function ProjectDetailsPage({ params }: { params: Promise<{
                      language: locale === 'ar' ? 'ar' : 'en',
                  }}
              />
+             {/* Software Application Structured Data */}
+             <StructuredData
+                 type="SoftwareApplication"
+                 data={{
+                     name: title,
+                     description: desc,
+                     url: `https://ahmedlotfy.site/${locale}/projects/${slug}`,
+                     image: project.coverImage,
+                     operatingSystem: 'Web, iOS, Android',
+                     category: project.categories.includes('mobile') ? 'MobileApplication' : 'WebApplication',
+                 }}
+             />
              {/* Breadcrumb Structured Data */}
              <BreadcrumbSchema
                items={[

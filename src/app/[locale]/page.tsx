@@ -126,6 +126,47 @@ export default async function HomePage({
         }}
       />
 
+      {/* FAQ Structured Data — matches visible services section */}
+      <StructuredData
+        type="FAQ"
+        data={{
+          questions: [
+            {
+              question: locale === 'ar'
+                ? 'هل تبني تطبيقات ويب مخصصة؟'
+                : 'Do you build custom web applications?',
+              answer: locale === 'ar'
+                ? 'نعم، أبني تطبيقات ويب قابلة للتطوير وآمنة باستخدام Next.js و Cloudflare. مثالية للـ SaaS والأدوات الداخلية للشركات.'
+                : 'Yes, I build scalable, secure web applications with Next.js and Cloudflare. Perfect for SaaS platforms and internal tools.',
+            },
+            {
+              question: locale === 'ar'
+                ? 'هل تحسن متاجر إلكترونية قائمة؟'
+                : 'Do you optimize existing e-commerce stores?',
+              answer: locale === 'ar'
+                ? 'نعم، أحسن تجربة التسوق عبر تحسين سرعة الموقع وتدفق الدفع باستخدام Next.js مع Paymob أو Stripe لزيادة المبيعات.'
+                : 'Yes, I boost sales by optimizing checkout flows and page speed with Next.js + Paymob/Stripe integration to maximize conversions.',
+            },
+            {
+              question: locale === 'ar'
+                ? 'هل تبني تطبيقات موبايل باستخدام React Native؟'
+                : 'Do you build mobile apps with React Native?',
+              answer: locale === 'ar'
+                ? 'نعم، أطور تطبيقات موبايل عبر المنصات باستخدام React Native و Expo مع مزامنة بدون إنترنت.'
+                : 'Yes, I build cross-platform mobile apps using React Native and Expo with offline-first sync capabilities.',
+            },
+            {
+              question: locale === 'ar'
+                ? 'هل تقدم استشارات في هندسة البرمجيات؟'
+                : 'Do you offer software architecture consulting?',
+              answer: locale === 'ar'
+                ? 'نعم، أساعد الفرق في اختيار التقنيات المناسبة، تصميم البنية التحتية، وتحسين أداء التطبيقات الحالية.'
+                : 'Yes, I help teams choose the right tech stack, design infrastructure, and optimize existing application performance.',
+            },
+          ],
+        }}
+      />
+
       <Hero locale={locale} />
 
       <Container>

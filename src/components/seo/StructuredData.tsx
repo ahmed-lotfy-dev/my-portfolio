@@ -1,5 +1,5 @@
-interface StructuredDataProps {
-  type: 'Person' | 'WebSite' | 'Article' | 'CreativeWork' | 'EducationalOccupationalCredential' | 'CollectionPage'
+type StructuredDataProps = {
+  type: 'Person' | 'WebSite' | 'Article' | 'CreativeWork' | 'EducationalOccupationalCredential' | 'CollectionPage' | 'FAQ' | 'SoftwareApplication'
   data: any
 }
 
@@ -107,6 +107,46 @@ export default function StructuredData({ type, data }: StructuredDataProps) {
         description: data.description,
         url: data.url,
         ...(data.numberOfItems !== undefined && { numberOfItems: data.numberOfItems }),
+      }
+      break
+
+    case 'FAQ':
+      schema = {
+        '@context': 'https://schema.org',
+        '@type': 'FAQPage',
+        mainEntity: data.questions.map((q: { question: string; answer: string }) => ({
+          '@type': 'Question',
+          name: q.question,
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: q.answer,
+          },
+        })),
+      }
+      break
+
+    case 'SoftwareApplication':
+      schema = {
+        '@context': 'https://schema.org',
+        '@type': 'SoftwareApplication',
+        name: data.name,
+        description: data.description,
+        url: data.url,
+        image: data.image,
+        operatingSystem: data.operatingSystem || 'Web',
+        applicationCategory: data.category || 'WebApplication',
+        ...(data.offerPrice !== undefined && {
+          offers: {
+            '@type': 'Offer',
+            price: data.offerPrice,
+            priceCurrency: data.offerCurrency || 'USD',
+          },
+        }),
+        author: {
+          '@type': 'Person',
+          name: 'Ahmed Lotfy',
+          url: 'https://ahmedlotfy.site',
+        },
       }
       break
   }
