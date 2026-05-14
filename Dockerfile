@@ -36,7 +36,7 @@ RUN chmod +x scripts/start-worker.sh
 
 # Blog: daily at 5:00 AM and 3:00 PM
 # Backup: every Sunday at 3:00 AM
-RUN echo "0 5,15 * * * cd /app && bun run run:blog > /proc/1/fd/1 2>/proc/1/fd/2" > /etc/crontabs/root && \
+RUN echo "0 5,15 * * * cd /app && bun run run:blog-full > /proc/1/fd/1 2>/proc/1/fd/2" > /etc/crontabs/root && \
     echo "0 3 * * 0 cd /app && bun scripts/backup-worker/dist/index.js --type=full > /proc/1/fd/1 2>/proc/1/fd/2" >> /etc/crontabs/root
 
 EXPOSE 3001
