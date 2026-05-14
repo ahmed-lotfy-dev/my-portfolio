@@ -1,0 +1,36 @@
+# Ahmed Lotfy - Senior Full-Stack Software Engineer
+> Building high-performance web and mobile applications with Next.js, React, TypeScript, Node.js, and PostgreSQL.
+
+## About
+- [Portfolio Home](https://ahmedlotfy.site/en): Senior Full-Stack Software Engineer specializing in Next.js, React, TypeScript, Node.js
+- [About Ahmed](https://ahmedlotfy.site/en/about): Experience, skills, and background
+- [Contact](https://ahmedlotfy.site/en/contact): Get in touch for projects and collaboration
+
+## Projects
+- [selfTracker](https://ahmedlotfy.site/en/projects/self-tracker): React Native mobile app with offline SQLite sync and ElectricSQL
+- [TaskHub](https://ahmedlotfy.site/en/projects/task-hub-mcp-driven-project-management): MCP-driven project management with AI agent integration
+- [POS System](https://ahmedlotfy.site/en/projects/pos-system): Full-stack point-of-sale system for local businesses
+- [The Drive Center](https://ahmedlotfy.site/en/projects/the-drive-center): Car shipping e-commerce platform
+- [Zamalek Store](https://ahmedlotfy.site/en/projects/zamalek-store): Online merchandise store
+- [Hi-X LinkTree](https://ahmedlotfy.site/en/projects/hi-x): Link-in-bio page service
+- [Applicence Manager](https://ahmedlotfy.site/en/projects/applicence-manager): Appliance management desktop application
+- [Dev Challenges](https://ahmedlotfy.site/en/projects/dev-challenges): Curated developer challenge solutions
+- [Book App](https://ahmedlotfy.site/en/projects/book-app): Book discovery and catalog application
+
+## Blog Topics
+- [All Blog Posts](https://ahmedlotfy.site/en/blogs): Technical articles on full-stack development, AI tools, and architecture
+- [Next.js & React](https://ahmedlotfy.site/en/blogs): Next.js 16, React 19, Server Components, performance optimization
+- [React Native & Mobile](https://ahmedlotfy.site/en/blogs): React Native, Expo, cross-platform development
+- [AI & Dev Tools](https://ahmedlotfy.site/en/blogs): AI coding agents, LLMs, automation pipelines
+- [DevOps & Infrastructure](https://ahmedlotfy.site/en/blogs): Docker, Dokploy, VPS hosting, CI/CD, Cloudflare
+- [Architecture & Backend](https://ahmedlotfy.site/en/blogs): System design, databases, APIs, TypeScript
+
+## Tech Stack
+- **Frontend**: Next.js 16, React 19, TypeScript, TailwindCSS, Framer Motion
+- **Backend**: Node.js, Express, PostgreSQL, Drizzle ORM, Redis
+- **Mobile**: React Native, Expo
+- **Infrastructure**: Docker, Dokploy, VPS, Cloudflare, Cloudflare R2
+- **Tools**: Bun, Git, GitHub Actions
+
+## Certifications
+- [All Certificates](https://ahmedlotfy.site/en/certificates): Professional certifications in software engineering and web development

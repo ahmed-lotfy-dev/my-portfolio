@@ -114,6 +114,7 @@ const nextConfig: NextConfig = {
       { source: "/:locale/feed.xml", destination: "/feed.xml" },
       { source: "/:locale/ai-sitemap.json", destination: "/ai-sitemap.json" },
       { source: "/:locale/opensearch.xml", destination: "/opensearch.xml" },
+      { source: "/:locale/llms.txt", destination: "/llms.txt" },
     ];
   },
 
