@@ -27,7 +27,8 @@
     "pull:blogs": "bun src/scripts/pull-blogs.ts",
     "cleanup:toxic": "bun src/scripts/cleanup-toxic-posts.ts",
     "personalize:posts": "bun src/scripts/personalize-posts.ts",
-    "run:blog-full": "bun run fetch:news && bun run generate:posts && bun run cleanup:toxic && bun run personalize:posts"
+    "run:blog-full": "bun run fetch:news && bun run generate:posts && bun run cleanup:toxic && bun run personalize:posts",
+    "audit:rewrite": "bun src/scripts/one-time-audit-and-rewrite.ts"
   },
   "browserslist": {
     "production": [
