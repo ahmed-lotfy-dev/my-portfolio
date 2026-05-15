@@ -88,7 +88,7 @@
     "fast-xml-parser": "^5.8.0",
     "gray-matter": "^4.0.3",
     "input-otp": "^1.4.2",
-    "lucide-react": "^1.14.0",
+    "lucide-react": "^1.16.0",
     "motion": "^12.38.0",
     "next": "^16.2.6",
     "next-intl": "^4.11.1",
