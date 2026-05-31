@@ -10,6 +10,7 @@ import StructuredData from "@/src/components/seo/StructuredData";
 import { BreadcrumbSchema } from "@/src/components/seo/BreadcrumbSchema";
 import { buildBlogCategoryPath } from "@/src/lib/utils/blog-taxonomy";
 import { getTranslations } from "next-intl/server";
+import { notFound } from "next/navigation";
 
 function truncateToWord(text: string, maxLength: number): string {
   if (text.length <= maxLength) return text;
@@ -29,7 +30,8 @@ export async function generateMetadata({
 
   if (!post) {
     return {
-      title: "Post Not Found",
+      title: "Post Not Found | Ahmed Lotfy Blog",
+      robots: { index: false, follow: false },
     };
   }
 
@@ -82,14 +84,7 @@ export default async function SinglePost(props: {
   const t = await getTranslations({ locale, namespace: "blog_page" });
 
   if (!post) {
-    return (
-      <div className="flex flex-col items-center justify-center h-screen pt-20">
-        <h1 className="text-4xl font-bold">{t("post_not_found")}</h1>
-        <Button asChild className="mt-8" variant="outline">
-          <Link href={`/${locale}/blogs`}>{t("back_to_blog")}</Link>
-        </Button>
-      </div>
-    );
+    notFound();
   }
 
   const baseUrl = "https://ahmedlotfy.site";

@@ -35,8 +35,8 @@ export const metadata: Metadata = {
   manifest: "/manifest.webmanifest",
   metadataBase: new URL("https://ahmedlotfy.site"),
   title: {
-    default: "Ahmed Lotfy – Senior Full-Stack Software Engineer & Next.js Expert",
-    template: "%s | Ahmed Lotfy",
+    default: "Ahmed Lotfy – Senior Full-Stack Engineer & Next.js Expert",
+    template: "%s",
   },
   description:
     "Portfolio of Ahmed Lotfy, a senior full-stack software engineer specializing in Next.js, React, TypeScript, Node.js, and PostgreSQL. Building high-performance, scalable web applications and cloud-native architectures.",

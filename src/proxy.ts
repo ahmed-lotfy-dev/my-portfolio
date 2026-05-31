@@ -31,6 +31,13 @@ export async function proxy(request: NextRequest) {
   // 1. Run next-intl middleware first
   const response = handleI18n(request);
 
+  // Convert next-intl 307 locale redirects to 301 for SEO
+  // next-intl returns 307 when redirecting /path → /en/path
+  const location = response.headers.get("location");
+  if (response.status === 307 && location) {
+    return NextResponse.redirect(new URL(location, request.url), 301);
+  }
+
   // ============================================
   // SECURITY HEADERS
   // ============================================
@@ -39,7 +46,6 @@ export async function proxy(request: NextRequest) {
 
   const csp = [
     "default-src 'self'",
-    // Keep this in sync with next.config.ts CSP
     `script-src 'self' ${isDev ? "'unsafe-eval'" : ""} 'unsafe-inline' *.googletagmanager.com *.posthog.com https://eu.i.posthog.com https://static.cloudflareinsights.com *.cloudflareinsights.com blob:;`,
     "script-src-elem 'self' 'unsafe-inline' *.googletagmanager.com *.posthog.com https://eu.i.posthog.com https://static.cloudflareinsights.com *.cloudflareinsights.com blob:;",
     "style-src 'self' 'unsafe-inline' *.google.com *.gstatic.com;",
@@ -49,7 +55,6 @@ export async function proxy(request: NextRequest) {
     "frame-src 'self' *.youtube.com *.google.com;",
     "object-src 'none'",
     "base-uri 'self'",
-    // Only upgrade insecure requests in production to avoid issues on localhost
     !isDev ? "upgrade-insecure-requests" : "",
   ].filter(Boolean).join("; ");
 
@@ -71,6 +76,6 @@ export async function proxy(request: NextRequest) {
 
 export const config = {
   matcher: [
-    "/((?!api|_next/static|_next/image|ingest|\\.well-known|_agent|robots\\.txt|sitemap\\.xml|.*\\.png|.*\\.jpg|.*\\.jpeg|.*\\.gif|.*\\.webp|.*\\.svg|.*\\.ico|.*\\.pdf|.*\\.webmanifest).*)",
+    "/((?!api|_next/static/_next/image|ingest|\\.well-known|_agent|robots\\.txt|sitemap\\.xml|.*\\.png|.*\\.jpg|.*\\.jpeg|.*\\.gif|.*\\.webp|.*\\.svg|.*\\.ico|.*\\.pdf|.*\\.webmanifest).*)",
   ],
 };
