@@ -1,0 +1,2552 @@
+{
+  "/mnt/hdd/projects/my-portfolio/drizzle.config.ts": {
+    "mtime": 1761585437.279994,
+    "ast_hash": "f6a2fc91118d708c6288686a2a45969f",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/.posthog-events.json": {
+    "mtime": 1767208963.0145106,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/auth-schema.ts": {
+    "mtime": 1761585437.2768748,
+    "ast_hash": "23967587003a58a4927d606e82ee3867",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/check-db.ts": {
+    "mtime": 1774137898.0370862,
+    "ast_hash": "8daaf8e0e7a9db6fd094c1e393a3c8ca",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/components.json": {
+    "mtime": 1765933927.2792373,
+    "ast_hash": "5b1d548913743e695a17e369f60d0a7e",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/eslint.config.mjs": {
+    "mtime": 1768077143.8655653,
+    "ast_hash": "4c437f4c179924c2a0da3013d368981e",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/global.d.ts": {
+    "mtime": 1765970123.5210946,
+    "ast_hash": "e5345fcabf60804cd15e4e71c202f8fc",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/next.config.ts": {
+    "mtime": 1778760055.6361842,
+    "ast_hash": "72f3607d1eeee19eb8e045beb433ec82",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/package.json": {
+    "mtime": 1778751015.9548619,
+    "ast_hash": "4b7aa2c8ccb215bf780b75c629a74b91",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/postcss.config.js": {
+    "mtime": 1761724643.3907971,
+    "ast_hash": "52dc80057b135a55ec84ffb70c32abe4",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/tailwind.config.js": {
+    "mtime": 1774140817.5021884,
+    "ast_hash": "f6ba264c161250f7b7f539946770124a",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/tsconfig.json": {
+    "mtime": 1778238863.7553484,
+    "ast_hash": "42a807a5b09de1c1679ddbd5fbfb500a",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/vitest.config.ts": {
+    "mtime": 1768077201.4746983,
+    "ast_hash": "6ed3b15033a1d4d7dcb5bc42e15699a8",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/vitest.setup.ts": {
+    "mtime": 1765833849.006922,
+    "ast_hash": "68ba935884d6542fcf401db37bfb3880",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/.vscode/settings.json": {
+    "mtime": 1778238497.458675,
+    "ast_hash": "88dae00e2a8ad418b4de890d86b2692d",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/drizzle/0000_slimy_misty_knight.sql": {
+    "mtime": 1761585437.2798004,
+    "ast_hash": "48450f8af9c2df018515abd33f6539b5",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/drizzle/0001_bored_colossus.sql": {
+    "mtime": 1761585437.2797492,
+    "ast_hash": "f6de84c14ca24dd1d128834d5e9614f6",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/drizzle/0002_eminent_gambit.sql": {
+    "mtime": 1761585437.2798474,
+    "ast_hash": "239786462f720a70a4430328bf156061",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/drizzle/0003_mature_beast.sql": {
+    "mtime": 1761633231.441044,
+    "ast_hash": "a709a5ecaec0d4aa758f9e1a2de19063",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/drizzle/0004_handy_vulture.sql": {
+    "mtime": 1761633587.5770063,
+    "ast_hash": "b957d7c697ad8e967c3c6dd8d415ef70",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/drizzle/0005_wakeful_victor_mancha.sql": {
+    "mtime": 1764624092.124824,
+    "ast_hash": "4dd0429c866ce980acbae4d3e57e6fc0",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/drizzle/0006_parched_kylun.sql": {
+    "mtime": 1764624695.5423467,
+    "ast_hash": "62b191a7c835d48e900fa95be5420499",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/drizzle/0007_pale_victor_mancha.sql": {
+    "mtime": 1765646624.6186936,
+    "ast_hash": "82aad6362cdbd1ecf79c895ecaaec3ca",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/drizzle/0008_chunky_prowler.sql": {
+    "mtime": 1765732299.3562715,
+    "ast_hash": "f6fe3cda33e220cb6bd6ad69c0d7a7bb",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/drizzle/0009_plain_harrier.sql": {
+    "mtime": 1765800153.2975235,
+    "ast_hash": "7112b7d02c5eaee11ab62e271f7228f5",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/drizzle/0010_round_shriek.sql": {
+    "mtime": 1765818703.1695774,
+    "ast_hash": "a2523288fd6263d677198d25696f91ea",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/drizzle/0011_premium_vampiro.sql": {
+    "mtime": 1768064281.8965096,
+    "ast_hash": "34b57dc7577171f58bb2ae369ca7de2f",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/drizzle/0012_married_romulus.sql": {
+    "mtime": 1768064281.896754,
+    "ast_hash": "56f26978aa67dda409e9b5b8f1787d09",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/drizzle/0013_silent_scourge.sql": {
+    "mtime": 1768077318.42924,
+    "ast_hash": "da689cb02351771fe685b82a644eea9a",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/drizzle/0014_flawless_ironclad.sql": {
+    "mtime": 1771871652.088059,
+    "ast_hash": "4b18429052f0dd2de29a654cdb39f099",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/drizzle/relations.ts": {
+    "mtime": 1761633269.1858363,
+    "ast_hash": "41ad44d775f803e4fd3eaf6d82ad2521",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/drizzle/schema.ts": {
+    "mtime": 1765652364.3364336,
+    "ast_hash": "b9f234d5370590a74edb1f57a958bd53",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/drizzle/seed.ts": {
+    "mtime": 1765933130.970225,
+    "ast_hash": "f20397586fc59a9b81c67f660f010d9d",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/drizzle/meta/0000_snapshot.json": {
+    "mtime": 1761585437.2802472,
+    "ast_hash": "91377d88b80d4581491b7198be29a4f6",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/drizzle/meta/0001_snapshot.json": {
+    "mtime": 1761585437.2800984,
+    "ast_hash": "6387f9e08cf3ed1fa5503b87703835d0",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/drizzle/meta/0002_snapshot.json": {
+    "mtime": 1761585437.2802672,
+    "ast_hash": "d3b8bb582cb78fdc4dbeb6c697adb84c",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/drizzle/meta/0003_snapshot.json": {
+    "mtime": 1761633231.439083,
+    "ast_hash": "e3b9026a55d402d1ce676dc9a2e2b105",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/drizzle/meta/0004_snapshot.json": {
+    "mtime": 1761633587.5758474,
+    "ast_hash": "9321759e04737248818ccce1cf105b1a",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/drizzle/meta/0005_snapshot.json": {
+    "mtime": 1764624092.1246088,
+    "ast_hash": "c0b789082af7c31e9c8e653cc9216a81",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/drizzle/meta/0006_snapshot.json": {
+    "mtime": 1764624695.5420985,
+    "ast_hash": "4f4da0d07a5e4beadcc226631778e653",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/drizzle/meta/0007_snapshot.json": {
+    "mtime": 1765646624.6113863,
+    "ast_hash": "b88df2d518cbb5d59ce5ad6391114a94",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/drizzle/meta/0008_snapshot.json": {
+    "mtime": 1765732299.3560483,
+    "ast_hash": "30400da60e9a0bd226442c48724d8177",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/drizzle/meta/0009_snapshot.json": {
+    "mtime": 1765800153.2932367,
+    "ast_hash": "d0de8f9752c851300e5f84629983deb9",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/drizzle/meta/0010_snapshot.json": {
+    "mtime": 1765818703.1690617,
+    "ast_hash": "19a287fcfc7bb7d29fd4929e5f775ff5",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/drizzle/meta/0011_snapshot.json": {
+    "mtime": 1768064281.89812,
+    "ast_hash": "7b3278e6c18e568c10a60b35223d92d4",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/drizzle/meta/0012_snapshot.json": {
+    "mtime": 1768064281.8992004,
+    "ast_hash": "04f754b1fd65750bcc52f3e6d29211c2",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/drizzle/meta/0013_snapshot.json": {
+    "mtime": 1768077318.4288743,
+    "ast_hash": "0fd43c1a831bdb9b8738f666a8dcd6ef",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/drizzle/meta/0014_snapshot.json": {
+    "mtime": 1771871632.7449932,
+    "ast_hash": "4f08fa4b26a04bc799ae156ba6426f38",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/drizzle/meta/_journal.json": {
+    "mtime": 1771871632.745285,
+    "ast_hash": "f2ce7048b831194cfaff7bf749a8984e",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/lib/utils.ts": {
+    "mtime": 1765895191.5783024,
+    "ast_hash": "5a6fd53fdcf2be529e9cc0b718fde352",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/public/ai-sitemap.json": {
+    "mtime": 1778407768.576965,
+    "ast_hash": "7647001222f5a9940d0a05ed8df839ef",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/scripts/generate-og-image.mjs": {
+    "mtime": 1778692336.709866,
+    "ast_hash": "bcefdd542057e65ed255b82fc2a09362",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/scripts/start-worker.sh": {
+    "mtime": 1778406773.0151534,
+    "ast_hash": "0efcbc4ebba1afb5493d069953190db9",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/scripts/backup-worker/package.json": {
+    "mtime": 1778747571.149449,
+    "ast_hash": "71eef27769511fc725afaeb9174c9a81",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/scripts/backup-worker/tsconfig.json": {
+    "mtime": 1765605498.8346157,
+    "ast_hash": "a90daab0e7c4bbd53ba939b236f24a18",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/scripts/backup-worker/src/cleanup-service.ts": {
+    "mtime": 1765933130.97095,
+    "ast_hash": "a5bde04ab8ed3d348d8611071a660aed",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/scripts/backup-worker/src/index.ts": {
+    "mtime": 1765933130.9710867,
+    "ast_hash": "6202c5782182e3dad9dd59d3f5637074",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/scripts/backup-worker/src/media-service.ts": {
+    "mtime": 1765933130.9712193,
+    "ast_hash": "ac2660bced312dd4e1f49263c4cb9b45",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/scripts/backup-worker/src/orchestrator.ts": {
+    "mtime": 1765933130.9713905,
+    "ast_hash": "4d13531df6e0680df1ab3e37aed26804",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/scripts/backup-worker/src/sql-service.ts": {
+    "mtime": 1765933130.9715102,
+    "ast_hash": "f27d92cdc02dd2003ece77a561e85d5e",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/proxy.ts": {
+    "mtime": 1776848831.861427,
+    "ast_hash": "18780c812d52d454c19903c50b8b8b89",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/app/manifest.ts": {
+    "mtime": 1778270994.5084696,
+    "ast_hash": "406c8282fdc1d1641be3398d91dd2555",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/app/not-found.tsx": {
+    "mtime": 1778402007.8259852,
+    "ast_hash": "6b3645c911600d909760d913e67acbda",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/app/proxy.ts": {
+    "mtime": 1765713042.4541368,
+    "ast_hash": "957560b79169e183479f3dbd87e4c5cd",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/app/sitemap.ts": {
+    "mtime": 1778747571.150276,
+    "ast_hash": "a5c75d8a73efa7b0a31ba13a94970281",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/app/%5Fagent/home.md/route.ts": {
+    "mtime": 1776850709.2056928,
+    "ast_hash": "5e8bf45d42a6d5e10790a2c16944cdb7",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/app/.well-known/agent-skills/index.json/route.ts": {
+    "mtime": 1776848759.7944815,
+    "ast_hash": "71e83fdcdd2a07b4139628fb945585da",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/app/.well-known/agent-skills/[slug]/route.ts": {
+    "mtime": 1776848929.7788966,
+    "ast_hash": "0b643c7ce61e043055120d0f281a4c79",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/app/.well-known/api-catalog/route.ts": {
+    "mtime": 1776848609.9927423,
+    "ast_hash": "1b446788c5709e67c48b271e69f18ef2",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/app/.well-known/jwks.json/route.ts": {
+    "mtime": 1776848623.6170328,
+    "ast_hash": "dd2744339c6c473910fce27b8d6783fa",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/app/.well-known/mcp/server-card.json/route.ts": {
+    "mtime": 1778270994.5048866,
+    "ast_hash": "db62e0d830a3c2325aee0a79c6fa7c83",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/app/.well-known/mcp/server-cards.json/route.ts": {
+    "mtime": 1776848729.3107264,
+    "ast_hash": "1f659fce33707854c12165780f5a7189",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/app/.well-known/mcp.json/route.ts": {
+    "mtime": 1776848743.479433,
+    "ast_hash": "a2c4aebdde13d0ad6df56df9cf57ea87",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/app/.well-known/oauth-authorization-server/route.ts": {
+    "mtime": 1776848871.2888255,
+    "ast_hash": "e2259b620aa0cc3385ab47f6c9194af0",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/app/.well-known/oauth-protected-resource/route.ts": {
+    "mtime": 1776848690.5596774,
+    "ast_hash": "3e85a149c1d3d7532be4784a9e37fac0",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/app/.well-known/openapi.json/route.ts": {
+    "mtime": 1776848597.082845,
+    "ast_hash": "fccb82ad2cad21597b14758485b3f8b2",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/app/.well-known/openid-configuration/route.ts": {
+    "mtime": 1776848883.7681599,
+    "ast_hash": "da17ebf152d4fbc5cadca35c2f299071",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/app/actions/analytics/mutations.ts": {
+    "mtime": 1774139448.54082,
+    "ast_hash": "081068affd36f5f8fef2c12aea708226",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/app/actions/analytics/queries.ts": {
+    "mtime": 1774139450.568895,
+    "ast_hash": "cb95f352e3f25ac0f3e272172b4136c6",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/app/actions/backup/queries.ts": {
+    "mtime": 1774139494.3500495,
+    "ast_hash": "06814be00fbbc09f0721f6861490b5a4",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/app/actions/certificates/mutations.ts": {
+    "mtime": 1774139463.2184832,
+    "ast_hash": "149636edd4ba59eaa1ffd5b34807c617",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/app/actions/certificates/queries.ts": {
+    "mtime": 1774139461.1908684,
+    "ast_hash": "1ed55547116fc88b9f81b348e277a7d3",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/app/actions/contact/mutations.ts": {
+    "mtime": 1774139495.9520154,
+    "ast_hash": "e0e9d966b3671daca56ded8da9462367",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/app/actions/experiences/mutations.ts": {
+    "mtime": 1774139474.2759604,
+    "ast_hash": "914b35f504080701869e16dd44717dfb",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/app/actions/experiences/queries.ts": {
+    "mtime": 1774139472.2467437,
+    "ast_hash": "1c95a57a028b425a7218310118bb6374",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/app/actions/media/mutations.ts": {
+    "mtime": 1774139497.978948,
+    "ast_hash": "19b5ab2ad449b603429525de0f76dfff",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/app/actions/posts/mutations.ts": {
+    "mtime": 1774139431.819702,
+    "ast_hash": "2bcb455bc3b3238b9dcad6f9367a91b8",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/app/actions/posts/queries.ts": {
+    "mtime": 1778281134.0989943,
+    "ast_hash": "bac89568d50add87bb68572cb18a0e02",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/app/actions/projects/mutations.ts": {
+    "mtime": 1774139417.7097743,
+    "ast_hash": "a28558d7a701bc7991d24a0af3a012ba",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/app/actions/projects/queries.ts": {
+    "mtime": 1774139415.6814854,
+    "ast_hash": "82bb7a01f67c884d39322f1eb7b3c7e0",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/app/actions/testimonials/mutations.ts": {
+    "mtime": 1774139486.0412042,
+    "ast_hash": "8815444a60e89a174bbaf575c6300e8d",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/app/actions/testimonials/queries.ts": {
+    "mtime": 1774139484.0128374,
+    "ast_hash": "5a8a3cbf8a6a355f1c97680a97b11498",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/app/ai-sitemap.json/route.ts": {
+    "mtime": 1778271211.825261,
+    "ast_hash": "7a397896bd34ad968b1e05f4ab0f2bd9",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/app/api/auth/[...all]/route.ts": {
+    "mtime": 1769538101.032329,
+    "ast_hash": "20aaca4b19988194ba6b95a2b32f5ea9",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/app/api/backup/delete/route.ts": {
+    "mtime": 1765970123.522361,
+    "ast_hash": "620e4aa71f518b7a615a38b7ccf573d9",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/app/api/backup/download/route.ts": {
+    "mtime": 1765933130.9731002,
+    "ast_hash": "948dac0afaf14a7dd2328777cfae8813",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/app/api/backup/trigger/route.ts": {
+    "mtime": 1778406812.331912,
+    "ast_hash": "ece120ce9fd57552f49b22dfbe87e871",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/app/api/blog/automate/route.ts": {
+    "mtime": 1778406805.0257897,
+    "ast_hash": "1372db17bf5e9af5c0abc908b5eb45cd",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/app/api/blog/sync/route.ts": {
+    "mtime": 1774139595.518922,
+    "ast_hash": "dac3047fa06e07ee387bd88d012e3b7a",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/app/api/health/route.ts": {
+    "mtime": 1765451994.163764,
+    "ast_hash": "3620f26cfa38db5daf8175be058585b4",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/app/api/oauth/authorize/route.ts": {
+    "mtime": 1776848894.0123193,
+    "ast_hash": "dd0e18f3fee04e4894cae6dbaa7c28ca",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/app/api/oauth/token/route.ts": {
+    "mtime": 1776848903.7917004,
+    "ast_hash": "a6dcc947c0cf881e87e2f8784312b64d",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/app/api/oauth/userinfo/route.ts": {
+    "mtime": 1776848917.9075096,
+    "ast_hash": "a9b564dfe85a0b0ed88e2c60b2734ada",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/app/api/upload/route.ts": {
+    "mtime": 1765933130.9736183,
+    "ast_hash": "417e7966707b2d390bb2f0c2abc75599",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/app/api/upload/optimize/route.ts": {
+    "mtime": 1765933130.9735131,
+    "ast_hash": "548c1091291cb32feb9e9fa082bfddee",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/app/feed.xml/route.ts": {
+    "mtime": 1778270994.5075006,
+    "ast_hash": "8136b29e1a47a2d219889781682c8ec5",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/app/llms.txt/route.ts": {
+    "mtime": 1778760156.9288101,
+    "ast_hash": "2e6abb0e8ba258e3ec1a99af1fef989e",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/app/opensearch.xml/route.ts": {
+    "mtime": 1778271211.8263876,
+    "ast_hash": "d8eedceb557cbea6aeca084afe159ebd",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/app/robots.txt/route.ts": {
+    "mtime": 1778692336.7107222,
+    "ast_hash": "a2097bcf7fc97442b8c9dc182bd2d632",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/app/[locale]/layout.tsx": {
+    "mtime": 1778748663.3903432,
+    "ast_hash": "18e9b670f69be734286f786eff18819f",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/app/[locale]/not-found.tsx": {
+    "mtime": 1778402010.8677418,
+    "ast_hash": "aa3dd40a8c3fd89f01a5cad1d74b302e",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/app/[locale]/page.tsx": {
+    "mtime": 1778760453.3915417,
+    "ast_hash": "3236d20ce44a1aeb70c043417f99b134",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/app/[locale]/about/page.tsx": {
+    "mtime": 1778760842.7749076,
+    "ast_hash": "30f5a671b033aa2d014735cc3d561e06",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/app/[locale]/blogs/page.tsx": {
+    "mtime": 1778760842.6138327,
+    "ast_hash": "9a5c12813df4d26c068d95713ac6bafe",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/app/[locale]/blogs/category/[category]/page.tsx": {
+    "mtime": 1778760842.853011,
+    "ast_hash": "fc6f9330e0fa42608f811c32d2e6e8a6",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/app/[locale]/blogs/[slug]/page.tsx": {
+    "mtime": 1778760872.520762,
+    "ast_hash": "dd25f56955d1642d97f8cb5094436692",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/app/[locale]/certificates/page.tsx": {
+    "mtime": 1778692336.5509949,
+    "ast_hash": "f2c70cbcda21b4cd8d7e9b53d850cc63",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/app/[locale]/certificates/[slug]/page.tsx": {
+    "mtime": 1778692336.670733,
+    "ast_hash": "1ceedf4b721b4ebc359f0c947e7cb992",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/app/[locale]/components/ui/button.tsx": {
+    "mtime": 1765970123.521593,
+    "ast_hash": "4870ecf032591e7dc71cd4e3c36bb683",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/app/[locale]/components/ui/input.tsx": {
+    "mtime": 1765970123.5216887,
+    "ast_hash": "962daebde14319230f0cbf88a8472f70",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/app/[locale]/contact/page.tsx": {
+    "mtime": 1778760842.607661,
+    "ast_hash": "71aa12976f083b323aa3962edf7322ae",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/app/[locale]/dashboard/layout.tsx": {
+    "mtime": 1773964510.2601569,
+    "ast_hash": "31c66f19c8c8c98f7bdedbae1a4b5b6e",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/app/[locale]/dashboard/page.tsx": {
+    "mtime": 1771155190.3281581,
+    "ast_hash": "7b2405ed464d2502f5002ac93aef81a4",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/app/[locale]/dashboard/backups/page.tsx": {
+    "mtime": 1774139519.9072514,
+    "ast_hash": "915f5c1a705cd691d0ffa09ecf296e30",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/app/[locale]/dashboard/blogs/page.tsx": {
+    "mtime": 1774139561.8359597,
+    "ast_hash": "a8c604ed9735f42822c44827f3e0e7d6",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/app/[locale]/dashboard/blogs/edit/[id]/page.tsx": {
+    "mtime": 1774139570.8333435,
+    "ast_hash": "5eb471ff6e89bec61f1d0ef2d9c625b0",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/app/[locale]/dashboard/blogs/new/page.tsx": {
+    "mtime": 1774139786.8251033,
+    "ast_hash": "6401326d72945e1ea4e78dbd4885eb1c",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/app/[locale]/dashboard/certificates/page.tsx": {
+    "mtime": 1765814514.4169009,
+    "ast_hash": "b1dbcacc4262ae82cc369fad8fb8719c",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/app/[locale]/dashboard/experiences/page.tsx": {
+    "mtime": 1774139747.6142986,
+    "ast_hash": "4c88532abf9332de1f36fdb3575b06c2",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/app/[locale]/dashboard/experiences/new/page.tsx": {
+    "mtime": 1768064281.905074,
+    "ast_hash": "8ed4628cd4b7e832c680e6e7c63addff",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/app/[locale]/dashboard/experiences/[id]/page.tsx": {
+    "mtime": 1774139754.0207667,
+    "ast_hash": "ec90977ab3a0566fd9af43843cba7558",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/app/[locale]/dashboard/profile/page.tsx": {
+    "mtime": 1774148499.1402094,
+    "ast_hash": "7a4774f3f12fd12889b2a2e1ab8eda02",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/app/[locale]/dashboard/projects/page.tsx": {
+    "mtime": 1765814502.2037644,
+    "ast_hash": "8afd481e350a9a3fdd9604fdd1680fcc",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/app/[locale]/dashboard/projects/new/page.tsx": {
+    "mtime": 1774139624.391021,
+    "ast_hash": "1ddd7b8135058a658c8d84e2e95c50f9",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/app/[locale]/dashboard/projects/[id]/page.tsx": {
+    "mtime": 1774139618.017177,
+    "ast_hash": "3f514f56d9e5478473c958f3fa8a686b",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/app/[locale]/dashboard/testimonial/page.tsx": {
+    "mtime": 1771872220.2270904,
+    "ast_hash": "cd0dbbeb1036651d0d68549b8db100bd",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/app/[locale]/dashboard/testimonials/page.tsx": {
+    "mtime": 1774139769.9558425,
+    "ast_hash": "ad81f3f45b5da1447c7ace2ec3e2a091",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/app/[locale]/dashboard/testimonials/new/page.tsx": {
+    "mtime": 1771871556.527736,
+    "ast_hash": "dd115a46460a7fd1a8ed90a65461b460",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/app/[locale]/dashboard/testimonials/[id]/page.tsx": {
+    "mtime": 1774139771.989334,
+    "ast_hash": "200d2baefbacc727607fa632d9d159ae",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/app/[locale]/login/page.tsx": {
+    "mtime": 1778402019.8599305,
+    "ast_hash": "06f7aa31cc28f9862e4b000ed16cb917",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/app/[locale]/privacy/page.tsx": {
+    "mtime": 1778270994.5238566,
+    "ast_hash": "e850c6556e389523cf328a4bf789c843",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/app/[locale]/projects/page.tsx": {
+    "mtime": 1778760842.8497,
+    "ast_hash": "801cf62c35431bccdbf7e2aa687afc3c",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/app/[locale]/projects/[slug]/page.tsx": {
+    "mtime": 1778760503.172001,
+    "ast_hash": "dc7caebe702e27646d6eca5ecff339c2",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/app/[locale]/signup/page.tsx": {
+    "mtime": 1778402025.0242686,
+    "ast_hash": "0e1a10e94e85a68f61ec08d13f921667",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/app/[locale]/terms/page.tsx": {
+    "mtime": 1778270994.5288343,
+    "ast_hash": "ee5f6c0ecdd164b7737cb275f9490321",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/components/agent/WebMcpProvider.tsx": {
+    "mtime": 1778270994.530331,
+    "ast_hash": "69e08795982c8cc69af0a26bbbdc9517",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/components/analytics/BlogViewTracker.tsx": {
+    "mtime": 1774139531.8721719,
+    "ast_hash": "e9adc4756f938d48608871ce924069b9",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/components/analytics/ProjectViewTracker.tsx": {
+    "mtime": 1774139525.1214242,
+    "ast_hash": "731d4cd770bc4ecb480156dfff0151bd",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/components/blogs-components/EditBlog.tsx": {
+    "mtime": 1761585437.2830203,
+    "ast_hash": "3eef4d8f03bf8bbe557bd46884b0004b",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/components/features/auth/SignInButton.tsx": {
+    "mtime": 1765814615.1947498,
+    "ast_hash": "af00f007daa2880b1112187ac1b2ba9a",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/components/features/auth/SignInForm.tsx": {
+    "mtime": 1769539743.4162793,
+    "ast_hash": "2071b67fd69231dd66f14392fcf85103",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/components/features/auth/SignOutButton.tsx": {
+    "mtime": 1767208287.2193317,
+    "ast_hash": "0f8a0d0540612f0fd19d5046f77ce84a",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/components/features/auth/SignUpForm.tsx": {
+    "mtime": 1767208263.7706335,
+    "ast_hash": "c02fe4e1574ae5f63e8c93ec3899bbf4",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/components/features/blog/BlogCard.tsx": {
+    "mtime": 1778402066.0138726,
+    "ast_hash": "ef4f9c078c164d53e030537eb7ad7c41",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/components/features/blog/MDXContent.tsx": {
+    "mtime": 1774141480.7452693,
+    "ast_hash": "522d12c12a2077d0eefd66a038cb6146",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/components/features/blog/RelatedPosts.tsx": {
+    "mtime": 1778281419.9230313,
+    "ast_hash": "70c7d93a13e93bf50cce557c5bd873a8",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/components/features/dashboard/Welcome.tsx": {
+    "mtime": 1774141495.5695722,
+    "ast_hash": "e7fbce19e9c7a56916436956b3055a2f",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/components/features/dashboard/analytics/AnalyticsDashboard.tsx": {
+    "mtime": 1774024473.5030978,
+    "ast_hash": "ef4d9d36776b251fc960694e6321a0db",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/components/features/dashboard/analytics/DashboardStats.tsx": {
+    "mtime": 1774139539.9391797,
+    "ast_hash": "a03553065561b01bd1ca2c9d7812bb94",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/components/features/dashboard/analytics/SystemHealth.tsx": {
+    "mtime": 1778239584.1342032,
+    "ast_hash": "de2c10887bf57ea09d37c56b8c3c65e0",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/components/features/dashboard/analytics/health-backup/BackupControls.tsx": {
+    "mtime": 1774138639.2009506,
+    "ast_hash": "1c28e9c1ae8c5c1be5f8770e9cabd26a",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/components/features/dashboard/analytics/health-backup/BackupStats.tsx": {
+    "mtime": 1774138633.5370686,
+    "ast_hash": "1e79833cd2706634dfc9212650a11212",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/components/features/dashboard/analytics/health-backup/BackupTable.tsx": {
+    "mtime": 1778239570.3289828,
+    "ast_hash": "9d01ea481f0731441042692210ce4098",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/components/features/dashboard/analytics/health-backup/StatusBadge.tsx": {
+    "mtime": 1774141507.5625193,
+    "ast_hash": "b63ab6a611220c42e467f171e68f3275",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/components/features/dashboard/blog/BlogForm.tsx": {
+    "mtime": 1774139578.8033776,
+    "ast_hash": "01805ed8005e794406de906482950c5f",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/components/features/dashboard/blog/BlogSyncConsole.tsx": {
+    "mtime": 1778402651.7793367,
+    "ast_hash": "8f47540122207a5bee7e69b323d29f74",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/components/features/dashboard/certificates/AddCertificate.tsx": {
+    "mtime": 1778411000.1652305,
+    "ast_hash": "4c872e984142cc2be790652ee3933823",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/components/features/dashboard/certificates/CertificateListContainer.tsx": {
+    "mtime": 1774139733.164133,
+    "ast_hash": "a03d5c1733b7a91e58741fa9944f39b9",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/components/features/dashboard/certificates/CertificatesList.tsx": {
+    "mtime": 1774139720.68937,
+    "ast_hash": "cc124d0f57cb80d1b27fb4c45a39f5f1",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/components/features/dashboard/certificates/EditCertificate.tsx": {
+    "mtime": 1778411001.8187706,
+    "ast_hash": "d1082830e71ba1c7a75d531d261affcd",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/components/features/dashboard/experiences/ExperienceForm.tsx": {
+    "mtime": 1774139659.1741722,
+    "ast_hash": "d96c1a68a980d89761f35ec8c96dbd94",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/components/features/dashboard/experiences/ExperienceList.tsx": {
+    "mtime": 1774139652.402701,
+    "ast_hash": "0ea328556c543c9ff1e686aaee826d82",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/components/features/dashboard/layout/Aside.tsx": {
+    "mtime": 1774148422.9716988,
+    "ast_hash": "b4c038befa63f9e1dbf7a216294459a0",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/components/features/dashboard/layout/EditPopover.tsx": {
+    "mtime": 1765970123.5241194,
+    "ast_hash": "ec6c1129848f94f9b36ad7dc45937d7d",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/components/features/dashboard/layout/MobileNav.tsx": {
+    "mtime": 1776944823.5947423,
+    "ast_hash": "bd956a71a8ad245151b3d447f9d57c6a",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/components/features/dashboard/layout/UserButton.tsx": {
+    "mtime": 1774260666.148465,
+    "ast_hash": "efb5234c5f12881aa168eebe6ca44fd9",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/components/features/dashboard/profile/ProfileForm.tsx": {
+    "mtime": 1774148618.2809708,
+    "ast_hash": "fde50d556b0b004a405803b646ac869f",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/components/features/dashboard/projects/ProjectForm.tsx": {
+    "mtime": 1774138409.282454,
+    "ast_hash": "06b4d220f68803c4b64ef852aa776693",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/components/features/dashboard/projects/ProjectList.tsx": {
+    "mtime": 1774139631.11469,
+    "ast_hash": "504a757669303fabb0d369260311863f",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/components/features/dashboard/projects/ProjectListContainer.tsx": {
+    "mtime": 1774139638.380895,
+    "ast_hash": "ee20b4b5ead5379a084d106e273eb5e2",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/components/features/dashboard/projects/ProjectThumbnail.tsx": {
+    "mtime": 1774135058.0321648,
+    "ast_hash": "7e9210a776b57c1e6308852d48229b6a",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/components/features/dashboard/projects/form/ProjectBasicInfo.tsx": {
+    "mtime": 1774138368.382415,
+    "ast_hash": "1f738a8a432b0fa54a2a1fdd2d17e484",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/components/features/dashboard/projects/form/ProjectContentSection.tsx": {
+    "mtime": 1774138420.2523332,
+    "ast_hash": "598fa30460d04ac8f1721637f2e4f0eb",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/components/features/dashboard/projects/form/ProjectFormHeader.tsx": {
+    "mtime": 1774138363.6669734,
+    "ast_hash": "cdde59731b2237458a2b64c730a453a4",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/components/features/dashboard/projects/form/ProjectLinks.tsx": {
+    "mtime": 1774138374.2016652,
+    "ast_hash": "27e28816c0b979fa53d2022051ca23a9",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/components/features/dashboard/projects/form/ProjectMediaSection.tsx": {
+    "mtime": 1774138422.0495946,
+    "ast_hash": "72260fb4ec8f980499ffc88c321510a3",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/components/features/dashboard/projects/form/ProjectStatus.tsx": {
+    "mtime": 1774138376.879464,
+    "ast_hash": "21fde13860a54d199f2b5e8217e9e1b3",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/components/features/dashboard/testimonials/TestimonialForm.tsx": {
+    "mtime": 1774139672.6232395,
+    "ast_hash": "84ae02ff1d283b810430048d2df237a1",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/components/features/dashboard/testimonials/TestimonialList.tsx": {
+    "mtime": 1774139665.5190995,
+    "ast_hash": "b7fe040eb3721ed9ff2c4f06f0fe9ede",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/components/features/dashboard/uploads/MultiImageUpload.tsx": {
+    "mtime": 1774139646.0695004,
+    "ast_hash": "b2869cb83aed6b9c1767306d03132e4e",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/components/features/dashboard/uploads/Upload.tsx": {
+    "mtime": 1765970123.5254774,
+    "ast_hash": "162bc8f6ee69a706dad857e86a71b34c",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/components/features/dashboard/uploads/multi-upload/GalleryHeader.tsx": {
+    "mtime": 1774138434.580057,
+    "ast_hash": "de584ce16bd6b02b14dc47c17eddf6fd",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/components/features/dashboard/uploads/multi-upload/ImageGrid.tsx": {
+    "mtime": 1774138438.6217737,
+    "ast_hash": "c4773c61b554e81e5460d033402e4b7a",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/components/features/dashboard/uploads/multi-upload/ImageItem.tsx": {
+    "mtime": 1774138436.6022706,
+    "ast_hash": "aeb47d7df8378c8ad122e93ed34b17c5",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/components/features/dashboard/uploads/multi-upload/UploadButton.tsx": {
+    "mtime": 1774138440.6429293,
+    "ast_hash": "ac52060833c74150d5b685239c17a63e",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/components/features/homepage/About.tsx": {
+    "mtime": 1769534104.981359,
+    "ast_hash": "eea4e6aa60932d226d7aee429dbb6c36",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/components/features/homepage/AboutClient.tsx": {
+    "mtime": 1778270994.5314457,
+    "ast_hash": "70916c26dd6650db5eeab36f565edc57",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/components/features/homepage/Certificates.tsx": {
+    "mtime": 1774139740.962841,
+    "ast_hash": "280f4ca0bec49da55686af3fbed21078",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/components/features/homepage/CertificatesList.tsx": {
+    "mtime": 1778402071.3093007,
+    "ast_hash": "d8785537e4a0ddc8cd82960246e3a2d5",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/components/features/homepage/Contact.tsx": {
+    "mtime": 1778410987.7263436,
+    "ast_hash": "b351765038984d2ae02164a3cb36bbb4",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/components/features/homepage/CVDropdown.tsx": {
+    "mtime": 1778247441.4189024,
+    "ast_hash": "ec437ce02a0e7d3bdcf74bbe76bf31be",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/components/features/homepage/Experience.tsx": {
+    "mtime": 1774139765.8794007,
+    "ast_hash": "9b961b2833b07deb47b0b6cbc0b893e9",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/components/features/homepage/ExperienceClient.tsx": {
+    "mtime": 1774143211.027307,
+    "ast_hash": "64b2300f7691f4ee8ce48ab19ae498bf",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/components/features/homepage/Footer.tsx": {
+    "mtime": 1778271160.6711597,
+    "ast_hash": "2c0daec11711ca0281b1a930c772f47b",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/components/features/homepage/Hero.tsx": {
+    "mtime": 1778402034.5341935,
+    "ast_hash": "56e85255d0d81236ffd8803ecc92a70c",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/components/features/homepage/HeroAnimations.tsx": {
+    "mtime": 1774031214.861104,
+    "ast_hash": "c3d3eb0ab4c7b6d12d10e8e556d27bef",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/components/features/homepage/HomeSectionBand.tsx": {
+    "mtime": 1774149141.5210807,
+    "ast_hash": "693d01fb8419cfdfc6424ab96928f812",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/components/features/homepage/Nav.tsx": {
+    "mtime": 1774290346.1218324,
+    "ast_hash": "3bf3bbfaf05cb65c20e46e2411645957",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/components/features/homepage/ProjectLinkTracker.tsx": {
+    "mtime": 1767208374.1274066,
+    "ast_hash": "484de6b78fc339a8cda0a9a889cf746d",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/components/features/homepage/Projects.tsx": {
+    "mtime": 1778271152.4107199,
+    "ast_hash": "6f4d09add54f5999f473424e4ea686ef",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/components/features/homepage/ProjectsClient.tsx": {
+    "mtime": 1778402068.7472997,
+    "ast_hash": "4b53de0474ad78dd0ac8ce764e52c353",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/components/features/homepage/Services.tsx": {
+    "mtime": 1776873786.8418841,
+    "ast_hash": "74650619e271c715b39c2154bbd92763",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/components/features/homepage/TechStack.tsx": {
+    "mtime": 1776873810.1393886,
+    "ast_hash": "c29c8102605a00035f0e43078fd8ea8d",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/components/features/homepage/Testimonials.tsx": {
+    "mtime": 1774139767.920064,
+    "ast_hash": "fc3790b3862c6fa53d0db19952b342c6",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/components/features/homepage/TestimonialsClient.tsx": {
+    "mtime": 1774143211.027426,
+    "ast_hash": "5c130cb6f6736d8717b9a4b4b5a2b979",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/components/features/homepage/nav/config.ts": {
+    "mtime": 1778273014.5673978,
+    "ast_hash": "cd457c404f01f0582ab06cf591e7b357",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/components/features/homepage/nav/DesktopNav.tsx": {
+    "mtime": 1774259780.1198242,
+    "ast_hash": "42f4ae8e12bda67cf9aac672977d56fa",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/components/features/homepage/nav/MobileNav.tsx": {
+    "mtime": 1778270994.5339253,
+    "ast_hash": "e816e6c6ac747b62fa0c54fe607f78ea",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/components/features/homepage/nav/NavBrand.tsx": {
+    "mtime": 1778270994.535561,
+    "ast_hash": "b6d5dd53483a770a4adf5d19b3550a94",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/components/features/homepage/nav/useNavState.ts": {
+    "mtime": 1774142383.1990714,
+    "ast_hash": "01a78daa8203cd6ded5f9251f8d59890",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/components/features/homepage/nav/utils.ts": {
+    "mtime": 1774142383.1989915,
+    "ast_hash": "27cf8da3c2ab55ce7a68597cb132972e",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/components/features/homepage/seasonal/SeasonalBackground.tsx": {
+    "mtime": 1776871174.120544,
+    "ast_hash": "7b01ba85d34792594ece8cb22bf1001d",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/components/i18n/LanguageSwitcher.tsx": {
+    "mtime": 1774143071.0890725,
+    "ast_hash": "f58d6ba3f13d5feb39c5d3f4f210b61b",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/components/seo/BreadcrumbSchema.tsx": {
+    "mtime": 1776853929.8526373,
+    "ast_hash": "177c6c4c9d726e6236181b75d6d460cf",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/components/seo/OrganizationSchema.tsx": {
+    "mtime": 1778748650.1177485,
+    "ast_hash": "3fa67ea6d50f4fc90a50e8caffeabae6",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/components/seo/PersonSchema.tsx": {
+    "mtime": 1778748650.1226692,
+    "ast_hash": "200d59f9a4cf35d3ce18c024baab4d6e",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/components/seo/StructuredData.tsx": {
+    "mtime": 1778760481.6794143,
+    "ast_hash": "831f76916010c7890db04f5753077faf",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/components/shared/DeleteConfirmationDialog.tsx": {
+    "mtime": 1765817217.438271,
+    "ast_hash": "28f3dddfef7da924d7ae64f700fcf254",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/components/shared/ErrorBoundary.tsx": {
+    "mtime": 1774141567.3085456,
+    "ast_hash": "c7116043c32147966dd9f381c09f97a2",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/components/shared/PostHogClient.tsx": {
+    "mtime": 1771157969.173429,
+    "ast_hash": "fbec9214bb0b03b423a2693082fc7712",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/components/shared/PostHogPageView.tsx": {
+    "mtime": 1773972234.4517124,
+    "ast_hash": "cce45d97da9040a3bb85c410cfb3c88a",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/components/skeletons/CertificatesSkeleton.tsx": {
+    "mtime": 1765653319.3330326,
+    "ast_hash": "a723e661f904c1465f971a10706b3db8",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/components/skeletons/DashboardSkeleton.tsx": {
+    "mtime": 1765653587.018398,
+    "ast_hash": "b20a31a8b25d2cf54bafa474d93ce133",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/components/skeletons/DashboardTableSkeleton.tsx": {
+    "mtime": 1765653602.7248666,
+    "ast_hash": "e6c7578cb6b0ef84a2d702d97615391a",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/components/skeletons/ProjectsSkeleton.tsx": {
+    "mtime": 1765653244.9771235,
+    "ast_hash": "06caafeb9715b03a2a823c81ce95a63c",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/components/ui/context-menu.tsx": {
+    "mtime": 1768064281.9321702,
+    "ast_hash": "384916b0f5798613f741a3f758ac3c28",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/components/ui/Loading.tsx": {
+    "mtime": 1761585437.2844217,
+    "ast_hash": "d5adb97795087967fbf67542de3d0fbd",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/components/ui/accordion.tsx": {
+    "mtime": 1768064281.925722,
+    "ast_hash": "3bbc0917760e830082480a908063b350",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/components/ui/alert-dialog.tsx": {
+    "mtime": 1768064281.9260993,
+    "ast_hash": "cd8a48c36cbb6f87cb41f14d7ce88d03",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/components/ui/alert.tsx": {
+    "mtime": 1768064281.926744,
+    "ast_hash": "fa772b7028b4a42633cdced1a39d8fcd",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/components/ui/aspect-ratio.tsx": {
+    "mtime": 1761585437.2839012,
+    "ast_hash": "9efb83cde0f9d15cbeb963c09b8a4373",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/components/ui/avatar.tsx": {
+    "mtime": 1768064281.927141,
+    "ast_hash": "e098d228ef4b599c647899d9455aa344",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/components/ui/BackButton.tsx": {
+    "mtime": 1765822231.176725,
+    "ast_hash": "4ffd1e1e0492aabae459118eb564238d",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/components/ui/badge.tsx": {
+    "mtime": 1768064281.9277112,
+    "ast_hash": "c011bb5381800e591ac0ce29c8ae7e53",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/components/ui/breadcrumb.tsx": {
+    "mtime": 1768064281.9281816,
+    "ast_hash": "308a0e47b6f49f84a0fea7d1f82ff645",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/components/ui/button-group.tsx": {
+    "mtime": 1768064281.9285371,
+    "ast_hash": "cf373d5fbd493bce3d2866487dca1c0a",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/components/ui/button.tsx": {
+    "mtime": 1774146385.0545254,
+    "ast_hash": "24509ae2fc6490f2d2a4d97bfe398598",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/components/ui/calendar.tsx": {
+    "mtime": 1778238928.86768,
+    "ast_hash": "22fd7ffbf7c01cc2b6ba94e886f8c8ae",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/components/ui/card.tsx": {
+    "mtime": 1778402056.4440296,
+    "ast_hash": "b0bd5fedbf7245b4cf981df66e8981e8",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/components/ui/carousel.tsx": {
+    "mtime": 1774135674.3572197,
+    "ast_hash": "ce81b35494f97ee36586d833ae58497b",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/components/ui/chart.tsx": {
+    "mtime": 1776895714.0396993,
+    "ast_hash": "a32adfa9737ab535c286e557f3a0d872",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/components/ui/checkbox.tsx": {
+    "mtime": 1768064281.9308262,
+    "ast_hash": "73df7820068c7560e5681cd4d8a8e78d",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/components/ui/collapsible.tsx": {
+    "mtime": 1768064281.9312184,
+    "ast_hash": "87cce2923d03d5560ae6838e54e87f60",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/components/ui/command.tsx": {
+    "mtime": 1768064281.9318023,
+    "ast_hash": "e1f33c35a63d611253f786fbcde551d5",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/components/ui/Container.tsx": {
+    "mtime": 1761585437.284066,
+    "ast_hash": "695d35fc92bd064f4fda5166137efc82",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/components/ui/MarkdownDisplay.tsx": {
+    "mtime": 1769457442.4336083,
+    "ast_hash": "c74a61022a4668a2e4ed4a4094cb7a83",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/components/ui/menubar.tsx": {
+    "mtime": 1768064281.9377038,
+    "ast_hash": "5bed4c8ba05cbc1efebee304f6958603",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/components/ui/navigation-menu.tsx": {
+    "mtime": 1768064281.9379628,
+    "ast_hash": "409445be50150603f8e4e7bb81386f1c",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/components/ui/pagination.tsx": {
+    "mtime": 1768064281.938308,
+    "ast_hash": "af4e10f3f411032f01971f9c4a16383b",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/components/ui/popover.tsx": {
+    "mtime": 1768064281.9387825,
+    "ast_hash": "3ccb512d4120b0376bb60160e39100ad",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/components/ui/progress.tsx": {
+    "mtime": 1768064281.9391582,
+    "ast_hash": "82aa934e690f320d97e6fd54d916103c",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/components/ui/ProjectCategories.tsx": {
+    "mtime": 1765273850.3714595,
+    "ast_hash": "38fd092d111b5ba47ddeabdbfcd622c7",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/components/ui/radio-group.tsx": {
+    "mtime": 1768064281.9393916,
+    "ast_hash": "dc3452b57b8aa47caf250ad137bb7129",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/components/ui/ReadMoreText.tsx": {
+    "mtime": 1774141498.8381948,
+    "ast_hash": "021e4fb3e8afba77c0b33c9f6bae2955",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/components/ui/safe-responsive-chart.tsx": {
+    "mtime": 1776895707.7395732,
+    "ast_hash": "5cca4fd504c0d2cff7a655b03106b978",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/components/ui/SafeImage.tsx": {
+    "mtime": 1761585437.2845733,
+    "ast_hash": "e4bdbbc1bdb483de2dc19778393bb93a",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/components/ui/scroll-area.tsx": {
+    "mtime": 1768064281.9395938,
+    "ast_hash": "f41bbcdbb8a579fa9c983e4e608a8fd5",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/components/ui/Section.tsx": {
+    "mtime": 1774143211.026428,
+    "ast_hash": "006532fc90ae343c70d97db22174a104",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/components/ui/select.tsx": {
+    "mtime": 1768064281.9398844,
+    "ast_hash": "d081dcb3e015c280421da82a22edaba7",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/components/ui/separator.tsx": {
+    "mtime": 1767902664.4231515,
+    "ast_hash": "077b40629d917785e0ba1300fd483995",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/components/ui/sheet.tsx": {
+    "mtime": 1767962466.9317794,
+    "ast_hash": "635632f4ae31dff4857b38bc20d80ca8",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/components/ui/sidebar.tsx": {
+    "mtime": 1765970123.5272326,
+    "ast_hash": "8833ebbbd00d30860fcba4d378e6ba33",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/components/ui/skeleton.tsx": {
+    "mtime": 1765751918.4757195,
+    "ast_hash": "a6a28e07e4ef4690f0af83fb2a469b17",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/components/ui/slider.tsx": {
+    "mtime": 1768064281.9401796,
+    "ast_hash": "5567a440f6a4a9a25ab1516260d5ee10",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/components/ui/sonner.tsx": {
+    "mtime": 1774141415.7580767,
+    "ast_hash": "40d4e75d454810299f57550788d615e8",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/components/ui/spinner.tsx": {
+    "mtime": 1768064281.9405193,
+    "ast_hash": "fc98017df5d18e955038411fd8a73db2",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/components/ui/switch.tsx": {
+    "mtime": 1768064281.9410343,
+    "ast_hash": "385242803c0359392bba376a7fac9853",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/components/ui/table.tsx": {
+    "mtime": 1769539277.2602103,
+    "ast_hash": "e315d1ebf49a75a88aa1da1f9c4cd0c3",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/components/ui/tabs.tsx": {
+    "mtime": 1768064281.9414043,
+    "ast_hash": "59a6676dcbbe241c30116b6e368e8fb6",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/components/ui/textarea.tsx": {
+    "mtime": 1768064281.941689,
+    "ast_hash": "3ecfe8c37f89620dec705df42655e59e",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/components/ui/toggle-group.tsx": {
+    "mtime": 1768064281.9418874,
+    "ast_hash": "bcbacae81a30cb59eaba1402696535e5",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/components/ui/toggle.tsx": {
+    "mtime": 1768064281.9421866,
+    "ast_hash": "0c1ad4870f969d52110f70dc5dfe4c51",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/components/ui/tooltip.tsx": {
+    "mtime": 1767902666.2166955,
+    "ast_hash": "7868d46b71b77fec2b54a25fda35e83a",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/components/ui/dialog.tsx": {
+    "mtime": 1768064281.9325697,
+    "ast_hash": "811af449ad3b50f55ed39cba0aa7112d",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/components/ui/drawer.tsx": {
+    "mtime": 1768064281.9330504,
+    "ast_hash": "a2b8356d205da7feed05d74a2037005b",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/components/ui/dropdown-menu.tsx": {
+    "mtime": 1768064281.9335186,
+    "ast_hash": "b8d6858bec59a94301f800dbbc54116c",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/components/ui/empty.tsx": {
+    "mtime": 1768064281.9338956,
+    "ast_hash": "f660685d56fe146749f5bf2ef6529be1",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/components/ui/field.tsx": {
+    "mtime": 1768064281.9341164,
+    "ast_hash": "e8868edae573d54666752166f27af0c5",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/components/ui/fonts.ts": {
+    "mtime": 1774140692.708043,
+    "ast_hash": "fd462ea856490dd53e8cc46a075cf208",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/components/ui/form.tsx": {
+    "mtime": 1768064281.9345505,
+    "ast_hash": "efc578b737089994183d9b869b46b576",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/components/ui/formSubmitBtn.tsx": {
+    "mtime": 1768082683.9655747,
+    "ast_hash": "f3f1c659f0d7d028e7d256822716af2f",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/components/ui/hover-card.tsx": {
+    "mtime": 1768064281.935338,
+    "ast_hash": "9036ed2f9c63d27fe33cfa58cee8cc33",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/components/ui/ImageCarousel.tsx": {
+    "mtime": 1774298328.4809039,
+    "ast_hash": "cfe2ee7cded3baf72d42cdc64beae64a",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/components/ui/ImagePreviewer.tsx": {
+    "mtime": 1774138722.687822,
+    "ast_hash": "3c90d7eea0ca368f8e062e55da788fe8",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/components/ui/input-group.tsx": {
+    "mtime": 1768064281.9358225,
+    "ast_hash": "364bfc7175134adf682d3da2d05054fb",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/components/ui/input-otp.tsx": {
+    "mtime": 1768064281.9361868,
+    "ast_hash": "185110ddc7b972fcff8773ff27af6bcf",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/components/ui/input.tsx": {
+    "mtime": 1765751848.0821812,
+    "ast_hash": "cd4d5107c542a881db4d0803256e08a7",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/components/ui/item.tsx": {
+    "mtime": 1768064281.9365706,
+    "ast_hash": "e2e5f66aafbcef798dc60803baba450d",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/components/ui/kbd.tsx": {
+    "mtime": 1768064281.936939,
+    "ast_hash": "c26bdcd0754a8864d34e7b3a2cd06a0c",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/components/ui/label.tsx": {
+    "mtime": 1768064281.9373431,
+    "ast_hash": "b7a3e88ca7cca7f100a843e95edf2a1f",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/components/ui/image-previewer/InlineDisplay.tsx": {
+    "mtime": 1774138698.0297174,
+    "ast_hash": "d4f6dfae1564c09ec9a52ad1484651cd",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/components/ui/image-previewer/LightboxViewer.tsx": {
+    "mtime": 1774138700.0522,
+    "ast_hash": "34a1cedbc94e8ccc78a25276314826e3",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/data/seo-keywords.json": {
+    "mtime": 1778748680.2236834,
+    "ast_hash": "fc8e122912689708df6bd013f3320e74",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/db/index.ts": {
+    "mtime": 1769185637.9037435,
+    "ast_hash": "015ddfc6941bdeed32ee0bb22024f09a",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/db/schema.ts": {
+    "mtime": 1774138080.1004643,
+    "ast_hash": "8ddd33471b926684f2e9db16d3eb546f",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/db/seed.ts": {
+    "mtime": 1778270994.54218,
+    "ast_hash": "59bacd871e68a3de18dbbad92c1a25fd",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/db/db-seed-data/certificates-data.ts": {
+    "mtime": 1765818571.3826318,
+    "ast_hash": "4a55204013be9a8cf264c5263d1ada56",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/db/db-seed-data/experiences-seed.ts": {
+    "mtime": 1774148773.9555225,
+    "ast_hash": "923ee2a47e63e508b21091358dbb7093",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/db/db-seed-data/projects-seed.ts": {
+    "mtime": 1774148398.2723615,
+    "ast_hash": "95879998de721b99a5961e5ae2e2da72",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/db/db-seed-data/testimonials-seed.ts": {
+    "mtime": 1774148398.2726223,
+    "ast_hash": "43f1a57f111691b1f2c9f8922a6cff00",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/db/db-seed-data/projects/books-app-project-data.ts": {
+    "mtime": 1765826702.53355,
+    "ast_hash": "211ff24d020bd0ec073b36f11ffa8914",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/db/db-seed-data/projects/dev-challenges-data.ts": {
+    "mtime": 1765826702.5338714,
+    "ast_hash": "aed8829fb9abd2c980dfef06f3637fe8",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/db/db-seed-data/projects/hi-x-project-data.ts": {
+    "mtime": 1765826820.2281013,
+    "ast_hash": "c23b171c7b84ca6c235955ac6a2f48ae",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/db/db-seed-data/projects/portfolio-project-data.ts": {
+    "mtime": 1768064281.9431162,
+    "ast_hash": "004034b06e167742295811b7002188d2",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/db/db-seed-data/projects/pos-system-project-data.ts": {
+    "mtime": 1765826702.5372474,
+    "ast_hash": "3b70f55160fdf270a7fd89c249361f2b",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/db/db-seed-data/projects/self-tracker-project-data.ts": {
+    "mtime": 1765826702.537841,
+    "ast_hash": "815a07ca7afba3287018edb841b3736b",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/db/db-seed-data/projects/toota-art-project-data.ts": {
+    "mtime": 1765826702.5381625,
+    "ast_hash": "ad10f6efa4c384a4e6f123bdef7da754",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/db/db-seed-data/projects/zamalek-store-project-data.ts": {
+    "mtime": 1765826702.538398,
+    "ast_hash": "a9d2fcdf4df42a2d5fe9a2f42650e3f7",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/hooks/use-mobile.tsx": {
+    "mtime": 1765970123.527334,
+    "ast_hash": "209b5193af16624cdd89d3591480dd48",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/hooks/useAdminCheck.ts": {
+    "mtime": 1765817255.1764636,
+    "ast_hash": "a5ccc0584559f9948a456e864726f984",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/hooks/useBrowserDownload.ts": {
+    "mtime": 1765934892.192934,
+    "ast_hash": "c3a1e05ad59c10030063808e4c1b21f2",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/hooks/useEventListener.ts": {
+    "mtime": 1765920453.981225,
+    "ast_hash": "5d0e5cc1c79fcc5c94a5cf30cca59d11",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/hooks/useIsClient.ts": {
+    "mtime": 1765920460.7590551,
+    "ast_hash": "a3c11a9b745b53d47132d5a63df8a293",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/hooks/useMediaQuery.ts": {
+    "mtime": 1765920442.3926244,
+    "ast_hash": "1b7a5141b0ea7d4fc23a19ab27f81816",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/hooks/useScrollPosition.ts": {
+    "mtime": 1765970894.0562272,
+    "ast_hash": "406ec260965474703c68f78a5b419e86",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/hooks/useSlugGenerator.ts": {
+    "mtime": 1765817231.797642,
+    "ast_hash": "8297d940e2f0c700943859b5f10686f0",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/hooks/useWindowSize.ts": {
+    "mtime": 1765920435.984574,
+    "ast_hash": "1a9998ab8c3776937951fb79c872fd87",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/i18n/navigation.ts": {
+    "mtime": 1761585437.2850337,
+    "ast_hash": "6abc1f5e5b11a09472cb26f1fc8f91cd",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/i18n/request.ts": {
+    "mtime": 1761587225.9399724,
+    "ast_hash": "f8c86ea476da129b6e69ad3ac2a5290b",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/i18n/routing.ts": {
+    "mtime": 1761585437.2850978,
+    "ast_hash": "c74ecaa3d9457d937a90041978ce49d3",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/lib/auth-client.ts": {
+    "mtime": 1769537335.2930305,
+    "ast_hash": "ebc6c29846591387a6264044ba96e518",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/lib/auth.ts": {
+    "mtime": 1769539414.879413,
+    "ast_hash": "8aff9867652804471ce511089a578307",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/lib/posthog-server.ts": {
+    "mtime": 1772836957.7488227,
+    "ast_hash": "a6f473c130b1ff25f4006e2664a5d2b8",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/lib/utils.ts": {
+    "mtime": 1761585437.285334,
+    "ast_hash": "6e7a2d4f1fa6b69ad722be7d66f8d57f",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/lib/wait.ts": {
+    "mtime": 1761585437.2853708,
+    "ast_hash": "8149ab3fa3f7b0402177d2a099bf7524",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/lib/agent-ready/homepage-markdown.ts": {
+    "mtime": 1776848014.1035895,
+    "ast_hash": "b5d0645afbdf89d471c52972b4dfcc0d",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/lib/agent-ready/site.ts": {
+    "mtime": 1778270994.5436256,
+    "ast_hash": "11d3250f9e46a0826c3d9a32e337e9d6",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/lib/agent-ready/skills.ts": {
+    "mtime": 1776847997.0316198,
+    "ast_hash": "18b829efc0554f2be1aa98d43139b36a",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/lib/constants/formStyles.ts": {
+    "mtime": 1765817230.6833131,
+    "ast_hash": "9aa91deed2aba702adb19cb8741e426e",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/lib/constants/images.ts": {
+    "mtime": 1765801711.211688,
+    "ast_hash": "2aa4de4bb43b2e6d16c6b26d04f4bd3c",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/lib/schemas/certificateSchema.ts": {
+    "mtime": 1765833671.349303,
+    "ast_hash": "198fcd24a56ff7c07d09dfff32947809",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/lib/schemas/contactSchema.ts": {
+    "mtime": 1765832950.9488316,
+    "ast_hash": "3128669ce0105761cdc511a826edd038",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/lib/schemas/postSchema.ts": {
+    "mtime": 1761585437.2853017,
+    "ast_hash": "82520e5c0dc11c4df2ffefc2a721152d",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/lib/schemas/projectSchema.ts": {
+    "mtime": 1774138087.0776882,
+    "ast_hash": "caf0467be15a475c92604a8ed7ada310",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/lib/schemas/__tests__/certificateSchema.test.ts": {
+    "mtime": 1765873971.887849,
+    "ast_hash": "4e4cdc4cc96b0c7e0ae173d03b35883f",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/lib/schemas/__tests__/contactSchema.test.ts": {
+    "mtime": 1778270994.5447116,
+    "ast_hash": "e1a234118572383653b9a9ee380946da",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/lib/schemas/__tests__/postSchema.test.ts": {
+    "mtime": 1765878946.5406592,
+    "ast_hash": "c5c90cc82ef7fdbca32f91a3ab0b6f72",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/lib/schemas/__tests__/projectSchema.test.ts": {
+    "mtime": 1765874789.4268873,
+    "ast_hash": "d6b04c9f12c3ef434f9f296c0cd31d49",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/lib/services/posts/sync.ts": {
+    "mtime": 1774138748.1406033,
+    "ast_hash": "a32143359bf9750b775846c458c4a26d",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/lib/services/projects/media.ts": {
+    "mtime": 1774139898.0732014,
+    "ast_hash": "9612c87669b30a1b8b224c586dc2e0b1",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/lib/types/analytics.ts": {
+    "mtime": 1774139796.481922,
+    "ast_hash": "6532513b315afaa3d811b9296f1a4e29",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/lib/types/post.ts": {
+    "mtime": 1774138729.6758301,
+    "ast_hash": "faf3f70877e17ccb9170c7c86a2c02e4",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/lib/types/project.ts": {
+    "mtime": 1774138997.5655098,
+    "ast_hash": "33717b78d14d1d932892cfc458340be3",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/lib/utils/authMiddleware.ts": {
+    "mtime": 1765817357.9311361,
+    "ast_hash": "36f70ac51ab55e5f42fef204392fc28d",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/lib/utils/blog-taxonomy.ts": {
+    "mtime": 1776854831.7250714,
+    "ast_hash": "7aa93a48f2400a9dfc8b36947d12a52b",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/lib/utils/formDataParser.ts": {
+    "mtime": 1768077286.6238797,
+    "ast_hash": "df6f402f620ff996de58e3393b7c25f0",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/lib/utils/logger.ts": {
+    "mtime": 1765933130.9776914,
+    "ast_hash": "b8c934c13b355a487aef301c42a0a00c",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/lib/utils/mediaUrl.ts": {
+    "mtime": 1774298328.4809287,
+    "ast_hash": "d9b811ccb438988bc46bb1abc48141da",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/lib/utils/projectUtils.ts": {
+    "mtime": 1774298328.475329,
+    "ast_hash": "c5e1695b647325ebec0d645872ca881f",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/lib/utils/s3Client.ts": {
+    "mtime": 1765933130.9777987,
+    "ast_hash": "08b94377e7727563e70da7d431063c37",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/lib/utils/toast.tsx": {
+    "mtime": 1761585437.2852483,
+    "ast_hash": "27ce5fe709ae21faa8d40448e3b750c1",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/lib/utils/translate.ts": {
+    "mtime": 1765933130.9779117,
+    "ast_hash": "a83c7b96c25d29dd71f7a2b94974f0f9",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/lib/utils/translationHelper.ts": {
+    "mtime": 1765816986.8987472,
+    "ast_hash": "7731d24c5157b5739584f03b79c02f3e",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/lib/utils/__tests__/formDataParser.test.ts": {
+    "mtime": 1768077258.6125352,
+    "ast_hash": "ed29c2c59828742e67f3d7de91b5fbe3",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/lib/utils/__tests__/logger.test.ts": {
+    "mtime": 1765894765.0477383,
+    "ast_hash": "592c87af87b07b255bcc33ba48e039e4",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/lib/utils/__tests__/projectUtils.test.ts": {
+    "mtime": 1774298328.4827733,
+    "ast_hash": "bcf59f70dc31ded587b34e5ee40e7dc3",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/messages/ar.json": {
+    "mtime": 1778748481.4118316,
+    "ast_hash": "d791bc0926b9fdfa574c056813aa2973",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/messages/en.json": {
+    "mtime": 1778748469.6146162,
+    "ast_hash": "db65995917535a383e10fc854e6e8a56",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/providers/postHogProvider.tsx": {
+    "mtime": 1774033231.6184683,
+    "ast_hash": "1b4a4d16e8fa8559bed8cd61d733a2a1",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/scripts/check-posts.ts": {
+    "mtime": 1769371065.1015368,
+    "ast_hash": "fb69f3cb0063036c3c2ff35ec3061917",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/scripts/cleanup-toxic-posts.ts": {
+    "mtime": 1778747571.1504412,
+    "ast_hash": "ea8b19746e2ca9c55d535cbe7b8ab19b",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/scripts/fetch-news.ts": {
+    "mtime": 1778747571.1506448,
+    "ast_hash": "41f033e89b5ac6d2abe41af32443617d",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/scripts/generate-posts.ts": {
+    "mtime": 1778750360.6599374,
+    "ast_hash": "955360168a554e46d2076bbcd61a4ea3",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/scripts/ingest-blogs.ts": {
+    "mtime": 1778276736.2790744,
+    "ast_hash": "7eeb8fc00dc38ed55696891238eb9528",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/scripts/one-time-audit-and-rewrite.ts": {
+    "mtime": 1778752620.3626578,
+    "ast_hash": "a0f8572a8c18177efc5649ac0edc9ef9",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/scripts/personalize-posts.ts": {
+    "mtime": 1778750518.2311964,
+    "ast_hash": "9bea11b7cec69e79ca062e64b6af5779",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/scripts/pull-blogs.ts": {
+    "mtime": 1778313973.840518,
+    "ast_hash": "4f997e1c7eef98ba943c0af5e380b84e",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/scripts/sync-blog.ts": {
+    "mtime": 1774139784.7887344,
+    "ast_hash": "b72e4e7a192bb2802c5aa3125a8a5fb8",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/scripts/translate-posts.ts": {
+    "mtime": 1778282664.1631572,
+    "ast_hash": "3e16a56fd0e4e95e2e897c9e979dc82a",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/scripts/worker-server.ts": {
+    "mtime": 1778407337.3598745,
+    "ast_hash": "a2ad9928b0745a1c67cd89c7648711cc",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/types/backup.ts": {
+    "mtime": 1765603041.775653,
+    "ast_hash": "d291d2e2ee87ff912efb532ce989c536",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/types/better-auth.d.ts": {
+    "mtime": 1765603989.4451685,
+    "ast_hash": "5abd84b63b281590d071313abdaf7eda",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/types/index.ts": {
+    "mtime": 1764624042.325078,
+    "ast_hash": "6005daa6a9fa204d3bac83a2ce0ad493",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/types/react-syntax-highlighter.d.ts": {
+    "mtime": 1771157173.9648812,
+    "ast_hash": "2030e4201628ff09b53324cc947dc92c",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/.claude.md": {
+    "mtime": 1778402111.6964483,
+    "ast_hash": "9b4d977ceca9e465854172deed532661",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/about information.txt": {
+    "mtime": 1761585437.2767708,
+    "ast_hash": "19ee8b315731ccc14d15a02ef4bd6ecd",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/AGENTS.md": {
+    "mtime": 1778402136.9927883,
+    "ast_hash": "d4a6c075f430fb294d163580e409fce1",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/docker-compose.yml": {
+    "mtime": 1778410274.1751783,
+    "ast_hash": "26595fa6c61426c93ef0fdce66a285a7",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/README.md": {
+    "mtime": 1778270994.5033195,
+    "ast_hash": "3da712a1b25a9666259e344456363827",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/.github/dependabot.yml": {
+    "mtime": 1778693244.2466283,
+    "ast_hash": "470017f43cfc324782af959f2bb4c7ab",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/blogs/postgres-17-to-18-upgrade-guide.md": {
+    "mtime": 1779116302.8183112,
+    "ast_hash": "75742ac372421fc1e4cf370b48a2fbb3",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/blogs/UPGRADE_GUIDE.md": {
+    "mtime": 1779116405.2679572,
+    "ast_hash": "c3f6019f4d35fd7cb0a3f0bc372d54a5",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/docs/ai-seo-guide.md": {
+    "mtime": 1778270994.4971063,
+    "ast_hash": "cd8d8b9478c04a7d2cd4480889be0828",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/docs/blog-automation.md": {
+    "mtime": 1778280773.5716796,
+    "ast_hash": "841fad3108bc43b8014eaacca3b79ec2",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/docs/CAREER_ASSESSMENT.md": {
+    "mtime": 1765827030.3283799,
+    "ast_hash": "35bb10bcaec1d561abbb0b6255e8bc9d",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/docs/career_strategy_2025.md": {
+    "mtime": 1778270994.4986312,
+    "ast_hash": "5871822b4f0c90eadc39415db451841f",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/docs/Case Study - Building the Automated Blog Workflow.md": {
+    "mtime": 1769374016.8369987,
+    "ast_hash": "40ff390eb49afa2e99a596502fdf6f20",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/docs/DESIGN_PATTERNS.md": {
+    "mtime": 1769372645.0517445,
+    "ast_hash": "e837be898b71e8bdbf713f8cdac2c251",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/docs/modern-javascript-2024-2025.md": {
+    "mtime": 1778270994.5004506,
+    "ast_hash": "1ebf91fdb5ef23a26e7c2b3232a5bd3e",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/docs/mostaql-submission-data.md": {
+    "mtime": 1765896920.1895845,
+    "ast_hash": "3d9526ebfb2078df00eeb1c1e29bf52e",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/docs/PAGESPEED-RULES.md": {
+    "mtime": 1776873030.150939,
+    "ast_hash": "655168fdb47535ba076717b1b57267ab",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/docs/performance-case-study.md": {
+    "mtime": 1765716524.0828786,
+    "ast_hash": "a423e3c1ebd4902b587e2e0052c30cfa",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/docs/portfolio-enhancement-analysis.md": {
+    "mtime": 1778270994.5017402,
+    "ast_hash": "94feb6df84f079544fbcfdc5a919c9fa",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/docs/posthog-debug.md": {
+    "mtime": 1769441082.273799,
+    "ast_hash": "899263336293fcacf6133fd6833d05c8",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/docs/posthog-setup-report.md": {
+    "mtime": 1767208917.6302748,
+    "ast_hash": "ad6ad87ff11613cc1c8f8152341ba0f6",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/docs/restore-runbook.md": {
+    "mtime": 1765603041.8442242,
+    "ast_hash": "693bea8098c2150c8b0b5f185a54a952",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/docs/seo-rules-for-ai.md": {
+    "mtime": 1778271263.0732944,
+    "ast_hash": "1148a48ad33cd4937a17a3dfa58339e8",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/docs/ssl-certificate-setup-dokploy.md": {
+    "mtime": 1769180366.8124914,
+    "ast_hash": "79a3ccbf184813cc787a37bbdc470181",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/docs/WHAT_I_HAVE_DONE_POSTHOG.md": {
+    "mtime": 1767727432.3747046,
+    "ast_hash": "a92044d6169d9a8ac6c03720eca58bd1",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/docs/testing/schema-testing-patterns.md": {
+    "mtime": 1765835557.5629075,
+    "ast_hash": "41849cb7691dd1236ce622e0ad0e9b31",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/public/llms.txt": {
+    "mtime": 1778760044.943813,
+    "ast_hash": "028500460c7fd95b2761e2aaae1818c7",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/public/robots.txt": {
+    "mtime": 1778747571.1486695,
+    "ast_hash": "68020363d7cc6cc220e828cbad2dae74",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/specs/001-fix-arabic-skills-layout/data-model.md": {
+    "mtime": 1768064281.9005537,
+    "ast_hash": "098b4b1a5ab39d27e548a6cbc01a193e",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/specs/001-fix-arabic-skills-layout/plan.md": {
+    "mtime": 1768064281.9008706,
+    "ast_hash": "da13d515cc460ff32df879f1878d7d60",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/specs/001-fix-arabic-skills-layout/quickstart.md": {
+    "mtime": 1768064281.9012764,
+    "ast_hash": "91f5f6e3b7d33e482260eb9c468ad262",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/specs/001-fix-arabic-skills-layout/research.md": {
+    "mtime": 1768064281.9015408,
+    "ast_hash": "e74b08aa20f9d5650ccf1679accb6eaa",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/specs/001-fix-arabic-skills-layout/spec.md": {
+    "mtime": 1768077163.4246786,
+    "ast_hash": "9aa65340ede9cbc496ce2a9d4b6d8786",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/specs/001-fix-arabic-skills-layout/tasks.md": {
+    "mtime": 1768077167.356102,
+    "ast_hash": "8db272020c9950665aa29d24bc549279",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/content/blogs/10-trending-reddit-posts-about-ai-agents-this-week-may-2026.md": {
+    "mtime": 1778279032.6258624,
+    "ast_hash": "86934ad01f6017326fa67a63f330990c",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/content/blogs/ai-agent-auditing-cut-incident-response-90-percent.md": {
+    "mtime": 1778277532.36442,
+    "ast_hash": "a09f082d32ee8b06d77f659886cdfa8d",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/content/blogs/building-zero-effort-obsidian-to-portfolio-workflow.md": {
+    "mtime": 1778276688.331966,
+    "ast_hash": "40032a33196a3922dc6a831106e60c21",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/content/blogs/cloudflared-tunnel-full-guide.md": {
+    "mtime": 1778280201.4022434,
+    "ast_hash": "07111a6562fb1fa5a47babb64f302185",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/content/blogs/connecting-to-postgresql-running-inside-docker.md": {
+    "mtime": 1778280201.3974428,
+    "ast_hash": "1d104c2fa05c2119c86d2855d0203952",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/content/blogs/cvss-10-0-is-not-a-coincidence-from-next-js-to-n8n.md": {
+    "mtime": 1778280201.3880675,
+    "ast_hash": "57b0501ee3fa29b4dddd48fc32188c22",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/content/blogs/definitive-guide-image-privacy-orientation-laravel.md": {
+    "mtime": 1778276688.334582,
+    "ast_hash": "f05176fa38bcd1ada5a60132f938eeac",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/content/blogs/frontend-build-tools-hitting-a-wall.md": {
+    "mtime": 1778277574.7377467,
+    "ast_hash": "44c1a83c3b449b92c204543cfdde8f30",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/content/blogs/gemini-cli-subagents-multi-agent-workflows.md": {
+    "mtime": 1778277731.4671211,
+    "ast_hash": "dc61846de73c55ac4fef7fab807edb0b",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/content/blogs/master-postgresql-self-hosting-guide-dokploy-vps.md": {
+    "mtime": 1778276688.33286,
+    "ast_hash": "95395f24a60a571d0a877abff75eed52",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/content/blogs/mojo-1-0-beta-python-ai-programming-language.md": {
+    "mtime": 1778277770.9616742,
+    "ast_hash": "1138ba9f598e69acbe6e1227b575d9b1",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/content/blogs/production-ready-ai-agents-lessons-refactoring-monolith.md": {
+    "mtime": 1778277556.3265643,
+    "ast_hash": "42098945f6571811cd42e8d838b32306",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/content/blogs/react-server-components-vs-qwik-real-world-truth.md": {
+    "mtime": 1778277516.3326793,
+    "ast_hash": "fdc07cfb2983d55c6b93bab47216a02e",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/content/blogs/rust-build-problem-fix-eww.md": {
+    "mtime": 1778276688.331137,
+    "ast_hash": "ff1608b8b7fac02e88ed2d95198905f3",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/content/blogs/tanstack-experimental-react-clone-explained.md": {
+    "mtime": 1778277749.1613412,
+    "ast_hash": "ec7e74007b5bd1513c321b8e08033b55",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/content/blogs/the-definitive-guide-to-image-privacy-orientation-in-laravel.md": {
+    "mtime": 1778280201.3924792,
+    "ast_hash": "a0e4d2c1594c1cef112140d424455e44",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/content/blogs/the-no-open-ports-manual-cloudflare-tunnels-for-backend-devs.md": {
+    "mtime": 1778280201.390144,
+    "ast_hash": "1a96bbc7f356cc2e0f50c234256f99cd",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/content/blogs/ui-ux-pro-max-skill-linux-setup-guide.md": {
+    "mtime": 1778276688.3337393,
+    "ast_hash": "48826f255b63fde32bda415d89ed4bde",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/src/content/blogs/what-is-mcp-server-no-dumb-questions.md": {
+    "mtime": 1778277594.1265316,
+    "ast_hash": "0f241ffc2c1f0d8891afdc2acbb13f76",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/public/Ahmed-Lotfy-CV.pdf": {
+    "mtime": 1762600199.6132586,
+    "ast_hash": "b8dd107c9cd60cd90dab9496ccfbcfa8",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/logo_raw.svg": {
+    "mtime": 1778253442.2566993,
+    "ast_hash": "787d74f6f0b85d5101a36e975d8ae6de",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/docs/screenshots/dashboard-backup.png": {
+    "mtime": 1765730199.9018905,
+    "ast_hash": "15005c6bec5f186bf6fa23392261b971",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/docs/screenshots/dashboard-certificates.png": {
+    "mtime": 1765730184.4016523,
+    "ast_hash": "ed2bb8048b6ecc4db03bfdaff37bc461",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/docs/screenshots/dashboard-home.png": {
+    "mtime": 1765730153.0589447,
+    "ast_hash": "68032004036a748332e7c9cf37fff219",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/docs/screenshots/dashboard-projects.png": {
+    "mtime": 1765730168.9975603,
+    "ast_hash": "d292592fd0f63b98d38d8ca5c5f106de",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/docs/screenshots/full.png": {
+    "mtime": 1765729134.6273243,
+    "ast_hash": "bd6d667ef69298ec952baa5fd75c1a01",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/public/android-chrome-192x192.png": {
+    "mtime": 1759229096.0,
+    "ast_hash": "898cc7dfd689fc78e07e3881fa64f841",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/public/android-chrome-512x512.png": {
+    "mtime": 1759229096.0,
+    "ast_hash": "100923464f30286adaec547bdeeddf8e",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/public/apple-touch-icon.png": {
+    "mtime": 1759229096.0,
+    "ast_hash": "fa28cf76ae972e7d3e1f81f67019a4bf",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/public/as-mark.svg": {
+    "mtime": 1778253481.2280035,
+    "ast_hash": "a293a6bcbfae96a4efe6bb8a7b81079c",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/public/certificate-svgrepo-com.svg": {
+    "mtime": 1761585437.2804942,
+    "ast_hash": "cf40bb03972dcfb8e8c3ded7df81c59f",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/public/facebook-icon.svg": {
+    "mtime": 1761585437.280466,
+    "ast_hash": "51f42ec568eb2bdbc734ad787f2ae037",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/public/favicon-16x16.png": {
+    "mtime": 1759229096.0,
+    "ast_hash": "2eb3c8162d592c095f427b730935b4f9",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/public/favicon-32x32.png": {
+    "mtime": 1759229096.0,
+    "ast_hash": "5407b6d29c5c5cd1db261eeb0c6cbd3d",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/public/github-mark.svg": {
+    "mtime": 1761585437.2805107,
+    "ast_hash": "8dcc6b5262f3b6138b1566b357ba89a9",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/public/google-icon.svg": {
+    "mtime": 1761585437.2805405,
+    "ast_hash": "c6b88db3777c7384998acbadefabb920",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/public/heroImg.svg": {
+    "mtime": 1761585437.2925575,
+    "ast_hash": "286f80c64cc6ce5b31c79084d768723d",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/public/icon.png": {
+    "mtime": 1765270803.0556302,
+    "ast_hash": "01084b4edde8c848a1aa5588d5ca67ec",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/public/linkedin-icon.svg": {
+    "mtime": 1761585437.2818174,
+    "ast_hash": "5b238434e2862c877f08572b96c0ef7b",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/public/next.svg": {
+    "mtime": 1761585437.281847,
+    "ast_hash": "8e061864f388b47f33a1c3780831193e",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/public/og-image.png": {
+    "mtime": 1778692336.7095764,
+    "ast_hash": "9c4591f4488f179a9f8743a5a06fa0e8",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/public/thirteen.svg": {
+    "mtime": 1761585437.281911,
+    "ast_hash": "53f96b8290673ef9d2895908e69b2f92",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/public/vercel.svg": {
+    "mtime": 1761585437.281925,
+    "ast_hash": "61c6b19abff40ea7acd577be818f3976",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/public/icons/add-circle-outline.svg": {
+    "mtime": 1761585437.2805643,
+    "ast_hash": "3fcbf616a3ccf12a0d426b306d7bcefd",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/public/icons/arrow-back-outline.svg": {
+    "mtime": 1761585437.280905,
+    "ast_hash": "0249b57ccd71d1e9cb89b819276421d6",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/public/icons/chevron-forward-outline.svg": {
+    "mtime": 1761585437.2809296,
+    "ast_hash": "65e801bd5921b15c6f2b7da2b5c6d63d",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/public/icons/close-outline.svg": {
+    "mtime": 1761585437.2809472,
+    "ast_hash": "dfb4d0014dd0739e26a51416ba612abe",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/public/icons/code-working-outline.svg": {
+    "mtime": 1761585437.280985,
+    "ast_hash": "1dc435d0a21c5b84bb548b96740f9c23",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/public/icons/create-outline.svg": {
+    "mtime": 1761585437.2810102,
+    "ast_hash": "c857f721d3b1cd841ea172f445071489",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/public/icons/grid-outline.svg": {
+    "mtime": 1761585437.2810414,
+    "ast_hash": "79d1f03563a15fe805874c404e3598be",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/public/icons/home-outline.svg": {
+    "mtime": 1761585437.2810485,
+    "ast_hash": "d4f123bdd3a045f0058597e24645d85b",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/public/icons/image-outline.svg": {
+    "mtime": 1761585437.2810676,
+    "ast_hash": "be323c201794ea58559ae1512aa5be98",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/public/icons/key-outline.svg": {
+    "mtime": 1761585437.2811038,
+    "ast_hash": "53ff97824b805f0efd9b7201d6771eb5",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/public/icons/logo-facebook.svg": {
+    "mtime": 1761585437.2811315,
+    "ast_hash": "988c4574aa6b82842b4b8f592c704444",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/public/icons/logo-github.svg": {
+    "mtime": 1761585437.2811503,
+    "ast_hash": "ecaefd058c8b50de9e3070d4abab72e9",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/public/icons/logo-google.svg": {
+    "mtime": 1761585437.2811759,
+    "ast_hash": "899ea7d50439e7dd7b9bf00dd9c64614",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/public/icons/logo-linkedin.svg": {
+    "mtime": 1761585437.2812088,
+    "ast_hash": "b5cd8be80f156bc337ba2af2f1f5fa09",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/public/icons/menu-outline.svg": {
+    "mtime": 1761585437.281236,
+    "ast_hash": "c64f9d2b07f7b36b4d43815363a7b5f5",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/public/icons/paper-plane-outline.svg": {
+    "mtime": 1761585437.2812428,
+    "ast_hash": "ecd5f4f88ee9457d693ec3ea985edfef",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/public/icons/person-outline.svg": {
+    "mtime": 1761585437.2812917,
+    "ast_hash": "1a17e2a0c69233645236d2d6a633aeb7",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/public/icons/trash-outline.svg": {
+    "mtime": 1761585437.2813292,
+    "ast_hash": "5afe155b9bbb847c0009a8903314c6f6",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/public/icons/trophy-outline.svg": {
+    "mtime": 1761585437.2813656,
+    "ast_hash": "89b6cf85bf618e568263d001c30b11f5",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/public/images/About-Image.png": {
+    "mtime": 1765285427.9042716,
+    "ast_hash": "0f40ba0be579a8a5b8852469a0f71471",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/public/images/hero-image.png": {
+    "mtime": 1765707794.2240305,
+    "ast_hash": "b840d807251531c4a1f6bb4387beb951",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/public/images/optimized/About-Image-280w.webp": {
+    "mtime": 1765711792.8909328,
+    "ast_hash": "a0e5bd9d78f8b6e83334b1d491fa243f",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/public/images/optimized/About-Image-400w.webp": {
+    "mtime": 1765711796.2215843,
+    "ast_hash": "21259494050d5281dd496c619cd368c5",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/public/images/optimized/About-Image-500w.webp": {
+    "mtime": 1765711798.1221628,
+    "ast_hash": "c1d3ed3aa16c19d753eaaabece61ddc0",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/public/images/optimized/About-Image-640w.webp": {
+    "mtime": 1765711800.8786304,
+    "ast_hash": "971206639a996bd422f6445b01d69c7f",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/public/images/optimized/About-Image-750w.webp": {
+    "mtime": 1765711804.0032623,
+    "ast_hash": "c1d5fd897b1c710f733a5bb1d11432a1",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/public/images/optimized/About-Image.webp": {
+    "mtime": 1765711790.9996016,
+    "ast_hash": "19ed870065077557963252630dec7fa2",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/public/images/optimized/Gemini_Generated_Image_rdr0ydrdr0ydrdr0-280w.webp": {
+    "mtime": 1765711804.163981,
+    "ast_hash": "336f6078a8a49e68be9db4e0d6c2623b",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/public/images/optimized/Gemini_Generated_Image_rdr0ydrdr0ydrdr0-400w.webp": {
+    "mtime": 1765711804.2283916,
+    "ast_hash": "fce87f73666c8fda2d0f7cdef3265541",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/public/images/optimized/Gemini_Generated_Image_rdr0ydrdr0ydrdr0-500w.webp": {
+    "mtime": 1765711804.2916203,
+    "ast_hash": "8a2d6dbf587e9c333c8a6a686c255137",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/public/images/optimized/Gemini_Generated_Image_rdr0ydrdr0ydrdr0-640w.webp": {
+    "mtime": 1765711804.3874543,
+    "ast_hash": "9c069dec731bc907b2ee3becb373b455",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/public/images/optimized/Gemini_Generated_Image_rdr0ydrdr0ydrdr0-750w.webp": {
+    "mtime": 1765711804.486632,
+    "ast_hash": "89e7d65a6d075ff0c67631b98cd4ce2e",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/public/images/optimized/Gemini_Generated_Image_rdr0ydrdr0ydrdr0.webp": {
+    "mtime": 1765711804.1242614,
+    "ast_hash": "38415995ffdec86caca5b35b5c52d9b3",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/public/images/optimized/improved_hero_background-280w.webp": {
+    "mtime": 1765711804.750878,
+    "ast_hash": "0c4d2b875baa7fedd8a41643da9f8efa",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/public/images/optimized/improved_hero_background-400w.webp": {
+    "mtime": 1765711804.8199842,
+    "ast_hash": "15aa8554ffa1fe892ad388e026008729",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/public/images/optimized/improved_hero_background-500w.webp": {
+    "mtime": 1765711804.9054773,
+    "ast_hash": "a7f1ad43dfb0be394e5cff6ebaecc401",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/public/images/optimized/improved_hero_background-640w.webp": {
+    "mtime": 1765711805.0057225,
+    "ast_hash": "582ceb6f117988ac7759d57544f1d83f",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/public/images/optimized/improved_hero_background-750w.webp": {
+    "mtime": 1765711805.1350617,
+    "ast_hash": "8c643c9d2057e3108f1457dd4bddf870",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/public/images/optimized/improved_hero_background.webp": {
+    "mtime": 1765711804.7126415,
+    "ast_hash": "e575bf7e2e2a3805606510842ac6212d",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/public/images/optimized/modern_developer_hero-280w.webp": {
+    "mtime": 1765711805.3042133,
+    "ast_hash": "403cb285b2e6ca6b39c5ab84aa7b374a",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/public/images/optimized/modern_developer_hero-400w.webp": {
+    "mtime": 1765711805.3447433,
+    "ast_hash": "2068ab806f1f7160b397952c1acd48d2",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/public/images/optimized/modern_developer_hero-500w.webp": {
+    "mtime": 1765711805.407714,
+    "ast_hash": "cc3df9c1c7933a9376deec8f6d25e4e4",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/public/images/optimized/modern_developer_hero-640w.webp": {
+    "mtime": 1765711805.4950817,
+    "ast_hash": "21e26634a662337e24a104cc7f301a12",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/public/images/optimized/modern_developer_hero-750w.webp": {
+    "mtime": 1765711805.616461,
+    "ast_hash": "5bf570f087a34406c0b2ed1bc8804211",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/public/images/optimized/modern_developer_hero.webp": {
+    "mtime": 1765711805.27791,
+    "ast_hash": "3325332fb61593731f4be21913eccb7a",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/public/images/original-pngs/About-Image.png": {
+    "mtime": 1765285427.9042716,
+    "ast_hash": "0f40ba0be579a8a5b8852469a0f71471",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/public/images/original-pngs/Gemini_Generated_Image_rdr0ydrdr0ydrdr0.png": {
+    "mtime": 1765707794.2154193,
+    "ast_hash": "11d7a9bdf47c2ea5c2a8ced2161bff5b",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/public/images/original-pngs/improved_hero_background.png": {
+    "mtime": 1765707794.2240305,
+    "ast_hash": "b840d807251531c4a1f6bb4387beb951",
+    "semantic_hash": ""
+  },
+  "/mnt/hdd/projects/my-portfolio/public/images/original-pngs/modern_developer_hero.png": {
+    "mtime": 1765707794.2296033,
+    "ast_hash": "c2ba83bc53e21ae2764f031ad6b79a0d",
+    "semantic_hash": ""
+  }
+}
