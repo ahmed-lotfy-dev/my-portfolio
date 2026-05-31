@@ -3,10 +3,24 @@ import SignUpForm from "@/src/components/features/auth/SignUpForm"
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Sign up",
+  title: "Sign Up | Ahmed Lotfy",
+  description: "Create an account on Ahmed Lotfy's portfolio site to manage and publish content.",
   robots: {
     index: false,
     follow: false,
+  },
+  openGraph: {
+    title: "Sign Up | Ahmed Lotfy",
+    description: "Create an account on Ahmed Lotfy's portfolio site.",
+    url: "https://ahmedlotfy.site/en/signup",
+    siteName: "Ahmed Lotfy Portfolio",
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary",
+    title: "Sign Up | Ahmed Lotfy",
+    description: "Create an account on Ahmed Lotfy's portfolio site.",
   },
 }
 

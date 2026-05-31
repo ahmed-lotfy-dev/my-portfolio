@@ -3,10 +3,24 @@ import SignInForm from "@/src/components/features/auth/SignInForm"
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Login",
+  title: "Sign In | Ahmed Lotfy",
+  description: "Sign in to your Ahmed Lotfy portfolio account to manage projects, blog posts, and site content.",
   robots: {
     index: false,
     follow: false,
+  },
+  openGraph: {
+    title: "Sign In | Ahmed Lotfy",
+    description: "Sign in to your Ahmed Lotfy portfolio account.",
+    url: "https://ahmedlotfy.site/en/login",
+    siteName: "Ahmed Lotfy Portfolio",
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Sign In | Ahmed Lotfy",
+    description: "Sign in to your Ahmed Lotfy portfolio account.",
   },
 }
 

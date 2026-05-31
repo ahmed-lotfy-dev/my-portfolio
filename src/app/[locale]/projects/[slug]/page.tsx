@@ -81,7 +81,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     const allKeywords = [...new Set([...categoryKeywords, ...contentKeywords])].join(', ');
 
     return {
-        title: `${title} | Ahmed Lotfy`,
+        title: title,
         description: description,
         keywords: allKeywords,
         authors: [{ name: 'Ahmed Lotfy' }],

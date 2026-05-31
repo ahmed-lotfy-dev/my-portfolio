@@ -40,16 +40,9 @@ export async function generateMetadata({
   const t = await getTranslations({ locale, namespace: "metadata.home" });
   const baseUrl = 'https://ahmedlotfy.site';
 
-  const enKeywords = 'Ahmed Lotfy, Senior Full-Stack Software Engineer, Full Stack Developer, Next.js Developer, React Developer, TypeScript, Node.js, PostgreSQL, Web Development, Software Engineer, Portfolio, Frontend Developer, Backend Developer, MERN Stack, JavaScript, TailwindCSS, Docker, API Development, Ahmed Lotfy Portfolio, Web Developer Egypt, Next.js Expert, React Expert, Full Stack Web Developer, Modern Web Applications, Software Engineer Portfolio';
-  const arKeywords = 'أحمد لطفي, أحمد لطفي, مطور ويب, مطور برمجيات, مطور تطبيقات ويب, مبرمج, مطور مواقع, مهندس برمجيات, تطوير الويب, برمجة, تصميم مواقع, خبرة في Next.js, خبرة في React, تطبيقات ويب حديثة, متخصص واجهات أمامية, متخصص خلفيات, قواعد بيانات, استضافة وتطوير';
-
   return {
     title: t("title"),
     description: t("description"),
-    keywords: enKeywords + ', ' + arKeywords,
-    authors: [{ name: 'Ahmed Lotfy', url: baseUrl }],
-    creator: 'Ahmed Lotfy',
-    publisher: 'Ahmed Lotfy',
     openGraph: {
       title: t("title"),
       description: t("description"),
@@ -94,7 +87,6 @@ export default async function HomePage({
 
   return (
     <main className="font-main min-h-screen bg-background text-foreground">
-      {/* Structured Data for SEO */}
       <StructuredData
         type="Person"
         data={{
@@ -123,10 +115,17 @@ export default async function HomePage({
             : 'Ahmed Lotfy Portfolio - Full Stack Developer building modern web applications',
           languages: ['en', 'ar'],
           authorName: 'Ahmed Lotfy',
+          potentialAction: {
+            '@type': 'SearchAction',
+            target: {
+              '@type': 'EntryPoint',
+              urlTemplate: 'https://ahmedlotfy.site/{locale}/blogs?tag={search_term_string}',
+            },
+            'query-input': 'required name=search_term_string',
+          },
         }}
       />
 
-      {/* FAQ Structured Data — matches visible services section */}
       <StructuredData
         type="FAQ"
         data={{

@@ -11,11 +11,17 @@ import { BreadcrumbSchema } from "@/src/components/seo/BreadcrumbSchema";
 import { buildBlogCategoryPath } from "@/src/lib/utils/blog-taxonomy";
 import { getTranslations } from "next-intl/server";
 
+function truncateToWord(text: string, maxLength: number): string {
+  if (text.length <= maxLength) return text;
+  const truncated = text.substring(0, maxLength);
+  const lastSpace = truncated.lastIndexOf(' ');
+  return lastSpace > maxLength * 0.7 ? truncated.substring(0, lastSpace) + '...' : truncated + '...';
+}
+
 export async function generateMetadata({
   params,
 }: {
-  params: Promise<{ locale: string; slug
-    : string }>;
+  params: Promise<{ locale: string; slug: string }>;
 }) {
   const { locale, slug } = await params;
   const post = await getDbBlogPostBySlug(slug, locale);
@@ -27,12 +33,14 @@ export async function generateMetadata({
     };
   }
 
+  const description = truncateToWord(post.content.replace(/[#*`_\[\]()]/g, '').replace(/\n+/g, ' ').trim(), 160);
+
   return {
     title: post.title,
-    description: post.content.substring(0, 160),
+    description,
     openGraph: {
       title: post.title,
-      description: post.content.substring(0, 160),
+      description,
       url: `${baseUrl}/${locale}/blogs/${slug}`,
       siteName: "Ahmed Lotfy Portfolio",
       locale: locale === "ar" ? "ar_EG" : "en_US",
@@ -49,7 +57,7 @@ export async function generateMetadata({
     twitter: {
       card: "summary_large_image",
       title: post.title,
-      description: post.content.substring(0, 160),
+      description,
       creator: "@ahmedlotfy_dev",
       images: [post.imageLink || `${baseUrl}/og-image.png`],
     },
@@ -71,56 +79,55 @@ export default async function SinglePost(props: {
   const { locale, slug } = params;
   const post = await getDbBlogPostBySlug(slug, locale);
 
-   const t = await getTranslations({ locale, namespace: "blog_page" });
+  const t = await getTranslations({ locale, namespace: "blog_page" });
 
-   if (!post) {
-     return (
-       <div className="flex flex-col items-center justify-center h-screen pt-20">
-         <h1 className="text-4xl font-bold">{t("post_not_found")}</h1>
-         <Button asChild className="mt-8" variant="outline">
-           <Link href={`/${locale}/blogs`}>{t("back_to_blog")}</Link>
-         </Button>
-       </div>
-     );
-   }
+  if (!post) {
+    return (
+      <div className="flex flex-col items-center justify-center h-screen pt-20">
+        <h1 className="text-4xl font-bold">{t("post_not_found")}</h1>
+        <Button asChild className="mt-8" variant="outline">
+          <Link href={`/${locale}/blogs`}>{t("back_to_blog")}</Link>
+        </Button>
+      </div>
+    );
+  }
 
-   const baseUrl = "https://ahmedlotfy.site";
-   const localePath = `/${locale}/blogs/${slug}`;
-   const publishedDate = new Date(post.date);
-   const modifiedDate = post.updated ? new Date(post.updated) : publishedDate;
+  const baseUrl = "https://ahmedlotfy.site";
+  const localePath = `/${locale}/blogs/${slug}`;
+  const publishedDate = new Date(post.date);
+  const modifiedDate = post.updated ? new Date(post.updated) : publishedDate;
 
-   return (
-     <article className="min-h-screen pt-32 pb-20 px-4">
-       <BlogViewTracker
-         blogId={post.slug}
-         blogTitle={post.title}
-         categories={[post.category, ...post.tags]}
-       />
-       {/* Article Structured Data */}
-       <StructuredData
-         type="Article"
-         data={{
-           title: post.title,
-           description: post.content.substring(0, 160),
-           image: post.imageLink || `${baseUrl}/og-image.png`,
-           publishedDate: publishedDate.toISOString(),
-           modifiedDate: modifiedDate.toISOString(),
-           authorName: 'Ahmed Lotfy',
-           authorUrl: baseUrl,
-           keywords: `${post.category}, ${post.tags.join(', ')}`,
-           categories: [post.category],
-           language: locale === 'ar' ? 'ar' : 'en',
-         }}
-       />
-       {/* Breadcrumb Structured Data */}
-       <BreadcrumbSchema
-         items={[
-           { label: 'Home', url: `/${locale}` },
-           { label: 'Blogs', url: `/${locale}/blogs` },
-           { label: post.title, url: `/${locale}/blogs/${slug}` },
-         ]}
-       />
-      <div className="max-w-4xl mx-auto">
+  return (
+    <article className="min-h-screen pt-32 pb-20 px-4">
+      <BlogViewTracker
+        blogId={post.slug}
+        blogTitle={post.title}
+        categories={[post.category, ...post.tags]}
+      />
+      <StructuredData
+        type="Article"
+        data={{
+          title: post.title,
+          description: truncateToWord(post.content.replace(/[#*`_\[\]()]/g, '').replace(/\n+/g, ' ').trim(), 160),
+          image: post.imageLink || `${baseUrl}/og-image.png`,
+          publishedDate: publishedDate.toISOString(),
+          modifiedDate: modifiedDate.toISOString(),
+          authorName: 'Ahmed Lotfy',
+          authorUrl: baseUrl,
+          keywords: `${post.category}, ${post.tags.join(', ')}`,
+          categories: [post.category],
+          language: locale === 'ar' ? 'ar' : 'en',
+          url: `${baseUrl}${localePath}`,
+        }}
+      />
+      <BreadcrumbSchema
+        items={[
+          { label: 'Home', url: `/${locale}` },
+          { label: 'Blogs', url: `/${locale}/blogs` },
+          { label: post.title, url: localePath },
+        ]}
+      />
+     <div className="max-w-4xl mx-auto">
         <Link
           href={`/${locale}/blogs`}
           className="group mb-8 inline-flex items-center text-sm text-muted-foreground transition-colors hover:text-primary"

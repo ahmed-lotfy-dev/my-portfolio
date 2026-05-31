@@ -4,7 +4,7 @@ type StructuredDataProps = {
 }
 
 export default function StructuredData({ type, data }: StructuredDataProps) {
-  let schema = {}
+  let schema: Record<string, unknown> = {}
 
   switch (type) {
     case 'Person':
@@ -16,7 +16,7 @@ export default function StructuredData({ type, data }: StructuredDataProps) {
         image: data.image,
         jobTitle: data.jobTitle,
         description: data.description,
-        sameAs: data.sameAs, // Social media profiles
+        sameAs: data.sameAs,
         knowsAbout: data.skills,
       }
       break
@@ -33,6 +33,9 @@ export default function StructuredData({ type, data }: StructuredDataProps) {
           '@type': 'Person',
           name: data.authorName,
         },
+        ...(data.potentialAction && {
+          potentialAction: data.potentialAction,
+        }),
       }
       break
 
@@ -58,6 +61,10 @@ export default function StructuredData({ type, data }: StructuredDataProps) {
         keywords: data.keywords,
         articleSection: data.categories,
         inLanguage: data.language,
+        mainEntityOfPage: {
+          '@type': 'WebPage',
+          '@id': data.url,
+        },
       }
       break
 
@@ -88,14 +95,16 @@ export default function StructuredData({ type, data }: StructuredDataProps) {
         '@type': 'EducationalOccupationalCredential',
         name: data.title,
         description: data.description,
-        credentialCategory: 'certificate',
-        educationalLevel: data.level,
-        competencyRequired: data.skills,
-        recognizedBy: {
-          '@type': 'Organization',
-          name: data.issuingOrganization,
-          url: data.organizationUrl,
-        },
+        credentialCategory: data.credentialCategory || 'certificate',
+        recognizedBy: data.recognizedBy
+          ? {
+              '@type': 'Organization',
+              name: data.recognizedBy,
+            }
+          : undefined,
+        eduDataValidFrom: data.dateCreated,
+        ...(data.image && { image: data.image }),
+        ...(data.url && { url: data.url }),
       }
       break
 
