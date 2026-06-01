@@ -4,10 +4,10 @@ import { useFlags } from "@/src/providers/feature-flags";
 import MaintenancePage from "./MaintenancePage";
 
 export function MaintenanceGate({ children }: { children: React.ReactNode }) {
-  const { maintenance, loaded } = useFlags();
+  const { maintenance } = useFlags();
 
-  if (!loaded) return null; // Don't flash content while loading flags
-
+  // Don't block render while loading -- flags default to false (off)
+  // This prevents a blank screen on first render
   if (maintenance) {
     return <MaintenancePage />;
   }
