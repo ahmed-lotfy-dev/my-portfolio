@@ -12,7 +12,7 @@ interface UpdatingStatusProps {
   compact?: boolean;
 }
 
-export default function UpdatingStatus({
+export function UpdatingStatus({
   message = "Were working on this",
   compact = false,
 }: UpdatingStatusProps) {
