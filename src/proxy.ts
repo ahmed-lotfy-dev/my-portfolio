@@ -1,12 +1,23 @@
-import createMiddleware from 'next-intl/middleware';
-import { routing } from '@/src/i18n/routing';
-import { NextRequest, NextResponse } from 'next/server';
+import createMiddleware from "next-intl/middleware";
+import { routing } from "@/src/i18n/routing";
+import { NextRequest, NextResponse } from "next/server";
 
 const handleI18n = createMiddleware(routing);
 
 export async function proxy(request: NextRequest) {
   const pathname = request.nextUrl.pathname;
   const acceptHeader = request.headers.get("accept") || "";
+
+  // Rewrite /:locale/_next/... back to /_next/...
+  // Cloudflare may cache 301s from the old broken proxy that redirected
+  // /_next/foo.css → /en/_next/foo.css. This rewrite undoes that so the
+  // Next.js static file handler can serve the actual file.
+  const localeNextMatch = pathname.match(/^\/(en|ar)(\/_next\/.*)$/);
+  if (localeNextMatch) {
+    const url = request.nextUrl.clone();
+    url.pathname = localeNextMatch[2]; // /_next/... without locale
+    return NextResponse.rewrite(url);
+  }
 
   if (
     acceptHeader.includes("text/markdown") &&
@@ -28,21 +39,14 @@ export async function proxy(request: NextRequest) {
     return NextResponse.next();
   }
 
-  // 1. Run next-intl middleware first
   const response = handleI18n(request);
 
-  // Convert next-intl 307 locale redirects to 301 for SEO
-  // next-intl returns 307 when redirecting /path → /en/path
   const location = response.headers.get("location");
   if (response.status === 307 && location) {
     return NextResponse.redirect(new URL(location, request.url), 301);
   }
 
-  // ============================================
-  // SECURITY HEADERS
-  // ============================================
-
-  const isDev = process.env.NODE_ENV === 'development';
+  const isDev = process.env.NODE_ENV === "development";
 
   const csp = [
     "default-src 'self'",
