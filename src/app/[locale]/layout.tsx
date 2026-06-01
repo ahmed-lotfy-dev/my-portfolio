@@ -20,6 +20,8 @@ import { getMessages, setRequestLocale } from "next-intl/server";
  import { LazyMotion, domAnimation } from "motion/react";
  import { Toaster } from "@/src/components/ui/sonner";
  import { WebMcpProvider } from "@/src/components/agent/WebMcpProvider";
+import { FeatureFlagsProvider } from "@/src/providers/feature-flags";
+import { MaintenanceGate } from "@/src/components/shared/MaintenanceGate";
 
 export const revalidate = 3600;
 
@@ -138,32 +140,38 @@ export default async function LocaleLayout({ children, params }: Props) {
         suppressHydrationWarning
       >
         <NextIntlClientProvider messages={messages}>
-          <WebMcpProvider />
-          <LazyMotion features={domAnimation} strict>
-            <ErrorBoundary>
-              {isPostHogEnabled ? (
-                <PostHogClient
-                  apiKey={posthogApiKey}
-                  ingestHost={posthogIngestHost}
-                  uiHost={posthogUiHost}
-                >
-                  <div className="relative">
-                    <Nav />
-                    {children}
-                    <Footer />
-                  </div>
-                </PostHogClient>
-              ) : (
-                <div className="relative">
-                  <Nav />
-                  {children}
-                    <Footer />
-                  </div>
+          <FeatureFlagsProvider>
+            <WebMcpProvider />
+            <LazyMotion features={domAnimation} strict>
+              <ErrorBoundary>
+                {isPostHogEnabled ? (
+                  <PostHogClient
+                    apiKey={posthogApiKey}
+                    ingestHost={posthogIngestHost}
+                    uiHost={posthogUiHost}
+                  >
+                    <MaintenanceGate>
+                      <div className="relative">
+                        <Nav />
+                        {children}
+                        <Footer />
+                      </div>
+                    </MaintenanceGate>
+                  </PostHogClient>
+                ) : (
+                  <MaintenanceGate>
+                    <div className="relative">
+                      <Nav />
+                      {children}
+                      <Footer />
+                    </div>
+                  </MaintenanceGate>
                 )}
               </ErrorBoundary>
             </LazyMotion>
             <Toaster richColors closeButton position="top-center" />
-          </NextIntlClientProvider>
+          </FeatureFlagsProvider>
+        </NextIntlClientProvider>
         </body>
     </html>
   );

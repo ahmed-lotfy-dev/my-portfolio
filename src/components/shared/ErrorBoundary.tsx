@@ -55,20 +55,44 @@ export class ErrorBoundary extends Component<
       }
 
       return (
-        <div className="flex min-h-screen items-center justify-center p-4">
-          <div className="max-w-md rounded-3xl border border-border bg-card/80 p-8 text-center shadow-xl backdrop-blur-xl">
-            <h2 className="mb-4 text-2xl font-bold text-destructive">
-              Something went wrong
-            </h2>
-            <p className="mb-6 text-muted-foreground">
-              We're sorry for the inconvenience. Please try refreshing the page.
+        <div className="error-page">
+          <div className="error-ambient">
+            <div className="error-orb error-orb-1" />
+            <div className="error-orb error-orb-2" />
+          </div>
+          <div className="error-content">
+            <div className="error-code">
+              <span className="error-code-digit">5</span>
+              <div className="error-code-divider" />
+              <span className="error-code-digit">0</span>
+              <div className="error-code-divider" />
+              <span className="error-code-digit">0</span>
+            </div>
+            <div className="error-icon">
+              <svg width="56" height="56" viewBox="0 0 56 56" fill="none">
+                <circle cx="28" cy="28" r="26" stroke="hsl(var(--destructive))" strokeWidth="1" opacity="0.2" />
+                <circle cx="28" cy="28" r="20" stroke="hsl(var(--destructive))" strokeWidth="1" opacity="0.15" />
+                <path d="M28 18V30" stroke="hsl(var(--destructive))" strokeWidth="2" strokeLinecap="round" opacity="0.6" />
+                <circle cx="28" cy="36" r="1.5" fill="hsl(var(--destructive))" opacity="0.6" />
+              </svg>
+            </div>
+            <h1 className="error-title">Something went wrong</h1>
+            <p className="error-subtitle">
+              An unexpected error occurred. Our systems have been notified.
             </p>
-            <button
-              onClick={() => window.location.reload()}
-              className="rounded-md bg-primary px-4 py-2 text-primary-foreground hover:bg-primary/90"
-            >
-              Refresh Page
-            </button>
+            {this.state.error?.message && (
+              <div className="error-detail">
+                <code>{this.state.error.message}</code>
+              </div>
+            )}
+            <div className="error-actions">
+              <button className="btn btn-primary" onClick={() => window.location.reload()}>
+                Try Again
+              </button>
+              <a href="/" className="btn btn-ghost">
+                Return Home
+              </a>
+            </div>
           </div>
         </div>
       );
