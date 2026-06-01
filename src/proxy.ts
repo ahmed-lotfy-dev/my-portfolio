@@ -43,7 +43,10 @@ export async function proxy(request: NextRequest) {
 
   const location = response.headers.get("location");
   if (response.status === 307 && location) {
-    return NextResponse.redirect(new URL(location, request.url), 301);
+    const redirectResponse = NextResponse.redirect(new URL(location, request.url), 301);
+    redirectResponse.headers.set("Cache-Control", "no-store, no-cache, must-revalidate, max-age=0");
+    redirectResponse.headers.set("Vary", "*");
+    return redirectResponse;
   }
 
   const isDev = process.env.NODE_ENV === "development";
