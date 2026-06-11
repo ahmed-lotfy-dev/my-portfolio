@@ -53,8 +53,8 @@ export async function proxy(request: NextRequest) {
 
   const csp = [
     "default-src 'self'",
-    `script-src 'self' ${isDev ? "'unsafe-eval'" : ""} 'unsafe-inline' *.googletagmanager.com *.posthog.com https://eu.i.posthog.com https://static.cloudflareinsights.com *.cloudflareinsights.com blob:;`,
-    "script-src-elem 'self' 'unsafe-inline' *.googletagmanager.com *.posthog.com https://eu.i.posthog.com https://static.cloudflareinsights.com *.cloudflareinsights.com blob:;",
+    "script-src 'self' 'unsafe-eval' 'unsafe-inline' *.googletagmanager.com *.posthog.com https://eu.i.posthog.com https://static.cloudflareinsights.com *.cloudflareinsights.com blob:",
+    "script-src-elem 'self' 'unsafe-inline' *.googletagmanager.com *.posthog.com https://eu.i.posthog.com https://static.cloudflareinsights.com *.cloudflareinsights.com blob:",
     "style-src 'self' 'unsafe-inline' *.google.com *.gstatic.com;",
     "img-src 'self' data: https: blob:;",
     "font-src 'self' data: *.gstatic.com;",
@@ -65,7 +65,6 @@ export async function proxy(request: NextRequest) {
     !isDev ? "upgrade-insecure-requests" : "",
   ].filter(Boolean).join("; ");
 
-  response.headers.set("Content-Security-Policy", csp);
   response.headers.set(
     "Strict-Transport-Security",
     "max-age=31536000; includeSubDomains; preload"

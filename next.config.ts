@@ -6,6 +6,7 @@ const cspDirectives = {
   "default-src": ["'self'"],
   "script-src": [
     "'self'",
+    "'unsafe-eval'",
     "'unsafe-inline'",
     "*.googletagmanager.com",
     "*.posthog.com",
