@@ -1,187 +1,130 @@
 "use client";
 
 import Link from "next/link";
-import Image from "next/image";
-import HeroImage from "@/public/images/optimized/About-Image.webp";
 import { FileText, ArrowRight } from "lucide-react";
-import { CVDropdown } from "./CVDropdown";
 import { useTranslations } from "next-intl";
 import { Button } from "@/src/components/ui/button";
 import { cn } from "@/src/lib/utils";
-import { m, useMotionValue, useSpring, AnimatePresence } from "motion/react";
-import type { Variants } from "motion/react";
+import { CVDropdown } from "./CVDropdown";
 import { Nav } from "./Nav";
-import { SeasonalBackground } from "./seasonal/SeasonalBackground";
+import { Canvas } from "@react-three/fiber";
+import { Suspense, useState, useEffect } from "react";
+import { m, AnimatePresence } from "motion/react";
+import Avatar from "./hero/Avatar";
+import DeskScene from "./hero/DeskScene";
+import ComputerScreen from "./hero/ComputerScreen";
+import ScrollController from "./hero/ScrollController";
 
-const containerVariants: Variants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.05,
-      delayChildren: 0.2,
-    },
-  },
+const AVATAR_POSES: Record<string, "standing" | "sitting" | "typing" | "presenting"> = {
+  hero: "standing",
+  about: "sitting",
+  projects: "typing",
+  contact: "presenting",
 };
-
-const itemVariants: Variants = {
-  hidden: { opacity: 0, y: -15 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.3,
-      ease: "easeOut",
-    },
-  },
-};
-
-const imageVariants: Variants = {
-  hidden: { opacity: 0, scale: 0.92 },
-  visible: {
-    opacity: 1,
-    scale: 1,
-    transition: {
-      delay: 0.4,
-      duration: 0.35,
-      ease: "easeOut",
-    },
-  },
-};
-
 
 export default function Hero({ locale }: { locale: string }) {
   const t = useTranslations("hero");
   const isRTL = locale === "ar";
+  const [activeSection, setActiveSection] = useState(0);
+  const [currentPose, setCurrentPose] = useState<"standing" | "sitting" | "typing" | "presenting">("standing");
 
-  const mouseX = useMotionValue(0);
-  const mouseY = useMotionValue(0);
+  const sections = ["hero", "about", "projects", "contact"];
 
-  const springX = useSpring(mouseX, { stiffness: 50, damping: 20 });
-  const springY = useSpring(mouseY, { stiffness: 50, damping: 20 });
-
-  function handleMouseMove({ currentTarget, clientX, clientY }: React.MouseEvent) {
-    const { left, top } = currentTarget.getBoundingClientRect();
-    mouseX.set(clientX - left);
-    mouseY.set(clientY - top);
-  }
+  useEffect(() => {
+    const pose = AVATAR_POSES[sections[activeSection]];
+    if (pose) setCurrentPose(pose);
+  }, [activeSection]);
 
   return (
-    <header
-      className="group relative flex min-h-screen w-full flex-col overflow-hidden bg-background"
-      id="hero"
-      onMouseMove={handleMouseMove}
-    >
-      <SeasonalBackground />
-
-      {/* Integrated Navigation */}
+    <header className="group relative flex min-h-screen w-full flex-col overflow-hidden" id="hero">
+      <div className="hero-mesh-bg absolute inset-0 -z-20" />
+      <div className="absolute inset-0 -z-10 overflow-hidden pointer-events-none">
+        <div className="hero-orb hero-orb-1" />
+        <div className="hero-orb hero-orb-2" />
+        <div className="hero-orb hero-orb-3" />
+      </div>
+      <div className="absolute inset-0 -z-10 hero-grid-overlay" />
       <Nav variant="integrated" />
 
-      <section
-        className="relative flex flex-1 items-center border-b border-border/40 px-4 pb-20 pt-10 md:pt-16"
-      >
+      <section className="relative flex flex-1 items-center px-4 pb-16 pt-8 md:pb-24 md:pt-12 lg:pb-32">
         <div className="container relative z-10 mx-auto max-w-7xl px-4 md:px-6">
-          <m.div
-            className={cn("flex flex-col-reverse items-center gap-8 lg:flex-row lg:gap-16", isRTL ? "lg:flex-row-reverse" : "")}
-            variants={containerVariants}
-            initial="hidden"
-            animate="visible"
-          >
-            {/* Content Side - Below image on mobile, left on desktop */}
-            <m.div
-              className="relative z-20 w-full space-y-6 text-center md:space-y-8 lg:w-[55%] lg:text-start"
-              variants={containerVariants}
-            >
-              <m.div
-                variants={itemVariants}
-                className="inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-4 py-2 font-semibold tracking-wide text-primary shadow-sm backdrop-blur-md"
-              >
-                <span className="text-sm font-bold tracking-wide uppercase">{t("available_work")}</span>
+          <div className={cn("flex flex-col-reverse items-center gap-10 lg:flex-row lg:gap-20", isRTL && "lg:flex-row-reverse")}>
+            {/* Text Side */}
+            <div className="relative z-20 w-full text-center md:space-y-8 lg:w-[55%] lg:text-start">
+              <m.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }} className="hero-badge-wrapper">
+                <div className="hero-badge-dot" />
+                <span className="text-sm font-semibold tracking-wider uppercase">{t("available_work")}</span>
               </m.div>
 
-              <m.h1
-                variants={itemVariants}
-                className="text-balance font-heading text-[clamp(3.5rem,10vw,7.5rem)] font-black leading-[0.9] tracking-tighter text-white drop-shadow-2xl uppercase"
-              >
-                {t("name")}
+              <m.h1 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.1 }} className="hero-title">
+                <span className="hero-title-line">{t("name")}</span>
+                <span className="hero-title-gradient">{t("title")}</span>
               </m.h1>
 
-              <m.p
-                variants={itemVariants}
-                className="mx-auto max-w-[95%] text-[clamp(1.1rem,1.8vw,1.5rem)] font-medium leading-relaxed text-muted-foreground/80 lg:mx-0"
-              >
+              <m.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.2 }} className="mx-auto max-w-[95%] text-lg font-medium leading-relaxed text-white/60 md:text-xl lg:mx-0 lg:text-2xl">
                 {t("description")}
               </m.p>
 
-              <m.div
-                variants={itemVariants}
-                className="mt-6 flex flex-col items-center justify-center gap-4 pt-4 sm:flex-row lg:justify-start"
-              >
-                <Button
-                  size="lg"
-                  className="group relative h-14 cursor-pointer overflow-hidden rounded-2xl border-none bg-primary px-8 font-black text-primary-foreground shadow-2xl shadow-primary/20 transition-all hover:-translate-y-1 hover:bg-primary/90 hover:shadow-primary/40 active:scale-95"
-                  asChild
-                >
+              <m.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.3 }} className="mt-8 flex flex-col items-center justify-center gap-4 pt-6 sm:flex-row lg:justify-start">
+                <Button size="lg" className="hero-cta-primary group relative h-16 cursor-pointer overflow-hidden rounded-2xl border-none px-10 text-lg font-bold shadow-2xl transition-all duration-300 hover:-translate-y-0.5 active:scale-[0.98]" asChild>
                   <Link href="#contact">
-                    <span className="relative z-10 flex items-center gap-2">
+                    <span className="relative z-10 flex items-center gap-3">
                       {t("book_consultation")}
-                      <ArrowRight
-                        className={cn("h-5 w-5 transition-transform group-hover:translate-x-1", isRTL && "rotate-180 group-hover:-translate-x-1")}
-                      />
+                      <ArrowRight className={cn("h-5 w-5 transition-transform duration-300 group-hover:translate-x-1", isRTL && "rotate-180 group-hover:-translate-x-1")} />
                     </span>
                   </Link>
                 </Button>
 
-                <Button
-                  variant="outline"
-                  size="lg"
-                  className="h-14 cursor-pointer rounded-2xl border-primary/20 bg-primary/5 px-8 font-bold text-primary transition-all hover:-translate-y-1 hover:border-primary/40 hover:bg-primary/10 active:scale-95"
-                  asChild
-                >
-                  <Link href="/projects">
-                    <span>{t("view_work")}</span>
-                  </Link>
+                <Button variant="outline" size="lg" className="hero-cta-secondary h-16 cursor-pointer rounded-2xl border border-white/10 bg-white/[0.03] px-10 text-lg font-semibold text-white/80 backdrop-blur-sm transition-all duration-300 hover:-translate-y-0.5 active:scale-[0.98]" asChild>
+                  <Link href="/projects"><span>{t("view_work")}</span></Link>
                 </Button>
 
                 <div className="flex justify-center pt-2 sm:pt-0">
                   <CVDropdown>
-                    <Button
-                      variant="ghost"
-                      size="sm"
-                      className="h-14 gap-2 rounded-2xl px-6 text-muted-foreground transition-colors hover:text-primary"
-                    >
+                    <Button variant="ghost" size="sm" className="h-14 gap-2 rounded-2xl px-6 text-white/50 transition-colors hover:text-white/80">
                       <FileText className="h-5 w-5" />
                       <span className="font-bold">{t("resume")}</span>
                     </Button>
                   </CVDropdown>
                 </div>
               </m.div>
-            </m.div>
+            </div>
 
-            {/* Image Side - Above text on mobile, right on desktop */}
-            <m.div
-              className="relative flex w-full items-center justify-center order-first lg:order-last lg:w-[40%] p-4 lg:p-0"
-              variants={imageVariants}
-            >
-              <div className="relative w-full max-w-[200px] sm:max-w-[250px] lg:max-w-[380px]">
-                <div className="absolute -inset-4 rounded-[3rem] bg-linear-to-tr from-primary/30 to-transparent opacity-60 blur-3xl -z-10" />
-                <div className="group relative aspect-square w-full overflow-hidden rounded-[2.5rem] border-2 border-white/5 bg-black/10 shadow-2xl">
-                  <Image
-                    src={HeroImage}
-                    alt={t("illustrationAlt")}
-                    fill
-                    priority
-                    loading="eager"
-                    fetchPriority="high"
-                    className={cn("object-cover transition-transform duration-[2s] ease-out group-hover:scale-105", isRTL && "scale-x-[-1]")}
-                    sizes="(max-width: 640px) 70vw, (max-width: 1024px) 50vw, 45vw"
-                  />
-                </div>
-              </div>
-            </m.div>
-          </m.div>
+            {/* 3D Avatar Scene */}
+            <div className="hero-image-container relative flex w-full items-center justify-center lg:w-[42%]">
+              <AnimatePresence mode="wait">
+                <m.div key={currentPose} initial={{ opacity: 0, scale: 0.92 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.92 }} transition={{ duration: 0.7, ease: [0.25, 0.46, 0.45, 0.94] }} className="w-full aspect-square max-w-[520px]">
+                  <Suspense fallback={<HeroFallback />}>
+                    <Canvas camera={{ position: [0, 1.2, 3.5], fov: 45 }} className="w-full h-full" gl={{ antialias: true, alpha: true }} dpr={[1, 2]}>
+                      <ambientLight intensity={0.6} />
+                      <directionalLight position={[5, 5, 5]} intensity={1.2} />
+                      <pointLight position={[-3, 3, -3]} intensity={0.6} color="#6366f1" />
+                      <pointLight position={[3, 2, 3]} intensity={0.4} color="#8b5cf6" />
+                      <Avatar pose={currentPose} />
+                      <DeskScene />
+                      <ComputerScreen section={sections[activeSection]} />
+                    </Canvas>
+                  </Suspense>
+                </m.div>
+              </AnimatePresence>
+              <div className="hero-image-glow" />
+            </div>
+          </div>
         </div>
       </section>
+
+      <ScrollController onSectionChange={setActiveSection} sections={sections} />
+      <div className="hero-bottom-fade" />
     </header>
+  );
+}
+
+function HeroFallback() {
+  return (
+    <div className="w-full h-full flex items-center justify-center">
+      <div className="w-40 h-40 rounded-full bg-white/5 animate-pulse flex items-center justify-center">
+        <div className="w-24 h-24 rounded-full bg-white/10 animate-ping" />
+      </div>
+    </div>
   );
 }
