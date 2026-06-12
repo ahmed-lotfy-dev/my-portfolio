@@ -14,6 +14,7 @@ import Avatar from "./hero/Avatar";
 import DeskScene from "./hero/DeskScene";
 import ComputerScreen from "./hero/ComputerScreen";
 import ScrollController from "./hero/ScrollController";
+import { usePrefersReducedMotion, useIsMobile } from "@/src/hooks/useMediaQuery";
 
 const AVATAR_POSES: Record<string, "standing" | "sitting" | "typing" | "presenting"> = {
   hero: "standing",
@@ -27,6 +28,8 @@ export default function Hero({ locale }: { locale: string }) {
   const isRTL = locale === "ar";
   const [activeSection, setActiveSection] = useState(0);
   const [currentPose, setCurrentPose] = useState<"standing" | "sitting" | "typing" | "presenting">("standing");
+  const prefersReduced = usePrefersReducedMotion();
+  const isMobile = useIsMobile();
 
   const sections = ["hero", "about", "projects", "contact"];
 
@@ -51,60 +54,112 @@ export default function Hero({ locale }: { locale: string }) {
           <div className={cn("flex flex-col-reverse items-center gap-10 lg:flex-row lg:gap-20", isRTL && "lg:flex-row-reverse")}>
             {/* Text Side */}
             <div className="relative z-20 w-full text-center md:space-y-8 lg:w-[55%] lg:text-start">
-              <m.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }} className="hero-badge-wrapper">
+              <m.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}
+                className="hero-badge-wrapper"
+              >
                 <div className="hero-badge-dot" />
                 <span className="text-sm font-semibold tracking-wider uppercase">{t("available_work")}</span>
               </m.div>
 
-              <m.h1 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.1 }} className="hero-title">
+              <m.h1
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.1 }}
+                className="hero-title"
+              >
                 <span className="hero-title-line">{t("name")}</span>
                 <span className="hero-title-gradient">{t("title")}</span>
               </m.h1>
 
-              <m.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.2 }} className="mx-auto max-w-[95%] text-lg font-medium leading-relaxed text-white/60 md:text-xl lg:mx-0 lg:text-2xl">
+              <m.p
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.2 }}
+                className="mx-auto max-w-xl text-lg leading-relaxed text-white/60 lg:mx-0 md:text-xl"
+              >
                 {t("description")}
               </m.p>
 
-              <m.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.3 }} className="mt-8 flex flex-col items-center justify-center gap-4 pt-6 sm:flex-row lg:justify-start">
-                <Button size="lg" className="hero-cta-primary group relative h-16 cursor-pointer overflow-hidden rounded-2xl border-none px-10 text-lg font-bold shadow-2xl transition-all duration-300 hover:-translate-y-0.5 active:scale-[0.98]" asChild>
-                  <Link href="#contact">
-                    <span className="relative z-10 flex items-center gap-3">
-                      {t("book_consultation")}
-                      <ArrowRight className={cn("h-5 w-5 transition-transform duration-300 group-hover:translate-x-1", isRTL && "rotate-180 group-hover:-translate-x-1")} />
-                    </span>
-                  </Link>
-                </Button>
+              <m.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.3 }}
+                className="flex flex-col items-center gap-4 pt-4 sm:flex-row lg:justify-start"
+              >
+                <Link href={`/${locale}/contact`}>
+                  <Button className="hero-cta-primary h-14 gap-2 rounded-2xl px-8 text-base font-bold shadow-lg shadow-blue-500/25 hover:shadow-blue-500/40 transition-shadow">
+                    {t("book_consultation")}
+                    <ArrowRight className="h-5 w-5" />
+                  </Button>
+                </Link>
 
-                <Button variant="outline" size="lg" className="hero-cta-secondary h-16 cursor-pointer rounded-2xl border border-white/10 bg-white/[0.03] px-10 text-lg font-semibold text-white/80 backdrop-blur-sm transition-all duration-300 hover:-translate-y-0.5 active:scale-[0.98]" asChild>
-                  <Link href="/projects"><span>{t("view_work")}</span></Link>
-                </Button>
-
-                <div className="flex justify-center pt-2 sm:pt-0">
-                  <CVDropdown>
-                    <Button variant="ghost" size="sm" className="h-14 gap-2 rounded-2xl px-6 text-white/50 transition-colors hover:text-white/80">
-                      <FileText className="h-5 w-5" />
-                      <span className="font-bold">{t("resume")}</span>
-                    </Button>
-                  </CVDropdown>
-                </div>
+                <Link href={`/${locale}/projects`}>
+                  <Button variant="ghost" className="h-14 gap-2 rounded-2xl px-8 text-white/70 hover:text-white hover:bg-white/5 transition-colors">
+                    {t("view_work")}
+                  </Button>
+                </Link>
               </m.div>
+
+              <m.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.5, delay: 0.4 }}
+                className="flex flex-wrap justify-center gap-3 pt-4 lg:justify-start"
+              >
+                {["Next.js", "React", "TypeScript", "Node.js"].map((tech) => (
+                  <span
+                    key={tech}
+                    className="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs font-medium text-white/50 backdrop-blur-sm"
+                  >
+                    {tech}
+                  </span>
+                ))}
+              </m.div>
+
+              <div className="flex justify-center pt-2 sm:pt-0">
+                <CVDropdown>
+                  <Button variant="ghost" size="sm" className="h-14 gap-2 rounded-2xl px-6 text-white/50 transition-colors hover:text-white/80">
+                    <FileText className="h-5 w-5" />
+                    <span className="font-bold">{t("resume")}</span>
+                  </Button>
+                </CVDropdown>
+              </div>
             </div>
 
             {/* 3D Avatar Scene */}
             <div className="hero-image-container relative flex w-full items-center justify-center lg:w-[42%]">
               <AnimatePresence mode="wait">
-                <m.div key={currentPose} initial={{ opacity: 0, scale: 0.92 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.92 }} transition={{ duration: 0.7, ease: [0.25, 0.46, 0.45, 0.94] }} className="w-full aspect-square max-w-[520px]">
-                  <Suspense fallback={<HeroFallback />}>
-                    <Canvas camera={{ position: [0, 1.2, 3.5], fov: 45 }} className="w-full h-full" gl={{ antialias: true, alpha: true }} dpr={[1, 2]}>
-                      <ambientLight intensity={0.6} />
-                      <directionalLight position={[5, 5, 5]} intensity={1.2} />
-                      <pointLight position={[-3, 3, -3]} intensity={0.6} color="#6366f1" />
-                      <pointLight position={[3, 2, 3]} intensity={0.4} color="#8b5cf6" />
-                      <Avatar pose={currentPose} />
-                      <DeskScene />
-                      <ComputerScreen section={sections[activeSection]} />
-                    </Canvas>
-                  </Suspense>
+                <m.div
+                  key={currentPose}
+                  initial={{ opacity: 0, scale: 0.92 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.92 }}
+                  transition={{ duration: 0.7, ease: [0.25, 0.46, 0.45, 0.94] }}
+                  className="w-full aspect-square max-w-[520px]"
+                >
+                  {prefersReduced || isMobile ? (
+                    <HeroFallback />
+                  ) : (
+                    <Suspense fallback={<HeroFallback />}>
+                      <Canvas
+                        camera={{ position: [0, 1.2, 3.5], fov: 45 }}
+                        className="w-full h-full"
+                        gl={{ antialias: true, alpha: true }}
+                        dpr={[1, 2]}
+                      >
+                        <ambientLight intensity={0.6} />
+                        <directionalLight position={[5, 5, 5]} intensity={1.2} />
+                        <pointLight position={[-3, 3, -3]} intensity={0.6} color="#6366f1" />
+                        <pointLight position={[3, 2, 3]} intensity={0.4} color="#8b5cf6" />
+                        <Avatar pose={currentPose} />
+                        <DeskScene />
+                        <ComputerScreen section={sections[activeSection]} />
+                      </Canvas>
+                    </Suspense>
+                  )}
                 </m.div>
               </AnimatePresence>
               <div className="hero-image-glow" />

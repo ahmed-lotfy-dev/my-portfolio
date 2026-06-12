@@ -86,7 +86,7 @@ export default async function HomePage({
   setRequestLocale(locale);
 
   return (
-    <main className="font-main min-h-screen bg-background text-foreground">
+    <main className="font-main min-h-screen bg-background text-foreground snap-container">
       <StructuredData
         type="Person"
         data={{
@@ -125,7 +125,6 @@ export default async function HomePage({
           },
         }}
       />
-
       <StructuredData
         type="FAQ"
         data={{
@@ -166,30 +165,42 @@ export default async function HomePage({
         }}
       />
 
-      <Hero locale={locale} />
+      {/* Hero — full viewport, snap target */}
+      <section id="hero-section" className="snap-section">
+        <Hero locale={locale} />
+      </section>
 
+      {/* Content sections — each snaps into place */}
       <Container>
         <div className="space-y-6 py-12 lg:py-20">
-          <HomeSectionBand variant="warm">
-            <Services />
-            <TechStack />
-          </HomeSectionBand>
+          <section id="about-section" className="snap-section">
+            <HomeSectionBand variant="warm">
+              <Services />
+              <TechStack />
+            </HomeSectionBand>
+          </section>
 
-          <HomeSectionBand variant="editorial">
-            <Experience />
-            <Suspense fallback={<ProjectsSkeleton />}>
-              <Projects />
-            </Suspense>
-          </HomeSectionBand>
+          <section id="projects-section" className="snap-section">
+            <HomeSectionBand variant="editorial">
+              <Experience />
+              <Suspense fallback={<ProjectsSkeleton />}>
+                <Projects />
+              </Suspense>
+            </HomeSectionBand>
+          </section>
 
-          <HomeSectionBand variant="deep">
-            <About />
-            <Testimonials />
-          </HomeSectionBand>
+          <section id="contact-section" className="snap-section">
+            <HomeSectionBand variant="deep">
+              <About />
+              <Testimonials />
+            </HomeSectionBand>
+          </section>
 
-          <HomeSectionBand variant="warm">
-            <Contact />
-          </HomeSectionBand>
+          <section id="contact-form-section" className="snap-section">
+            <HomeSectionBand variant="warm">
+              <Contact />
+            </HomeSectionBand>
+          </section>
         </div>
       </Container>
     </main>

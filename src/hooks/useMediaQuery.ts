@@ -1,39 +1,33 @@
-import { useState, useEffect } from 'react';
+"use client";
 
-/**
- * Hook to match CSS media queries
- * SSR-safe - returns false on server
- * 
- * @param query - CSS media query string
- * @example
- * const isMobile = useMediaQuery('(max-width: 768px)');
- * const prefersReducedMotion = useMediaQuery('(prefers-reduced-motion: reduce)');
- */
-export function useMediaQuery(query: string): boolean {
-  const [matches, setMatches] = useState(false);
+import { useEffect, useState } from "react";
+
+export function usePrefersReducedMotion() {
+  const [prefersReduced, setPrefersReduced] = useState(false);
 
   useEffect(() => {
-    // Only runs on client
-    if (typeof window === 'undefined') return;
+    const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
+    setPrefersReduced(mq.matches);
 
-    const mediaQuery = window.matchMedia(query);
+    const handler = (e: MediaQueryListEvent) => setPrefersReduced(e.matches);
+    mq.addEventListener("change", handler);
+    return () => mq.removeEventListener("change", handler);
+  }, []);
 
-    // Set initial value
-    setMatches(mediaQuery.matches);
+  return prefersReduced;
+}
 
-    // Create event listener
-    const handleChange = (e: MediaQueryListEvent) => {
-      setMatches(e.matches);
-    };
+export function useIsMobile(breakpoint = 768) {
+  const [isMobile, setIsMobile] = useState(false);
 
-    // Add listener (modern browsers)
-    mediaQuery.addEventListener('change', handleChange);
+  useEffect(() => {
+    const mq = window.matchMedia(`(max-width: ${breakpoint - 1}px)`);
+    setIsMobile(mq.matches);
 
-    // Cleanup
-    return () => {
-      mediaQuery.removeEventListener('change', handleChange);
-    };
-  }, [query]);
+    const handler = (e: MediaQueryListEvent) => setIsMobile(e.matches);
+    mq.addEventListener("change", handler);
+    return () => mq.removeEventListener("change", handler);
+  }, [breakpoint]);
 
-  return matches;
+  return isMobile;
 }

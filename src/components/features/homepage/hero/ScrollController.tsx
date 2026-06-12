@@ -15,19 +15,14 @@ interface ScrollControllerProps {
 
 export default function ScrollController({ onSectionChange, sections }: ScrollControllerProps) {
   const prevSection = useRef(-1);
-  const heroRef = useRef<HTMLElement | null>(null);
 
   const handleScroll = useCallback(() => {
-    if (!heroRef.current) return;
+    const scrollY = window.scrollY;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const progress = docHeight > 0 ? scrollY / docHeight : 0;
 
-    const hero = heroRef.current;
-    const rect = hero.getBoundingClientRect();
-    const heroHeight = hero.offsetHeight;
-    const scrollProgress = -rect.top / heroHeight;
-
-    // Determine which section we're in (0-3)
-    const clampedProgress = Math.min(Math.max(scrollProgress, 0), sections.length - 1);
-    const currentSection = Math.floor(clampedProgress);
+    const clampedProgress = Math.min(Math.max(progress, 0), 0.999);
+    const currentSection = Math.floor(clampedProgress * sections.length);
 
     if (currentSection !== prevSection.current && currentSection >= 0 && currentSection < sections.length) {
       prevSection.current = currentSection;
@@ -36,21 +31,17 @@ export default function ScrollController({ onSectionChange, sections }: ScrollCo
   }, [sections, onSectionChange]);
 
   useEffect(() => {
-    // Find the hero element
-    heroRef.current = document.getElementById("hero");
-
-    // Use GSAP ScrollTrigger for smooth scroll-linked animation
     const ctx = gsap.context(() => {
       ScrollTrigger.create({
-        trigger: "body",
+        trigger: document.body,
         start: "top top",
         end: "bottom bottom",
-        onUpdate: handleScroll,
+        onUpdate: () => handleScroll(),
       });
     });
 
     return () => ctx.revert();
   }, [handleScroll]);
 
-  return null; // This component is invisible
+  return null;
 }

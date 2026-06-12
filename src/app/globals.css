@@ -1501,3 +1501,44 @@
   }
 }
 /* Cache buster */
+
+/* ═══════════════════════════════════════════
+   SCROLL SNAP — Section-based snapping
+   ═══════════════════════════════════════════ */
+
+.snap-container {
+  scroll-snap-type: y mandatory;
+  overflow-y: scroll;
+  height: 100vh;
+  scroll-behavior: smooth;
+}
+
+.snap-section {
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+  min-height: 100vh;
+}
+
+/* Disable snap on reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  .snap-container {
+    scroll-snap-type: none;
+    scroll-behavior: auto;
+  }
+
+  .snap-section {
+    scroll-snap-align: none;
+  }
+}
+
+/* Mobile: disable snap for better UX */
+@media (max-width: 767px) {
+  .snap-container {
+    scroll-snap-type: none;
+  }
+
+  .snap-section {
+    scroll-snap-align: none;
+    min-height: auto;
+  }
+}
