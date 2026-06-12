@@ -68,6 +68,7 @@ const securityHeaders = [
 const nextConfig: NextConfig = {
   output: "standalone",
   compress: true,
+  allowedDevOrigins: ["web.ahmedlotfy.site"],
   experimental: {
     serverActions: {
       bodySizeLimit: "10mb",
