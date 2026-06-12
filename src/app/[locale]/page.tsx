@@ -24,6 +24,7 @@ import Container from "@/src/components/ui/Container";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import StructuredData from "@/src/components/seo/StructuredData";
 import { routing } from "@/src/i18n/routing";
+import ScrollReveal from "@/src/components/shared/ScrollReveal";
 
 export const dynamic = "force-dynamic";
 
@@ -169,26 +170,42 @@ export default async function HomePage({
 
       <Container>
         <div className="space-y-6 py-12 lg:py-20">
-          <HomeSectionBand variant="warm">
-            <Services />
-            <TechStack />
-          </HomeSectionBand>
+          <ScrollReveal>
+            <div className="snap-section">
+              <HomeSectionBand variant="warm">
+                <Services />
+                <TechStack />
+              </HomeSectionBand>
+            </div>
+          </ScrollReveal>
 
-          <HomeSectionBand variant="editorial">
-            <Experience />
-            <Suspense fallback={<ProjectsSkeleton />}>
-              <Projects />
-            </Suspense>
-          </HomeSectionBand>
+          <ScrollReveal delay={0.1}>
+            <div className="snap-section">
+              <HomeSectionBand variant="editorial">
+                <Experience />
+                <Suspense fallback={<ProjectsSkeleton />}>
+                  <Projects />
+                </Suspense>
+              </HomeSectionBand>
+            </div>
+          </ScrollReveal>
 
-          <HomeSectionBand variant="deep">
-            <About />
-            <Testimonials />
-          </HomeSectionBand>
+          <ScrollReveal delay={0.2}>
+            <div className="snap-section">
+              <HomeSectionBand variant="deep">
+                <About />
+                <Testimonials />
+              </HomeSectionBand>
+            </div>
+          </ScrollReveal>
 
-          <HomeSectionBand variant="warm">
-            <Contact />
-          </HomeSectionBand>
+          <ScrollReveal delay={0.3}>
+            <div className="snap-section">
+              <HomeSectionBand variant="warm">
+                <Contact />
+              </HomeSectionBand>
+            </div>
+          </ScrollReveal>
         </div>
       </Container>
     </main>

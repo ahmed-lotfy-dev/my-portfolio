@@ -83,6 +83,21 @@
       radial-gradient(circle at top, hsl(43 74% 62% / 0.08), transparent 36%),
       linear-gradient(180deg, hsl(28 18% 10%), hsl(24 14% 7%) 28%);
     background-color: var(--color-background);
+    scroll-snap-type: y mandatory;
+    scroll-behavior: smooth;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-snap-type: none;
+      scroll-behavior: auto;
+    }
+  }
+
+  @media (max-width: 767px) {
+    html {
+      scroll-snap-type: none;
+    }
   }
 
   body {
@@ -1501,3 +1516,48 @@
   }
 }
 /* Cache buster */
+
+/* ═══════════════════════════════════════════
+   SCROLL REVEAL — Fade in on scroll
+   ═══════════════════════════════════════════ */
+
+.scroll-reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  will-change: opacity, transform;
+}
+
+.scroll-reveal-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scroll-reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+/* ═══════════════════════════════════════════
+   SCROLL SNAP TARGETS
+   ═══════════════════════════════════════════ */
+
+.snap-section {
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .snap-section {
+    scroll-snap-align: none;
+  }
+}
+
+@media (max-width: 767px) {
+  .snap-section {
+    scroll-snap-align: none;
+  }
+}

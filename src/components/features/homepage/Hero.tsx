@@ -39,7 +39,7 @@ export default function Hero({ locale }: { locale: string }) {
   }, [activeSection]);
 
   return (
-    <header className="group relative flex min-h-screen w-full flex-col overflow-hidden" id="hero">
+    <header className="group relative flex min-h-screen w-full flex-col overflow-hidden snap-section" id="hero">
       <div className="hero-mesh-bg absolute inset-0 -z-20" />
       <div className="absolute inset-0 -z-10 overflow-hidden pointer-events-none">
         <div className="hero-orb hero-orb-1" />
