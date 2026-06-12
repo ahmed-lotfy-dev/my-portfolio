@@ -75,7 +75,7 @@ export function DesktopNav({
               {active && (
                 <m.div
                   layoutId="active-indicator"
-                  className="absolute -bottom-[2px] left-1/2 h-[2px] w-4 -translate-x-1/2 rounded-full bg-primary shadow-[0_0_12px_rgba(212,175,55,0.8)]"
+                  className="absolute -bottom-[2px] left-1/2 h-[2px] w-4 -translate-x-1/2 rounded-full bg-blue-400 shadow-[0_0_12px_rgba(96,165,250,0.8)]"
                   transition={{ type: "spring", bounce: 0.3, duration: 0.5 }}
                 />
               )}

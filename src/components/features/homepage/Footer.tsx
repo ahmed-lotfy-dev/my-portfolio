@@ -44,7 +44,7 @@ export default function Footer() {
     },
   ];
 
-  const techStack = ["Next.js 16", "TypeScript", "Tailwind CSS", "Drizzle ORM"];
+  const techStack = ["Next.js", "TypeScript", "Tailwind CSS", "Drizzle ORM"];
 
   return (
     <footer className="relative w-full border-t border-border/40 bg-linear-to-b from-background via-background to-muted/20 mt-32">

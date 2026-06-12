@@ -41,7 +41,7 @@ const svg = `
   <text x="120" y="370" fill="#A7F3D0" font-family="Inter, Arial, sans-serif" font-size="30" font-weight="700">High-performance web apps with measurable business impact</text>
   <g>
     <rect x="120" y="432" width="136" height="48" rx="24" fill="#FFFFFF" fill-opacity="0.08" stroke="#FFFFFF" stroke-opacity="0.12"/>
-    <text x="148" y="464" fill="#F8FAFC" font-family="Inter, Arial, sans-serif" font-size="22" font-weight="800">Next.js 16</text>
+    <text x="156" y="464" fill="#F8FAFC" font-family="Inter, Arial, sans-serif" font-size="22" font-weight="800">Next.js</text>
     <rect x="272" y="432" width="118" height="48" rx="24" fill="#FFFFFF" fill-opacity="0.08" stroke="#FFFFFF" stroke-opacity="0.12"/>
     <text x="300" y="464" fill="#F8FAFC" font-family="Inter, Arial, sans-serif" font-size="22" font-weight="800">React 19</text>
     <rect x="406" y="432" width="150" height="48" rx="24" fill="#FFFFFF" fill-opacity="0.08" stroke="#FFFFFF" stroke-opacity="0.12"/>

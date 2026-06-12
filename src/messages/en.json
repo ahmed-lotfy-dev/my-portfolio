@@ -16,8 +16,8 @@
   },
   "hero": {
     "name": "Ahmed Lotfy",
-    "title": "Senior Software Architect & Full-Stack Engineer",
-    "description": "Building high-performance digital ecosystems with Next.js 16 and Cloud-Native architectures. Focused on scalability, performance, and premium user experiences.",
+    "title": "I Architect Digital Products That Scale",
+    "description": "10+ years transforming ambitious ideas into high-performance web platforms. From zero to production — I build the systems that power modern businesses.",
     "book_consultation": "Book a Consultation",
     "resume": "My CV",
     "view_work": "View Work",
@@ -39,7 +39,7 @@
     "footer": "Production Ready • Type Safe • Scalable",
     "items": {
       "nextjs": {
-        "title": "React & Next.js 16",
+        "title": "React & Next.js",
         "desc": "Building complex UIs with React 19 features and Next.js Server Actions."
       },
       "typescript": {
@@ -249,15 +249,15 @@
         "company": "The Drive Center",
         "role": "Senior Software Architect & Full-Stack Engineer",
         "date": "May 2024 — Present",
-        "description": "Architected a high-performance automotive SaaS platform with automated booking, vehicle tracking, and WhatsApp API integration. Optimized for Local SEO and performance using Next.js 16 and Drizzle ORM. Resulted in a 40% reduction in administrative overhead.",
-        "tech": "Next.js 16, TypeScript, PostgreSQL, Drizzle ORM, Better Auth, Cloudflare R2, WhatsApp API"
+        "description": "Architected a high-performance automotive SaaS platform with automated booking, vehicle tracking, and WhatsApp API integration. Optimized for Local SEO and performance using Next.js and Drizzle ORM. Resulted in a 40% reduction in administrative overhead.",
+        "tech": "Next.js, TypeScript, PostgreSQL, Drizzle ORM, Better Auth, Cloudflare R2, WhatsApp API"
       },
       "1": {
         "company": "Zamalek Store",
         "role": "Lead Full-Stack Engineer",
         "date": "Oct — Dec 2024",
-        "description": "Digital transformation for a major clothing brand. Built a high-performance e-commerce engine (Next.js 16) handling high traffic. Integrated Paymob payments and localized workflows. Result: 40% reduction in cart abandonment and significant increase in online sales volume through 24/7 availability.",
-        "tech": "Next.js 16, PostgreSQL, BullMQ, Redis, Docker"
+        "description": "Digital transformation for a major clothing brand. Built a high-performance e-commerce engine (Next.js) handling high traffic. Integrated Paymob payments and localized workflows. Result: 40% reduction in cart abandonment and significant increase in online sales volume through 24/7 availability.",
+        "tech": "Next.js, PostgreSQL, BullMQ, Redis, Docker"
       },
       "2": {
         "company": "Mohammed Ali (Captain X)",

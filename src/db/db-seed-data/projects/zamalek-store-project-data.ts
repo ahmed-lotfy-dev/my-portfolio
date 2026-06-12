@@ -2,13 +2,13 @@ export const zamalekStoreProject = [{
   title_en: "Zamalek Store",
   title_ar: "متجر الزمالك",
   slug: "zamalek-store",
-  desc_en: "A production-ready, bilingual e-commerce platform for Egyptian football fans. Built with Next.js 16, React 19, and Paymob/Kashier integration. Features a hybrid cart system, BullMQ background processing, and optimal mobile performance via Cloudflare R2.",
-  desc_ar: "منصة تجارة إلكترونية احترافي ثنائية اللغة لمشجعي الكرة المصرية. مبنية بـ Next.js 16 و React 19 مع دمج بوابات دفع محلية. تتميز بنظام سلة هجين، معالجة خلفية بـ BullMQ، وأداء مثالي للموبايل عبر Cloudflare R2.",
+  desc_en: "A production-ready, bilingual e-commerce platform for Egyptian football fans. Built with Next.js, React 19, and Paymob/Kashier integration. Features a hybrid cart system, BullMQ background processing, and optimal mobile performance via Cloudflare R2.",
+  desc_ar: "منصة تجارة إلكترونية احترافي ثنائية اللغة لمشجعي الكرة المصرية. مبنية بـ Next.js و React 19 مع دمج بوابات دفع محلية. تتميز بنظام سلة هجين، معالجة خلفية بـ BullMQ، وأداء مثالي للموبايل عبر Cloudflare R2.",
   content_en: `# Case Study: Zamalek Store
 **Production-Ready Bilingual E-Commerce Platform for the Egyptian Market**
 
 > **Role:** Full-Stack Developer
-> **Stack:** Next.js 16, React 19, TypeScript, PostgreSQL, Prisma, Redis, BullMQ, Docker
+> **Stack:** Next.js, React 19, TypeScript, PostgreSQL, Prisma, Redis, BullMQ, Docker
 > **Payments:** Paymob, Kashier, Stripe
 > **Live:** [zamalek-store.ahmedlotfy.site](https://zamalek-store.ahmedlotfy.site)
 
@@ -103,7 +103,7 @@ This goes beyond CRUD—it reflects real engineering decisions, trade-offs, and 
 **منصة تجارة إلكترونية جاهزة للإنتاج للسوق المصري**
 
 > **الدور:** مطور واجهة كاملة (Full-Stack Developer)
-> **التقنيات:** Next.js 16, React 19, TypeScript, PostgreSQL, Prisma, Redis, BullMQ, Docker
+> **التقنيات:** Next.js, React 19, TypeScript, PostgreSQL, Prisma, Redis, BullMQ, Docker
 > **المدفوعات:** Paymob, Kashier, Stripe
 > **المعاينة الحية:** [zamalek-store.ahmedlotfy.site](https://zamalek-store.ahmedlotfy.site)
 
@@ -196,7 +196,7 @@ This goes beyond CRUD—it reflects real engineering decisions, trade-offs, and 
 *   تنفيذ **أتمتة السيو (SEO)** لضمان اكتشاف المحتوى فورياً.
 `,
   categories: [
-    "Next.js 16",
+    "Next.js",
     "React 19",
     "TypeScript",
     "Tailwind CSS",

@@ -62,7 +62,7 @@ export function Nav({ variant = "floating" }: NavProps) {
   const normalizedPath = stripLocale(pathname, locale);
   const { activeSection, scrolled } = useNavState(normalizedPath);
   const isRTL = locale === "ar";
-  
+
   const navRef = useRef<HTMLElement>(null);
   const isHomePage = normalizedPath === "" || normalizedPath === "/" || normalizedPath === `/${locale}`;
 
@@ -78,8 +78,8 @@ export function Nav({ variant = "floating" }: NavProps) {
 
   const mobileVariant: Variants = {
     hidden: { opacity: 0, y: -20 },
-    visible: { 
-      opacity: 1, 
+    visible: {
+      opacity: 1,
       y: 0,
       transition: {
         staggerChildren: 0.08,
@@ -93,8 +93,8 @@ export function Nav({ variant = "floating" }: NavProps) {
 
   const desktopVariant: Variants = {
     hidden: { opacity: 0, y: -20 },
-    visible: { 
-      opacity: 1, 
+    visible: {
+      opacity: 1,
       y: 0,
       transition: {
         staggerChildren: 0.08,
@@ -111,15 +111,15 @@ export function Nav({ variant = "floating" }: NavProps) {
       ref={navRef}
       className={cn(
         "z-50 w-full transition-all duration-300",
-        isIntegrated 
-          ? "relative px-2 pt-4 sm:px-4 md:pt-6 lg:px-8" 
+        isIntegrated
+          ? "relative px-2 pt-4 sm:px-4 md:pt-6 lg:px-8"
           : "fixed left-0 right-0 top-0 pt-4 max-md:pt-2 px-4"
       )}
       variants={
-        isIntegrated 
-          ? navContainerVariants 
-          : (mounted && typeof window !== "undefined" && window.innerWidth < 768) 
-            ? mobileVariant 
+        isIntegrated
+          ? navContainerVariants
+          : (mounted && typeof window !== "undefined" && window.innerWidth < 768)
+            ? mobileVariant
             : desktopVariant
       }
       initial={mounted ? (isIntegrated ? "visible" : "hidden") : "visible"}
@@ -128,7 +128,7 @@ export function Nav({ variant = "floating" }: NavProps) {
     >
       <div
         className={cn(
-          "container relative mx-auto flex h-16 w-full items-center justify-between transition-all duration-700 md:h-20 px-4 md:px-8 max-w-7xl rounded-[2.5rem]",
+          "nav-bar container relative mx-auto flex h-16 w-full items-center justify-between transition-all duration-700 md:h-20 px-4 md:px-8 max-w-7xl rounded-[2.5rem]",
           isIntegrated
             ? scrollerLayoutStyles(scrolled)
             : islandLayoutStyles(scrolled)
@@ -136,12 +136,12 @@ export function Nav({ variant = "floating" }: NavProps) {
       >
         {/* Top Glow Edge */}
         <div className={cn(
-          "absolute inset-x-12 top-0 h-px bg-linear-to-r from-transparent via-primary/40 to-transparent opacity-50 blur-sm"
+          "absolute inset-x-12 top-0 h-px bg-linear-to-r from-transparent via-blue-400/30 to-transparent opacity-50 blur-sm"
         )} />
 
         {/* Brand */}
-        <m.div 
-          variants={navItemVariants} 
+        <m.div
+          variants={navItemVariants}
           className={cn(
             "relative z-10 flex flex-1 items-center justify-start"
           )}
@@ -151,8 +151,8 @@ export function Nav({ variant = "floating" }: NavProps) {
         </m.div>
 
         {/* Center: Main Navigation (Desktop Only) */}
-        <m.div 
-          variants={navItemVariants} 
+        <m.div
+          variants={navItemVariants}
           className="relative z-10 hidden flex-1 items-center justify-center md:flex"
           suppressHydrationWarning
         >
@@ -165,23 +165,21 @@ export function Nav({ variant = "floating" }: NavProps) {
           />
         </m.div>
 
-
-
         {/* Right Actions / Mobile Menu Toggle */}
-        <m.div 
-          variants={navItemVariants} 
+        <m.div
+          variants={navItemVariants}
           className="relative z-10 flex flex-1 items-center justify-end gap-2 sm:gap-4"
           suppressHydrationWarning
         >
           <div className="hidden items-center gap-2 md:flex">
             <div className={cn(
-              "flex h-[3.4rem] items-center gap-3 rounded-[1.7rem] p-1.5 transition-all duration-500",
-              isIntegrated 
-                ? "bg-white/5 backdrop-blur-md border border-white/5" 
-                : "border border-primary/10 bg-black/40 shadow-2xl backdrop-blur-xl"
+              "flex h-[3.4rem] items-center gap-3 rounded-[1.7rem] p-1.5 transition-all duration-500 nav-actions-bar",
+              isIntegrated
+                ? "bg-blue-950/20 backdrop-blur-md border border-blue-400/10"
+                : "border border-blue-400/10 bg-slate-950/50 shadow-2xl backdrop-blur-xl"
             )}>
               <LanguageSwitcher />
-              <div className="h-4 w-px bg-primary/10 mx-1" />
+              <div className="h-4 w-px bg-blue-400/10 mx-1" />
               <UserButton className="shrink-0" />
             </div>
           </div>
@@ -205,13 +203,12 @@ export function Nav({ variant = "floating" }: NavProps) {
   );
 }
 
-// Utility style functions for cleaner component body
 function scrollerLayoutStyles(scrolled: boolean) {
   return cn(
-    "border border-primary/15 transition-all duration-500",
-    scrolled 
-      ? "bg-black/60 shadow-2xl backdrop-blur-2xl px-6" 
-      : "bg-black/20 shadow-xl backdrop-blur-md px-4"
+    "border transition-all duration-500",
+    scrolled
+      ? "nav-bar-scrolled bg-slate-950/70 shadow-[0_8px_40px_-8px_rgba(59,130,246,0.15)] backdrop-blur-2xl border-blue-400/20 px-6"
+      : "bg-slate-950/20 shadow-xl backdrop-blur-md border-blue-400/10 px-4"
   );
 }
 
@@ -219,7 +216,7 @@ function islandLayoutStyles(scrolled: boolean) {
   return cn(
     "border px-3 transition-all duration-700",
     scrolled
-      ? "border-primary/25 bg-black/80 shadow-[0_32px_100px_-40px_rgba(0,0,0,1)] backdrop-blur-3xl"
-      : "border-primary/10 bg-black/40 shadow-[0_24px_80px_-40px_rgba(0,0,0,0.9)] backdrop-blur-xl"
+      ? "nav-bar-scrolled border-blue-400/25 bg-slate-950/80 shadow-[0_32px_100px_-40px_rgba(0,0,0,1),0_0_30px_-10px_rgba(59,130,246,0.15)] backdrop-blur-3xl"
+      : "border-blue-400/10 bg-slate-950/40 shadow-[0_24px_80px_-40px_rgba(0,0,0,0.9)] backdrop-blur-xl"
   );
 }

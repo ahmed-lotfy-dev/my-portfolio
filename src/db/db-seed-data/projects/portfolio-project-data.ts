@@ -2,8 +2,8 @@ export const portfolioProjectData = [{
   "title_en": "Personal Portfolio",
   "title_ar": "المعرض الشخصي",
   "slug": "personal-portfolio",
-  "desc_en": "A high-performance, bilingual portfolio achieving 91/100 Lighthouse score. Built with Next.js 16 and optimized through systematic performance engineering, reducing LCP from 10.4s to 1.5s. Features automated backups, admin dashboard, and production-grade architecture.",
-  "desc_ar": "معرض أعمال عالي الأداء ثنائي اللغة بتقييم 91/100 في Lighthouse. مبني بـ Next.js 16 ومُحسّن من خلال هندسة أداء منهجية، مع تقليل LCP من 10.4 ثانية إلى 1.5 ثانية. يتضمن نسخ احتياطي تلقائي، لوحة تحكم إدارية، وهيكلية جاهزة للإنتاج.",
+  "desc_en": "A high-performance, bilingual portfolio achieving 91/100 Lighthouse score. Built with Next.js and optimized through systematic performance engineering, reducing LCP from 10.4s to 1.5s. Features automated backups, admin dashboard, and production-grade architecture.",
+  "desc_ar": "معرض أعمال عالي الأداء ثنائي اللغة بتقييم 91/100 في Lighthouse. مبني بـ Next.js ومُحسّن من خلال هندسة أداء منهجية، مع تقليل LCP من 10.4 ثانية إلى 1.5 ثانية. يتضمن نسخ احتياطي تلقائي، لوحة تحكم إدارية، وهيكلية جاهزة للإنتاج.",
   "content_en": `# The Vision
 I needed a portfolio that wasn't just a showcase—it had to demonstrate technical excellence through the portfolio itself. The goal was to build a **production-grade platform** with enterprise-level performance while maintaining rich features and animations.
 
@@ -91,7 +91,7 @@ I systematically optimized every aspect of the application:
 - **TBT**: 1,360 مللي ثانية → 0 مللي ثانية (مثالي!)
 - **جميع Core Web Vitals**: ناجحة ✅`,
   "categories": [
-    "Next.js 16",
+    "Next.js",
     "React 19",
     "TypeScript",
     "Tailwind CSS",
