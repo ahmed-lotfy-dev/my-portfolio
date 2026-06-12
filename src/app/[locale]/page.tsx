@@ -6,6 +6,7 @@ import About from "@/src/components/features/homepage/About";
 import Services from "@/src/components/features/homepage/Services";
 import Projects from "@/src/components/features/homepage/Projects";
 import { HomeSectionBand } from "@/src/components/features/homepage/HomeSectionBand";
+import ScrollReveal from "@/src/components/shared/ScrollReveal";
 
 const TechStack = nextDynamic(() => import("@/src/components/features/homepage/TechStack"), {
   loading: () => <div className="min-h-[400px]" />,
@@ -24,7 +25,6 @@ import Container from "@/src/components/ui/Container";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import StructuredData from "@/src/components/seo/StructuredData";
 import { routing } from "@/src/i18n/routing";
-import ScrollReveal from "@/src/components/shared/ScrollReveal";
 
 export const dynamic = "force-dynamic";
 
@@ -166,7 +166,7 @@ export default async function HomePage({
         }}
       />
 
-      <Hero locale={locale} />
+      <Hero />
 
       <Container>
         <div className="space-y-6 py-12 lg:py-20">

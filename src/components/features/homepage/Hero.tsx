@@ -8,35 +8,30 @@ import { cn } from "@/src/lib/utils";
 import { CVDropdown } from "./CVDropdown";
 import { Nav } from "./Nav";
 import { Canvas } from "@react-three/fiber";
-import { Suspense, useState, useEffect } from "react";
+import { Suspense } from "react";
 import { m, AnimatePresence } from "motion/react";
 import Avatar from "./hero/Avatar";
 import DeskScene from "./hero/DeskScene";
 import ComputerScreen from "./hero/ComputerScreen";
-import ScrollController from "./hero/ScrollController";
 import { usePrefersReducedMotion, useIsMobile } from "@/src/hooks/useMediaQuery";
 
-const AVATAR_POSES: Record<string, "standing" | "sitting" | "typing" | "presenting"> = {
-  hero: "standing",
-  about: "sitting",
-  projects: "typing",
-  contact: "presenting",
-};
+export interface HeroSection {
+  id: string;
+  pose: "standing" | "sitting" | "typing" | "presenting";
+  screenSection: string;
+}
 
-export default function Hero({ locale }: { locale: string }) {
+export const HERO_SECTIONS: HeroSection[] = [
+  { id: "hero-section", pose: "standing", screenSection: "hero" },
+  { id: "services-section", pose: "sitting", screenSection: "about" },
+  { id: "projects-section", pose: "typing", screenSection: "projects" },
+  { id: "contact-section", pose: "presenting", screenSection: "contact" },
+];
+
+export default function Hero() {
   const t = useTranslations("hero");
-  const isRTL = locale === "ar";
-  const [activeSection, setActiveSection] = useState(0);
-  const [currentPose, setCurrentPose] = useState<"standing" | "sitting" | "typing" | "presenting">("standing");
   const prefersReduced = usePrefersReducedMotion();
   const isMobile = useIsMobile();
-
-  const sections = ["hero", "about", "projects", "contact"];
-
-  useEffect(() => {
-    const pose = AVATAR_POSES[sections[activeSection]];
-    if (pose) setCurrentPose(pose);
-  }, [activeSection]);
 
   return (
     <header className="group relative flex min-h-screen w-full flex-col overflow-hidden snap-section" id="hero">
@@ -51,7 +46,7 @@ export default function Hero({ locale }: { locale: string }) {
 
       <section className="relative flex flex-1 items-center px-4 pb-16 pt-8 md:pb-24 md:pt-12 lg:pb-32">
         <div className="container relative z-10 mx-auto max-w-7xl px-4 md:px-6">
-          <div className={cn("flex flex-col-reverse items-center gap-10 lg:flex-row lg:gap-20", isRTL && "lg:flex-row-reverse")}>
+          <div className="flex flex-col-reverse items-center gap-10 lg:flex-row lg:gap-20">
             {/* Text Side */}
             <div className="relative z-20 w-full text-center md:space-y-8 lg:w-[55%] lg:text-start">
               <m.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }} className="hero-badge-wrapper">
@@ -73,7 +68,7 @@ export default function Hero({ locale }: { locale: string }) {
                   <Link href="#contact">
                     <span className="relative z-10 flex items-center gap-3">
                       {t("book_consultation")}
-                      <ArrowRight className={cn("h-5 w-5 transition-transform duration-300 group-hover:translate-x-1", isRTL && "rotate-180 group-hover:-translate-x-1")} />
+                      <ArrowRight className={cn("h-5 w-5 transition-transform duration-300 group-hover:translate-x-1")} />
                     </span>
                   </Link>
                 </Button>
@@ -95,32 +90,29 @@ export default function Hero({ locale }: { locale: string }) {
 
             {/* 3D Avatar Scene */}
             <div className="hero-image-container relative flex w-full items-center justify-center lg:w-[42%]">
-              <AnimatePresence mode="wait">
-                <m.div key={currentPose} initial={{ opacity: 0, scale: 0.92 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.92 }} transition={{ duration: 0.7, ease: [0.25, 0.46, 0.45, 0.94] }} className="w-full aspect-square max-w-[520px]">
-                  {prefersReduced || isMobile ? (
-                    <HeroFallback />
-                  ) : (
-                    <Suspense fallback={<HeroFallback />}>
-                      <Canvas camera={{ position: [0, 1.2, 3.5], fov: 45 }} className="w-full h-full" gl={{ antialias: true, alpha: true }} dpr={[1, 2]}>
-                        <ambientLight intensity={0.6} />
-                        <directionalLight position={[5, 5, 5]} intensity={1.2} />
-                        <pointLight position={[-3, 3, -3]} intensity={0.6} color="#6366f1" />
-                        <pointLight position={[3, 2, 3]} intensity={0.4} color="#8b5cf6" />
-                        <Avatar pose={currentPose} />
-                        <DeskScene />
-                        <ComputerScreen section={sections[activeSection]} />
-                      </Canvas>
-                    </Suspense>
-                  )}
-                </m.div>
-              </AnimatePresence>
+              <div className="w-full aspect-square max-w-[520px]">
+                {prefersReduced || isMobile ? (
+                  <HeroFallback />
+                ) : (
+                  <Suspense fallback={<HeroFallback />}>
+                    <Canvas camera={{ position: [0, 1.2, 3.5], fov: 45 }} className="w-full h-full" gl={{ antialias: true, alpha: true }} dpr={[1, 2]}>
+                      <ambientLight intensity={0.6} />
+                      <directionalLight position={[5, 5, 5]} intensity={1.2} />
+                      <pointLight position={[-3, 3, -3]} intensity={0.6} color="#6366f1" />
+                      <pointLight position={[3, 2, 3]} intensity={0.4} color="#8b5cf6" />
+                      <Avatar pose="standing" />
+                      <DeskScene />
+                      <ComputerScreen section="hero" />
+                    </Canvas>
+                  </Suspense>
+                )}
+              </div>
               <div className="hero-image-glow" />
             </div>
           </div>
         </div>
       </section>
 
-      <ScrollController onSectionChange={setActiveSection} sections={sections} />
       <div className="hero-bottom-fade" />
     </header>
   );
