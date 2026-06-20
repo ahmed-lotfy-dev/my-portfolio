@@ -18,9 +18,9 @@ type Certificate = {
   id: string;
   title: string;
   desc: string;
-  imageLink: string;
-  courseLink: string;
-  profLink: string;
+  image_link: string;
+  course_link: string;
+  prof_link: string;
 };
 
 // Accept certificates as props instead of fetching at module level
@@ -68,7 +68,7 @@ export default function CertificatesList({ certificates }: { certificates?: Cert
               </HoverCardTrigger>
               <HoverCardContent className="w-[320px] sm:w-[420px] max-w-[90vw] p-2">
                 <Image
-                  src={cert.imageLink}
+                  src={cert.image_link}
                   alt={cert.title}
                   width={420}
                   height={315}
@@ -96,7 +96,7 @@ export default function CertificatesList({ certificates }: { certificates?: Cert
               Close ✕
             </button>
             <ImagePreviewer
-              images={selectedCertificate.imageLink}
+              images={selectedCertificate.image_link}
               title={selectedCertificate.title}
               className="relative w-full aspect-4/3 rounded-2xl overflow-hidden shadow-2xl"
             />

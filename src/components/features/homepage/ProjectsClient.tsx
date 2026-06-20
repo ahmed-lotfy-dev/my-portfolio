@@ -22,9 +22,9 @@ type Project = {
   title_ar: string;
   desc_en: string;
   desc_ar: string;
-  coverImage: string | null;
-  liveLink: string;
-  repoLink: string;
+  cover_image: string | null;
+  live_link: string;
+  repo_link: string;
   categories: string[];
   published?: boolean;
 };
@@ -56,17 +56,17 @@ export default function ProjectsClient({ projects, locale, t }: Props) {
             <div key={proj.id}>
               <Card as="article" className="group flex h-full flex-col justify-between overflow-hidden border-border bg-card/50 backdrop-blur-sm hover:border-primary/50 hover:shadow-2xl hover:shadow-primary/10 transition-all duration-500">
                 <Link
-                  href={proj.slug ? `/${locale}/projects/${proj.slug}` : proj.liveLink}
+                  href={proj.slug ? `/${locale}/projects/${proj.slug}` : proj.live_link}
                   target={proj.slug ? undefined : "_blank"}
                   className="block overflow-hidden"
                 >
                   <div className="relative w-full h-64 cursor-pointer overflow-hidden">
                     <Image
-                      src={safeMediaUrl(getProjectCoverImage(proj.coverImage))}
+                      src={safeMediaUrl(getProjectCoverImage(proj.cover_image))}
                       alt={locale === "ar" ? proj.title_ar : proj.title_en}
                       fill
                       unoptimized={
-                        proj.coverImage?.toLowerCase().endsWith(".gif")
+                        proj.cover_image?.toLowerCase().endsWith(".gif")
                           ? true
                           : undefined
                       }
@@ -80,7 +80,7 @@ export default function ProjectsClient({ projects, locale, t }: Props) {
                 <div className="p-6 flex flex-col grow gap-4">
                   <div>
                     <Link
-                      href={proj.slug ? `/${locale}/projects/${proj.slug}` : proj.liveLink}
+                      href={proj.slug ? `/${locale}/projects/${proj.slug}` : proj.live_link}
                       target={proj.slug ? undefined : "_blank"}
                     >
                       <h3 className="text-2xl font-bold text-foreground mb-2 group-hover:text-primary transition-colors cursor-pointer antialiased">
@@ -112,7 +112,7 @@ export default function ProjectsClient({ projects, locale, t }: Props) {
 
                   <div className="flex gap-3 mt-4">
                     <ProjectLinkTracker
-                      href={proj.liveLink}
+                      href={proj.live_link}
                       projectTitle={locale === "ar" ? proj.title_ar : proj.title_en}
                       projectId={proj.id}
                       linkType="live"
@@ -125,7 +125,7 @@ export default function ProjectsClient({ projects, locale, t }: Props) {
                       </Button>
                     </ProjectLinkTracker>
                     <ProjectLinkTracker
-                      href={proj.repoLink}
+                      href={proj.repo_link}
                       projectTitle={locale === "ar" ? proj.title_ar : proj.title_en}
                       projectId={proj.id}
                       linkType="repo"

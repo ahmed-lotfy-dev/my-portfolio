@@ -30,7 +30,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
       description,
       url: `https://ahmedlotfy.site/${locale}/projects/${slug}`,
       siteName: "Ahmed Lotfy Portfolio",
-      images: [{ url: project.coverImage || "", width: 1200, height: 630, alt: title }],
+      images: [{ url: project.cover_image || "", width: 1200, height: 630, alt: title }],
       locale: locale === "ar" ? "ar_EG" : "en_US",
       type: "article",
     },
@@ -38,7 +38,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
       card: "summary_large_image",
       title,
       description,
-      images: [project.coverImage || ""],
+      images: [project.cover_image || ""],
       creator: "@ahmedlotfy_dev",
     },
     alternates: {
@@ -70,7 +70,7 @@ export default async function ProjectDetailsPage({ params }: { params: Promise<{
         data={{
           title,
           description: desc,
-          image: project.coverImage || "",
+          image: project.cover_image || "",
           url: `https://ahmedlotfy.site/${locale}/projects/${slug}`,
           authorName: "Ahmed Lotfy",
           authorUrl: "https://ahmedlotfy.site",
@@ -96,12 +96,12 @@ export default async function ProjectDetailsPage({ params }: { params: Promise<{
         />
       </div>
 
-      {project.coverImage && (
+      {project.cover_image && (
         <div className="mb-12 md:mb-16 container mx-auto px-4 md:px-6">
           <div className="max-w-5xl mx-auto rounded-3xl overflow-hidden shadow-2xl border border-white/10">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              src={project.coverImage}
+              src={project.cover_image}
               alt={title}
               className="w-full h-auto object-cover"
             />
@@ -129,16 +129,16 @@ export default async function ProjectDetailsPage({ params }: { params: Promise<{
         </p>
 
         <div className="flex flex-col sm:flex-row gap-4 md:gap-6 justify-center pt-4">
-          {project.liveLink && (
+          {project.live_link && (
             <Button asChild size="lg" className="rounded-full text-md h-12 px-8 shadow-xl shadow-primary/20 hover:shadow-primary/30 transition-all hover:-translate-y-1">
-              <a href={project.liveLink} target="_blank">
+              <a href={project.live_link} target="_blank">
                 <ExternalLink className="w-5 h-5 me-2.5" /> {t("visit_live_site")}
               </a>
             </Button>
           )}
-          {project.repoLink && (
+          {project.repo_link && (
             <Button asChild variant="outline" size="lg" className="rounded-full text-md h-12 px-8 backdrop-blur-sm border-white/10 hover:bg-secondary/10 transition-all hover:-translate-y-1">
-              <a href={project.repoLink} target="_blank">
+              <a href={project.repo_link} target="_blank">
                 <IoLogoGithub className="w-5 h-5 me-2.5" /> {t("view_code")}
               </a>
             </Button>
