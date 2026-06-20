@@ -9,8 +9,8 @@ services:
         NEXT_PUBLIC_POSTHOG_UI_HOST: ${NEXT_PUBLIC_POSTHOG_UI_HOST}
         BETTER_AUTH_SECRET: ${BETTER_AUTH_SECRET}
         BETTER_AUTH_URL: ${BETTER_AUTH_URL}
-    ports:
-      - "127.0.0.1:3000:3000"
+    expose:
+      - "3000"
     restart: unless-stopped
     environment:
       - DATABASE_URL=${DATABASE_URL}
