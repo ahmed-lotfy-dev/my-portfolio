@@ -9,25 +9,50 @@ services:
         NEXT_PUBLIC_POSTHOG_UI_HOST: ${NEXT_PUBLIC_POSTHOG_UI_HOST}
         BETTER_AUTH_SECRET: ${BETTER_AUTH_SECRET}
         BETTER_AUTH_URL: ${BETTER_AUTH_URL}
-    expose:
-      - "3000"
+    ports:
+      - "127.0.0.1:3000:3000"
     restart: unless-stopped
-    depends_on:
-      - worker
+    environment:
+      - DATABASE_URL=${DATABASE_URL}
     networks:
       - dokploy-network
     env_file:
       - .env
+    deploy:
+      resources:
+        limits:
+          memory: 512M
+          cpus: "0.5"
+        reservations:
+          memory: 256M
+          cpus: "0.25"
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
 
   worker:
     build:
       context: .
       target: cron
     restart: unless-stopped
+    environment:
+      - DATABASE_URL=${DATABASE_URL}
     networks:
       - dokploy-network
     env_file:
       - .env
+    deploy:
+      resources:
+        limits:
+          memory: 256M
+          cpus: "0.25"
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
 
 networks:
   dokploy-network:
