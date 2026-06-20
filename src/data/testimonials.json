@@ -1,0 +1,23 @@
+[
+  {
+    "id": "testimonial-1",
+    "name": "Mohamed Ali",
+    "role": "Captain X — Financial Markets Trader",
+    "quote_en": "Ahmed completely transformed my online presence. The new site is fast, professional, and perfectly bilingual. He fixed performance issues I'd been struggling with for months and delivered a product that truly represents my brand.",
+    "quote_ar": "أحمد حوّل تواجدي الرقمي بالكامل. الموقع الجديد سريع واحترافي وثنائي اللغة بشكل مثالي. أصلح مشاكل الأداء اللي كنت بعاني منها شهور وسلم منتج فعلاً بيمثل علامتي التجارية."
+  },
+  {
+    "id": "testimonial-2",
+    "name": "The Drive Center",
+    "role": "Automotive Service Platform",
+    "quote_en": "The SaaS platform Ahmed built for us reduced our administrative overhead by 40%. Automated booking, vehicle tracking, and WhatsApp integration — everything works flawlessly. His technical expertise and attention to detail are exceptional.",
+    "quote_ar": "المنصة اللي بناها أحمد للينا قللت الأعباء الإدارية بنسبة 40%. الحجز الآلي وتتبع المركبات وتكامل واتساب — كل حاجة شغالة بسلاسة. خبرته التقنية واهتمامه بالتفاصيل استثنائي."
+  },
+  {
+    "id": "testimonial-3",
+    "name": "Zamalek Store",
+    "role": "E-Commerce Brand",
+    "quote_en": "Ahmed built a production-ready e-commerce platform that handles high traffic with ease. The hybrid cart system, local payment integration, and mobile performance optimization exceeded our expectations. Cart abandonment dropped by 40%.",
+    "quote_ar": "أحمد بنى منصة تجارة إلكترونية جاهزة للإنتاج بتتعامل مع حركة مرور عالية بسهولة. نظام السلة الهجين وتكامل الدفع المحلي وتحسين أداء الموبايل فاق توقعاتنا. ترك سلة التسوق انخفض بنسبة 40%."
+  }
+]

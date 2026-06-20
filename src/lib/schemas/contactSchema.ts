@@ -1,9 +1,8 @@
-import { z } from "zod"
-import { getTranslations } from "next-intl/server"
+import { z } from "zod";
+import { getTranslations } from "next-intl/server";
 
-// Pure i18n schema (no fallback)
 export async function getContactSchema(locale: string) {
-  const t = await getTranslations({ locale, namespace: "contact.validation" })
+  const t = await getTranslations({ locale, namespace: "contact.validation" });
 
   return z.object({
     name: z
@@ -18,9 +17,9 @@ export async function getContactSchema(locale: string) {
       .refine((value) => !/\b(?:https?|ftp):\/\/[^\s]+\b/i.test(value), {
         message: t("message_links"),
       }),
-  })
+  });
 }
 
 export type ContactSchema = z.infer<
   Awaited<ReturnType<typeof getContactSchema>>
->
+>;
