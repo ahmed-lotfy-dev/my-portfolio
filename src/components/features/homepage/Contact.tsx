@@ -10,7 +10,6 @@ import { Textarea } from "@/src/components/ui/textarea";
 import Submit from "@/src/components/ui/formSubmitBtn";
 import { useLocale, useTranslations } from "next-intl";
 import posthog from "posthog-js";
-import { m } from "motion/react";
 import { cn } from "@/src/lib/utils";
 
 export default function Contact() {
@@ -65,57 +64,30 @@ export default function Contact() {
 
   return (
     <section className="relative overflow-hidden py-32 lg:py-40" id="contact">
-      {/* Background atmosphere */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
         <div className="absolute top-1/4 left-1/2 -translate-x-[400px] w-[500px] h-[500px] bg-primary/10 rounded-full blur-[150px]" />
         <div className="absolute bottom-1/4 right-1/2 translate-x-[300px] w-[400px] h-[400px] bg-secondary/10 rounded-full blur-[150px]" />
       </div>
 
       <div className="container relative mx-auto px-6 lg:px-8 z-10">
-        {/* Heading */}
         <div className="max-w-3xl mx-auto text-center mb-20 lg:mb-28 space-y-6">
-          <m.div
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-80px" }}
-            className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-primary/10 text-primary text-[11px] font-bold tracking-[0.22em] uppercase border border-primary/20 backdrop-blur-sm"
-          >
+          <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-primary/10 text-primary text-[11px] font-bold tracking-[0.22em] uppercase border border-primary/20 backdrop-blur-sm">
             <Sparkles className="w-3.5 h-3.5" />
             <span>{t("title")}</span>
-          </m.div>
+          </div>
 
-          <m.h2
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-80px" }}
-            transition={{ delay: 0.1 }}
-            className="text-4xl md:text-6xl lg:text-7xl font-black text-foreground tracking-tight leading-[1.05]"
-          >
+          <h2 className="text-4xl md:text-6xl lg:text-7xl font-black text-foreground tracking-tight leading-[1.05]">
             {t("heading_part1")}
             <span className="text-primary italic block mt-2">{t("heading_part2")}</span>
-          </m.h2>
+          </h2>
 
-          <m.p
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-80px" }}
-            transition={{ delay: 0.2 }}
-            className="text-lg md:text-xl text-muted-foreground leading-relaxed max-w-2xl mx-auto"
-          >
+          <p className="text-lg md:text-xl text-muted-foreground leading-relaxed max-w-2xl mx-auto">
             {t("description")}
-          </m.p>
+          </p>
         </div>
 
-        {/* Main two-column layout */}
         <div className="grid grid-cols-1 lg:grid-cols-11 gap-16 lg:gap-24 items-start max-w-6xl mx-auto">
-          {/* Contact Info Side — 4 cols */}
-          <m.div
-            initial={{ opacity: 0, x: isRTL ? 40 : -40 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, margin: "-80px" }}
-            transition={{ duration: 0.7 }}
-            className="lg:col-span-4 space-y-10 lg:sticky lg:top-32"
-          >
+          <div className="lg:col-span-4 space-y-10 lg:sticky lg:top-32">
             <div className="space-y-6">
               <h3 className="text-3xl font-bold flex items-center gap-4">
                 <span className="inline-flex p-3 rounded-2xl bg-primary/10 text-primary">
@@ -151,16 +123,9 @@ export default function Contact() {
                 </a>
               ))}
             </address>
-          </m.div>
+          </div>
 
-          {/* Form Side — 7 cols */}
-          <m.div
-            initial={{ opacity: 0, x: isRTL ? -40 : 40 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, margin: "-80px" }}
-            transition={{ duration: 0.7, delay: 0.15 }}
-            className="lg:col-span-7"
-          >
+          <div className="lg:col-span-7">
             <div className="relative group">
               <div className="absolute -inset-1.5 bg-linear-to-r from-primary/15 to-secondary/15 rounded-[3rem] blur-xl opacity-30 group-hover:opacity-60 transition duration-1000 group-hover:duration-300" />
               <div className="relative bg-card/40 backdrop-blur-xl border border-border/40 rounded-[2.5rem] p-10 md:p-14 shadow-2xl">
@@ -248,7 +213,7 @@ export default function Contact() {
                 </form>
               </div>
             </div>
-          </m.div>
+          </div>
         </div>
       </div>
     </section>

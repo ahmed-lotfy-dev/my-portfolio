@@ -14,7 +14,6 @@ import { shouldShowApk } from "@/src/lib/utils/projectUtils";
 import { getProjectCoverImage } from "@/src/lib/constants/images";
 import { safeMediaUrl } from "@/src/lib/utils/mediaUrl";
 import { ProjectLinkTracker } from "./ProjectLinkTracker";
-import { m, Variants } from "motion/react";
 
 type Project = {
   id: string;
@@ -44,51 +43,17 @@ type Props = {
 };
 
 export default function ProjectsClient({ projects, locale, t }: Props) {
-  const [hasMounted, setHasMounted] = React.useState(false);
-
-  React.useEffect(() => {
-    setHasMounted(true);
-  }, []);
-
   const isRTL = locale === "ar";
 
-  const containerVariants: Variants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-      },
-    },
-  };
-
-  const itemVariants: Variants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.5,
-        ease: "easeOut",
-      },
-    },
-  };
-
   return (
-    <m.div
-      variants={containerVariants}
-      initial={hasMounted ? "hidden" : false}
-      whileInView="visible"
-      viewport={{ once: true, margin: "-100px" }}
-      className="w-full grid gap-8 grid-cols-[repeat(auto-fit,minmax(320px,1fr))] justify-items-stretch"
-    >
+    <div className="w-full grid gap-8 grid-cols-[repeat(auto-fit,minmax(320px,1fr))] justify-items-stretch">
       {projects
         ?.filter((proj) => proj.published !== false)
         .map((proj) => {
           const showApk = shouldShowApk(proj.categories);
 
           return (
-            <m.div key={proj.id} variants={itemVariants}>
+            <div key={proj.id}>
               <Card as="article" className="group flex h-full flex-col justify-between overflow-hidden border-border bg-card/50 backdrop-blur-sm hover:border-primary/50 hover:shadow-2xl hover:shadow-primary/10 transition-all duration-500">
                 <Link
                   href={proj.slug ? `/${locale}/projects/${proj.slug}` : proj.liveLink}
@@ -105,8 +70,7 @@ export default function ProjectsClient({ projects, locale, t }: Props) {
                           ? true
                           : undefined
                       }
-                      className={`transition-transform duration-700 group-hover:scale-110 ${showApk ? "object-contain p-4 bg-muted/50" : "object-cover"
-                        }`}
+                      className={`transition-transform duration-700 group-hover:scale-110 ${showApk ? "object-contain p-4 bg-muted/50" : "object-cover"}`}
                       sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                       loading="lazy"
                     />
@@ -138,14 +102,12 @@ export default function ProjectsClient({ projects, locale, t }: Props) {
                         {t.view_case_study}
                         <ArrowRight
                           size={14}
-                          className={`transition-transform group-hover/link:translate-x-1 ${locale === "ar" ? "rotate-180 group-hover/link:-translate-x-1" : ""
-                            }`}
+                          className={`transition-transform group-hover/link:translate-x-1 ${locale === "ar" ? "rotate-180 group-hover/link:-translate-x-1" : ""}`}
                         />
                       </Link>
                     )}
                   </div>
 
-                  {/* Tech Stack */}
                   <ProjectCategories categories={proj.categories || []} />
 
                   <div className="flex gap-3 mt-4">
@@ -181,9 +143,9 @@ export default function ProjectsClient({ projects, locale, t }: Props) {
                   </div>
                 </div>
               </Card>
-            </m.div>
+            </div>
           );
         })}
-    </m.div>
+    </div>
   );
 }
