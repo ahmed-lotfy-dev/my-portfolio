@@ -126,8 +126,7 @@ export default async function LocaleLayout({ children, params }: Props) {
       data-scroll-behavior="smooth"
     >
       <head>
-          <link rel="dns-prefetch" href="https://images.ahmedlotfy.site" />
-          <link rel="preconnect" href="https://images.ahmedlotfy.site" />
+          {/* Images served locally from /images-downloaded/ */}
           <link rel="preload" as="image" href="/images/optimized/About-Image.webp" />
           <link rel="alternate" type="application/atom+xml" title="Ahmed Lotfy Blog & Portfolio (Atom Feed)" href="/feed.xml" />
           <link rel="search" type="application/opensearchdescription+xml" title="Ahmed Lotfy Portfolio" href="/opensearch.xml" />

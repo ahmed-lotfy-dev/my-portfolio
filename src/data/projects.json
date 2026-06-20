@@ -8,7 +8,7 @@
     "desc_ar": "مدير مشاريع بسيط بنيته لعملي الشخصي، مع طبقة MCP تحول الـ PRD والقصص إلى مهام قابلة للتنفيذ.",
     "repo_link": "https://github.com/ahmed-lotfy-dev/task-hub",
     "live_link": "https://task-hub.ahmedlotfy.site",
-    "cover_image": "https://images.ahmedlotfy.site/projects/task-hub-mcp-driven-project-management/task-hub-mcp-driven-project-management-1770684624710.webp",
+    "cover_image": "/images-downloaded/projects/task-hub-mcp-driven-project-management/task-hub-mcp-driven-project-management-1770684624710.webp",
     "categories": [],
     "published": true,
     "display_order": 8,
@@ -23,7 +23,7 @@
     "desc_ar": "متجر كتب حديث ومتكامل يعرض بيانات حقيقية من واجهات برمجة تطبيقات Google Books و NYT، مدعوم بطبقة تخزين مؤقت عالية الأداء باستخدام Redis وخلفية آمنة (Type-safe) باستخدام Drizzle و PostgreSQL.",
     "repo_link": "https://github.com/chingu-voyages/v43-tier2-team-14",
     "live_link": "https://books-app.ahmedlotfy.site/",
-    "cover_image": "https://images.ahmedlotfy.site/projects/Books-Project.png",
+    "cover_image": "/images-downloaded/projects/Books-Project.png",
     "categories": [
       "Fullstack",
       "React",
@@ -46,7 +46,7 @@
     "desc_ar": "منصة تجارة إلكترونية احترافي ثنائية اللغة لمشجعي الكرة المصرية. مبنية بـ Next.js 16 و React 19 مع دمج بوابات دفع محلية. تتميز بنظام سلة هجين، معالجة خلفية بـ BullMQ، وأداء مثالي للموبايل عبر Cloudflare R2.",
     "repo_link": "https://github.com/ahmed-lotfy-dev/zamalek-store",
     "live_link": "https://zamalek-store.ahmedlotfy.site",
-    "cover_image": "https://images.ahmedlotfy.site/projects/screencapture-zamalek-store-ahmedlotfy-site-en-2025-12-06-20_06_48-1765597020942.webp",
+    "cover_image": "/images-downloaded/projects/screencapture-zamalek-store-ahmedlotfy-site-en-2025-12-06-20_06_48-1765597020942.webp",
     "categories": [
       "Next.js 16",
       "React 19",
@@ -75,7 +75,7 @@
     "desc_ar": "نظام نقاط بيع متكامل وعصري مبني باستخدام React و NestJS و Prisma. يتميز بإدارة المخزون في الوقت الفعلي، والتحكم في الوصول القائم على الأدوار، وواجهة مستخدم سريعة وموثوقة.",
     "repo_link": "https://github.com/ahmed-lotfy-dev/pos-system",
     "live_link": "https://pos-system-app.ahmedlotfy.site",
-    "cover_image": "https://images.ahmedlotfy.site/projects/Pos-System%20.png",
+    "cover_image": "/images-downloaded/projects/Pos-System%20.png",
     "categories": [
       "React",
       "NestJS",
@@ -97,7 +97,7 @@
     "desc_ar": "صفحة روابط تواصل اجتماعي بأسلوب LinkTree لمحمد علي (كابتن إكس)، متداول في الأسواق المالية وخبير تحليل النسبة الذهبية. تحسين وإصلاح الموقع الأصلي بأداء محسّن، وتصميم متجاوب، ودعم ثنائي اللغة (عربي/إنجليزي) مع تخطيطات RTL/LTR صحيحة.",
     "repo_link": "https://github.com/ahmed-lotfy-dev/hi-x",
     "live_link": "https://hi-x.com",
-    "cover_image": "https://images.ahmedlotfy.site/projects/hi-x-net-2025-10-07-18_23_54.png",
+    "cover_image": "/images-downloaded/projects/hi-x-net-2025-10-07-18_23_54.png",
     "categories": [
       "Frontend",
       "HTML/CSS",
@@ -119,7 +119,7 @@
     "desc_ar": "معرض لحلولي لتحديات تصميم الويب المتجاوب، وجافا سكريبت، ومكتبات الواجهة الأمامية من DevChallenges.io.",
     "repo_link": "https://github.com/ahmed-lotfy-dev/dev-challenges-io",
     "live_link": "https://dev-challenges.ahmedlotfy.surge.sh",
-    "cover_image": "https://images.ahmedlotfy.site/projects/Generated%20Image%20September%2030,%202025%20-%2012_40PM.png",
+    "cover_image": "/images-downloaded/projects/Generated%20Image%20September%2030,%202025%20-%2012_40PM.png",
     "categories": [
       "HTML",
       "CSS",
@@ -140,7 +140,7 @@
     "desc_ar": "منصة آمنة متعددة التطبيقات لإدارة تفعيل التراخيص مع لوحة تحكم لإدارة التطبيقات والتراخيص وسجل التفعيلات.",
     "repo_link": "https://github.com/ahmed-lotfy-dev/applicence-manager",
     "live_link": "https://activation.ahmedlotfy.site/",
-    "cover_image": "https://images.ahmedlotfy.site/projects/applicence-manager/applicence-manager-1771142251845.webp",
+    "cover_image": "/images-downloaded/projects/applicence-manager/applicence-manager-1771142251845.webp",
     "categories": [
       "React",
       "TypeScript",
@@ -162,7 +162,7 @@
     "desc_ar": "تطبيق جوال بسيط وعالي الأداء لتتبع مقاييس النمو الشخصي (الوزن، التمارين، المهام) تم بناؤه باستخدام React Native و Hono.",
     "repo_link": "https://github.com/ahmed-lotfy-dev/selfTracker",
     "live_link": "https://drive.google.com/file/d/1r1qLiMZwX0oDeq7lQaouEdSs3vUhC8Fg/view?usp=drive_link",
-    "cover_image": "https://images.ahmedlotfy.site/projects/ezgif.com-animated-gif-maker(1).gif",
+    "cover_image": "/images-downloaded/projects/ezgif.com-animated-gif-maker(1).gif",
     "categories": [
       "React Native",
       "Expo",
@@ -185,7 +185,7 @@
     "desc_ar": "منصة SaaS متطورة باللغة العربية مخصصة لمراكز خدمة السيارات المتخصصة. تم بناؤها باستخدام Next.js 16 و Drizzle ORM، وتتميز بنظام حجز آلي، وتتبع مركبات العملاء، وإشعارات متعددة القنوات (WhatsApp و Email).",
     "repo_link": "https://github.com/ahmed-lotfy-dev/thedrive.center",
     "live_link": "https://thedrive.center",
-    "cover_image": "https://images.ahmedlotfy.site/projects/the-drive-center/the-drive-center-modern-automotive-service-platform-1774137621632.webp",
+    "cover_image": "/images-downloaded/projects/the-drive-center/the-drive-center-modern-automotive-service-platform-1774137621632.webp",
     "categories": [
       "Next.js 16",
       "TypeScript",
