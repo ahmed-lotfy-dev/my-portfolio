@@ -3,19 +3,11 @@ export const experiencesSeedData = [
     "company": "The Drive Center",
     "role_en": "Senior Software Architect & Full-Stack Engineer",
     "role_ar": "Senior Software Architect & Full-Stack Engineer",
-    "description_en": "Architected a high-performance automotive SaaS platform with automated booking, vehicle tracking, and WhatsApp API integration. Optimized for Local SEO and performance using Next.js and Drizzle ORM. Resulted in a 40% reduction in administrative overhead.",
-    "description_ar": "Architected a high-performance automotive SaaS platform with automated booking, vehicle tracking, and WhatsApp API integration. Optimized for Local SEO and performance using Next.js and Drizzle ORM. Resulted in a 40% reduction in administrative overhead.",
+    "description_en": "Architected a high-performance automotive SaaS platform with automated booking, vehicle tracking, and WhatsApp API integration. Optimized for Local SEO and performance using Next.js 16 and Drizzle ORM. Resulted in a 40% reduction in administrative overhead.",
+    "description_ar": "Architected a high-performance automotive SaaS platform with automated booking, vehicle tracking, and WhatsApp API integration. Optimized for Local SEO and performance using Next.js 16 and Drizzle ORM. Resulted in a 40% reduction in administrative overhead.",
     "date_en": "January 2026 — March 2026",
     "date_ar": "يناير ٢٠٢٦ — مارس ٢٠٢٦",
-    "tech_stack": [
-      "Next.js",
-      "TypeScript",
-      "PostgreSQL",
-      "Drizzle ORM",
-      "Better Auth",
-      "Cloudflare R2",
-      "WhatsApp API"
-    ],
+    "tech_stack": ["Next.js 16", "TypeScript", "PostgreSQL", "Drizzle ORM", "Better Auth", "Cloudflare R2", "WhatsApp API"],
     "displayOrder": 0,
     "published": true
   },
@@ -23,18 +15,11 @@ export const experiencesSeedData = [
     "company": "Zamalek Store",
     "role_en": "Lead Full-Stack Engineer",
     "role_ar": "Lead Full-Stack Engineer",
-    "description_en": "Digital transformation for a major clothing brand. Built a high-performance e-commerce engine (Next.js) handling high traffic. Integrated Paymob payments and localized workflows. Result: 40% reduction in cart abandonment and significant increase in online sales volume through 24/7 availability.",
-    "description_ar": "تحول رقمي لعلامة تجارية كبرى للملابس. قمت ببناء محرك تجارة إلكترونية عالي الأداء (Next.js) يتعامل مع حركة مرور عالية. دمجت مدفوعات Paymob وسير عمل محلي. النتيجة: انخفاض بنسبة 40% في ترك سلة التسوق وزيادة كبيرة في حجم المبيعات عبر الإنترنت من خلال التوفر على مدار الساعة طوال أيام الأسبوع.",
+    "description_en": "Digital transformation for a major clothing brand. Built a high-performance e-commerce engine (Next.js 16) handling high traffic. Integrated Paymob payments and localized workflows. Result: 40% reduction in cart abandonment and significant increase in online sales volume through 24/7 availability.",
+    "description_ar": "تحول رقمي لعلامة تجارية كبرى للملابس. قمت ببناء محرك تجارة إلكترونية عالي الأداء (Next.js 16) يتعامل مع حركة مرور عالية. دمجت مدفوعات Paymob وسير عمل محلي. النتيجة: انخفاض بنسبة 40% في ترك سلة التسوق وزيادة كبيرة في حجم المبيعات عبر الإنترنت من خلال التوفر على مدار الساعة طوال أيام الأسبوع.",
     "date_en": "Oct — Dec 2025",
     "date_ar": "أكتوبر — ديسمبر ٢٠٢٥",
-    "tech_stack": [
-      "Next.js",
-      "PostgreSQL",
-      "BullMQ",
-      "Redis",
-      "Docker",
-      "Paymob"
-    ],
+    "tech_stack": ["Next.js 16", "PostgreSQL", "BullMQ", "Redis", "Docker", "Paymob"],
     "displayOrder": 1,
     "published": true
   },
@@ -46,12 +31,7 @@ export const experiencesSeedData = [
     "description_ar": "هندسة نظام إدارة أصول رقمية لمعرض فنون بصرية. نفذت تخزين Cloudflare R2 لتقديم أصول فنية عالية الدقة عالميًا بزمن انتقال منخفض. تحسين بنية الاستضافة لتقليل تكاليف البنية التحتية الشهرية مع الحفاظ على وقت تشغيل بنسبة 99.9%.",
     "date_en": "May — June 2025",
     "date_ar": "مايو — يونيو ٢٠٢٥",
-    "tech_stack": [
-      "Laravel",
-      "Livewire",
-      "Alpine.js",
-      "Cloudflare R2"
-    ],
+    "tech_stack": ["Laravel", "Livewire", "Alpine.js", "Cloudflare R2"],
     "displayOrder": 2,
     "published": true
   },
@@ -63,12 +43,7 @@ export const experiencesSeedData = [
     "description_ar": "استشاري لتحديث منصة ويب قديمة. نفذت إصلاحًا شاملًا للأداء يعتمد على الموبايل أولاً، وتطبيق استراتيجيات متقدمة لتحسين الصور وتقسيم الكود. حققت درجات مثالية 95+ في مؤشرات أداء الويب الأساسية، مما أدى إلى تحسين مباشر في تصنيفات تحسين محركات البحث والاحتفاظ بمستخدمي الموبايل.",
     "date_en": "Feb — Mar 2025",
     "date_ar": "فبراير — مارس ٢٠٢٥",
-    "tech_stack": [
-      "React",
-      "Performance Optimization",
-      "Responsive Design",
-      "SEO"
-    ],
+    "tech_stack": ["React", "Performance Optimization", "Responsive Design", "SEO"],
     "displayOrder": 3,
     "published": true
   },
@@ -80,13 +55,7 @@ export const experiencesSeedData = [
     "description_ar": "تعاونت في بيئة فريق سريع عن بعد لنشر تطبيق جاهز للإنتاج. ركزت على قابلية التوسع في الواجهة الخلفية وأمان المصادقة (Auth0). أنشأت سير عمل CI/CD قلل وقت النشر للفريق.",
     "date_en": "Mar — May 2024",
     "date_ar": "مارس — مايو ٢٠٢٤",
-    "tech_stack": [
-      "React",
-      "Node.js",
-      "Express",
-      "MongoDB",
-      "Auth0"
-    ],
+    "tech_stack": ["React", "Node.js", "Express", "MongoDB", "Auth0"],
     "displayOrder": 4,
     "published": true
   }
