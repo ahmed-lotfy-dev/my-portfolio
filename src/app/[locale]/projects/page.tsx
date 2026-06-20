@@ -69,7 +69,9 @@ export default async function ProjectsPage({
   const { locale } = await params;
   setRequestLocale(locale);
   const t = await getTranslations("projects");
-  const publishedProjects = projectsData.filter((p) => p.published !== false);
+  const publishedProjects = projectsData
+    .filter((p) => p.published !== false)
+    .sort((a, b) => a.display_order - b.display_order);
 
   const translations = {
     readmore: t("readmore"),

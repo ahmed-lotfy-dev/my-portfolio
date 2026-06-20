@@ -1,20 +1,5 @@
 [
   {
-    "id": "587b732e-2888-4764-822f-3507f0eeb52b",
-    "title_en": "Task Hub — MCP-Driven Project Management",
-    "title_ar": "Task Hub — إدارة المشاريع عبر طبقة MCP",
-    "slug": "task-hub-mcp-driven-project-management",
-    "desc_en": "A minimalist project manager I built for my own workflow, with an MCP server layer that turns PRDs and user stories into actionable tasks.",
-    "desc_ar": "مدير مشاريع بسيط بنيته لعملي الشخصي، مع طبقة MCP تحول الـ PRD والقصص إلى مهام قابلة للتنفيذ.",
-    "repo_link": "https://github.com/ahmed-lotfy-dev/task-hub",
-    "live_link": "https://task-hub.ahmedlotfy.site",
-    "cover_image": "/images-downloaded/projects/task-hub-mcp-driven-project-management/task-hub-mcp-driven-project-management-1770684624710.webp",
-    "categories": [],
-    "published": true,
-    "display_order": 8,
-    "views": 5
-  },
-  {
     "id": "46a02e27-55e1-468f-bf54-c68fab600709",
     "title_en": "Virtual Book App",
     "title_ar": "تطبيق المكتبة الافتراضية",
@@ -36,6 +21,73 @@
     "published": true,
     "display_order": 1,
     "views": 2
+  },
+  {
+    "id": "c95ce6de-8fe7-473b-8e16-25fc4745914e",
+    "title_en": "hi-x.net - LinkTree",
+    "title_ar": "hi-x.net - LinkTree",
+    "slug": "hi-x",
+    "desc_en": "LinkTree-style social contact page for Mohamed Ali (Captain X), a financial markets trader and Golden Ratio analysis expert. Improved and fixed the original site with optimized performance, responsive design, and bilingual (Arabic/English) support with proper RTL/LTR layouts.",
+    "desc_ar": "صفحة روابط تواصل اجتماعي بأسلوب LinkTree لمحمد علي (كابتن إكس)، متداول في الأسواق المالية وخبير تحليل النسبة الذهبية. تحسين وإصلاح الموقع الأصلي بأداء محسّن، وتصميم متجاوب، ودعم ثنائي اللغة (عربي/إنجليزي) مع تخطيطات RTL/LTR صحيحة.",
+    "repo_link": "https://github.com/ahmed-lotfy-dev/hi-x",
+    "live_link": "https://hi-x.com",
+    "cover_image": "/images-downloaded/projects/hi-x-net-2025-10-07-18_23_54.png",
+    "categories": [
+      "Frontend",
+      "HTML/CSS",
+      "JavaScript",
+      "Optimization",
+      "Bilingual",
+      "Financial"
+    ],
+    "published": true,
+    "display_order": 2,
+    "views": 10
+  },
+  {
+    "id": "0c8ad35b-09c4-4044-acf5-09290a4d9598",
+    "title_en": "POS System",
+    "title_ar": "نظام نقاط البيع",
+    "slug": "pos-system",
+    "desc_en": "A modern, full-stack Point of Sale system built with React, NestJS, and Prisma. Features include real-time inventory management, role-based access control, and a responsive UI designed for speed and reliability.",
+    "desc_ar": "نظام نقاط بيع متكامل وعصري مبني باستخدام React و NestJS و Prisma. يتميز بإدارة المخزون في الوقت الفعلي، والتحكم في الوصول القائم على الأدوار، وواجهة مستخدم سريعة وموثوقة.",
+    "repo_link": "https://github.com/ahmed-lotfy-dev/pos-system",
+    "live_link": "https://pos-system-app.ahmedlotfy.site",
+    "cover_image": "/images-downloaded/projects/Pos-System%20.png",
+    "categories": [
+      "React",
+      "NestJS",
+      "Prisma",
+      "PostgreSQL",
+      "Docker",
+      "Tailwind CSS"
+    ],
+    "published": true,
+    "display_order": 3,
+    "views": 8
+  },
+  {
+    "id": "3e81f4e7-b210-4b39-bbe7-f627e2aa98f4",
+    "title_en": "SelfTracker",
+    "title_ar": "SelfTracker",
+    "slug": "self-tracker",
+    "desc_en": "A minimalist, high-performance mobile app for tracking personal growth metrics (weight, workouts, tasks) built with React Native and Hono.",
+    "desc_ar": "تطبيق جوال بسيط وعالي الأداء لتتبع مقاييس النمو الشخصي (الوزن، التمارين، المهام) تم بناؤه باستخدام React Native و Hono.",
+    "repo_link": "https://github.com/ahmed-lotfy-dev/selfTracker",
+    "live_link": "https://drive.google.com/file/d/1r1qLiMZwX0oDeq7lQaouEdSs3vUhC8Fg/view?usp=drive_link",
+    "cover_image": "/images-downloaded/projects/ezgif.com-animated-gif-maker(1).gif",
+    "categories": [
+      "React Native",
+      "Expo",
+      "TypeScript",
+      "Hono",
+      "Bun",
+      "Drizzle ORM",
+      "Mobile"
+    ],
+    "published": true,
+    "display_order": 4,
+    "views": 5
   },
   {
     "id": "a9bb72c0-d696-4643-9338-f339de3fc130",
@@ -63,52 +115,23 @@
       "Cloudflare R2"
     ],
     "published": true,
-    "display_order": 6,
+    "display_order": 5,
     "views": 0
   },
   {
-    "id": "0c8ad35b-09c4-4044-acf5-09290a4d9598",
-    "title_en": "POS System",
-    "title_ar": "نظام نقاط البيع",
-    "slug": "pos-system",
-    "desc_en": "A modern, full-stack Point of Sale system built with React, NestJS, and Prisma. Features include real-time inventory management, role-based access control, and a responsive UI designed for speed and reliability.",
-    "desc_ar": "نظام نقاط بيع متكامل وعصري مبني باستخدام React و NestJS و Prisma. يتميز بإدارة المخزون في الوقت الفعلي، والتحكم في الوصول القائم على الأدوار، وواجهة مستخدم سريعة وموثوقة.",
-    "repo_link": "https://github.com/ahmed-lotfy-dev/pos-system",
-    "live_link": "https://pos-system-app.ahmedlotfy.site",
-    "cover_image": "/images-downloaded/projects/Pos-System%20.png",
-    "categories": [
-      "React",
-      "NestJS",
-      "Prisma",
-      "PostgreSQL",
-      "Docker",
-      "Tailwind CSS"
-    ],
+    "id": "587b732e-2888-4764-822f-3507f0eeb52b",
+    "title_en": "Task Hub — MCP-Driven Project Management",
+    "title_ar": "Task Hub — إدارة المشاريع عبر طبقة MCP",
+    "slug": "task-hub-mcp-driven-project-management",
+    "desc_en": "A minimalist project manager I built for my own workflow, with an MCP server layer that turns PRDs and user stories into actionable tasks.",
+    "desc_ar": "مدير مشاريع بسيط بنيته لعملي الشخصي، مع طبقة MCP تحول الـ PRD والقصص إلى مهام قابلة للتنفيذ.",
+    "repo_link": "https://github.com/ahmed-lotfy-dev/task-hub",
+    "live_link": "https://task-hub.ahmedlotfy.site",
+    "cover_image": "/images-downloaded/projects/task-hub-mcp-driven-project-management/task-hub-mcp-driven-project-management-1770684624710.webp",
+    "categories": [],
     "published": true,
-    "display_order": 4,
-    "views": 8
-  },
-  {
-    "id": "c95ce6de-8fe7-473b-8e16-25fc4745914e",
-    "title_en": "hi-x.net - LinkTree",
-    "title_ar": "hi-x.net - LinkTree",
-    "slug": "hi-x",
-    "desc_en": "LinkTree-style social contact page for Mohamed Ali (Captain X), a financial markets trader and Golden Ratio analysis expert. Improved and fixed the original site with optimized performance, responsive design, and bilingual (Arabic/English) support with proper RTL/LTR layouts.",
-    "desc_ar": "صفحة روابط تواصل اجتماعي بأسلوب LinkTree لمحمد علي (كابتن إكس)، متداول في الأسواق المالية وخبير تحليل النسبة الذهبية. تحسين وإصلاح الموقع الأصلي بأداء محسّن، وتصميم متجاوب، ودعم ثنائي اللغة (عربي/إنجليزي) مع تخطيطات RTL/LTR صحيحة.",
-    "repo_link": "https://github.com/ahmed-lotfy-dev/hi-x",
-    "live_link": "https://hi-x.com",
-    "cover_image": "/images-downloaded/projects/hi-x-net-2025-10-07-18_23_54.png",
-    "categories": [
-      "Frontend",
-      "HTML/CSS",
-      "JavaScript",
-      "Optimization",
-      "Bilingual",
-      "Financial"
-    ],
-    "published": true,
-    "display_order": 3,
-    "views": 10
+    "display_order": 6,
+    "views": 5
   },
   {
     "id": "a058f1fb-cb74-4c0c-a392-10705cb432a5",
@@ -129,31 +152,8 @@
       "Docker"
     ],
     "published": true,
-    "display_order": 9,
+    "display_order": 7,
     "views": 4
-  },
-  {
-    "id": "3e81f4e7-b210-4b39-bbe7-f627e2aa98f4",
-    "title_en": "SelfTracker",
-    "title_ar": "SelfTracker",
-    "slug": "self-tracker",
-    "desc_en": "A minimalist, high-performance mobile app for tracking personal growth metrics (weight, workouts, tasks) built with React Native and Hono.",
-    "desc_ar": "تطبيق جوال بسيط وعالي الأداء لتتبع مقاييس النمو الشخصي (الوزن، التمارين، المهام) تم بناؤه باستخدام React Native و Hono.",
-    "repo_link": "https://github.com/ahmed-lotfy-dev/selfTracker",
-    "live_link": "https://drive.google.com/file/d/1r1qLiMZwX0oDeq7lQaouEdSs3vUhC8Fg/view?usp=drive_link",
-    "cover_image": "/images-downloaded/projects/ezgif.com-animated-gif-maker(1).gif",
-    "categories": [
-      "React Native",
-      "Expo",
-      "TypeScript",
-      "Hono",
-      "Bun",
-      "Drizzle ORM",
-      "Mobile"
-    ],
-    "published": true,
-    "display_order": 5,
-    "views": 5
   },
   {
     "id": "4156a65b-62f2-4ea0-ae72-e46c3bea49c3",
@@ -177,7 +177,7 @@
       "Full-Stack"
     ],
     "published": true,
-    "display_order": 11,
+    "display_order": 8,
     "views": 23
   }
 ]

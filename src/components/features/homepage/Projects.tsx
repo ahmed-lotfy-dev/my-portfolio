@@ -8,7 +8,9 @@ import { ArrowRight } from "lucide-react";
 export default async function Projects() {
   const locale = await getLocale();
   const t = await getTranslations("projects");
-  const allProjects = projectsData.filter((p) => p.published !== false);
+  const allProjects = projectsData
+    .filter((p) => p.published !== false)
+    .sort((a, b) => a.display_order - b.display_order);
 
   const translations = {
     readmore: t("readmore"),
