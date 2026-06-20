@@ -111,27 +111,6 @@
     "views": 10
   },
   {
-    "id": "1521f589-9d55-4671-9808-a690761d96e2",
-    "title_en": "DevChallenges Portfolio",
-    "title_ar": "معرض تحديات المطورين",
-    "slug": "dev-challenges",
-    "desc_en": "A showcase of my solutions for Responsive Web Design, Javascript, and Front-end Libraries challenges from DevChallenges.io.",
-    "desc_ar": "معرض لحلولي لتحديات تصميم الويب المتجاوب، وجافا سكريبت، ومكتبات الواجهة الأمامية من DevChallenges.io.",
-    "repo_link": "https://github.com/ahmed-lotfy-dev/dev-challenges-io",
-    "live_link": "https://dev-challenges.ahmedlotfy.surge.sh",
-    "cover_image": "/images-downloaded/projects/Generated%20Image%20September%2030,%202025%20-%2012_40PM.png",
-    "categories": [
-      "HTML",
-      "CSS",
-      "JavaScript",
-      "Portfolio",
-      "Frontend"
-    ],
-    "published": true,
-    "display_order": 2,
-    "views": 3
-  },
-  {
     "id": "a058f1fb-cb74-4c0c-a392-10705cb432a5",
     "title_en": "AppLicence Manager",
     "title_ar": "مدير تراخيص التطبيقات",
