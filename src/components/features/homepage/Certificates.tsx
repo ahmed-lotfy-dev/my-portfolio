@@ -1,9 +1,9 @@
-import { getAllCertificates } from "@/src/app/actions/certificates/queries";
+import certificatesData from "@/src/data/certificates.json";
 import { getTranslations } from "next-intl/server";
 import CertificatesList from "./CertificatesList";
 
 export default async function Certificates() {
-  const { allCertificates } = await getAllCertificates();
+  const publishedCerts = certificatesData.filter((c) => c.published !== false);
   const t = await getTranslations("certificates");
 
   return (
@@ -22,7 +22,7 @@ export default async function Certificates() {
         </div>
       </div>
 
-      <CertificatesList certificates={allCertificates} />
+      <CertificatesList certificates={publishedCerts} />
     </section>
   );
 }

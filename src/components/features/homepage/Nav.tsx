@@ -2,7 +2,6 @@
 
 import React, { useRef, useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
-import { authClient } from "@/src/lib/auth-client";
 import LanguageSwitcher from "@/src/components/i18n/LanguageSwitcher";
 import { useLocale, useTranslations } from "next-intl";
 import { cn } from "@/src/lib/utils";
@@ -14,11 +13,6 @@ import { NavBrand } from "./nav/NavBrand";
 import { stripLocale } from "./nav/utils";
 import { useNavState } from "./nav/useNavState";
 import { m, type Variants } from "motion/react";
-
-const UserButton = dynamic(
-  () => import("@/src/components/features/dashboard/layout/UserButton"),
-  { ssr: false }
-);
 
 const navContainerVariants: Variants = {
   hidden: { opacity: 0, y: -15 },
@@ -58,7 +52,6 @@ export function Nav({ variant = "floating" }: NavProps) {
   const pathname = usePathname();
   const t = useTranslations("nav");
   const locale = useLocale();
-  const { data: session } = authClient.useSession();
   const normalizedPath = stripLocale(pathname, locale);
   const { activeSection, scrolled } = useNavState(normalizedPath);
   const isRTL = locale === "ar";
@@ -70,9 +63,7 @@ export function Nav({ variant = "floating" }: NavProps) {
     setMounted(true);
   }, []);
 
-  // Hide the global floating nav on the home page
   if (isHomePage && variant === "floating") return null;
-  if (normalizedPath.startsWith("/dashboard")) return null;
 
   const isIntegrated = variant === "integrated";
 
@@ -134,23 +125,18 @@ export function Nav({ variant = "floating" }: NavProps) {
             : islandLayoutStyles(scrolled)
         )}
       >
-        {/* Top Glow Edge */}
         <div className={cn(
           "absolute inset-x-12 top-0 h-px bg-linear-to-r from-transparent via-blue-400/30 to-transparent opacity-50 blur-sm"
         )} />
 
-        {/* Brand */}
         <m.div
           variants={navItemVariants}
-          className={cn(
-            "relative z-10 flex flex-1 items-center justify-start"
-          )}
+          className={cn("relative z-10 flex flex-1 items-center justify-start")}
           suppressHydrationWarning
         >
           <NavBrand locale={locale} />
         </m.div>
 
-        {/* Center: Main Navigation (Desktop Only) */}
         <m.div
           variants={navItemVariants}
           className="relative z-10 hidden flex-1 items-center justify-center md:flex"
@@ -165,7 +151,6 @@ export function Nav({ variant = "floating" }: NavProps) {
           />
         </m.div>
 
-        {/* Right Actions / Mobile Menu Toggle */}
         <m.div
           variants={navItemVariants}
           className="relative z-10 flex flex-1 items-center justify-end gap-2 sm:gap-4"
@@ -179,8 +164,6 @@ export function Nav({ variant = "floating" }: NavProps) {
                 : "border border-blue-400/10 bg-slate-950/50 shadow-2xl backdrop-blur-xl"
             )}>
               <LanguageSwitcher />
-              <div className="h-4 w-px bg-blue-400/10 mx-1" />
-              <UserButton className="shrink-0" />
             </div>
           </div>
 
@@ -188,13 +171,11 @@ export function Nav({ variant = "floating" }: NavProps) {
             <LanguageSwitcher />
             <MobileNav
               activeSection={activeSection}
-              hasSession={!!session}
               isRTL={isRTL}
               links={navLinks}
               locale={locale}
               normalizedPath={normalizedPath}
               t={t}
-              userSlot={<UserButton />}
             />
           </div>
         </m.div>

@@ -1,314 +1,156 @@
-import { getProjectBySlug } from "@/src/app/actions/projects/queries";
+import projectsData from "@/src/data/projects.json";
 import { notFound } from "next/navigation";
 import { getLocale, getTranslations } from "next-intl/server";
-import { shouldShowApk } from "@/src/lib/utils/projectUtils";
 import Link from "next/link";
 import { ExternalLink } from "lucide-react";
 import { IoLogoGithub } from "react-icons/io5";
 import { Button } from "@/src/components/ui/button";
 import StructuredData from "@/src/components/seo/StructuredData";
 import { BreadcrumbSchema } from "@/src/components/seo/BreadcrumbSchema";
-import { MarkdownDisplay } from "@/src/components/ui/MarkdownDisplay";
 import { ImageCarousel } from "@/src/components/ui/ImageCarousel";
 import { BackButton } from "@/src/components/ui/BackButton";
-import { ProjectViewTracker } from "@/src/components/analytics/ProjectViewTracker";
-import { isNonEmptyUrl, safeMediaUrl } from "@/src/lib/utils/mediaUrl";
 
-// Helper for YouTube embeds
-function getEmbedUrl(url: string) {
-    if (!url) return "";
-    if (url.includes('youtube.com/watch?v=')) {
-        return url.replace('watch?v=', 'embed/');
-    }
-    if (url.includes('youtu.be/')) {
-        const id = url.split('/').pop();
-        return `https://www.youtube.com/embed/${id}`;
-    }
-    return url;
+function isNonEmptyUrl(url: string | null | undefined): url is string {
+  return typeof url === "string" && url.trim().length > 0;
 }
 
-// Helper function to extract keywords from markdown content
-function extractKeywords(content: string, maxKeywords: number = 15): string[] {
-    if (!content) return [];
+export async function generateMetadata({ params }: { params: Promise<{ slug: string; locale: string }> }) {
+  const { slug, locale } = await params;
+  const project = projectsData.find((p) => p.slug === slug && p.published !== false);
+  if (!project) return { title: "Project Not Found" };
 
-    // Remove markdown syntax and special characters
-    const cleanText = content
-        .replace(/[#*`_\[\]()]/g, ' ')
-        .replace(/\n+/g, ' ')
-        .toLowerCase();
+  const title = locale === "ar" ? project.title_ar : project.title_en;
+  const description = locale === "ar" ? project.desc_ar : project.desc_en;
 
-    // Common stop words to filter out
-    const stopWords = new Set([
-        'the', 'a', 'an', 'and', 'or', 'but', 'in', 'on', 'at', 'to', 'for',
-        'of', 'with', 'by', 'from', 'as', 'is', 'was', 'are', 'were', 'been',
-        'be', 'have', 'has', 'had', 'do', 'does', 'did', 'will', 'would', 'could',
-        'should', 'may', 'might', 'must', 'can', 'this', 'that', 'these', 'those',
-        'i', 'you', 'he', 'she', 'it', 'we', 'they', 'my', 'your', 'his', 'her',
-        'its', 'our', 'their', 'what', 'which', 'who', 'when', 'where', 'why', 'how'
-    ]);
-
-    // Extract words and count frequency
-    const words = cleanText.split(/\s+/).filter(word =>
-        word.length > 3 && !stopWords.has(word) && /^[a-z]+$/.test(word)
-    );
-
-    const frequency: Record<string, number> = {};
-    words.forEach(word => {
-        frequency[word] = (frequency[word] || 0) + 1;
-    });
-
-    // Sort by frequency and return top keywords
-    return Object.entries(frequency)
-        .sort((a, b) => b[1] - a[1])
-        .slice(0, maxKeywords)
-        .map(([word]) => word);
-}
-
-export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
-    const { slug } = await params;
-    const locale = await getLocale();
-    const { project } = await getProjectBySlug(slug);
-
-    if (!project) return { title: "Project Not Found" };
-
-    const title = locale === "ar" ? project.title_ar : project.title_en;
-    const description = locale === "ar" ? project.desc_ar : project.desc_en;
-    const content = locale === "ar" ? project.content_ar : project.content_en;
-
-    // Extract keywords from content
-    const contentKeywords = extractKeywords(content || '', 12);
-    const categoryKeywords = project.categories || [];
-    const allKeywords = [...new Set([...categoryKeywords, ...contentKeywords])].join(', ');
-
-    return {
-        title: title,
-        description: description,
-        keywords: allKeywords,
-        authors: [{ name: 'Ahmed Lotfy' }],
-        creator: 'Ahmed Lotfy',
-        publisher: 'Ahmed Lotfy',
-        openGraph: {
-            title: title,
-            description: description,
-            url: `https://ahmedlotfy.site/${locale}/projects/${slug}`,
-            siteName: 'Ahmed Lotfy Portfolio',
-            images: [
-                {
-                    url: project.coverImage,
-                    width: 1200,
-                    height: 630,
-                    alt: title,
-                }
-            ],
-            locale: locale === 'ar' ? 'ar_EG' : 'en_US',
-            type: 'article',
-        },
-        twitter: {
-            card: 'summary_large_image',
-            title: title,
-            description: description,
-            images: [project.coverImage],
-            creator: '@ahmedlotfy_dev',
-        },
-        robots: {
-            index: true,
-            follow: true,
-            googleBot: {
-                index: true,
-                follow: true,
-                'max-video-preview': -1,
-                'max-image-preview': 'large',
-                'max-snippet': -1,
-            },
-        },
-        alternates: {
-            canonical: `https://ahmedlotfy.site/${locale}/projects/${slug}`,
-            languages: {
-                'en': `https://ahmedlotfy.site/en/projects/${slug}`,
-                'ar': `https://ahmedlotfy.site/ar/projects/${slug}`,
-                'x-default': `https://ahmedlotfy.site/en/projects/${slug}`,
-            },
-        },
-    };
+  return {
+    title,
+    description,
+    openGraph: {
+      title,
+      description,
+      url: `https://ahmedlotfy.site/${locale}/projects/${slug}`,
+      siteName: "Ahmed Lotfy Portfolio",
+      images: [{ url: project.coverImage || "", width: 1200, height: 630, alt: title }],
+      locale: locale === "ar" ? "ar_EG" : "en_US",
+      type: "article",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: [project.coverImage || ""],
+      creator: "@ahmedlotfy_dev",
+    },
+    alternates: {
+      canonical: `https://ahmedlotfy.site/${locale}/projects/${slug}`,
+      languages: {
+        en: `https://ahmedlotfy.site/en/projects/${slug}`,
+        ar: `https://ahmedlotfy.site/ar/projects/${slug}`,
+        "x-default": `https://ahmedlotfy.site/en/projects/${slug}`,
+      },
+    },
+  };
 }
 
 export default async function ProjectDetailsPage({ params }: { params: Promise<{ slug: string }> }) {
-    const { slug } = await params;
-    const [{ project }, locale, t] = await Promise.all([
-        getProjectBySlug(slug),
-        getLocale(),
-        getTranslations("projects"),
-    ]);
+  const { slug } = await params;
+  const locale = await getLocale();
+  const t = await getTranslations("projects");
+  const project = projectsData.find((p) => p.slug === slug && p.published !== false);
 
-    if (!project) {
-        return notFound();
-    }
+  if (!project) return notFound();
 
-    const title = locale === "ar" ? project.title_ar : project.title_en;
-    const content = locale === "ar" ? project.content_ar : project.content_en;
-    const desc = locale === "ar" ? project.desc_ar : project.desc_en;
-    const isMobile = shouldShowApk(project.categories);
+  const title = locale === "ar" ? project.title_ar : project.title_en;
+  const desc = locale === "ar" ? project.desc_ar : project.desc_en;
 
-    const embedUrl = isNonEmptyUrl(project.embedUrl) ? project.embedUrl!.trim() : "";
-    const featureVideo = isNonEmptyUrl(project.featureVideo) ? project.featureVideo!.trim() : "";
+  return (
+    <article className="min-h-screen pb-20 bg-background text-foreground selection:bg-primary/20">
+      <StructuredData
+        type="CreativeWork"
+        data={{
+          title,
+          description: desc,
+          image: project.coverImage || "",
+          url: `https://ahmedlotfy.site/${locale}/projects/${slug}`,
+          authorName: "Ahmed Lotfy",
+          authorUrl: "https://ahmedlotfy.site",
+          keywords: project.categories?.join(", ") || "",
+          categories: project.categories || [],
+          language: locale === "ar" ? "ar" : "en",
+        }}
+      />
 
-    const galleryImages = [project.coverImage, ...(project.images || [])]
-        .filter((img): img is string => typeof img === "string" && img.trim().length > 0)
-        .map((img) => safeMediaUrl(img.trim()))
-        .filter((img, index, self) => self.indexOf(img) === index);
+      <BreadcrumbSchema
+        items={[
+          { label: "Home", url: `/${locale}` },
+          { label: "Projects", url: `/${locale}/projects` },
+          { label: title, url: `/${locale}/projects/${slug}` },
+        ]}
+      />
 
-    const showEmbed = Boolean(embedUrl);
-    const showHostedVideo = Boolean(featureVideo) && !showEmbed;
+      <div className="container mx-auto px-4 md:px-6 pt-24 md:pt-32">
+        <BackButton
+          href={`/${locale}/projects`}
+          label={locale === "ar" ? "رجوع للمشاريع" : "Back to Projects"}
+          locale={locale}
+        />
+      </div>
 
-    return (
-        <article className="min-h-screen pb-20 bg-background text-foreground selection:bg-primary/20">
-            {/* Structured Data for SEO */}
-             <StructuredData
-                 type="CreativeWork"
-                 data={{
-                     title: title,
-                     description: desc,
-                     image: project.coverImage,
-                     url: `https://ahmedlotfy.site/${locale}/projects/${slug}`,
-                     authorName: 'Ahmed Lotfy',
-                     authorUrl: 'https://ahmedlotfy.site',
-                     createdDate: project.createdAt?.toISOString(),
-                     modifiedDate: project.updatedAt?.toISOString(),
-                     keywords: project.categories.join(', '),
-                     categories: project.categories,
-                     language: locale === 'ar' ? 'ar' : 'en',
-                 }}
-             />
-             {/* Software Application Structured Data */}
-             <StructuredData
-                 type="SoftwareApplication"
-                 data={{
-                     name: title,
-                     description: desc,
-                     url: `https://ahmedlotfy.site/${locale}/projects/${slug}`,
-                     image: project.coverImage,
-                     operatingSystem: 'Web, iOS, Android',
-                     category: project.categories.includes('mobile') ? 'MobileApplication' : 'WebApplication',
-                 }}
-             />
-             {/* Breadcrumb Structured Data */}
-             <BreadcrumbSchema
-               items={[
-                 { label: 'Home', url: `/${locale}` },
-                 { label: 'Projects', url: `/${locale}/projects` },
-                 { label: title, url: `/${locale}/projects/${slug}` },
-               ]}
-             />
-
-
-            {/* Back Link */}
-            <div className="container mx-auto px-4 md:px-6 pt-24 md:pt-32">
-                <BackButton
-                    href={`/${locale}/projects`}
-                    label={locale === "ar" ? "رجوع للمشاريع" : "Back to Projects"}
-                    locale={locale}
-                />
-            </div>
-
-            {/* Featured media: optional embed/video (not exclusive) + image carousel when URLs exist */}
-            <div className="mb-12 md:mb-16 container mx-auto px-4 md:px-6 space-y-8 md:space-y-12">
-                {(showEmbed || showHostedVideo) && (
-                    <div className="max-w-5xl mx-auto aspect-video rounded-3xl overflow-hidden shadow-2xl border border-white/10 bg-black/40">
-                        {showEmbed ? (
-                            <iframe
-                                src={getEmbedUrl(embedUrl)}
-                                className="w-full h-full"
-                                title={`${title} — demo`}
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                allowFullScreen
-                            />
-                        ) : (
-                            <video
-                                src={safeMediaUrl(featureVideo)}
-                                className="w-full h-full object-contain"
-                                controls
-                                playsInline
-                                preload="metadata"
-                                poster={
-                                    project.coverImage?.trim()
-                                        ? safeMediaUrl(project.coverImage.trim())
-                                        : undefined
-                                }
-                            />
-                        )}
-                    </div>
-                )}
-                {galleryImages.length > 0 && (
-                    <ImageCarousel
-                        images={galleryImages}
-                        title={title}
-                        isMobile={isMobile}
-                    />
-                )}
-            </div>
-
-            {/* Header Content */}
-            <div className="max-w-4xl mx-auto space-y-8 md:space-y-12 mb-20 text-start md:text-center">
-                <div className="space-y-6">
-                    <div className="flex flex-wrap gap-3 md:justify-center mb-6">
-                        {project.categories.map((cat, i) => (
-                            <span key={i} className="px-4 py-1.5 bg-secondary/30 backdrop-blur-md border border-white/10 rounded-full text-sm font-medium text-foreground capitalize shadow-sm">
-                                {cat}
-                            </span>
-                        ))}
-                    </div>
-
-                    <h1 className="text-2xl md:text-3xl lg:text-4xl font-extrabold tracking-tight leading-tight bg-clip-text text-transparent bg-linear-to-b from-foreground to-foreground/70">
-                        {title}
-                    </h1>
-                </div>
-
-                <p className="text-md md:text-lg text-muted-foreground leading-relaxed max-w-3xl mx-auto">
-                    {desc}
-                </p>
-
-                <div className="flex flex-col sm:flex-row gap-4 md:gap-6 justify-center pt-4">
-                    {project.liveLink && (
-                        <Button asChild size="lg" className="rounded-full text-md h-12 px-8 shadow-xl shadow-primary/20 hover:shadow-primary/30 transition-all hover:-translate-y-1">
-                            <a href={project.liveLink} target="_blank">
-                                <ExternalLink className="w-5 h-5 me-2.5" /> {t("visit_live_site")}
-                            </a>
-                        </Button>
-                    )}
-                    {project.repoLink && (
-                        <Button asChild variant="outline" size="lg" className="rounded-full text-md h-12 px-8 backdrop-blur-sm border-white/10 hover:bg-secondary/10 transition-all hover:-translate-y-1">
-                            <a href={project.repoLink} target="_blank">
-                                <IoLogoGithub className="w-5 h-5 me-2.5" /> {t("view_code")}
-                            </a>
-                        </Button>
-                    )}
-                </div>
-            </div>
-
-            {/* Markdown Content */}
-            <div className="max-w-3xl mx-auto">
-                {content ? (
-                    <MarkdownDisplay content={content} />
-                ) : (
-                    <div className="flex flex-col items-center justify-center py-24 text-center border-y border-dashed border-border/50 bg-card/30 rounded-3xl">
-                        <div className="text-4xl mb-4">✍️</div>
-                        <p className="text-xl text-muted-foreground font-medium">{t("case_study_coming_soon")}</p>
-                    </div>
-                )}
-            </div>
-
-            <div className="mt-32 pt-12 border-t border-border/20 text-center pb-8">
-                <Link href={`/${locale}/projects`} className="text-muted-foreground hover:text-primary transition-colors text-sm font-medium tracking-widest uppercase hover:underline underline-offset-4">
-                    {locale === "ar" ? "شوف كل المشاريع" : "View All Projects"}
-                </Link>
-            </div>
-
-            {/* Analytics Tracking */}
-            <ProjectViewTracker
-                projectId={project.id}
-                projectTitle={title}
-                categories={project.categories}
+      {project.coverImage && (
+        <div className="mb-12 md:mb-16 container mx-auto px-4 md:px-6">
+          <div className="max-w-5xl mx-auto rounded-3xl overflow-hidden shadow-2xl border border-white/10">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={project.coverImage}
+              alt={title}
+              className="w-full h-auto object-cover"
             />
-        </article>
-    );
+          </div>
+        </div>
+      )}
+
+      <div className="max-w-4xl mx-auto space-y-8 md:space-y-12 mb-20 text-start md:text-center px-4">
+        <div className="space-y-6">
+          <div className="flex flex-wrap gap-3 md:justify-center mb-6">
+            {project.categories?.map((cat, i) => (
+              <span key={i} className="px-4 py-1.5 bg-secondary/30 backdrop-blur-md border border-white/10 rounded-full text-sm font-medium text-foreground capitalize shadow-sm">
+                {cat}
+              </span>
+            ))}
+          </div>
+
+          <h1 className="text-2xl md:text-3xl lg:text-4xl font-extrabold tracking-tight leading-tight bg-clip-text text-transparent bg-linear-to-b from-foreground to-foreground/70">
+            {title}
+          </h1>
+        </div>
+
+        <p className="text-md md:text-lg text-muted-foreground leading-relaxed max-w-3xl mx-auto">
+          {desc}
+        </p>
+
+        <div className="flex flex-col sm:flex-row gap-4 md:gap-6 justify-center pt-4">
+          {project.liveLink && (
+            <Button asChild size="lg" className="rounded-full text-md h-12 px-8 shadow-xl shadow-primary/20 hover:shadow-primary/30 transition-all hover:-translate-y-1">
+              <a href={project.liveLink} target="_blank">
+                <ExternalLink className="w-5 h-5 me-2.5" /> {t("visit_live_site")}
+              </a>
+            </Button>
+          )}
+          {project.repoLink && (
+            <Button asChild variant="outline" size="lg" className="rounded-full text-md h-12 px-8 backdrop-blur-sm border-white/10 hover:bg-secondary/10 transition-all hover:-translate-y-1">
+              <a href={project.repoLink} target="_blank">
+                <IoLogoGithub className="w-5 h-5 me-2.5" /> {t("view_code")}
+              </a>
+            </Button>
+          )}
+        </div>
+      </div>
+
+      <div className="mt-32 pt-12 border-t border-border/20 text-center pb-8">
+        <Link href={`/${locale}/projects`} className="text-muted-foreground hover:text-primary transition-colors text-sm font-medium tracking-widest uppercase hover:underline underline-offset-4">
+          {locale === "ar" ? "شوف كل المشاريع" : "View All Projects"}
+        </Link>
+      </div>
+    </article>
+  );
 }

@@ -3,10 +3,9 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowUpRight, LogOut, Menu, X } from "lucide-react";
+import { ArrowUpRight, Menu, X } from "lucide-react";
 import { m, AnimatePresence } from "motion/react";
 
-import { SignOutButton } from "@/src/components/features/auth/SignOutButton";
 import { Button, buttonVariants } from "@/src/components/ui/button";
 import {
   Sheet,
@@ -24,13 +23,11 @@ import { isActiveLink, localizeHref } from "./utils";
 
 type MobileNavProps = {
   activeSection: string | null;
-  hasSession: boolean;
   isRTL: boolean;
   links: NavLink[];
   locale: string;
   normalizedPath: string;
   t: (key: string) => string;
-  userSlot: React.ReactNode;
 };
 
 const containerVariants = {
@@ -49,23 +46,21 @@ const itemVariants = {
   visible: {
     opacity: 1,
     y: 0,
-    transition: { 
-      type: "spring" as const, 
-      stiffness: 260, 
-      damping: 20 
+    transition: {
+      type: "spring" as const,
+      stiffness: 260,
+      damping: 20
     },
   },
 };
 
 export function MobileNav({
   activeSection,
-  hasSession,
   isRTL,
   links,
   locale,
   normalizedPath,
   t,
-  userSlot,
 }: MobileNavProps) {
   const [open, setOpen] = useState(false);
 
@@ -114,7 +109,7 @@ export function MobileNav({
             </SheetDescription>
           </SheetHeader>
 
-          <m.div 
+          <m.div
             className="flex flex-1 flex-col px-4 pb-8 pt-6"
             variants={containerVariants}
             initial="hidden"
@@ -138,59 +133,36 @@ export function MobileNav({
                       )}
                       onClick={() => setOpen(false)}
                     >
-                        <span className="relative z-10 flex items-center gap-3">
-                          {active && (
-                            <m.span 
-                              layoutId="mobile-active-dot"
-                              className="h-1.5 w-1.5 rounded-full bg-primary shadow-[0_0_8px_hsl(var(--primary))]"
-                            />
-                          )}
-                          {t(link.label)}
-                        </span>
-                        
-                        <ArrowUpRight
-                          className={cn(
-                            "h-5 w-5 transition-all duration-500",
-                            active
-                              ? "translate-x-0 translate-y-0 opacity-100 text-primary"
-                              : "translate-x-2 -translate-y-2 opacity-0 group-hover:translate-x-0 group-hover:translate-y-0 group-hover:opacity-100 group-hover:text-primary"
-                          )}
-                        />
-
+                      <span className="relative z-10 flex items-center gap-3">
                         {active && (
-                          <m.div
-                            layoutId="mobile-active-bg"
-                            className="absolute inset-0 z-0 bg-primary/5 blur-xl"
-                            suppressHydrationWarning
+                          <m.span
+                            layoutId="mobile-active-dot"
+                            className="h-1.5 w-1.5 rounded-full bg-primary shadow-[0_0_8px_hsl(var(--primary))]"
                           />
                         )}
-                      </Link>
+                        {t(link.label)}
+                      </span>
+
+                      <ArrowUpRight
+                        className={cn(
+                          "h-5 w-5 transition-all duration-500",
+                          active
+                            ? "translate-x-0 translate-y-0 opacity-100 text-primary"
+                            : "translate-x-2 -translate-y-2 opacity-0 group-hover:translate-x-0 group-hover:translate-y-0 group-hover:opacity-100 group-hover:text-primary"
+                        )}
+                      />
+
+                      {active && (
+                        <m.div
+                          layoutId="mobile-active-bg"
+                          className="absolute inset-0 z-0 bg-primary/5 blur-xl"
+                          suppressHydrationWarning
+                        />
+                      )}
+                    </Link>
                   </m.div>
                 );
               })}
-            </div>
-
-            <div className="mt-auto">
-              <div className="rounded-[1.75rem] border border-primary/10 bg-black/40 p-4 shadow-xl backdrop-blur-md">
-                <div className="mb-4">
-                  {React.isValidElement(userSlot) 
-                    ? React.cloneElement(userSlot as React.ReactElement<any>, { 
-                        isInline: true, 
-                        onItemClick: () => setOpen(false) 
-                      })
-                    : userSlot}
-                </div>
-                {hasSession && (
-                  <SignOutButton
-                    variant="ghost"
-                    className="h-12 w-full justify-start rounded-2xl px-5 text-base font-bold text-destructive/80 transition-all hover:bg-destructive/10 hover:text-destructive"
-                    onClick={() => setOpen(false)}
-                  >
-                    <LogOut className="me-3 h-5 w-5" />
-                    {t("sign_out") || "Sign Out"}
-                  </SignOutButton>
-                )}
-              </div>
             </div>
           </m.div>
         </div>

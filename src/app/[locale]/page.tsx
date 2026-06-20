@@ -14,9 +14,6 @@ const TechStack = nextDynamic(() => import("@/src/components/features/homepage/T
 const Experience = nextDynamic(() => import("@/src/components/features/homepage/Experience"), {
   loading: () => <div className="min-h-[400px]" />,
 });
-const Testimonials = nextDynamic(() => import("@/src/components/features/homepage/Testimonials"), {
-  loading: () => <div className="min-h-[300px]" />,
-});
 const Contact = nextDynamic(() => import("@/src/components/features/homepage/Contact"), {
   loading: () => <div className="min-h-[300px]" />,
 });
@@ -25,8 +22,6 @@ import Container from "@/src/components/ui/Container";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import StructuredData from "@/src/components/seo/StructuredData";
 import { routing } from "@/src/i18n/routing";
-
-export const dynamic = "force-dynamic";
 
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
@@ -194,7 +189,6 @@ export default async function HomePage({
             <div className="snap-section">
               <HomeSectionBand variant="deep">
                 <About />
-                <Testimonials />
               </HomeSectionBand>
             </div>
           </ScrollReveal>

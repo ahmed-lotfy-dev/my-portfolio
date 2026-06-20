@@ -1,1 +1,0 @@
-ALTER TABLE "certificates" ADD COLUMN "published" boolean DEFAULT true NOT NULL;

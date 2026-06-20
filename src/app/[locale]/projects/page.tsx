@@ -1,12 +1,10 @@
-import { getAllProjects } from "@/src/app/actions/projects/queries";
+import projectsData from "@/src/data/projects.json";
 import ProjectsClient from "@/src/components/features/homepage/ProjectsClient";
 import StructuredData from "@/src/components/seo/StructuredData";
 import { BreadcrumbSchema } from "@/src/components/seo/BreadcrumbSchema";
 import { BackButton } from "@/src/components/ui/BackButton";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { routing } from "@/src/i18n/routing";
-
-export const dynamic = "force-dynamic";
 
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
@@ -71,8 +69,7 @@ export default async function ProjectsPage({
   const { locale } = await params;
   setRequestLocale(locale);
   const t = await getTranslations("projects");
-  const { allProjects } = await getAllProjects();
-  const publishedProjects = (allProjects ?? []).filter((project) => project.published !== false);
+  const publishedProjects = projectsData.filter((p) => p.published !== false);
 
   const translations = {
     readmore: t("readmore"),

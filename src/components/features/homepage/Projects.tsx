@@ -1,14 +1,14 @@
 import Section from "@/src/components/ui/Section";
 import { getTranslations, getLocale } from "next-intl/server";
-import { getAllProjects } from "@/src/app/actions/projects/queries";
+import projectsData from "@/src/data/projects.json";
 import ProjectsClient from "./ProjectsClient";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 
 export default async function Projects() {
-  const { allProjects: projects } = await getAllProjects();
-  const t = await getTranslations("projects");
   const locale = await getLocale();
+  const t = await getTranslations("projects");
+  const allProjects = projectsData.filter((p) => p.published !== false);
 
   const translations = {
     readmore: t("readmore"),
@@ -20,12 +20,7 @@ export default async function Projects() {
   };
 
   return (
-    <Section
-      variant="transparent"
-      className="relative overflow-hidden"
-      id="projects"
-    >
-      {/* Background Decor - Mesh Gradient */}
+    <Section variant="transparent" className="relative overflow-hidden" id="projects">
       <div className="absolute top-0 left-0 w-[800px] h-[800px] bg-secondary/10 rounded-full blur-[120px] pointer-events-none -translate-y-1/2 -translate-x-1/2" />
       <div className="container">
         <div className="text-center mb-16 space-y-4">
@@ -37,7 +32,7 @@ export default async function Projects() {
           </p>
         </div>
 
-        <ProjectsClient projects={projects ?? []} locale={locale} t={translations} />
+        <ProjectsClient projects={allProjects} locale={locale} t={translations} />
 
         <div className="mt-12 text-center">
           <Link

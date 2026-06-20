@@ -1,13 +1,12 @@
-import { getLocale } from "next-intl/server";
-import { getExperiences } from "@/src/app/actions/experiences/queries";
+import experiencesData from "@/src/data/experiences.json";
 import ExperienceClient from "./ExperienceClient";
+import { getLocale } from "next-intl/server";
 
 export default async function Experience() {
-  const experiences = await getExperiences(true);
   const locale = await getLocale();
   const isRTL = locale === "ar";
 
-  if (experiences.length === 0) return null;
+  if (experiencesData.length === 0) return null;
 
-  return <ExperienceClient experiences={experiences} isRTL={isRTL} />;
+  return <ExperienceClient experiences={experiencesData} isRTL={isRTL} />;
 }
