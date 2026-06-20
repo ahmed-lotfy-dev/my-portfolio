@@ -122,10 +122,10 @@ export default async function CertificatesPage({
                   </h3>
                   <p className="text-sm text-muted-foreground font-medium">{cert.desc}</p>
 
-                  {cert.completedAt && (
+                  {cert.completed_at && (
                     <p className="text-xs text-muted-foreground">
                       {t("completed")}:{" "}
-                      {new Date(cert.completedAt).toLocaleDateString(
+                      {new Date(cert.completed_at).toLocaleDateString(
                         isArabic ? "ar-EG" : "en-US",
                         { year: "numeric", month: "short" }
                       )}
@@ -134,9 +134,9 @@ export default async function CertificatesPage({
 
                   <div className="mt-auto pt-4 flex items-center justify-between border-t border-border">
                     <div className="flex gap-2 items-center">
-                      {cert.courseLink && (
+                      {cert.course_link && (
                         <Link
-                          href={cert.courseLink}
+                          href={cert.course_link}
                           target="_blank"
                           className="p-2 rounded-full bg-muted text-muted-foreground hover:bg-primary/10 hover:text-primary transition-colors"
                           title={t("table.view_course")}
@@ -144,9 +144,9 @@ export default async function CertificatesPage({
                           <ExternalLink size={16} />
                         </Link>
                       )}
-                      {cert.profLink && cert.profLink.trim() !== "" && (
+                      {cert.prof_link && cert.prof_link.trim() !== "" && (
                         <Link
-                          href={cert.profLink}
+                          href={cert.prof_link}
                           target="_blank"
                           className="p-2 rounded-full bg-muted text-muted-foreground hover:bg-primary/10 hover:text-primary transition-colors"
                           title={t("table.proof")}
