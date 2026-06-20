@@ -103,9 +103,9 @@ export default async function CertificatesPage({
                 className="group relative flex flex-col overflow-hidden rounded-xl border border-border bg-card/50 backdrop-blur-sm transition-all hover:border-primary/50 hover:shadow-lg hover:shadow-primary/5 hover:-translate-y-1"
               >
                 <div className="relative aspect-video w-full overflow-hidden bg-muted/50 block">
-                  {cert.imageLink ? (
+                  {cert.image_link ? (
                     <ImagePreviewer
-                      images={cert.imageLink}
+                      images={cert.image_link}
                       title={cert.title}
                       className="w-full h-full mb-0"
                     />
