@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { Mail, Award, Home, Briefcase, MessageSquare, ArrowUpRight, Heart } from "lucide-react";
+import { Mail, Award, Home, Briefcase, MessageSquare, ArrowUpRight } from "lucide-react";
 import { IoLogoGithub, IoLogoLinkedin } from "react-icons/io5";
 import { useTranslations, useLocale } from "next-intl";
 import { usePathname } from "next/navigation";
@@ -186,14 +186,7 @@ export default function Footer() {
           <div className="flex flex-col lg:flex-row items-center justify-between gap-6">
             {/* Copyright */}
             <div className="flex flex-col md:flex-row items-center gap-2 text-sm text-muted-foreground">
-              <p>© {currentYear} Ahmed Lotfy.</p>
-              <span className="hidden md:inline text-primary/30">•</span>
-              <p className="flex items-center gap-1.5">
-                {t("rights")}
-                <span className="inline-flex items-center gap-1">
-                  Crafted with <Heart className="w-3.5 h-3.5 text-destructive animate-pulse" /> using
-                </span>
-              </p>
+              <p>© {currentYear} Ahmed Lotfy. {t("rights")}</p>
             </div>
 
             {/* Tech Stack Badges */}

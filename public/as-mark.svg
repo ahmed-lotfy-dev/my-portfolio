@@ -1,27 +1,54 @@
 <svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
   <defs>
-    <linearGradient id="blue-premium" x1="0" y1="0" x2="512" y2="512" gradientUnits="userSpaceOnUse">
-      <stop offset="0%" stop-color="#3b82f6"/>
-      <stop offset="30%" stop-color="#6366f1"/>
-      <stop offset="60%" stop-color="#818cf8"/>
-      <stop offset="100%" stop-color="#2563eb"/>
+    <linearGradient id="logo-grad" x1="80" y1="80" x2="432" y2="432" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#60a5fa"/>
+      <stop offset="45%" stop-color="#6366f1"/>
+      <stop offset="100%" stop-color="#3b82f6"/>
     </linearGradient>
-    <linearGradient id="blue-glow" x1="0" y1="0" x2="512" y2="512" gradientUnits="userSpaceOnUse">
-      <stop offset="0%" stop-color="#93c5fd" stop-opacity="0.4"/>
-      <stop offset="50%" stop-color="#6366f1" stop-opacity="0.1"/>
-      <stop offset="100%" stop-color="#3b82f6" stop-opacity="0"/>
-    </linearGradient>
-    <filter id="blue-shadow" x="-10%" y="-10%" width="120%" height="120%">
-      <feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="#3b82f6" flood-opacity="0.3"/>
-    </filter>
   </defs>
 
-  <!-- Subtle glow behind -->
-  <circle cx="256" cy="256" r="200" fill="url(#blue-glow)"/>
+  <!-- AS Monogram — Sora-style geometric letterforms, manually refined -->
+  <!-- A: clean triangular crossbar, sharp apex -->
+  <path d="
+    M178 400
+    L256 88
+    L334 400
+    H292
+    L274 322
+    H238
+    L220 400
+    H178
+    Z
+    M268 290
+    L256 152
+    L244 290
+    H268
+  " fill="url(#logo-grad)"/>
 
-  <!-- A letter -->
-  <path d="M145 380L218 140H252L325 380H292L274 302H238L220 380H145ZM268 278L242 162L216 278H268Z" fill="url(#blue-premium)" filter="url(#blue-shadow)"/>
-
-  <!-- S letter -->
-  <path d="M348 310L378 310Q380 362 422 362L422 362Q437 362 447 354L447 354Q461 343 461 323L461 323Q461 302 443 286L443 286Q431 275 402 258L402 258Q355 231 355 193L355 193Q355 169 370 152L370 152Q388 132 418 132L418 132Q474 132 482 200L482 200L454 200Q453 184 448 174L448 174Q437 155 418 155L418 155Q398 155 388 169L388 169Q381 178 381 190L381 190Q381 217 425 243L425 243Q452 259 467 273L467 273Q486 292 486 322L486 322Q486 350 468 367L468 367Q449 386 419 386L419 386Q382 386 361 358L361 358Q349 339 348 310L348 310Z" fill="url(#blue-premium)" filter="url(#blue-shadow)"/>
+  <!-- S: smooth curves, balanced top/bottom bowls -->
+  <path d="
+    M356 316
+    L388 316
+    Q390 364 432 364
+    Q448 364 456 356
+    Q468 346 468 328
+    Q468 308 452 294
+    Q440 284 412 268
+    Q366 242 366 204
+    Q366 182 380 166
+    Q396 148 426 148
+    Q478 148 484 212
+    L456 212
+    Q455 196 448 186
+    Q438 168 424 168
+    Q406 168 398 180
+    Q392 188 392 202
+    Q392 226 432 252
+    Q458 268 472 282
+    Q490 302 490 330
+    Q490 358 474 374
+    Q456 392 428 392
+    Q392 392 374 366
+    Q362 348 356 316
+  " fill="url(#logo-grad)"/>
 </svg>
