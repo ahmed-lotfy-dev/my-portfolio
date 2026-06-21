@@ -74,7 +74,7 @@ export default async function BlogIndexPage({
   const isArabic = locale === "ar";
 
   return (
-    <main className="min-h-screen pb-20">
+    <main className="min-h-screen pb-20 bg-background overflow-x-hidden">
       <div className="container mx-auto mt-24 max-w-6xl px-4 md:mt-32 md:px-6">
         {/* Header */}
         <header className="mb-16 text-center">

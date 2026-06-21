@@ -130,7 +130,7 @@ export default async function BlogPostPage({
   const baseUrl = "https://ahmedlotfy.site";
 
   return (
-    <main className="min-h-screen pb-20">
+    <main className="min-h-screen pb-20 bg-background overflow-x-hidden">
       <StructuredData
         type="BlogPosting"
         data={{
@@ -232,7 +232,7 @@ export default async function BlogPostPage({
 
         {/* Content */}
         <div
-          className="prose prose-lg dark:prose-invert max-w-none"
+          className="prose prose-lg dark:prose-invert max-w-none overflow-x-auto"
           dangerouslySetInnerHTML={{ __html: contentHtml }}
         />
 
