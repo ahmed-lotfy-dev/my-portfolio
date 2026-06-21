@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useRef, useState, useEffect } from "react";
+import React, { useRef, useState, useEffect, useCallback } from "react";
 import { usePathname } from "next/navigation";
 import LanguageSwitcher from "@/src/components/i18n/LanguageSwitcher";
 import { useLocale, useTranslations } from "next-intl";
@@ -12,7 +12,7 @@ import { MobileNav } from "./nav/MobileNav";
 import { NavBrand } from "./nav/NavBrand";
 import { stripLocale } from "./nav/utils";
 import { useNavState } from "./nav/useNavState";
-import { m, type Variants } from "motion/react";
+import { m, type Variants, useMotionValueEvent, useScroll } from "motion/react";
 
 const navContainerVariants: Variants = {
   hidden: { opacity: 0, y: -15 },
@@ -58,6 +58,22 @@ export function Nav({ variant = "floating" }: NavProps) {
 
   const navRef = useRef<HTMLElement>(null);
   const isHomePage = normalizedPath === "" || normalizedPath === "/" || normalizedPath === `/${locale}`;
+
+  // Hide nav on scroll down, show on scroll up (mobile only)
+  const [mobileHidden, setMobileHidden] = useState(false);
+  const { scrollY } = useScroll();
+  const lastScrollY = useRef(0);
+
+  useMotionValueEvent(scrollY, "change", (latest) => {
+    if (typeof window !== "undefined" && window.innerWidth < 768) {
+      if (latest > lastScrollY.current && latest > 50) {
+        setMobileHidden(true);
+      } else {
+        setMobileHidden(false);
+      }
+      lastScrollY.current = latest;
+    }
+  });
 
   useEffect(() => {
     setMounted(true);
@@ -116,6 +132,7 @@ export function Nav({ variant = "floating" }: NavProps) {
       initial={mounted ? (isIntegrated ? "visible" : "hidden") : "visible"}
       animate={mounted ? "visible" : "visible"}
       suppressHydrationWarning
+      style={!isIntegrated && mobileHidden && typeof window !== "undefined" && window.innerWidth < 768 ? { y: "-100%" } : undefined}
     >
       <div
         className={cn(

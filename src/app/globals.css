@@ -8,32 +8,32 @@
   --font-arabic: var(--font-tajawal), sans-serif;
   --radius: 1rem;
 
-  --color-primary: hsl(43 74% 62%);
-  --color-primary-light: hsl(45 72% 72%);
-  --color-primary-dark: hsl(39 62% 46%);
-  --color-primary-foreground: hsl(24 24% 8%);
-  --color-secondary: hsl(28 18% 14%);
-  --color-secondary-foreground: hsl(42 45% 86%);
-  --color-accent: hsl(36 28% 18%);
-  --color-accent-foreground: hsl(42 52% 88%);
+  --color-primary: hsl(221 83% 53%);
+  --color-primary-light: hsl(221 83% 65%);
+  --color-primary-dark: hsl(221 83% 42%);
+  --color-primary-foreground: hsl(0 0% 100%);
+  --color-secondary: hsl(220 13% 18%);
+  --color-secondary-foreground: hsl(220 13% 90%);
+  --color-accent: hsl(217 91% 60%);
+  --color-accent-foreground: hsl(0 0% 100%);
   --color-destructive: hsl(0 68% 56%);
   --color-destructive-foreground: hsl(0 0% 100%);
   --color-success: hsl(145 42% 48%);
   --color-error: hsl(0 68% 56%);
-  --color-info: hsl(42 68% 58%);
+  --color-info: hsl(217 91% 60%);
   --color-warning: hsl(38 78% 58%);
 
-  --color-background: hsl(24 14% 7%);
-  --color-foreground: hsl(42 34% 92%);
-  --color-card: hsl(28 15% 10%);
-  --color-card-foreground: hsl(42 34% 92%);
-  --color-popover: hsl(28 16% 9%);
-  --color-popover-foreground: hsl(42 34% 92%);
-  --color-muted: hsl(28 12% 14%);
-  --color-muted-foreground: hsl(40 16% 68%);
-  --color-border: hsl(34 18% 20%);
-  --color-input: hsl(34 18% 20%);
-  --color-ring: hsl(43 74% 62%);
+  --color-background: hsl(222 18% 7%);
+  --color-foreground: hsl(210 20% 92%);
+  --color-card: hsl(220 15% 12%);
+  --color-card-foreground: hsl(210 20% 92%);
+  --color-popover: hsl(220 16% 10%);
+  --color-popover-foreground: hsl(210 20% 92%);
+  --color-muted: hsl(220 13% 16%);
+  --color-muted-foreground: hsl(220 10% 60%);
+  --color-border: hsl(220 15% 22%);
+  --color-input: hsl(220 15% 22%);
+  --color-ring: hsl(221 83% 53%);
 
   --color-bg-background: var(--color-background);
   --color-bg-foreground: var(--color-foreground);
@@ -42,25 +42,25 @@
   --color-text-foreground: var(--color-foreground);
   --color-border-border: var(--color-border);
 
-  --background: 24 14% 7%;
-  --foreground: 42 34% 92%;
-  --card: 28 15% 10%;
-  --card-foreground: 42 34% 92%;
-  --popover: 28 16% 9%;
-  --popover-foreground: 42 34% 92%;
-  --primary: 43 74% 62%;
-  --primary-foreground: 24 24% 8%;
-  --secondary: 28 18% 14%;
-  --secondary-foreground: 42 45% 86%;
-  --muted: 28 12% 14%;
-  --muted-foreground: 40 16% 68%;
-  --accent: 36 28% 18%;
-  --accent-foreground: 42 52% 88%;
+  --background: 222 18% 7%;
+  --foreground: 210 20% 92%;
+  --card: 220 15% 12%;
+  --card-foreground: 210 20% 92%;
+  --popover: 220 16% 10%;
+  --popover-foreground: 210 20% 92%;
+  --primary: 221 83% 53%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 220 13% 18%;
+  --secondary-foreground: 220 13% 90%;
+  --muted: 220 13% 16%;
+  --muted-foreground: 220 10% 60%;
+  --accent: 217 91% 60%;
+  --accent-foreground: 0 0% 100%;
   --destructive: 0 68% 56%;
   --destructive-foreground: 0 0% 100%;
-  --border: 34 18% 20%;
-  --input: 34 18% 20%;
-  --ring: 43 74% 62%;
+  --border: 220 15% 22%;
+  --input: 220 15% 22%;
+  --ring: 221 83% 53%;
 }
 
 @layer base {
@@ -80,11 +80,12 @@
     font-family: var(--font-body);
     color: var(--color-foreground);
     background:
-      radial-gradient(circle at top, hsl(43 74% 62% / 0.08), transparent 36%),
-      linear-gradient(180deg, hsl(28 18% 10%), hsl(24 14% 7%) 28%);
+      radial-gradient(circle at top, hsl(221 83% 53% / 0.08), transparent 36%),
+      linear-gradient(180deg, hsl(220 18% 12%), hsl(222 18% 7%) 28%);
     background-color: var(--color-background);
     scroll-snap-type: y mandatory;
     scroll-behavior: smooth;
+    scroll-padding-top: 5rem;
   }
 
   @media (prefers-reduced-motion: reduce) {
