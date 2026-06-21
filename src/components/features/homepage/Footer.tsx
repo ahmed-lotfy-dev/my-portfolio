@@ -86,7 +86,7 @@ export default function Footer() {
             </div>
 
             {/* Quick Links */}
-            <div className="space-y-5">
+            <nav className="space-y-5" aria-label="Quick links">
               <h4 className="text-sm font-semibold text-foreground uppercase tracking-wider">
                 {t("quick_links")}
               </h4>
@@ -106,12 +106,12 @@ export default function Footer() {
                   </li>
                 ))}
               </ul>
-            </div>
+            </nav>
 
             {/* Connect + Legal Combined */}
             <div className="space-y-8">
               {/* Connect Section */}
-              <div className="space-y-5">
+              <nav className="space-y-5" aria-label="Connect">
                 <h4 className="text-sm font-semibold text-foreground uppercase tracking-wider">
                   {t("connect")}
                 </h4>
@@ -134,10 +134,10 @@ export default function Footer() {
                     </li>
                   ))}
                 </ul>
-              </div>
+              </nav>
 
               {/* Legal Section */}
-              <div className="space-y-5">
+              <nav className="space-y-5" aria-label="Legal">
                 <h4 className="text-sm font-semibold text-foreground uppercase tracking-wider">
                   {t("legal")}
                 </h4>
@@ -165,7 +165,7 @@ export default function Footer() {
                     </Link>
                   </li>
                 </ul>
-              </div>
+              </nav>
             </div>
           </div>
         </div>

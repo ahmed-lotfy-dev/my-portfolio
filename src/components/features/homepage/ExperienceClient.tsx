@@ -30,7 +30,7 @@ function ExperienceCard({ exp, index, isRTL }: { exp: any; index: number; isRTL:
         </div>
       </div>
 
-      <div className={cn("md:w-1/2", isRTL ? "pr-10 md:pr-0" : "pl-10 md:pl-0")}>
+      <article className={cn("md:w-1/2", isRTL ? "pr-10 md:pr-0" : "pl-10 md:pl-0")}>
         <div
           className={cn(
             "group p-6 md:p-8 rounded-4xl border border-border/50 bg-card/30 backdrop-blur-xl relative overflow-hidden transition-all duration-500 hover:border-primary/40 hover:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.3)] hover:bg-card/40",
@@ -42,9 +42,9 @@ function ExperienceCard({ exp, index, isRTL }: { exp: any; index: number; isRTL:
             index % 2 === 0 ? "md:ml-auto" : "md:mr-auto"
           )}>
             <Calendar className="w-3.5 h-3.5" />
-            <span className="font-mono text-xs uppercase tracking-[0.2em] font-bold">
+            <time className="font-mono text-xs uppercase tracking-[0.2em] font-bold" dateTime={exp.date_en}>
               {isRTL ? exp.date_ar : exp.date_en}
-            </span>
+            </time>
           </div>
 
           <h3 className="text-xl md:text-2xl font-black text-foreground mb-2 tracking-tight group-hover:text-primary transition-colors duration-300">
@@ -77,7 +77,7 @@ function ExperienceCard({ exp, index, isRTL }: { exp: any; index: number; isRTL:
             ))}
           </div>
         </div>
-      </div>
+      </article>
 
       <div className="hidden md:block md:w-1/2" />
     </div>

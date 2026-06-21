@@ -129,13 +129,13 @@ export default async function BlogIndexPage({
               )}
               <div className="flex flex-1 flex-col p-5">
                 <div className="mb-3 flex items-center gap-3 text-xs text-muted-foreground">
-                  <span className="inline-flex items-center gap-1">
+                  <time dateTime={post.date} className="inline-flex items-center gap-1">
                     <Calendar className="h-3 w-3" />
                     {new Date(post.date).toLocaleDateString(
                       isArabic ? "ar-EG" : "en-US",
                       { year: "numeric", month: "short", day: "numeric" }
                     )}
-                  </span>
+                  </time>
                   <span className="inline-flex items-center gap-1">
                     <Clock className="h-3 w-3" />
                     {post.readingTime.text}

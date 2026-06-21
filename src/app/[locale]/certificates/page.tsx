@@ -98,11 +98,11 @@ export default async function CertificatesPage({
         {publishedCerts.length > 0 ? (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
             {publishedCerts.map((cert, index) => (
-              <div
+              <article
                 key={cert.id}
                 className="group relative flex flex-col overflow-hidden rounded-xl border border-border bg-card/50 backdrop-blur-sm transition-all hover:border-primary/50 hover:shadow-lg hover:shadow-primary/5 hover:-translate-y-1"
               >
-                <div className="relative aspect-video w-full overflow-hidden bg-muted/50 block">
+                <figure className="relative aspect-video w-full overflow-hidden bg-muted/50 block">
                   {cert.image_link ? (
                     <ImagePreviewer
                       images={cert.image_link}
@@ -114,7 +114,7 @@ export default async function CertificatesPage({
                       <Award className="h-12 w-12 opacity-20" />
                     </div>
                   )}
-                </div>
+                </figure>
 
                 <div className="flex flex-1 flex-col p-6 gap-3">
                   <h3 className="font-semibold text-xl leading-tight text-foreground line-clamp-2 min-h-14" title={cert.title}>
@@ -125,14 +125,16 @@ export default async function CertificatesPage({
                   {cert.completed_at && (
                     <p className="text-xs text-muted-foreground">
                       {t("completed")}:{" "}
-                      {new Date(cert.completed_at).toLocaleDateString(
-                        isArabic ? "ar-EG" : "en-US",
-                        { year: "numeric", month: "short" }
-                      )}
+                      <time dateTime={cert.completed_at}>
+                        {new Date(cert.completed_at).toLocaleDateString(
+                          isArabic ? "ar-EG" : "en-US",
+                          { year: "numeric", month: "short" }
+                        )}
+                      </time>
                     </p>
                   )}
 
-                  <div className="mt-auto pt-4 flex items-center justify-between border-t border-border">
+                  <footer className="mt-auto pt-4 flex items-center justify-between border-t border-border">
                     <div className="flex gap-2 items-center">
                       {cert.course_link && (
                         <Link
@@ -155,9 +157,9 @@ export default async function CertificatesPage({
                         </Link>
                       )}
                     </div>
-                  </div>
+                  </footer>
                 </div>
-              </div>
+              </article>
             ))}
           </div>
         ) : (

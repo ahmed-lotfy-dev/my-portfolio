@@ -238,7 +238,7 @@ export default async function BlogPostPage({
         )}
 
         {/* Content */}
-        <div
+        <section
           className="prose prose-lg dark:prose-invert max-w-none overflow-x-auto"
           dangerouslySetInnerHTML={{ __html: contentHtml }}
         />

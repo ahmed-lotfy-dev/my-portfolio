@@ -126,7 +126,7 @@ export default async function ProjectDetailsPage({ params }: { params: Promise<{
       </div>
 
       {project.cover_image && (
-        <div className="mb-12 md:mb-16 container mx-auto px-4 md:px-6">
+        <figure className="mb-12 md:mb-16 container mx-auto px-4 md:px-6">
           <div className="max-w-5xl mx-auto rounded-3xl overflow-hidden shadow-2xl border border-white/10">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
@@ -135,11 +135,11 @@ export default async function ProjectDetailsPage({ params }: { params: Promise<{
               className="w-full h-auto object-cover"
             />
           </div>
-        </div>
+        </figure>
       )}
 
       <div className="max-w-4xl mx-auto space-y-8 md:space-y-12 mb-20 text-start md:text-center px-4">
-        <div className="space-y-6">
+        <header className="space-y-6">
           <div className="flex flex-wrap gap-3 md:justify-center mb-6">
             {project.categories?.map((cat, i) => (
               <span key={i} className="px-4 py-1.5 bg-secondary/30 backdrop-blur-md border border-white/10 rounded-full text-sm font-medium text-foreground capitalize shadow-sm">
@@ -151,7 +151,7 @@ export default async function ProjectDetailsPage({ params }: { params: Promise<{
           <h1 className="text-2xl md:text-3xl lg:text-4xl font-extrabold tracking-tight leading-tight bg-clip-text text-transparent bg-linear-to-b from-foreground to-foreground/70">
             {title}
           </h1>
-        </div>
+        </header>
 
         <p className="text-md md:text-lg text-muted-foreground leading-relaxed max-w-3xl mx-auto">
           {desc}
@@ -175,34 +175,35 @@ export default async function ProjectDetailsPage({ params }: { params: Promise<{
         </div>
       </div>
 
-      <div className="mt-32 pt-12 border-t border-border/20 text-center pb-8">
+      <footer className="mt-32 pt-12 border-t border-border/20 text-center pb-8">
         <Link href={`/${locale}/projects`} className="text-muted-foreground hover:text-primary transition-colors text-sm font-medium tracking-widest uppercase hover:underline underline-offset-4">
           {locale === "ar" ? "شوف كل المشاريع" : "View All Projects"}
         </Link>
-      </div>
+      </footer>
 
       {relatedPosts.length > 0 && (
-        <div className="mt-16 pt-12 border-t border-border/20">
+        <section className="mt-16 pt-12 border-t border-border/20">
           <h2 className="text-xl font-bold text-center mb-8">
             {locale === "ar" ? "مقالات ذات صلة" : "Related Articles"}
           </h2>
           <div className="grid gap-4 sm:grid-cols-2 max-w-3xl mx-auto px-4">
             {relatedPosts.map((post) => (
-              <Link
+              <article
                 key={post.slug}
-                href={`/${locale}/blogs/${post.slug}`}
                 className="group flex flex-col p-4 rounded-xl border border-border/50 bg-card/30 hover:border-primary/30 transition-all"
               >
                 <h3 className="text-sm font-semibold leading-snug group-hover:text-primary transition-colors line-clamp-2">
-                  {post.title}
+                  <Link href={`/${locale}/blogs/${post.slug}`}>
+                    {post.title}
+                  </Link>
                 </h3>
                 <p className="mt-2 text-xs text-muted-foreground line-clamp-2">
                   {post.excerpt.slice(0, 80)}
                 </p>
-              </Link>
+              </article>
             ))}
           </div>
-        </div>
+        </section>
       )}
     </article>
   );

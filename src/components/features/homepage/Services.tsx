@@ -44,7 +44,7 @@ export default function Services() {
         {/* Grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {items.map((item, index) => (
-            <div
+            <article
               key={item.key}
               className={cn(
                 "group relative p-8 rounded-4xl border border-border/50 bg-card/30 backdrop-blur-sm hover:border-primary/50 hover:bg-card/50 transition-all duration-300",
@@ -74,7 +74,7 @@ export default function Services() {
                   </li>
                 ))}
               </ul>
-            </div>
+            </article>
           ))}
         </div>
       </div>

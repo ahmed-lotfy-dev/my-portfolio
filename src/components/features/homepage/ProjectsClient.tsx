@@ -53,14 +53,14 @@ export default function ProjectsClient({ projects, locale, t }: Props) {
           const showApk = shouldShowApk(proj.categories);
 
           return (
-            <div key={proj.id}>
-              <Card as="article" className="group flex h-full flex-col justify-between overflow-hidden border-border bg-card/50 backdrop-blur-sm hover:border-primary/50 hover:shadow-2xl hover:shadow-primary/10 transition-all duration-500">
+            <article key={proj.id}>
+              <Card className="group flex h-full flex-col justify-between overflow-hidden border-border bg-card/50 backdrop-blur-sm hover:border-primary/50 hover:shadow-2xl hover:shadow-primary/10 transition-all duration-500">
                 <Link
                   href={proj.slug ? `/${locale}/projects/${proj.slug}` : proj.live_link}
                   target={proj.slug ? undefined : "_blank"}
                   className="block overflow-hidden"
                 >
-                  <div className="relative w-full h-64 cursor-pointer overflow-hidden">
+                  <figure className="relative w-full h-64 cursor-pointer overflow-hidden">
                     <Image
                       src={safeMediaUrl(getProjectCoverImage(proj.cover_image))}
                       alt={locale === "ar" ? proj.title_ar : proj.title_en}
@@ -75,7 +75,7 @@ export default function ProjectsClient({ projects, locale, t }: Props) {
                       loading="lazy"
                     />
                     <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-500" />
-                  </div>
+                  </figure>
                 </Link>
                 <div className="p-6 flex flex-col grow gap-4">
                   <div>
@@ -143,7 +143,7 @@ export default function ProjectsClient({ projects, locale, t }: Props) {
                   </div>
                 </div>
               </Card>
-            </div>
+            </article>
           );
         })}
     </div>
