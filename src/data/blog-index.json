@@ -1,6 +1,6 @@
 [
   {
-    "id": "2e1fb937-f74e-4a7a-8191-66083af08237",
+    "id": "f4b1d959-68cd-41e7-b618-3f21f3c9fbf2",
     "title_en": "ازاي تستضيف بلوج Next.js بنفسك على Dokploy (من غير ما تفقد أعصابك)",
     "title_ar": "ازاي تستضيف بلوج Next.js بنفسك على Dokploy (من غير ما تفقد أعصابك)",
     "slug": "self-host-nextjs-blog-on-dokploy-ar",
@@ -20,7 +20,7 @@
     "created_at": "2026-06-20T00:00:00.000Z"
   },
   {
-    "id": "6c5a6a6c-ff69-4519-948d-79aa0dc18395",
+    "id": "a14b6e9a-f5b4-4c10-9fb5-367be070e006",
     "title_en": "How to Self-Host a Next.js Blog on Dokploy (Without Losing Your Mind)",
     "title_ar": "How to Self-Host a Next.js Blog on Dokploy (Without Losing Your Mind)",
     "slug": "self-host-nextjs-blog-on-dokploy",
@@ -40,7 +40,7 @@
     "created_at": "2026-06-20T00:00:00.000Z"
   },
   {
-    "id": "c1b6080f-089e-48e8-8fe8-03fa933deb5b",
+    "id": "bbbac77b-b1d9-42dd-8c2f-51fcfb7b951f",
     "title_en": "ليه شلت الداتابيز من موقعي (وليه انت كمان ممكن تعمل كده)",
     "title_ar": "ليه شلت الداتابيز من موقعي (وليه انت كمان ممكن تعمل كده)",
     "slug": "why-i-ditched-database-for-static-site-ar",
@@ -60,7 +60,7 @@
     "created_at": "2026-06-20T00:00:00.000Z"
   },
   {
-    "id": "368a4ca9-22c8-4826-8506-0d20e48590c3",
+    "id": "12d2aea8-73ea-40cd-ac1f-53fb8f4535fe",
     "title_en": "Why I Ditched My Database for a Static Site (And Why You Might Want To)",
     "title_ar": "Why I Ditched My Database for a Static Site (And Why You Might Want To)",
     "slug": "why-i-ditched-database-for-static-site",
@@ -80,7 +80,7 @@
     "created_at": "2026-06-20T00:00:00.000Z"
   },
   {
-    "id": "485d3704-656a-41f4-bf55-b86a9417fc2f",
+    "id": "fe0adafc-68e4-4f7c-956c-e6d35b2f7683",
     "title_en": "⚛️ React Server Components vs Qwik: Real-World Cross-Platform Truth",
     "title_ar": "⚛️ React Server Components vs Qwik: Real-World Cross-Platform Truth",
     "slug": "react-server-components-vs-qwik-real-world-truth",
@@ -100,7 +100,7 @@
     "created_at": "2026-05-09T00:00:00.000Z"
   },
   {
-    "id": "919dc9a5-2e5b-4c1d-82eb-056038ae98ee",
+    "id": "e137861b-f47e-4eb6-8b40-570c2adb8835",
     "title_en": "🤖 How We Cut Incident Response Time by 90% with AI Agent Auditing",
     "title_ar": "🤖 How We Cut Incident Response Time by 90% with AI Agent Auditing",
     "slug": "ai-agent-auditing-cut-incident-response-90-percent",
@@ -120,7 +120,7 @@
     "created_at": "2026-05-09T00:00:00.000Z"
   },
   {
-    "id": "225d157d-4803-4097-8fb7-cd698ea7376f",
+    "id": "19bbcc0d-71a8-41d3-9eb2-11056f0d578f",
     "title_en": "🏗️ Frontend Build Tools Are Hitting a Wall — Here's What Comes Next",
     "title_ar": "🏗️ Frontend Build Tools Are Hitting a Wall — Here's What Comes Next",
     "slug": "frontend-build-tools-hitting-a-wall",
@@ -140,7 +140,7 @@
     "created_at": "2026-05-09T00:00:00.000Z"
   },
   {
-    "id": "d2736bde-8b80-43f1-834c-ea0643014b4b",
+    "id": "86c523cd-f7ac-44cb-8531-8e391360ca35",
     "title_en": "🤖 Multi-Agent Workflows Just Got Easier: Gemini CLI Subagents Are Here",
     "title_ar": "🤖 Multi-Agent Workflows Just Got Easier: Gemini CLI Subagents Are Here",
     "slug": "gemini-cli-subagents-multi-agent-workflows",
@@ -159,7 +159,7 @@
     "created_at": "2026-05-09T00:00:00.000Z"
   },
   {
-    "id": "ff09a659-feca-4d50-aa6d-6796425a90de",
+    "id": "3af0f365-47d3-4101-9510-d6aab1097133",
     "title_en": "🔥 Mojo 1.0 Beta Is Here — Python for AI Just Got a Serious Upgrade",
     "title_ar": "🔥 Mojo 1.0 Beta Is Here — Python for AI Just Got a Serious Upgrade",
     "slug": "mojo-1-0-beta-python-ai-programming-language",
@@ -179,7 +179,7 @@
     "created_at": "2026-05-09T00:00:00.000Z"
   },
   {
-    "id": "57f73d5f-fde8-427d-831d-04fc8116acda",
+    "id": "913d6d3d-8a80-457a-ad9e-4200fc903c91",
     "title_en": "🤖 Production-Ready AI Agents: 5 Hard Lessons from Refactoring a Monolith",
     "title_ar": "🤖 Production-Ready AI Agents: 5 Hard Lessons from Refactoring a Monolith",
     "slug": "production-ready-ai-agents-lessons-refactoring-monolith",
@@ -198,7 +198,27 @@
     "created_at": "2026-05-09T00:00:00.000Z"
   },
   {
-    "id": "564acfc6-e09e-4b7d-9310-6934c26248a6",
+    "id": "a5276926-bc9f-45e3-bab9-424dcd41a3d0",
+    "title_en": "⚛️ React Server Components vs Qwik: الحقيقة من الواقع",
+    "title_ar": "⚛️ React Server Components vs Qwik: الحقيقة من الواقع",
+    "slug": "react-server-components-vs-qwik-real-world-truth-ar",
+    "published": true,
+    "categories": [
+      "react",
+      "nextjs",
+      "qwik",
+      "frontend",
+      "web-development",
+      "javascript"
+    ],
+    "reading_time": "5 min read",
+    "source": "obsidian",
+    "featured": false,
+    "views": 0,
+    "created_at": "2026-05-09T00:00:00.000Z"
+  },
+  {
+    "id": "ecbcf18d-6040-433c-a830-f57ebbdbb601",
     "title_en": "⚛️ Tanner Linsley Built a React Clone in One Day — Here's Why It Matters",
     "title_ar": "⚛️ Tanner Linsley Built a React Clone in One Day — Here's Why It Matters",
     "slug": "tanstack-experimental-react-clone-explained",
@@ -217,7 +237,26 @@
     "created_at": "2026-05-09T00:00:00.000Z"
   },
   {
-    "id": "001ba209-1b87-4671-94ab-7e4f16c77226",
+    "id": "150c431c-03dc-4b4c-83e4-2621010b25a0",
+    "title_en": "🔌 مفيش أسئلة غبية: ايه هو MCP Server وليه يهمك؟",
+    "title_ar": "🔌 مفيش أسئلة غبية: ايه هو MCP Server وليه يهمك؟",
+    "slug": "what-is-mcp-server-no-dumb-questions-ar",
+    "published": true,
+    "categories": [
+      "mcp",
+      "ai-agents",
+      "llm",
+      "developer-tools",
+      "fullstack"
+    ],
+    "reading_time": "5 min read",
+    "source": "obsidian",
+    "featured": false,
+    "views": 0,
+    "created_at": "2026-05-09T00:00:00.000Z"
+  },
+  {
+    "id": "f9871771-7fb4-4507-8983-b22333119738",
     "title_en": "🔌 No Dumb Questions: What Is an MCP Server and Why Should You Care?",
     "title_ar": "🔌 No Dumb Questions: What Is an MCP Server and Why Should You Care?",
     "slug": "what-is-mcp-server-no-dumb-questions",
@@ -236,7 +275,7 @@
     "created_at": "2026-05-09T00:00:00.000Z"
   },
   {
-    "id": "b0061b37-daf3-4d68-87b8-8d8f904573dd",
+    "id": "f9068d70-27c1-435d-857b-ec090bc25bcf",
     "title_en": "🔥 Unpacking the Future of AI Agents: Insights from Reddit",
     "title_ar": "🔥 Unpacking the Future of AI Agents: Insights from Reddit",
     "slug": "10-trending-reddit-posts-about-ai-agents-this-week-may-2026",
@@ -255,7 +294,22 @@
     "created_at": "2026-05-08T00:00:00.000Z"
   },
   {
-    "id": "1a89d926-a86c-48e8-8edb-81528dafd310",
+    "id": "0277061d-4112-4746-b43d-f5697bc2ea3c",
+    "title_en": "الدليل الشامل لـ Cloudflare Tunnel باستخدام cloudflared",
+    "title_ar": "الدليل الشامل لـ Cloudflare Tunnel باستخدام cloudflared",
+    "slug": "cloudflared-tunnel-full-guide-ar",
+    "published": true,
+    "categories": [
+      "general"
+    ],
+    "reading_time": "4 min read",
+    "source": "obsidian",
+    "featured": true,
+    "views": 0,
+    "created_at": "2026-01-30T00:00:00.000Z"
+  },
+  {
+    "id": "6fd2556f-df21-4ab1-886f-f4c622323eea",
     "title_en": "Cloudflared Tunnel Full Guide",
     "title_ar": "Cloudflared Tunnel Full Guide",
     "slug": "cloudflared-tunnel-full-guide",
@@ -270,7 +324,28 @@
     "created_at": "2026-01-30T00:00:00.000Z"
   },
   {
-    "id": "287cc392-6c3b-486c-8b7c-e1f04fc45fe3",
+    "id": "5c6690b5-34c6-4639-b47f-16c27721ca63",
+    "title_en": "CVSS 10.0 مش صدفة: من Next.js لـ n8n",
+    "title_ar": "CVSS 10.0 مش صدفة: من Next.js لـ n8n",
+    "slug": "cvss-10-0-is-not-a-coincidence-from-next-js-to-n8n-ar",
+    "published": true,
+    "categories": [
+      "security",
+      "vulnerabilities",
+      "cvss",
+      "nextjs",
+      "n8n",
+      "backend",
+      "devops"
+    ],
+    "reading_time": "3 min read",
+    "source": "obsidian",
+    "featured": true,
+    "views": 0,
+    "created_at": "2026-01-28T00:00:00.000Z"
+  },
+  {
+    "id": "10f6e4e2-4ff2-4984-983f-86ebc7c96c62",
     "title_en": "CVSS 10.0 Is Not a Coincidence, From Next.js to n8n",
     "title_ar": "CVSS 10.0 Is Not a Coincidence, From Next.js to n8n",
     "slug": "cvss-10-0-is-not-a-coincidence-from-next-js-to-n8n",
@@ -291,7 +366,26 @@
     "created_at": "2026-01-28T00:00:00.000Z"
   },
   {
-    "id": "fa5a96b1-7c83-4e99-9d0f-1d156dc1276e",
+    "id": "c03ee765-f96e-4ed0-a941-1ab8fafa6fbe",
+    "title_en": "بناء workflow من Obsidian للـ Portfolio بدون مجهود",
+    "title_ar": "بناء workflow من Obsidian للـ Portfolio بدون مجهود",
+    "slug": "building-zero-effort-obsidian-to-portfolio-workflow-ar",
+    "published": true,
+    "categories": [
+      "automation",
+      "obsidian",
+      "cloudflare-r2",
+      "github",
+      "nextjs"
+    ],
+    "reading_time": "5 min read",
+    "source": "obsidian",
+    "featured": true,
+    "views": 0,
+    "created_at": "2026-01-25T00:00:00.000Z"
+  },
+  {
+    "id": "1e433b81-7e11-4e9b-8830-5eaf4e1e4bf3",
     "title_en": "Building a Zero-Effort Obsidian to Portfolio Workflow",
     "title_ar": "Building a Zero-Effort Obsidian to Portfolio Workflow",
     "slug": "building-zero-effort-obsidian-to-portfolio-workflow",
@@ -310,7 +404,7 @@
     "created_at": "2026-01-25T00:00:00.000Z"
   },
   {
-    "id": "05db3174-35d4-4085-b1bc-250ac5765bdc",
+    "id": "4f53b7f0-a577-415b-b13d-360862018fda",
     "title_en": "Rust Build Problem Fix (eww)",
     "title_ar": "Rust Build Problem Fix (eww)",
     "slug": "rust-build-problem-fix-eww",
@@ -325,7 +419,25 @@
     "created_at": "2026-01-25T00:00:00.000Z"
   },
   {
-    "id": "42b1a1bf-b7fa-42eb-8480-c859b23d6232",
+    "id": "09c0f140-7e1d-40aa-b26c-9ac4ee3358d5",
+    "title_en": "دليل الـ No-Open-Ports: Cloudflare Tunnels لمطوري الـ Backend",
+    "title_ar": "دليل الـ No-Open-Ports: Cloudflare Tunnels لمطوري الـ Backend",
+    "slug": "the-no-open-ports-manual-cloudflare-tunnels-for-backend-devs-ar",
+    "published": true,
+    "categories": [
+      "zero-trust",
+      "tunnel",
+      "cloudflare-tunnel",
+      "devops"
+    ],
+    "reading_time": "4 min read",
+    "source": "obsidian",
+    "featured": true,
+    "views": 0,
+    "created_at": "2026-01-25T00:00:00.000Z"
+  },
+  {
+    "id": "84dab08d-c5e8-44c1-805f-3f7122ba72c6",
     "title_en": "The \"No-Open-Ports\" Manual: Cloudflare Tunnels for Backend Devs",
     "title_ar": "The \"No-Open-Ports\" Manual: Cloudflare Tunnels for Backend Devs",
     "slug": "the-no-open-ports-manual-cloudflare-tunnels-for-backend-devs",
@@ -343,7 +455,24 @@
     "created_at": "2026-01-25T00:00:00.000Z"
   },
   {
-    "id": "2aad8fac-27f6-41ef-a92a-dd3b099450be",
+    "id": "40844e19-5432-4348-b92a-c9f8ce4506e7",
+    "title_en": "🎨 دليل تثبيت UI/UX Pro Max Skill على Linux",
+    "title_ar": "🎨 دليل تثبيت UI/UX Pro Max Skill على Linux",
+    "slug": "ui-ux-pro-max-skill-linux-setup-guide-ar",
+    "published": true,
+    "categories": [
+      "development",
+      "tools",
+      "ai"
+    ],
+    "reading_time": "3 min read",
+    "source": "obsidian",
+    "featured": true,
+    "views": 0,
+    "created_at": "2026-01-25T00:00:00.000Z"
+  },
+  {
+    "id": "cc2711f3-87fb-44cd-94da-f5b9b18be7e0",
     "title_en": "🎨 UI UX Pro Max Skill - Linux Setup Guide",
     "title_ar": "🎨 UI UX Pro Max Skill - Linux Setup Guide",
     "slug": "ui-ux-pro-max-skill-linux-setup-guide",
@@ -360,7 +489,34 @@
     "created_at": "2026-01-25T00:00:00.000Z"
   },
   {
-    "id": "24c19fe3-7075-4226-b8eb-f855461230b1",
+    "id": "0c44d935-6859-40d6-a2ad-b4e79a8f1600",
+    "title_en": "الاتصال بـ PostgreSQL شغال جوه Docker",
+    "title_ar": "الاتصال بـ PostgreSQL شغال جوه Docker",
+    "slug": "connecting-to-postgresql-running-inside-docker-ar",
+    "published": true,
+    "categories": [
+      "development",
+      "backend",
+      "databases",
+      "postgresql",
+      "psql",
+      "env",
+      "docker",
+      "containers",
+      "dev",
+      "devops",
+      "security",
+      "authentication",
+      "ssl-tls"
+    ],
+    "reading_time": "3 min read",
+    "source": "obsidian",
+    "featured": true,
+    "views": 0,
+    "created_at": "2026-01-24T00:00:00.000Z"
+  },
+  {
+    "id": "c3a0df1f-fadf-42b6-9934-c42f6abf5744",
     "title_en": "Connecting to PostgreSQL running inside Docker",
     "title_ar": "Connecting to PostgreSQL running inside Docker",
     "slug": "connecting-to-postgresql-running-inside-docker",
@@ -387,7 +543,28 @@
     "created_at": "2026-01-24T00:00:00.000Z"
   },
   {
-    "id": "d4a7602d-85ee-4973-8413-0f0cc6bc7648",
+    "id": "7dd1a6a8-669a-44d8-9884-c1e169c487cc",
+    "title_en": "🎯 الدليل الشامل لـ Image Privacy والـ Orientation في Laravel",
+    "title_ar": "🎯 الدليل الشامل لـ Image Privacy والـ Orientation في Laravel",
+    "slug": "definitive-guide-image-privacy-orientation-laravel-ar",
+    "published": true,
+    "categories": [
+      "development",
+      "backend",
+      "image-upload",
+      "laravel",
+      "#php",
+      "aws-s3",
+      "cloudflare-r2"
+    ],
+    "reading_time": "4 min read",
+    "source": "obsidian",
+    "featured": true,
+    "views": 0,
+    "created_at": "2026-01-24T00:00:00.000Z"
+  },
+  {
+    "id": "3685e2da-60c5-4783-8ffd-0aabd55b57e3",
     "title_en": "🎯 The Definitive Guide to Image Privacy & Orientation in Laravel",
     "title_ar": "🎯 The Definitive Guide to Image Privacy & Orientation in Laravel",
     "slug": "definitive-guide-image-privacy-orientation-laravel",
@@ -408,7 +585,7 @@
     "created_at": "2026-01-24T00:00:00.000Z"
   },
   {
-    "id": "8b2bbdf3-4e70-4684-b765-e4c69f5f82d2",
+    "id": "c8fa57e9-f47b-4203-ae95-c9ce8231e214",
     "title_en": "🎯 The Definitive Guide to Image Privacy & Orientation in Laravel",
     "title_ar": "🎯 The Definitive Guide to Image Privacy & Orientation in Laravel",
     "slug": "the-definitive-guide-to-image-privacy-orientation-in-laravel",
@@ -431,7 +608,24 @@
     "created_at": "2026-01-24T00:00:00.000Z"
   },
   {
-    "id": "5811449f-8fd6-4abf-9643-e4550f008c32",
+    "id": "522bfb91-7e2e-4f0b-ab24-7cad81d9da29",
+    "title_en": "الدليل الشامل لـ PostgreSQL Self-Hosting (Dokploy + VPS)",
+    "title_ar": "الدليل الشامل لـ PostgreSQL Self-Hosting (Dokploy + VPS)",
+    "slug": "master-postgresql-self-hosting-guide-dokploy-vps-ar",
+    "published": true,
+    "categories": [
+      "development",
+      "backend",
+      "databases"
+    ],
+    "reading_time": "4 min read",
+    "source": "obsidian",
+    "featured": true,
+    "views": 0,
+    "created_at": "2026-01-23T00:00:00.000Z"
+  },
+  {
+    "id": "ed2b4536-0062-44f5-9d37-34a8f2129a3d",
     "title_en": "Master PostgreSQL Self-Hosting Guide (Dokploy+VPS)",
     "title_ar": "Master PostgreSQL Self-Hosting Guide (Dokploy+VPS)",
     "slug": "master-postgresql-self-hosting-guide-dokploy-vps",
