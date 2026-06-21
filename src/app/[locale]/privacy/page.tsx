@@ -3,6 +3,13 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Privacy Policy | Ahmed Lotfy",
   description: "Privacy policy for Ahmed Lotfy's portfolio website. Learn how we collect, use, and protect your personal data. We use minimal analytics with PostHog and Cloudflare.",
+  alternates: {
+    canonical: "https://ahmedlotfy.site/en/privacy",
+    languages: {
+      en: "https://ahmedlotfy.site/en/privacy",
+      ar: "https://ahmedlotfy.site/ar/privacy",
+    },
+  },
   openGraph: {
     title: "Privacy Policy | Ahmed Lotfy",
     description: "Privacy policy for Ahmed Lotfy's portfolio website. Learn how we collect, use, and protect your personal data.",
@@ -10,11 +17,20 @@ export const metadata: Metadata = {
     siteName: "Ahmed Lotfy Portfolio",
     locale: "en_US",
     type: "website",
+    images: [
+      {
+        url: "https://ahmedlotfy.site/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Ahmed Lotfy – Senior Full-Stack Software Engineer",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Privacy Policy | Ahmed Lotfy",
     description: "Privacy policy for Ahmed Lotfy's portfolio website.",
+    images: ["https://ahmedlotfy.site/og-image.png"],
   },
 };
 

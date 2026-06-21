@@ -3,6 +3,13 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Terms of Service | Ahmed Lotfy",
   description: "Terms of service for Ahmed Lotfy's portfolio website. By using this site, you agree to these terms governing content use, intellectual property, and limitations of liability.",
+  alternates: {
+    canonical: "https://ahmedlotfy.site/en/terms",
+    languages: {
+      en: "https://ahmedlotfy.site/en/terms",
+      ar: "https://ahmedlotfy.site/ar/terms",
+    },
+  },
   openGraph: {
     title: "Terms of Service | Ahmed Lotfy",
     description: "Terms of service for Ahmed Lotfy's portfolio website. Content use, intellectual property, and liability information.",
@@ -10,11 +17,20 @@ export const metadata: Metadata = {
     siteName: "Ahmed Lotfy Portfolio",
     locale: "en_US",
     type: "website",
+    images: [
+      {
+        url: "https://ahmedlotfy.site/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Ahmed Lotfy – Senior Full-Stack Software Engineer",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Terms of Service | Ahmed Lotfy",
     description: "Terms of service for Ahmed Lotfy's portfolio website.",
+    images: ["https://ahmedlotfy.site/og-image.png"],
   },
 };
 
