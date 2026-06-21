@@ -1,5 +1,7 @@
 ---
 title: ازاي تستضيف بلوج Next.js بنفسك على Dokploy (من غير ما تفقد أعصابك)
+description: "دليل خطوة بخطوة لنشر بلوج Next.js على Dokploy — من إعداد VPS للإنتاج. بدون Kubernetes، بدون Vercel، بس Docker و$6/شهر."
+excerpt: "انشر بلوج Next.js على Dokploy في 30 دقيقة. بدون Kubernetes، بدون Vercel — بس VPS وDocker و$6/شهر."
 date: 2026-06-20
 updated: 2026-06-20
 image: /images/blogs/dokploy-nextjs-blog.jpg

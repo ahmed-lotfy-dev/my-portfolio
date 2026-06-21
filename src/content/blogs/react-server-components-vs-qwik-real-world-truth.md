@@ -1,5 +1,7 @@
 ---
 title: "⚛️ React Server Components vs Qwik: Real-World Cross-Platform Truth"
+description: "React Server Components vs Qwik compared in real projects — performance, developer experience, and when to choose each framework in 2026."
+excerpt: "RSC vs Qwik: a real-world comparison of performance, DX, and use cases. Not theory — actual project experience."
 date: 2026-05-09
 tags:
   - react
@@ -8,6 +10,8 @@ tags:
   - frontend
   - web-development
   - javascript
+  - comparison
+  - performance
 image: /images/blogs/react-qwik.jpg
 share: true
 featured: false

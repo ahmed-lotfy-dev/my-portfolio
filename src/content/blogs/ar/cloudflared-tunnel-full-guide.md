@@ -1,10 +1,17 @@
 ---
 title: "الدليل الشامل لـ Cloudflare Tunnel باستخدام cloudflared"
+description: "الدليل الشامل لـ Cloudflare Tunnel مع cloudflared — تثبيت، إعداد، ترحيل، و backup. بيشتغل على Windows و Linux."
+excerpt: "كل محتاج تعرفه عن Cloudflare Tunnel: تثبيت، إعداد، ترحيل، backups. بدون بورتات مفتوحة."
 date: 2026-01-30
 updated: 2026-01-30
+image: /images/blogs/cloudflare-tunnel.jpg
 tags:
-  - general
-image: ""
+  - cloudflare
+  - cloudflared
+  - networking
+  - security
+  - devops
+  - tutorial
 share: true
 featured: true
 ---

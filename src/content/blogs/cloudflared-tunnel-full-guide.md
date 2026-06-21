@@ -1,12 +1,18 @@
 ---
 title: "Cloudflared Tunnel Full Guide"
+description: "Complete guide to Cloudflare Tunnel with cloudflared — install, configure, migrate, and backup. Works on Windows and Linux. No open ports needed."
+excerpt: "Everything you need to know about Cloudflare Tunnel: installation, configuration, migration, and backups. No open ports, no exposed IPs."
 date: 2026-01-30
 tags:
-  - general
-image: ""
+  - cloudflare
+  - cloudflared
+  - networking
+  - security
+  - devops
+  - tutorial
+image: /images/blogs/cloudflare-tunnel.jpg
 share: true
 featured: true
-description: ""
 ---
 
 ## What this is

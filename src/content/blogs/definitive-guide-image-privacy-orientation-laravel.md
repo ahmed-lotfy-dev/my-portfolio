@@ -1,5 +1,7 @@
 ---
 title: 🎯 The Definitive Guide to Image Privacy & Orientation in Laravel
+description: "The definitive guide to image privacy and orientation in Laravel — EXIF data, auto-rotation, secure uploads with S3 and Cloudflare R2."
+excerpt: "Image privacy & orientation in Laravel: EXIF data, auto-rotation, secure uploads with S3 and R2."
 date: 2026-01-24
 updated: 2026-01-25
 tags:
@@ -10,6 +12,9 @@ tags:
   - "#php"
   - aws-s3
   - cloudflare-r2
+  - security
+  - tutorial
+  - php
 image: /images/blogs/laravel-image-upload.jpg
 share: true
 featured: true

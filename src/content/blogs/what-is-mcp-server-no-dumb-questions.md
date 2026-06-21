@@ -1,5 +1,7 @@
 ---
 title: "🔌 No Dumb Questions: What Is an MCP Server and Why Should You Care?"
+description: "What is an MCP Server? A beginner-friendly explanation of Model Context Protocol, why it matters for AI agents, and how to build one."
+excerpt: "MCP Server explained simply: what it is, why it matters for AI agents, and how to get started. No dumb questions."
 date: 2026-05-09
 tags:
   - mcp
@@ -7,6 +9,8 @@ tags:
   - llm
   - developer-tools
   - fullstack
+  - ai
+  - tutorial
 image: /images/blogs/mcp-server.jpg
 share: true
 featured: false

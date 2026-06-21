@@ -1,5 +1,7 @@
 ---
 title: Building a Zero-Effort Obsidian to Portfolio Workflow
+description: "How to build a zero-effort workflow that turns Obsidian notes into portfolio blog posts — automated with GitHub Actions and Cloudflare R2."
+excerpt: "Turn Obsidian notes into portfolio posts automatically. GitHub Actions + Cloudflare R2 = zero-effort publishing."
 date: 2026-01-25
 updated: 2026-01-25
 image: /images/blogs/unnamed.jpg
@@ -9,6 +11,8 @@ tags:
   - cloudflare-r2
   - github
   - nextjs
+  - productivity
+  - blog
 share: true
 featured: true
 ---

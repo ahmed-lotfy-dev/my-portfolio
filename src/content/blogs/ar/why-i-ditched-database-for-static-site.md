@@ -1,5 +1,7 @@
 ---
 title: ليه شلت الداتابيز من موقعي (وليه انت كمان ممكن تعمل كده)
+description: "شلت PostgreSQL و Better Auth و الداشبورد كله من موقعي. ليه الموقع الستاتيك بـ JSON أسرع وأبسط وأرخص."
+excerpt: "ليه شلت الداتابيز وروحت ستاتيك. JSON + Markdown + build = أسرع وأبسط وأرخص. بدون ندم."
 date: 2026-06-20
 updated: 2026-06-20
 image: /images/blogs/static-site-no-database.jpg

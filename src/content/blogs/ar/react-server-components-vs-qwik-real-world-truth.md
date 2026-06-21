@@ -1,5 +1,7 @@
 ---
 title: "⚛️ React Server Components vs Qwik: الحقيقة من الواقع"
+description: "مقارنة React Server Components مع Qwik في مشاريع حقيقية — الأداء، تجربة المطور، ومتى تختار كل واحد."
+excerpt: "RSC vs Qwik: مقارنة حقيقية للأداء وتجربة المطور. مش نظرية — خبرة مشاريع فعلية."
 date: 2026-05-09
 updated: 2026-05-09
 tags:

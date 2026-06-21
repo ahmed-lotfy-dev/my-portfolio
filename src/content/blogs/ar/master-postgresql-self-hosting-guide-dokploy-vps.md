@@ -1,5 +1,7 @@
 ---
 title: "الدليل الشامل لـ PostgreSQL Self-Hosting (Dokploy + VPS)"
+description: "الدليل الشامل لـ PostgreSQL Self-Hosting على Dokploy + VPS — تثبيت، SSL، WAL replication، multi-tenant، و backups."
+excerpt: "استضيف PostgreSQL بنفسك على Dokploy + VPS: SSL، WAL replication، multi-tenant، backups. دليل شامل."
 date: 2026-01-23
 updated: 2026-01-25
 tags:

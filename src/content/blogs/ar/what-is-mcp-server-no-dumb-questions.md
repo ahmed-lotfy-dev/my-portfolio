@@ -1,5 +1,7 @@
 ---
 title: "🔌 مفيش أسئلة غبية: ايه هو MCP Server وليه يهمك؟"
+description: "ايه هو MCP Server؟ شرح مبسط لـ Model Context Protocol، وليه مهم للـ AI agents، وازاي تبني واحد."
+excerpt: "MCP Server مبسط: ايه هو، وليه مهم للـ AI agents، وازاي تبدأ. مفيش أسئلة غبية."
 date: 2026-05-09
 updated: 2026-05-09
 tags:

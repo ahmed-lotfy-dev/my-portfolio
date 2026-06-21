@@ -1,6 +1,9 @@
 ---
 title: "Connecting to PostgreSQL running inside Docker"
+description: "How to connect to PostgreSQL running inside Docker — from local development to production. Covers networking, env vars, authentication, and common pitfalls."
+excerpt: "Connect to PostgreSQL in Docker: networking, env vars, common pitfalls. From dev to production."
 date: 2026-01-24
+image: /images/blogs/pasted_image_195930.png
 tags:
   - development
   - backend
@@ -15,13 +18,13 @@ tags:
   - security
   - authentication
   - ssl-tls
-image: ""
+  - tutorial
+  - database
 share: true
 featured: true
-description: ""
 ---
 
-Connecting to PostgreSQL running inside Docker is simple once you understand what is actually happening under the hood. Most problems come from mixing container networking concepts with local machine assumptions. Let’s straighten it out step by step.
+Connecting to PostgreSQL running inside Docker is simple once you understand what is actually happening under the hood. Most problems come from mixing container networking concepts with local machine assumptions. Let's straighten it out step by step.
 
 ## The basic idea
 

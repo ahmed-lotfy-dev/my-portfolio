@@ -1,11 +1,17 @@
 ---
 title: 🎨 UI UX Pro Max Skill - Linux Setup Guide
+description: "How to install and configure the UI/UX Pro Max skill on Linux — optimized for Antigravity IDE. Step-by-step setup guide."
+excerpt: "Install UI/UX Pro Max skill on Linux for Antigravity IDE. Complete setup and configuration guide."
 date: 2026-01-25
 updated: 2026-01-25
 tags:
   - development
   - tools
   - ai
+  - linux
+  - ui-ux
+  - tutorial
+  - antigravity
 share: true
 featured: true
 image: /images/blogs/pasted_image_225902.png

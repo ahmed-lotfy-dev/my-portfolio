@@ -1,11 +1,17 @@
 ---
 title: Master PostgreSQL Self-Hosting Guide (Dokploy+VPS)
+description: "Master guide to self-hosting PostgreSQL on Dokploy + VPS — installation, SSL, WAL logical replication, multi-tenant setup, and backups."
+excerpt: "Self-host PostgreSQL on Dokploy + VPS: SSL, WAL replication, multi-tenant, backups. Complete guide."
 date: 2026-01-23
 updated: 2026-01-25
 tags:
   - development
   - backend
   - databases
+  - dokploy
+  - vps
+  - tutorial
+  - security
 image: /images/blogs/pasted_image_195930.png
 share: true
 featured: true

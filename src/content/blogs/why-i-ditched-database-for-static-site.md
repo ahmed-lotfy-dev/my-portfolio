@@ -1,5 +1,7 @@
 ---
 title: Why I Ditched My Database for a Static Site (And Why You Might Want To)
+description: "I deleted PostgreSQL, Better Auth, and my entire dashboard from my portfolio. Here's why a static site with JSON files is faster, simpler, and cheaper."
+excerpt: "Why I removed my database and went fully static. JSON files + Markdown + build process = faster, simpler, cheaper. No regrets."
 date: 2026-06-20
 updated: 2026-06-20
 image: /images/blogs/static-site-no-database.jpg
@@ -10,6 +12,7 @@ tags:
   - performance
   - devops
   - javascript
+  - jamstack
 share: true
 featured: true
 ---
