@@ -5,7 +5,7 @@ description: "React Server Components vs Qwik compared in real projects — perf
 excerpt: "RSC vs Qwik: a real-world comparison of performance, DX, and use cases. Not theory — actual project experience."
 date: 2026-05-09
 tags: ["react", "rsc", "qwik", "frontend", "architecture"]
-image: /images/blogs/react-qwik.jpg
+image: "/images/blogs/rsc-vs-qwik.jpg"
 share: true
 featured: false
 

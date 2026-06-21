@@ -16,7 +16,7 @@ tags:
   - security
   - authentication
   - ssl-tls
-image: ""
+image: "/images/blogs/postgresql-docker.jpg"
 share: true
 featured: true
 ---

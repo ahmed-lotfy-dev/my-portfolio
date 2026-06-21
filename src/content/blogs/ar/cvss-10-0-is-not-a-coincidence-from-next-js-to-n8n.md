@@ -10,7 +10,7 @@ tags:
   - n8n
   - backend
   - devops
-image: /images/blogs/file_f69c7208bdc69afea971113e.png
+image: "/images/blogs/cvss-vulnerability.jpg"
 share: true
 featured: true
 ---

@@ -4,7 +4,7 @@ description: "شلت PostgreSQL و Better Auth و الداشبورد كله من
 excerpt: "ليه شلت الداتابيز وروحت ستاتيك. JSON + Markdown + build = أسرع وأبسط وأرخص. بدون ندم."
 date: 2026-06-20
 updated: 2026-06-20
-image: /images/blogs/static-site-no-database.jpg
+image: "/images/blogs/ditched-database-static.jpg"
 tags:
   - nextjs
   - static-site

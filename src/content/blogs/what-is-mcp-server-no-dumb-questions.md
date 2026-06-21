@@ -5,7 +5,7 @@ description: "What is an MCP Server? A beginner-friendly explanation of Model Co
 excerpt: "MCP Server explained simply: what it is, why it matters for AI agents, and how to get started. No dumb questions."
 date: 2026-05-09
 tags: ["mcp", "ai-agents", "model-context-protocol", "ai"]
-image: /images/blogs/mcp-server.jpg
+image: "/images/blogs/mcp-server.jpg"
 share: true
 featured: false
 

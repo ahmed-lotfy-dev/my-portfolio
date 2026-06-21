@@ -5,7 +5,7 @@ description: "Complete guide to Cloudflare Tunnel with cloudflared — install, 
 excerpt: "Everything you need to know about Cloudflare Tunnel: installation, configuration, migration, and backups. No open ports, no exposed IPs."
 date: 2026-01-30
 tags: ["cloudflare", "tunnel", "networking", "security"]
-image: /images/blogs/cloudflare-tunnel.jpg
+image: "/images/blogs/cloudflared-tunnel.jpg"
 share: true
 featured: true
 

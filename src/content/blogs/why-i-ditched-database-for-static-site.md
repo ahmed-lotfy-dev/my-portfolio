@@ -5,7 +5,7 @@ description: "I deleted PostgreSQL, Better Auth, and my entire dashboard from my
 excerpt: "Why I removed my database and went fully static. JSON files + Markdown + build process = faster, simpler, cheaper. No regrets."
 date: 2026-06-20
 updated: 2026-06-20
-image: /images/blogs/static-site-no-database.jpg
+image: "/images/blogs/ditched-database-static.jpg"
 tags: ["static-site", "architecture", "next.js", "simplicity"]
 share: true
 featured: true

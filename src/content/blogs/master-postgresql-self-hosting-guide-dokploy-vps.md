@@ -6,7 +6,7 @@ excerpt: "Self-host PostgreSQL on Dokploy + VPS: SSL, WAL replication, multi-ten
 date: 2026-01-23
 updated: 2026-01-25
 tags: ["postgresql", "self-hosting", "dokploy", "database"]
-image: /images/blogs/pasted_image_195930.png
+image: "/images/blogs/postgresql-self-hosting.jpg"
 share: true
 featured: true
 

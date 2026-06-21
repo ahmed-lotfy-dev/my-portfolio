@@ -11,7 +11,7 @@ tags:
   - frontend
   - web-development
   - javascript
-image: /images/blogs/react-qwik.jpg
+image: "/images/blogs/rsc-vs-qwik.jpg"
 share: true
 featured: false
 ---

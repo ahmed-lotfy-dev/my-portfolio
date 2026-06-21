@@ -6,7 +6,7 @@ excerpt: "Image privacy & orientation in Laravel: EXIF data, auto-rotation, secu
 date: 2026-01-24
 updated: 2026-01-25
 tags: ["laravel", "security", "image-privacy", "exif"]
-image: /images/blogs/laravel-image-upload.jpg
+image: "/images/blogs/image-privacy-laravel.jpg"
 share: true
 featured: true
 

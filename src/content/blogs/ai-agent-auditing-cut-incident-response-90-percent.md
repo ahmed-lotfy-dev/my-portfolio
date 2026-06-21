@@ -3,7 +3,7 @@ published: false
 title: "🤖 How We Cut Incident Response Time by 90% with AI Agent Auditing"
 date: 2026-05-09
 tags: ["ai-agents", "auditing", "incident-response", "devops"]
-image: https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=1200&q=80
+image: "/images/blogs/ai-agent-auditing.jpg"
 share: true
 featured: false
 

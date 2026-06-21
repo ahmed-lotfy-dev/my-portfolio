@@ -8,7 +8,7 @@ updated: 2026-01-25
 tags: ["linux", "setup", "productivity", "tools"]
 share: true
 featured: true
-image: /images/blogs/pasted_image_225902.png
+image: "/images/blogs/uiux-linux-setup.jpg"
 
 ---
 ![Pasted image 20260125225902](/images/blogs/pasted_image_225902.png)

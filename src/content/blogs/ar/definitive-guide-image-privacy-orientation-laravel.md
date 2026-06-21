@@ -10,7 +10,7 @@ tags:
   - "#php"
   - aws-s3
   - cloudflare-r2
-image: /images/blogs/laravel-image-upload.jpg
+image: "/images/blogs/image-privacy-laravel.jpg"
 share: true
 featured: true
 ---

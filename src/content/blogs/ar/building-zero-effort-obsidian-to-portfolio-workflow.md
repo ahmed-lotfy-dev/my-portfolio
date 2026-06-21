@@ -8,7 +8,7 @@ tags:
   - cloudflare-r2
   - github
   - nextjs
-image: /images/blogs/unnamed.jpg
+image: "/images/blogs/obsidian-workflow.jpg"
 share: true
 featured: true
 ---

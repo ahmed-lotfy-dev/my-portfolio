@@ -4,7 +4,7 @@ title: "The \"No-Open-Ports\" Manual: Cloudflare Tunnels for Backend Devs"
 excerpt: "Expose backend services without open ports. Complete Cloudflare Tunnel guide: setup, config, production tips."
 date: 2026-01-25
 tags: ["cloudflare", "tunnel", "security", "backend"]
-image: "/images/blogs/cloudflare-tunnel.jpg"
+image: "/images/blogs/no-open-ports-tunnel.jpg"
 share: true
 featured: true
 description: ""

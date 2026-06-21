@@ -5,7 +5,7 @@ description: "Why CVSS 10.0 vulnerabilities in Next.js and n8n are not random. U
 excerpt: "CVSS 10.0 is not a coincidence. How Next.js and n8n scored perfect 10s, what the scoring system actually measures, and why it matters."
 date: 2026-01-28
 tags: ["security", "cvss", "next.js", "n8n", "vulnerabilities"]
-image: "/images/blogs/file_f69c7208bdc69afea971113e.png"
+image: "/images/blogs/cvss-vulnerability.jpg"
 share: true
 featured: true
 

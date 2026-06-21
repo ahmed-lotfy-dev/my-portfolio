@@ -3,7 +3,7 @@
 title: "🤖 Multi-Agent Workflows Just Got Easier: Gemini CLI Subagents Are Here"
 date: 2026-05-09
 tags: ["gemini", "ai-agents", "multi-agent", "cli"]
-image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=1200&q=80"
+image: "/images/blogs/gemini-multi-agent.jpg"
 share: true
 featured: false
 

@@ -8,7 +8,7 @@ tags:
   - ai
 share: true
 featured: true
-image: /images/blogs/pasted_image_225902.png
+image: "/images/blogs/uiux-linux-setup.jpg"
 ---
 
 # 🎨 دليل تثبيت UI/UX Pro Max Skill على Linux

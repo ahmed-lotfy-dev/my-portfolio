@@ -5,7 +5,7 @@ description: "How to build a zero-effort workflow that turns Obsidian notes into
 excerpt: "Turn Obsidian notes into portfolio posts automatically. GitHub Actions + Cloudflare R2 = zero-effort publishing."
 date: 2026-01-25
 updated: 2026-01-25
-image: /images/blogs/unnamed.jpg
+image: "/images/blogs/obsidian-workflow.jpg"
 tags: ["obsidian", "workflow", "automation", "productivity"]
 share: true
 featured: true

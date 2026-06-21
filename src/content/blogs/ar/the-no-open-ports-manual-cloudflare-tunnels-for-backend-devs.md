@@ -7,7 +7,7 @@ tags:
   - tunnel
   - cloudflare-tunnel
   - devops
-image: /images/blogs/cloudflare-tunnel.jpg
+image: "/images/blogs/no-open-ports-tunnel.jpg"
 share: true
 featured: true
 ---

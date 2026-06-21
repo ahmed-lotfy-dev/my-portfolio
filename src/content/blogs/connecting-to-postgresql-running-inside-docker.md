@@ -4,7 +4,7 @@ title: "Connecting to PostgreSQL running inside Docker"
 description: "How to connect to PostgreSQL running inside Docker — from local development to production. Covers networking, env vars, authentication, and common pitfalls."
 excerpt: "Connect to PostgreSQL in Docker: networking, env vars, common pitfalls. From dev to production."
 date: 2026-01-24
-image: /images/blogs/pasted_image_195930.png
+image: "/images/blogs/postgresql-docker.jpg"
 tags: ["postgresql", "docker", "database", "development"]
 share: true
 featured: true

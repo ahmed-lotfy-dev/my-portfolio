@@ -10,7 +10,7 @@ tags:
   - llm
   - developer-tools
   - fullstack
-image: /images/blogs/mcp-server.jpg
+image: "/images/blogs/mcp-server.jpg"
 share: true
 featured: false
 ---

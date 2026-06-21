@@ -3,7 +3,7 @@
 title: "🤖 Production-Ready AI Agents: 5 Hard Lessons from Refactoring a Monolith"
 date: 2026-05-09
 tags: ["ai-agents", "production", "architecture", "refactoring"]
-image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=1200&q=80"
+image: "/images/blogs/ai-agent-refactoring.jpg"
 share: true
 featured: false
 

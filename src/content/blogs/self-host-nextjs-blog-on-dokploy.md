@@ -5,7 +5,7 @@ description: "Step-by-step guide to deploying a Next.js blog on Dokploy — from
 excerpt: "Deploy a Next.js blog on Dokploy in 30 minutes. No Kubernetes, no Vercel — just a VPS, Docker, and $6/month. Full tutorial with real mistakes and fixes."
 date: 2026-06-20
 updated: 2026-06-20
-image: /images/blogs/dokploy-nextjs-blog.jpg
+image: "/images/blogs/nextjs-dokploy-hosting.jpg"
 tags: ["self-hosting", "next.js", "dokploy", "deployment"]
 share: true
 featured: true

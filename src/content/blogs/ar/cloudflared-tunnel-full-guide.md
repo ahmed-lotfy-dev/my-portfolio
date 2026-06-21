@@ -4,7 +4,7 @@ description: "الدليل الشامل لـ Cloudflare Tunnel مع cloudflared 
 excerpt: "كل محتاج تعرفه عن Cloudflare Tunnel: تثبيت، إعداد، ترحيل، backups. بدون بورتات مفتوحة."
 date: 2026-01-30
 updated: 2026-01-30
-image: /images/blogs/cloudflare-tunnel.jpg
+image: "/images/blogs/cloudflared-tunnel.jpg"
 tags:
   - cloudflare
   - cloudflared

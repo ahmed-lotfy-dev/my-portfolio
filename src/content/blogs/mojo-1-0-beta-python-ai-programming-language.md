@@ -3,7 +3,7 @@
 title: "🔥 Mojo 1.0 Beta Is Here — Python for AI Just Got a Serious Upgrade"
 date: 2026-05-09
 tags: ["mojo", "ai", "programming-language", "performance"]
-image: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=1200&q=80"
+image: "/images/blogs/mojo-python-ai.jpg"
 share: true
 featured: false
 

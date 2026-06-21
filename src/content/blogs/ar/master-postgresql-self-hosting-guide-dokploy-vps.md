@@ -8,7 +8,7 @@ tags:
   - development
   - backend
   - databases
-image: /images/blogs/pasted_image_195930.png
+image: "/images/blogs/postgresql-self-hosting.jpg"
 share: true
 featured: true
 ---

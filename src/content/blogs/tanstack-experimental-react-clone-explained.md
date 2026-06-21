@@ -3,7 +3,7 @@
 title: "⚛️ Tanner Linsley Built a React Clone in One Day — Here's Why It Matters"
 date: 2026-05-09
 tags: ["tanstack", "react", "frontend", "performance"]
-image: "https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=1200&q=80"
+image: "/images/blogs/tanstack-react-clone.jpg"
 share: true
 featured: false
 

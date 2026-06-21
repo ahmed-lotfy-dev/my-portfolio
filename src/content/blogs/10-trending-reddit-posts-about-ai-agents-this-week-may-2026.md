@@ -3,7 +3,7 @@ published: false
 title: "🔥 Unpacking the Future of AI Agents: Insights from Reddit"
 date: 2026-05-08
 tags: ["ai-agents", "reddit", "trends", "community"]
-image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=1200&q=80"
+image: "/images/blogs/ai-agents-reddit-trends.jpg"
 share: true
 featured: false
 description: "Delve into the latest discussions on AI agents from Reddit, exploring the concept of context engineering, autonomy, and the future of AI development, with insights from trending posts and expert analysis."
