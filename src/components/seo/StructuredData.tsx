@@ -1,5 +1,5 @@
 type StructuredDataProps = {
-  type: 'Person' | 'WebSite' | 'Article' | 'CreativeWork' | 'EducationalOccupationalCredential' | 'CollectionPage' | 'FAQ' | 'SoftwareApplication'
+  type: 'Person' | 'WebSite' | 'Article' | 'CreativeWork' | 'EducationalOccupationalCredential' | 'CollectionPage' | 'FAQ' | 'SoftwareApplication' | 'BlogPosting'
   data: any
 }
 
@@ -155,6 +155,34 @@ export default function StructuredData({ type, data }: StructuredDataProps) {
           '@type': 'Person',
           name: 'Ahmed Lotfy',
           url: 'https://ahmedlotfy.site',
+        },
+      }
+      break
+
+    case 'BlogPosting':
+      schema = {
+        '@context': 'https://schema.org',
+        '@type': 'BlogPosting',
+        headline: data.title,
+        description: data.description,
+        image: data.image,
+        datePublished: data.datePublished,
+        dateModified: data.dateModified,
+        author: {
+          '@type': 'Person',
+          name: data.authorName,
+          url: data.authorUrl,
+        },
+        publisher: {
+          '@type': 'Person',
+          name: data.authorName,
+          url: data.authorUrl,
+        },
+        keywords: data.keywords,
+        inLanguage: data.language,
+        mainEntityOfPage: {
+          '@type': 'WebPage',
+          '@id': data.url,
         },
       }
       break

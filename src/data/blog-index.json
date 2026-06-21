@@ -1,68 +1,288 @@
 [
   {
-    "id": "28da9cf2-35e9-4ac2-8c3e-9fa2325cf90c",
+    "id": "62cb2b25-7c70-4334-97e4-0d29a79ed345",
+    "title_en": "🤖 How We Cut Incident Response Time by 90% with AI Agent Auditing",
+    "title_ar": "🤖 How We Cut Incident Response Time by 90% with AI Agent Auditing",
+    "slug": "ai-agent-auditing-cut-incident-response-90-percent",
+    "published": true,
+    "categories": [
+      "ai",
+      "machine-learning",
+      "devops",
+      "observability",
+      "automation",
+      "prompt-engineering"
+    ],
+    "reading_time": "4 min read",
+    "source": "obsidian",
+    "featured": false,
+    "views": 0,
+    "created_at": "2026-05-09T00:00:00.000Z"
+  },
+  {
+    "id": "9f278b76-6970-4b98-981c-a70bc36b3875",
+    "title_en": "🏗️ Frontend Build Tools Are Hitting a Wall — Here's What Comes Next",
+    "title_ar": "🏗️ Frontend Build Tools Are Hitting a Wall — Here's What Comes Next",
+    "slug": "frontend-build-tools-hitting-a-wall",
+    "published": true,
+    "categories": [
+      "frontend",
+      "build-tools",
+      "webpack",
+      "vite",
+      "react",
+      "performance"
+    ],
+    "reading_time": "5 min read",
+    "source": "obsidian",
+    "featured": false,
+    "views": 0,
+    "created_at": "2026-05-09T00:00:00.000Z"
+  },
+  {
+    "id": "de909633-cdd7-4156-b993-b02d74fb2358",
+    "title_en": "🤖 Multi-Agent Workflows Just Got Easier: Gemini CLI Subagents Are Here",
+    "title_ar": "🤖 Multi-Agent Workflows Just Got Easier: Gemini CLI Subagents Are Here",
+    "slug": "gemini-cli-subagents-multi-agent-workflows",
+    "published": true,
+    "categories": [
+      "ai",
+      "agents",
+      "gemini",
+      "fullstack",
+      "devops"
+    ],
+    "reading_time": "3 min read",
+    "source": "obsidian",
+    "featured": false,
+    "views": 0,
+    "created_at": "2026-05-09T00:00:00.000Z"
+  },
+  {
+    "id": "f8668f22-9a70-4205-9646-c0c206964771",
+    "title_en": "🔥 Mojo 1.0 Beta Is Here — Python for AI Just Got a Serious Upgrade",
+    "title_ar": "🔥 Mojo 1.0 Beta Is Here — Python for AI Just Got a Serious Upgrade",
+    "slug": "mojo-1-0-beta-python-ai-programming-language",
+    "published": true,
+    "categories": [
+      "mojo",
+      "programming-languages",
+      "ai",
+      "python",
+      "machine-learning",
+      "performance"
+    ],
+    "reading_time": "4 min read",
+    "source": "obsidian",
+    "featured": false,
+    "views": 0,
+    "created_at": "2026-05-09T00:00:00.000Z"
+  },
+  {
+    "id": "832b27b6-0670-4aa8-a19b-89381d7a1449",
+    "title_en": "🤖 Production-Ready AI Agents: 5 Hard Lessons from Refactoring a Monolith",
+    "title_ar": "🤖 Production-Ready AI Agents: 5 Hard Lessons from Refactoring a Monolith",
+    "slug": "production-ready-ai-agents-lessons-refactoring-monolith",
+    "published": true,
+    "categories": [
+      "ai",
+      "ai-agents",
+      "agentic-ai",
+      "software-architecture",
+      "fullstack"
+    ],
+    "reading_time": "5 min read",
+    "source": "obsidian",
+    "featured": false,
+    "views": 0,
+    "created_at": "2026-05-09T00:00:00.000Z"
+  },
+  {
+    "id": "9dc6e566-2b07-49d5-ac66-ab73cb224f49",
+    "title_en": "⚛️ React Server Components vs Qwik: Real-World Cross-Platform Truth",
+    "title_ar": "⚛️ React Server Components vs Qwik: Real-World Cross-Platform Truth",
+    "slug": "react-server-components-vs-qwik-real-world-truth",
+    "published": true,
+    "categories": [
+      "react",
+      "nextjs",
+      "qwik",
+      "frontend",
+      "web-development",
+      "javascript"
+    ],
+    "reading_time": "5 min read",
+    "source": "obsidian",
+    "featured": false,
+    "views": 0,
+    "created_at": "2026-05-09T00:00:00.000Z"
+  },
+  {
+    "id": "e9f4e6cf-8ef0-4296-b86b-3b9fc3aa6bd4",
+    "title_en": "⚛️ Tanner Linsley Built a React Clone in One Day — Here's Why It Matters",
+    "title_ar": "⚛️ Tanner Linsley Built a React Clone in One Day — Here's Why It Matters",
+    "slug": "tanstack-experimental-react-clone-explained",
+    "published": true,
+    "categories": [
+      "react",
+      "frontend",
+      "tanstack",
+      "javascript",
+      "performance"
+    ],
+    "reading_time": "4 min read",
+    "source": "obsidian",
+    "featured": false,
+    "views": 0,
+    "created_at": "2026-05-09T00:00:00.000Z"
+  },
+  {
+    "id": "7900e1f1-07df-437e-abe5-d87dfa7029c7",
+    "title_en": "🔌 No Dumb Questions: What Is an MCP Server and Why Should You Care?",
+    "title_ar": "🔌 No Dumb Questions: What Is an MCP Server and Why Should You Care?",
+    "slug": "what-is-mcp-server-no-dumb-questions",
+    "published": true,
+    "categories": [
+      "mcp",
+      "ai-agents",
+      "llm",
+      "developer-tools",
+      "fullstack"
+    ],
+    "reading_time": "5 min read",
+    "source": "obsidian",
+    "featured": false,
+    "views": 0,
+    "created_at": "2026-05-09T00:00:00.000Z"
+  },
+  {
+    "id": "b7fff90e-f0ee-47d1-8446-252226ac0ba2",
+    "title_en": "🔥 Unpacking the Future of AI Agents: Insights from Reddit",
+    "title_ar": "🔥 Unpacking the Future of AI Agents: Insights from Reddit",
+    "slug": "10-trending-reddit-posts-about-ai-agents-this-week-may-2026",
+    "published": true,
+    "categories": [
+      "ai-agents",
+      "machine-learning",
+      "automation",
+      "fullstack",
+      "natural-language-processing"
+    ],
+    "reading_time": "4 min read",
+    "source": "obsidian",
+    "featured": false,
+    "views": 0,
+    "created_at": "2026-05-08T00:00:00.000Z"
+  },
+  {
+    "id": "78d2c70a-1e64-4a5b-aeb4-cc1e040a662f",
     "title_en": "Cloudflared Tunnel Full Guide",
-    "title_ar": "دليل كامل ل Cloudflared Tunnel",
+    "title_ar": "Cloudflared Tunnel Full Guide",
     "slug": "cloudflared-tunnel-full-guide",
     "published": true,
     "categories": [
-      "development"
+      "general"
     ],
     "reading_time": "3 min read",
     "source": "obsidian",
     "featured": true,
-    "views": 10,
-    "created_at": "2026-01-30"
+    "views": 0,
+    "created_at": "2026-01-30T00:00:00.000Z"
   },
   {
-    "id": "8f4150da-31c0-418a-9166-ea64b842fe3c",
-    "title_en": "The Definitive Guide to Image Privacy & Orientation in Laravel",
-    "title_ar": "الدليل الشامل لخصوصية الصور وتوجيهها في Laravel",
-    "slug": "definitive-guide-image-privacy-orientation-laravel",
+    "id": "72849373-4980-4c82-b0d1-b1acbcbe8c7f",
+    "title_en": "CVSS 10.0 Is Not a Coincidence, From Next.js to n8n",
+    "title_ar": "CVSS 10.0 Is Not a Coincidence, From Next.js to n8n",
+    "slug": "cvss-10-0-is-not-a-coincidence-from-next-js-to-n8n",
     "published": true,
     "categories": [
-      "uncategorized"
+      "security",
+      "vulnerabilities",
+      "cvss",
+      "nextjs",
+      "n8n",
+      "backend",
+      "devops"
     ],
-    "reading_time": "4 min read",
+    "reading_time": "2 min read",
     "source": "obsidian",
     "featured": true,
     "views": 0,
-    "created_at": "2026-05-08"
+    "created_at": "2026-01-28T00:00:00.000Z"
   },
   {
-    "id": "ec843f63-7ab1-4c5b-9087-1c126031c83e",
-    "title_en": "React Server Components vs Qwik: Real-World Cross-Platform Truth",
-    "title_ar": "React Server Components vs Qwik: الحقيقة العملية عبر المنصات",
-    "slug": "react-server-components-vs-qwik-real-world-cross-platform-truth",
+    "id": "8fddff25-4022-47aa-b33f-7f153e14b28e",
+    "title_en": "Building a Zero-Effort Obsidian to Portfolio Workflow",
+    "title_ar": "Building a Zero-Effort Obsidian to Portfolio Workflow",
+    "slug": "building-zero-effort-obsidian-to-portfolio-workflow",
     "published": true,
     "categories": [
-      "uncategorized"
+      "automation",
+      "obsidian",
+      "cloudflare-r2",
+      "github",
+      "nextjs"
     ],
     "reading_time": "5 min read",
     "source": "obsidian",
     "featured": true,
     "views": 0,
-    "created_at": "2026-05-08"
+    "created_at": "2026-01-25T00:00:00.000Z"
   },
   {
-    "id": "da1fbc8f-5114-4e9a-91fe-3d74add91138",
+    "id": "d4464c37-efbc-429e-a7bc-3b7e76b57852",
     "title_en": "Rust Build Problem Fix (eww)",
-    "title_ar": "مشكلة Rust Build حل (eww)",
+    "title_ar": "Rust Build Problem Fix (eww)",
     "slug": "rust-build-problem-fix-eww",
     "published": true,
     "categories": [
-      "uncategorized"
+      "linux-guides"
     ],
     "reading_time": "1 min read",
     "source": "obsidian",
     "featured": false,
     "views": 0,
-    "created_at": "2026-05-08"
+    "created_at": "2026-01-25T00:00:00.000Z"
   },
   {
-    "id": "479e35cf-5bae-4eea-bed5-ca14b248f122",
+    "id": "0916c3e6-b026-4d46-a555-91623dcabc26",
+    "title_en": "The \"No-Open-Ports\" Manual: Cloudflare Tunnels for Backend Devs",
+    "title_ar": "The \"No-Open-Ports\" Manual: Cloudflare Tunnels for Backend Devs",
+    "slug": "the-no-open-ports-manual-cloudflare-tunnels-for-backend-devs",
+    "published": true,
+    "categories": [
+      "zero-trust",
+      "tunnel",
+      "cloudflare-tunnel",
+      "devops"
+    ],
+    "reading_time": "5 min read",
+    "source": "obsidian",
+    "featured": true,
+    "views": 0,
+    "created_at": "2026-01-25T00:00:00.000Z"
+  },
+  {
+    "id": "24436050-d26a-419b-ae46-b03e703a7321",
+    "title_en": "🎨 UI UX Pro Max Skill - Linux Setup Guide",
+    "title_ar": "🎨 UI UX Pro Max Skill - Linux Setup Guide",
+    "slug": "ui-ux-pro-max-skill-linux-setup-guide",
+    "published": true,
+    "categories": [
+      "development",
+      "tools",
+      "ai"
+    ],
+    "reading_time": "2 min read",
+    "source": "obsidian",
+    "featured": true,
+    "views": 0,
+    "created_at": "2026-01-25T00:00:00.000Z"
+  },
+  {
+    "id": "5304e0a6-d4b0-44c6-a5c6-69924c4eff81",
     "title_en": "Connecting to PostgreSQL running inside Docker",
-    "title_ar": "اتصال بـ PostgreSQL شغال داخل Docker",
+    "title_ar": "Connecting to PostgreSQL running inside Docker",
     "slug": "connecting-to-postgresql-running-inside-docker",
     "published": true,
     "categories": [
@@ -83,22 +303,68 @@
     "reading_time": "3 min read",
     "source": "obsidian",
     "featured": true,
-    "views": 14,
-    "created_at": "2026-01-24"
+    "views": 0,
+    "created_at": "2026-01-24T00:00:00.000Z"
   },
   {
-    "id": "47e09b81-f79e-4c9a-8a67-1a68bd472d62",
-    "title_en": "The \"No-Open-Ports\" Manual: Cloudflare Tunnels for Backend Devs",
-    "title_ar": "الدليل \"لا-منافذ-مفتوحة\": Cloudflare Tunnels ل Backend Devs",
-    "slug": "the-no-open-ports-manual-cloudflare-tunnels-for-backend-devs",
+    "id": "45e3da5a-b627-427a-bacc-78390b51e5bf",
+    "title_en": "🎯 The Definitive Guide to Image Privacy & Orientation in Laravel",
+    "title_ar": "🎯 The Definitive Guide to Image Privacy & Orientation in Laravel",
+    "slug": "definitive-guide-image-privacy-orientation-laravel",
     "published": true,
     "categories": [
-      "development"
+      "development",
+      "backend",
+      "image-upload",
+      "laravel",
+      "#php",
+      "aws-s3",
+      "cloudflare-r2"
     ],
-    "reading_time": "5 min read",
+    "reading_time": "4 min read",
     "source": "obsidian",
     "featured": true,
-    "views": 19,
-    "created_at": "2026-01-25"
+    "views": 0,
+    "created_at": "2026-01-24T00:00:00.000Z"
+  },
+  {
+    "id": "9bc09eec-ecba-4ba3-a78d-a62eb6c6ee5b",
+    "title_en": "🎯 The Definitive Guide to Image Privacy & Orientation in Laravel",
+    "title_ar": "🎯 The Definitive Guide to Image Privacy & Orientation in Laravel",
+    "slug": "the-definitive-guide-to-image-privacy-orientation-in-laravel",
+    "published": true,
+    "categories": [
+      "development",
+      "backend",
+      "image-upload",
+      "laravel",
+      null,
+      "aws-s3",
+      "cloudflare-r2",
+      "security",
+      "php"
+    ],
+    "reading_time": "4 min read",
+    "source": "obsidian",
+    "featured": true,
+    "views": 0,
+    "created_at": "2026-01-24T00:00:00.000Z"
+  },
+  {
+    "id": "9b696080-246d-440c-a5d2-0430c1d18cb9",
+    "title_en": "Master PostgreSQL Self-Hosting Guide (Dokploy+VPS)",
+    "title_ar": "Master PostgreSQL Self-Hosting Guide (Dokploy+VPS)",
+    "slug": "master-postgresql-self-hosting-guide-dokploy-vps",
+    "published": true,
+    "categories": [
+      "development",
+      "backend",
+      "databases"
+    ],
+    "reading_time": "4 min read",
+    "source": "obsidian",
+    "featured": true,
+    "views": 0,
+    "created_at": "2026-01-23T00:00:00.000Z"
   }
 ]

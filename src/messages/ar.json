@@ -166,7 +166,7 @@
     "case_study_coming_soon": "تفاصيل المشروع (Case Study) جاية قريب.",
     "readmore": "إقرأ المزيد",
     "showless": "إخفاء",
-    "placeholders": {         
+    "placeholders": {
       "title_en": "عنوان المشروع (EN)",
       "title_ar": "عنوان المشروع (AR)",
       "desc_en": "وصف المشروع (EN)",
@@ -470,6 +470,80 @@
     "contact": {
       "title": "تواصل | أحمد لطفي",
       "description": "تواصل مع أحمد لطفي. أنا منفتح على مشاريع freelance وتعاونات وفرص استشارية."
+    }
+  },
+  "blog": {
+    "title": "المدونة",
+    "description": "مقالات تقنية حول تطوير الواجهات الكاملة ووكلاء الذكاء الاصطناعي وهندسة البرمجيات.",
+    "readmore": "اقرأ المزيد",
+    "showless": "عرض أقل",
+    "view_case_study": "عرض دراسة الحالة",
+    "apk": "تحميل APK",
+    "live": "مباشر",
+    "repo": "كود المصدر",
+    "validation": {
+      "title_en_required": "العنوان (إنجليزي) مطلوب (3 أحرف على الأقل)",
+      "desc_en_required": "الوصف (إنجليزي) مطلوب (10 أحرف على الأقل)",
+      "repo_link_invalid": "رابط المستودع يجب أن يكون رابط صالح",
+      "live_link_invalid": "رابط المعاينة يجب أن يكون رابط صالح",
+      "image_link_required": "رابط صورة الغلاف مطلوب"
+    },
+    "projects": {
+      "title": "قصص نجاح",
+      "description": "مشاريع حديثة قدمت فيها قيمة حقيقية للبيزنس.",
+      "add-title": "إضافة مشروع جديد",
+      "add-desc": "املأ التفاصيل دي عشان تضيف مشروع جديد.",
+      "edit-title": "تعديل المشروع",
+      "edit-desc": "عدل تفاصيل المشروع من هنا.",
+      "publish_toggle": "عرض في الصفحة الرئيسية",
+      "publish_toggle_desc": "إظهار المشروع ده في الصفحة الرئيسية",
+      "view_project": "عرض الصفحة العامة",
+      "delete_all": "حذف كل الصور",
+      "delete_all_confirm": "هل أنت متأكد من حذف كل الصور؟ سيتم مسحها نهائياً من التخزين السحابي.",
+      "upload": "رفع صورة المشروع",
+      "uploading": "بيترفع...",
+      "select_image": "اختار صورة",
+      "optimizing": "بيتحسن...",
+      "upload_optimize": "رفع وتحسين",
+      "live": "Live Site",
+      "repo": "GitHub Repo",
+      "gallery": "معرض الصور",
+      "set_cover": "تعيين كغلاف",
+      "already_cover": "صورة الغلاف",
+      "embed_url": "رابط تضمين (Social Embed)",
+      "feature_video": "رابط فيديو خارجي أو مرفوع",
+      "featured_image": "صورة المشروع المميزة (Gifts/Video cover)",
+      "apk": "ملف الـ APK",
+      "back_to_portfolio": "رجوع للمشاريع",
+      "view_other_projects": "شوف مشاريع تانية",
+      "view_code": "شوف الكود",
+      "visit_live_site": "زيارة الموقع",
+      "view_case_study": "تفاصيل المشروع",
+      "case_study_coming_soon": "تفاصيل المشروع (Case Study) جاية قريب.",
+      "readmore": "إقرأ المزيد",
+      "showless": "إخفاء",
+      "placeholders": {
+        "title_en": "عنوان المشروع (EN)",
+        "title_ar": "عنوان المشروع (AR)",
+        "desc_en": "وصف المشروع (EN)",
+        "desc_ar": "وصف المشروع (AR)",
+        "repo_link": "رابط الـ GitHub Repo",
+        "live_link": "Project Live Link",
+        "categories": "Project Categories",
+        "embed_url": "Social Link (YouTube, LinkedIn, etc.)",
+        "feature_video": "Video URL (.mp4 or external link)",
+        "categories_helper": "Please enter categories as comma-separated values."
+      },
+      "validation": {
+        "title_en_required": "عنوان المشروع بالـ English مطلوب.",
+        "title_ar_required": "عنوان المشروع بالعربي مطلوب.",
+        "desc_en_required": "الوصف بالـ English مطلوب.",
+        "desc_ar_required": "الوصف بالعربي مطلوب.",
+        "repo_link_invalid": "رابط الـ Repo مش صح.",
+        "live_link_invalid": "رابط الموقع مش صح.",
+        "image_link_required": "رابط الصورة مطلوب.",
+        "categories_required": "لازم فئة واحدة على الأقل."
+      }
     }
   }
 }

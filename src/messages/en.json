@@ -471,5 +471,47 @@
       "title": "Contact | Ahmed Lotfy",
       "description": "Get in touch with Ahmed Lotfy. I'm open to freelance projects, collaborations, and consulting opportunities."
     }
+  },
+  "blog": {
+    "title": "Blog",
+    "description": "Technical articles on full-stack development, AI agents, and software architecture.",
+    "readmore": "Read more",
+    "showless": "Show less",
+    "view_case_study": "View Case Study",
+    "apk": "Download APK",
+    "live": "Live",
+    "repo": "Source Code",
+    "validation": {
+      "title_en_required": "Title (English) is required (min 3 chars)",
+      "desc_en_required": "Description (English) is required (min 10 chars)",
+      "repo_link_invalid": "Repository link must be a valid URL",
+      "live_link_invalid": "Live link must be a valid URL",
+      "image_link_required": "Cover image URL is required"
+    },
+    "projects": {
+      "title": "Projects",
+      "description": "Projects built with clear goals and measurable outcomes",
+      "readmore": "Read more",
+      "showless": "Show less",
+      "view_case_study": "View Case Study",
+      "apk": "Download APK",
+      "live": "Live",
+      "repo": "Source Code",
+      "back_to_home": "Back to Home",
+      "visit_live_site": "Visit Live Site",
+      "view_code": "View Code",
+      "table": {
+        "view_course": "View Course",
+        "proof": "Proof"
+      },
+      "completed": "Completed",
+      "validation": {
+        "title_en_required": "Title (English) is required (min 3 chars)",
+        "desc_en_required": "Description (English) is required (min 10 chars)",
+        "repo_link_invalid": "Repository link must be a valid URL",
+        "live_link_invalid": "Live link must be a valid URL",
+        "image_link_required": "Cover image URL is required"
+      }
+    }
   }
 }
