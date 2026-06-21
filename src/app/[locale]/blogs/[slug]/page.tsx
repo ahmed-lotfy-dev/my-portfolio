@@ -12,6 +12,25 @@ import remarkRehype from "remark-rehype";
 import rehypeStringify from "rehype-stringify";
 import rehypeSlug from "rehype-slug";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
+import rehypeSanitize from "rehype-sanitize";
+
+function rehypeStripEventHandlers() {
+  return (tree: any) => {
+    const visit = (node: any) => {
+      if (node.properties) {
+        for (const key of Object.keys(node.properties)) {
+          if (key.startsWith("on")) {
+            delete node.properties[key];
+          }
+        }
+      }
+      if (node.children) {
+        node.children.forEach(visit);
+      }
+    };
+    visit(tree);
+  };
+}
 import StructuredData from "@/src/components/seo/StructuredData";
 import { BreadcrumbSchema } from "@/src/components/seo/BreadcrumbSchema";
 import { BackButton } from "@/src/components/ui/BackButton";
@@ -86,6 +105,7 @@ async function markdownToHtml(content: string): Promise<string> {
       behavior: "wrap",
       properties: { className: ["anchor"] },
     })
+    .use(rehypeStripEventHandlers)
     .use(rehypeStringify, { allowDangerousHtml: true })
     .process(content);
 
