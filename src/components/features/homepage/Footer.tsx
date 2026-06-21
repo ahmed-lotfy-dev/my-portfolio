@@ -47,9 +47,18 @@ export default function Footer() {
   const techStack = ["Next.js", "TypeScript", "Tailwind CSS", "Drizzle ORM"];
 
   return (
-    <footer className="relative w-full border-t border-border/40 bg-linear-to-b from-background via-background to-muted/20 mt-32">
+    <footer className="relative w-full mt-32">
+      {/* Hero-style mesh background */}
+      <div className="absolute inset-0 -z-10">
+        <div className="absolute inset-0 bg-linear-to-b from-background via-background to-blue-950/20" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_60%_40%_at_50%_-20%,rgba(59,130,246,0.08),transparent_70%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_50%_30%_at_0%_50%,rgba(99,102,241,0.05),transparent_60%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_50%_30%_at_100%_50%,rgba(14,165,233,0.05),transparent_60%)]" />
+      </div>
+      {/* Top border glow */}
+      <div className="absolute top-0 left-0 right-0 h-px bg-linear-to-r from-transparent via-blue-500/30 to-transparent" />
       {/* Decorative gradient */}
-      <div className="absolute inset-0 bg-linear-to-b from-primary/2 to-transparent pointer-events-none" />
+      <div className="absolute inset-0 bg-linear-to-b from-blue-500/5 to-transparent pointer-events-none" />
 
       <div className="container relative mx-auto px-4 md:px-6">
         {/* Main Footer Content */}
@@ -59,15 +68,15 @@ export default function Footer() {
             {/* Brand Section - Spans 2 columns on large screens */}
             <div className="lg:col-span-2 space-y-6">
               <div className="space-y-4">
-                <h3 className="text-2xl md:text-3xl font-bold text-foreground tracking-tight">
+                <h3 className="text-2xl md:text-3xl font-bold tracking-tight bg-linear-to-r from-white via-blue-100 to-blue-200 bg-clip-text text-transparent">
                   Ahmed Lotfy
                 </h3>
-                <p className="text-base text-muted-foreground leading-relaxed max-w-md">
+                <p className="text-base text-blue-200/60 leading-relaxed max-w-md">
                   {t("about_text")}
                 </p>
               </div>
 
-              {/* Social Links - Large Buttons */}
+              {/* Social Links - Glassmorphism buttons */}
               <div className="flex items-center gap-3 pt-2">
                 {socialLinks.map((link) => (
                   <Link
@@ -75,11 +84,11 @@ export default function Footer() {
                     href={link.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="group relative p-3 rounded-xl bg-muted/50 hover:bg-primary/10 border border-border/50 hover:border-primary/50 transition-all duration-300 hover:shadow-lg hover:shadow-primary/5"
+                    className="group relative p-3 rounded-xl border border-blue-500/10 bg-blue-500/5 hover:bg-blue-500/15 hover:border-blue-500/30 transition-all duration-300 hover:shadow-lg hover:shadow-blue-500/10 hover:-translate-y-0.5"
                     aria-label={link.ariaLabel}
                   >
-                    <link.icon className="w-5 h-5 text-muted-foreground group-hover:text-primary transition-colors" />
-                    <span className="absolute inset-0 rounded-xl bg-primary/5 opacity-0 group-hover:opacity-100 transition-opacity" />
+                    <link.icon className="w-5 h-5 text-blue-300/70 group-hover:text-blue-300 transition-colors" />
+                    <span className="absolute inset-0 rounded-xl bg-blue-400/5 opacity-0 group-hover:opacity-100 transition-opacity" />
                   </Link>
                 ))}
               </div>
@@ -87,7 +96,7 @@ export default function Footer() {
 
             {/* Quick Links */}
             <nav className="space-y-5" aria-label="Quick links">
-              <h4 className="text-sm font-semibold text-foreground uppercase tracking-wider">
+              <h4 className="text-sm font-semibold text-blue-300/80 uppercase tracking-wider">
                 {t("quick_links")}
               </h4>
               <ul className="space-y-3">
@@ -95,12 +104,12 @@ export default function Footer() {
                   <li key={link.href} className="">
                     <Link
                       href={link.href}
-                      className="group inline-flex items-center gap-2.5 text-sm text-muted-foreground hover:text-primary transition-colors"
+                      className="group inline-flex items-center gap-2.5 text-sm text-blue-200/50 hover:text-blue-200 transition-colors duration-300"
                     >
-                      <link.icon className="w-4 h-4 transition-transform group-hover:translate-x-0.5" />
+                      <link.icon className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:text-blue-400" />
                       <span className="relative">
                         {link.label}
-                        <span className="absolute left-0 bottom-0 w-0 h-px bg-primary transition-all duration-300 group-hover:w-full" />
+                        <span className="absolute left-0 bottom-0 w-0 h-px bg-blue-400 transition-all duration-300 group-hover:w-full" />
                       </span>
                     </Link>
                   </li>
@@ -112,7 +121,7 @@ export default function Footer() {
             <div className="space-y-8">
               {/* Connect Section */}
               <nav className="space-y-5" aria-label="Connect">
-                <h4 className="text-sm font-semibold text-foreground uppercase tracking-wider">
+                <h4 className="text-sm font-semibold text-blue-300/80 uppercase tracking-wider">
                   {t("connect")}
                 </h4>
                 <ul className="space-y-3">
@@ -122,14 +131,14 @@ export default function Footer() {
                         href={link.href}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="group inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors"
+                        className="group inline-flex items-center gap-2 text-sm text-blue-200/50 hover:text-blue-200 transition-colors duration-300"
                         aria-label={link.ariaLabel}
                       >
                         <span className="relative">
                           {link.label}
-                          <span className="absolute left-0 bottom-0 w-0 h-px bg-primary transition-all duration-300 group-hover:w-full" />
+                          <span className="absolute left-0 bottom-0 w-0 h-px bg-blue-400 transition-all duration-300 group-hover:w-full" />
                         </span>
-                        <ArrowUpRight className="w-3.5 h-3.5 opacity-0 -translate-y-1 group-hover:opacity-100 group-hover:translate-y-0 transition-all" />
+                        <ArrowUpRight className="w-3.5 h-3.5 opacity-0 -translate-y-1 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300" />
                       </Link>
                     </li>
                   ))}
@@ -138,29 +147,29 @@ export default function Footer() {
 
               {/* Legal Section */}
               <nav className="space-y-5" aria-label="Legal">
-                <h4 className="text-sm font-semibold text-foreground uppercase tracking-wider">
+                <h4 className="text-sm font-semibold text-blue-300/80 uppercase tracking-wider">
                   {t("legal")}
                 </h4>
                 <ul className="space-y-3">
                   <li>
                     <Link
                       href={`/${locale}/privacy`}
-                      className="group inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors"
+                      className="group inline-flex items-center gap-2 text-sm text-blue-200/50 hover:text-blue-200 transition-colors duration-300"
                     >
                       <span className="relative">
                         {t("links.privacy")}
-                        <span className="absolute left-0 bottom-0 w-0 h-px bg-primary transition-all duration-300 group-hover:w-full" />
+                        <span className="absolute left-0 bottom-0 w-0 h-px bg-blue-400 transition-all duration-300 group-hover:w-full" />
                       </span>
                     </Link>
                   </li>
                   <li>
                     <Link
                       href={`/${locale}/terms`}
-                      className="group inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors"
+                      className="group inline-flex items-center gap-2 text-sm text-blue-200/50 hover:text-blue-200 transition-colors duration-300"
                     >
                       <span className="relative">
                         {t("links.terms")}
-                        <span className="absolute left-0 bottom-0 w-0 h-px bg-primary transition-all duration-300 group-hover:w-full" />
+                        <span className="absolute left-0 bottom-0 w-0 h-px bg-blue-400 transition-all duration-300 group-hover:w-full" />
                       </span>
                     </Link>
                   </li>
@@ -170,19 +179,19 @@ export default function Footer() {
           </div>
         </div>
 
-        <Separator className="bg-border/50" />
+        <Separator className="bg-blue-500/20" />
 
         {/* Bottom Bar */}
         <div className="py-8">
           <div className="flex flex-col lg:flex-row items-center justify-between gap-6">
             {/* Copyright */}
-            <div className="flex flex-col md:flex-row items-center gap-2 text-sm text-muted-foreground">
+            <div className="flex flex-col md:flex-row items-center gap-2 text-sm text-blue-200/50">
               <p>© {currentYear} Ahmed Lotfy.</p>
-              <span className="hidden md:inline">•</span>
+              <span className="hidden md:inline text-blue-500/30">•</span>
               <p className="flex items-center gap-1.5">
                 {t("rights")}
                 <span className="inline-flex items-center gap-1">
-                  Crafted with <Heart className="w-3.5 h-3.5 text-red-500 fill-red-500 animate-pulse" /> using
+                  Crafted with <Heart className="w-3.5 h-3.5 text-red-400 fill-red-400 animate-pulse" /> using
                 </span>
               </p>
             </div>
@@ -193,7 +202,7 @@ export default function Footer() {
                 <Badge
                   key={tech}
                   variant="secondary"
-                  className="px-3 py-1 text-xs font-medium bg-primary/5 hover:bg-primary/10 text-foreground border border-primary/10 transition-colors"
+                  className="px-3 py-1 text-xs font-medium bg-blue-500/5 hover:bg-blue-500/15 text-blue-200/70 hover:text-blue-200 border border-blue-500/10 hover:border-blue-500/25 transition-all duration-300"
                 >
                   {tech}
                 </Badge>
@@ -203,8 +212,8 @@ export default function Footer() {
         </div>
       </div>
 
-      {/* Subtle bottom gradient */}
-      <div className="absolute bottom-0 left-0 right-0 h-px bg-linear-to-r from-transparent via-primary/20 to-transparent" />
+      {/* Bottom gradient glow */}
+      <div className="absolute bottom-0 left-0 right-0 h-px bg-linear-to-r from-transparent via-blue-500/20 to-transparent" />
     </footer>
   );
 }
