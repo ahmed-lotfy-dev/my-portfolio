@@ -55,8 +55,9 @@ const posts = getMarkdownFiles(BLOG_DIR)
         views: data.views || 0,
         created_at: data.date || new Date().toISOString(),
       };
-    } catch (err) {
-      console.warn(`⚠ Skipping ${path.basename(filePath)}: ${err.message}`);
+    } catch (err: unknown) {
+      const msg = err instanceof Error ? err.message : String(err);
+      console.warn(`⚠ Skipping ${path.basename(filePath)}: ${msg}`);
       return null;
     }
   })
