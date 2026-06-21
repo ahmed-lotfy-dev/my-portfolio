@@ -9,6 +9,7 @@ import matter from "gray-matter";
 import readingTime from "reading-time";
 
 const BLOG_DIR = path.join(process.cwd(), "src/content/blogs");
+const BLOG_DIR_AR = path.join(BLOG_DIR, "ar");
 const OUTPUT = path.join(process.cwd(), "src/data/blog-index.json");
 
 function slugify(text: string): string {
@@ -21,6 +22,7 @@ function slugify(text: string): string {
 }
 
 function getMarkdownFiles(dir: string): string[] {
+  if (!fs.existsSync(dir)) return [];
   const entries = fs.readdirSync(dir, { withFileTypes: true });
   let files: string[] = [];
   for (const entry of entries) {
@@ -34,18 +36,25 @@ function getMarkdownFiles(dir: string): string[] {
   return files;
 }
 
-const posts = getMarkdownFiles(BLOG_DIR)
+// Collect all posts from both English and Arabic directories
+const enFiles = getMarkdownFiles(BLOG_DIR).filter(f => !f.includes('/ar/'));
+const arFiles = getMarkdownFiles(BLOG_DIR_AR);
+
+const allFiles = [...enFiles, ...arFiles];
+
+const posts = allFiles
   .map((filePath) => {
     try {
       const content = fs.readFileSync(filePath, "utf-8");
       const { data } = matter(content);
       const stats = readingTime(content);
       const slug = slugify(path.basename(filePath, ".md"));
+      const isAr = filePath.includes("/ar/");
 
       return {
         id: data.id || crypto.randomUUID(),
-        title_en: data.title || path.basename(filePath, ".md"),
-        title_ar: data.title_ar || data.title || "",
+        title_en: isAr ? (data.title || slug) : (data.title || slug),
+        title_ar: isAr ? (data.title || slug) : (data.title || slug),
         slug,
         published: data.published !== false,
         categories: data.tags || [],

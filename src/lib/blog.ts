@@ -4,6 +4,7 @@ import matter from "gray-matter";
 import readingTime from "reading-time";
 
 const BLOG_DIR = path.join(process.cwd(), "src/content/blogs");
+const BLOG_DIR_AR = path.join(BLOG_DIR, "ar");
 
 export interface BlogPost {
   slug: string;
@@ -23,6 +24,7 @@ export interface BlogPostWithContent extends BlogPost {
 }
 
 function getMarkdownFiles(dir: string): string[] {
+  if (!fs.existsSync(dir)) return [];
   const entries = fs.readdirSync(dir, { withFileTypes: true });
   let files: string[] = [];
   for (const entry of entries) {
@@ -67,8 +69,21 @@ function parsePost(filePath: string): BlogPostWithContent {
   };
 }
 
-export function getBlogPost(slug: string): BlogPostWithContent | null {
-  const files = getMarkdownFiles(BLOG_DIR);
+function getFilesForLocale(locale: string): string[] {
+  return getMarkdownFiles(locale === "ar" ? BLOG_DIR_AR : BLOG_DIR);
+}
+
+function getPostsForLocale(locale: string): BlogPost[] {
+  return getFilesForLocale(locale)
+    .map(parsePost)
+    .filter((p) => p.published)
+    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+}
+
+// ── Public API ──
+
+export function getBlogPost(slug: string, locale: string): BlogPostWithContent | null {
+  const files = getFilesForLocale(locale);
   const filePath = files.find((f) => slugify(path.basename(f, ".md")) === slug);
   if (!filePath) return null;
   const post = parsePost(filePath);
@@ -76,68 +91,17 @@ export function getBlogPost(slug: string): BlogPostWithContent | null {
   return post;
 }
 
-export function getBlogPostByLocale(slug: string, locale: string): BlogPostWithContent | null {
-  const post = getBlogPost(slug);
-  if (!post) return null;
-  const isAr = slug.endsWith("-ar");
-  if (locale === "ar" && !isAr) return null;
-  if (locale === "en" && isAr) return null;
-  return post;
+export function getAllBlogPosts(locale: string): BlogPost[] {
+  return getPostsForLocale(locale);
 }
 
-export function getAllBlogPosts(): BlogPost[] {
-  const files = getMarkdownFiles(BLOG_DIR);
-  return files
-    .map(parsePost)
-    .filter((p) => p.published)
-    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
-}
-
-export function getAllBlogPostsByLocale(locale: string): BlogPost[] {
-  const all = getAllBlogPosts();
-  if (locale === "ar") {
-    return all.filter((p) => p.slug.endsWith("-ar"));
-  }
-  return all.filter((p) => !p.slug.endsWith("-ar"));
-}
-
-export function getBlogPostsBySlugs(slugs: string[]): BlogPost[] {
-  return slugs
-    .map((slug) => getBlogPost(slug))
-    .filter((p): p is BlogPostWithContent => p !== null);
-}
-
-export function getBlogPostsBySlugsAndLocale(slugs: string[], locale: string): BlogPost[] {
-  const allPosts = getAllBlogPostsByLocale(locale);
+export function getBlogPostsBySlugs(slugs: string[], locale: string): BlogPost[] {
+  const posts = getPostsForLocale(locale);
   const slugSet = new Set(slugs);
-  // Match by exact slug or by base slug (strip -ar suffix for matching)
-  return allPosts.filter((p) => {
-    if (slugSet.has(p.slug)) return true;
-    // Try matching base slug: if EN slug is "foo", match "foo-ar" for AR locale
-    const baseSlug = p.slug.replace(/-ar$/, "");
-    return slugSet.has(baseSlug);
-  });
+  return posts.filter((p) => slugSet.has(p.slug)).slice(0, slugs.length);
 }
 
 export function getBlogPostsPaginated(
-  page = 1,
-  pageSize = 6
-): {
-  posts: BlogPost[];
-  total: number;
-  totalPages: number;
-  currentPage: number;
-} {
-  const allPosts = getAllBlogPosts();
-  const total = allPosts.length;
-  const totalPages = Math.ceil(total / pageSize);
-  const start = (page - 1) * pageSize;
-  const posts = allPosts.slice(start, start + pageSize);
-
-  return { posts, total, totalPages, currentPage: page };
-}
-
-export function getBlogPostsPaginatedByLocale(
   locale: string,
   page = 1,
   pageSize = 6
@@ -147,7 +111,7 @@ export function getBlogPostsPaginatedByLocale(
   totalPages: number;
   currentPage: number;
 } {
-  const allPosts = getAllBlogPostsByLocale(locale);
+  const allPosts = getPostsForLocale(locale);
   const total = allPosts.length;
   const totalPages = Math.ceil(total / pageSize);
   const start = (page - 1) * pageSize;
@@ -156,8 +120,8 @@ export function getBlogPostsPaginatedByLocale(
   return { posts, total, totalPages, currentPage: page };
 }
 
-export function getBlogTagsByLocale(locale: string): { tag: string; count: number }[] {
-  const posts = getAllBlogPostsByLocale(locale);
+export function getBlogTags(locale: string): { tag: string; count: number }[] {
+  const posts = getPostsForLocale(locale);
   const tagMap: Record<string, number> = {};
 
   for (const post of posts) {
@@ -171,62 +135,20 @@ export function getBlogTagsByLocale(locale: string): { tag: string; count: numbe
     .sort((a, b) => b.count - a.count || a.tag.localeCompare(b.tag));
 }
 
-export function getBlogTags(): { tag: string; count: number }[] {
-  const posts = getAllBlogPosts();
-  const tagMap: Record<string, number> = {};
-
-  for (const post of posts) {
-    for (const tag of post.tags) {
-      tagMap[tag] = (tagMap[tag] || 0) + 1;
-    }
-  }
-
-  return Object.entries(tagMap)
-    .map(([tag, count]) => ({ tag, count }))
-    .sort((a, b) => b.count - a.count || a.tag.localeCompare(b.tag));
-}
-
-export function getFeaturedPosts(limit = 3): BlogPost[] {
-  return getAllBlogPosts().filter((p) => p.featured).slice(0, limit);
+export function getFeaturedPosts(locale: string, limit = 3): BlogPost[] {
+  return getPostsForLocale(locale).filter((p) => p.featured).slice(0, limit);
 }
 
 export function getRelatedPosts(
   slug: string,
-  limit = 3
-): BlogPost[] {
-  const current = getBlogPost(slug);
-  if (!current) return [];
-
-  return getAllBlogPosts()
-    .filter((p) => p.slug !== slug)
-    .map((p) => ({
-      post: p,
-      score: p.tags.filter((t) => current.tags.includes(t)).length,
-    }))
-    .sort((a, b) => b.score - a.score || new Date(b.post.date).getTime() - new Date(a.post.date).getTime())
-    .slice(0, limit)
-    .map((p) => p.post);
-}
-
-export function getRelatedPostsByLocale(
-  slug: string,
   locale: string,
   limit = 3
 ): BlogPost[] {
-  const current = getBlogPost(slug);
+  const current = getBlogPost(slug, locale);
   if (!current) return [];
 
-  const localePosts = getAllBlogPostsByLocale(locale)
-    .filter((p) => p.slug !== slug);
-
-  if (localePosts.length === 0) {
-    return getAllBlogPosts()
-      .filter((p) => p.slug !== slug)
-      .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
-      .slice(0, limit);
-  }
-
-  return localePosts
+  return getPostsForLocale(locale)
+    .filter((p) => p.slug !== slug)
     .map((p) => ({
       post: p,
       score: p.tags.filter((t) => current.tags.includes(t)).length,

@@ -1,4 +1,4 @@
-import { getBlogPostsPaginatedByLocale, getBlogTagsByLocale } from "@/src/lib/blog";
+import { getBlogPostsPaginated, getBlogTags } from "@/src/lib/blog";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { routing } from "@/src/i18n/routing";
 import Link from "next/link";
@@ -69,8 +69,8 @@ export default async function BlogIndexPage({
   const t = await getTranslations("blog");
   const currentPage = Math.max(1, parseInt(pageParam || "1", 10) || 1);
   const pageSize = 6;
-  const { posts, totalPages } = getBlogPostsPaginatedByLocale(locale, currentPage, pageSize);
-  const tags = getBlogTagsByLocale(locale);
+  const { posts, totalPages } = getBlogPostsPaginated(locale, currentPage, pageSize);
+  const tags = getBlogTags(locale);
   const isArabic = locale === "ar";
 
   return (

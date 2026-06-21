@@ -3,7 +3,7 @@ import { getAllBlogPosts } from "@/src/lib/blog";
 export const dynamic = "force-static";
 
 export async function GET() {
-  const posts = getAllBlogPosts();
+  const posts = getAllBlogPosts("en");
   const baseUrl = "https://ahmedlotfy.site";
 
   const rss = `<?xml version="1.0" encoding="UTF-8"?>

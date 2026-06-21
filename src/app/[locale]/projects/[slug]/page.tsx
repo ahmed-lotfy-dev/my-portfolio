@@ -1,5 +1,5 @@
 import projectsData from "@/src/data/projects.json";
-import { getBlogPostsBySlugsAndLocale } from "@/src/lib/blog";
+import { getBlogPostsBySlugs } from "@/src/lib/blog";
 import { notFound } from "next/navigation";
 import { getLocale, getTranslations } from "next-intl/server";
 import Link from "next/link";
@@ -90,7 +90,7 @@ export default async function ProjectDetailsPage({ params }: { params: Promise<{
       }
     }
   }
-  const relatedPosts = getBlogPostsBySlugsAndLocale(relatedPostSlugs.slice(0, 4), locale);
+  const relatedPosts = getBlogPostsBySlugs(relatedPostSlugs.slice(0, 4), locale);
 
   return (
     <article className="min-h-screen pb-20 bg-background text-foreground selection:bg-primary/20">

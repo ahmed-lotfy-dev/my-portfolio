@@ -1,4 +1,4 @@
-import { getBlogPostByLocale, getAllBlogPostsByLocale, getRelatedPostsByLocale } from "@/src/lib/blog";
+import { getBlogPost, getAllBlogPosts, getRelatedPosts } from "@/src/lib/blog";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { routing } from "@/src/i18n/routing";
 import { notFound } from "next/navigation";
@@ -39,7 +39,7 @@ export async function generateStaticParams() {
   const params: { locale: string; slug: string }[] = [];
 
   for (const locale of routing.locales) {
-    const posts = getAllBlogPostsByLocale(locale);
+    const posts = getAllBlogPosts(locale);
     for (const post of posts) {
       params.push({ locale, slug: post.slug });
     }
@@ -54,7 +54,7 @@ export async function generateMetadata({
   params: Promise<{ locale: string; slug: string }>;
 }) {
   const { locale, slug } = await params;
-  const post = getBlogPostByLocale(slug, locale);
+  const post = getBlogPost(slug, locale);
   if (!post) return { title: "Post Not Found" };
 
   const baseUrl = "https://ahmedlotfy.site";
@@ -127,13 +127,13 @@ export default async function BlogPostPage({
   const { locale, slug } = await params;
   setRequestLocale(locale);
   const t = await getTranslations("blog");
-  const post = getBlogPostByLocale(slug, locale);
+  const post = getBlogPost(slug, locale);
 
   if (!post) return notFound();
 
   const isArabic = locale === "ar";
   const contentHtml = fixLocaleLinks(await markdownToHtml(post.content), locale);
-  const relatedPosts = getRelatedPostsByLocale(slug, locale, 3);
+  const relatedPosts = getRelatedPosts(slug, locale, 3);
   const baseUrl = "https://ahmedlotfy.site";
 
   return (
