@@ -182,7 +182,7 @@ export default function Footer() {
               <p className="flex items-center gap-1.5">
                 {t("rights")}
                 <span className="inline-flex items-center gap-1">
-                  Built with <Heart className="w-3.5 h-3.5 text-red-500 fill-red-500 animate-pulse" /> using
+                  Crafted with <Heart className="w-3.5 h-3.5 text-red-500 fill-red-500 animate-pulse" /> using
                 </span>
               </p>
             </div>
