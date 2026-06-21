@@ -9,13 +9,13 @@ tags:
   - n8n
   - backend
   - devops
-image: "https://pub-49b2468145c64b14a4a172c257cf46b8.r2.dev/2026/01/file_00000000f69c7208bdc69afea971113e.png"
+image: "/images/blogs/file_f69c7208bdc69afea971113e.png"
 share: true
 featured: true
 description: ""
 ---
 
-![cvss security vulnerability n8n](https://pub-49b2468145c64b14a4a172c257cf46b8.r2.dev/2026/01/file_00000000f69c7208bdc69afea971113e.png)
+![cvss security vulnerability n8n](/images/blogs/file_f69c7208bdc69afea971113e.png)
 
 Security vulnerabilities are not just scary headlines or random numbers.
 

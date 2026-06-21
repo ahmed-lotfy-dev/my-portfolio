@@ -8,9 +8,9 @@ tags:
   - ai
 share: true
 featured: true
-image: https://pub-49b2468145c64b14a4a172c257cf46b8.r2.dev/2026/01/Pasted%20image%2020260125225902.png
+image: /images/blogs/pasted_image_225902.png
 ---
-![Pasted image 20260125225902](https://pub-49b2468145c64b14a4a172c257cf46b8.r2.dev/2026/01/Pasted%20image%2020260125225902.png)
+![Pasted image 20260125225902](/images/blogs/pasted_image_225902.png)
 
 This guide covers the installation and integration of the **UI/UX Pro Max** skill for Linux environments, specifically optimized for **Antigravity**.
 

@@ -6,13 +6,13 @@ tags:
   - tunnel
   - cloudflare-tunnel
   - devops
-image: "https://pub-49b2468145c64b14a4a172c257cf46b8.r2.dev/2026/01/cloudflare-tunnel.jpg"
+image: "/images/blogs/cloudflare-tunnel.jpg"
 share: true
 featured: true
 description: ""
 ---
 
-![cloudflare tunnel](https://pub-49b2468145c64b14a4a172c257cf46b8.r2.dev/2026/01/cloudflare-tunnel.jpg)
+![cloudflare tunnel](/images/blogs/cloudflare-tunnel.jpg)
 
 If you’ve ever had to mess with router port forwarding just to test a **Stripe webhook**, an **OAuth callback**, or show a mobile dev your local API, you know the pain. It’s insecure, it’s flaky, and it’s a waste of time.
 
