@@ -12,7 +12,6 @@ import remarkRehype from "remark-rehype";
 import rehypeStringify from "rehype-stringify";
 import rehypeSlug from "rehype-slug";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
-import rehypeHighlight from "rehype-highlight";
 import StructuredData from "@/src/components/seo/StructuredData";
 import { BreadcrumbSchema } from "@/src/components/seo/BreadcrumbSchema";
 import { BackButton } from "@/src/components/ui/BackButton";
@@ -87,7 +86,6 @@ async function markdownToHtml(content: string): Promise<string> {
       behavior: "wrap",
       properties: { className: ["anchor"] },
     })
-    .use(rehypeHighlight, { detect: true, ignoreMissing: true })
     .use(rehypeStringify, { allowDangerousHtml: true })
     .process(content);
 
