@@ -67,12 +67,7 @@ User-agent: FacebookBot
 Allow: /
 
 # Block known bad crawlers (scrapers, SEO spam tools)
-User-agent: AhrefsBot
-Disallow: /
-
-User-agent: SemrushBot
-Disallow: /
-
+# Note: AhrefsBot and SemrushBot are allowed below for SEO monitoring
 User-agent: MJ12bot
 Disallow: /
 
@@ -81,6 +76,25 @@ Disallow: /
 
 User-agent: Bytespider
 Disallow: /
+
+# SEO monitoring tools — allow access
+User-agent: AhrefsBot
+Allow: /
+Disallow: /cdn-cgi/
+Disallow: /api/
+Disallow: /dashboard/
+Disallow: /_next/static/
+Disallow: /_next/image/
+Crawl-delay: 2
+
+User-agent: SemrushBot
+Allow: /
+Disallow: /cdn-cgi/
+Disallow: /api/
+Disallow: /dashboard/
+Disallow: /_next/static/
+Disallow: /_next/image/
+Crawl-delay: 2
 
 # Sitemaps
 Sitemap: https://ahmedlotfy.site/sitemap.xml
