@@ -11,7 +11,8 @@ Disallow: /_next/static/
 Disallow: /_next/image/
 Disallow: /*.woff2$
 Disallow: /*.json$
-Disallow: /*.xml$
+# Allow sitemap.xml and feed.xml — needed for search engines
+# Disallow: /*.xml$  ← REMOVED: was blocking sitemap.xml
 
 # Googlebot - full access to content, block static junk
 User-agent: Googlebot
@@ -22,7 +23,6 @@ Disallow: /dashboard/
 Disallow: /_next/static/
 Disallow: /*.woff2$
 Disallow: /*.json$
-Disallow: /*.xml$
 Crawl-delay: 1
 
 # AI crawlers - allow content, block API and static
