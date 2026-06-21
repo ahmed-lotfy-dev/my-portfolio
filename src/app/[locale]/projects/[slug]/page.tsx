@@ -93,7 +93,8 @@ export default async function ProjectDetailsPage({ params }: { params: Promise<{
   const relatedPosts = getBlogPostsBySlugs(relatedPostSlugs.slice(0, 4), locale);
 
   return (
-    <article className="min-h-screen pb-20 bg-background text-foreground selection:bg-primary/20">
+    <main className="min-h-screen bg-background text-foreground selection:bg-primary/20">
+    <article className="min-h-screen pb-20">
       <StructuredData
         type="CreativeWork"
         data={{
@@ -206,5 +207,6 @@ export default async function ProjectDetailsPage({ params }: { params: Promise<{
         </section>
       )}
     </article>
+    </main>
   );
 }

@@ -8,6 +8,7 @@ export const metadata: Metadata = {
     languages: {
       en: "https://ahmedlotfy.site/en/terms",
       ar: "https://ahmedlotfy.site/ar/terms",
+      "x-default": "https://ahmedlotfy.site/en/terms",
     },
   },
   openGraph: {
