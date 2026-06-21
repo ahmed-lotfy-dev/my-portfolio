@@ -274,3 +274,8 @@ C:\Users\Ahmed\.cloudflared\credentials.json
 cloudflared مش server — ده client. الـ DNS بيشير لـ Cloudflare. Cloudflare بتتكلم مع الـ tunnel. جهازك مبيفتحش port أبداً. ده اللي بيخلي الـ backups أهم من الجهاز نفسه.
 
 أنا بستخدم الطريقة دي بالظبط في نشر مشاريع العملاء — مفيش ports مفتوحة، كل حاجة ماشية من خلال Cloudflare edge. لو عايز تشوف الـ production stack كامل مع Postgres والـ orchestration، شوف [دليل الـ Self-Hosting على Dokploy](/ar/blogs/self-host-nextjs-blog-on-dokploy). ولو عايز تشوف مثال حي، [The Drive Center](/ar/projects/the-drive-center) شغال بنفس الطريقة.
+
+## اقرأ أيضاً
+
+- [دليل الـ No-Open-Ports للـ backend devs](/blogs/the-no-open-ports-manual-cloudflare-tunnels-for-backend-devs)
+- [استضافة على Dokploy](/blogs/self-host-nextjs-blog-on-dokploy)

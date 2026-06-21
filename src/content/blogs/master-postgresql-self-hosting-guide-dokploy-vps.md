@@ -1,20 +1,15 @@
 ---
+
 title: Master PostgreSQL Self-Hosting Guide (Dokploy+VPS)
 description: "Master guide to self-hosting PostgreSQL on Dokploy + VPS — installation, SSL, WAL logical replication, multi-tenant setup, and backups."
 excerpt: "Self-host PostgreSQL on Dokploy + VPS: SSL, WAL replication, multi-tenant, backups. Complete guide."
 date: 2026-01-23
 updated: 2026-01-25
-tags:
-  - development
-  - backend
-  - databases
-  - dokploy
-  - vps
-  - tutorial
-  - security
+tags: ["postgresql", "self-hosting", "dokploy", "database"]
 image: /images/blogs/pasted_image_195930.png
 share: true
 featured: true
+
 ---
 
 ![Pasted image 20260125195930](/images/blogs/pasted_image_195930.png)**Version:** Postgres **17.7 (Server)** | Postgres **18.1 (Local Client)**  
@@ -288,3 +283,10 @@ Just say the word 🚀
 If you're wondering why I moved away from managed databases, read my story on [Why I Ditched My Database for a Static Site](/en/blogs/building-zero-effort-obsidian-to-portfolio-workflow) and how I handle [PostgreSQL running inside Docker](/en/blogs/connecting-to-postgresql-running-inside-docker).
 
 Looking to self-host your own apps? Check out my [Dokploy + VPS setup](/en/projects/the-drive-center) for a real-world example of production deployments.
+
+## Further Reading
+
+- [connecting to PostgreSQL running inside Docker](/blogs/connecting-to-postgresql-running-inside-docker)
+- [self-hosting a Next.js blog on Dokploy](/blogs/self-host-nextjs-blog-on-dokploy)
+- [securing connections with Cloudflare Tunnel](/blogs/cloudflared-tunnel-full-guide)
+- [why I eventually ditched my database](/blogs/why-i-ditched-database-for-static-site)

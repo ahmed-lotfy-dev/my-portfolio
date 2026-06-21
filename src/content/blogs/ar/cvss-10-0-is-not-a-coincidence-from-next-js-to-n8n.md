@@ -64,3 +64,8 @@ Frameworks ومنصات الـ automation زي Next.js و n8n بتسرع الـ 
 لو بتبني أي نظام فيه user data أو API endpoints، الـ patterns دي بتطبق على كل حاجة — من الـ Cloudflare Tunnels اللي بستخدمها للموقع ده، لـ الـ Postgres setup على الـ VPS.
 
 لو عايز تفهم الـ infrastructure بتاعتي أكتر، شوف [دليل Cloudflare Tunnels](/ar/blogs/the-no-open-ports-manual-cloudflare-tunnels-for-backend-devs) و [دليل الـ Self-Hosting على Dokploy](/ar/blogs/self-host-nextjs-blog-on-dokploy).
+
+## اقرأ أيضاً
+
+- [إقفال الـ ports بـ Cloudflare Tunnels](/blogs/the-no-open-ports-manual-cloudflare-tunnels-for-backend-devs)
+- [حماية الصور في Laravel](/blogs/definitive-guide-image-privacy-orientation-laravel)

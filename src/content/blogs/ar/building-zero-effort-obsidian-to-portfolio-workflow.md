@@ -110,3 +110,8 @@ Senior engineer بيفكر في **Curation** و **Information Architecture**. ك
 هذا البورتيفوليو شغال بالظبط زي ما وصفت هنا — static files، من غير database، منشر عبر Dokploy. لو عايز تفهم أكتر عن الـ multilingual routing مع Next.js App Router، اقرأ عن [React Server Components vs Qwik](/ar/blogs/react-server-components-vs-qwik-real-world-truth).
 
 لو عايز تشوف production deployment حقيقي، شوف [The Drive Center](/ar/projects/the-drive-center) — منصة SaaS منشر بنفس الطريقة.
+
+## اقرأ أيضاً
+
+- [ليه شلت الداتابيز](/blogs/why-i-ditched-database-for-static-site)
+- [استضافة على Dokploy](/blogs/self-host-nextjs-blog-on-dokploy)

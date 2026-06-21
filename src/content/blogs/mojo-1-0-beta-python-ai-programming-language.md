@@ -1,19 +1,13 @@
 ---
-published: false
+
 title: "🔥 Mojo 1.0 Beta Is Here — Python for AI Just Got a Serious Upgrade"
 date: 2026-05-09
-tags:
-  - mojo
-  - programming-languages
-  - ai
-  - python
-  - machine-learning
-  - performance
+tags: ["mojo", "ai", "programming-language", "performance"]
 image: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=1200&q=80"
 share: true
 featured: false
+
 ---
-published: false
 
 Mojo — the language that promised to merge Python's developer experience with C-level performance — just hit its 1.0 Beta release. If you've been watching from the sidelines wondering "is this production-ready yet?", it's time to pay attention.
 
@@ -92,3 +86,9 @@ I'll be experimenting with Mojo for a serverless inference endpoint over the nex
 The same AI-first mindset is what drives my agent workflows — described in detail in my [Gemini CLI Subagents post](/en/blogs/gemini-cli-subagents-multi-agent-workflows) and [Production-Ready AI Agents](/en/blogs/production-ready-ai-agents-lessons-refactoring-monolith).
 
 If you're building AI tooling, the deployment patterns in my [Dokploy + VPS guide](/en/blogs/master-postgresql-self-hosting-guide-dokploy-vps) will help you ship faster.
+
+## Further Reading
+
+- [MCP servers for AI agents](/blogs/what-is-mcp-server-no-dumb-questions)
+- [AI agent trends](/blogs/10-trending-reddit-posts-about-ai-agents-this-week-may-2026)
+- [frontend build tools hitting a wall](/blogs/frontend-build-tools-hitting-a-wall)

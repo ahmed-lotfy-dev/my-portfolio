@@ -150,12 +150,22 @@ export function getRelatedPosts(
   const current = getBlogPost(slug, locale);
   if (!current) return [];
 
+  const currentTitleWords = new Set(
+    current.title.toLowerCase().split(/\s+/).filter(w => w.length > 3)
+  );
+
   return getPostsForLocale(locale)
     .filter((p) => p.slug !== slug)
-    .map((p) => ({
-      post: p,
-      score: p.tags.filter((t) => current.tags.includes(t)).length,
-    }))
+    .map((p) => {
+      // Primary score: tag overlap
+      const tagScore = p.tags.filter((t) => current.tags.includes(t)).length * 3;
+      // Secondary score: title word overlap
+      const pTitleWords = new Set(p.title.toLowerCase().split(/\s+/).filter(w => w.length > 3));
+      const titleOverlap = [...currentTitleWords].filter(w => pTitleWords.has(w)).length;
+      // Tertiary: recency bonus (newer posts get slight preference)
+      const recencyBonus = 0;
+      return { post: p, score: tagScore + titleOverlap + recencyBonus };
+    })
     .sort((a, b) => b.score - a.score || new Date(b.post.date).getTime() - new Date(a.post.date).getTime())
     .slice(0, limit)
     .map((p) => p.post);

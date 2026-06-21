@@ -1,27 +1,14 @@
 ---
+
 title: "Connecting to PostgreSQL running inside Docker"
 description: "How to connect to PostgreSQL running inside Docker — from local development to production. Covers networking, env vars, authentication, and common pitfalls."
 excerpt: "Connect to PostgreSQL in Docker: networking, env vars, common pitfalls. From dev to production."
 date: 2026-01-24
 image: /images/blogs/pasted_image_195930.png
-tags:
-  - development
-  - backend
-  - databases
-  - postgresql
-  - psql
-  - env
-  - docker
-  - containers
-  - dev
-  - devops
-  - security
-  - authentication
-  - ssl-tls
-  - tutorial
-  - database
+tags: ["postgresql", "docker", "database", "development"]
 share: true
 featured: true
+
 ---
 
 Connecting to PostgreSQL running inside Docker is simple once you understand what is actually happening under the hood. Most problems come from mixing container networking concepts with local machine assumptions. Let's straighten it out step by step.
@@ -123,3 +110,9 @@ Once that chain is clear, connecting to Postgres in Docker stops feeling mysteri
 This is the exact setup I use in production — Postgres running in Docker, connected to apps via internal networking. For the full deployment orchestration, see my [Dokploy + VPS guide](/en/blogs/master-postgresql-self-hosting-guide-dokploy-vps).
 
 If you're trying to decide between managed DB and self-hosting, my [Why I Ditched My Database for a Static Site](/en/blogs/why-i-ditched-database-for-static-site) post explains when removing the database makes sense — and when it doesn't.
+
+## Further Reading
+
+- [self-hosting PostgreSQL on Dokploy](/blogs/master-postgresql-self-hosting-guide-dokploy-vps)
+- [deploying on Dokploy](/blogs/self-host-nextjs-blog-on-dokploy)
+- [exposing Docker services with Cloudflare Tunnel](/blogs/cloudflared-tunnel-full-guide)

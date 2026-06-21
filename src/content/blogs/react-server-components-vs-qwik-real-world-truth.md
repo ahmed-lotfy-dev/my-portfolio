@@ -1,20 +1,14 @@
 ---
+
 title: "⚛️ React Server Components vs Qwik: Real-World Cross-Platform Truth"
 description: "React Server Components vs Qwik compared in real projects — performance, developer experience, and when to choose each framework in 2026."
 excerpt: "RSC vs Qwik: a real-world comparison of performance, DX, and use cases. Not theory — actual project experience."
 date: 2026-05-09
-tags:
-  - react
-  - nextjs
-  - qwik
-  - frontend
-  - web-development
-  - javascript
-  - comparison
-  - performance
+tags: ["react", "rsc", "qwik", "frontend", "architecture"]
 image: /images/blogs/react-qwik.jpg
 share: true
 featured: false
+
 ---
 
 ## The Framework War Nobody's Talking About
@@ -133,3 +127,9 @@ The real winner? Both frameworks are pushing the web forward by reducing the Jav
 This portfolio is built exactly this way — fully static, server-rendered, zero client JavaScript for content pages. The blog you're reading right now is a perfect example of RSC in action.
 
 If you're evaluating frameworks for your next project, the performance principles here apply regardless of what you build. For a real-world comparison, see how frontend build tools are hitting a wall and what comes next.
+
+## Further Reading
+
+- [frontend build tools hitting a wall](/blogs/frontend-build-tools-hitting-a-wall)
+- [TanStack's experimental React clone](/blogs/tanstack-experimental-react-clone-explained)
+- [why I ditched my database for a static site](/blogs/why-i-ditched-database-for-static-site)

@@ -143,3 +143,7 @@ export const Counter = component$(() => {
 الـ winner الحقيقي؟ الـ frameworks الاتنين بيدفعوا الـ web للأمام عن طريق تقليل الـ JavaScript tax. اختار اللي بي match طبيعة الـ app بتاعك.
 
 هذا البورتيفوليو مبني بالظبط بالطريقة دي — fully static، server-rendered، zero client JavaScript للـ content pages. البلوج اللي بتقرأه دلوقتي هو مثال مثالي لـ RSC في الواقع.
+
+## اقرأ أيضاً
+
+- [ليه شلت الداتابيز لموقع ستاتيك](/blogs/why-i-ditched-database-for-static-site)

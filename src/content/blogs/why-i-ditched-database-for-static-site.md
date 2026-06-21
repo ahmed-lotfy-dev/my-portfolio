@@ -1,20 +1,15 @@
 ---
+
 title: Why I Ditched My Database for a Static Site (And Why You Might Want To)
 description: "I deleted PostgreSQL, Better Auth, and my entire dashboard from my portfolio. Here's why a static site with JSON files is faster, simpler, and cheaper."
 excerpt: "Why I removed my database and went fully static. JSON files + Markdown + build process = faster, simpler, cheaper. No regrets."
 date: 2026-06-20
 updated: 2026-06-20
 image: /images/blogs/static-site-no-database.jpg
-tags:
-  - nextjs
-  - static-site
-  - architecture
-  - performance
-  - devops
-  - javascript
-  - jamstack
+tags: ["static-site", "architecture", "next.js", "simplicity"]
 share: true
 featured: true
+
 ---
 
 # Why I Ditched My Database for a Static Site (And Why You Might Want To)
@@ -229,3 +224,9 @@ If you're running a portfolio, blog, or personal site with a database, ask yours
 If you want to see the full technical breakdown of how I set up the deployment, check out [How to Self-Host a Next.js Blog on Dokploy](/en/blogs/self-host-nextjs-blog-on-dokploy). And if you're interested in the self-hosting side, my post on [Cloudflare Tunnels for Backend Devs](/en/blogs/the-no-open-ports-manual-cloudflare-tunnels-for-backend-devs) covers how to expose your services without opening ports.
 
 The code for this entire site is on [GitHub](https://github.com/ahmed-lotfy-dev/my-portfolio). Feel free to fork it, break it, and learn from my mistakes.
+
+## Further Reading
+
+- [self-hosting a Next.js blog on Dokploy](/blogs/self-host-nextjs-blog-on-dokploy)
+- [self-hosting PostgreSQL](/blogs/master-postgresql-self-hosting-guide-dokploy-vps)
+- [React Server Components vs Qwik](/blogs/react-server-components-vs-qwik-real-world-truth)

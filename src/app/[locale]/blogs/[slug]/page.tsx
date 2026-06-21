@@ -116,6 +116,9 @@ function fixLocaleLinks(html: string, locale: string): string {
   // Replace /en/blogs/ and /en/projects/ with /{locale}/blogs/ and /{locale}/projects/
   let fixed = html.replace(/href="\/en\/blogs\/([^"]+)"/g, `href="/${locale}/blogs/$1"`);
   fixed = fixed.replace(/href="\/en\/projects\/([^"]+)"/g, `href="/${locale}/projects/$1"`);
+  // Fix plain /blogs/ links (no locale prefix) — but NOT /en/ or /ar/ prefixed ones
+  fixed = fixed.replace(/href="\/blogs\/([^"]+)"/g, `href="/${locale}/blogs/$1"`);
+  fixed = fixed.replace(/href="\/projects\/([^"]+)"/g, `href="/${locale}/projects/$1"`);
   return fixed;
 }
 

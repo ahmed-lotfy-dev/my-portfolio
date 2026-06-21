@@ -1,19 +1,13 @@
 ---
-published: false
+
 title: "🏗️ Frontend Build Tools Are Hitting a Wall — Here's What Comes Next"
 date: 2026-05-09
-tags:
-  - frontend
-  - build-tools
-  - webpack
-  - vite
-  - react
-  - performance
+tags: ["frontend", "build-tools", "vite", "architecture"]
 image: "https://images.unsplash.com/photo-1517134191118-9d595e4c8c2b?w=1200&q=80"
 share: true
 featured: false
+
 ---
-published: false
 
 ## The Speed Obsession
 
@@ -94,3 +88,9 @@ The wall is real, but we've hit walls before (remember the pre-webpack era?), an
 This site is proof that the next generation is already here — static generation, edge deployment, zero-config tooling. The blog you're reading was built with exactly these principles.
 
 If you want to understand the framework decisions behind this, read my take on [React Server Components vs Qwik](/en/blogs/react-server-components-vs-qwik-real-world-truth). Curious about the actual deployment? I wrote a complete [Dokploy + VPS guide](/en/blogs/master-postgresql-self-hosting-guide-dokploy-vps).
+
+## Further Reading
+
+- [React Server Components vs Qwik](/blogs/react-server-components-vs-qwik-real-world-truth)
+- [TanStack's experimental React clone](/blogs/tanstack-experimental-react-clone-explained)
+- [Mojo 1.0 for AI programming](/blogs/mojo-1-0-beta-python-ai-programming-language)

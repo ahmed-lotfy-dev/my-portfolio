@@ -1,20 +1,15 @@
 ---
+
 title: 🎨 UI UX Pro Max Skill - Linux Setup Guide
 description: "How to install and configure the UI/UX Pro Max skill on Linux — optimized for Antigravity IDE. Step-by-step setup guide."
 excerpt: "Install UI/UX Pro Max skill on Linux for Antigravity IDE. Complete setup and configuration guide."
 date: 2026-01-25
 updated: 2026-01-25
-tags:
-  - development
-  - tools
-  - ai
-  - linux
-  - ui-ux
-  - tutorial
-  - antigravity
+tags: ["linux", "setup", "productivity", "tools"]
 share: true
 featured: true
 image: /images/blogs/pasted_image_225902.png
+
 ---
 ![Pasted image 20260125225902](/images/blogs/pasted_image_225902.png)
 
@@ -136,3 +131,8 @@ Useful for quick reference without full code generation:
 The developer experience principles here extend to how I build and deploy everything — from this portfolio to [The Drive Center](/en/projects/the-drive-center). The same "zero friction" philosophy applies.
 
 For the deployment automation that makes this possible, see my [Dokploy + VPS guide](/en/blogs/master-postgresql-self-hosting-guide-dokploy-vps).
+
+## Further Reading
+
+- [building a zero-effort workflow](/blogs/building-zero-effort-obsidian-to-portfolio-workflow)
+- [self-hosting on Dokploy](/blogs/self-host-nextjs-blog-on-dokploy)

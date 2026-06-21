@@ -245,3 +245,9 @@ docker run --rm -i postgres:17-alpine psql \
 ---
 
 لو عايز تعرف أكتر عن الـ deployment مع الـ SSL والـ networking، شوف [دليل Cloudflare Tunnels](/ar/blogs/the-no-open-ports-manual-cloudflare-tunnels-for-backend-devs) و [دليل الاتصال بـ PostgreSQL في Docker](/ar/blogs/connecting-to-postgresql-running-inside-docker).
+
+## اقرأ أيضاً
+
+- [الاتصال بـ PostgreSQL شغال جوه Docker](/blogs/connecting-to-postgresql-running-inside-docker)
+- [استضافة بلوج Next.js على Dokploy](/blogs/self-host-nextjs-blog-on-dokploy)
+- [تأمين الاتصالات بـ Cloudflare Tunnel](/blogs/cloudflared-tunnel-full-guide)

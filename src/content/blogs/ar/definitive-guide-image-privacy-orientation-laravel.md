@@ -124,3 +124,7 @@ $encoded = $image->toWebp(
 أنماط الـ image handling دي هي نفس اللي بستخدمها في الـ [Obsidian workflow](/ar/blogs/building-zero-effort-obsidian-to-portfolio-workflow) بتاعي — معالجة وتحسين وخدمة الصور على نطاق واسع.
 
 لأنماط الـ deployment اللي بت handle الـ image assets على الـ edge، شوف [دليل Cloudflare Tunnels](/ar/blogs/the-no-open-ports-manual-cloudflare-tunnels-for-backend-devs).
+
+## اقرأ أيضاً
+
+- [ثغرات CVSS 10.0 في  frameworks الويب](/blogs/cvss-10-0-is-not-a-coincidence-from-next-js-to-n8n)

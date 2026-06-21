@@ -1,18 +1,13 @@
 ---
-published: false
+
 title: "🤖 Production-Ready AI Agents: 5 Hard Lessons from Refactoring a Monolith"
 date: 2026-05-09
-tags:
-  - ai
-  - ai-agents
-  - agentic-ai
-  - software-architecture
-  - fullstack
+tags: ["ai-agents", "production", "architecture", "refactoring"]
 image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=1200&q=80"
 share: true
 featured: false
+
 ---
-published: false
 
 ## The Monolith Trap
 
@@ -116,3 +111,10 @@ Start with sub-agents, enforce structured outputs, RAG dynamically, trace everyt
 The lessons here come from real production experience — the same patterns I used to build [The Drive Center](/en/projects/the-drive-center) and the agent workflows described in my [Gemini CLI Subagents post](/en/blogs/gemini-cli-subagents-multi-agent-workflows).
 
 If you're evaluating whether agents are production-ready, my honest take is in [React Server Components vs Qwik](/en/blogs/react-server-components-vs-qwik-real-world-truth) — the same "trust but verify" principle applies.
+
+## Further Reading
+
+- [MCP servers for AI agents](/blogs/what-is-mcp-server-no-dumb-questions)
+- [AI agent auditing](/blogs/ai-agent-auditing-cut-incident-response-90-percent)
+- [multi-agent workflows](/blogs/gemini-cli-subagents-multi-agent-workflows)
+- [AI agent trends on Reddit](/blogs/10-trending-reddit-posts-about-ai-agents-this-week-may-2026)

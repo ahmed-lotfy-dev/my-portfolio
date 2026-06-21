@@ -246,3 +246,8 @@ cloudflared tunnel run my-tunnel
 cloudflared مش server — ده client. الـ DNS بيشير لـ Cloudflare. Cloudflare بتتكلم مع الـ tunnel. جهازك مبيفتحش port أبداً. ده اللي بيخلي الـ backups أهم من الجهاز نفسه.
 
 هذا البورتيفوليو منشر ورا Cloudflare Tunnels — مفيش ports مفتوحة على الـ server، كل حاجة ماشية من خلال Zero Trust. لو عايز تشوف الـ production stack كامل، شوف [دليل الـ Self-Hosting على Dokploy](/ar/blogs/self-host-nextjs-blog-on-dokploy). ولو مهتم بموضوع الـ security، اقرأ عن [CVSS 10.0 من Next.js لـ n8n](/ar/blogs/cvss-10-0-is-not-a-coincidence-from-next-js-to-n8n).
+
+## اقرأ أيضاً
+
+- [الدليل الشامل لـ Cloudflare Tunnel](/blogs/cloudflared-tunnel-full-guide)
+- [استضافة على Dokploy](/blogs/self-host-nextjs-blog-on-dokploy)

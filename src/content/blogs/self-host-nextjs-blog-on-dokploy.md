@@ -1,20 +1,15 @@
 ---
+
 title: How to Self-Host a Next.js Blog on Dokploy (Without Losing Your Mind)
 description: "Step-by-step guide to deploying a Next.js blog on Dokploy — from VPS setup to production. No Kubernetes, no Vercel, just Docker and $6/month."
 excerpt: "Deploy a Next.js blog on Dokploy in 30 minutes. No Kubernetes, no Vercel — just a VPS, Docker, and $6/month. Full tutorial with real mistakes and fixes."
 date: 2026-06-20
 updated: 2026-06-20
 image: /images/blogs/dokploy-nextjs-blog.jpg
-tags:
-  - nextjs
-  - dokploy
-  - self-hosting
-  - docker
-  - devops
-  - tutorial
-  - deployment
+tags: ["self-hosting", "next.js", "dokploy", "deployment"]
 share: true
 featured: true
+
 ---
 
 # How to Self-Host a Next.js Blog on Dokploy (Without Losing Your Mind)
@@ -291,3 +286,11 @@ For a portfolio, a blog, or a side project? Self-hosting on Dokploy is a no-brai
 If you want to see a live example of this exact setup, check out [my portfolio](/en) — it's running this way right now. And if you're curious about how the multilingual routing works with Next.js App Router, I wrote about that in [React Server Components vs Qwik: Real-World Cross-Platform Truth](/en/blogs/react-server-components-vs-qwik-real-world-truth).
 
 Questions? Hit me up on [Telegram](https://t.me/ahmed_lotfy_dev) — I'm always happy to help someone avoid the mistakes I made.
+
+## Further Reading
+
+- [self-hosting PostgreSQL on Dokploy](/blogs/master-postgresql-self-hosting-guide-dokploy-vps)
+- [securing your deployment with Cloudflare Tunnel](/blogs/cloudflared-tunnel-full-guide)
+- [connecting to PostgreSQL inside Docker](/blogs/connecting-to-postgresql-running-inside-docker)
+- [why I ditched my database for a static site](/blogs/why-i-ditched-database-for-static-site)
+- [Cloudflare Tunnels for backend developers](/blogs/the-no-open-ports-manual-cloudflare-tunnels-for-backend-devs)

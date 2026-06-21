@@ -1,23 +1,15 @@
 ---
+
 title: 🎯 The Definitive Guide to Image Privacy & Orientation in Laravel
 description: "The definitive guide to image privacy and orientation in Laravel — EXIF data, auto-rotation, secure uploads with S3 and Cloudflare R2."
 excerpt: "Image privacy & orientation in Laravel: EXIF data, auto-rotation, secure uploads with S3 and R2."
 date: 2026-01-24
 updated: 2026-01-25
-tags:
-  - development
-  - backend
-  - image-upload
-  - laravel
-  - "#php"
-  - aws-s3
-  - cloudflare-r2
-  - security
-  - tutorial
-  - php
+tags: ["laravel", "security", "image-privacy", "exif"]
 image: /images/blogs/laravel-image-upload.jpg
 share: true
 featured: true
+
 ---
 
 ![laravel image upload](/images/blogs/laravel-image-upload.jpg)
@@ -153,3 +145,8 @@ Security isn't always about firewalls and salts; sometimes it's about the invisi
 The image handling patterns here are the same ones I use in my portfolio's [Obsidian workflow](/en/blogs/building-zero-effort-obsidian-to-portfolio-workflow) — processing, optimizing, and serving images at scale.
 
 For deployment patterns that handle image assets at the edge, see my [Cloudflare Tunnels guide](/en/blogs/the-no-open-ports-manual-cloudflare-tunnels-for-backend-devs).
+
+## Further Reading
+
+- [CVSS 10.0 vulnerabilities in web frameworks](/blogs/cvss-10-0-is-not-a-coincidence-from-next-js-to-n8n)
+- [securing your backend with Cloudflare Tunnels](/blogs/the-no-open-ports-manual-cloudflare-tunnels-for-backend-devs)

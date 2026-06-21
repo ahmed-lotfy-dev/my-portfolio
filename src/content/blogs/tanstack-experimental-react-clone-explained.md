@@ -1,18 +1,13 @@
 ---
-published: false
+
 title: "⚛️ Tanner Linsley Built a React Clone in One Day — Here's Why It Matters"
 date: 2026-05-09
-tags:
-  - react
-  - frontend
-  - tanstack
-  - javascript
-  - performance
+tags: ["tanstack", "react", "frontend", "performance"]
 image: "https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=1200&q=80"
 share: true
 featured: false
+
 ---
-published: false
 
 Last week, Tanner Linsley — creator of TanStack Query, Table, Router, and half the libraries keeping modern React apps alive — did something that turned heads in the frontend community. He spent a day prompting an AI agent to regenerate React's public API as a ~9KB runtime, quietly shipped it on his blog and tanstack.com, and just *moved on*.
 
@@ -77,3 +72,8 @@ The next time someone tells you a piece of infrastructure is "too complex to reb
 The performance principles TanStack uses are the same ones I applied when building this portfolio — minimal JS, server rendering, edge deployment. See how [React Server Components compare to Qwik](/en/blogs/react-server-components-vs-qwik-real-world-truth) in practice.
 
 Curious about the actual build tooling? My post on [Frontend Build Tools Hitting a Wall](/en/blogs/frontend-build-tools-hitting-a-wall) covers what comes next.
+
+## Further Reading
+
+- [React Server Components vs Qwik](/blogs/react-server-components-vs-qwik-real-world-truth)
+- [frontend build tools hitting a wall](/blogs/frontend-build-tools-hitting-a-wall)

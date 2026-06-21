@@ -116,3 +116,7 @@ python3 .gemini/skills/ui-ux-pro-max/scripts/search.py "SaaS dashboard" --design
 مبادئ الـ developer experience هنا بتمتد لازاي ببني وأنشر كل حاجة — من الـ portfolio ده لـ [The Drive Center](/ar/projects/the-drive-center). نفس فلسفة "zero friction" بتطبق.
 
 لأتمتة الـ deployment اللي بتخلي ده ممكن، شوف [دليل الـ Self-Hosting على Dokploy](/ar/blogs/self-host-nextjs-blog-on-dokploy).
+
+## اقرأ أيضاً
+
+- [بناء workflow بدون مجهود](/blogs/building-zero-effort-obsidian-to-portfolio-workflow)

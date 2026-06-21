@@ -2,18 +2,12 @@
 published: false
 title: "🤖 How We Cut Incident Response Time by 90% with AI Agent Auditing"
 date: 2026-05-09
-tags:
-  - ai
-  - machine-learning
-  - devops
-  - observability
-  - automation
-  - prompt-engineering
+tags: ["ai-agents", "auditing", "incident-response", "devops"]
 image: https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=1200&q=80
 share: true
 featured: false
+
 ---
-published: false
 
 ## The Firefighting Problem
 
@@ -92,3 +86,9 @@ Your future self will thank you when the pager goes off at 2 AM and you can see 
 The agent workflows I built follow the same patterns described in my [Gemini CLI Subagents post](/en/blogs/gemini-cli-subagents-multi-agent-workflows). The key insight: agents work best when they own a complete pipeline end-to-end.
 
 This portfolio itself is a case study — static generation, automated deployment, zero manual intervention. See [The Obsidian Workflow](/en/blogs/building-zero-effort-obsidian-to-portfolio-workflow) for the full picture.
+
+## Further Reading
+
+- [MCP servers for AI agents](/blogs/what-is-mcp-server-no-dumb-questions)
+- [production-ready AI agent lessons](/blogs/production-ready-ai-agents-lessons-refactoring-monolith)
+- [multi-agent workflows with Gemini CLI](/blogs/gemini-cli-subagents-multi-agent-workflows)

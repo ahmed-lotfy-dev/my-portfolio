@@ -228,3 +228,8 @@ await resend.emails.send({
 لو عايز تشوف الـ technical breakdown الكامل للـ deployment، اقرأ [ازاي تستضيف بلوج Next.js بنفسك على Dokploy](/ar/blogs/self-host-nextjs-blog-on-dokploy). ولو مهتم بموضوع الـ self-hosting، بوست [Cloudflare Tunnels للـ Backend Devs](/ar/blogs/the-no-open-ports-manual-cloudflare-tunnels-for-backend-devs) بيغطي ازاي تعرض الـ services بتاعتك من غير ما تفتح ports.
 
 الكود بتاع الموقع ده كله على [GitHub](https://github.com/ahmed-lotfy-dev/my-portfolio). خده fork، بوظه، واتعلم من أخطائي.
+
+## اقرأ أيضاً
+
+- [استضافة بلوج Next.js على Dokploy](/blogs/self-host-nextjs-blog-on-dokploy)
+- [React Server Components vs Qwik](/blogs/react-server-components-vs-qwik-real-world-truth)

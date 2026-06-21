@@ -142,3 +142,8 @@ Local machine
 دي بالظبط الـ setup اللي بستخدمه في الـ production — Postgres شغال في Docker، متصل بالـ apps من خلال internal networking. لو عايز تشوف الـ deployment orchestration الكامل، شوف [دليل الـ Self-Hosting على Dokploy](/ar/blogs/self-host-nextjs-blog-on-dokploy).
 
 لو عايز تعرف ليه اخترت الـ self-hosting بدل الـ managed databases، اقرأ [ليه شلت الداتابيز من موقعي](/ar/blogs/why-i-ditched-database-for-static-site).
+
+## اقرأ أيضاً
+
+- [استضافة PostgreSQL على Dokploy](/blogs/master-postgresql-self-hosting-guide-dokploy-vps)
+- [النشر على Dokploy](/blogs/self-host-nextjs-blog-on-dokploy)

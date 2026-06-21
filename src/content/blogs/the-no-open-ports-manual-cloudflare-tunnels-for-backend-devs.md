@@ -1,19 +1,14 @@
 ---
+
 title: "The \"No-Open-Ports\" Manual: Cloudflare Tunnels for Backend Devs"
 excerpt: "Expose backend services without open ports. Complete Cloudflare Tunnel guide: setup, config, production tips."
 date: 2026-01-25
-tags:
-  - zero-trust
-  - tunnel
-  - cloudflare-tunnel
-  - devops
-  - networking
-  - security
-  - tutorial
+tags: ["cloudflare", "tunnel", "security", "backend"]
 image: "/images/blogs/cloudflare-tunnel.jpg"
 share: true
 featured: true
 description: ""
+
 ---
 
 ![cloudflare tunnel](/images/blogs/cloudflare-tunnel.jpg)
@@ -342,3 +337,9 @@ cloudflared is a client, not a server. DNS points to Cloudflare. Cloudflare talk
 This portfolio is deployed behind Cloudflare Tunnels — no open ports on the server, everything proxied through Zero Trust. It's the same setup I describe in this post.
 
 For the full production stack including Postgres and Dokploy orchestration, see my [How to Self-Host a Next.js Blog on Dokploy](/en/blogs/self-host-nextjs-blog-on-dokploy). If you're interested in how I handle this at scale, check out [The Drive Center](/en/projects/the-drive-center).
+
+## Further Reading
+
+- [Cloudflare Tunnel full guide](/blogs/cloudflared-tunnel-full-guide)
+- [self-hosting on Dokploy](/blogs/self-host-nextjs-blog-on-dokploy)
+- [why CVSS 10.0 vulnerabilities happen when you expose ports](/blogs/cvss-10-0-is-not-a-coincidence-from-next-js-to-n8n)

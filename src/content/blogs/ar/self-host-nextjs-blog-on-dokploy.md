@@ -284,3 +284,10 @@ docker compose build --no-cache
 لو عايز تشوف live example بالظبط على السيتب ده، زور [موقعي](/ar) — شغال بالطريقة دي دلوقتي. ولو عايز تعرف ايه اللي حصل لما شلت الـ Dاتابيز وحوّلت الموقع لـ static، اقرأ بوست [ليه شلت الداتابيز من موقعي](/ar/blogs/why-i-ditched-database-for-static-site).
 
 عندك سؤال؟ كلمني على [Telegram](https://t.me/ahmed_lotfy_dev) — دايمًا ه leap مساعدة حد يتجنب الأخطاء اللي عملتها.
+
+## اقرأ أيضاً
+
+- [استضافة PostgreSQL بنفسك على Dokploy](/blogs/master-postgresql-self-hosting-guide-dokploy-vps)
+- [تأمين الـ deployment بـ Cloudflare Tunnel](/blogs/cloudflared-tunnel-full-guide)
+- [الاتصال بـ PostgreSQL جوه Docker](/blogs/connecting-to-postgresql-running-inside-docker)
+- [ليه شلت الداتابيز من موقعي](/blogs/why-i-ditched-database-for-static-site)

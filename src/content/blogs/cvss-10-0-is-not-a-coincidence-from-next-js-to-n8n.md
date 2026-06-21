@@ -1,19 +1,14 @@
 ---
+
 title: "CVSS 10.0 Is Not a Coincidence, From Next.js to n8n"
 description: "Why CVSS 10.0 vulnerabilities in Next.js and n8n are not random. Understanding how scoring works and what it means for your security posture."
 excerpt: "CVSS 10.0 is not a coincidence. How Next.js and n8n scored perfect 10s, what the scoring system actually measures, and why it matters."
 date: 2026-01-28
-tags:
-  - security
-  - vulnerabilities
-  - cvss
-  - nextjs
-  - n8n
-  - backend
-  - devops
+tags: ["security", "cvss", "next.js", "n8n", "vulnerabilities"]
 image: "/images/blogs/file_f69c7208bdc69afea971113e.png"
 share: true
 featured: true
+
 ---
 
 ![cvss security vulnerability n8n](/images/blogs/file_f69c7208bdc69afea971113e.png)
@@ -52,3 +47,9 @@ Security is not a one time task. It is an ongoing process, and ignoring that rea
 The security patterns here apply to any deployment — including the [Cloudflare Tunnels setup](/en/blogs/the-no-open-ports-manual-cloudflare-tunnels-for-backend-devs) I use for this portfolio.
 
 For the full infrastructure picture, see my [Dokploy + VPS self-hosting guide](/en/blogs/master-postgresql-self-hosting-guide-dokploy-vps).
+
+## Further Reading
+
+- [keeping ports closed with Cloudflare Tunnels](/blogs/the-no-open-ports-manual-cloudflare-tunnels-for-backend-devs)
+- [self-hosting Next.js on Dokploy](/blogs/self-host-nextjs-blog-on-dokploy)
+- [image privacy and security in Laravel](/blogs/definitive-guide-image-privacy-orientation-laravel)

@@ -1,20 +1,15 @@
 ---
+
 title: Building a Zero-Effort Obsidian to Portfolio Workflow
 description: "How to build a zero-effort workflow that turns Obsidian notes into portfolio blog posts — automated with GitHub Actions and Cloudflare R2."
 excerpt: "Turn Obsidian notes into portfolio posts automatically. GitHub Actions + Cloudflare R2 = zero-effort publishing."
 date: 2026-01-25
 updated: 2026-01-25
 image: /images/blogs/unnamed.jpg
-tags:
-  - automation
-  - obsidian
-  - cloudflare-r2
-  - github
-  - nextjs
-  - productivity
-  - blog
+tags: ["obsidian", "workflow", "automation", "productivity"]
 share: true
 featured: true
+
 ---
 
 ![unnamed](/images/blogs/unnamed.jpg)
@@ -119,3 +114,8 @@ The final pipeline is now invisible and bulletproof:
 This portfolio runs exactly as described here — static files, no database, deployed via Dokploy. If you want the full technical breakdown of how the blog system works under the hood, check out my post on [React Server Components vs Qwik](/en/blogs/react-server-components-vs-qwik-real-world-truth).
 
 Want to see a real production Dokploy deployment? See [The Drive Center](/en/projects/the-drive-center) — a SaaS platform deployed the same way.
+
+## Further Reading
+
+- [why I ditched my database for a static site](/blogs/why-i-ditched-database-for-static-site)
+- [self-hosting on Dokploy](/blogs/self-host-nextjs-blog-on-dokploy)

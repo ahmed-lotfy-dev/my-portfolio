@@ -127,3 +127,8 @@ MCP بي standardize ده. اكتب MCP server مرة واحدة للـ internal
 MCP مش buzzword تتجاهله. ده الـ infrastructure layer اللي بتخلي رؤية "AI agent في كل developer's toolbelt" تشتغل فعلاً. بيحول الـ promise بتاع tool-using AI من per-provider hack لـ universal standard.
 
 لو بتبني software بشكل احترافي، اتعلم MCP. اكتب server صغير لحاجة بتستخدمها يومياً. الـ time investment صغير، والـ perspective اللي هتاخدها على تطور الـ AI tooling لا يقدر بثمن.
+
+## اقرأ أيضاً
+
+- [استضافة على Dokploy](/blogs/self-host-nextjs-blog-on-dokploy)
+- [ليه شلت الداتابيز](/blogs/why-i-ditched-database-for-static-site)

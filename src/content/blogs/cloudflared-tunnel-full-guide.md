@@ -1,18 +1,14 @@
 ---
+
 title: "Cloudflared Tunnel Full Guide"
 description: "Complete guide to Cloudflare Tunnel with cloudflared — install, configure, migrate, and backup. Works on Windows and Linux. No open ports needed."
 excerpt: "Everything you need to know about Cloudflare Tunnel: installation, configuration, migration, and backups. No open ports, no exposed IPs."
 date: 2026-01-30
-tags:
-  - cloudflare
-  - cloudflared
-  - networking
-  - security
-  - devops
-  - tutorial
+tags: ["cloudflare", "tunnel", "networking", "security"]
 image: /images/blogs/cloudflare-tunnel.jpg
 share: true
 featured: true
+
 ---
 
 ## What this is
@@ -245,3 +241,9 @@ cloudflared is a client, not a server. DNS points to Cloudflare. Cloudflare talk
 I use this exact approach for deploying client projects — no exposed ports, all traffic through Cloudflare's edge. The blog you're reading right now is served this way.
 
 For the complete production stack including Postgres and app orchestration, check out my [How to Self-Host a Next.js Blog on Dokploy](/en/blogs/self-host-nextjs-blog-on-dokploy) — a full step-by-step guide. Want to see it in production? [The Drive Center](/en/projects/the-drive-center) runs on this exact setup.
+
+## Further Reading
+
+- [the No-Open-Ports manual for backend devs](/blogs/the-no-open-ports-manual-cloudflare-tunnels-for-backend-devs)
+- [self-hosting on Dokploy](/blogs/self-host-nextjs-blog-on-dokploy)
+- [securing PostgreSQL with Cloudflare Tunnel](/blogs/master-postgresql-self-hosting-guide-dokploy-vps)

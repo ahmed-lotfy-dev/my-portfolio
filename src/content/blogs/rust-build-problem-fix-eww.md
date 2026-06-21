@@ -3,8 +3,7 @@ published: false
 title: Rust Build Problem Fix (eww)
 date: 2026-01-25
 updated: 2026-01-25
-tags:
-  - linux-guides
+tags: ["rust", "debugging", "build"]
 share: true
 ---
 published: false
@@ -38,3 +37,8 @@ Now that we are using Rust nightly, we're ready to create ...
 Build issues like this are why I moved to static generation — fewer moving parts, faster builds. The approach is documented in my [Obsidian Workflow post](/en/blogs/building-zero-effort-obsidian-to-portfolio-workflow).
 
 For the full deployment pipeline, see [Dokploy + VPS Self-Hosting Guide](/en/blogs/master-postgresql-self-hosting-guide-dokploy-vps).
+
+## Further Reading
+
+- [build tools hitting a wall](/blogs/frontend-build-tools-hitting-a-wall)
+- [building a zero-effort workflow](/blogs/building-zero-effort-obsidian-to-portfolio-workflow)

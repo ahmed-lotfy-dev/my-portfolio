@@ -1,18 +1,13 @@
 ---
-published: false
+
 title: "🤖 Multi-Agent Workflows Just Got Easier: Gemini CLI Subagents Are Here"
 date: 2026-05-09
-tags:
-  - ai
-  - agents
-  - gemini
-  - fullstack
-  - devops
+tags: ["gemini", "ai-agents", "multi-agent", "cli"]
 image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=1200&q=80"
 share: true
 featured: false
+
 ---
-published: false
 
 Google just dropped something that changes the game for anyone building with AI agents — subagents in Gemini CLI. And honestly, after spending the last year wrestling with monolithic agent scripts, I can say this is the kind of tooling we've been needing.
 
@@ -74,3 +69,9 @@ If you're building agentic systems today, this is the tooling pattern you should
 I've been experimenting with multi-agent workflows for automating portfolio tasks — from content generation to deployment. The blog posts you see here were partly created using these same agent patterns.
 
 If you want to understand the framework powering this site, read about [React Server Components vs Qwik](/en/blogs/react-server-components-vs-qwik-real-world-truth). For a practical AI agent use case, see [How We Cut Incident Response Time by 90%](/en/blogs/ai-agent-auditing-cut-incident-response-90-percent).
+
+## Further Reading
+
+- [what MCP servers are and why they matter](/blogs/what-is-mcp-server-no-dumb-questions)
+- [production-ready AI agent lessons](/blogs/production-ready-ai-agents-lessons-refactoring-monolith)
+- [AI agent auditing](/blogs/ai-agent-auditing-cut-incident-response-90-percent)
