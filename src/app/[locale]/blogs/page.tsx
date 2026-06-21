@@ -20,7 +20,7 @@ export async function generateMetadata({
   const baseUrl = "https://ahmedlotfy.site";
 
   return {
-    title: t("title"),
+    title: `${t("title")} — Ahmed Lotfy Blog`,
     description: t("description"),
     openGraph: {
       title: t("title"),

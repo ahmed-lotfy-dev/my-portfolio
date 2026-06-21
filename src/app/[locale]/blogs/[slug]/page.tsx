@@ -125,7 +125,7 @@ export default async function BlogPostPage({
   if (!post) return notFound();
 
   const isArabic = locale === "ar";
-  const contentHtml = "<p>Test content</p>";
+  const contentHtml = await markdownToHtml(post.content);
   const relatedPosts = getRelatedPosts(slug, 3);
   const baseUrl = "https://ahmedlotfy.site";
 
