@@ -1,5 +1,83 @@
 [
   {
+    "id": "1e78f899-0cf0-426c-a76a-c8e9fe1cd427",
+    "title_en": "Docker Compose for Developers — From Zero to Production",
+    "title_ar": "Docker Compose للمطورين — من الصفر للـ Production",
+    "slug": "docker-compose-from-zero-to-production",
+    "published": true,
+    "categories": [
+      "docker",
+      "docker-compose",
+      "deployment",
+      "devops",
+      "tutorial"
+    ],
+    "reading_time": "12 min read",
+    "source": "obsidian",
+    "featured": true,
+    "views": 0,
+    "created_at": "2026-06-21T00:00:00.000Z"
+  },
+  {
+    "id": "5cfa0e05-5d80-41ac-9ccd-bc2c563f2934",
+    "title_en": "Docker Compose للمطورين — من الصفر للـ Production",
+    "title_ar": "Docker Compose للمطورين — من الصفر للـ Production",
+    "slug": "docker-compose-from-zero-to-production-ar",
+    "published": true,
+    "categories": [
+      "docker",
+      "docker-compose",
+      "deployment",
+      "devops",
+      "tutorial"
+    ],
+    "reading_time": "11 min read",
+    "source": "obsidian",
+    "featured": true,
+    "views": 0,
+    "created_at": "2026-06-21T00:00:00.000Z"
+  },
+  {
+    "id": "fa7a5d73-1705-4aa7-bbfc-3cd088b7e1da",
+    "title_en": "Next.js App Router vs Pages Router — When to Use Each in 2026",
+    "title_ar": "Next.js App Router vs Pages Router — امتى تستخدم كل واحد فيهم سنة 2026",
+    "slug": "nextjs-app-router-vs-pages-router-2026",
+    "published": true,
+    "categories": [
+      "next.js",
+      "react",
+      "app-router",
+      "pages-router",
+      "architecture",
+      "frontend"
+    ],
+    "reading_time": "14 min read",
+    "source": "obsidian",
+    "featured": true,
+    "views": 0,
+    "created_at": "2026-06-21T00:00:00.000Z"
+  },
+  {
+    "id": "a599f226-c950-45ac-a2ff-fce0e2df7a2a",
+    "title_en": "Next.js App Router vs Pages Router — امتى تستخدم كل واحد فيهم سنة 2026",
+    "title_ar": "Next.js App Router vs Pages Router — امتى تستخدم كل واحد فيهم سنة 2026",
+    "slug": "nextjs-app-router-vs-pages-router-2026-ar",
+    "published": true,
+    "categories": [
+      "next.js",
+      "react",
+      "app-router",
+      "pages-router",
+      "architecture",
+      "frontend"
+    ],
+    "reading_time": "13 min read",
+    "source": "obsidian",
+    "featured": true,
+    "views": 0,
+    "created_at": "2026-06-21T00:00:00.000Z"
+  },
+  {
     "id": "f4b1d959-68cd-41e7-b618-3f21f3c9fbf2",
     "title_en": "ازاي تستضيف بلوج Next.js بنفسك على Dokploy (من غير ما تفقد أعصابك)",
     "title_ar": "ازاي تستضيف بلوج Next.js بنفسك على Dokploy (من غير ما تفقد أعصابك)",
