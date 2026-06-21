@@ -109,7 +109,7 @@ export function getBlogTags(): { tag: string; count: number }[] {
 
   return Object.entries(tagMap)
     .map(([tag, count]) => ({ tag, count }))
-    .sort((a, b) => b.count - a.tag);
+    .sort((a, b) => b.count - a.count || a.tag.localeCompare(b.tag));
 }
 
 export function getFeaturedPosts(limit = 3): BlogPost[] {
