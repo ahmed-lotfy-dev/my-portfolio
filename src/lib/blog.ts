@@ -23,14 +23,17 @@ export interface BlogPostWithContent extends BlogPost {
   content: string;
 }
 
-function getMarkdownFiles(dir: string): string[] {
+function getMarkdownFiles(dir: string, recursive = false): string[] {
   if (!fs.existsSync(dir)) return [];
   const entries = fs.readdirSync(dir, { withFileTypes: true });
   let files: string[] = [];
   for (const entry of entries) {
     const fullPath = path.join(dir, entry.name);
     if (entry.isDirectory()) {
-      files = files.concat(getMarkdownFiles(fullPath));
+      if (recursive) {
+        files = files.concat(getMarkdownFiles(fullPath, true));
+      }
+      // Skip subdirectories by default (prevents EN from picking up ar/ folder)
     } else if (entry.name.endsWith(".md")) {
       files.push(fullPath);
     }
