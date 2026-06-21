@@ -1,19 +1,27 @@
 <svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
   <defs>
-    <linearGradient id="gold-premium" x1="0" y1="0" x2="512" y2="512" gradientUnits="userSpaceOnUse">
-      <stop offset="0" stop-color="#BF953F"/> <!-- Gold -->
-      <stop offset="0.25" stop-color="#FCF6BA"/> <!-- Shine -->
-      <stop offset="0.5" stop-color="#B38728"/> <!-- Deep Gold -->
-      <stop offset="0.75" stop-color="#FBF5B7"/> <!-- Bright -->
-      <stop offset="1" stop-color="#AA771C"/> <!-- Metallic -->
+    <linearGradient id="blue-premium" x1="0" y1="0" x2="512" y2="512" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#3b82f6"/>
+      <stop offset="30%" stop-color="#6366f1"/>
+      <stop offset="60%" stop-color="#818cf8"/>
+      <stop offset="100%" stop-color="#2563eb"/>
     </linearGradient>
-    <filter id="premium-glow" x="-20%" y="-20%" width="140%" height="140%">
-      <feGaussianBlur stdDeviation="3" result="blur" />
-      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    <linearGradient id="blue-glow" x1="0" y1="0" x2="512" y2="512" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#93c5fd" stop-opacity="0.4"/>
+      <stop offset="50%" stop-color="#6366f1" stop-opacity="0.1"/>
+      <stop offset="100%" stop-color="#3b82f6" stop-opacity="0"/>
+    </linearGradient>
+    <filter id="blue-shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="#3b82f6" flood-opacity="0.3"/>
     </filter>
   </defs>
-  
-  <g transform="translate(45, 45) scale(6)" filter="url(#premium-glow)">
-    <path d="M1.51 59.70L14.41 9.28L21.59 9.28L34.49 59.70L28.23 59.70L24.40 43.24L11.60 43.24L7.77 59.70L1.51 59.70ZM23.24 38.21L18 14.38L12.73 38.21L23.24 38.21ZM39.30 45.21L45.35 45.21Q45.77 55.86 54.56 55.86L54.56 55.86Q57.73 55.86 59.84 54.28L59.84 54.28Q62.79 52.00 62.79 47.88L62.79 47.88Q62.79 43.45 59.10 40.08L59.10 40.08Q56.57 37.83 50.41 34.28L50.41 34.28Q40.68 28.55 40.68 20.60L40.68 20.60Q40.68 15.57 43.84 12.09L43.84 12.09Q47.67 7.84 54.07 7.84L54.07 7.84Q65.99 7.84 67.61 22.18L67.61 22.18L61.70 22.18Q61.45 18.88 60.33 16.91L60.33 16.91Q58.08 12.94 54.07 12.94L54.07 12.94Q49.92 12.94 47.88 15.75L47.88 15.75Q46.44 17.75 46.44 20.14L46.44 20.14Q46.44 25.84 55.72 31.25L55.72 31.25Q61.45 34.59 64.51 37.65L64.51 37.65Q68.63 41.66 68.63 47.81L68.63 47.81Q68.63 53.61 64.93 57.16L64.93 57.16Q61.00 61.14 54.74 61.14L54.74 61.14Q46.90 61.14 42.54 55.37L42.54 55.37Q39.52 51.36 39.30 45.21L39.30 45.21Z" fill="url(#gold-premium)"/>
-  </g>
+
+  <!-- Subtle glow behind -->
+  <circle cx="256" cy="256" r="200" fill="url(#blue-glow)"/>
+
+  <!-- A letter -->
+  <path d="M145 380L218 140H252L325 380H292L274 302H238L220 380H145ZM268 278L242 162L216 278H268Z" fill="url(#blue-premium)" filter="url(#blue-shadow)"/>
+
+  <!-- S letter -->
+  <path d="M348 310L378 310Q380 362 422 362L422 362Q437 362 447 354L447 354Q461 343 461 323L461 323Q461 302 443 286L443 286Q431 275 402 258L402 258Q355 231 355 193L355 193Q355 169 370 152L370 152Q388 132 418 132L418 132Q474 132 482 200L482 200L454 200Q453 184 448 174L448 174Q437 155 418 155L418 155Q398 155 388 169L388 169Q381 178 381 190L381 190Q381 217 425 243L425 243Q452 259 467 273L467 273Q486 292 486 322L486 322Q486 350 468 367L468 367Q449 386 419 386L419 386Q382 386 361 358L361 358Q349 339 348 310L348 310Z" fill="url(#blue-premium)" filter="url(#blue-shadow)"/>
 </svg>

@@ -51,9 +51,9 @@ export default function Footer() {
       {/* Mesh background using project theme */}
       <div className="absolute inset-0 -z-10">
         <div className="absolute inset-0 bg-linear-to-b from-background via-background to-primary/5" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_60%_40%_at_50%_-20%,rgba(212,175,55,0.06),transparent_70%)]" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_50%_30%_at_0%_50%,rgba(212,175,55,0.04),transparent_60%)]" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_50%_30%_at_100%_50%,rgba(212,175,55,0.03),transparent_60%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_60%_40%_at_50%_-20%,rgba(59,130,246,0.06),transparent_70%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_50%_30%_at_0%_50%,rgba(99,102,241,0.04),transparent_60%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_50%_30%_at_100%_50%,rgba(59,130,246,0.03),transparent_60%)]" />
       </div>
       {/* Top border glow */}
       <div className="absolute top-0 left-0 right-0 h-px bg-linear-to-r from-transparent via-primary/30 to-transparent" />

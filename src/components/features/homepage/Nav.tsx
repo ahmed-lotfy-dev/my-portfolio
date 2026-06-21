@@ -85,6 +85,7 @@ export function Nav({ variant = "floating" }: NavProps) {
 
   const mobileVariant: Variants = {
     hidden: { opacity: 0, y: -20 },
+    mobileHidden: { opacity: 0, y: "-100%" },
     visible: {
       opacity: 1,
       y: 0,
@@ -100,6 +101,7 @@ export function Nav({ variant = "floating" }: NavProps) {
 
   const desktopVariant: Variants = {
     hidden: { opacity: 0, y: -20 },
+    mobileHidden: { opacity: 0, y: "-100%" },
     visible: {
       opacity: 1,
       y: 0,
@@ -130,9 +132,12 @@ export function Nav({ variant = "floating" }: NavProps) {
             : desktopVariant
       }
       initial={mounted ? (isIntegrated ? "visible" : "hidden") : "visible"}
-      animate={mounted ? "visible" : "visible"}
+      animate={
+        !isIntegrated && mobileHidden && typeof window !== "undefined" && window.innerWidth < 768
+          ? "mobileHidden"
+          : "visible"
+      }
       suppressHydrationWarning
-      style={!isIntegrated && mobileHidden && typeof window !== "undefined" && window.innerWidth < 768 ? { y: "-100%" } : undefined}
     >
       <div
         className={cn(
