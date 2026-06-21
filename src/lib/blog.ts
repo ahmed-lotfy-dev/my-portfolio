@@ -76,6 +76,15 @@ export function getBlogPost(slug: string): BlogPostWithContent | null {
   return post;
 }
 
+export function getBlogPostByLocale(slug: string, locale: string): BlogPostWithContent | null {
+  const post = getBlogPost(slug);
+  if (!post) return null;
+  const isAr = slug.endsWith("-ar");
+  if (locale === "ar" && !isAr) return null;
+  if (locale === "en" && isAr) return null;
+  return post;
+}
+
 export function getAllBlogPosts(): BlogPost[] {
   const files = getMarkdownFiles(BLOG_DIR);
   return files

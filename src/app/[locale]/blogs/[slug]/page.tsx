@@ -1,4 +1,4 @@
-import { getBlogPost, getAllBlogPostsByLocale, getRelatedPostsByLocale } from "@/src/lib/blog";
+import { getBlogPostByLocale, getAllBlogPostsByLocale, getRelatedPostsByLocale } from "@/src/lib/blog";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { routing } from "@/src/i18n/routing";
 import { notFound } from "next/navigation";
@@ -54,7 +54,7 @@ export async function generateMetadata({
   params: Promise<{ locale: string; slug: string }>;
 }) {
   const { locale, slug } = await params;
-  const post = getBlogPost(slug);
+  const post = getBlogPostByLocale(slug, locale);
   if (!post) return { title: "Post Not Found" };
 
   const baseUrl = "https://ahmedlotfy.site";
@@ -120,7 +120,7 @@ export default async function BlogPostPage({
   const { locale, slug } = await params;
   setRequestLocale(locale);
   const t = await getTranslations("blog");
-  const post = getBlogPost(slug);
+  const post = getBlogPostByLocale(slug, locale);
 
   if (!post) return notFound();
 
