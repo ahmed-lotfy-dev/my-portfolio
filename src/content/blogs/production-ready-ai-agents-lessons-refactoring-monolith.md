@@ -111,3 +111,6 @@ await emailService.send(intent.to, intent.subject, intent.body);
 Building production AI agents isn't about prompt engineering — it's about **software engineering with LLMs as a component**. The same architectural principles that make good distributed systems (modularity, structured contracts, observability, separation of concerns) apply here with extra emphasis.
 
 Start with sub-agents, enforce structured outputs, RAG dynamically, trace everything, and keep probabilistic LLM calls in the reasoning layer only. Your agent will thank you — and so will your production on-call rotation.
+The lessons here come from real production experience — the same patterns I used to build [The Drive Center](/en/projects/the-drive-center) and the agent workflows described in my [Gemini CLI Subagents post](/en/blogs/gemini-cli-subagents-multi-agent-workflows).
+
+If you're evaluating whether agents are production-ready, my honest take is in [React Server Components vs Qwik](/en/blogs/react-server-components-vs-qwik-real-world-truth) — the same "trust but verify" principle applies.

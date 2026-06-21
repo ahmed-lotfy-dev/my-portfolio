@@ -69,3 +69,6 @@ When a bug spans your frontend, backend, and database, you can deploy subagents 
 Subagents in Gemini CLI aren't just a feature — they're a paradigm shift for how we structure AI-assisted development workflows. The move from monolithic prompts to orchestrated multi-agent systems mirrors the same evolution we saw in software architecture: from monoliths to microservices.
 
 If you're building agentic systems today, this is the tooling pattern you should be paying attention to. I'll be migrating several of my automation scripts to this architecture over the next few weeks — the productivity ceiling with single-agent systems is real, and subagents are the way past it.
+I've been experimenting with multi-agent workflows for automating portfolio tasks — from content generation to deployment. The blog posts you see here were partly created using these same agent patterns.
+
+If you want to understand the framework powering this site, read about [React Server Components vs Qwik](/en/blogs/react-server-components-vs-qwik-real-world-truth). For a practical AI agent use case, see [How We Cut Incident Response Time by 90%](/en/blogs/ai-agent-auditing-cut-incident-response-90-percent).

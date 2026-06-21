@@ -48,3 +48,6 @@ The repeated appearance of CVSS 10.0 is not hype. It is a reminder that powerful
 Frameworks and automation platforms like Next.js and n8n accelerate development, but without strict security practices, fast patching, and minimal privilege setups, they can become high value targets. 
 
 Security is not a one time task. It is an ongoing process, and ignoring that reality is how critical vulnerabilities turn into real incidents.
+The security patterns here apply to any deployment — including the [Cloudflare Tunnels setup](/en/blogs/the-no-open-ports-manual-cloudflare-tunnels-for-backend-devs) I use for this portfolio.
+
+For the full infrastructure picture, see my [Dokploy + VPS self-hosting guide](/en/blogs/master-postgresql-self-hosting-guide-dokploy-vps).

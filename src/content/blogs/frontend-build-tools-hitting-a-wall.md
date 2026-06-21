@@ -89,3 +89,6 @@ npx source-map-explorer .next/static/chunks/*.js
 Frontend build tools have made incredible progress, but the zero-start assumption is becoming a bottleneck for the kind of codebases we're building today. The tools that will win in the next cycle are the ones that treat the build graph as a persistent object — cached, partitioned, incrementally updated — rather than something to reconstruct from scratch on every invocation.
 
 The wall is real, but we've hit walls before (remember the pre-webpack era?), and the ecosystem has always adapted. I'm betting on Rust-based bundlers with persistent caching to lead the way.
+This site is proof that the next generation is already here — static generation, edge deployment, zero-config tooling. The blog you're reading was built with exactly these principles.
+
+If you want to understand the framework decisions behind this, read my take on [React Server Components vs Qwik](/en/blogs/react-server-components-vs-qwik-real-world-truth). Curious about the actual deployment? I wrote a complete [Dokploy + VPS guide](/en/blogs/master-postgresql-self-hosting-guide-dokploy-vps).

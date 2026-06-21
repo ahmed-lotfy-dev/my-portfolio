@@ -87,3 +87,6 @@ This shell pipeline logs every command before execution. It's crude, but it work
 AI agent auditing isn't just for enterprise compliance teams. If you're running *any* automated system that touches production — even a single VPS — you need an audit trail. It turns "I think the agent broke something" into "the agent ran `rm -rf /var/log` at 3:14 AM because the prompt said 'clean up disk space'."
 
 Your future self will thank you when the pager goes off at 2 AM and you can see exactly what happened rather than guessing.
+The agent workflows I built follow the same patterns described in my [Gemini CLI Subagents post](/en/blogs/gemini-cli-subagents-multi-agent-workflows). The key insight: agents work best when they own a complete pipeline end-to-end.
+
+This portfolio itself is a case study — static generation, automated deployment, zero manual intervention. See [The Obsidian Workflow](/en/blogs/building-zero-effort-obsidian-to-portfolio-workflow) for the full picture.

@@ -127,7 +127,7 @@ volumes:
 ### Connect from Local Machine
 
 ```bash
-psql postgresql://my-pg-user:my-pg-password@pg.ahmedlotfy.site:5432/my-pg-db
+psql postgresql://my-pg-user:***@pg.ahmedlotfy.site:5432/my-pg-db
 ```
 
 Expected:
@@ -221,7 +221,7 @@ GRANT ALL ON SEQUENCES TO example_user;
 Use this format **everywhere** (apps, Prisma, migrations):
 
 ```text
-postgresql://user:password@pg.ahmedlotfy.site:5432/db_name?sslmode=require
+postgresql://user:***@pg.ahmedlotfy.site:5432/db_name?sslmode=require
 ```
 
 ---
@@ -232,7 +232,7 @@ Safest way to migrate across Postgres versions:
 
 ```bash
 docker run --rm -i postgres:17-alpine psql \
-"postgresql://user:PASSWORD@vps-ip-or-domain:5432/db_name?sslmode=require" \
+"postgresql://user:***@vps-ip-or-domain:5432/db_name?sslmode=require" \
 < your_local_dump.sql
 ```
 
@@ -279,3 +279,6 @@ If you want, next we can:
     
 
 Just say the word 🚀
+If you're wondering why I moved away from managed databases, read my story on [Why I Ditched My Database for a Static Site](/en/blogs/building-zero-effort-obsidian-to-portfolio-workflow) and how I handle [PostgreSQL running inside Docker](/en/blogs/connecting-to-postgresql-running-inside-docker).
+
+Looking to self-host your own apps? Check out my [Dokploy + VPS setup](/en/projects/the-drive-center) for a real-world example of production deployments.

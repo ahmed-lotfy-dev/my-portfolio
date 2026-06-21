@@ -87,3 +87,6 @@ But the compiler works. The performance is real. And the Python interop means yo
 Mojo 1.0 Beta is the most credible attempt I've seen at bridging the gap between Python's productivity and systems-level performance. For anyone building AI-infused applications — whether you're a data scientist or a fullstack developer — this is the language to watch in 2026.
 
 I'll be experimenting with Mojo for a serverless inference endpoint over the next few weeks. If the 2–3× speedups over equivalent Python hold in production, it could change how we think about serverless AI deployments entirely.
+The same AI-first mindset is what drives my agent workflows — described in detail in my [Gemini CLI Subagents post](/en/blogs/gemini-cli-subagents-multi-agent-workflows) and [Production-Ready AI Agents](/en/blogs/production-ready-ai-agents-lessons-refactoring-monolith).
+
+If you're building AI tooling, the deployment patterns in my [Dokploy + VPS guide](/en/blogs/master-postgresql-self-hosting-guide-dokploy-vps) will help you ship faster.

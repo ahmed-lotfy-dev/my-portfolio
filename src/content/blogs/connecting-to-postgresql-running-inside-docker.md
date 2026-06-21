@@ -57,7 +57,7 @@ After running this command, `psql` will ask for the password interactively.
 
 Postgres also supports a single connection string. This is useful for scripts and tooling.
 
-`psql "postgresql://example_user:example_password@127.0.0.1:5432/my-pg-db"`
+`psql "postgresql://example_user:***@127.0.0.1:5432/my-pg-db"`
 
 This format is common in ORMs, environment variables, and CI pipelines. It encodes the same information as the flags, just in one string.
 
@@ -67,7 +67,7 @@ Some Docker images or production-like setups enforce SSL connections. In that ca
 
 You do that with `sslmode=require`.
 
-`psql "postgresql://example_user:example_password@127.0.0.1:5432/my-pg-db?sslmode=require"`
+`psql "postgresql://example_user:***@127.0.0.1:5432/my-pg-db?sslmode=require"`
 
 If SSL is mandatory and you forget this flag, the error message is usually confusing. Knowing this upfront saves time.
 
@@ -117,3 +117,6 @@ Local machine
 → Postgres inside container
 
 Once that chain is clear, connecting to Postgres in Docker stops feeling mysterious and starts feeling boring. Boring is good in backend work.
+This is the exact setup I use in production — Postgres running in Docker, connected to apps via internal networking. For the full deployment orchestration, see my [Dokploy + VPS guide](/en/blogs/master-postgresql-self-hosting-guide-dokploy-vps).
+
+If you're trying to decide between managed DB and self-hosting, my [Obsidian workflow post](/en/blogs/building-zero-effort-obsidian-to-portfolio-workflow) explains why I chose static over database-driven.

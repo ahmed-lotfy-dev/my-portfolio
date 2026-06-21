@@ -126,3 +126,6 @@ If you're building a content site, blog, or portfolio (like this one) — stick 
 If you're building an interactive web app where performance on slow devices matters — Qwik is worth a serious look. The resumability model is genuinely superior for JS-heavy experiences.
 
 The real winner? Both frameworks are pushing the web forward by reducing the JavaScript tax. Pick the one that matches your app's nature.
+This portfolio is built exactly this way — fully static, server-rendered, zero client JavaScript for content pages. The blog you're reading right now is a perfect example of RSC in action.
+
+If you're evaluating frameworks for your next project, the performance principles here apply regardless of what you build. For a real-world comparison, see how [frontend build tools are hitting a wall](/en/blogs/frontend-build-tools-hitting-a-wall) and what comes next.

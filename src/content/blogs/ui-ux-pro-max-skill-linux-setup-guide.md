@@ -127,3 +127,6 @@ Useful for quick reference without full code generation:
 - **Typography Pairing**: `python3 .gemini/skills/ui-ux-pro-max/scripts/search.py "elegant serif" --domain typography`
 
 - **Stack Guides**: `python3 .gemini/skills/ui-ux-pro-max/scripts/search.py "responsive layout" --stack html-tailwind`
+The developer experience principles here extend to how I build and deploy everything — from this portfolio to [The Drive Center](/en/projects/the-drive-center). The same "zero friction" philosophy applies.
+
+For the deployment automation that makes this possible, see my [Dokploy + VPS guide](/en/blogs/master-postgresql-self-hosting-guide-dokploy-vps).

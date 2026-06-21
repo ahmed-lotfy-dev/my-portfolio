@@ -31,3 +31,6 @@ Furthermore, this perspective underscores the importance of interdisciplinary ap
 
 ## Conclusion
 The insights gleaned from trending Reddit posts about AI agents offer a compelling look into the current state and future directions of AI development. The debate over autonomy versus context engineering serves as a reminder of the complexities and challenges inherent in creating truly autonomous AI systems. As the field continues to evolve, it is crucial for developers, researchers, and policymakers to engage with these questions, ensuring that the development of AI agents is guided by a deep understanding of their potential, limitations, and implications for society. By doing so, we can work towards a future where AI agents are not just sophisticated tools but potentially transformative technologies that enhance human life while respecting ethical boundaries and societal values.
+The trends I track here directly inform my own agent workflows — documented in my [Gemini CLI Subagents post](/en/blogs/gemini-cli-subagents-multi-agent-workflows) and [Production-Ready AI Agents lessons](/en/blogs/production-ready-ai-agents-lessons-refactoring-monolith).
+
+Want to see these patterns applied to a real product? Check out [The Drive Center](/en/projects/the-drive-center).

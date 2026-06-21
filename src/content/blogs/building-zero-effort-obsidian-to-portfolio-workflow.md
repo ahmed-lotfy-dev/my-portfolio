@@ -112,3 +112,6 @@ The final pipeline is now invisible and bulletproof:
 3. **Automate**: A Webhook (or CLI command) pings the "Sync Station," refreshing my PostgreSQL cache in seconds.
 
 **The Verdict**: A blog shouldn't just be a collection of files—it should be a **resilient content engine**. By focusing on data normalization, caching, and curation, I’ve built a portfolio that is fast, scalable, and professional. 🚀
+This portfolio runs exactly as described here — static files, no database, deployed via Dokploy. If you want the full technical breakdown of how the blog system works under the hood, check out my post on [React Server Components vs Qwik](/en/blogs/react-server-components-vs-qwik-real-world-truth).
+
+Want to see a real production Dokploy deployment? See [The Drive Center](/en/projects/the-drive-center) — a SaaS platform deployed the same way.

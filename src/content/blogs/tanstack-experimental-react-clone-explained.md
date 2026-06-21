@@ -72,3 +72,6 @@ But the pattern is worth paying attention to. We're entering an era where:
 Tanner's React clone isn't a replacement for React. It's a harbinger. When a framework's public API can be reimplemented in a day by an AI and run 2–3× faster, it tells us that React's value has shifted from its implementation to its ecosystem, conventions, and developer experience.
 
 The next time someone tells you a piece of infrastructure is "too complex to rebuild," remember: someone just rebuilt React in a day.
+The performance principles TanStack uses are the same ones I applied when building this portfolio — minimal JS, server rendering, edge deployment. See how [React Server Components compare to Qwik](/en/blogs/react-server-components-vs-qwik-real-world-truth) in practice.
+
+Curious about the actual build tooling? My post on [Frontend Build Tools Hitting a Wall](/en/blogs/frontend-build-tools-hitting-a-wall) covers what comes next.

@@ -79,6 +79,12 @@ export function getAllBlogPosts(): BlogPost[] {
     .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 }
 
+export function getBlogPostsBySlugs(slugs: string[]): BlogPost[] {
+  return slugs
+    .map((slug) => getBlogPost(slug))
+    .filter((p): p is BlogPostWithContent => p !== null);
+}
+
 export function getBlogPostsPaginated(
   page = 1,
   pageSize = 6

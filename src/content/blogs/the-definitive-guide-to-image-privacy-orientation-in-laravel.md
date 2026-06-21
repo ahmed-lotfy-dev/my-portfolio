@@ -147,3 +147,6 @@ strip: true // <--- Absolute Privacy & Orientation Safety
 Security isn't always about firewalls and salts; sometimes it's about the invisible data hiding inside a beautiful portrait. By implementing a physical-first rotation followed by an absolute metadata wipe, you are protecting your users from real-world physical risks while ensuring a flawless visual experience.
 
 **Stay Secure. Build Robust.**
+Same patterns I use for image handling in my own portfolio — the full workflow is documented in [Building a Zero-Effort Obsidian Workflow](/en/blogs/building-zero-effort-obsidian-to-portfolio-workflow).
+
+For the deployment side — how images are served through edge infrastructure — see my [Cloudflare Tunnels guide](/en/blogs/the-no-open-ports-manual-cloudflare-tunnels-for-backend-devs).

@@ -1,4 +1,5 @@
 import projectsData from "@/src/data/projects.json";
+import { getBlogPostsBySlugs } from "@/src/lib/blog";
 import { notFound } from "next/navigation";
 import { getLocale, getTranslations } from "next-intl/server";
 import Link from "next/link";
@@ -62,6 +63,34 @@ export default async function ProjectDetailsPage({ params }: { params: Promise<{
 
   const title = locale === "ar" ? project.title_ar : project.title_en;
   const desc = locale === "ar" ? project.desc_ar : project.desc_en;
+
+  // Get related blog posts based on project tech stack
+  const techToPosts: Record<string, string[]> = {
+    "Next.js": ["frontend-build-tools-hitting-a-wall", "react-server-components-vs-qwik-real-world-truth", "tanstack-experimental-react-clone-explained", "cvss-10-0-is-not-a-coincidence-from-next-js-to-n8n"],
+    "React": ["react-server-components-vs-qwik-real-world-truth", "tanstack-experimental-react-clone-explained", "frontend-build-tools-hitting-a-wall"],
+    "TypeScript": ["react-server-components-vs-qwik-real-world-truth", "tanstack-experimental-react-clone-explained", "production-ready-ai-agents-lessons-refactoring-monolith"],
+    "PostgreSQL": ["master-postgresql-self-hosting-guide-dokploy-vps", "connecting-to-postgresql-running-inside-docker"],
+    "Docker": ["master-postgresql-self-hosting-guide-dokploy-vps", "connecting-to-postgresql-running-inside-docker", "the-no-open-ports-manual-cloudflare-tunnels-for-backend-devs", "cloudflared-tunnel-full-guide"],
+    "Cloudflare": ["the-no-open-ports-manual-cloudflare-tunnels-for-backend-devs", "cloudflared-tunnel-full-guide"],
+    "Drizzle": ["master-postgresql-self-hosting-guide-dokploy-vps", "connecting-to-postgresql-running-inside-docker"],
+    "Redis": ["react-server-components-vs-qwik-real-world-truth"],
+    "Bun": ["react-server-components-vs-qwik-real-world-truth", "gemini-cli-subagents-multi-agent-workflows"],
+    "Tailwind": ["frontend-build-tools-hitting-a-wall", "react-server-components-vs-qwik-real-world-truth"],
+    "n8n": ["cvss-10-0-is-not-a-coincidence-from-next-js-to-n8n", "ai-agent-auditing-cut-incident-response-90-percent"],
+    "Laravel": ["definitive-guide-image-privacy-orientation-laravel", "the-definitive-guide-to-image-privacy-orientation-in-laravel"],
+    "Mobile": ["ui-ux-pro-max-skill-linux-setup-guide"],
+    "AI": ["ai-agent-auditing-cut-incident-response-90-percent", "gemini-cli-subagents-multi-agent-workflows", "production-ready-ai-agents-lessons-refactoring-monolith", "what-is-mcp-server-no-dumb-questions"],
+    "MCP": ["what-is-mcp-server-no-dumb-questions", "gemini-cli-subagents-multi-agent-workflows"],
+  };
+  const relatedPostSlugs: string[] = [];
+  for (const cat of (project.categories || [])) {
+    if (techToPosts[cat]) {
+      for (const s of techToPosts[cat]) {
+        if (!relatedPostSlugs.includes(s)) relatedPostSlugs.push(s);
+      }
+    }
+  }
+  const relatedPosts = getBlogPostsBySlugs(relatedPostSlugs.slice(0, 4));
 
   return (
     <article className="min-h-screen pb-20 bg-background text-foreground selection:bg-primary/20">
@@ -151,6 +180,30 @@ export default async function ProjectDetailsPage({ params }: { params: Promise<{
           {locale === "ar" ? "شوف كل المشاريع" : "View All Projects"}
         </Link>
       </div>
+
+      {relatedPosts.length > 0 && (
+        <div className="mt-16 pt-12 border-t border-border/20">
+          <h2 className="text-xl font-bold text-center mb-8">
+            {locale === "ar" ? "مقالات ذات صلة" : "Related Articles"}
+          </h2>
+          <div className="grid gap-4 sm:grid-cols-2 max-w-3xl mx-auto px-4">
+            {relatedPosts.map((post) => (
+              <Link
+                key={post.slug}
+                href={`/${locale}/blogs/${post.slug}`}
+                className="group flex flex-col p-4 rounded-xl border border-border/50 bg-card/30 hover:border-primary/30 transition-all"
+              >
+                <h3 className="text-sm font-semibold leading-snug group-hover:text-primary transition-colors line-clamp-2">
+                  {post.title}
+                </h3>
+                <p className="mt-2 text-xs text-muted-foreground line-clamp-2">
+                  {post.excerpt.slice(0, 80)}
+                </p>
+              </Link>
+            ))}
+          </div>
+        </div>
+      )}
     </article>
   );
 }

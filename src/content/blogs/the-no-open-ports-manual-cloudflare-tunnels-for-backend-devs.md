@@ -335,3 +335,6 @@ Otherwise reuse the same tunnel.
 ## Mental model
 
 cloudflared is a client, not a server. DNS points to Cloudflare. Cloudflare talks to your tunnel. Your machine never opens a port. That is why backups matter more than the machine itself.
+This portfolio is deployed behind Cloudflare Tunnels — no open ports on the server, everything proxied through Zero Trust. It's the same setup I describe in this post.
+
+For the full production stack including Postgres and Dokploy orchestration, see my [Self-Hosting Guide (Dokploy + VPS)](/en/blogs/master-postgresql-self-hosting-guide-dokploy-vps). If you're interested in how I handle this at scale, check out [The Drive Center](/en/projects/the-drive-center).
