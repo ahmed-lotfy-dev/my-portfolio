@@ -251,3 +251,4 @@ docker run --rm -i postgres:17-alpine psql \
 - [الاتصال بـ PostgreSQL شغال جوه Docker](/blogs/connecting-to-postgresql-running-inside-docker)
 - [استضافة بلوج Next.js على Dokploy](/blogs/self-host-nextjs-blog-on-dokploy)
 - [تأمين الاتصالات بـ Cloudflare Tunnel](/blogs/cloudflared-tunnel-full-guide)
+- [Docker Compose من الصفر للإنتاج](/blogs/ar/docker-compose-from-zero-to-production)

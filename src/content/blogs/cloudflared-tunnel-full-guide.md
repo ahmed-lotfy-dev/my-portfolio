@@ -247,3 +247,4 @@ For the complete production stack including Postgres and app orchestration, chec
 - [the No-Open-Ports manual for backend devs](/blogs/the-no-open-ports-manual-cloudflare-tunnels-for-backend-devs)
 - [self-hosting on Dokploy](/blogs/self-host-nextjs-blog-on-dokploy)
 - [securing PostgreSQL with Cloudflare Tunnel](/blogs/master-postgresql-self-hosting-guide-dokploy-vps)
+- [Docker Compose from zero to production](/blogs/docker-compose-from-zero-to-production)

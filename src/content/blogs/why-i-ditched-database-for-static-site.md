@@ -230,3 +230,4 @@ The code for this entire site is on [GitHub](https://github.com/ahmed-lotfy-dev/
 - [self-hosting a Next.js blog on Dokploy](/blogs/self-host-nextjs-blog-on-dokploy)
 - [self-hosting PostgreSQL](/blogs/master-postgresql-self-hosting-guide-dokploy-vps)
 - [React Server Components vs Qwik](/blogs/react-server-components-vs-qwik-real-world-truth)
+- [Next.js App Router vs Pages Router in 2026](/blogs/nextjs-app-router-vs-pages-router-2026)

@@ -147,3 +147,4 @@ export const Counter = component$(() => {
 ## اقرأ أيضاً
 
 - [ليه شلت الداتابيز لموقع ستاتيك](/blogs/why-i-ditched-database-for-static-site)
+- [Next.js App Router vs Pages Router في 2026](/blogs/ar/nextjs-app-router-vs-pages-router-2026)

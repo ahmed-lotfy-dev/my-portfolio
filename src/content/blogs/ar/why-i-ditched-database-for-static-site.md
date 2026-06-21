@@ -233,3 +233,4 @@ await resend.emails.send({
 
 - [استضافة بلوج Next.js على Dokploy](/blogs/self-host-nextjs-blog-on-dokploy)
 - [React Server Components vs Qwik](/blogs/react-server-components-vs-qwik-real-world-truth)
+- [Next.js App Router vs Pages Router في 2026](/blogs/ar/nextjs-app-router-vs-pages-router-2026)

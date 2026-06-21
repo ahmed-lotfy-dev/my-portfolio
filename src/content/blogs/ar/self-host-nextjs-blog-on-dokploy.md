@@ -291,3 +291,4 @@ docker compose build --no-cache
 - [تأمين الـ deployment بـ Cloudflare Tunnel](/blogs/cloudflared-tunnel-full-guide)
 - [الاتصال بـ PostgreSQL جوه Docker](/blogs/connecting-to-postgresql-running-inside-docker)
 - [ليه شلت الداتابيز من موقعي](/blogs/why-i-ditched-database-for-static-site)
+- [Docker Compose من الصفر للإنتاج](/blogs/ar/docker-compose-from-zero-to-production)

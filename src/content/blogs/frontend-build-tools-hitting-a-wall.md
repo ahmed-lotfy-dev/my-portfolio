@@ -94,3 +94,4 @@ If you want to understand the framework decisions behind this, read my take on [
 - [React Server Components vs Qwik](/blogs/react-server-components-vs-qwik-real-world-truth)
 - [TanStack's experimental React clone](/blogs/tanstack-experimental-react-clone-explained)
 - [Mojo 1.0 for AI programming](/blogs/mojo-1-0-beta-python-ai-programming-language)
+- [Next.js App Router vs Pages Router in 2026](/blogs/nextjs-app-router-vs-pages-router-2026)

@@ -290,3 +290,4 @@ Looking to self-host your own apps? Check out my [Dokploy + VPS setup](/en/proje
 - [self-hosting a Next.js blog on Dokploy](/blogs/self-host-nextjs-blog-on-dokploy)
 - [securing connections with Cloudflare Tunnel](/blogs/cloudflared-tunnel-full-guide)
 - [why I eventually ditched my database](/blogs/why-i-ditched-database-for-static-site)
+- [Docker Compose from zero to production](/blogs/docker-compose-from-zero-to-production)

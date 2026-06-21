@@ -133,3 +133,4 @@ If you're evaluating frameworks for your next project, the performance principle
 - [frontend build tools hitting a wall](/blogs/frontend-build-tools-hitting-a-wall)
 - [TanStack's experimental React clone](/blogs/tanstack-experimental-react-clone-explained)
 - [why I ditched my database for a static site](/blogs/why-i-ditched-database-for-static-site)
+- [Next.js App Router vs Pages Router in 2026](/blogs/nextjs-app-router-vs-pages-router-2026)
