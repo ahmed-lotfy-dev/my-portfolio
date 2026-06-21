@@ -14,7 +14,7 @@ export async function GET() {
     <description>Technical articles on full-stack development, AI agents, and software architecture by Ahmed Lotfy.</description>
     <language>en</language>
     <lastBuildDate>${new Date().toUTCString()}</lastBuildDate>
-    <atom:link href="${baseUrl}/feed.xml" rel="self" type="application/rss+xml"/>
+    <atom:link href="${baseUrl}/en/feed.xml" rel="self" type="application/rss+xml"/>
     ${posts
       .map(
         (post) => `
