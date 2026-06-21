@@ -7,7 +7,7 @@ tags:
   - llm
   - developer-tools
   - fullstack
-image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=1200&q=80"
+image: /images/blogs/mcp-server.jpg
 share: true
 featured: false
 ---
@@ -110,6 +110,6 @@ Here's my rule of thumb: if it has an API and you've ever wished your AI coding 
 MCP isn't another buzzword to ignore. It's the infrastructure layer that makes the "AI agent in every developer's toolbelt" vision actually work. It turns the promise of tool-using AI from a per-provider hack into a universal standard.
 
 If you build software for a living, learn MCP. Write a small server for something you use daily. The time investment is tiny, and the perspective you gain on how AI tooling is evolving is invaluable.
-MCP servers are what power the agent workflows I describe in my [Gemini CLI Subagents post](/en/blogs/gemini-cli-subagents-multi-agent-workflows). If you want to understand the infrastructure behind it, start here.
+MCP servers are what power the agent workflows I describe in my Gemini CLI Subagents post. If you want to understand the infrastructure behind it, start here.
 
 For the full production context — how these agents deploy and orchestrate real infrastructure — see my [Dokploy + VPS guide](/en/blogs/master-postgresql-self-hosting-guide-dokploy-vps).

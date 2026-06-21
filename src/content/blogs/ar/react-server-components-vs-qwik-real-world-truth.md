@@ -9,7 +9,7 @@ tags:
   - frontend
   - web-development
   - javascript
-image: https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=1200&q=80
+image: /images/blogs/react-qwik.jpg
 share: true
 featured: false
 ---

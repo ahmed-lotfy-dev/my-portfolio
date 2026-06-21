@@ -8,7 +8,7 @@ tags:
   - llm
   - developer-tools
   - fullstack
-image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=1200&q=80"
+image: /images/blogs/mcp-server.jpg
 share: true
 featured: false
 ---
