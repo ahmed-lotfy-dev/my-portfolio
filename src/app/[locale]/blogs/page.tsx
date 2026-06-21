@@ -28,7 +28,7 @@ export async function generateMetadata({
       url: `${baseUrl}/${locale}/blogs`,
       siteName: "Ahmed Lotfy Portfolio",
       locale: locale === "ar" ? "ar_EG" : "en_US",
-      type: "blog",
+      type: "website",
       images: [
         {
           url: `${baseUrl}/og-image.png`,
