@@ -12,7 +12,7 @@ import remarkRehype from "remark-rehype";
 import rehypeStringify from "rehype-stringify";
 import rehypeSlug from "rehype-slug";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
-import rehypeSanitize from "rehype-sanitize";
+
 
 function rehypeStripEventHandlers() {
   return (tree: any) => {
@@ -33,7 +33,7 @@ function rehypeStripEventHandlers() {
 }
 import StructuredData from "@/src/components/seo/StructuredData";
 import { BreadcrumbSchema } from "@/src/components/seo/BreadcrumbSchema";
-import { BackButton } from "@/src/components/ui/BackButton";
+
 
 export async function generateStaticParams() {
   const posts = getAllBlogPosts();
@@ -125,7 +125,7 @@ export default async function BlogPostPage({
   if (!post) return notFound();
 
   const isArabic = locale === "ar";
-  const contentHtml = await markdownToHtml(post.content);
+  const contentHtml = "<p>Test content</p>";
   const relatedPosts = getRelatedPosts(slug, 3);
   const baseUrl = "https://ahmedlotfy.site";
 
@@ -156,11 +156,13 @@ export default async function BlogPostPage({
       />
 
       <div className="pt-24 md:pt-32">
-        <BackButton
+        <Link
           href={`/${locale}/blogs`}
-          label={isArabic ? "العودة للمدونة" : "Back to Blog"}
-          locale={locale}
-        />
+          className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors"
+        >
+          <ArrowLeft className={`h-4 w-4 ${isArabic ? "" : "rotate-180"}`} />
+          {isArabic ? "العودة للمدونة" : "Back to Blog"}
+        </Link>
       </div>
 
       <article className="mx-auto max-w-4xl px-4 md:px-6">
@@ -204,13 +206,6 @@ export default async function BlogPostPage({
           {post.share && (
             <div className="mt-6">
               <button
-                onClick={() => {
-                  if (typeof navigator !== "undefined") {
-                    navigator.clipboard.writeText(
-                      `${baseUrl}/${locale}/blogs/${slug}`
-                    );
-                  }
-                }}
                 className="inline-flex items-center gap-1.5 rounded-full border border-border/50 bg-card/30 px-4 py-2 text-xs font-medium text-muted-foreground hover:border-primary/30 hover:text-primary transition-colors"
               >
                 <Share2 className="h-3.5 w-3.5" />
@@ -237,23 +232,7 @@ export default async function BlogPostPage({
 
         {/* Content */}
         <div
-          className="prose prose-lg dark:prose-invert max-w-none
-            prose-headings:font-bold prose-headings:tracking-tight
-            prose-h1:text-3xl prose-h1:mt-10 prose-h1:mb-4
-            prose-h2:text-2xl prose-h2:mt-8 prose-h2:mb-3
-            prose-h3:text-xl prose-h3:mt-6 prose-h3:mb-2
-            prose-p:leading-relaxed prose-p:mb-5
-            prose-a:text-primary prose-a:no-underline hover:prose-a:underline
-            prose-code:rounded-md prose-code:bg-secondary/30 prose-code:px-1.5 prose-code:py-0.5 prose-code:text-sm prose-code:font-mono
-            prose-pre:rounded-xl prose-pre:border prose-pre:border-border/30 prose-pre:bg-secondary/10 prose-pre:overflow-x-auto
-            prose-img:rounded-xl prose-img:border prose-img:border-border/30
-            prose-blockquote:border-primary/30 prose-blockquote:text-muted-foreground prose-blockquote:italic
-            prose-strong:text-foreground
-            prose-li:marker:text-primary
-            prose-table:border-collapse
-            prose-th:border prose-th:border-border/30 prose-th:bg-secondary/20 prose-th:px-4 prose-th:py-2
-            prose-td:border prose-td:border-border/30 prose-td:px-4 prose-td:py-2
-            prose-hr:border-border/30"
+          className="prose prose-lg dark:prose-invert max-w-none"
           dangerouslySetInnerHTML={{ __html: contentHtml }}
         />
 

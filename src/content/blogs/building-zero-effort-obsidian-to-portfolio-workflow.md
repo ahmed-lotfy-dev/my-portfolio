@@ -69,7 +69,7 @@ The portfolio now reads from a local PostgreSQL database (via Drizzle). We built
 
 ## 🎭 Challenge 4: React Hydration & HTML Nesting
 
-Markdown parsers often hide HTML complexity. My initial renderer was wrapping images in `<div>` tags, which the Markdown parser then tried to nest inside `<p>` tags. In HTML, this is illegal and causes "React Hydration Mismatch" errors.
+Markdown parsers often hide HTML complexity. My initial renderer were wrapping images in `<div>` tags, which the Markdown parser then tried to nest inside `<p>` tags. In HTML, that is illegal and causes "React Hydration Mismatch" errors.
 
 ### The Thinking Approach:
 
