@@ -150,7 +150,7 @@ export default async function LocaleLayout({ children, params }: Props) {
                     uiHost={posthogUiHost}
                   >
                     <MaintenanceGate>
-                      <div className="relative bg-background overflow-x-hidden min-h-screen">
+                      <div className="relative bg-background overflow-x-hidden min-h-screen pb-20 md:pb-0">
                         <Nav />
                         {children}
                         <Footer />
@@ -159,7 +159,7 @@ export default async function LocaleLayout({ children, params }: Props) {
                   </PostHogClient>
                 ) : (
                   <MaintenanceGate>
-                    <div className="relative bg-background overflow-x-hidden min-h-screen">
+                    <div className="relative bg-background overflow-x-hidden min-h-screen pb-20 md:pb-0">
                       <Nav />
                       {children}
                       <Footer />

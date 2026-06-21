@@ -17,9 +17,9 @@ const Experience = nextDynamic(() => import("@/src/components/features/homepage/
 const Contact = nextDynamic(() => import("@/src/components/features/homepage/Contact"), {
   loading: () => <div className="min-h-[300px]" />,
 });
-const Testimonials = nextDynamic(() => import("@/src/components/features/homepage/Testimonials"), {
-  loading: () => <div className="min-h-[300px]" />,
-});
+// const Testimonials = nextDynamic(() => import("@/src/components/features/homepage/Testimonials"), {
+//   loading: () => <div className="min-h-[300px]" />,
+// });
 
 import Container from "@/src/components/ui/Container";
 import { getTranslations, setRequestLocale } from "next-intl/server";
@@ -192,7 +192,6 @@ export default async function HomePage({
             <div className="snap-section">
               <HomeSectionBand variant="deep">
                 <About />
-                <Testimonials />
               </HomeSectionBand>
             </div>
           </ScrollReveal>
