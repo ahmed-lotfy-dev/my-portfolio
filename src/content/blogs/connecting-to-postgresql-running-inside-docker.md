@@ -119,4 +119,4 @@ Local machine
 Once that chain is clear, connecting to Postgres in Docker stops feeling mysterious and starts feeling boring. Boring is good in backend work.
 This is the exact setup I use in production — Postgres running in Docker, connected to apps via internal networking. For the full deployment orchestration, see my [Dokploy + VPS guide](/en/blogs/master-postgresql-self-hosting-guide-dokploy-vps).
 
-If you're trying to decide between managed DB and self-hosting, my [Obsidian workflow post](/en/blogs/building-zero-effort-obsidian-to-portfolio-workflow) explains why I chose static over database-driven.
+If you're trying to decide between managed DB and self-hosting, my [Why I Ditched My Database for a Static Site](/en/blogs/why-i-ditched-database-for-static-site) post explains when removing the database makes sense — and when it doesn't.

@@ -238,4 +238,4 @@ Otherwise reuse the same tunnel.
 cloudflared is a client, not a server. DNS points to Cloudflare. Cloudflare talks to your tunnel. Your machine never opens a port. That is why backups matter more than the machine itself.
 I use this exact approach for deploying client projects — no exposed ports, all traffic through Cloudflare's edge. The blog you're reading right now is served this way.
 
-For the complete production stack including Postgres and app orchestration, check out my [Dokploy + VPS self-hosting guide](/en/blogs/master-postgresql-self-hosting-guide-dokploy-vps). Want to see it in production? [The Drive Center](/en/projects/the-drive-center) runs on this exact setup.
+For the complete production stack including Postgres and app orchestration, check out my [How to Self-Host a Next.js Blog on Dokploy](/en/blogs/self-host-nextjs-blog-on-dokploy) — a full step-by-step guide. Want to see it in production? [The Drive Center](/en/projects/the-drive-center) runs on this exact setup.
