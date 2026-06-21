@@ -1,4 +1,5 @@
 ---
+published: false
 title: "🏗️ Frontend Build Tools Are Hitting a Wall — Here's What Comes Next"
 date: 2026-05-09
 tags:
@@ -12,6 +13,7 @@ image: "https://images.unsplash.com/photo-1517134191118-9d595e4c8c2b?w=1200&q=80
 share: true
 featured: false
 ---
+published: false
 
 ## The Speed Obsession
 

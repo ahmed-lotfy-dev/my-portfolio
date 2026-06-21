@@ -1,4 +1,5 @@
 ---
+published: false
 title: "⚛️ Tanner Linsley Built a React Clone in One Day — Here's Why It Matters"
 date: 2026-05-09
 tags:
@@ -11,6 +12,7 @@ image: "https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=1200&q=80
 share: true
 featured: false
 ---
+published: false
 
 Last week, Tanner Linsley — creator of TanStack Query, Table, Router, and half the libraries keeping modern React apps alive — did something that turned heads in the frontend community. He spent a day prompting an AI agent to regenerate React's public API as a ~9KB runtime, quietly shipped it on his blog and tanstack.com, and just *moved on*.
 

@@ -1,4 +1,5 @@
 ---
+published: false
 title: "🤖 Production-Ready AI Agents: 5 Hard Lessons from Refactoring a Monolith"
 date: 2026-05-09
 tags:
@@ -11,6 +12,7 @@ image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=1200&q=80
 share: true
 featured: false
 ---
+published: false
 
 ## The Monolith Trap
 

@@ -1,4 +1,5 @@
 ---
+published: false
 title: "🤖 Multi-Agent Workflows Just Got Easier: Gemini CLI Subagents Are Here"
 date: 2026-05-09
 tags:
@@ -11,6 +12,7 @@ image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=1200&q=80
 share: true
 featured: false
 ---
+published: false
 
 Google just dropped something that changes the game for anyone building with AI agents — subagents in Gemini CLI. And honestly, after spending the last year wrestling with monolithic agent scripts, I can say this is the kind of tooling we've been needing.
 

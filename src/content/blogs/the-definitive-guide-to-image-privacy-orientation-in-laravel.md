@@ -1,4 +1,5 @@
 ---
+published: false
 title: "🎯 The Definitive Guide to Image Privacy & Orientation in Laravel"
 date: 2026-01-24
 tags:
@@ -16,6 +17,7 @@ share: true
 featured: true
 description: ""
 ---
+published: false
 
 ![laravel image upload](/images/blogs/laravel-image-upload.jpg)
 

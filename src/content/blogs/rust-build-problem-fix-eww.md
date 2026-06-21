@@ -1,4 +1,5 @@
 ---
+published: false
 title: Rust Build Problem Fix (eww)
 date: 2026-01-25
 updated: 2026-01-25
@@ -6,6 +7,7 @@ tags:
   - linux-guides
 share: true
 ---
+published: false
 # Installing Rust nightly
 
 With rustup, the tool we installed in [Chapter 1](https://www.oreilly.com/library/view/rust-programming-by/9781788390637/96bd59ca-5e18-4dff-9cc1-42258b4fc522.xhtml), *Basics of Rust*, it is very easy to install nightly:

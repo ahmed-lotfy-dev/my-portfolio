@@ -1,4 +1,4 @@
-import { getBlogPost, getAllBlogPosts, getRelatedPosts } from "@/src/lib/blog";
+import { getBlogPost, getAllBlogPostsByLocale, getRelatedPostsByLocale } from "@/src/lib/blog";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { routing } from "@/src/i18n/routing";
 import { notFound } from "next/navigation";
@@ -36,10 +36,10 @@ import { BreadcrumbSchema } from "@/src/components/seo/BreadcrumbSchema";
 
 
 export async function generateStaticParams() {
-  const posts = getAllBlogPosts();
   const params: { locale: string; slug: string }[] = [];
 
   for (const locale of routing.locales) {
+    const posts = getAllBlogPostsByLocale(locale);
     for (const post of posts) {
       params.push({ locale, slug: post.slug });
     }
@@ -126,7 +126,7 @@ export default async function BlogPostPage({
 
   const isArabic = locale === "ar";
   const contentHtml = await markdownToHtml(post.content);
-  const relatedPosts = getRelatedPosts(slug, 3);
+  const relatedPosts = getRelatedPostsByLocale(slug, locale, 3);
   const baseUrl = "https://ahmedlotfy.site";
 
   return (

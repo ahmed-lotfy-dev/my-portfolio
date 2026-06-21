@@ -1,6 +1,6 @@
 [
   {
-    "id": "03b9873e-7c33-4796-8df2-a4f5f2875305",
+    "id": "2e1fb937-f74e-4a7a-8191-66083af08237",
     "title_en": "ازاي تستضيف بلوج Next.js بنفسك على Dokploy (من غير ما تفقد أعصابك)",
     "title_ar": "ازاي تستضيف بلوج Next.js بنفسك على Dokploy (من غير ما تفقد أعصابك)",
     "slug": "self-host-nextjs-blog-on-dokploy-ar",
@@ -20,7 +20,7 @@
     "created_at": "2026-06-20T00:00:00.000Z"
   },
   {
-    "id": "038fc099-0980-4af3-b8cf-1340b24868d0",
+    "id": "6c5a6a6c-ff69-4519-948d-79aa0dc18395",
     "title_en": "How to Self-Host a Next.js Blog on Dokploy (Without Losing Your Mind)",
     "title_ar": "How to Self-Host a Next.js Blog on Dokploy (Without Losing Your Mind)",
     "slug": "self-host-nextjs-blog-on-dokploy",
@@ -40,7 +40,7 @@
     "created_at": "2026-06-20T00:00:00.000Z"
   },
   {
-    "id": "b604ff45-1c21-4b1d-abf9-13cf2a7d4f06",
+    "id": "c1b6080f-089e-48e8-8fe8-03fa933deb5b",
     "title_en": "ليه شلت الداتابيز من موقعي (وليه انت كمان ممكن تعمل كده)",
     "title_ar": "ليه شلت الداتابيز من موقعي (وليه انت كمان ممكن تعمل كده)",
     "slug": "why-i-ditched-database-for-static-site-ar",
@@ -60,7 +60,7 @@
     "created_at": "2026-06-20T00:00:00.000Z"
   },
   {
-    "id": "284f7bb6-ffdb-4c1b-a5b7-e8ec11481b4a",
+    "id": "368a4ca9-22c8-4826-8506-0d20e48590c3",
     "title_en": "Why I Ditched My Database for a Static Site (And Why You Might Want To)",
     "title_ar": "Why I Ditched My Database for a Static Site (And Why You Might Want To)",
     "slug": "why-i-ditched-database-for-static-site",
@@ -80,105 +80,7 @@
     "created_at": "2026-06-20T00:00:00.000Z"
   },
   {
-    "id": "c257f8f4-0962-4f52-9e16-2c1ea214fbff",
-    "title_en": "🔥 Mojo 1.0 Beta Is Here — Python for AI Just Got a Serious Upgrade",
-    "title_ar": "🔥 Mojo 1.0 Beta Is Here — Python for AI Just Got a Serious Upgrade",
-    "slug": "mojo-1-0-beta-python-ai-programming-language",
-    "published": true,
-    "categories": [
-      "mojo",
-      "programming-languages",
-      "ai",
-      "python",
-      "machine-learning",
-      "performance"
-    ],
-    "reading_time": "4 min read",
-    "source": "obsidian",
-    "featured": false,
-    "views": 0,
-    "created_at": "2026-05-09T00:00:00.000Z"
-  },
-  {
-    "id": "dd0aaf38-bd6e-4d25-af93-cb9283ae8584",
-    "title_en": "🤖 How We Cut Incident Response Time by 90% with AI Agent Auditing",
-    "title_ar": "🤖 How We Cut Incident Response Time by 90% with AI Agent Auditing",
-    "slug": "ai-agent-auditing-cut-incident-response-90-percent",
-    "published": true,
-    "categories": [
-      "ai",
-      "machine-learning",
-      "devops",
-      "observability",
-      "automation",
-      "prompt-engineering"
-    ],
-    "reading_time": "4 min read",
-    "source": "obsidian",
-    "featured": false,
-    "views": 0,
-    "created_at": "2026-05-09T00:00:00.000Z"
-  },
-  {
-    "id": "9053785c-3c17-4171-af67-9651f28eb710",
-    "title_en": "🏗️ Frontend Build Tools Are Hitting a Wall — Here's What Comes Next",
-    "title_ar": "🏗️ Frontend Build Tools Are Hitting a Wall — Here's What Comes Next",
-    "slug": "frontend-build-tools-hitting-a-wall",
-    "published": true,
-    "categories": [
-      "frontend",
-      "build-tools",
-      "webpack",
-      "vite",
-      "react",
-      "performance"
-    ],
-    "reading_time": "5 min read",
-    "source": "obsidian",
-    "featured": false,
-    "views": 0,
-    "created_at": "2026-05-09T00:00:00.000Z"
-  },
-  {
-    "id": "cad04a15-d62b-4a5c-96de-b7f583827a94",
-    "title_en": "🤖 Multi-Agent Workflows Just Got Easier: Gemini CLI Subagents Are Here",
-    "title_ar": "🤖 Multi-Agent Workflows Just Got Easier: Gemini CLI Subagents Are Here",
-    "slug": "gemini-cli-subagents-multi-agent-workflows",
-    "published": true,
-    "categories": [
-      "ai",
-      "agents",
-      "gemini",
-      "fullstack",
-      "devops"
-    ],
-    "reading_time": "4 min read",
-    "source": "obsidian",
-    "featured": false,
-    "views": 0,
-    "created_at": "2026-05-09T00:00:00.000Z"
-  },
-  {
-    "id": "b636d0ce-f675-44be-ba2c-bad57510b6d0",
-    "title_en": "🤖 Production-Ready AI Agents: 5 Hard Lessons from Refactoring a Monolith",
-    "title_ar": "🤖 Production-Ready AI Agents: 5 Hard Lessons from Refactoring a Monolith",
-    "slug": "production-ready-ai-agents-lessons-refactoring-monolith",
-    "published": true,
-    "categories": [
-      "ai",
-      "ai-agents",
-      "agentic-ai",
-      "software-architecture",
-      "fullstack"
-    ],
-    "reading_time": "5 min read",
-    "source": "obsidian",
-    "featured": false,
-    "views": 0,
-    "created_at": "2026-05-09T00:00:00.000Z"
-  },
-  {
-    "id": "1159ce40-8e71-4392-b4be-1ff73c9840fb",
+    "id": "485d3704-656a-41f4-bf55-b86a9417fc2f",
     "title_en": "⚛️ React Server Components vs Qwik: Real-World Cross-Platform Truth",
     "title_ar": "⚛️ React Server Components vs Qwik: Real-World Cross-Platform Truth",
     "slug": "react-server-components-vs-qwik-real-world-truth",
@@ -198,11 +100,109 @@
     "created_at": "2026-05-09T00:00:00.000Z"
   },
   {
-    "id": "f0035138-78aa-47fe-9f95-095924da6bb4",
+    "id": "919dc9a5-2e5b-4c1d-82eb-056038ae98ee",
+    "title_en": "🤖 How We Cut Incident Response Time by 90% with AI Agent Auditing",
+    "title_ar": "🤖 How We Cut Incident Response Time by 90% with AI Agent Auditing",
+    "slug": "ai-agent-auditing-cut-incident-response-90-percent",
+    "published": false,
+    "categories": [
+      "ai",
+      "machine-learning",
+      "devops",
+      "observability",
+      "automation",
+      "prompt-engineering"
+    ],
+    "reading_time": "4 min read",
+    "source": "obsidian",
+    "featured": false,
+    "views": 0,
+    "created_at": "2026-05-09T00:00:00.000Z"
+  },
+  {
+    "id": "225d157d-4803-4097-8fb7-cd698ea7376f",
+    "title_en": "🏗️ Frontend Build Tools Are Hitting a Wall — Here's What Comes Next",
+    "title_ar": "🏗️ Frontend Build Tools Are Hitting a Wall — Here's What Comes Next",
+    "slug": "frontend-build-tools-hitting-a-wall",
+    "published": false,
+    "categories": [
+      "frontend",
+      "build-tools",
+      "webpack",
+      "vite",
+      "react",
+      "performance"
+    ],
+    "reading_time": "5 min read",
+    "source": "obsidian",
+    "featured": false,
+    "views": 0,
+    "created_at": "2026-05-09T00:00:00.000Z"
+  },
+  {
+    "id": "d2736bde-8b80-43f1-834c-ea0643014b4b",
+    "title_en": "🤖 Multi-Agent Workflows Just Got Easier: Gemini CLI Subagents Are Here",
+    "title_ar": "🤖 Multi-Agent Workflows Just Got Easier: Gemini CLI Subagents Are Here",
+    "slug": "gemini-cli-subagents-multi-agent-workflows",
+    "published": false,
+    "categories": [
+      "ai",
+      "agents",
+      "gemini",
+      "fullstack",
+      "devops"
+    ],
+    "reading_time": "4 min read",
+    "source": "obsidian",
+    "featured": false,
+    "views": 0,
+    "created_at": "2026-05-09T00:00:00.000Z"
+  },
+  {
+    "id": "ff09a659-feca-4d50-aa6d-6796425a90de",
+    "title_en": "🔥 Mojo 1.0 Beta Is Here — Python for AI Just Got a Serious Upgrade",
+    "title_ar": "🔥 Mojo 1.0 Beta Is Here — Python for AI Just Got a Serious Upgrade",
+    "slug": "mojo-1-0-beta-python-ai-programming-language",
+    "published": false,
+    "categories": [
+      "mojo",
+      "programming-languages",
+      "ai",
+      "python",
+      "machine-learning",
+      "performance"
+    ],
+    "reading_time": "4 min read",
+    "source": "obsidian",
+    "featured": false,
+    "views": 0,
+    "created_at": "2026-05-09T00:00:00.000Z"
+  },
+  {
+    "id": "57f73d5f-fde8-427d-831d-04fc8116acda",
+    "title_en": "🤖 Production-Ready AI Agents: 5 Hard Lessons from Refactoring a Monolith",
+    "title_ar": "🤖 Production-Ready AI Agents: 5 Hard Lessons from Refactoring a Monolith",
+    "slug": "production-ready-ai-agents-lessons-refactoring-monolith",
+    "published": false,
+    "categories": [
+      "ai",
+      "ai-agents",
+      "agentic-ai",
+      "software-architecture",
+      "fullstack"
+    ],
+    "reading_time": "5 min read",
+    "source": "obsidian",
+    "featured": false,
+    "views": 0,
+    "created_at": "2026-05-09T00:00:00.000Z"
+  },
+  {
+    "id": "564acfc6-e09e-4b7d-9310-6934c26248a6",
     "title_en": "⚛️ Tanner Linsley Built a React Clone in One Day — Here's Why It Matters",
     "title_ar": "⚛️ Tanner Linsley Built a React Clone in One Day — Here's Why It Matters",
     "slug": "tanstack-experimental-react-clone-explained",
-    "published": true,
+    "published": false,
     "categories": [
       "react",
       "frontend",
@@ -217,7 +217,7 @@
     "created_at": "2026-05-09T00:00:00.000Z"
   },
   {
-    "id": "71f11f38-0e4a-45b3-b0dc-60d1ad104503",
+    "id": "001ba209-1b87-4671-94ab-7e4f16c77226",
     "title_en": "🔌 No Dumb Questions: What Is an MCP Server and Why Should You Care?",
     "title_ar": "🔌 No Dumb Questions: What Is an MCP Server and Why Should You Care?",
     "slug": "what-is-mcp-server-no-dumb-questions",
@@ -236,11 +236,11 @@
     "created_at": "2026-05-09T00:00:00.000Z"
   },
   {
-    "id": "8bd06385-0459-4258-8692-e780b6eb21c5",
+    "id": "b0061b37-daf3-4d68-87b8-8d8f904573dd",
     "title_en": "🔥 Unpacking the Future of AI Agents: Insights from Reddit",
     "title_ar": "🔥 Unpacking the Future of AI Agents: Insights from Reddit",
     "slug": "10-trending-reddit-posts-about-ai-agents-this-week-may-2026",
-    "published": true,
+    "published": false,
     "categories": [
       "ai-agents",
       "machine-learning",
@@ -255,7 +255,7 @@
     "created_at": "2026-05-08T00:00:00.000Z"
   },
   {
-    "id": "85f0849c-b903-476f-8435-5ba74ef5dfde",
+    "id": "1a89d926-a86c-48e8-8edb-81528dafd310",
     "title_en": "Cloudflared Tunnel Full Guide",
     "title_ar": "Cloudflared Tunnel Full Guide",
     "slug": "cloudflared-tunnel-full-guide",
@@ -270,7 +270,7 @@
     "created_at": "2026-01-30T00:00:00.000Z"
   },
   {
-    "id": "6544905f-9850-4001-9d35-a7cf1b66281e",
+    "id": "287cc392-6c3b-486c-8b7c-e1f04fc45fe3",
     "title_en": "CVSS 10.0 Is Not a Coincidence, From Next.js to n8n",
     "title_ar": "CVSS 10.0 Is Not a Coincidence, From Next.js to n8n",
     "slug": "cvss-10-0-is-not-a-coincidence-from-next-js-to-n8n",
@@ -291,7 +291,7 @@
     "created_at": "2026-01-28T00:00:00.000Z"
   },
   {
-    "id": "8d13429f-c074-4bf9-b6ab-f46946caf253",
+    "id": "fa5a96b1-7c83-4e99-9d0f-1d156dc1276e",
     "title_en": "Building a Zero-Effort Obsidian to Portfolio Workflow",
     "title_ar": "Building a Zero-Effort Obsidian to Portfolio Workflow",
     "slug": "building-zero-effort-obsidian-to-portfolio-workflow",
@@ -310,11 +310,11 @@
     "created_at": "2026-01-25T00:00:00.000Z"
   },
   {
-    "id": "f1fbe7dd-3612-40b1-b602-35812096fcbb",
+    "id": "05db3174-35d4-4085-b1bc-250ac5765bdc",
     "title_en": "Rust Build Problem Fix (eww)",
     "title_ar": "Rust Build Problem Fix (eww)",
     "slug": "rust-build-problem-fix-eww",
-    "published": true,
+    "published": false,
     "categories": [
       "linux-guides"
     ],
@@ -325,7 +325,7 @@
     "created_at": "2026-01-25T00:00:00.000Z"
   },
   {
-    "id": "af761c94-941b-4ca8-b6a9-f84cf2630b41",
+    "id": "42b1a1bf-b7fa-42eb-8480-c859b23d6232",
     "title_en": "The \"No-Open-Ports\" Manual: Cloudflare Tunnels for Backend Devs",
     "title_ar": "The \"No-Open-Ports\" Manual: Cloudflare Tunnels for Backend Devs",
     "slug": "the-no-open-ports-manual-cloudflare-tunnels-for-backend-devs",
@@ -343,7 +343,7 @@
     "created_at": "2026-01-25T00:00:00.000Z"
   },
   {
-    "id": "0f0f1daa-793b-44ad-b0c4-bb5a62b83833",
+    "id": "2aad8fac-27f6-41ef-a92a-dd3b099450be",
     "title_en": "🎨 UI UX Pro Max Skill - Linux Setup Guide",
     "title_ar": "🎨 UI UX Pro Max Skill - Linux Setup Guide",
     "slug": "ui-ux-pro-max-skill-linux-setup-guide",
@@ -360,7 +360,7 @@
     "created_at": "2026-01-25T00:00:00.000Z"
   },
   {
-    "id": "83fbeab7-61dd-40e7-afaa-150766cb0880",
+    "id": "24c19fe3-7075-4226-b8eb-f855461230b1",
     "title_en": "Connecting to PostgreSQL running inside Docker",
     "title_ar": "Connecting to PostgreSQL running inside Docker",
     "slug": "connecting-to-postgresql-running-inside-docker",
@@ -387,7 +387,7 @@
     "created_at": "2026-01-24T00:00:00.000Z"
   },
   {
-    "id": "5880364a-25d3-4c4e-8a31-c3f2f72d4b52",
+    "id": "d4a7602d-85ee-4973-8413-0f0cc6bc7648",
     "title_en": "🎯 The Definitive Guide to Image Privacy & Orientation in Laravel",
     "title_ar": "🎯 The Definitive Guide to Image Privacy & Orientation in Laravel",
     "slug": "definitive-guide-image-privacy-orientation-laravel",
@@ -408,11 +408,11 @@
     "created_at": "2026-01-24T00:00:00.000Z"
   },
   {
-    "id": "0c1b7ec7-a5ed-430c-bc44-e94b18aacc33",
+    "id": "8b2bbdf3-4e70-4684-b765-e4c69f5f82d2",
     "title_en": "🎯 The Definitive Guide to Image Privacy & Orientation in Laravel",
     "title_ar": "🎯 The Definitive Guide to Image Privacy & Orientation in Laravel",
     "slug": "the-definitive-guide-to-image-privacy-orientation-in-laravel",
-    "published": true,
+    "published": false,
     "categories": [
       "development",
       "backend",
@@ -431,7 +431,7 @@
     "created_at": "2026-01-24T00:00:00.000Z"
   },
   {
-    "id": "21078ae8-002a-47d1-bdcd-93b4d8e8c710",
+    "id": "5811449f-8fd6-4abf-9643-e4550f008c32",
     "title_en": "Master PostgreSQL Self-Hosting Guide (Dokploy+VPS)",
     "title_ar": "Master PostgreSQL Self-Hosting Guide (Dokploy+VPS)",
     "slug": "master-postgresql-self-hosting-guide-dokploy-vps",
