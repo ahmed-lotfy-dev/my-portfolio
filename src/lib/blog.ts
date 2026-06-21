@@ -107,6 +107,18 @@ export function getBlogPostsBySlugs(slugs: string[]): BlogPost[] {
     .filter((p): p is BlogPostWithContent => p !== null);
 }
 
+export function getBlogPostsBySlugsAndLocale(slugs: string[], locale: string): BlogPost[] {
+  const allPosts = getAllBlogPostsByLocale(locale);
+  const slugSet = new Set(slugs);
+  // Match by exact slug or by base slug (strip -ar suffix for matching)
+  return allPosts.filter((p) => {
+    if (slugSet.has(p.slug)) return true;
+    // Try matching base slug: if EN slug is "foo", match "foo-ar" for AR locale
+    const baseSlug = p.slug.replace(/-ar$/, "");
+    return slugSet.has(baseSlug);
+  });
+}
+
 export function getBlogPostsPaginated(
   page = 1,
   pageSize = 6

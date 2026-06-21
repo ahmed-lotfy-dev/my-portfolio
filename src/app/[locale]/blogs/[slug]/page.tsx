@@ -112,6 +112,13 @@ async function markdownToHtml(content: string): Promise<string> {
   return result.toString();
 }
 
+function fixLocaleLinks(html: string, locale: string): string {
+  // Replace /en/blogs/ and /en/projects/ with /{locale}/blogs/ and /{locale}/projects/
+  let fixed = html.replace(/href="\/en\/blogs\/([^"]+)"/g, `href="/${locale}/blogs/$1"`);
+  fixed = fixed.replace(/href="\/en\/projects\/([^"]+)"/g, `href="/${locale}/projects/$1"`);
+  return fixed;
+}
+
 export default async function BlogPostPage({
   params,
 }: {
@@ -125,7 +132,7 @@ export default async function BlogPostPage({
   if (!post) return notFound();
 
   const isArabic = locale === "ar";
-  const contentHtml = await markdownToHtml(post.content);
+  const contentHtml = fixLocaleLinks(await markdownToHtml(post.content), locale);
   const relatedPosts = getRelatedPostsByLocale(slug, locale, 3);
   const baseUrl = "https://ahmedlotfy.site";
 
