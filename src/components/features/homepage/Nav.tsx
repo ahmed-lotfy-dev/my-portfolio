@@ -14,30 +14,29 @@ import { useNavState } from "./nav/useNavState";
 import { m, type Variants } from "motion/react";
 
 const navContainerVariants: Variants = {
-  hidden: { opacity: 0, y: -15 },
+  hidden: { opacity: 0, y: -8 },
   visible: {
     opacity: 1,
     y: 0,
     transition: {
       type: "spring",
-      stiffness: 150,
-      damping: 24,
-      staggerChildren: 0.08,
-      delayChildren: 0.2,
+      stiffness: 200,
+      damping: 28,
+      staggerChildren: 0.06,
+      delayChildren: 0.15,
     },
   },
 };
 
 const navItemVariants: Variants = {
-  hidden: { opacity: 0, y: -10, scale: 0.98 },
+  hidden: { opacity: 0, y: -6 },
   visible: {
     opacity: 1,
     y: 0,
-    scale: 1,
     transition: {
       type: "spring",
-      stiffness: 180,
-      damping: 22,
+      stiffness: 220,
+      damping: 24,
     },
   },
 };
@@ -67,30 +66,30 @@ export function Nav({ variant = "floating" }: NavProps) {
   const isIntegrated = variant === "integrated";
 
   const desktopVariant: Variants = {
-    hidden: { opacity: 0, y: -20 },
+    hidden: { opacity: 0, y: -8 },
     visible: {
       opacity: 1,
       y: 0,
       transition: {
-        staggerChildren: 0.08,
-        delayChildren: 0.2,
+        staggerChildren: 0.06,
+        delayChildren: 0.15,
         type: "spring",
-        stiffness: 150,
-        damping: 24,
+        stiffness: 200,
+        damping: 28,
       }
     }
   };
 
   return (
     <>
-      {/* Top nav bar — desktop always, mobile only non-hero pages */}
+      {/* Top nav bar */}
       <m.nav
         ref={navRef}
         className={cn(
           "z-50 w-full transition-all duration-300",
           isIntegrated
             ? "relative px-2 pt-4 sm:px-4 md:pt-6 lg:px-8"
-            : "fixed left-0 right-0 top-0 pt-4 max-md:pt-2 px-4"
+            : "fixed left-0 right-0 top-0 pt-3 px-4"
         )}
         variants={isIntegrated ? navContainerVariants : desktopVariant}
         initial={mounted ? (isIntegrated ? "visible" : "hidden") : "visible"}
@@ -99,19 +98,15 @@ export function Nav({ variant = "floating" }: NavProps) {
       >
         <div
           className={cn(
-            "nav-bar container relative mx-auto flex h-16 w-full items-center justify-between transition-all duration-700 md:h-20 px-4 md:px-8 max-w-7xl rounded-[2.5rem]",
+            "container relative mx-auto flex h-14 w-full items-center justify-between transition-all duration-500 px-4 md:px-6 max-w-6xl",
             isIntegrated
-              ? scrollerLayoutStyles(scrolled)
-              : islandLayoutStyles(scrolled)
+              ? "rounded-xl border border-border/30 bg-card/30 backdrop-blur-md"
+              : "rounded-xl border border-border/20 bg-background/60 backdrop-blur-lg"
           )}
         >
-          <div className={cn(
-            "absolute inset-x-12 top-0 h-px bg-linear-to-r from-transparent via-blue-400/30 to-transparent opacity-50 blur-sm"
-          )} />
-
           <m.div
             variants={navItemVariants}
-            className={cn("relative z-10 flex flex-1 items-center justify-start")}
+            className="relative z-10 flex flex-1 items-center justify-start"
             suppressHydrationWarning
           >
             <NavBrand locale={locale} />
@@ -133,21 +128,12 @@ export function Nav({ variant = "floating" }: NavProps) {
 
           <m.div
             variants={navItemVariants}
-            className="relative z-10 flex flex-1 items-center justify-end gap-2 sm:gap-4"
+            className="relative z-10 flex flex-1 items-center justify-end gap-2"
             suppressHydrationWarning
           >
             <div className="hidden items-center gap-2 md:flex">
-              <div className={cn(
-                "flex h-[3.4rem] items-center gap-3 rounded-[1.7rem] p-1.5 transition-all duration-500 nav-actions-bar",
-                isIntegrated
-                  ? "bg-blue-950/20 backdrop-blur-md border border-blue-400/10"
-                  : "border border-blue-400/10 bg-slate-950/50 shadow-2xl backdrop-blur-xl"
-              )}>
-                <LanguageSwitcher />
-              </div>
+              <LanguageSwitcher />
             </div>
-
-            {/* Mobile: language switcher only (bottom nav handles the rest) */}
             <div className="flex items-center md:hidden">
               <LanguageSwitcher />
             </div>
@@ -155,7 +141,7 @@ export function Nav({ variant = "floating" }: NavProps) {
         </div>
       </m.nav>
 
-      {/* Mobile bottom nav bar — rendered separately, fixed at bottom */}
+      {/* Mobile bottom nav */}
       <div className="md:hidden">
         <MobileNav
           activeSection={activeSection}
@@ -167,23 +153,5 @@ export function Nav({ variant = "floating" }: NavProps) {
         />
       </div>
     </>
-  );
-}
-
-function scrollerLayoutStyles(scrolled: boolean) {
-  return cn(
-    "border transition-all duration-500",
-    scrolled
-      ? "nav-bar-scrolled bg-slate-950/70 shadow-[0_8px_40px_-8px_rgba(59,130,246,0.15)] backdrop-blur-2xl border-blue-400/20 px-6"
-      : "bg-slate-950/20 shadow-xl backdrop-blur-md border-blue-400/10 px-4"
-  );
-}
-
-function islandLayoutStyles(scrolled: boolean) {
-  return cn(
-    "border px-3 transition-all duration-700",
-    scrolled
-      ? "nav-bar-scrolled border-blue-400/25 bg-slate-950/80 shadow-[0_32px_100px_-40px_rgba(0,0,0,1),0_0_30px_-10px_rgba(59,130,246,0.15)] backdrop-blur-3xl"
-      : "border-blue-400/10 bg-slate-950/40 shadow-[0_24px_80px_-40px_rgba(0,0,0,0.9)] backdrop-blur-xl"
   );
 }

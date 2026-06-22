@@ -1,11 +1,9 @@
 "use client";
 
 import * as React from "react";
-
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/src/components/ui/button";
-import { Card } from "@/src/components/ui/card";
 import ReadMoreText from "@/src/components/ui/ReadMoreText";
 import { ExternalLink, ArrowRight } from "lucide-react";
 import { IoLogoGithub } from "react-icons/io5";
@@ -46,103 +44,91 @@ export default function ProjectsClient({ projects, locale, t }: Props) {
   const isRTL = locale === "ar";
 
   return (
-    <div className="w-full grid gap-8 grid-cols-[repeat(auto-fit,minmax(320px,1fr))] justify-items-stretch">
+    <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
       {projects
         ?.filter((proj) => proj.published !== false)
         .map((proj) => {
           const showApk = shouldShowApk(proj.categories);
 
           return (
-            <article key={proj.id}>
-              <Card className="group flex h-full flex-col justify-between overflow-hidden border-border bg-card/50 backdrop-blur-sm hover:border-primary/50 hover:shadow-2xl hover:shadow-primary/10 transition-all duration-500">
+            <article
+              key={proj.id}
+              className="group flex flex-col overflow-hidden rounded-lg border border-border/40 bg-card/20 hover:border-primary/20 transition-all duration-300"
+            >
+              {/* Cover Image */}
+              <Link
+                href={proj.slug ? `/${locale}/projects/${proj.slug}` : proj.live_link}
+                target={proj.slug ? undefined : "_blank"}
+                className="block overflow-hidden aspect-video"
+              >
+                <Image
+                  src={safeMediaUrl(getProjectCoverImage(proj.cover_image))}
+                  alt={locale === "ar" ? proj.title_ar : proj.title_en}
+                  width={600}
+                  height={340}
+                  className={`w-full h-full transition-transform duration-500 group-hover:scale-[1.03] ${showApk ? "object-contain p-4 bg-muted/30" : "object-cover"}`}
+                  loading="lazy"
+                />
+              </Link>
+
+              {/* Content */}
+              <div className="flex flex-1 flex-col p-5 gap-3">
                 <Link
                   href={proj.slug ? `/${locale}/projects/${proj.slug}` : proj.live_link}
                   target={proj.slug ? undefined : "_blank"}
-                  className="block overflow-hidden"
                 >
-                  <figure className="relative w-full h-64 cursor-pointer overflow-hidden">
-                    <Image
-                      src={safeMediaUrl(getProjectCoverImage(proj.cover_image))}
-                      alt={locale === "ar" ? proj.title_ar : proj.title_en}
-                      fill
-                      unoptimized={
-                        proj.cover_image?.toLowerCase().endsWith(".gif")
-                          ? true
-                          : undefined
-                      }
-                      className={`transition-transform duration-700 group-hover:scale-110 ${showApk ? "object-contain p-4 bg-muted/50" : "object-cover"}`}
-                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                      loading="lazy"
-                    />
-                    <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-500" />
-                  </figure>
+                  <h3 className="text-base font-semibold text-foreground group-hover:text-primary transition-colors">
+                    {locale === "ar" ? proj.title_ar : proj.title_en}
+                  </h3>
                 </Link>
-                <div className="p-6 flex flex-col grow gap-4">
-                  <div>
-                    <Link
-                      href={proj.slug ? `/${locale}/projects/${proj.slug}` : proj.live_link}
-                      target={proj.slug ? undefined : "_blank"}
-                    >
-                      <h3 className="text-2xl font-bold text-foreground mb-2 group-hover:text-primary transition-colors cursor-pointer antialiased">
-                        {locale === "ar" ? proj.title_ar : proj.title_en}
-                      </h3>
-                    </Link>
-                    <ReadMoreText
-                      text={locale === "ar" ? proj.desc_ar : proj.desc_en}
-                      maxLines={3}
-                      className="text-muted-foreground text-sm leading-relaxed"
-                      readMoreText={t.readmore}
-                      showLessText={t.showless}
-                    />
-                    {proj.slug && (
-                      <Link
-                        href={`/${locale}/projects/${proj.slug}`}
-                        className="inline-flex items-center gap-1 text-primary text-sm font-medium mt-3 hover:underline underline-offset-4 w-fit group/link"
-                      >
-                        {t.view_case_study}
-                        <ArrowRight
-                          size={14}
-                          className={`transition-transform group-hover/link:translate-x-1 ${locale === "ar" ? "rotate-180 group-hover/link:-translate-x-1" : ""}`}
-                        />
-                      </Link>
-                    )}
-                  </div>
 
-                  <ProjectCategories categories={proj.categories || []} />
+                <ReadMoreText
+                  text={locale === "ar" ? proj.desc_ar : proj.desc_en}
+                  maxLines={2}
+                  className="text-muted-foreground text-sm leading-relaxed"
+                  readMoreText={t.readmore}
+                  showLessText={t.showless}
+                />
 
-                  <div className="flex gap-3 mt-4">
-                    <ProjectLinkTracker
-                      href={proj.live_link}
-                      projectTitle={locale === "ar" ? proj.title_ar : proj.title_en}
-                      projectId={proj.id}
-                      linkType="live"
-                      target="_blank"
-                      className="flex-1"
-                    >
-                      <Button className="w-full gap-2 shadow-lg shadow-primary/20 hover:shadow-primary/30 transition-shadow">
-                        <ExternalLink size={16} />
-                        {showApk ? t.apk : t.live}
-                      </Button>
-                    </ProjectLinkTracker>
-                    <ProjectLinkTracker
-                      href={proj.repo_link}
-                      projectTitle={locale === "ar" ? proj.title_ar : proj.title_en}
-                      projectId={proj.id}
-                      linkType="repo"
-                      target="_blank"
-                      className="flex-1"
-                    >
-                      <Button
-                        variant="outline"
-                        className="w-full gap-2 bg-transparent border-border hover:bg-muted text-primary"
-                      >
-                        <IoLogoGithub size={16} />
-                        {t.repo}
-                      </Button>
-                    </ProjectLinkTracker>
-                  </div>
+                {proj.slug && (
+                  <Link
+                    href={`/${locale}/projects/${proj.slug}`}
+                    className="inline-flex items-center gap-1 text-primary text-xs font-medium hover:underline underline-offset-4 w-fit"
+                  >
+                    {t.view_case_study}
+                    <ArrowRight className={`w-3 h-3 ${locale === "ar" ? "rotate-180" : ""}`} />
+                  </Link>
+                )}
+
+                <ProjectCategories categories={proj.categories || []} />
+
+                <div className="flex gap-2 mt-auto pt-2">
+                  <ProjectLinkTracker
+                    href={proj.live_link}
+                    projectTitle={locale === "ar" ? proj.title_ar : proj.title_en}
+                    projectId={proj.id}
+                    linkType="live"
+                    target="_blank"
+                  >
+                    <Button size="sm" className="gap-1.5 text-xs h-8">
+                      <ExternalLink className="w-3 h-3" />
+                      {showApk ? t.apk : t.live}
+                    </Button>
+                  </ProjectLinkTracker>
+                  <ProjectLinkTracker
+                    href={proj.repo_link}
+                    projectTitle={locale === "ar" ? proj.title_ar : proj.title_en}
+                    projectId={proj.id}
+                    linkType="repo"
+                    target="_blank"
+                  >
+                    <Button variant="outline" size="sm" className="gap-1.5 text-xs h-8 border-border/40">
+                      <IoLogoGithub className="w-3 h-3" />
+                      {t.repo}
+                    </Button>
+                  </ProjectLinkTracker>
                 </div>
-              </Card>
+              </div>
             </article>
           );
         })}

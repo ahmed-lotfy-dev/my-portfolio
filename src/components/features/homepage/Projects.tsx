@@ -22,16 +22,15 @@ export default async function Projects() {
   };
 
   return (
-    <Section variant="transparent" className="relative overflow-hidden" id="projects">
-      <div className="absolute top-0 left-0 w-[800px] h-[800px] bg-secondary/10 rounded-full blur-[120px] pointer-events-none -translate-y-1/2 -translate-x-1/2" />
-      <div className="container">
-        <div className="text-center mb-16 space-y-4">
-          <h2 className="inline-block px-4 py-1.5 rounded-full bg-primary/10 text-primary text-sm font-medium tracking-wide uppercase border border-primary/20 backdrop-blur-sm">
+    <Section variant="transparent" className="py-20 sm:py-28 relative overflow-hidden" id="projects">
+      <div className="container mx-auto px-4">
+        <div className="max-w-2xl mb-16">
+          <p className="text-xs font-semibold tracking-widest uppercase text-primary/70 mb-4">
             {t("title")}
-          </h2>
-          <p className="text-3xl sm:text-4xl font-bold text-foreground tracking-tight antialiased">
-            {t("description")}
           </p>
+          <h3 className="text-3xl md:text-4xl font-bold tracking-tight text-foreground mb-4">
+            {t("description")}
+          </h3>
         </div>
 
         <ProjectsClient projects={allProjects} locale={locale} t={translations} />
@@ -39,10 +38,10 @@ export default async function Projects() {
         <div className="mt-12 text-center">
           <Link
             href={`/${locale}/projects`}
-            className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-primary/30 bg-primary/5 text-primary font-semibold hover:bg-primary/10 hover:border-primary/50 transition-all group"
+            className="inline-flex items-center gap-2 px-6 py-3 rounded-lg border border-border/50 bg-card/20 text-sm font-medium text-muted-foreground hover:text-foreground hover:border-primary/30 transition-all duration-300 group"
           >
             View All Projects
-            <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+            <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5" />
           </Link>
         </div>
       </div>
