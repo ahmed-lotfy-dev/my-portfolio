@@ -1,6 +1,6 @@
 ---
 title: "Docker Compose للمطورين — من الصفر للـ Production"
-date: 2025-12-20
+date: 2026-06-22
 tags: ["docker", "docker-compose", "deployment", "devops"]
 image: "/images/blogs/docker-compose-guide.jpg"
 share: true

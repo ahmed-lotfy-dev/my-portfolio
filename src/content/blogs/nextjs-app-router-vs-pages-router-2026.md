@@ -1,6 +1,6 @@
 ---
 title: "Next.js App Router vs Pages Router — When to Use Each in 2026"
-date: 2025-12-22
+date: 2026-06-22
 tags: ["next.js", "react", "app-router", "pages-router", "architecture"]
 image: "/images/blogs/nextjs-routers-comparison.jpg"
 share: true
