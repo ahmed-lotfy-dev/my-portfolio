@@ -4,11 +4,9 @@ import Link from "next/link";
 import { FileText, ArrowRight, Sparkles } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { Button } from "@/src/components/ui/button";
-import { cn } from "@/src/lib/utils";
 import { CVDropdown } from "./CVDropdown";
 import { Nav } from "./Nav";
 import { m } from "motion/react";
-import Image from "next/image";
 
 export default function Hero() {
   const t = useTranslations("hero");
@@ -28,10 +26,10 @@ export default function Hero() {
 
       <section className="relative flex flex-1 items-center px-5 pb-24 pt-28 md:px-8 md:pb-32 md:pt-36 lg:pb-40">
         <div className="container relative z-10 mx-auto max-w-6xl">
-          <div className="flex flex-col items-center gap-16 lg:flex-row lg:gap-20 lg:items-start">
+          <div className="flex flex-col items-center">
 
             {/* Text Side */}
-            <div className="relative z-20 w-full text-center lg:w-[60%] lg:text-start">
+            <div className="relative z-20 w-full text-center lg:w-full lg:text-start">
               {/* Badge */}
               <m.div
                 initial={{ opacity: 0, y: 16 }}
@@ -94,29 +92,7 @@ export default function Hero() {
               </m.div>
             </div>
 
-            {/* Right — Logo with glow */}
-            <div className="relative flex w-full items-center justify-center lg:w-[40%] lg:justify-end">
-              <m.div
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.7, delay: 0.35, ease: [0.4, 0, 0.2, 1] }}
-                className="relative"
-              >
-                {/* Glow behind */}
-                <div className="absolute -inset-12 rounded-full bg-primary/10 blur-[80px]" />
-                <div className="absolute -inset-6 rounded-full bg-secondary/5 blur-[40px]" />
-                <div className="relative w-52 h-52 sm:w-60 sm:h-60 lg:w-72 lg:h-72 rounded-3xl border border-primary/15 bg-card/30 backdrop-blur-sm flex items-center justify-center shadow-2xl shadow-primary/10">
-                  <Image
-                    src="/as-mark.svg"
-                    alt="Ahmed Lotfy"
-                    width={200}
-                    height={200}
-                    className="w-36 h-36 sm:w-40 sm:h-40 lg:w-48 lg:h-48"
-                    priority
-                  />
-                </div>
-              </m.div>
-            </div>
+
           </div>
         </div>
       </section>
