@@ -13,17 +13,15 @@ export default function AboutClient({ myImage, isRTL }: Props) {
   const t = useTranslations("about");
 
   return (
-    <section className="relative overflow-hidden py-24 sm:py-32" id="about">
-      <div className="absolute top-1/4 -right-20 h-80 w-80 rounded-full bg-primary/5 blur-[120px] pointer-events-none" />
-      <div className="absolute bottom-1/4 -left-20 h-80 w-80 rounded-full bg-secondary/5 blur-[100px] pointer-events-none" />
+    <section className="relative overflow-hidden" id="about">
+      <div className="absolute top-1/4 right-0 w-[500px] h-[500px] rounded-full bg-blue-600/[0.04] blur-[140px] pointer-events-none" />
+      <div className="absolute bottom-0 left-0 w-[400px] h-[400px] rounded-full bg-sky-500/[0.03] blur-[120px] pointer-events-none" />
 
       <div className="container relative mx-auto px-4">
         <div className="flex flex-col items-center gap-16 lg:flex-row lg:gap-20">
-
-          {/* Image */}
           <div className="relative w-full lg:w-5/12">
-            <div className="absolute -inset-4 rounded-[2rem] bg-gradient-to-r from-primary/10 to-primary/5 opacity-60 blur-2xl" />
-            <div className="relative overflow-hidden rounded-2xl border border-border/40 bg-card/20 p-2">
+            <div className="absolute -inset-4 rounded-[2rem] bg-gradient-to-r from-blue-600/10 via-blue-500/5 to-sky-500/5 opacity-70 blur-2xl" />
+            <div className="relative overflow-hidden rounded-2xl border border-blue-500/10 bg-card/20 p-2">
               <Image
                 src={myImage}
                 width={400}
@@ -33,26 +31,28 @@ export default function AboutClient({ myImage, isRTL }: Props) {
                 className={`rounded-xl w-full ${!isRTL ? "-scale-x-100" : ""}`}
               />
             </div>
-            {/* Floating badge */}
-            <div className="absolute -bottom-4 -right-2 sm:-bottom-6 sm:-right-4 flex items-center gap-2.5 rounded-xl border border-border/40 bg-card/80 p-3 shadow-xl backdrop-blur-xl">
-              <div className="rounded-lg bg-green-500/15 p-2">
-                <div className="w-2.5 h-2.5 rounded-full bg-green-400 shadow-[0_0_8px_rgba(74,222,128,0.5)] animate-pulse" />
+            <div className="absolute -bottom-4 -right-2 sm:-bottom-6 sm:-right-4 flex items-center gap-2.5 rounded-xl border border-blue-500/15 bg-card/80 p-3 shadow-xl shadow-blue-500/10 backdrop-blur-xl">
+              <div className="rounded-lg bg-blue-500/15 p-2">
+                <div className="w-2.5 h-2.5 rounded-full bg-blue-400 shadow-[0_0_10px_rgba(96,165,250,0.6)] animate-pulse" />
               </div>
               <div>
-                <p className="text-[10px] font-bold text-muted-600 uppercase tracking-wider">Status</p>
-                <p className="text-sm font-bold text-foreground">Available for Hire</p>
+                <p className="text-[10px] font-bold text-blue-400/60 uppercase tracking-wider">
+                  Status
+                </p>
+                <p className="text-sm font-bold text-foreground">
+                  Available for Hire
+                </p>
               </div>
             </div>
           </div>
 
-          {/* Content */}
           <div className="w-full lg:w-7/12">
-            <p className="text-xs font-bold tracking-widest uppercase text-primary/70 mb-4">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 text-blue-400 text-xs font-bold tracking-widest uppercase border border-blue-500/15 mb-5">
               {t("title")}
-            </p>
+            </div>
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-black tracking-tight text-foreground mb-8 leading-[1.1]">
               Solving complex problems with{" "}
-              <span className="bg-linear-to-r from-primary to-accent bg-clip-text text-transparent">
+              <span className="bg-linear-to-r from-blue-400 via-sky-400 to-indigo-400 bg-clip-text text-transparent">
                 elegant engineering
               </span>
             </h2>
@@ -62,19 +62,30 @@ export default function AboutClient({ myImage, isRTL }: Props) {
               <p>{t("description2")}</p>
             </div>
 
-            {/* Stats */}
             <div className="mt-10 flex flex-wrap gap-10">
               <div>
-                <p className="text-3xl font-black bg-linear-to-r from-primary to-accent bg-clip-text text-transparent">2+</p>
-                <p className="text-xs font-semibold text-muted-foreground mt-1.5 uppercase tracking-wider">Years Experience</p>
+                <p className="text-3xl font-black bg-linear-to-r from-blue-400 to-sky-400 bg-clip-text text-transparent">
+                  2+
+                </p>
+                <p className="text-xs font-semibold text-muted-foreground mt-1.5 uppercase tracking-wider">
+                  Years Experience
+                </p>
               </div>
               <div>
-                <p className="text-3xl font-black bg-linear-to-r from-primary to-accent bg-clip-text text-transparent">9</p>
-                <p className="text-xs font-semibold text-muted-foreground mt-1.5 uppercase tracking-wider">Projects Shipped</p>
+                <p className="text-3xl font-black bg-linear-to-r from-blue-400 to-sky-400 bg-clip-text text-transparent">
+                  9
+                </p>
+                <p className="text-xs font-semibold text-muted-foreground mt-1.5 uppercase tracking-wider">
+                  Projects Shipped
+                </p>
               </div>
               <div>
-                <p className="text-3xl font-black bg-linear-to-r from-primary to-accent bg-clip-text text-transparent">95+</p>
-                <p className="text-xs font-semibold text-muted-foreground mt-1.5 uppercase tracking-wider">Performance Score</p>
+                <p className="text-3xl font-black bg-linear-to-r from-blue-400 to-sky-400 bg-clip-text text-transparent">
+                  95+
+                </p>
+                <p className="text-xs font-semibold text-muted-foreground mt-1.5 uppercase tracking-wider">
+                  Performance Score
+                </p>
               </div>
             </div>
           </div>

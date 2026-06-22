@@ -9,9 +9,9 @@ type HomeSectionBandProps = {
 };
 
 const variantClasses = {
-  warm: "border-border/25 bg-gradient-to-b from-card/10 to-transparent",
-  editorial: "border-border/20 bg-gradient-to-b from-transparent to-card/5",
-  deep: "border-border/30 bg-gradient-to-b from-card/15 to-background/50",
+  warm: "border-blue-500/8 bg-gradient-to-b from-blue-500/[0.02] to-transparent",
+  editorial: "border-blue-500/8 bg-gradient-to-b from-transparent via-blue-500/[0.015] to-blue-500/[0.02]",
+  deep: "border-blue-500/10 bg-gradient-to-b from-blue-500/[0.03] to-background/60",
 };
 
 export function HomeSectionBand({
@@ -21,9 +21,20 @@ export function HomeSectionBand({
   variant = "warm",
 }: HomeSectionBandProps) {
   return (
-    <section className={cn("relative isolate overflow-hidden rounded-3xl border", variantClasses[variant], className)}>
-      <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-border/40 to-transparent" />
-      <div className={cn("relative px-6 py-16 md:px-10 md:py-20 lg:px-14 lg:py-24", innerClassName)}>
+    <section
+      className={cn(
+        "relative isolate overflow-hidden rounded-3xl border",
+        variantClasses[variant],
+        className,
+      )}
+    >
+      <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-blue-500/15 to-transparent" />
+      <div
+        className={cn(
+          "relative px-6 py-16 md:px-10 md:py-20 lg:px-14 lg:py-24 space-y-24 sm:space-y-32",
+          innerClassName,
+        )}
+      >
         {children}
       </div>
     </section>

@@ -21,6 +21,7 @@ export function NavBrand({ locale }: NavBrandProps) {
             className="relative z-10 object-contain"
             priority
           />
+          <div className="absolute inset-0 rounded-full bg-blue-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-xl" />
         </div>
       </div>
     </Link>

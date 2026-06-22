@@ -22,23 +22,31 @@ export default async function Projects() {
   };
 
   return (
-    <Section variant="transparent" className="py-24 sm:py-32 relative overflow-hidden" id="projects">
+    <Section
+      variant="transparent"
+      className="relative overflow-hidden"
+      id="projects"
+    >
       <div className="container mx-auto px-4">
         <div className="text-center max-w-2xl mx-auto mb-16">
-          <p className="text-xs font-bold tracking-widest uppercase text-primary/70 mb-4">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 text-blue-400 text-xs font-bold tracking-widest uppercase border border-blue-500/15 mb-5">
             {t("title")}
-          </p>
+          </div>
           <h3 className="text-3xl md:text-5xl font-black tracking-tight text-foreground mb-5">
             {t("description")}
           </h3>
         </div>
 
-        <ProjectsClient projects={allProjects} locale={locale} t={translations} />
+        <ProjectsClient
+          projects={allProjects}
+          locale={locale}
+          t={translations}
+        />
 
         <div className="mt-14 text-center">
           <Link
             href={`/${locale}/projects`}
-            className="inline-flex items-center gap-2 px-6 py-3 rounded-xl border border-border/40 bg-card/20 text-sm font-semibold text-muted-foreground hover:text-foreground hover:border-primary/30 transition-all duration-300 group"
+            className="inline-flex items-center gap-2 px-6 py-3 rounded-xl border border-blue-500/15 bg-blue-500/[0.03] text-sm font-semibold text-blue-400/80 hover:text-blue-300 hover:border-blue-500/30 hover:bg-blue-500/[0.06] transition-all duration-300 group"
           >
             View All Projects
             <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5" />

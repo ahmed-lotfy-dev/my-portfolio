@@ -41,7 +41,7 @@ export function DesktopNav({
       variants={containerVariants}
       initial="hidden"
       animate="visible"
-      className="hidden items-center gap-1 rounded-full border border-primary/10 bg-background/30 p-1 backdrop-blur-md md:flex"
+      className="hidden items-center gap-1 rounded-full border border-blue-500/10 bg-background/30 p-1 backdrop-blur-md md:flex"
       onMouseLeave={() => setHoveredPath(null)}
     >
       {links.map((link) => {
