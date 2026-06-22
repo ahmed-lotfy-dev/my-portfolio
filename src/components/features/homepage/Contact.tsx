@@ -37,7 +37,6 @@ export default function Contact() {
     <section className="relative overflow-hidden py-24 sm:py-32" id="contact">
       {/* Background accents */}
       <div className="absolute top-1/4 left-1/2 -translate-x-[400px] w-[500px] h-[500px] bg-primary/8 rounded-full blur-[150px] pointer-events-none" />
-      <div className="absolute bottom-1/4 right-1/2 translate-x-[300px] w-[400px] h-[400px] bg-secondary/5 rounded-full blur-[120px] pointer-events-none" />
 
       <div className="container relative mx-auto px-4 lg:px-8 z-10">
         <div className="text-center max-w-2xl mx-auto mb-20">
@@ -47,7 +46,7 @@ export default function Contact() {
           </div>
           <h2 className="text-3xl md:text-5xl lg:text-6xl font-black tracking-tight text-foreground leading-[1.1]">
             {locale === "ar" ? "عايز تعمل" : "Want to build"}{" "}
-            <span className="bg-linear-to-r from-primary via-secondary to-accent bg-clip-text text-transparent">
+            <span className="bg-linear-to-r from-primary to-accent bg-clip-text text-transparent">
               {locale === "ar" ? "مشروع؟" : "something?"}
             </span>
           </h2>
@@ -92,7 +91,7 @@ export default function Contact() {
           {/* Contact Form */}
           <div className="lg:col-span-7">
             <div className="relative group">
-              <div className="absolute -inset-1 bg-gradient-to-r from-primary/10 via-secondary/5 to-primary/10 rounded-[2rem] blur-xl opacity-40 group-hover:opacity-70 transition duration-700" />
+              <div className="absolute -inset-1 bg-gradient-to-r from-primary/10 to-primary/5 rounded-[2rem] blur-xl opacity-40 group-hover:opacity-70 transition duration-700" />
               <div className="relative bg-card/30 backdrop-blur-xl border border-border/40 rounded-2xl p-6 sm:p-10">
                 {state?.success && (
                   <div className="mb-6 p-4 rounded-xl bg-success/10 border border-success/20 text-success text-sm font-medium">

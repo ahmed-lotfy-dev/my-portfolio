@@ -22,7 +22,7 @@ export default function AboutClient({ myImage, isRTL }: Props) {
 
           {/* Image */}
           <div className="relative w-full lg:w-5/12">
-            <div className="absolute -inset-4 rounded-[2rem] bg-gradient-to-r from-primary/10 via-secondary/5 to-primary/10 opacity-60 blur-2xl" />
+            <div className="absolute -inset-4 rounded-[2rem] bg-gradient-to-r from-primary/10 to-primary/5 opacity-60 blur-2xl" />
             <div className="relative overflow-hidden rounded-2xl border border-border/40 bg-card/20 p-2">
               <Image
                 src={myImage}
@@ -52,7 +52,7 @@ export default function AboutClient({ myImage, isRTL }: Props) {
             </p>
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-black tracking-tight text-foreground mb-8 leading-[1.1]">
               Solving complex problems with{" "}
-              <span className="bg-linear-to-r from-primary via-secondary to-accent bg-clip-text text-transparent">
+              <span className="bg-linear-to-r from-primary to-accent bg-clip-text text-transparent">
                 elegant engineering
               </span>
             </h2>

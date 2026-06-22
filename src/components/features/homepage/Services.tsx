@@ -3,8 +3,8 @@ import Section from "@/src/components/ui/Section";
 import { useTranslations } from "next-intl";
 
 const items = [
-  { icon: Code2, key: "webapp", gradient: "from-blue-500/20 to-indigo-500/10", border: "border-blue-500/20", iconBg: "bg-blue-500/10 text-blue-400" },
-  { icon: ShoppingBag, key: "ecommerce", gradient: "from-purple-500/20 to-pink-500/10", border: "border-purple-500/20", iconBg: "bg-purple-500/10 text-purple-400" },
+  { icon: Code2, key: "webapp", gradient: "from-blue-500/20 to-sky-500/10", border: "border-blue-500/20", iconBg: "bg-blue-500/10 text-blue-400" },
+  { icon: ShoppingBag, key: "ecommerce", gradient: "from-sky-500/20 to-blue-500/10", border: "border-sky-500/20", iconBg: "bg-sky-500/10 text-sky-400" },
   { icon: Gauge, key: "performance", gradient: "from-cyan-500/20 to-teal-500/10", border: "border-cyan-500/20", iconBg: "bg-cyan-500/10 text-cyan-400" },
 ];
 
@@ -25,7 +25,7 @@ export default function Services() {
           </p>
           <h3 className="text-3xl md:text-5xl font-black tracking-tight text-foreground mb-5">
             {t("title_part1")}{" "}
-            <span className="bg-linear-to-r from-primary via-secondary to-accent bg-clip-text text-transparent">
+            <span className="bg-linear-to-r from-primary to-accent bg-clip-text text-transparent">
               {t("title_part2")}
             </span>
           </h3>

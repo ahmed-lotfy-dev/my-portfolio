@@ -12,7 +12,7 @@ const techCategories = [
   {
     label: "Backend",
     items: ["Node.js", "Bun", "Elysia", "Drizzle ORM"],
-    color: "bg-purple-500/10 text-purple-400 border-purple-500/20",
+    color: "bg-sky-500/10 text-sky-400 border-sky-500/20",
   },
   {
     label: "DevOps",

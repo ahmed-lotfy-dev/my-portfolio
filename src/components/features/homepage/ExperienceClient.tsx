@@ -24,7 +24,7 @@ export default function ExperienceClient({ experiences, isRTL }: ExperienceClien
           </p>
           <h2 className="text-3xl md:text-5xl font-black tracking-tight text-foreground">
             {t("heading_part1")}{" "}
-            <span className="bg-linear-to-r from-primary to-secondary bg-clip-text text-transparent">
+            <span className="bg-linear-to-r from-primary to-accent bg-clip-text text-transparent">
               {t("heading_part2")}
             </span>
           </h2>

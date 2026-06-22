@@ -10,9 +10,9 @@ interface ComputerScreenProps {
 
 const SCREEN_CONFIG: Record<string, { color: string; emissive: string }> = {
   hero: { color: "#1e40af", emissive: "#3b82f6" },
-  about: { color: "#6366f1", emissive: "#818cf8" },
-  projects: { color: "#8b5cf6", emissive: "#a78bfa" },
-  contact: { color: "#ec4899", emissive: "#f472b6" },
+  about: { color: "#1e3a8a", emissive: "#2563eb" },
+  projects: { color: "#1d4ed8", emissive: "#60a5fa" },
+  contact: { color: "#0e7490", emissive: "#22d3ee" },
 };
 
 export default function ComputerScreen({ section }: ComputerScreenProps) {
