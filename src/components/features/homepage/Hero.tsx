@@ -4,11 +4,9 @@ import Link from "next/link";
 import { FileText, ArrowRight } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { Button } from "@/src/components/ui/button";
-import { cn } from "@/src/lib/utils";
 import { CVDropdown } from "./CVDropdown";
 import { Nav } from "./Nav";
 import { m } from "motion/react";
-import Image from "next/image";
 
 export interface HeroSection {
   id: string;
@@ -39,9 +37,9 @@ export default function Hero() {
 
       <section className="relative flex flex-1 items-center px-4 pb-16 pt-8 md:pb-24 md:pt-12 lg:pb-32">
         <div className="container relative z-10 mx-auto max-w-7xl px-4 md:px-6">
-          <div className="flex flex-col items-center gap-12 lg:flex-row lg:gap-20">
+          <div className="flex flex-col items-center">
             {/* Text Side */}
-            <div className="relative z-20 w-full text-center md:space-y-8 lg:w-[60%] lg:text-start">
+            <div className="relative z-20 w-full text-center md:space-y-8 lg:w-full lg:text-start">
               <m.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }} className="hero-badge-wrapper">
                 <div className="hero-badge-dot" />
                 <span className="text-sm font-semibold tracking-wider uppercase">{t("available_work")}</span>
@@ -61,7 +59,7 @@ export default function Hero() {
                   <Link href="#contact">
                     <span className="relative z-10 flex items-center gap-3">
                       {t("book_consultation")}
-                      <ArrowRight className={cn("h-5 w-5 transition-transform duration-300 group-hover:translate-x-1")} />
+                      <ArrowRight className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" />
                     </span>
                   </Link>
                 </Button>
@@ -81,27 +79,6 @@ export default function Hero() {
               </m.div>
             </div>
 
-            {/* Logo Mark */}
-            <div className="relative flex w-full items-center justify-center lg:w-[40%]">
-              <m.div
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.6, delay: 0.3 }}
-                className="relative"
-              >
-                <div className="absolute inset-0 rounded-full bg-primary/5 blur-3xl scale-150" />
-                <div className="relative w-48 h-48 sm:w-56 sm:h-56 lg:w-64 lg:h-64 rounded-3xl border border-primary/10 bg-card/30 backdrop-blur-sm flex items-center justify-center shadow-2xl shadow-primary/5">
-                  <Image
-                    src="/as-mark.svg"
-                    alt="Ahmed Lotfy AS Monogram"
-                    width={180}
-                    height={180}
-                    className="w-32 h-32 sm:w-36 sm:h-36 lg:w-40 lg:h-40"
-                    priority
-                  />
-                </div>
-              </m.div>
-            </div>
           </div>
         </div>
       </section>
