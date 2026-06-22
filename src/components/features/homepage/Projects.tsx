@@ -22,34 +22,27 @@ export default async function Projects() {
   };
 
   return (
-    <Section
-      variant="transparent"
-      className="relative overflow-hidden"
-      id="projects"
-    >
-      <div className="container mx-auto px-4">
-        <div className="text-center max-w-2xl mx-auto mb-16">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 text-blue-400 text-xs font-bold tracking-widest uppercase border border-blue-500/15 mb-5">
+    <Section variant="transparent" className="relative overflow-hidden" id="projects">
+      <div className="absolute top-0 left-0 w-[800px] h-[800px] bg-secondary/10 rounded-full blur-[120px] pointer-events-none -translate-y-1/2 -translate-x-1/2" />
+      <div className="container">
+        <div className="text-center mb-16 space-y-4">
+          <h2 className="inline-block px-4 py-1.5 rounded-full bg-primary/10 text-primary text-sm font-medium tracking-wide uppercase border border-primary/20 backdrop-blur-sm">
             {t("title")}
-          </div>
-          <h3 className="text-3xl md:text-5xl font-black tracking-tight text-foreground mb-5">
+          </h2>
+          <p className="text-3xl sm:text-4xl font-bold text-foreground tracking-tight antialiased">
             {t("description")}
-          </h3>
+          </p>
         </div>
 
-        <ProjectsClient
-          projects={allProjects}
-          locale={locale}
-          t={translations}
-        />
+        <ProjectsClient projects={allProjects} locale={locale} t={translations} />
 
-        <div className="mt-14 text-center">
+        <div className="mt-12 text-center">
           <Link
             href={`/${locale}/projects`}
-            className="inline-flex items-center gap-2 px-6 py-3 rounded-xl border border-blue-500/15 bg-blue-500/[0.03] text-sm font-semibold text-blue-400/80 hover:text-blue-300 hover:border-blue-500/30 hover:bg-blue-500/[0.06] transition-all duration-300 group"
+            className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-primary/30 bg-primary/5 text-primary font-semibold hover:bg-primary/10 hover:border-primary/50 transition-all group"
           >
             View All Projects
-            <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5" />
+            <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
           </Link>
         </div>
       </div>

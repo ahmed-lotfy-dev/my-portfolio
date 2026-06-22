@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useTranslations } from "next-intl";
+import { Sparkles, Trophy, Target, Zap } from "lucide-react";
 import { StaticImageData } from "next/image";
 
 type Props = {
@@ -12,81 +13,76 @@ type Props = {
 export default function AboutClient({ myImage, isRTL }: Props) {
   const t = useTranslations("about");
 
+  const stats = [
+    { icon: Trophy, label: "Experience", value: "2 Years", color: "text-primary" },
+    { icon: Target, label: "Projects", value: "9 Projects", color: "text-primary-light" },
+    { icon: Zap, label: "Performance", value: "95+ Score", color: "text-primary-dark" },
+  ];
+
   return (
-    <section className="relative overflow-hidden" id="about">
-      <div className="absolute top-1/4 right-0 w-[500px] h-[500px] rounded-full bg-blue-600/[0.04] blur-[140px] pointer-events-none" />
-      <div className="absolute bottom-0 left-0 w-[400px] h-[400px] rounded-full bg-sky-500/[0.03] blur-[120px] pointer-events-none" />
+    <section className="relative overflow-hidden py-24 sm:py-32" id="about">
+      <div className="pointer-events-none absolute top-0 left-0 h-full w-full overflow-hidden">
+        <div className="absolute top-1/4 -left-20 h-80 w-80 rounded-full bg-primary/5 blur-[100px]" />
+        <div className="absolute right-0 bottom-1/4 h-80 w-80 translate-x-1/4 rounded-full bg-secondary/5 blur-[100px]" />
+      </div>
 
       <div className="container relative mx-auto px-4">
-        <div className="flex flex-col items-center gap-16 lg:flex-row lg:gap-20">
-          <div className="relative w-full lg:w-5/12">
-            <div className="absolute -inset-4 rounded-[2rem] bg-gradient-to-r from-blue-600/10 via-blue-500/5 to-sky-500/5 opacity-70 blur-2xl" />
-            <div className="relative overflow-hidden rounded-2xl border border-blue-500/10 bg-card/20 p-2">
+        <div className="flex flex-col items-center gap-12 lg:flex-row lg:gap-32">
+          <div className="group relative lg:w-5/12">
+            <div className="absolute -inset-4 rounded-[2.5rem] bg-linear-to-r from-primary/15 via-secondary/15 to-primary/15 opacity-40 blur-2xl transition duration-700 group-hover:opacity-60" />
+            <div className="relative overflow-hidden rounded-4xl border border-border/50 bg-card/50 p-3 shadow-2xl">
               <Image
                 src={myImage}
                 width={400}
                 height={400}
                 quality={75}
                 alt="Ahmed Lotfy"
-                className={`rounded-xl w-full ${!isRTL ? "-scale-x-100" : ""}`}
+                style={{ width: "auto", height: "auto" }}
+                className={`rounded-2xl transition-transform duration-500 group-hover:scale-[1.01] ${!isRTL ? "-scale-x-100" : ""}`}
               />
             </div>
-            <div className="absolute -bottom-4 -right-2 sm:-bottom-6 sm:-right-4 flex items-center gap-2.5 rounded-xl border border-blue-500/15 bg-card/80 p-3 shadow-xl shadow-blue-500/10 backdrop-blur-xl">
-              <div className="rounded-lg bg-blue-500/15 p-2">
-                <div className="w-2.5 h-2.5 rounded-full bg-blue-400 shadow-[0_0_10px_rgba(96,165,250,0.6)] animate-pulse" />
+
+            <div className="absolute -top-6 -right-6 hidden items-center gap-3 rounded-2xl border border-border/50 bg-card/80 p-4 shadow-xl backdrop-blur-xl sm:flex">
+              <div className="rounded-lg bg-primary/10 p-2">
+                <Sparkles className="h-5 w-5 text-primary" />
               </div>
               <div>
-                <p className="text-[10px] font-bold text-blue-400/60 uppercase tracking-wider">
+                <p className="mb-1 text-xs font-bold leading-none tracking-widest text-muted-foreground uppercase">
                   Status
                 </p>
-                <p className="text-sm font-bold text-foreground">
+                <p className="text-sm font-black leading-none text-foreground">
                   Available for Hire
                 </p>
               </div>
             </div>
           </div>
 
-          <div className="w-full lg:w-7/12">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 text-blue-400 text-xs font-bold tracking-widest uppercase border border-blue-500/15 mb-5">
-              {t("title")}
-            </div>
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-black tracking-tight text-foreground mb-8 leading-[1.1]">
-              Solving complex problems with{" "}
-              <span className="bg-linear-to-r from-blue-400 via-sky-400 to-indigo-400 bg-clip-text text-transparent">
-                elegant engineering
+          <div className="space-y-10 lg:w-1/2">
+            <div className="space-y-4">
+              <span className="inline-block rounded-full border border-primary/20 bg-primary/10 px-4 py-1.5 text-xs font-bold tracking-[0.2em] text-primary uppercase backdrop-blur-sm">
+                {t("title")}
               </span>
-            </h2>
+              <h2 className="text-4xl font-black leading-[1.1] tracking-tight text-foreground md:text-5xl lg:text-6xl">
+                Solving Complex Problems with <span className="bg-linear-to-r from-primary to-secondary bg-clip-text text-transparent italic">Elegant Design.</span>
+              </h2>
+            </div>
 
-            <div className="space-y-5 text-base leading-relaxed text-muted-foreground">
+            <div className="space-y-6 text-lg leading-relaxed text-muted-foreground antialiased">
               <p>{t("description1")}</p>
               <p>{t("description2")}</p>
+              <p className="rounded-r-xl border-l-4 border-primary bg-primary/5 py-2 pl-6 font-bold text-foreground/80">
+                {t("description3")}
+              </p>
             </div>
 
-            <div className="mt-10 flex flex-wrap gap-10">
-              <div>
-                <p className="text-3xl font-black bg-linear-to-r from-blue-400 to-sky-400 bg-clip-text text-transparent">
-                  2+
-                </p>
-                <p className="text-xs font-semibold text-muted-foreground mt-1.5 uppercase tracking-wider">
-                  Years Experience
-                </p>
-              </div>
-              <div>
-                <p className="text-3xl font-black bg-linear-to-r from-blue-400 to-sky-400 bg-clip-text text-transparent">
-                  9
-                </p>
-                <p className="text-xs font-semibold text-muted-foreground mt-1.5 uppercase tracking-wider">
-                  Projects Shipped
-                </p>
-              </div>
-              <div>
-                <p className="text-3xl font-black bg-linear-to-r from-blue-400 to-sky-400 bg-clip-text text-transparent">
-                  95+
-                </p>
-                <p className="text-xs font-semibold text-muted-foreground mt-1.5 uppercase tracking-wider">
-                  Performance Score
-                </p>
-              </div>
+            <div className="grid grid-cols-1 gap-6 pt-4 sm:grid-cols-3">
+              {stats.map((stat, idx) => (
+                <div key={idx} className="group rounded-2xl border border-border/50 bg-card/20 p-4 transition-all duration-300 hover:border-primary/30 hover:bg-card/40">
+                  <stat.icon className={`mb-3 h-6 w-6 ${stat.color}`} />
+                  <p className="mb-1 text-2xl font-black text-foreground">{stat.value}</p>
+                  <p className="text-[10px] font-bold tracking-widest text-muted-foreground uppercase">{stat.label}</p>
+                </div>
+              ))}
             </div>
           </div>
         </div>

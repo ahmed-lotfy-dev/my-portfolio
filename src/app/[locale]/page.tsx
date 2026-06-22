@@ -166,8 +166,8 @@ export default async function HomePage({
 
       <Hero />
 
-      <div className="max-w-6xl mx-auto">
-        <div className="space-y-2">
+      <Container>
+        <div className="space-y-6 py-12 lg:py-20">
           <ScrollReveal>
             <div className="snap-section">
               <HomeSectionBand variant="warm">
@@ -204,7 +204,7 @@ export default async function HomePage({
             </div>
           </ScrollReveal>
         </div>
-      </div>
+      </Container>
     </main>
   );
 }

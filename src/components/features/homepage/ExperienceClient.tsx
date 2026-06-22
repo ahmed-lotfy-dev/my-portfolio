@@ -4,98 +4,122 @@ import * as React from "react";
 import { Calendar, Briefcase } from "lucide-react";
 import Section from "@/src/components/ui/Section";
 import { useTranslations } from "next-intl";
+import { cn } from "@/src/lib/utils";
 
 interface ExperienceClientProps {
   experiences: any[];
   isRTL: boolean;
 }
 
-export default function ExperienceClient({
-  experiences,
-  isRTL,
-}: ExperienceClientProps) {
-  const t = useTranslations("experience");
-
+function ExperienceCard({ exp, index, isRTL }: { exp: any; index: number; isRTL: boolean }) {
   return (
-    <Section
-      variant="transparent"
-      className="relative overflow-hidden"
-      id="experience"
+    <div
+      className={cn(
+        "relative flex flex-col md:flex-row gap-8 mb-12 last:mb-0",
+        index % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
+      )}
     >
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-blue-600/[0.02] rounded-full blur-[150px] pointer-events-none" />
+      <div
+        className={cn(
+          "absolute top-0 flex items-center justify-center translate-y-[28px] z-10",
+          isRTL ? "right-[11px] md:right-1/2 md:translate-x-1/2" : "left-[11px] md:left-1/2 md:-translate-x-1/2"
+        )}
+      >
+        <div className="w-4 h-4 rounded-full bg-background border-2 border-primary shadow-[0_0_10px_rgba(var(--primary),0.5)] flex items-center justify-center">
+          <div className="w-1.5 h-1.5 rounded-full bg-primary" />
+        </div>
+      </div>
 
-      <div className="container max-w-3xl mx-auto px-4">
-        <div className="text-center mb-20">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 text-blue-400 text-xs font-bold tracking-widest uppercase border border-blue-500/15 mb-5">
-            {t("label")}
+      <article className={cn("md:w-1/2", isRTL ? "pr-10 md:pr-0" : "pl-10 md:pl-0")}>
+        <div
+          className={cn(
+            "group p-6 md:p-8 rounded-4xl border border-border/50 bg-card/30 backdrop-blur-xl relative overflow-hidden transition-all duration-500 hover:border-primary/40 hover:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.3)] hover:bg-card/40",
+            index % 2 === 0 ? "md:text-right" : "md:text-left text-left"
+          )}
+        >
+          <div className={cn(
+            "flex items-center gap-2 mb-4 text-primary bg-primary/10 px-3 py-1 rounded-full w-fit",
+            index % 2 === 0 ? "md:ml-auto" : "md:mr-auto"
+          )}>
+            <Calendar className="w-3.5 h-3.5" />
+            <time className="font-mono text-xs uppercase tracking-[0.2em] font-bold" dateTime={exp.date_en}>
+              {isRTL ? exp.date_ar : exp.date_en}
+            </time>
           </div>
-          <h2 className="text-3xl md:text-5xl font-black tracking-tight text-foreground">
-            {t("heading_part1")}{" "}
-            <span className="bg-linear-to-r from-blue-400 via-sky-400 to-indigo-400 bg-clip-text text-transparent">
-              {t("heading_part2")}
+
+          <h3 className="text-xl md:text-2xl font-black text-foreground mb-2 tracking-tight group-hover:text-primary transition-colors duration-300">
+            {isRTL ? exp.role_ar : exp.role_en}
+          </h3>
+
+          <div className={cn(
+            "text-base font-semibold text-muted-foreground/80 mb-6 flex items-center gap-2",
+            index % 2 === 0 ? "md:justify-end" : "md:justify-start"
+          )}>
+            <Briefcase className="w-4 h-4" />
+            <span>{exp.company}</span>
+          </div>
+
+          <p className="text-muted-foreground leading-relaxed mb-8 text-sm font-medium opacity-90">
+            {isRTL ? exp.description_ar : exp.description_en}
+          </p>
+
+          <div className={cn(
+            "flex flex-wrap gap-2.5",
+            index % 2 === 0 ? "md:justify-end" : "md:justify-start"
+          )}>
+            {exp.tech_stack.map((tech: string) => (
+              <span
+                key={tech}
+                className="px-2 py-0.5 rounded-md bg-secondary/30 text-sm font-medium text-muted-foreground border border-transparent hover:border-primary/20 hover:text-primary transition-all duration-300 cursor-default"
+              >
+                {tech}
+              </span>
+            ))}
+          </div>
+        </div>
+      </article>
+
+      <div className="hidden md:block md:w-1/2" />
+    </div>
+  );
+}
+
+export default function ExperienceClient({ experiences, isRTL }: ExperienceClientProps) {
+  const t = useTranslations("experience");
+  return (
+    <Section variant="transparent" className="py-32 px-4 relative overflow-hidden" id="experience">
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-primary/5 rounded-full blur-[150px] pointer-events-none" />
+      <div className="absolute top-0 left-0 w-[400px] h-[400px] bg-secondary/5 rounded-full blur-[100px] pointer-events-none" />
+
+      <div className="container max-w-6xl mx-auto relative">
+        <div className="text-center mb-32 space-y-6">
+          <div className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-primary/10 text-primary border border-primary/20 backdrop-blur-sm shadow-[0_0_20px_rgba(var(--primary),0.1)]">
+            <span className="text-md font-black uppercase tracking-[0.3em]">
+              {t("label")}
             </span>
+          </div>
+
+          <h2 className="text-4xl md:text-5xl font-black tracking-tighter text-foreground">
+            {t("heading_part1")} <span className="text-primary italic">{t("heading_part2")}</span>
           </h2>
         </div>
 
         <div className="relative">
-          <div className="absolute top-0 bottom-0 left-[7px] md:left-1/2 w-px bg-gradient-to-b from-blue-500/30 via-blue-500/10 to-transparent" />
+          <div
+            className={cn(
+              "absolute top-0 bottom-0 w-[2px] bg-linear-to-b from-transparent via-primary/40 to-transparent",
+              isRTL ? "right-[11px] md:right-1/2" : "left-[11px] md:left-1/2"
+            )}
+          />
 
-          <div className="space-y-8">
+          <div className="space-y-4">
             {experiences.map((exp: any, index: number) => (
-              <div key={exp.id} className="relative flex gap-6 md:gap-0">
-                <div className="absolute left-0 md:left-1/2 md:-translate-x-1/2 top-1.5 z-10">
-                  <div className="w-4 h-4 rounded-full bg-background border-2 border-blue-500/60 shadow-[0_0_14px_rgba(59,130,246,0.4)]" />
-                </div>
-
-                <div
-                  className={`pl-8 md:pl-0 md:w-1/2 ${
-                    index % 2 === 0
-                      ? "md:pr-12 md:text-right"
-                      : "md:ml-auto md:pl-12"
-                  }`}
-                >
-                  <div className="p-6 rounded-xl card-blue hover:border-blue-500/15 transition-all duration-300 group">
-                    <div
-                      className={`flex items-center gap-2 mb-3 text-xs text-blue-400 font-semibold ${
-                        index % 2 === 0 ? "md:justify-end" : ""
-                      }`}
-                    >
-                      <Calendar className="w-3 h-3" />
-                      <time dateTime={exp.date_en}>
-                        {isRTL ? exp.date_ar : exp.date_en}
-                      </time>
-                    </div>
-
-                    <h3 className="text-base font-bold text-foreground mb-1 group-hover:text-blue-400 transition-colors">
-                      {isRTL ? exp.role_ar : exp.role_en}
-                    </h3>
-
-                    <p className="text-sm text-muted-foreground mb-3 flex items-center gap-1.5">
-                      <Briefcase className="w-3 h-3" />
-                      {exp.company}
-                    </p>
-
-                    <p className="text-sm text-muted-foreground/70 leading-relaxed mb-4">
-                      {isRTL ? exp.description_ar : exp.description_en}
-                    </p>
-
-                    <div
-                      className={`flex flex-wrap gap-1.5 ${
-                        index % 2 === 0 ? "md:justify-end" : ""
-                      }`}
-                    >
-                      {exp.tech_stack.map((tech: string) => (
-                        <span
-                          key={tech}
-                          className="px-2.5 py-1 rounded-md text-[11px] font-medium text-muted-foreground/50 bg-blue-500/[0.03] border border-blue-500/8"
-                        >
-                          {tech}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              </div>
+              <ExperienceCard
+                key={exp.id}
+                exp={exp}
+                index={index}
+                isRTL={isRTL}
+              />
             ))}
           </div>
         </div>

@@ -1,10 +1,10 @@
-import React from "react";
-import { cn } from "@/src/lib/utils";
+import React from "react"
+import { cn } from "@/src/lib/utils"
 
 type SectionProps = React.HTMLAttributes<HTMLElement> & {
   id?: string;
   variant?: "default" | "surface" | "alternate" | "transparent";
-};
+}
 
 export default function Section({
   id,
@@ -15,12 +15,10 @@ export default function Section({
 }: SectionProps) {
   const variantStyles = {
     default: "bg-background",
-    surface:
-      "bg-muted/5 border-y border-blue-500/5",
-    alternate:
-      "bg-linear-to-b from-background to-blue-500/[0.02] border-y border-blue-500/5",
-    transparent: "bg-transparent border-0 py-0! px-0!",
-  };
+    surface: "bg-muted/10 border-y border-border/50",
+    alternate: "bg-linear-to-b from-background to-primary/5 border-y border-primary/10",
+    transparent: "bg-transparent border-0",
+  }
 
   return (
     <section
@@ -28,11 +26,11 @@ export default function Section({
       className={cn(
         "scroll-mt-24 py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-8 overflow-x-hidden relative",
         variantStyles[variant],
-        className,
+        className
       )}
       {...props}
     >
       {children}
     </section>
-  );
+  )
 }

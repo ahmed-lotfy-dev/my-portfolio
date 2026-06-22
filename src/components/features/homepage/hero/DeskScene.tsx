@@ -84,7 +84,7 @@ export default function DeskScene() {
       <group position={[0.5, 0.35, -0.3]}>
         <mesh ref={screen2Ref}>
           <boxGeometry args={[0.9, 0.55, 0.03]} />
-          <meshStandardMaterial color="#0f172a" emissive="#3b82f6" emissiveIntensity={0.25} />
+          <meshStandardMaterial color="#0f172a" emissive="#6366f1" emissiveIntensity={0.25} />
         </mesh>
         <mesh position={[0, -0.35, 0]}>
           <boxGeometry args={[0.06, 0.2, 0.06]} />
@@ -120,7 +120,7 @@ export default function DeskScene() {
       </mesh>
       <mesh position={[0.45, 0.055, 0.13]}>
         <boxGeometry args={[0.03, 0.02, 0.04]} />
-        <meshStandardMaterial color="#3b82f6" metalness={0.2} roughness={0.7} />
+        <meshStandardMaterial color="#6366f1" metalness={0.2} roughness={0.7} />
       </mesh>
 
       {/* Coffee mug */}
