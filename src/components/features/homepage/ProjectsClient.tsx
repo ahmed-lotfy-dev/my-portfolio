@@ -53,31 +53,32 @@ export default function ProjectsClient({ projects, locale, t }: Props) {
           return (
             <article
               key={proj.id}
-              className="group flex flex-col overflow-hidden rounded-lg border border-border/40 bg-card/20 hover:border-primary/20 transition-all duration-300"
+              className="group flex flex-col overflow-hidden rounded-2xl border border-border/40 bg-card/30 hover:border-primary/30 hover:shadow-xl hover:shadow-primary/5 transition-all duration-500"
             >
-              {/* Cover Image */}
+              {/* Cover */}
               <Link
                 href={proj.slug ? `/${locale}/projects/${proj.slug}` : proj.live_link}
                 target={proj.slug ? undefined : "_blank"}
-                className="block overflow-hidden aspect-video"
+                className="block overflow-hidden aspect-video relative"
               >
                 <Image
                   src={safeMediaUrl(getProjectCoverImage(proj.cover_image))}
                   alt={locale === "ar" ? proj.title_ar : proj.title_en}
                   width={600}
                   height={340}
-                  className={`w-full h-full transition-transform duration-500 group-hover:scale-[1.03] ${showApk ? "object-contain p-4 bg-muted/30" : "object-cover"}`}
+                  className={`w-full h-full transition-transform duration-700 group-hover:scale-105 ${showApk ? "object-contain p-4 bg-muted/20" : "object-cover"}`}
                   loading="lazy"
                 />
+                <div className="absolute inset-0 bg-gradient-to-t from-card/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
               </Link>
 
               {/* Content */}
-              <div className="flex flex-1 flex-col p-5 gap-3">
+              <div className="flex flex-1 flex-col p-6 gap-4">
                 <Link
                   href={proj.slug ? `/${locale}/projects/${proj.slug}` : proj.live_link}
                   target={proj.slug ? undefined : "_blank"}
                 >
-                  <h3 className="text-base font-semibold text-foreground group-hover:text-primary transition-colors">
+                  <h3 className="text-lg font-bold text-foreground group-hover:text-primary transition-colors">
                     {locale === "ar" ? proj.title_ar : proj.title_en}
                   </h3>
                 </Link>
@@ -93,7 +94,7 @@ export default function ProjectsClient({ projects, locale, t }: Props) {
                 {proj.slug && (
                   <Link
                     href={`/${locale}/projects/${proj.slug}`}
-                    className="inline-flex items-center gap-1 text-primary text-xs font-medium hover:underline underline-offset-4 w-fit"
+                    className="inline-flex items-center gap-1.5 text-primary text-xs font-semibold hover:underline underline-offset-4 w-fit"
                   >
                     {t.view_case_study}
                     <ArrowRight className={`w-3 h-3 ${locale === "ar" ? "rotate-180" : ""}`} />
@@ -102,7 +103,7 @@ export default function ProjectsClient({ projects, locale, t }: Props) {
 
                 <ProjectCategories categories={proj.categories || []} />
 
-                <div className="flex gap-2 mt-auto pt-2">
+                <div className="flex gap-2.5 mt-auto pt-3 border-t border-border/20">
                   <ProjectLinkTracker
                     href={proj.live_link}
                     projectTitle={locale === "ar" ? proj.title_ar : proj.title_en}
@@ -110,8 +111,8 @@ export default function ProjectsClient({ projects, locale, t }: Props) {
                     linkType="live"
                     target="_blank"
                   >
-                    <Button size="sm" className="gap-1.5 text-xs h-8">
-                      <ExternalLink className="w-3 h-3" />
+                    <Button size="sm" className="gap-1.5 text-xs h-9 font-semibold">
+                      <ExternalLink className="w-3.5 h-3.5" />
                       {showApk ? t.apk : t.live}
                     </Button>
                   </ProjectLinkTracker>
@@ -122,8 +123,8 @@ export default function ProjectsClient({ projects, locale, t }: Props) {
                     linkType="repo"
                     target="_blank"
                   >
-                    <Button variant="outline" size="sm" className="gap-1.5 text-xs h-8 border-border/40">
-                      <IoLogoGithub className="w-3 h-3" />
+                    <Button variant="outline" size="sm" className="gap-1.5 text-xs h-9 border-border/40 hover:border-primary/30">
+                      <IoLogoGithub className="w-3.5 h-3.5" />
                       {t.repo}
                     </Button>
                   </ProjectLinkTracker>
