@@ -127,6 +127,7 @@ const nextConfig: NextConfig = {
       { source: "/:locale/ai-sitemap.json", destination: "/ai-sitemap.json" },
       { source: "/:locale/opensearch.xml", destination: "/opensearch.xml" },
       { source: "/:locale/llms.txt", destination: "/llms.txt" },
+      { source: "/:locale/BingSiteAuth.xml", destination: "/BingSiteAuth.xml" },
     ];
   },
 

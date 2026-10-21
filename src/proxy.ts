@@ -33,6 +33,9 @@ export async function proxy(request: NextRequest) {
   if (
     pathname === "/robots.txt" ||
     pathname === "/sitemap.xml" ||
+    // Bing Webmaster site verification file — must be served exactly at the
+    // root with no locale redirect, or the [locale] i18n routing would 404 it.
+    pathname === "/BingSiteAuth.xml" ||
     pathname.startsWith("/.well-known/") ||
     pathname.startsWith("/_agent/")
   ) {
@@ -82,6 +85,6 @@ export async function proxy(request: NextRequest) {
 
 export const config = {
   matcher: [
-    "/((?!api|_next/static|_next/image|ingest|\\.well-known|_agent|robots\\.txt|sitemap\\.xml|.*\\.png|.*\\.jpg|.*\\.jpeg|.*\\.gif|.*\\.webp|.*\\.svg|.*\\.ico|.*\\.pdf|.*\\.webmanifest).*)",
+    "/((?!api|_next/static|_next/image|ingest|\\.well-known|_agent|robots\\.txt|sitemap\\.xml|BingSiteAuth\\.xml|.*\\.png|.*\\.jpg|.*\\.jpeg|.*\\.gif|.*\\.webp|.*\\.svg|.*\\.ico|.*\\.pdf|.*\\.webmanifest).*)",
   ],
 };
