@@ -13,7 +13,7 @@ export function OrganizationSchema() {
     ],
     contactPoint: {
       "@type": "ContactPoint",
-      email: "mailto:ahmedlotfy@example.com",
+      email: "mailto:contact@alotfy.site",
       contactType: "customer service",
       availableLanguage: ["English", "Arabic"],
     },

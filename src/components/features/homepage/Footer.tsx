@@ -37,7 +37,7 @@ export default function Footer() {
       ariaLabel: "LinkedIn Profile",
     },
     {
-      href: "mailto:contact@ahmedlotfy.dev",
+      href: "mailto:contact@alotfy.site",
       label: "Email",
       icon: Mail,
       ariaLabel: "Email Contact",
