@@ -3,9 +3,13 @@
   "version": "1.0.0",
   "private": true,
   "type": "module",
+  "overrides": {
+    "lru-cache": "6.0.0"
+  },
   "homepage": "https://alotfy.site",
   "scripts": {
     "dev": "next dev",
+    "email:dev": "email dev --dir src/emails",
     "build": "next build",
     "start": "next start",
     "start:standalone": "node .next/standalone/server.js",
@@ -74,6 +78,7 @@
     "@radix-ui/react-toggle": "^1.2.1",
     "@radix-ui/react-toggle-group": "^1.2.1",
     "@radix-ui/react-tooltip": "^1.4.1",
+    "@react-email/components": "^1.0.12",
     "@react-three/drei": "^10.7.9",
     "@react-three/fiber": "^9.8.2",
     "@tailwindcss/postcss": "^4.3.3",
@@ -142,6 +147,7 @@
     "eslint": "10.5.0",
     "eslint-config-next": "16.2.9",
     "happy-dom": "^20.14.6",
+    "react-email": "^6.11.3",
     "tsx": "^4.23.15",
     "typescript": "6.0.3",
     "vitest": "^4.1.12"
