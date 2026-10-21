@@ -21,6 +21,10 @@ We added `alternates` (hreflang) to `src/app/sitemap.ts`.
 Your code uses `article`, `header`, `nav`, and proper `h1-h6` hierarchies.
 *   **AI Benefit**: LLMs digest structured text better. A `<div>` soup is harder to parse than `<section id="experience">`.
 
+### Site Verification & File Delivery (Oct 2026 ✅)
+*   **Bing Webmaster**: verified via `public/BingSiteAuth.xml`, served at both `/BingSiteAuth.xml` and `/:locale/BingSiteAuth.xml`. `robots.txt` now lists only the XML sitemap (Google rejects JSON sitemaps in the Sitemaps directive).
+*   **No-redirect AI files**: `/feed.xml`, `/llms.txt`, `/ai-sitemap.json`, `/opensearch.xml` are excluded from the i18n middleware (`src/proxy.ts`), so they respond `200` directly instead of `301 → /en/...` — several LLM fetchers never follow that redirect hop and would miss the file entirely.
+
 ---
 
 ## 2. The "AI SEO" Strategy (What To Do Next) 🚀
@@ -62,7 +66,7 @@ LLMs hallucinate less when you provide dense, factual context.
     *   **Location/Timezone**: Helps AI match you with local recruiters.
 
 ### C. The "Context" File (Optional but Pro)
-Some developers now add a `/llms.txt` file (proposed standard).
+Some developers now add a `/llms.txt` file (proposed standard). **Done ✅ — live at `https://alotfy.site/llms.txt` (200, no redirect).**
 *   **Concept**: A text file specifically for bots that summarizes the entire site structure without HTML noise.
 *   **Content**: "Ahmed Lotfy is a Full Stack Engineer. His projects include X, Y, Z. His blog covers A, B."
 
@@ -78,3 +82,14 @@ Don't just write for clicks; write for **embeddings** (semantic similarity).
 1.  **Perplexity Test**: Ask Perplexity.ai *"Who is Ahmed Lotfy software engineer?"*. If it quotes your site, you are indexed.
 2.  **Indexing Speed**: Submit your sitemap to Google Search Console. Bing (which powers ChatGPT search features) also has a Webmaster Tool—submit there too.
 3.  **Backlinks**: AI models trust "authoritative" nodes. Links from GitHub, LinkedIn, and even generic dev.to articles pointing to your site increase your "Knowledge Graph" weight.
+
+---
+
+## 4. Status — Oct 21 2026
+
+*   ✅ Bing Webmaster verified (`BingSiteAuth.xml`) — remaining manual step: submit `https://alotfy.site/sitemap.xml` in the Bing dashboard
+*   ✅ All AI/SEO files serve `200` with no locale redirects
+*   🔲 Google Search Console: verify via DNS TXT (Cloudflare), then submit `https://alotfy.site/sitemap.xml`
+*   🔲 `ProfilePage` JSON-LD on homepage (§2A)
+*   🔲 IndexNow key (Bing dashboard → IndexNow → generate, then wire into the blog publish scripts)
+*   🔲 Backlinks (§Verification + `docs/seo-rules-for-ai.md` §7): GitHub profile README, LinkedIn, dev.to

@@ -221,3 +221,26 @@ For reference, here are all the changes made:
 | `src/db/seed.ts` | Updated seed data |
 | `src/lib/schemas/__tests__/contactSchema.test.ts` | Updated test data |
 | `README.md`, `docs/*.md` | Updated documentation references |
+
+---
+
+## 9. Update Log — Oct 21 2026
+
+Follow-up pass implementing this playbook + Bing Webmaster verification of `alotfy.site`.
+
+| File | Change |
+|------|--------|
+| `public/BingSiteAuth.xml` | Bing site verification file (site now verified at Bing Webmaster) |
+| `src/proxy.ts` | Bypass i18n redirect for `/BingSiteAuth.xml`; matcher also skips `feed.xml`, `llms.txt`, `ai-sitemap.json`, `opensearch.xml` so all AI/SEO files serve `200` directly instead of `301 → /en/...` (several LLM fetchers don't follow redirects) |
+| `next.config.ts` | Rewrite `/:locale/BingSiteAuth.xml` → `/BingSiteAuth.xml` (en/ar aliases work) |
+| `src/app/robots.txt/route.ts` | Sitemaps section lists `sitemap.xml` only — removed `ai-sitemap.json` (§4 of this doc: Google rejects JSON sitemaps in the Sitemaps directive). The file itself stays reachable for AI agents |
+| `package.json` + `bun.lock` | 193 packages updated (Next 16.4.2, React 19.3.1, next-intl 4.14.9, PostHog, Tailwind 4.3.3, …). `fast-xml-parser` → 5.11.2 closed all 6 Dependabot alerts (1 critical, 2 high, 2 medium, 1 low). Majors left out on purpose: TypeScript 7, @hookform/resolvers 6 |
+
+Verified live after deploy: homepage 200, `/BingSiteAuth.xml` 200, all AI/SEO files 200 instead of 301, robots.txt JSON-sitemap rule enforced.
+
+Still open:
+
+- [ ] Google Search Console verification (no `google-site-verification` meta present — recommended: Cloudflare DNS TXT), then submit `https://alotfy.site/sitemap.xml`
+- [ ] `ProfilePage` JSON-LD on homepage (top priority per `docs/ai-seo-guide.md` §2A)
+- [ ] IndexNow key for instant Bing/DuckDuckGo indexing on new blog posts
+- [ ] Backlinks (§7): GitHub profile README, LinkedIn, dev.to — manual, no code involved
