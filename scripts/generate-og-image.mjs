@@ -47,7 +47,7 @@ const svg = `
     <rect x="406" y="432" width="150" height="48" rx="24" fill="#FFFFFF" fill-opacity="0.08" stroke="#FFFFFF" stroke-opacity="0.12"/>
     <text x="434" y="464" fill="#F8FAFC" font-family="Inter, Arial, sans-serif" font-size="22" font-weight="800">Cloud Native</text>
   </g>
-  <text x="120" y="526" fill="#94A3B8" font-family="Inter, Arial, sans-serif" font-size="24" font-weight="700">ahmedlotfy.site</text>
+  <text x="120" y="526" fill="#94A3B8" font-family="Inter, Arial, sans-serif" font-size="24" font-weight="700">alotfy.site</text>
   <rect x="738" y="80" width="334" height="470" rx="42" fill="#020617" fill-opacity="0.58" stroke="#F5D06F" stroke-opacity="0.22"/>
 </svg>`;
 

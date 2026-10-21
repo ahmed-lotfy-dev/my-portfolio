@@ -17,7 +17,7 @@ export const BreadcrumbSchema: FC<BreadcrumbSchemaProps> = ({ items }) => {
       "@type": "ListItem",
       position: index + 1,
       name: item.label,
-      item: `https://ahmedlotfy.site${item.url}`,
+      item: `https://alotfy.site${item.url}`,
     })),
   };
 

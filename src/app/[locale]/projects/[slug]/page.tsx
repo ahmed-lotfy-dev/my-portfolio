@@ -29,7 +29,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     openGraph: {
       title,
       description,
-      url: `https://ahmedlotfy.site/${locale}/projects/${slug}`,
+      url: `https://alotfy.site/${locale}/projects/${slug}`,
       siteName: "Ahmed Lotfy Portfolio",
       images: [{ url: project.cover_image || "", width: 1200, height: 630, alt: title }],
       locale: locale === "ar" ? "ar_EG" : "en_US",
@@ -43,11 +43,11 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
       creator: "@ahmedlotfy_dev",
     },
     alternates: {
-      canonical: `https://ahmedlotfy.site/${locale}/projects/${slug}`,
+      canonical: `https://alotfy.site/${locale}/projects/${slug}`,
       languages: {
-        en: `https://ahmedlotfy.site/en/projects/${slug}`,
-        ar: `https://ahmedlotfy.site/ar/projects/${slug}`,
-        "x-default": `https://ahmedlotfy.site/en/projects/${slug}`,
+        en: `https://alotfy.site/en/projects/${slug}`,
+        ar: `https://alotfy.site/ar/projects/${slug}`,
+        "x-default": `https://alotfy.site/en/projects/${slug}`,
       },
     },
   };
@@ -101,9 +101,9 @@ export default async function ProjectDetailsPage({ params }: { params: Promise<{
           title,
           description: desc,
           image: project.cover_image || "",
-          url: `https://ahmedlotfy.site/${locale}/projects/${slug}`,
+          url: `https://alotfy.site/${locale}/projects/${slug}`,
           authorName: "Ahmed Lotfy",
-          authorUrl: "https://ahmedlotfy.site",
+          authorUrl: "https://alotfy.site",
           keywords: project.categories?.join(", ") || "",
           categories: project.categories || [],
           language: locale === "ar" ? "ar" : "en",

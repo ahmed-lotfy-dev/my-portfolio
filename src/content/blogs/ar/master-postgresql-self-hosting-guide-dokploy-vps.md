@@ -122,7 +122,7 @@ volumes:
 ### الاتصال من الجهاز المحلي
 
 ```bash
-psql postgresql://my-pg-user:***@pg.ahmedlotfy.site:5432/my-pg-db
+psql postgresql://my-pg-user:***@pg.alotfy.site:5432/my-pg-db
 ```
 
 المتوقع:
@@ -203,7 +203,7 @@ GRANT ALL ON SEQUENCES TO example_user;
 استخدم الشكل ده **في كل مكان** (apps, Prisma, migrations):
 
 ```text
-postgresql://user:***@pg.ahmedlotfy.site:5432/db_name?sslmode=require
+postgresql://user:***@pg.alotfy.site:5432/db_name?sslmode=require
 ```
 
 ---

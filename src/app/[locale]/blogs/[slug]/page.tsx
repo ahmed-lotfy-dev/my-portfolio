@@ -57,7 +57,7 @@ export async function generateMetadata({
   const post = getBlogPost(slug, locale);
   if (!post) return { title: "Post Not Found" };
 
-  const baseUrl = "https://ahmedlotfy.site";
+  const baseUrl = "https://alotfy.site";
   const description = post.excerpt.replace(/[#*`\[\]\(\)!>|_\-\n]/g, "").slice(0, 160);
 
   return {
@@ -137,7 +137,7 @@ export default async function BlogPostPage({
   const isArabic = locale === "ar";
   const contentHtml = fixLocaleLinks(await markdownToHtml(post.content), locale);
   const relatedPosts = getRelatedPosts(slug, locale, 3);
-  const baseUrl = "https://ahmedlotfy.site";
+  const baseUrl = "https://alotfy.site";
 
   return (
     <main className="min-h-screen pb-20 bg-background overflow-x-hidden">

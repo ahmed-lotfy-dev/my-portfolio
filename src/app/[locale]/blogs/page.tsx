@@ -17,7 +17,7 @@ export async function generateMetadata({
 }) {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "blog" });
-  const baseUrl = "https://ahmedlotfy.site";
+  const baseUrl = "https://alotfy.site";
 
   return {
     title: `${t("title")} — Ahmed Lotfy Blog`,

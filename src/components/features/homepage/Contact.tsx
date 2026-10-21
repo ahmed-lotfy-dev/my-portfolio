@@ -32,8 +32,8 @@ export default function Contact() {
     {
       icon: Mail,
       label: "Email",
-      value: "contact@ahmedlotfy.site",
-      href: "mailto:contact@ahmedlotfy.site",
+      value: "contact@alotfy.site",
+      href: "mailto:contact@alotfy.site",
       color: "text-primary",
     },
     {

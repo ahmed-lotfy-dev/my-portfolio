@@ -194,7 +194,7 @@ Recent fixes show **real engineering skills**:
 
 1. **Deploy Your Portfolio** ✅
 
-   - Make sure it's live at ahmedlotfy.site
+   - Make sure it's live at alotfy.site
    - Add 2-3 real projects with live demos
    - Include GitHub links
 

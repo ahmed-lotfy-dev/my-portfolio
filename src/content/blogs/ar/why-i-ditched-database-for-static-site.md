@@ -139,7 +139,7 @@ import posts from '@/data/blog-posts.json';
 
 ```typescript
 await resend.emails.send({
-  from: 'contact@ahmedlotfy.site',
+  from: 'contact@alotfy.site',
   to: 'ahmed@example.com',
   subject: `New message from ${name}`,
   text: message,

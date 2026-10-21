@@ -183,7 +183,7 @@ This part confused me for a while, so let me save you the headache:
 
 1. Point a DNS A record from your domain to your VPS IP
 2. In Dokploy, go to your app → Domains → Add Domain
-3. Enter your domain (e.g., `ahmedlotfy.site`)
+3. Enter your domain (e.g., `alotfy.site`)
 4. Enable "HTTPS" — Dokploy will request a Let's Encrypt certificate automatically
 5. Wait 30-60 seconds
 

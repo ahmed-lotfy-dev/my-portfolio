@@ -2,7 +2,7 @@
 import Image, { ImageProps } from "next/image"
 
 const trustedDomains = [
-  "images.ahmedlotfy.site",
+  "images.alotfy.site",
   "lh3.googleusercontent.com",
   "avatars.githubusercontent.com",
 ]

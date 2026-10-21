@@ -37,7 +37,7 @@ RSS Feeds (14 sources)
 └─────────────────┬────────────────────────┘
                   │
                   ▼
-         ahmedlotfy.site
+         alotfy.site
          /en/blog/<slug>  +  /ar/blog/<slug>
          (sitemap regenerates automatically)
 ```
@@ -265,7 +265,7 @@ RSS Feeds (14 مصدر)
 └─────────────────┬────────────────────────────┘
                   │
                   ▼
-         ahmedlotfy.site
+         alotfy.site
          /en/blog/<slug>  +  /ar/blog/<slug>
          (الـ sitemap بيتحدث أوتوماتيك)
 ```

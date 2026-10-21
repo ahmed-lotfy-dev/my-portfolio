@@ -37,7 +37,7 @@ export async function generateMetadata({
 }) {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "metadata.home" });
-  const baseUrl = 'https://ahmedlotfy.site';
+  const baseUrl = 'https://alotfy.site';
 
   return {
     title: t("title"),
@@ -90,8 +90,8 @@ export default async function HomePage({
         type="Person"
         data={{
           name: 'Ahmed Lotfy',
-          url: 'https://ahmedlotfy.site',
-          image: 'https://ahmedlotfy.site/ahmed-lotfy.jpg',
+          url: 'https://alotfy.site',
+          image: 'https://alotfy.site/ahmed-lotfy.jpg',
           jobTitle: 'Senior Full-Stack Software Engineer',
           description: locale === 'ar'
             ? 'مطور ويب متخصص في Next.js و React و TypeScript'
@@ -108,7 +108,7 @@ export default async function HomePage({
         type="WebSite"
         data={{
           name: 'Ahmed Lotfy Portfolio',
-          url: 'https://ahmedlotfy.site',
+          url: 'https://alotfy.site',
           description: locale === 'ar'
             ? 'معرض أعمال أحمد لطفي - مطور ويب متخصص في بناء تطبيقات ويب حديثة'
             : 'Ahmed Lotfy Portfolio - Full Stack Developer building modern web applications',
@@ -118,7 +118,7 @@ export default async function HomePage({
             '@type': 'SearchAction',
             target: {
               '@type': 'EntryPoint',
-              urlTemplate: 'https://ahmedlotfy.site/{locale}/blogs?tag={search_term_string}',
+              urlTemplate: 'https://alotfy.site/{locale}/blogs?tag={search_term_string}',
             },
             'query-input': 'required name=search_term_string',
           },

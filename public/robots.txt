@@ -1,4 +1,4 @@
-# robots.txt for ahmedlotfy.site
+# robots.txt for alotfy.site
 # Optimized for search engines, AI crawlers, and crawl budget
 # This file lives in source code at public/robots.txt — survives deployments
 
@@ -97,8 +97,8 @@ Disallow: /_next/image/
 Crawl-delay: 2
 
 # Sitemaps
-Sitemap: https://ahmedlotfy.site/sitemap.xml
-Sitemap: https://ahmedlotfy.site/ai-sitemap.json
+Sitemap: https://alotfy.site/sitemap.xml
+Sitemap: https://alotfy.site/ai-sitemap.json
 
 # Crawl delay for respectful crawlers
 Crawl-delay: 1

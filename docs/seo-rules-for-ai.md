@@ -1,6 +1,6 @@
 # SEO Rules for AI Agents & Web Builders
 
-> Derived from real Google Search Console failures on `ahmedlotfy.site` (Next.js portfolio).  
+> Derived from real Google Search Console failures on `alotfy.site` (Next.js portfolio).  
 > Apply these rules when building, rebuilding, or refactoring ANY website.
 
 ---

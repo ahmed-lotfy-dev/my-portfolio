@@ -1,6 +1,6 @@
 # AI SEO & Discovery Guide
 
-> **Goal**: Optimize `ahmedlotfy.site` not just for Google, but for AI Agents (ChatGPT, Claude, Gemini, Perplexity) to understand and recommend you as a Full-Stack Provider.
+> **Goal**: Optimize `alotfy.site` not just for Google, but for AI Agents (ChatGPT, Claude, Gemini, Perplexity) to understand and recommend you as a Full-Stack Provider.
 
 ---
 
@@ -39,7 +39,7 @@ AI agents love structured data. It translates your "human" website into a "machi
   "@type": "Person",
   "name": "Ahmed Lotfy",
   "jobTitle": "Full-Stack Software Engineer",
-  "url": "https://ahmedlotfy.site",
+  "url": "https://alotfy.site",
   "sameAs": [
     "https://github.com/ahmed-lotfy-dev",
     "https://linkedin.com/in/..."

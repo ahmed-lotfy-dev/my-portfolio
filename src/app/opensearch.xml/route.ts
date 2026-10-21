@@ -6,22 +6,22 @@ const openSearchXml = `<?xml version="1.0" encoding="UTF-8"?>
   <Description>Search Ahmed Lotfy Portfolio - Explore projects, blog posts, and more</Description>
   <Description xml:lang="ar">ابحث في معرض أعمال أحمد لطفي - استكشف المشاريع والمقالات وأكثر</Description>
   <InputEncoding>UTF-8</InputEncoding>
-  <Image width="16" height="16" type="image/x-icon">https://ahmedlotfy.site/favicon.ico</Image>
-  <Image width="64" height="64" type="image/png">https://ahmedlotfy.site/ahmed-lotfy.jpg</Image>
-  <Url type="text/html" method="get" template="https://ahmedlotfy.site/en/search?q={searchTerms}"/>
+  <Image width="16" height="16" type="image/x-icon">https://alotfy.site/favicon.ico</Image>
+  <Image width="64" height="64" type="image/png">https://alotfy.site/ahmed-lotfy.jpg</Image>
+  <Url type="text/html" method="get" template="https://alotfy.site/en/search?q={searchTerms}"/>
   <Url type="application/atom+xml"
-       template="https://ahmedlotfy.site/feed.xml"
+       template="https://alotfy.site/feed.xml"
        rel="self"/>
   <Url type="application/opensearchdescription+xml"
        rel="self"
-       template="https://ahmedlotfy.site/opensearch.xml"/>
-  <moz:SearchForm>https://ahmedlotfy.site/en</moz:SearchForm>
+       template="https://alotfy.site/opensearch.xml"/>
+  <moz:SearchForm>https://alotfy.site/en</moz:SearchForm>
   <Query role="example" searchTerms="Next.js"/>
   <Language>en</Language>
   <Language>ar</Language>
   <OutputEncoding>UTF-8</OutputEncoding>
   <InputEncoding>UTF-8</InputEncoding>
-  <Developer>Ahmed Lotfy (ahmed@ahmedlotfy.site)</Developer>
+  <Developer>Ahmed Lotfy (ahmed@alotfy.site)</Developer>
   <Attribution>Copyright ${new Date().getFullYear()} Ahmed Lotfy</Attribution>
   <SyndicationRight>open</SyndicationRight>
   <AdultContent>false</AdultContent>

@@ -2,7 +2,7 @@
 
 > Modern, high-performance portfolio built with Next.js 16, featuring a 91/100 Lighthouse score and production-grade architecture.
 
-[![Performance](https://img.shields.io/badge/Lighthouse-91%2F100-success)](https://ahmedlotfy.site)
+[![Performance](https://img.shields.io/badge/Lighthouse-91%2F100-success)](https://alotfy.site)
 [![Next.js](https://img.shields.io/badge/Next.js-16.0-black)](https://nextjs.org/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.0-blue)](https://www.typescriptlang.org/)
 
@@ -225,7 +225,7 @@ MIT License - feel free to use this as inspiration for your own portfolio.
 
 ## 🔗 Links
 
-- **Live Site**: [ahmedlotfy.site](https://ahmedlotfy.site)
+- **Live Site**: [alotfy.site](https://alotfy.site)
 - **GitHub**: [ahmed-lotfy-dev](https://github.com/ahmed-lotfy-dev)
 
 ---

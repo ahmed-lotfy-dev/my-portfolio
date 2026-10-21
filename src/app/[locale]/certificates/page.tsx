@@ -18,7 +18,7 @@ export async function generateMetadata({
 }) {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "metadata.certificates" });
-  const baseUrl = "https://ahmedlotfy.site";
+  const baseUrl = "https://alotfy.site";
 
   return {
     title: t("title"),
@@ -65,7 +65,7 @@ export default async function CertificatesPage({
         data={{
           name: "Professional Certificates - Ahmed Lotfy",
           description: "Collection of professional development certificates and courses completed by Ahmed Lotfy",
-          url: `https://ahmedlotfy.site/${locale}/certificates`,
+          url: `https://alotfy.site/${locale}/certificates`,
           numberOfItems: publishedCerts.length,
         }}
       />

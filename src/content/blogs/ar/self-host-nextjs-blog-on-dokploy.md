@@ -181,7 +181,7 @@ curl -sSL https://dokploy.com/install.sh | sh
 
 1. اعمل DNS A record من الدومين للـ IP بتاع الـ VPS
 2. في Dokploy، روح لتطبيقك → Domains → Add Domain
-3. حط الدومين (مثلاً: `ahmedlotfy.site`)
+3. حط الدومين (مثلاً: `alotfy.site`)
 4. فعل "HTTPS" — Dokploy هي request شهادة Let's Encrypt تلقائياً
 5. استنى 30-60 ثانية
 

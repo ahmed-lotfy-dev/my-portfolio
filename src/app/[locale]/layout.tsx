@@ -35,7 +35,7 @@ export const viewport: Viewport = {
 
 export const metadata: Metadata = {
   manifest: "/manifest.webmanifest",
-  metadataBase: new URL("https://ahmedlotfy.site"),
+  metadataBase: new URL("https://alotfy.site"),
   title: {
     default: "Ahmed Lotfy – Senior Full-Stack Engineer & Next.js Expert",
     template: "%s",
@@ -56,17 +56,17 @@ export const metadata: Metadata = {
     "مهندس برمجيات",
     "تطوير الويب",
   ],
-  authors: [{ name: "Ahmed Lotfy", url: "https://ahmedlotfy.site" }],
+  authors: [{ name: "Ahmed Lotfy", url: "https://alotfy.site" }],
   openGraph: {
     type: "website",
-    url: "https://ahmedlotfy.site",
+    url: "https://alotfy.site",
     title: "Ahmed Lotfy – Senior Full-Stack Software Engineer & Next.js Expert",
     description:
       "Portfolio of Ahmed Lotfy, a senior full-stack software engineer specializing in Next.js, React, TypeScript, Node.js, and PostgreSQL.",
     siteName: "Ahmed Lotfy Portfolio",
     images: [
       {
-        url: "https://ahmedlotfy.site/og-image.png",
+        url: "https://alotfy.site/og-image.png",
         width: 1200,
         height: 630,
         alt: "Ahmed Lotfy – Senior Full-Stack Software Engineer & Next.js Expert",
@@ -78,7 +78,7 @@ export const metadata: Metadata = {
     title: "Ahmed Lotfy – Senior Full-Stack Software Engineer & Next.js Expert",
     description:
       "Portfolio of Ahmed Lotfy, a senior full-stack software engineer specializing in Next.js, React, TypeScript, Node.js, and PostgreSQL.",
-    images: ["https://ahmedlotfy.site/og-image.png"],
+    images: ["https://alotfy.site/og-image.png"],
   },
   robots: {
     index: true,

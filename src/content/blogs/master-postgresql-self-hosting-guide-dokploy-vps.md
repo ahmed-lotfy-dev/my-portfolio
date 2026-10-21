@@ -128,7 +128,7 @@ volumes:
 ### Connect from Local Machine
 
 ```bash
-psql postgresql://my-pg-user:***@pg.ahmedlotfy.site:5432/my-pg-db
+psql postgresql://my-pg-user:***@pg.alotfy.site:5432/my-pg-db
 ```
 
 Expected:
@@ -222,7 +222,7 @@ GRANT ALL ON SEQUENCES TO example_user;
 Use this format **everywhere** (apps, Prisma, migrations):
 
 ```text
-postgresql://user:***@pg.ahmedlotfy.site:5432/db_name?sslmode=require
+postgresql://user:***@pg.alotfy.site:5432/db_name?sslmode=require
 ```
 
 ---

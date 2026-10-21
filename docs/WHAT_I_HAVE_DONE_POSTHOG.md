@@ -30,4 +30,4 @@ The dashboard home now properly processes and displays:
 
 ## Image Timeout Note
 
-The slow image processing (7s+) is likely due to server load or network lag between your server and `images.ahmedlotfy.site`. I recommend monitoring server resources during these slow requests.
+The slow image processing (7s+) is likely due to server load or network lag between your server and `images.alotfy.site`. I recommend monitoring server resources during these slow requests.

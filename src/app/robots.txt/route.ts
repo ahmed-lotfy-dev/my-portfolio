@@ -95,7 +95,7 @@ Crawl-delay: 1
 Clean-param: utm_*&ref_
 
 # Preferred domain
-Host: https://ahmedlotfy.site
+Host: https://alotfy.site
 `
 
 export async function GET() {

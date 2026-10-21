@@ -2,11 +2,11 @@ export function PersonSchema() {
   const schema = {
     "@context": "https://schema.org",
     "@type": "Person",
-    "@id": "https://ahmedlotfy.site/#person",
+    "@id": "https://alotfy.site/#person",
     name: "Ahmed Lotfy",
     jobTitle: "Senior Full-Stack Software Engineer",
-    url: "https://ahmedlotfy.site",
-    image: "https://ahmedlotfy.site/og-image.png",
+    url: "https://alotfy.site",
+    image: "https://alotfy.site/og-image.png",
     sameAs: [
       "https://github.com/ahmed-lotfy-dev",
       "https://www.linkedin.com/in/ahmed-lotfy-dev"

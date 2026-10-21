@@ -43,10 +43,10 @@
 - عمال خلفية (Background Workers)
 
 ### رابط المعاينة
-https://zamalek-store.ahmedlotfy.site
+https://zamalek-store.alotfy.site
 
 ### صورة مصغرة
-`coverImage: https://images.ahmedlotfy.site/projects/screencapture-zamalek-store-ahmedlotfy-site-en-2025-12-06-20_06_48-1765597020942.webp`
+`coverImage: https://images.alotfy.site/projects/screencapture-zamalek-store-ahmedlotfy-site-en-2025-12-06-20_06_48-1765597020942.webp`
 
 ### تاريخ الإنجاز
 ديسمبر 2025
@@ -113,10 +113,10 @@ https://zamalek-store.ahmedlotfy.site
 - Strict TypeScript Configuration
 
 ### رابط المعاينة
-https://pos-system-app.ahmedlotfy.site
+https://pos-system-app.alotfy.site
 
 ### صورة مصغرة
-`coverImage: https://images.ahmedlotfy.site/projects/Pos-System%20.png`
+`coverImage: https://images.alotfy.site/projects/Pos-System%20.png`
 
 ### تاريخ الإنجاز
 نوفمبر 2025
@@ -185,7 +185,7 @@ https://pos-system-app.ahmedlotfy.site
 https://drive.google.com/file/d/1r1qLiMZwX0oDeq7lQaouEdSs3vUhC8Fg/view?usp=drive_link
 
 ### صورة مصغرة
-`coverImage: https://images.ahmedlotfy.site/projects/ezgif.com-animated-gif-maker(1).gif`
+`coverImage: https://images.alotfy.site/projects/ezgif.com-animated-gif-maker(1).gif`
 
 ### تاريخ الإنجاز
 أكتوبر 2025
@@ -245,10 +245,10 @@ https://drive.google.com/file/d/1r1qLiMZwX0oDeq7lQaouEdSs3vUhC8Fg/view?usp=drive
 - OAuth 2.0
 
 ### رابط المعاينة
-https://books-app.ahmedlotfy.site/
+https://books-app.alotfy.site/
 
 ### صورة مصغرة
-`coverImage: https://images.ahmedlotfy.site/projects/Books-Project.png`
+`coverImage: https://images.alotfy.site/projects/Books-Project.png`
 
 ### تاريخ الإنجاز
 سبتمبر 2025
@@ -311,10 +311,10 @@ https://books-app.ahmedlotfy.site/
 - Spatie Packages
 
 ### رابط المعاينة
-https://toota-art.ahmedlotfy.site
+https://toota-art.alotfy.site
 
 ### صورة مصغرة
-`coverImage: https://images.ahmedlotfy.site/projects/Projects-screencapture-toota-art-ahmedlotfy-site-2025-12-01-21_53_25%20(Edited)-1765597181426.webp`
+`coverImage: https://images.alotfy.site/projects/Projects-screencapture-toota-art-ahmedlotfy-site-2025-12-01-21_53_25%20(Edited)-1765597181426.webp`
 
 ### تاريخ الإنجاز
 ديسمبر 2025
@@ -377,7 +377,7 @@ https://toota-art.ahmedlotfy.site
 https://hi-x.com
 
 ### صورة مصغرة
-`coverImage: https://images.ahmedlotfy.site/projects/hi-x-net-2025-10-07-18_23_54.png`
+`coverImage: https://images.alotfy.site/projects/hi-x-net-2025-10-07-18_23_54.png`
 
 ### تاريخ الإنجاز
 أكتوبر 2025
@@ -445,10 +445,10 @@ https://hi-x.com
 - Tailwind CSS
 
 ### رابط المعاينة
-https://ahmedlotfy.site
+https://alotfy.site
 
 ### صورة مصغرة
-`coverImage: https://images.ahmedlotfy.site/projects/portfolio-cover.webp`
+`coverImage: https://images.alotfy.site/projects/portfolio-cover.webp`
 
 ### تاريخ الإنجاز
 ديسمبر 2025
@@ -509,7 +509,7 @@ https://ahmedlotfy.site
 https://dev-challenges.ahmedlotfy.surge.sh
 
 ### صورة مصغرة
-`coverImage: https://images.ahmedlotfy.site/projects/Generated%20Image%20September%2030,%202025%20-%2012_40PM.png`
+`coverImage: https://images.alotfy.site/projects/Generated%20Image%20September%2030,%202025%20-%2012_40PM.png`
 
 ### تاريخ الإنجاز
 سبتمبر 2025

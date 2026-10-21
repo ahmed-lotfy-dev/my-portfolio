@@ -154,7 +154,7 @@ export default function StructuredData({ type, data }: StructuredDataProps) {
         author: {
           '@type': 'Person',
           name: 'Ahmed Lotfy',
-          url: 'https://ahmedlotfy.site',
+          url: 'https://alotfy.site',
         },
       }
       break

@@ -1,7 +1,7 @@
 export const siteConfig = {
   name: "Ahmed Lotfy Portfolio",
   owner: "Ahmed Lotfy",
-  baseUrl: "https://ahmedlotfy.site",
+  baseUrl: "https://alotfy.site",
   repositoryUrl: "https://github.com/ahmed-lotfy-dev/my-portfolio",
   defaultLocale: "en",
   locales: ["en", "ar"] as const,

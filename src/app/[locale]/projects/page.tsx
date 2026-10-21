@@ -17,7 +17,7 @@ export async function generateMetadata({
 }) {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "projects" });
-  const baseUrl = "https://ahmedlotfy.site";
+  const baseUrl = "https://alotfy.site";
   const title = t("title");
   const description =
     locale === "ar"
@@ -92,7 +92,7 @@ export default async function ProjectsPage({
             locale === "ar"
               ? "صفحة تجمع المشاريع المنشورة ودراسات الحالة الخاصة بأحمد لطفي."
               : "An archive of Ahmed Lotfy's published projects and case studies.",
-          url: `https://ahmedlotfy.site/${locale}/projects`,
+          url: `https://alotfy.site/${locale}/projects`,
           numberOfItems: publishedProjects.length,
         }}
       />

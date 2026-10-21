@@ -68,7 +68,7 @@ const securityHeaders = [
 const nextConfig: NextConfig = {
   output: "standalone",
   compress: true,
-  allowedDevOrigins: ["web.ahmedlotfy.site"],
+  allowedDevOrigins: ["web.alotfy.site"],
   experimental: {
     serverActions: {
       bodySizeLimit: "10mb",
@@ -94,7 +94,7 @@ const nextConfig: NextConfig = {
     deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
     remotePatterns: [
-      { protocol: "https", hostname: "images.ahmedlotfy.site", port: "", pathname: "/**" },
+      { protocol: "https", hostname: "images.alotfy.site", port: "", pathname: "/**" },
       { protocol: "https", hostname: "pub-49b2468145c64b14a4a172c257cf46b8.r2.dev", port: "", pathname: "/**" },
       { protocol: "https", hostname: "lh3.googleusercontent.com", port: "", pathname: "/a/**" },
       { protocol: "https", hostname: "avatars.githubusercontent.com", port: "" },

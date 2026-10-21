@@ -3,7 +3,7 @@ import projectsData from '@/src/data/projects.json'
 import { getAllBlogPosts } from '@/src/lib/blog'
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://ahmedlotfy.site'
+  const baseUrl = 'https://alotfy.site'
   const locales = ['en', 'ar'] as const
   type SitemapEntry = MetadataRoute.Sitemap[number];
 

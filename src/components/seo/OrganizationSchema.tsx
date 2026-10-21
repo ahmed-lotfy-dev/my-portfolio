@@ -2,10 +2,10 @@ export function OrganizationSchema() {
   const schema = {
     "@context": "https://schema.org",
     "@type": "Organization",
-    "@id": "https://ahmedlotfy.site/#organization",
+    "@id": "https://alotfy.site/#organization",
     name: "Ahmed Lotfy",
-    url: "https://ahmedlotfy.site",
-    logo: "https://ahmedlotfy.site/icon.png",
+    url: "https://alotfy.site",
+    logo: "https://alotfy.site/icon.png",
     sameAs: [
       "https://github.com/ahmed-lotfy-dev",
       "https://linkedin.com/in/ahmed-lotfy-dev",
@@ -21,7 +21,7 @@ export function OrganizationSchema() {
       "@type": "Person",
       name: "Ahmed Lotfy",
       jobTitle: "Senior Full-Stack Software Engineer",
-      url: "https://ahmedlotfy.site",
+      url: "https://alotfy.site",
     },
     foundingDate: "2024",
     numberOfEmployees: {

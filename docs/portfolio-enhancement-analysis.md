@@ -241,8 +241,8 @@ This portfolio is **exceptionally well-built** with advanced features including:
 | Feature | Detail |
 |---------|--------|
 | Contact form | Full form with Zod validation (i18n error messages), server action sends via Resend API |
-| Recipients | `elshenawy19@gmail.com` and `contact@ahmedlotfy.site` |
-| Email | `contact@ahmedlotfy.site` (also `contact@ahmedlotfy.dev` in footer) |
+| Recipients | `elshenawy19@gmail.com` and `contact@alotfy.site` |
+| Email | `contact@alotfy.site` (also `contact@ahmedlotfy.dev` in footer) |
 | LinkedIn | `linkedin.com/in/ahmed-lotfy-dev` |
 | GitHub | `github.com/ahmed-lotfy-dev` |
 | CV/Resume | `/Ahmed-Lotfy-CV.pdf` -- view in browser or download via dropdown |
@@ -255,7 +255,7 @@ This portfolio is **exceptionally well-built** with advanced features including:
 **Recommendations:**
 1. Add chat widget (e.g., Crisp, Intercom, Tawk.to) for instant communication
 2. Add booking system (e.g., Calendly) for consultation scheduling
-3. Fix email inconsistency between `ahmedlotfy.site` and `ahmedlotfy.dev`
+3. Fix email inconsistency between `alotfy.site` and `ahmedlotfy.dev`
 
 ---
 

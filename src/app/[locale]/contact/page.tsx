@@ -17,7 +17,7 @@ export async function generateMetadata({
 }) {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "metadata.contact" });
-  const baseUrl = "https://ahmedlotfy.site";
+  const baseUrl = "https://alotfy.site";
   const title = t("title");
   const description = t("description");
 

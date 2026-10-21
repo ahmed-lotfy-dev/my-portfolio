@@ -32,7 +32,7 @@
     "desc_en": "A performance-first digital gallery for visual artists, built with the TALL stack and Cloudflare R2. Features server-side interactivity with Livewire 3, zero-egress object storage, and a comprehensive automated backup system.",
     "desc_ar": "معرض رقمي يركز على الأداء للفنانين البصريين، مبني باستخدام TALL Stack و Cloudflare R2. يتميز بتفاعلية من جانب الخادم باستخدام Livewire 3، وتخزين كائنات بدون رسوم نقل، ونظام نسخ احتياطي آلي شامل.",
     "repo_link": "https://github.com/ahmed-lotfy-dev/toota-portfolio",
-    "live_link": "https://toota-art.ahmedlotfy.site",
+    "live_link": "https://toota-art.alotfy.site",
     "cover_image": "/images-downloaded/projects/toota-art/toota-art-cover.webp",
     "categories": [
       "Laravel",
@@ -56,7 +56,7 @@
     "desc_en": "A secure multi-app license activation platform with an admin dashboard for managing apps, licenses, activations, and status workflows.",
     "desc_ar": "منصة آمنة متعددة التطبيقات لإدارة تفعيل التراخيص مع لوحة تحكم لإدارة التطبيقات والتراخيص وسجل التفعيلات.",
     "repo_link": "https://github.com/ahmed-lotfy-dev/applicence-manager",
-    "live_link": "https://activation.ahmedlotfy.site/",
+    "live_link": "https://activation.alotfy.site/",
     "cover_image": "/images-downloaded/projects/applicence-manager/applicence-manager-1771142251845.webp",
     "categories": [
       "React",
@@ -78,7 +78,7 @@
     "desc_en": "A minimalist project manager I built for my own workflow, with an MCP server layer that turns PRDs and user stories into actionable tasks.",
     "desc_ar": "مدير مشاريع بسيط بنيته لعملي الشخصي، مع طبقة MCP تحول الـ PRD والقصص إلى مهام قابلة للتنفيذ.",
     "repo_link": "https://github.com/ahmed-lotfy-dev/task-hub",
-    "live_link": "https://task-hub.ahmedlotfy.site",
+    "live_link": "https://task-hub.alotfy.site",
     "cover_image": "/images-downloaded/projects/task-hub-mcp-driven-project-management/task-hub-mcp-driven-project-management-1770684624710.webp",
     "categories": [],
     "published": true,
@@ -116,7 +116,7 @@
     "desc_en": "A production-ready, bilingual e-commerce platform for Egyptian football fans. Built with Next.js 16, React 19, and Paymob/Kashier integration. Features a hybrid cart system, BullMQ background processing, and optimal mobile performance via Cloudflare R2.",
     "desc_ar": "منصة تجارة إلكترونية احترافي ثنائية اللغة لمشجعي الكرة المصرية. مبنية بـ Next.js 16 و React 19 مع دمج بوابات دفع محلية. تتميز بنظام سلة هجين، معالجة خلفية بـ BullMQ، وأداء مثالي للموبايل عبر Cloudflare R2.",
     "repo_link": "https://github.com/ahmed-lotfy-dev/zamalek-store",
-    "live_link": "https://zamalek-store.ahmedlotfy.site",
+    "live_link": "https://zamalek-store.alotfy.site",
     "cover_image": "/images-downloaded/projects/screencapture-zamalek-store-ahmedlotfy-site-en-2025-12-06-20_06_48-1765597020942.webp",
     "categories": [
       "Next.js 16",
@@ -145,7 +145,7 @@
     "desc_en": "A modern, full-stack Point of Sale system built with React, NestJS, and Prisma. Features include real-time inventory management, role-based access control, and a responsive UI designed for speed and reliability.",
     "desc_ar": "نظام نقاط بيع متكامل وعصري مبني باستخدام React و NestJS و Prisma. يتميز بإدارة المخزون في الوقت الفعلي، والتحكم في الوصول القائم على الأدوار، وواجهة مستخدم سريعة وموثوقة.",
     "repo_link": "https://github.com/ahmed-lotfy-dev/pos-system",
-    "live_link": "https://pos-system-app.ahmedlotfy.site",
+    "live_link": "https://pos-system-app.alotfy.site",
     "cover_image": "/images-downloaded/projects/Pos-System .png",
     "categories": [
       "React",
@@ -167,7 +167,7 @@
     "desc_en": "A modern, full-stack bookstore featuring real-time data from Google Books & NYT APIs, powered by a high-performance Redis caching layer and a type-safe Drizzle/PostgreSQL backend.",
     "desc_ar": "متجر كتب حديث ومتكامل يعرض بيانات حقيقية من واجهات برمجة تطبيقات Google Books و NYT، مدعوم بطبقة تخزين مؤقت عالية الأداء باستخدام Redis وخلفية آمنة (Type-safe) باستخدام Drizzle و PostgreSQL.",
     "repo_link": "https://github.com/chingu-voyages/v43-tier2-team-14",
-    "live_link": "https://books-app.ahmedlotfy.site/",
+    "live_link": "https://books-app.alotfy.site/",
     "cover_image": "/images-downloaded/projects/Books-Project.png",
     "categories": [
       "Fullstack",
