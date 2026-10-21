@@ -82,8 +82,9 @@ User-agent: Bytespider
 Disallow: /
 
 # Sitemaps
+# XML sitemaps only — Google rejects JSON sitemaps in the Sitemaps directive.
+# ai-sitemap.json & llms.txt stay reachable for AI agents, just not listed here.
 Sitemap: ${absoluteUrl("/sitemap.xml")}
-Sitemap: ${absoluteUrl("/ai-sitemap.json")}
 
 # AI content preferences
 Content-Signal: ai-train=no, search=yes, ai-input=yes
