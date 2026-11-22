@@ -87,6 +87,24 @@
           "2": "محلي أولاً: Drizzle + SQLite، مزامنة خلفية",
           "3": "EAS Build، توزيع APK/IPA"
         }
+      },
+      "ecommerce": {
+        "title": "تحسين التجارة الإلكترونية",
+        "description": "زود مبيعاتك مع نظام تجارة إلكترونية مخصص. بحسن الـ Checkout Flows وسرعة الصفحة عشان أزود معدل التحويل (Conversion).",
+        "features": {
+          "1": "ربط Next.js مع Paymob/Stripe",
+          "2": "تحسين السلة والـ Checkout",
+          "3": "أنظمة إدارة المخزون"
+        }
+      },
+      "performance": {
+        "title": "تحسين الأداء (Performance)",
+        "description": "موقعك بطيء؟ بحسن الـ Core Web Vitals عشان أرفع ترتيبك في جوجل (SEO) وأحافظ على الزوار.",
+        "features": {
+          "1": "سكور 95+ في Core Web Vitals",
+          "2": "Server-Side Rendering (SSR)",
+          "3": "استراتيجيات Caching متقدمة"
+        }
       }
     }
   },
@@ -236,7 +254,8 @@
     "description1": "أنا Full-Stack Software Engineer بركز على حل مشاكل البيزنس. بتخصص في الـ React Ecosystem الحديثة (Next.js، TypeScript) بس بهتم بنفس القدر بالـ ROI، ومقاييس الأداء، واستقرار النظام (Reliability).",
     "description2": "خلفيتي في الهاردوير والـ IT بتخليني أبني حلول مش مجرد كود، لكن بنية تحتية قوية.",
     "description3": "ببحث عن وظيفة بدوام كامل عن بُعد كمطوّر Full-Stack (React/Next.js/Node.js). مقيم في مصر (GMT+2) مع خبرة مثبتة في العمل مع فرق موزعة — أكملت برنامج Chingu Voyage، وتعاونت في فريق Agile موزع عبر مناطق زمنية لنشر تطبيق إنتاجي. مرتاح مع التواصل غير المتزامن، خطوط CI/CD، ومراجعات الكود الموزعة.",
-    "description4": "سابقاً شاركت شركات لبناء برمجيات بتزود الأرباح، بتقلل التكاليف، وبتكبر بسهولة."
+    "description4": "سابقاً شاركت شركات لبناء برمجيات بتزود الأرباح، بتقلل التكاليف، وبتكبر بسهولة.",
+    "heading": "حل المشكلات المعقدة بـ <span class=\"bg-linear-to-r from-primary to-secondary bg-clip-text text-transparent italic\">تصميم أنيق.</span>"
   },
   "experience": {
     "title": "سجل النجاح",

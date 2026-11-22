@@ -62,9 +62,7 @@ export default function AboutClient({ myImage, isRTL }: Props) {
               <span className="inline-block rounded-full border border-primary/20 bg-primary/10 px-4 py-1.5 text-xs font-bold tracking-[0.2em] text-primary uppercase backdrop-blur-sm">
                 {t("title")}
               </span>
-              <h2 className="text-4xl font-black leading-[1.1] tracking-tight text-foreground md:text-5xl lg:text-6xl">
-                Solving Complex Problems with <span className="bg-linear-to-r from-primary to-secondary bg-clip-text text-transparent italic">Elegant Design.</span>
-              </h2>
+              <h2 className="text-4xl font-black leading-[1.1] tracking-tight text-foreground md:text-5xl lg:text-6xl" dangerouslySetInnerHTML={{ __html: t("heading") }} />
             </div>
 
             <div className="space-y-6 text-lg leading-relaxed text-muted-foreground antialiased">

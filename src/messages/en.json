@@ -87,6 +87,24 @@
           "2": "Local-first: Drizzle + SQLite, background sync",
           "3": "EAS Build, APK/IPA distribution"
         }
+      },
+      "ecommerce": {
+        "title": "E-commerce Optimization",
+        "description": "Boost your sales with a custom e-commerce stack. I optimize checkout flows and page speed to maximize conversions.",
+        "features": {
+          "1": "Next.js + Paymob/Stripe Integration",
+          "2": "Cart & Checkout Optimization",
+          "3": "Inventory Management Systems"
+        }
+      },
+      "performance": {
+        "title": "Performance Tuning",
+        "description": "Is your site slow? I optimize Core Web Vitals to improve your SEO rankings and user retention.",
+        "features": {
+          "1": "95+ Core Web Vitals Score",
+          "2": "Server-Side Rendering (SSR)",
+          "3": "Advanced Caching Strategies"
+        }
       }
     }
   },
@@ -236,7 +254,8 @@
     "description1": "I am a Full-Stack Software Engineer focused on solving business problems. I specialize in the modern React ecosystem (Next.js, TypeScript) but I place equal emphasis on ROI, performance metrics, and system reliability.",
     "description2": "My path to software engineering is rooted in a deep background in hardware and IT systems. This allows me to architect solutions that are not just code, but robust infrastructure.",
     "description3": "I'm seeking a full-time remote role as a Full-Stack Developer (React/Next.js/Node.js). Based in Egypt (GMT+2) with proven remote-team experience — I completed the Chingu Voyage program, collaborating in a distributed agile team across time zones to ship a production app. I'm comfortable with async communication, CI/CD pipelines, and distributed code reviews.",
-    "description4": "Previously I partnered with businesses to build software that drives revenue, reduces costs, and scales effortlessly."
+    "description4": "Previously I partnered with businesses to build software that drives revenue, reduces costs, and scales effortlessly.",
+    "heading": "Solving Complex Problems with <span class=\"bg-linear-to-r from-primary to-secondary bg-clip-text text-transparent italic\">Elegant Design.</span>"
   },
   "experience": {
     "title": "Track Record",
