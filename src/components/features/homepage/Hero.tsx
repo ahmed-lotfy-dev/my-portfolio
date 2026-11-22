@@ -107,20 +107,14 @@ export default function Hero() {
               </m.div>
 
               {/* CVDropdown for mobile/alternative */}
-              <m.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-100px" }}
-                transition={{ duration: 0.5, delay: 0.4 }}
-                className="mt-4 flex justify-center sm:justify-start"
-              >
+              <div className="mt-4 flex justify-center sm:justify-start animate-fade-in-up" style={{ animationDelay: "400ms" }}>
                 <CVDropdown>
                   <Button variant="ghost" size="sm" className="h-14 gap-2 rounded-2xl px-6 text-white/50 transition-colors hover:text-white/80">
                     <FileText className="h-5 w-5" />
                     <span className="font-bold">{t("resume")}</span>
                   </Button>
                 </CVDropdown>
-              </m.div>
+              </div>
             </div>
 
           </div>
