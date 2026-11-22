@@ -25,7 +25,7 @@ export function CVDropdown({ children }: { children: React.ReactNode }) {
         <DropdownMenuSeparator />
 
         <DropdownMenuItem
-          onClick={() => window.open("/ahmed-lotfy-cv-2026-11-21.pdf", "_blank")}
+          onClick={() => window.open("/Ahmed-Lotfy-Cv.pdf", "_blank")}
           className="cursor-pointer gap-2"
         >
           <Eye className="w-4 h-4" />
@@ -33,7 +33,7 @@ export function CVDropdown({ children }: { children: React.ReactNode }) {
         </DropdownMenuItem>
 
         <DropdownMenuItem asChild className="cursor-pointer gap-2">
-          <Link href="/ahmed-lotfy-cv-2026-11-21.pdf" download>
+          <Link href="/Ahmed-Lotfy-Cv.pdf" download>
             <Download className="w-4 h-4" />
             {t("download")}
           </Link>

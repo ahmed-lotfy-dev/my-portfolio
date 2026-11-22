@@ -58,7 +58,7 @@ export default function Hero() {
               <m.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.3 }} className="mt-8 flex flex-col items-center justify-center gap-4 pt-6 sm:flex-row lg:justify-start">
                 {/* Primary CTA - Download CV */}
                 <Button size="lg" className="hero-cta-primary group relative h-16 cursor-pointer overflow-hidden rounded-2xl border-none px-10 text-lg font-bold shadow-2xl transition-all duration-300 hover:-translate-y-0.5 active:scale-[0.98]" asChild>
-                  <Link href="/ahmed-lotfy-cv-2026-11-21.pdf" download>
+                  <Link href="/Ahmed-Lotfy-Cv.pdf" download>
                     <span className="relative z-10 flex items-center gap-3">
                       <FileText className="h-5 w-5" />
                       {t("cv_modal.download")}

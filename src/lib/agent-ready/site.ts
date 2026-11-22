@@ -22,7 +22,7 @@ export const siteConfig = {
   loginPath: "/en/login",
   projectsPath: "/en/projects",
   contactPath: "/en#contact",
-  resumePath: "/ahmed-lotfy-cv-2026-11-21.pdf",
+  resumePath: "/Ahmed-Lotfy-Cv.pdf",
 } as const
 
 export function absoluteUrl(path: string) {
