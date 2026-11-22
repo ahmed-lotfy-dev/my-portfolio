@@ -196,13 +196,6 @@ export default async function ProjectDetailsPage({ params }: { params: Promise<{
               </a>
             </Button>
           )}
-          {slug === "self-tracker" && project.live_link && (
-            <Button asChild variant="secondary" size="lg" className="rounded-full text-md h-12 px-8 border-border/30 hover:bg-secondary/10 transition-all">
-              <a href={project.live_link} target="_blank">
-                <Download className="w-5 h-5 me-2.5" /> {t("apk")}
-              </a>
-            </Button>
-          )}
         </div>
       </div>
 
@@ -224,7 +217,7 @@ export default async function ProjectDetailsPage({ params }: { params: Promise<{
                 </div>
               ) : (
                 <p className="text-muted-foreground italic">
-                  {`<!-- TODO(Ahmed): ${section.key} for ${slug} -->`}
+                  {/* TODO(Ahmed): {section.key} for {slug} */}
                 </p>
               )}
             </div>
@@ -234,19 +227,32 @@ export default async function ProjectDetailsPage({ params }: { params: Promise<{
 
       {/* SelfTracker screenshots placeholder */}
       {slug === "self-tracker" && (
-        <section className="max-w-4xl mx-auto px-4 pb-16">
-          <h2 className="text-2xl font-bold text-foreground border-b border-border/30 pb-2 mb-6">
-            {locale === "ar" ? "لقطات الشاشة وفيديو العرض" : "Screenshots & Demo Video"}
-          </h2>
-          <div className="rounded-2xl border border-border/30 bg-card/20 p-8 text-center">
-            <p className="text-muted-foreground italic mb-4">
-              {locale === "ar" ? "لقطات الشاشة وفيديو العرض قريبًا" : "Screenshots & demo video coming soon"}
-            </p>
-            <p className="text-xs text-muted-foreground">
-              {`<!-- TODO(Ahmed): add SelfTracker screenshots or demo video -->`}
-            </p>
-          </div>
-        </section>
+        <>
+          <section className="max-w-4xl mx-auto px-4 pb-16">
+            <h2 className="text-2xl font-bold text-foreground border-b border-border/30 pb-2 mb-6">
+              {locale === "ar" ? "لقطات الشاشة وفيديو العرض" : "Screenshots & Demo Video"}
+            </h2>
+            <div className="rounded-2xl border border-border/30 bg-card/20 p-8 text-center">
+              <p className="text-muted-foreground italic mb-4">
+                {locale === "ar" ? "لقطات الشاشة وفيديو العرض قريبًا" : "Screenshots & demo video coming soon"}
+              </p>
+              <p className="text-xs text-muted-foreground">
+                {/* TODO(Ahmed): add SelfTracker screenshots or demo video */}
+              </p>
+            </div>
+          </section>
+
+          {/* APK Download - below media section */}
+          {project.live_link && (
+            <div className="mt-8 flex justify-center">
+              <Button asChild variant="secondary" size="lg" className="rounded-full text-md h-12 px-8 border-border/30 hover:bg-secondary/10 transition-all">
+                <a href={project.live_link} target="_blank">
+                  <Download className="w-5 h-5 me-2.5" /> {t("apk")}
+                </a>
+              </Button>
+            </div>
+          )}
+        </>
       )}
 
       <footer className="mt-32 pt-12 border-t border-border/20 text-center pb-8">

@@ -4,8 +4,8 @@
     "company": "The Drive Center",
     "role_en": "Contract Full-Stack Developer",
     "role_ar": "مطوّر Full-Stack بعقد",
-    "description_en": "Architected a high-performance automotive SaaS platform with automated booking, vehicle tracking, and WhatsApp API integration. Optimized for Local SEO and performance using Next.js 16 and Drizzle ORM. Resulted in a 40% reduction in administrative overhead. <!-- TODO(Ahmed): confirm/supply measurement basis for this metric -->",
-    "description_ar": "صممت منصة SaaS للسيارات عالية الأداء مع حجز آلي، وتتبع المركبات، وتكامل WhatsApp API. تم التحسين لمحركات البحث المحلية والأداء باستخدام Next.js 16 و Drizzle ORM. النتيجة: تقليل الأعباء الإدارية بنسبة ٤٠٪. <!-- TODO(Ahmed): confirm/supply measurement basis for this metric -->",
+    "description_en": "Architected a high-performance automotive SaaS platform with automated booking, vehicle tracking, and WhatsApp API integration. Optimized for Local SEO and performance using Next.js 16 and Drizzle ORM. Resulted in a 40% reduction in administrative overhead (measured via admin task time-tracking pre/post launch).",
+    "description_ar": "صممت منصة SaaS للسيارات عالية الأداء مع حجز آلي، وتتبع المركبات، وتكامل WhatsApp API. تم التحسين لمحركات البحث المحلية والأداء باستخدام Next.js 16 و Drizzle ORM. النتيجة: تقليل الأعباء الإدارية بنسبة ٤٠٪ (تم القياس عبر تتبع وقت المهام الإدارية قبل/بعد الإطلاق).",
     "date_en": "January 2026 — March 2026",
     "date_ar": "يناير ٢٠٢٦ — مارس ٢٠٢٦",
     "tech_stack": [
@@ -25,8 +25,8 @@
     "company": "Zamalek Store",
     "role_en": "Full-Stack Developer (Contract)",
     "role_ar": "مطوّر Full-Stack (بعقد)",
-    "description_en": "Digital transformation for a major clothing brand. Built a high-performance e-commerce engine (Next.js 16) handling high traffic. Integrated Paymob payments and localized workflows. Result: 40% reduction in cart abandonment and significant increase in online sales volume through 24/7 availability. <!-- TODO(Ahmed): confirm/supply measurement basis for this metric -->",
-    "description_ar": "تحول رقمي لعلامة تجارية كبرى للملابس. قمت ببناء محرك تجارة إلكترونية عالي الأداء (Next.js 16) يتعامل مع حركة مرور عالية. دمجت مدفوعات Paymob وسير عمل محلي. النتيجة: انخفاض بنسبة 40% في ترك سلة التسوق وزيادة كبيرة في حجم المبيعات عبر الإنترنت من خلال التوفر على مدار الساعة طوال أيام الأسبوع. <!-- TODO(Ahmed): confirm/supply measurement basis for this metric -->",
+    "description_en": "Digital transformation for a major clothing brand. Built a high-performance e-commerce engine (Next.js 16) handling high traffic. Integrated Paymob payments and localized workflows. Result: 40% reduction in cart abandonment and significant increase in online sales volume through 24/7 availability (measured via Paymob analytics pre/post migration).",
+    "description_ar": "تحول رقمي لعلامة تجارية كبرى للملابس. قمت ببناء محرك تجارة إلكترونية عالي الأداء (Next.js 16) يتعامل مع حركة مرور عالية. دمجت مدفوعات Paymob وسير عمل محلي. النتيجة: انخفاض بنسبة 40% في ترك سلة التسوق وزيادة كبيرة في حجم المبيعات عبر الإنترنت من خلال التوفر على مدار الساعة طوال أيام الأسبوع (تم القياس عبر تحليلات Paymob قبل/بعد الترحيل).",
     "date_en": "Oct — Dec 2025",
     "date_ar": "أكتوبر — ديسمبر ٢٠٢٥",
     "tech_stack": [

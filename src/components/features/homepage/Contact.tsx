@@ -39,14 +39,14 @@ export default function Contact() {
     },
     {
       icon: Phone,
-      label: "Phone / WhatsApp",
+      label: "Phone / WhatsApp ",
       value: "+20 1016037479",
       href: "tel:+201016037479",
       color: "text-green-500",
     },
     {
       icon: MessageCircle,
-      label: "WhatsApp",
+      label: "WhatsApp ",
       value: "+20 1016037479",
       href: "https://wa.me/201016037479",
       color: "text-green-500",
@@ -82,7 +82,7 @@ export default function Contact() {
           </div>
 
           <h2 className="text-4xl md:text-6xl lg:text-7xl font-black text-foreground tracking-tight leading-[1.05]">
-            {locale === "ar" ? "عايز تعمل مشروع؟" : "Want to build something?"}
+            {locale === "ar" ? "عايز تعمل مشروع؟ " : "Want to build something? "}
             <span className="text-primary italic block mt-2">
               {locale === "ar" ? "يكلمني" : "Let's talk"}
             </span>
