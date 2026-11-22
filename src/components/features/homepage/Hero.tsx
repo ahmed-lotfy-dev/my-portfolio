@@ -43,8 +43,8 @@ export default function Hero() {
             <div className="relative z-20 w-full text-center md:space-y-8 lg:w-full lg:text-start">
               <m.div
                 initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-100px" }}
                 transition={{ duration: 0.5 }}
                 className="hero-badge-wrapper"
               >
@@ -54,8 +54,8 @@ export default function Hero() {
 
               <m.h1
                 initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-100px" }}
                 transition={{ duration: 0.5, delay: 0.1 }}
                 className="hero-title"
               >
@@ -65,8 +65,8 @@ export default function Hero() {
 
               <m.p
                 initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-100px" }}
                 transition={{ duration: 0.5, delay: 0.2 }}
                 className="mx-auto max-w-[95%] text-lg font-medium leading-relaxed text-white/60 md:text-xl lg:mx-0 lg:text-2xl"
               >
@@ -75,8 +75,8 @@ export default function Hero() {
 
               <m.div
                 initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-100px" }}
                 transition={{ duration: 0.5, delay: 0.3 }}
                 className="mt-8 flex flex-col items-center justify-center gap-4 pt-6 sm:flex-row lg:justify-start"
               >
@@ -109,8 +109,8 @@ export default function Hero() {
               {/* CVDropdown for mobile/alternative */}
               <m.div
                 initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-100px" }}
                 transition={{ duration: 0.5, delay: 0.4 }}
                 className="mt-4 flex justify-center sm:justify-start"
               >
