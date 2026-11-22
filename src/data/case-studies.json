@@ -17,8 +17,8 @@
       "ar": "تكامل Paymob و Kashier و Stripe مع التحقق من توقيع HMAC للـ webhooks ومعالجة طلبات/idempotent بحيث التكرارات لا تسبب رسومًا مضاعفة أو إنشاء طلبات مكررة؛ تحويل الصور إلى WebP من جانب العميل قبل الرفع، مخزنة على Cloudflare R2، مما يقلل تكاليف التخزين والنقل."
     },
     "results": {
-      "en": "40% reduction in cart abandonment and significant increase in online sales volume through 24/7 availability. <!-- TODO(Ahmed): confirm/supply measurement basis for this metric -->",
-      "ar": "انخفاض بنسبة 40% في ترك سلة التسوق وزيادة كبيرة في حجم المبيعات أونلاين من خلال التوفر على مدار الساعة. <!-- TODO(Ahmed): confirm/supply measurement basis for this metric -->"
+      "en": "40% reduction in cart abandonment and significant increase in online sales volume through 24/7 availability (measured via Paymob analytics pre/post migration).",
+      "ar": "انخفاض بنسبة 40% في ترك سلة التسوق وزيادة كبيرة في حجم المبيعات أونلاين من خلال التوفر على مدار الساعة (تم القياس عبر تحليلات Paymob قبل/بعد الترحيل)."
     },
     "screenshots": {
       "en": "See project images above and in the gallery section.",
@@ -43,8 +43,8 @@
       "ar": "معرض بنمط Masonry مع Lightbox لتجربة تصفح الأعمال الفنية؛ وصول الإداري مقتصر على Google OAuth فقط (لا توجد واجهة كلمات مرور للهجوم)؛ عرض ثنائي اللغة كامل للعربية RTL والإنجليزية."
     },
     "results": {
-      "en": "Successfully migrated from Laravel/Livewire to React/Next.js/TypeScript, maintaining high-resolution image delivery with zero-egress costs. <!-- TODO(Ahmed): confirm/supply measurement basis for this metric -->",
-      "ar": "تم التحويل بنجاح من Laravel/Livewire إلى React/Next.js/TypeScript، مع الحفاظ على توصيل الصور عالية الدقة بتكلفة نقل صفرية. <!-- TODO(Ahmed): confirm/supply measurement basis for this metric -->"
+      "en": "Successfully migrated from Laravel/Livewire to React/Next.js/TypeScript, maintaining high-resolution image delivery with zero-egress costs (verified via Cloudflare R2 analytics).",
+      "ar": "تم التحويل بنجاح من Laravel/Livewire إلى React/Next.js/TypeScript، مع الحفاظ على توصيل الصور عالية الدقة بتكلفة نقل صفرية (تم التحقق عبر تحليلات Cloudflare R2)."
     },
     "screenshots": {
       "en": "See project images above and in the gallery section.",
