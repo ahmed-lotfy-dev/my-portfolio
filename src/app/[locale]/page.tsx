@@ -92,7 +92,7 @@ export default async function HomePage({
           name: 'Ahmed Lotfy',
           url: 'https://alotfy.site',
           image: 'https://alotfy.site/ahmed-lotfy.jpg',
-          jobTitle: 'Senior Full-Stack Software Engineer',
+          jobTitle: 'Full-Stack Developer',
           description: locale === 'ar'
             ? 'مطور ويب متخصص في Next.js و React و TypeScript'
             : 'Full Stack Developer specializing in Next.js, React, and TypeScript',

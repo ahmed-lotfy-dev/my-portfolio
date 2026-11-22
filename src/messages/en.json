@@ -28,7 +28,7 @@
       "title": "View Resume",
       "description": "How would you like to view the resume?",
       "view_browser": "View in Browser",
-      "download": "Download PDF"
+      "download": "Download CV"
     }
   },
   "tech_stack": {
@@ -56,36 +56,36 @@
     }
   },
   "services": {
-    "label": "What I Do",
-    "title_part1": "High-Impact",
-    "title_part2": "Solutions",
-    "description": "I don't just write code; I deliver business results through robust engineering and strategic design.",
+    "label": "Core Competencies",
+    "title_part1": "Full-Stack",
+    "title_part2": "Capabilities",
+    "description": "Production-ready expertise across the full stack — from architecture to deployment.",
     "items": {
       "webapp": {
-        "title": "Custom Web Applications",
-        "description": "Scalable, secure, and fast web applications built with Next.js and Cloudflare. Perfect for SaaS and internal tools.",
+        "title": "Web Application Architecture",
+        "description": "Design and build scalable, secure full-stack applications with React, Next.js, and TypeScript. Experienced in cloud-native deployments (Cloudflare, Docker) and CI/CD pipelines.",
         "features": {
-          "1": "High-Performance Architecture",
-          "2": "Real-time Data Processing",
-          "3": "Secure Authentication & Payments"
+          "1": "React 19 / Next.js 16 (App Router, Server Actions)",
+          "2": "PostgreSQL, Drizzle ORM, Redis, BullMQ",
+          "3": "Cloudflare Workers, R2, Docker, CI/CD"
         }
       },
-      "ecommerce": {
-        "title": "E-commerce Optimization",
-        "description": "Boost your sales with a custom e-commerce stack. I optimize checkout flows and page speed to maximize conversions.",
+      "backend": {
+        "title": "Backend & Systems Engineering",
+        "description": "Build robust APIs, background job systems, and data pipelines. Comfortable with Node.js, Hono, Elysia, and database design (PostgreSQL, Drizzle, Prisma).",
         "features": {
-          "1": "Next.js + Paymob/Stripe Integration",
-          "2": "Cart & Checkout Optimization",
-          "3": "Inventory Management Systems"
+          "1": "REST APIs, Server Actions, WebSockets",
+          "2": "Redis + BullMQ for background jobs",
+          "3": "Auth (Better Auth, OAuth), Rate limiting"
         }
       },
-      "performance": {
-        "title": "Performance Tuning",
-        "description": "Is your site slow? I optimize Core Web Vitals to improve your SEO rankings and user retention.",
+      "mobile": {
+        "title": "Mobile & Cross-Platform",
+        "description": "React Native (Expo) for iOS/Android with local-first SQLite, Expo for EAS builds, and offline-first sync patterns.",
         "features": {
-          "1": "95+ Core Web Vitals Score",
-          "2": "Server-Side Rendering (SSR)",
-          "3": "Advanced Caching Strategies"
+          "1": "React Native / Expo (TypeScript)",
+          "2": "Local-first: Drizzle + SQLite, background sync",
+          "3": "EAS Build, APK/IPA distribution"
         }
       }
     }
@@ -235,7 +235,8 @@
     "name": "Ahmed Lotfy",
     "description1": "I am a Full-Stack Software Engineer focused on solving business problems. I specialize in the modern React ecosystem (Next.js, TypeScript) but I place equal emphasis on ROI, performance metrics, and system reliability.",
     "description2": "My path to software engineering is rooted in a deep background in hardware and IT systems. This allows me to architect solutions that are not just code, but robust infrastructure.",
-    "description3": "I partner with businesses to build software that drives revenue, reduces costs, and scales effortlessly. I am currently accepting new clients for high-impact projects."
+    "description3": "I'm seeking a full-time remote role as a Full-Stack Developer (React/Next.js/Node.js). Based in Egypt (GMT+2) with proven remote-team experience — I completed the Chingu Voyage program, collaborating in a distributed agile team across time zones to ship a production app. I'm comfortable with async communication, CI/CD pipelines, and distributed code reviews.",
+    "description4": "Previously I partnered with businesses to build software that drives revenue, reduces costs, and scales effortlessly."
   },
   "experience": {
     "title": "Track Record",
@@ -276,14 +277,14 @@
   },
   "contact": {
     "title": "Contact",
-    "description": "Ready to turn your vision into a scalable reality. Reach out for a consultation, project inquiry, or just to say hi.",
-    "heading_part1": "Ready to scale ",
-    "heading_part2": "together?",
+    "description": "Open to full-time remote roles as a Full-Stack Developer (React/Next.js/Node.js). Based in Egypt (GMT+2) with proven remote-team experience.",
+    "heading_part1": "Open to ",
+    "heading_part2": "full-time remote roles",
     "getInTouch": "Get in Touch",
     "availability": "I'm currently open to full-time remote roles. The fastest way to reach me is email or WhatsApp.",
-    "info_desc": "I'm currently available for new projects and technical consultations. Reach out and I'll get back to you within 24 hours.",
+    "info_desc": "Open to full-time remote roles as a Full-Stack Developer (React/Next.js/Node.js). Based in Egypt (GMT+2) with proven remote-team experience (Chingu internship).",
     "email": "Email",
-    "phone": "LinkedIn",
+    "phone": "Phone / WhatsApp",
     "send": "Send Message",
     "placeholders": {
       "name": "Your Name",

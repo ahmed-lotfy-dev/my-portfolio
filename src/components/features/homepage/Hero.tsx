@@ -1,10 +1,9 @@
 "use client";
 
 import Link from "next/link";
-import { FileText, ArrowRight, Briefcase } from "lucide-react";
+import { FileText, ArrowRight } from "lucide-react";
 import { useTranslations, useLocale } from "next-intl";
 import { Button } from "@/src/components/ui/button";
-import { CVDropdown } from "./CVDropdown";
 import { Nav } from "./Nav";
 import { m } from "motion/react";
 
@@ -99,22 +98,11 @@ export default function Hero() {
                 <div className="flex justify-center pt-2 sm:pt-0">
                   <Button variant="ghost" size="sm" className="h-14 gap-2 rounded-2xl px-6 text-white/50 transition-colors hover:text-white/80" asChild>
                     <Link href={`/${locale}/contact`}>
-                      <Briefcase className="h-5 w-5" />
                       <span className="font-bold">{t("consulting_link")}</span>
                     </Link>
                   </Button>
                 </div>
               </m.div>
-
-              {/* CVDropdown for mobile/alternative */}
-              <div className="mt-4 flex justify-center sm:justify-start animate-fade-in-up" style={{ animationDelay: "400ms" }}>
-                <CVDropdown>
-                  <Button variant="ghost" size="sm" className="h-14 gap-2 rounded-2xl px-6 text-white/50 transition-colors hover:text-white/80">
-                    <FileText className="h-5 w-5" />
-                    <span className="font-bold">{t("resume")}</span>
-                  </Button>
-                </CVDropdown>
-              </div>
             </div>
 
           </div>

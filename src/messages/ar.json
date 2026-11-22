@@ -27,8 +27,8 @@
     "cv_modal": {
       "title": "عرض الـ CV",
       "description": "تحب تشوف السيرة الذاتية إزاي؟",
-      "view_browser": "افتح في المتصفح",
-      "download": "تحميل PDF"
+      "view_browser": "افتح في المتتصفح",
+      "download": "تحميل السيرة الذاتية"
     }
   },
   "tech_stack": {
@@ -56,36 +56,36 @@
     }
   },
   "services": {
-    "label": "أنا بقدم إيه؟",
-    "title_part1": "حلول برمجية",
-    "title_part2": " ذات تأثير",
-    "description": "مش بكتب كود وخلاص؛ أنا بقدم حلول بيزنس متكاملة بتعتمد على هندسة برمجيات قوية وتصميم استراتيجي.",
+    "label": "كفاءاتي الأساسية",
+    "title_part1": "قدرات",
+    "title_part2": " Full-Stack",
+    "description": "خبرة إنتاجية كاملة عبر الـ Stack كاملاً — من المعمارية للنشر.",
     "items": {
       "webapp": {
-        "title": "تطبيقات ويب مخصصة",
-        "description": "تطبيقات ويب سريعة وآمنة وقابلة للتوسع (Scalable) مبنية بـ Next.js و Cloudflare. مثالية للـ SaaS والأدوات الداخلية.",
+        "title": "عمارة تطبيقات الويب",
+        "description": "تصميم وبناء تطبيقات Full-Stack قابلة للتوسع وآمنة باستخدام React وNext.js وTypeScript. خبرة في النشر السحابي (Cloudflare، Docker) وخطوط CI/CD.",
         "features": {
-          "1": "بنية برمجية عالية الأداء",
-          "2": "معالجة بيانات في الوقت الفعلي",
-          "3": "أنظمة مصادقة ودفع آمنة"
+          "1": "React 19 / Next.js 16 (App Router، Server Actions)",
+          "2": "PostgreSQL، Drizzle ORM، Redis، BullMQ",
+          "3": "Cloudflare Workers، R2، Docker، CI/CD"
         }
       },
-      "ecommerce": {
-        "title": "تحسين التجارة الإلكترونية",
-        "description": "زود مبيعاتك مع نظام تجارة إلكترونية مخصص. بحسن الـ Checkout Flows وسرعة الصفحة عشان أزود معدل التحويل (Conversion).",
+      "backend": {
+        "title": "الهندسة الخلفية والأنظمة",
+        "description": "بناء APIs قوية، أنظمة مهام خلفية، وخطوط بيانات. مرتاح مع Node.js، Hono، Elysia، وتصميم قواعد البيانات (PostgreSQL، Drizzle، Prisma).",
         "features": {
-          "1": "ربط Next.js مع Paymob/Stripe",
-          "2": "تحسين السلة والـ Checkout",
-          "3": "أنظمة إدارة المخزون"
+          "1": "REST APIs، Server Actions، WebSockets",
+          "2": "Redis + BullMQ للمهام الخلفية",
+          "3": "Auth (Better Auth، OAuth)، Rate limiting"
         }
       },
-      "performance": {
-        "title": "تحسين الأداء (Performance)",
-        "description": "موقعك بطيء؟ بحسن الـ Core Web Vitals عشان أرفع ترتيبك في جوجل (SEO) وأحافظ على الزوار.",
+      "mobile": {
+        "title": "الموبايل والمنصات المتقاطعة",
+        "description": "React Native (Expo) لـ iOS/Android مع SQLite محلي أولاً، Expo للبناء، وأنماط مزامنة Offline-first.",
         "features": {
-          "1": "سكور 95+ في Core Web Vitals",
-          "2": "Server-Side Rendering (SSR)",
-          "3": "استراتيجيات Caching متقدمة"
+          "1": "React Native / Expo (TypeScript)",
+          "2": "محلي أولاً: Drizzle + SQLite، مزامنة خلفية",
+          "3": "EAS Build، توزيع APK/IPA"
         }
       }
     }
@@ -235,7 +235,8 @@
     "name": "أحمد لطفي",
     "description1": "أنا Full-Stack Software Engineer بركز على حل مشاكل البيزنس. بتخصص في الـ React Ecosystem الحديثة (Next.js، TypeScript) بس بهتم بنفس القدر بالـ ROI، ومقاييس الأداء، واستقرار النظام (Reliability).",
     "description2": "خلفيتي في الهاردوير والـ IT بتخليني أبني حلول مش مجرد كود، لكن بنية تحتية قوية.",
-    "description3": "بشارك الشركات لبناء برمجيات بتزود الأرباح، بتقلل التكاليف، وبتكبر بسهولة. أنا حالياً بقبل عملاء جدد لمشاريع ذات تأثير عالٍ."
+    "description3": "ببحث عن وظيفة بدوام كامل عن بُعد كمطوّر Full-Stack (React/Next.js/Node.js). مقيم في مصر (GMT+2) مع خبرة مثبتة في العمل مع فرق موزعة — أكملت برنامج Chingu Voyage، وتعاونت في فريق Agile موزع عبر مناطق زمنية لنشر تطبيق إنتاجي. مرتاح مع التواصل غير المتزامن، خطوط CI/CD، ومراجعات الكود الموزعة.",
+    "description4": "سابقاً شاركت شركات لبناء برمجيات بتزود الأرباح، بتقلل التكاليف، وبتكبر بسهولة."
   },
   "experience": {
     "title": "سجل النجاح",
@@ -276,14 +277,14 @@
   },
   "contact": {
     "title": "تواصل معايا",
-    "description": "جاهز لتحويل رؤيتك لواقع ملموس وقابل للتوسع. ابعتلي لو محتاج استشارة، استفسار عن مشروع، أو حتى بس تسلم.",
-    "heading_part1": "خلينا نكبر ",
-    "heading_part2": "عملك معاً",
+    "description": "متاح لوظائف بدوام كامل عن بُعد كمطوّر Full-Stack (React/Next.js/Node.js). مقيم في مصر (GMT+2) مع خبرة مثبتة في العمل مع فرق موزعة.",
+    "heading_part1": "متاح لـ ",
+    "heading_part2": "وظائف بدوام كامل عن بُعد",
     "getInTouch": "تواصل مباشر",
     "availability": "متاح حاليًا لوظائف بدوام كامل عن بُعد. أسرع طريقة للتواصل معي هي البريد الإلكتروني أو واتساب.",
-    "info_desc": "أنا متاح حالياً للمشاريع الجديدة والاستشارات التقنية. تواصل معايا وهرد عليك في خلال ٢٤ ساعة.",
+    "info_desc": "متاح لوظائف بدوام كامل عن بُعد كمطوّر Full-Stack (React/Next.js/Node.js). مقيم في مصر (GMT+2) مع خبرة مثبتة في العمل مع فرق موزعة (تدريب Chingu).",
     "email": "الإيميل",
-    "phone": "لينكد إن",
+    "phone": "الهاتف / واتساب",
     "send": "إرسال الرسالة",
     "placeholders": {
       "name": "اسمك الكامل",

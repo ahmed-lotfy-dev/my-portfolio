@@ -66,7 +66,7 @@ function parsePost(filePath: string): BlogPostWithContent {
     published: data.published !== false,
     excerpt:
       data.excerpt ||
-      content.replace(/[#*`\[\]\(\)!>|_\-]/g, "").slice(0, 180).trim() + "...",
+      content.replace(/[#*`\[\]\(\)!>|_]/g, "").replace(/-/g, " ").slice(0, 180).trim() + "...",
     content,
     readingTime: stats,
   };

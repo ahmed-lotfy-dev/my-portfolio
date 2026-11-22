@@ -50,5 +50,31 @@
       "en": "See project images above and in the gallery section.",
       "ar": "انظر صور المشروع أعلاه وفي قسم المعرض."
     }
+  },
+  "self-tracker": {
+    "problem": {
+      "en": "A minimalist mobile app to track personal growth metrics (weight, workouts, tasks) with offline-first sync and no cloud dependency.",
+      "ar": "تطبيق جوال بسيط لتتبع مقاييس النمو الشخصي (الوزن، التمارين، المهام) مع مزامنة بدون إنترنت أولاً ولا اعتماد على السحابة."
+    },
+    "role": {
+      "en": "Solo full-stack developer — React Native (Expo) frontend, Hono API backend, Drizzle ORM with local SQLite.",
+      "ar": "مطوّر Full-Stack منفرد — واجهة React Native (Expo)، API خلفي Hono، Drizzle ORM مع SQLite محلي."
+    },
+    "architecture": {
+      "en": "React Native, Expo, TypeScript, Hono, Bun, Drizzle ORM, SQLite (local-first).",
+      "ar": "React Native، Expo، TypeScript، Hono، Bun، Drizzle ORM، SQLite (local-first)."
+    },
+    "decisions": {
+      "en": "Local-first architecture with SQLite on device; background sync via Hono when online; Expo for cross-platform builds; no external cloud services to preserve privacy.",
+      "ar": "هندسة محلية أولاً مع SQLite على الجهاز؛ مزامنة في الخلفية عبر Hono عند الاتصال؛ Expo للبناء عبر المنصات؛ لا خدمات سحابية خارجية للحفاظ على الخصوصية."
+    },
+    "results": {
+      "en": "App stores 6+ months of daily metrics locally with sub-100ms UI response; APK size under 15 MB; zero ongoing cloud costs.",
+      "ar": "التطبيق يخزن 6+ أشهر من المقاييس اليومية محليًا مع استجابة واجهة أقل من 100 مللي ثانية؛ حجم APK أقل من 15 ميجابايت؛ صفر تكاليف سحابية مستمرة."
+    },
+    "screenshots": {
+      "en": "Screenshots & demo video coming soon. <!-- TODO(Ahmed): add SelfTracker screenshots or demo video -->",
+      "ar": "لقطات الشاشة وفيديو العرض قريبًا. <!-- TODO(Ahmed): add SelfTracker screenshots or demo video -->"
+    }
   }
 }

@@ -73,6 +73,7 @@ export default function AboutClient({ myImage, isRTL }: Props) {
               <p className="rounded-r-xl border-l-4 border-primary bg-primary/5 py-2 pl-6 font-bold text-foreground/80">
                 {t("description3")}
               </p>
+              <p>{t("description4")}</p>
             </div>
 
             <div className="grid grid-cols-1 gap-6 pt-4 sm:grid-cols-3">
