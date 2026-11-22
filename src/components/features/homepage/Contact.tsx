@@ -3,15 +3,16 @@
 import { useActionState, useState, useEffect } from "react";
 import { contactAction } from "@/src/app/actions/contact/mutations";
 import { IoLogoLinkedin, IoLogoGithub } from "react-icons/io5";
-import { Mail, Send, MessageSquare, Sparkles } from "lucide-react";
+import { Mail, Send, MessageSquare, Sparkles, Phone, MessageCircle } from "lucide-react";
 import { Input } from "@/src/components/ui/input";
 import { Textarea } from "@/src/components/ui/textarea";
 import Submit from "@/src/components/ui/formSubmitBtn";
-import { useLocale } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { cn } from "@/src/lib/utils";
 
 export default function Contact() {
   const locale = useLocale();
+  const t = useTranslations("contact");
   const isRTL = locale === "ar";
 
   const [state, formAction] = useActionState(contactAction, null);
@@ -31,10 +32,24 @@ export default function Contact() {
   const contactMethods = [
     {
       icon: Mail,
-      label: "Email",
+      label: t("email"),
       value: "contact@alotfy.site",
       href: "mailto:contact@alotfy.site",
       color: "text-primary",
+    },
+    {
+      icon: Phone,
+      label: "Phone / WhatsApp",
+      value: "+20 1016037479",
+      href: "tel:+201016037479",
+      color: "text-green-500",
+    },
+    {
+      icon: MessageCircle,
+      label: "WhatsApp",
+      value: "+20 1016037479",
+      href: "https://wa.me/201016037479",
+      color: "text-green-500",
     },
     {
       icon: IoLogoLinkedin,
@@ -74,9 +89,7 @@ export default function Contact() {
           </h2>
 
           <p className="text-lg md:text-xl text-muted-foreground leading-relaxed max-w-2xl mx-auto">
-            {locale === "ar"
-              ? "أنا متاح للمشاريع الجديدة والاستشارات. تواصل معي عبر النموذج أو أي من القنوات التالية."
-              : "I'm available for new projects and consulting. Reach out through the form or any of the channels below."}
+            {t("availability")}
           </p>
         </div>
 
@@ -206,7 +219,7 @@ export default function Contact() {
 
                   <div className="pt-2">
                     <Submit
-                      btnText={locale === "ar" ? "إرسال" : "Send Message"}
+                      btnText={t("send")}
                       className="w-full md:w-auto min-w-[200px] rounded-xl py-5 px-10 text-sm font-bold tracking-[0.12em] uppercase shadow-lg shadow-primary/25 hover:shadow-primary/40 transition-all duration-300 hover:-translate-y-1 active:translate-y-0"
                     >
                       <Send className="w-4 h-4 ml-2.5 rtl:rotate-180" />

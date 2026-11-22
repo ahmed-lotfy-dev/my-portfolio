@@ -16,20 +16,19 @@
   },
   "hero": {
     "name": "Ahmed Lotfy",
-    "title": "I Architect Digital Products That Scale",
-    "description": "Building high-performance digital ecosystems with Next.js 16 and Cloud-Native architectures. Focused on scalability, performance, and premium user experiences.",
+    "title": "Full-Stack Developer building fast, reliable web & mobile products",
+    "description": "Full-Stack Developer with 2+ years shipping production apps in React, Next.js, Node.js & TypeScript — open to full-time remote roles.",
     "book_consultation": "Book a Consultation",
     "resume": "My CV",
-    "view_work": "View Work",
-    "illustrationAlt": "Senior Software Architect Portrait",
-    "available_work": "Fullstack Software Engineer",
+    "view_work": "View my work",
+    "illustrationAlt": "Full-Stack Developer Portrait",
+    "available_work": "Full-Stack Developer",
+    "consulting_link": "Also available for consulting",
     "cv_modal": {
       "title": "View Resume",
       "description": "How would you like to view the resume?",
       "view_browser": "View in Browser",
-      "download": "Download PDF",
-      "download_ats": "Download ATS CV (.docx)",
-      "ats_description": "ATS-friendly format for job applications"
+      "download": "Download PDF"
     }
   },
   "tech_stack": {
@@ -281,6 +280,7 @@
     "heading_part1": "Ready to scale ",
     "heading_part2": "together?",
     "getInTouch": "Get in Touch",
+    "availability": "I'm currently open to full-time remote roles. The fastest way to reach me is email or WhatsApp.",
     "info_desc": "I'm currently available for new projects and technical consultations. Reach out and I'll get back to you within 24 hours.",
     "email": "Email",
     "phone": "LinkedIn",
@@ -452,8 +452,8 @@
   },
   "metadata": {
     "home": {
-      "title": "Ahmed Lotfy – Senior Full-Stack Software Engineer & Next.js Expert",
-      "description": "Portfolio of Ahmed Lotfy, a senior full-stack software engineer specializing in Next.js, React, TypeScript, Node.js, and PostgreSQL. Building high-performance, scalable web applications."
+      "title": "Ahmed Lotfy — Full-Stack Developer (React, Next.js, Node.js)",
+      "description": "Portfolio of Ahmed Lotfy, a Full-Stack Developer with 2+ years of experience building production web and mobile applications with React, Next.js, Node.js, and TypeScript. Open to full-time remote roles."
     },
     "blogs": {
       "title": "Blog | Ahmed Lotfy",

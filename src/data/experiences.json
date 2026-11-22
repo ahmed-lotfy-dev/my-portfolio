@@ -2,10 +2,10 @@
   {
     "id": "da3dfc18-48c8-48c2-864b-7faa11efc834",
     "company": "The Drive Center",
-    "role_en": "Senior Software Architect & Full-Stack Engineer",
-    "role_ar": "Senior Software Architect & Full-Stack Engineer",
-    "description_en": "Architected a high-performance automotive SaaS platform with automated booking, vehicle tracking, and WhatsApp API integration. Optimized for Local SEO and performance using Next.js 16 and Drizzle ORM. Resulted in a 40% reduction in administrative overhead.",
-    "description_ar": "Architected a high-performance automotive SaaS platform with automated booking, vehicle tracking, and WhatsApp API integration. Optimized for Local SEO and performance using Next.js 16 and Drizzle ORM. Resulted in a 40% reduction in administrative overhead.",
+    "role_en": "Contract Full-Stack Developer",
+    "role_ar": "مطوّر Full-Stack بعقد",
+    "description_en": "Architected a high-performance automotive SaaS platform with automated booking, vehicle tracking, and WhatsApp API integration. Optimized for Local SEO and performance using Next.js 16 and Drizzle ORM. Resulted in a 40% reduction in administrative overhead. <!-- TODO(Ahmed): confirm/supply measurement basis for this metric -->",
+    "description_ar": "صممت منصة SaaS للسيارات عالية الأداء مع حجز آلي، وتتبع المركبات، وتكامل WhatsApp API. تم التحسين لمحركات البحث المحلية والأداء باستخدام Next.js 16 و Drizzle ORM. النتيجة: تقليل الأعباء الإدارية بنسبة ٤٠٪. <!-- TODO(Ahmed): confirm/supply measurement basis for this metric -->",
     "date_en": "January 2026 — March 2026",
     "date_ar": "يناير ٢٠٢٦ — مارس ٢٠٢٦",
     "tech_stack": [
@@ -23,10 +23,10 @@
   {
     "id": "46a3a793-4a1b-4872-8bf1-bfee2469e557",
     "company": "Zamalek Store",
-    "role_en": "Lead Full-Stack Engineer",
-    "role_ar": "Lead Full-Stack Engineer",
-    "description_en": "Digital transformation for a major clothing brand. Built a high-performance e-commerce engine (Next.js 16) handling high traffic. Integrated Paymob payments and localized workflows. Result: 40% reduction in cart abandonment and significant increase in online sales volume through 24/7 availability.",
-    "description_ar": "تحول رقمي لعلامة تجارية كبرى للملابس. قمت ببناء محرك تجارة إلكترونية عالي الأداء (Next.js 16) يتعامل مع حركة مرور عالية. دمجت مدفوعات Paymob وسير عمل محلي. النتيجة: انخفاض بنسبة 40% في ترك سلة التسوق وزيادة كبيرة في حجم المبيعات عبر الإنترنت من خلال التوفر على مدار الساعة طوال أيام الأسبوع.",
+    "role_en": "Full-Stack Developer (Contract)",
+    "role_ar": "مطوّر Full-Stack (بعقد)",
+    "description_en": "Digital transformation for a major clothing brand. Built a high-performance e-commerce engine (Next.js 16) handling high traffic. Integrated Paymob payments and localized workflows. Result: 40% reduction in cart abandonment and significant increase in online sales volume through 24/7 availability. <!-- TODO(Ahmed): confirm/supply measurement basis for this metric -->",
+    "description_ar": "تحول رقمي لعلامة تجارية كبرى للملابس. قمت ببناء محرك تجارة إلكترونية عالي الأداء (Next.js 16) يتعامل مع حركة مرور عالية. دمجت مدفوعات Paymob وسير عمل محلي. النتيجة: انخفاض بنسبة 40% في ترك سلة التسوق وزيادة كبيرة في حجم المبيعات عبر الإنترنت من خلال التوفر على مدار الساعة طوال أيام الأسبوع. <!-- TODO(Ahmed): confirm/supply measurement basis for this metric -->",
     "date_en": "Oct — Dec 2025",
     "date_ar": "أكتوبر — ديسمبر ٢٠٢٥",
     "tech_stack": [
@@ -44,7 +44,7 @@
     "id": "d1f18428-82ad-4357-8338-d051fedff540",
     "company": "Toota Art Gallery",
     "role_en": "Full-Stack Developer (Contract)",
-    "role_ar": "Full-Stack Developer (Contract)",
+    "role_ar": "مطوّر Full-Stack (بعقد)",
     "description_en": "Engineered a digital asset management system for a visual arts gallery. Implemented Cloudflare R2 object storage to serve high-resolution art assets globally with low latency. Optimized hosting architecture to reduce monthly infrastructure costs while maintaining 99.9% uptime.",
     "description_ar": "هندسة نظام إدارة أصول رقمية لمعرض فنون بصرية. نفذت تخزين Cloudflare R2 لتقديم أصول فنية عالية الدقة عالميًا بزمن انتقال منخفض. تحسين بنية الاستضافة لتقليل تكاليف البنية التحتية الشهرية مع الحفاظ على وقت تشغيل بنسبة 99.9%.",
     "date_en": "May — June 2025",

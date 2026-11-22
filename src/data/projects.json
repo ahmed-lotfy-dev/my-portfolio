@@ -29,20 +29,19 @@
     "title_en": "Toota Art Portfolio",
     "title_ar": "معرض توته للفنون",
     "slug": "toota-art",
-    "desc_en": "A performance-first digital gallery for visual artists, built with the TALL stack and Cloudflare R2. Features server-side interactivity with Livewire 3, zero-egress object storage, and a comprehensive automated backup system.",
-    "desc_ar": "معرض رقمي يركز على الأداء للفنانين البصريين، مبني باستخدام TALL Stack و Cloudflare R2. يتميز بتفاعلية من جانب الخادم باستخدام Livewire 3، وتخزين كائنات بدون رسوم نقل، ونظام نسخ احتياطي آلي شامل.",
+    "desc_en": "A performance-first digital gallery for visual artists, migrated from the TALL stack to React, Next.js & TypeScript with Cloudflare R2. Features a masonry gallery with lightbox, Google OAuth admin access, and full Arabic RTL / English bilingual rendering.",
+    "desc_ar": "معرض رقمي يركز على الأداء للفنانين البصريين، تم تحويله من TALL Stack إلى React وNext.js وTypeScript مع Cloudflare R2. يتميز بمعرض صور بنمط Masonry مع Lightbox، وصول إداري عبر Google OAuth فقط، وعرض ثنائي اللغة كامل للعربية RTL والإنجليزية.",
     "repo_link": "https://github.com/ahmed-lotfy-dev/toota-portfolio",
     "live_link": "https://tootaverse.alotfy.site",
     "cover_image": "/images-downloaded/projects/toota-art/toota-art-cover.webp",
     "categories": [
-      "Laravel",
-      "Livewire",
-      "Alpine.js",
+      "React",
+      "Next.js",
+      "TypeScript",
       "Tailwind CSS",
       "PostgreSQL",
       "Cloudflare R2",
-      "Docker",
-      "Spatie"
+      "Docker"
     ],
     "published": true,
     "display_order": 2,
@@ -106,7 +105,8 @@
     ],
     "published": true,
     "display_order": 5,
-    "views": 5
+    "views": 5,
+    "screenshots_coming_soon": true
   },
   {
     "id": "a9bb72c0-d696-4643-9338-f339de3fc130",

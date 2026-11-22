@@ -112,11 +112,6 @@ export default async function ProjectsPage({
         <h1 className="text-4xl font-extrabold tracking-tight md:text-6xl">
           {locale === "ar" ? "مشاريع مبنية بهدف واضح ونتيجة قابلة للقياس" : "Projects built with clear goals and measurable outcomes"}
         </h1>
-        <p className="mx-auto mt-5 max-w-3xl text-lg text-muted-foreground">
-          {locale === "ar"
-            ? "دي صفحة تجمع المشاريع المنشورة بدل الاعتماد على قسم داخل الصفحة الرئيسية فقط، وده بيدي محركات البحث صفحة واضحة تفهم منها نوع الشغل والخبرة التقنية."
-            : "This index gives search engines a dedicated page for your public work instead of relying only on the homepage section, which improves crawl paths and topic clarity."}
-        </p>
       </header>
 
       <ProjectsClient projects={publishedProjects} locale={locale} t={translations} />

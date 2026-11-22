@@ -1,15 +1,28 @@
 import projectsData from "@/src/data/projects.json";
+import caseStudiesData from "@/src/data/case-studies.json";
 import { getBlogPostsBySlugs } from "@/src/lib/blog";
 import { notFound } from "next/navigation";
 import { getLocale, getTranslations } from "next-intl/server";
 import Link from "next/link";
-import { ExternalLink } from "lucide-react";
+import { ExternalLink, Download } from "lucide-react";
 import { IoLogoGithub } from "react-icons/io5";
 import { Button } from "@/src/components/ui/button";
 import StructuredData from "@/src/components/seo/StructuredData";
 import { BreadcrumbSchema } from "@/src/components/seo/BreadcrumbSchema";
 import { ImageCarousel } from "@/src/components/ui/ImageCarousel";
 import { BackButton } from "@/src/components/ui/BackButton";
+
+type CaseStudyData = {
+  problem: { en: string; ar: string };
+  role: { en: string; ar: string };
+  architecture: { en: string; ar: string };
+  decisions: { en: string; ar: string };
+  results: { en: string; ar: string };
+  screenshots: { en: string; ar: string };
+  [key: string]: { en: string; ar: string };
+};
+
+type CaseStudiesMap = Record<string, CaseStudyData>;
 
 function isNonEmptyUrl(url: string | null | undefined): url is string {
   return typeof url === "string" && url.trim().length > 0;
@@ -63,6 +76,7 @@ export default async function ProjectDetailsPage({ params }: { params: Promise<{
 
   const title = locale === "ar" ? project.title_ar : project.title_en;
   const desc = locale === "ar" ? project.desc_ar : project.desc_en;
+  const caseStudy = (caseStudiesData as CaseStudiesMap)[slug] || null;
 
   // Get related blog posts based on project tech stack
   const techToPosts: Record<string, string[]> = {
@@ -91,6 +105,15 @@ export default async function ProjectDetailsPage({ params }: { params: Promise<{
     }
   }
   const relatedPosts = getBlogPostsBySlugs(relatedPostSlugs.slice(0, 4), locale);
+
+  const caseStudySections = [
+    { key: "problem", label: { en: "Problem", ar: "المشكلة" } },
+    { key: "role", label: { en: "My Role", ar: "دوري" } },
+    { key: "architecture", label: { en: "Architecture & Stack", ar: "البنية التقنية والتقنيات" } },
+    { key: "decisions", label: { en: "Key Decisions", ar: "القرارات الرئيسية" } },
+    { key: "results", label: { en: "Results", ar: "النتائج" } },
+    { key: "screenshots", label: { en: "Screenshots", ar: "لقطات الشاشة" } },
+  ];
 
   return (
     <main className="min-h-screen bg-background text-foreground selection:bg-primary/20">
@@ -158,7 +181,7 @@ export default async function ProjectDetailsPage({ params }: { params: Promise<{
           {desc}
         </p>
 
-        <div className="flex flex-col sm:flex-row gap-4 md:gap-6 justify-center pt-4">
+        <div className="flex flex-col sm:flex-row gap-4 md:gap-6 justify-center pt-4 flex-wrap">
           {project.live_link && (
             <Button asChild size="lg" className="rounded-full text-md h-12 px-8 shadow-xl shadow-primary/20 hover:shadow-primary/30 transition-all hover:-translate-y-1">
               <a href={project.live_link} target="_blank">
@@ -173,8 +196,58 @@ export default async function ProjectDetailsPage({ params }: { params: Promise<{
               </a>
             </Button>
           )}
+          {slug === "self-tracker" && project.live_link && (
+            <Button asChild variant="secondary" size="lg" className="rounded-full text-md h-12 px-8 border-border/30 hover:bg-secondary/10 transition-all">
+              <a href={project.live_link} target="_blank">
+                <Download className="w-5 h-5 me-2.5" /> {t("apk")}
+              </a>
+            </Button>
+          )}
         </div>
       </div>
+
+      {/* Case Study Template Sections */}
+      <section className="max-w-4xl mx-auto space-y-16 md:space-y-20 px-4 pb-16">
+        {caseStudySections.map((section) => {
+          const content = caseStudy?.[section.key]?.[locale === "ar" ? "ar" : "en"];
+          const label = section.label[locale === "ar" ? "ar" : "en"];
+          return (
+            <div key={section.key} className="space-y-4">
+              <h2 className="text-2xl font-bold text-foreground border-b border-border/30 pb-2">
+                {label}
+              </h2>
+              {content ? (
+                <div className="prose prose-invert max-w-none text-muted-foreground leading-relaxed">
+                  {content.split('\n').map((paragraph: string, i: number) => (
+                    <p key={i}>{paragraph}</p>
+                  ))}
+                </div>
+              ) : (
+                <p className="text-muted-foreground italic">
+                  {`<!-- TODO(Ahmed): ${section.key} for ${slug} -->`}
+                </p>
+              )}
+            </div>
+          );
+        })}
+      </section>
+
+      {/* SelfTracker screenshots placeholder */}
+      {slug === "self-tracker" && (
+        <section className="max-w-4xl mx-auto px-4 pb-16">
+          <h2 className="text-2xl font-bold text-foreground border-b border-border/30 pb-2 mb-6">
+            {locale === "ar" ? "لقطات الشاشة وفيديو العرض" : "Screenshots & Demo Video"}
+          </h2>
+          <div className="rounded-2xl border border-border/30 bg-card/20 p-8 text-center">
+            <p className="text-muted-foreground italic mb-4">
+              {locale === "ar" ? "لقطات الشاشة وفيديو العرض قريبًا" : "Screenshots & demo video coming soon"}
+            </p>
+            <p className="text-xs text-muted-foreground">
+              {`<!-- TODO(Ahmed): add SelfTracker screenshots or demo video -->`}
+            </p>
+          </div>
+        </section>
+      )}
 
       <footer className="mt-32 pt-12 border-t border-border/20 text-center pb-8">
         <Link href={`/${locale}/projects`} className="text-muted-foreground hover:text-primary transition-colors text-sm font-medium tracking-widest uppercase hover:underline underline-offset-4">
@@ -183,11 +256,11 @@ export default async function ProjectDetailsPage({ params }: { params: Promise<{
       </footer>
 
       {relatedPosts.length > 0 && (
-        <section className="mt-16 pt-12 border-t border-border/20">
+        <section className="mt-16 pt-12 border-t border-border/20 max-w-4xl mx-auto px-4">
           <h2 className="text-xl font-bold text-center mb-8">
             {locale === "ar" ? "مقالات ذات صلة" : "Related Articles"}
           </h2>
-          <div className="grid gap-4 sm:grid-cols-2 max-w-3xl mx-auto px-4">
+          <div className="grid gap-4 sm:grid-cols-2 max-w-3xl mx-auto">
             {relatedPosts.map((post) => (
               <article
                 key={post.slug}

@@ -1,8 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { FileText, ArrowRight } from "lucide-react";
-import { useTranslations } from "next-intl";
+import { FileText, ArrowRight, Briefcase } from "lucide-react";
+import { useTranslations, useLocale } from "next-intl";
 import { Button } from "@/src/components/ui/button";
 import { CVDropdown } from "./CVDropdown";
 import { Nav } from "./Nav";
@@ -23,6 +23,7 @@ export const HERO_SECTIONS: HeroSection[] = [
 
 export default function Hero() {
   const t = useTranslations("hero");
+  const locale = useLocale();
 
   return (
     <header className="group relative flex min-h-screen w-full flex-col overflow-hidden snap-section" id="hero">
@@ -55,27 +56,40 @@ export default function Hero() {
               </m.p>
 
               <m.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.3 }} className="mt-8 flex flex-col items-center justify-center gap-4 pt-6 sm:flex-row lg:justify-start">
+                {/* Primary CTA - Download CV */}
                 <Button size="lg" className="hero-cta-primary group relative h-16 cursor-pointer overflow-hidden rounded-2xl border-none px-10 text-lg font-bold shadow-2xl transition-all duration-300 hover:-translate-y-0.5 active:scale-[0.98]" asChild>
-                  <Link href="#contact">
+                  <Link href="/ahmed-lotfy-cv-2026-11-21.pdf" download>
                     <span className="relative z-10 flex items-center gap-3">
-                      {t("book_consultation")}
-                      <ArrowRight className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" />
+                      <FileText className="h-5 w-5" />
+                      {t("cv_modal.download")}
                     </span>
                   </Link>
                 </Button>
 
+                {/* Secondary CTA - View Work */}
                 <Button variant="outline" size="lg" className="hero-cta-secondary h-16 cursor-pointer rounded-2xl border border-white/10 bg-white/[0.03] px-10 text-lg font-semibold text-white/80 backdrop-blur-sm transition-all duration-300 hover:-translate-y-0.5 active:scale-[0.98]" asChild>
-                  <Link href="/projects"><span>{t("view_work")}</span></Link>
+                  <Link href={`/${locale}/projects`}><span>{t("view_work")}</span></Link>
                 </Button>
 
+                {/* Tertiary - Consulting link */}
                 <div className="flex justify-center pt-2 sm:pt-0">
-                  <CVDropdown>
-                    <Button variant="ghost" size="sm" className="h-14 gap-2 rounded-2xl px-6 text-white/50 transition-colors hover:text-white/80">
-                      <FileText className="h-5 w-5" />
-                      <span className="font-bold">{t("resume")}</span>
-                    </Button>
-                  </CVDropdown>
+                  <Button variant="ghost" size="sm" className="h-14 gap-2 rounded-2xl px-6 text-white/50 transition-colors hover:text-white/80" asChild>
+                    <Link href={`/${locale}/contact`}>
+                      <Briefcase className="h-5 w-5" />
+                      <span className="font-bold">{t("consulting_link")}</span>
+                    </Link>
+                  </Button>
                 </div>
+              </m.div>
+
+              {/* CVDropdown for mobile/alternative */}
+              <m.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.4 }} className="mt-4 flex justify-center sm:justify-start">
+                <CVDropdown>
+                  <Button variant="ghost" size="sm" className="h-14 gap-2 rounded-2xl px-6 text-white/50 transition-colors hover:text-white/80">
+                    <FileText className="h-5 w-5" />
+                    <span className="font-bold">{t("resume")}</span>
+                  </Button>
+                </CVDropdown>
               </m.div>
             </div>
 

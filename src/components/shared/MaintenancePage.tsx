@@ -57,9 +57,9 @@ export default function MaintenancePage() {
         <div className="maintenance-footer">
           <div className="maintenance-signature">
             <span className="maintenance-footer-dot" />
-            <span className="maintenance-footer-text">Ahmed Shoman</span>
+            <span className="maintenance-footer-text">Ahmed Lotfy</span>
             <span className="maintenance-footer-separator" />
-            <span className="maintenance-footer-text">Full-Stack Engineer</span>
+            <span className="maintenance-footer-text">Full-Stack Developer</span>
           </div>
         </div>
       </div>

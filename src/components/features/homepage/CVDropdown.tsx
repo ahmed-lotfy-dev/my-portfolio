@@ -8,7 +8,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/src/components/ui/dropdown-menu";
-import { Eye, Download, FileText } from "lucide-react";
+import { Eye, Download } from "lucide-react";
 import Link from "next/link";
 import { useTranslations } from "next-intl";
 
@@ -25,7 +25,7 @@ export function CVDropdown({ children }: { children: React.ReactNode }) {
         <DropdownMenuSeparator />
 
         <DropdownMenuItem
-          onClick={() => window.open("/Ahmed-Lotfy-CV.pdf", "_blank")}
+          onClick={() => window.open("/ahmed-lotfy-cv-2026-11-21.pdf", "_blank")}
           className="cursor-pointer gap-2"
         >
           <Eye className="w-4 h-4" />
@@ -33,23 +33,9 @@ export function CVDropdown({ children }: { children: React.ReactNode }) {
         </DropdownMenuItem>
 
         <DropdownMenuItem asChild className="cursor-pointer gap-2">
-          <Link href="/Ahmed-Lotfy-CV.pdf" download>
+          <Link href="/ahmed-lotfy-cv-2026-11-21.pdf" download>
             <Download className="w-4 h-4" />
             {t("download")}
-          </Link>
-        </DropdownMenuItem>
-
-        <DropdownMenuSeparator />
-
-        <DropdownMenuItem asChild className="cursor-pointer gap-2">
-          <Link href="/cv/Ahmed_Shoman_Full_Stack_ATS_CV.docx" download>
-            <FileText className="w-4 h-4" />
-            <span className="flex flex-col">
-              <span>{t("download_ats")}</span>
-              <span className="text-xs text-muted-foreground">
-                {t("ats_description")}
-              </span>
-            </span>
           </Link>
         </DropdownMenuItem>
       </DropdownMenuContent>

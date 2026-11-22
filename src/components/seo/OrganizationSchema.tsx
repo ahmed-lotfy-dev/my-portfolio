@@ -20,7 +20,7 @@ export function OrganizationSchema() {
     founder: {
       "@type": "Person",
       name: "Ahmed Lotfy",
-      jobTitle: "Senior Full-Stack Software Engineer",
+      jobTitle: "Full-Stack Developer",
       url: "https://alotfy.site",
     },
     foundingDate: "2024",

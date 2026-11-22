@@ -37,11 +37,11 @@ export const metadata: Metadata = {
   manifest: "/manifest.webmanifest",
   metadataBase: new URL("https://alotfy.site"),
   title: {
-    default: "Ahmed Lotfy – Senior Full-Stack Engineer & Next.js Expert",
+    default: "Ahmed Lotfy — Full-Stack Developer (React, Next.js, Node.js)",
     template: "%s",
   },
   description:
-    "Portfolio of Ahmed Lotfy, a senior full-stack software engineer specializing in Next.js, React, TypeScript, Node.js, and PostgreSQL. Building high-performance, scalable web applications and cloud-native architectures.",
+    "Portfolio of Ahmed Lotfy, a Full-Stack Developer with 2+ years of experience building production web and mobile applications with React, Next.js, Node.js, and TypeScript. Open to full-time remote roles.",
   keywords: [
     "Ahmed Lotfy",
     "Full-Stack Developer",
@@ -51,6 +51,7 @@ export const metadata: Metadata = {
     "React",
     "Next.js",
     "Node.js",
+    "TypeScript",
     "أحمد لطفي",
     "مطور ويب",
     "مهندس برمجيات",
@@ -60,24 +61,24 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     url: "https://alotfy.site",
-    title: "Ahmed Lotfy – Senior Full-Stack Software Engineer & Next.js Expert",
+    title: "Ahmed Lotfy — Full-Stack Developer (React, Next.js, Node.js)",
     description:
-      "Portfolio of Ahmed Lotfy, a senior full-stack software engineer specializing in Next.js, React, TypeScript, Node.js, and PostgreSQL.",
+      "Portfolio of Ahmed Lotfy, a Full-Stack Developer with 2+ years of experience building production web and mobile applications with React, Next.js, Node.js, and TypeScript.",
     siteName: "Ahmed Lotfy Portfolio",
     images: [
       {
         url: "https://alotfy.site/og-image.png",
         width: 1200,
         height: 630,
-        alt: "Ahmed Lotfy – Senior Full-Stack Software Engineer & Next.js Expert",
+        alt: "Ahmed Lotfy — Full-Stack Developer",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Ahmed Lotfy – Senior Full-Stack Software Engineer & Next.js Expert",
+    title: "Ahmed Lotfy — Full-Stack Developer (React, Next.js, Node.js)",
     description:
-      "Portfolio of Ahmed Lotfy, a senior full-stack software engineer specializing in Next.js, React, TypeScript, Node.js, and PostgreSQL.",
+      "Portfolio of Ahmed Lotfy, a Full-Stack Developer with 2+ years of experience building production web and mobile applications with React, Next.js, Node.js, and TypeScript.",
     images: ["https://alotfy.site/og-image.png"],
   },
   robots: {
