@@ -73,8 +73,8 @@
       "ar": "التطبيق يخزن 6+ أشهر من المقاييس اليومية محليًا مع استجابة واجهة أقل من 100 مللي ثانية؛ حجم APK أقل من 15 ميجابايت؛ صفر تكاليف سحابية مستمرة."
     },
     "screenshots": {
-      "en": "Screenshots & demo video coming soon. <!-- TODO(Ahmed): add SelfTracker screenshots or demo video -->",
-      "ar": "لقطات الشاشة وفيديو العرض قريبًا. <!-- TODO(Ahmed): add SelfTracker screenshots or demo video -->"
+      "en": "Screenshots & demo video coming soon.",
+      "ar": "لقطات الشاشة وفيديو العرض قريبًا."
     }
   }
 }

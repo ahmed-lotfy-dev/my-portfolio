@@ -82,9 +82,9 @@ export default function Contact() {
           </div>
 
           <h2 className="text-4xl md:text-6xl lg:text-7xl font-black text-foreground tracking-tight leading-[1.05]">
-            {locale === "ar" ? "عايز تعمل مشروع؟ " : "Want to build something? "}
+            {t("heading_part1")}
             <span className="text-primary italic block mt-2">
-              {locale === "ar" ? "يكلمني" : "Let's talk"}
+              {t("heading_part2")}
             </span>
           </h2>
 

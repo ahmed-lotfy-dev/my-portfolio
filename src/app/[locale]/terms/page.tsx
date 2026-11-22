@@ -23,7 +23,7 @@ export const metadata: Metadata = {
         url: "https://alotfy.site/og-image.png",
         width: 1200,
         height: 630,
-        alt: "Ahmed Lotfy – Senior Full-Stack Software Engineer",
+        alt: "Ahmed Lotfy – Full-Stack Developer",
       },
     ],
   },
