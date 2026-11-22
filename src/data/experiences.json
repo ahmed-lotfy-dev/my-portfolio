@@ -79,18 +79,18 @@
   {
     "id": "ba8ad8d6-bf00-45cd-be16-4d5fadd47d17",
     "company": "Chingu",
-    "role_en": "Full-Stack Developer (Remote Team)",
-    "role_ar": "Full-Stack Developer (Remote Team)",
-    "description_en": "Collaborated in an agile remote team environment to deploy a production-ready application. Focused on backend scalability and authentication security (Auth0). Established CI/CD workflows that reduced deployment time for the team.",
-    "description_ar": "تعاونت في بيئة فريق سريع عن بعد لنشر تطبيق جاهز للإنتاج. ركزت على قابلية التوسع في الواجهة الخلفية وأمان المصادقة (Auth0). أنشأت سير عمل CI/CD قلل وقت النشر للفريق.",
-    "date_en": "Mar — May 2024",
-    "date_ar": "مارس — مايو ٢٠٢٤",
+    "role_en": "Full Stack Developer | Chingu Voyage",
+    "role_ar": "Full Stack Developer | Chingu Voyage",
+    "description_en": "Collaborated with a distributed Agile team to build a full-stack book-discovery app with React, Vite, Express.js and MongoDB. Implemented authentication and authorization with Passport.js. Contributed to sprint planning, code reviews and the team Git workflow.",
+    "description_ar": "تعاونت مع فريق Agile موزع لبناء تطبيق كامل للكشف عن الكتب باستخدام React و Vite و Express.js و MongoDB. نفذت المصادقة والترخيص باستخدام Passport.js. ساهمت في تخطيط السبنتات، مراجعات الكود وسير عمل Git الجماعي.",
+    "date_en": "Jan — Feb 2023",
+    "date_ar": "يناير — فبراير ٢٠٢٣",
     "tech_stack": [
       "React",
-      "Node.js",
-      "Express",
+      "Vite",
+      "Express.js",
       "MongoDB",
-      "Auth0"
+      "Passport.js"
     ],
     "display_order": 4,
     "published": true
