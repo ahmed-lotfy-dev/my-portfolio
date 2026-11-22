@@ -17,7 +17,7 @@ import { getMessages, setRequestLocale } from "next-intl/server";
  import { PersonSchema } from "@/src/components/seo/PersonSchema";
  import { OrganizationSchema } from "@/src/components/seo/OrganizationSchema";
  import PostHogClient from "@/src/components/shared/PostHogClient";
- import { motion } from "motion/react";
+ import { LazyMotion, m, domMax } from "motion/react";
  import { Toaster } from "@/src/components/ui/sonner";
  import { WebMcpProvider } from "@/src/components/agent/WebMcpProvider";
 import { FeatureFlagsProvider } from "@/src/providers/feature-flags";
@@ -142,13 +142,23 @@ export default async function LocaleLayout({ children, params }: Props) {
         <NextIntlClientProvider messages={messages}>
           <FeatureFlagsProvider>
             <WebMcpProvider />
-            <ErrorBoundary>
-              {isPostHogEnabled ? (
-                <PostHogClient
-                  apiKey={posthogApiKey}
-                  ingestHost={posthogIngestHost}
-                  uiHost={posthogUiHost}
-                >
+            <LazyMotion features={domMax} strict>
+              <ErrorBoundary>
+                {isPostHogEnabled ? (
+                  <PostHogClient
+                    apiKey={posthogApiKey}
+                    ingestHost={posthogIngestHost}
+                    uiHost={posthogUiHost}
+                  >
+                    <MaintenanceGate>
+                      <div className="relative bg-background overflow-x-hidden min-h-screen pb-20 md:pb-0">
+                        <Nav />
+                        {children}
+                        <Footer />
+                      </div>
+                    </MaintenanceGate>
+                  </PostHogClient>
+                ) : (
                   <MaintenanceGate>
                     <div className="relative bg-background overflow-x-hidden min-h-screen pb-20 md:pb-0">
                       <Nav />
@@ -156,17 +166,9 @@ export default async function LocaleLayout({ children, params }: Props) {
                       <Footer />
                     </div>
                   </MaintenanceGate>
-                </PostHogClient>
-              ) : (
-                <MaintenanceGate>
-                  <div className="relative bg-background overflow-x-hidden min-h-screen pb-20 md:pb-0">
-                    <Nav />
-                    {children}
-                    <Footer />
-                  </div>
-                </MaintenanceGate>
-              )}
-            </ErrorBoundary>
+                )}
+              </ErrorBoundary>
+            </LazyMotion>
             <Toaster richColors closeButton position="top-center" />
           </FeatureFlagsProvider>
         </NextIntlClientProvider>
