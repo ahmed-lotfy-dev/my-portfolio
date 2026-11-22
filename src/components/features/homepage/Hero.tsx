@@ -59,7 +59,7 @@ export default function Hero() {
                 transition={{ duration: 0.5, delay: 0.1 }}
                 className="hero-title"
               >
-                <span className="hero-title-line">{t("name")}</span>
+                <span className="hero-title-line mb-4">{t("name")}</span>
                 <span className="hero-title-gradient">{t("title")}</span>
               </m.h1>
 
