@@ -1,6 +1,8 @@
 import { MetadataRoute } from 'next'
 import projectsData from '@/src/data/projects.json'
 import { getAllBlogPosts } from '@/src/lib/blog'
+import fs from 'fs'
+import path from 'path'
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = 'https://alotfy.site'
@@ -17,22 +19,43 @@ export default function sitemap(): MetadataRoute.Sitemap {
     })
   }
 
-  // ── Static pages ──
+  // Get file modification time for static pages
+  function getFileMTime(filePath: string): Date {
+    try {
+      const stats = fs.statSync(filePath)
+      return stats.mtime
+    } catch {
+      return new Date()
+    }
+  }
+
+  // Get project last modified from file system if available
+  function getProjectLastModified(slug: string): Date {
+    const projectDir = path.join(process.cwd(), 'src', 'data', 'projects.json')
+    try {
+      const stats = fs.statSync(projectDir)
+      return stats.mtime
+    } catch {
+      return new Date()
+    }
+  }
+
+  // Static pages
   const staticPaths = [
-    { path: '', priority: 1, changeFrequency: 'weekly' as const },
-    { path: '/projects', priority: 0.9, changeFrequency: 'weekly' as const },
-    { path: '/blogs', priority: 0.9, changeFrequency: 'weekly' as const },
-    { path: '/about', priority: 0.8, changeFrequency: 'monthly' as const },
-    { path: '/contact', priority: 0.7, changeFrequency: 'monthly' as const },
-    { path: '/certificates', priority: 0.6, changeFrequency: 'monthly' as const },
-    { path: '/privacy', priority: 0.2, changeFrequency: 'yearly' as const },
-    { path: '/terms', priority: 0.2, changeFrequency: 'yearly' as const },
+    { path: '', priority: 1, changeFrequency: 'weekly' as const, filePath: 'src/app/[locale]/page.tsx' },
+    { path: '/projects', priority: 0.9, changeFrequency: 'weekly' as const, filePath: 'src/app/[locale]/projects/page.tsx' },
+    { path: '/blogs', priority: 0.9, changeFrequency: 'weekly' as const, filePath: 'src/app/[locale]/blogs/page.tsx' },
+    { path: '/about', priority: 0.8, changeFrequency: 'monthly' as const, filePath: 'src/app/[locale]/about/page.tsx' },
+    { path: '/contact', priority: 0.7, changeFrequency: 'monthly' as const, filePath: 'src/app/[locale]/contact/page.tsx' },
+    { path: '/certificates', priority: 0.6, changeFrequency: 'monthly' as const, filePath: 'src/app/[locale]/certificates/page.tsx' },
+    { path: '/privacy', priority: 0.2, changeFrequency: 'yearly' as const, filePath: 'src/app/[locale]/privacy/page.tsx' },
+    { path: '/terms', priority: 0.2, changeFrequency: 'yearly' as const, filePath: 'src/app/[locale]/terms/page.tsx' },
   ]
 
   const staticPages: SitemapEntry[] = staticPaths.flatMap((page) =>
     locales.map((locale) => ({
       url: `${baseUrl}/${locale}${page.path}`,
-      lastModified: new Date(),
+      lastModified: getFileMTime(page.filePath),
       changeFrequency: page.changeFrequency,
       priority: page.priority,
       alternates: {
@@ -43,13 +66,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     }))
   )
 
-  // ── Project pages ──
+  // Project pages
   const projectPages: SitemapEntry[] = projectsData.flatMap((project) => {
     if (!project.slug || project.published === false) return []
     const path = `/projects/${project.slug}`
     return locales.map((locale) => ({
       url: `${baseUrl}/${locale}${path}`,
-      lastModified: new Date(),
+      lastModified: getProjectLastModified(project.slug),
       changeFrequency: 'monthly' as const,
       priority: 0.8,
       alternates: {
@@ -60,7 +83,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     }))
   })
 
-  // ── Blog posts ──
+  // Blog posts
   const enPosts = getAllBlogPosts('en')
   const arPosts = getAllBlogPosts('ar')
   const arSlugSet = new Set(arPosts.map((p) => p.slug))

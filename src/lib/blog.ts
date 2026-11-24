@@ -66,7 +66,12 @@ function parsePost(filePath: string): BlogPostWithContent {
     published: data.published !== false,
     excerpt:
       data.excerpt ||
-      content.replace(/[#*`\[\]\(\)!>|_]/g, "").replace(/-/g, " ").slice(0, 180).trim() + "...",
+      content
+        .replace(/[#*`\[\]\(\)!>|_]/g, "")
+        .replace(/(?<=\w)-(?=\w)/g, "-") // Keep hyphens between word characters
+        .replace(/(?<!\w)-|-(?!\w)/g, " ") // Replace hyphens not between words with space
+        .slice(0, 180)
+        .trim() + "...",
     content,
     readingTime: stats,
   };
