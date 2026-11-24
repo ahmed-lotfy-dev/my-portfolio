@@ -19,22 +19,35 @@ export default function sitemap(): MetadataRoute.Sitemap {
     })
   }
 
-  // Get file modification time for static pages
+  // Cached file mtime to avoid repeated fs.statSync calls
+  const fileMTimeCache = new Map<string, Date>();
+
+  // Get file modification time for static pages (cached)
   function getFileMTime(filePath: string): Date {
+    const cached = fileMTimeCache.get(filePath);
+    if (cached) return cached;
     try {
       const stats = fs.statSync(filePath)
-      return stats.mtime
+      const mtime = stats.mtime
+      fileMTimeCache.set(filePath, mtime)
+      return mtime
     } catch {
       return new Date()
     }
   }
 
-  // Get project last modified from file system if available
+  // Get project last modified from file system if available (cached)
+  const projectMTimeCache = new Map<string, Date>();
+
   function getProjectLastModified(slug: string): Date {
+    const cached = projectMTimeCache.get(slug);
+    if (cached) return cached;
     const projectDir = path.join(process.cwd(), 'src', 'data', 'projects.json')
     try {
       const stats = fs.statSync(projectDir)
-      return stats.mtime
+      const mtime = stats.mtime
+      projectMTimeCache.set(slug, mtime)
+      return mtime
     } catch {
       return new Date()
     }

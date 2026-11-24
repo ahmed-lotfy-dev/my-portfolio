@@ -96,19 +96,28 @@ export async function generateMetadata({
   } satisfies Metadata;
 }
 
-async function markdownToHtml(content: string): Promise<string> {
-  const result = await remark()
-    .use(remarkGfm, { singleTilde: false })
-    .use(remarkRehype, { allowDangerousHtml: true })
-    .use(rehypeSlug)
-    .use(rehypeAutolinkHeadings, {
-      behavior: "wrap",
-      properties: { className: ["anchor"] },
-    })
-    .use(rehypeStripEventHandlers)
-    .use(rehypeStringify, { allowDangerousHtml: true })
-    .process(content);
+// Cached remark processor to avoid creating new pipeline on every call
+let cachedProcessor: any = null;
 
+async function getMarkdownProcessor() {
+  if (!cachedProcessor) {
+    cachedProcessor = remark()
+      .use(remarkGfm, { singleTilde: false })
+      .use(remarkRehype, { allowDangerousHtml: true })
+      .use(rehypeSlug)
+      .use(rehypeAutolinkHeadings, {
+        behavior: "wrap",
+        properties: { className: ["anchor"] },
+      })
+      .use(rehypeStripEventHandlers)
+      .use(rehypeStringify, { allowDangerousHtml: true });
+  }
+  return cachedProcessor;
+}
+
+async function markdownToHtml(content: string): Promise<string> {
+  const processor = await getMarkdownProcessor();
+  const result = await processor.process(content);
   return result.toString();
 }
 

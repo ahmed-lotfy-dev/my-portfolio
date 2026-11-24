@@ -86,7 +86,6 @@ const nextConfig: NextConfig = {
       "@radix-ui/react-tabs",
       "@radix-ui/react-tooltip",
     ],
-    agentUpgrade: "security",
   },
   reactCompiler: false,
   images: {

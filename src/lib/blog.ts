@@ -6,6 +6,42 @@ import readingTime from "reading-time";
 const BLOG_DIR = path.join(process.cwd(), "src/content/blogs");
 const BLOG_DIR_AR = path.join(BLOG_DIR, "ar");
 
+// Simple in-memory cache with file mtime invalidation
+interface CacheEntry<T> {
+  data: T;
+  mtime: number;
+}
+
+// Use separate caches for different data types
+const postsCache = new Map<string, CacheEntry<BlogPost[]>>();
+const filesCache = new Map<string, CacheEntry<string[]>>();
+const postCache = new Map<string, CacheEntry<BlogPostWithContent>>();
+const tagsCache = new Map<string, CacheEntry<{ tag: string; count: number }[]>>();
+const fileMTimeCache = new Map<string, number>();
+
+function isCacheValid(entry: { mtime: number } | undefined, filePath: string): boolean {
+  if (!entry) return false;
+  try {
+    const stats = fs.statSync(filePath);
+    return entry.mtime === stats.mtimeMs;
+  } catch {
+    return false;
+  }
+}
+
+function getFileMTime(filePath: string): number {
+  const cached = fileMTimeCache.get(filePath);
+  if (cached) return cached;
+  try {
+    const stats = fs.statSync(filePath);
+    const mtime = stats.mtimeMs;
+    fileMTimeCache.set(filePath, mtime);
+    return mtime;
+  } catch {
+    return Date.now();
+  }
+}
+
 export interface BlogPost {
   slug: string;
   title: string;
@@ -51,11 +87,16 @@ function slugify(text: string): string {
 }
 
 function parsePost(filePath: string): BlogPostWithContent {
+  const cached = postCache.get(filePath);
+  if (cached && isCacheValid(cached, filePath)) {
+    return cached.data;
+  }
+
   const fileContent = fs.readFileSync(filePath, "utf-8");
   const { data, content } = matter(fileContent);
   const stats = readingTime(content);
 
-  return {
+  const post: BlogPostWithContent = {
     slug: slugify(path.basename(filePath, ".md")),
     title: data.title || path.basename(filePath, ".md"),
     date: data.date || new Date().toISOString(),
@@ -75,17 +116,38 @@ function parsePost(filePath: string): BlogPostWithContent {
     content,
     readingTime: stats,
   };
+
+  postCache.set(filePath, { data: post, mtime: getFileMTime(filePath) });
+  return post;
 }
 
 function getFilesForLocale(locale: string): string[] {
-  return getMarkdownFiles(locale === "ar" ? BLOG_DIR_AR : BLOG_DIR);
+  const dir = locale === "ar" ? BLOG_DIR_AR : BLOG_DIR;
+  const cacheKey = `files:${locale}`;
+  const cached = filesCache.get(cacheKey);
+  if (cached && isCacheValid(cached, dir)) {
+    return cached.data;
+  }
+  const files = getMarkdownFiles(dir);
+  filesCache.set(cacheKey, { data: files, mtime: getFileMTime(dir) });
+  return files;
 }
 
 function getPostsForLocale(locale: string): BlogPost[] {
-  return getFilesForLocale(locale)
+  const cacheKey = `posts:${locale}`;
+  const cached = postsCache.get(cacheKey);
+  const dir = locale === "ar" ? BLOG_DIR_AR : BLOG_DIR;
+  if (cached && isCacheValid(cached, dir)) {
+    return cached.data;
+  }
+
+  const posts = getFilesForLocale(locale)
     .map(parsePost)
     .filter((p) => p.published)
     .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+
+  postsCache.set(cacheKey, { data: posts, mtime: getFileMTime(dir) });
+  return posts;
 }
 
 // ── Public API ──
@@ -129,6 +191,13 @@ export function getBlogPostsPaginated(
 }
 
 export function getBlogTags(locale: string): { tag: string; count: number }[] {
+  const cacheKey = `tags:${locale}`;
+  const cached = tagsCache.get(cacheKey);
+  const dir = locale === "ar" ? BLOG_DIR_AR : BLOG_DIR;
+  if (cached && isCacheValid(cached, dir)) {
+    return cached.data;
+  }
+
   const posts = getPostsForLocale(locale);
   const tagMap: Record<string, number> = {};
 
@@ -138,13 +207,36 @@ export function getBlogTags(locale: string): { tag: string; count: number }[] {
     }
   }
 
-  return Object.entries(tagMap)
+  const tags = Object.entries(tagMap)
     .map(([tag, count]) => ({ tag, count }))
     .sort((a, b) => b.count - a.count || a.tag.localeCompare(b.tag));
+
+  tagsCache.set(cacheKey, { data: tags, mtime: getFileMTime(dir) });
+  return tags;
 }
 
 export function getFeaturedPosts(locale: string, limit = 3): BlogPost[] {
   return getPostsForLocale(locale).filter((p) => p.featured).slice(0, limit);
+}
+
+// Pre-compute title words and tags for all posts to avoid recreating Sets
+function getPostMeta(post: BlogPost) {
+  return {
+    slug: post.slug,
+    titleWords: new Set(post.title.toLowerCase().split(/\s+/).filter(w => w.length > 3)),
+    tags: new Set(post.tags),
+  };
+}
+
+// Cache for post meta to avoid recomputing
+const postMetaCache = new Map<string, ReturnType<typeof getPostMeta>>();
+
+function getPostMetaCached(post: BlogPost) {
+  const cached = postMetaCache.get(post.slug);
+  if (cached) return cached;
+  const meta = getPostMeta(post);
+  postMetaCache.set(post.slug, meta);
+  return meta;
 }
 
 export function getRelatedPosts(
@@ -155,18 +247,18 @@ export function getRelatedPosts(
   const current = getBlogPost(slug, locale);
   if (!current) return [];
 
-  const currentTitleWords = new Set(
-    current.title.toLowerCase().split(/\s+/).filter(w => w.length > 3)
-  );
+  const currentMeta = getPostMetaCached(current);
+  const currentTitleWords = currentMeta.titleWords;
+  const currentTags = currentMeta.tags;
 
   return getPostsForLocale(locale)
     .filter((p) => p.slug !== slug)
     .map((p) => {
+      const pMeta = getPostMetaCached(p);
       // Primary score: tag overlap
-      const tagScore = p.tags.filter((t) => current.tags.includes(t)).length * 3;
+      const tagScore = [...pMeta.tags].filter((t) => currentMeta.tags.has(t)).length * 3;
       // Secondary score: title word overlap
-      const pTitleWords = new Set(p.title.toLowerCase().split(/\s+/).filter(w => w.length > 3));
-      const titleOverlap = [...currentTitleWords].filter(w => pTitleWords.has(w)).length;
+      const titleOverlap = [...currentMeta.titleWords].filter(w => pMeta.titleWords.has(w)).length;
       // Tertiary: recency bonus (newer posts get slight preference)
       const recencyBonus = 0;
       return { post: p, score: tagScore + titleOverlap + recencyBonus };
