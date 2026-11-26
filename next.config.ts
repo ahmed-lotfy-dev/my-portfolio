@@ -88,6 +88,15 @@ const nextConfig: NextConfig = {
     ],
   },
   reactCompiler: false,
+  webpack: (config, { isServer }) => {
+    // Disable sourcemaps to avoid @jridgewell/sourcemap-codec issue with Turbopack
+    config.devtool = false;
+    // Disable Turbopack and use webpack instead
+    config.plugins = config.plugins.filter(
+      (plugin: any) => plugin.constructor.name !== "TurbopackPlugin"
+    );
+    return config;
+  },
   images: {
     formats: ["image/avif", "image/webp"],
     minimumCacheTTL: 31536000,

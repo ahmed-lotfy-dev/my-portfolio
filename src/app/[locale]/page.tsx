@@ -87,24 +87,6 @@ export default async function HomePage({
   return (
     <main className="font-main min-h-screen bg-background text-foreground">
       <StructuredData
-        type="Person"
-        data={{
-          name: 'Ahmed Lotfy',
-          url: 'https://alotfy.site',
-          image: 'https://alotfy.site/ahmed-lotfy.jpg',
-          jobTitle: 'Full-Stack Developer',
-          description: locale === 'ar'
-            ? 'مطور ويب متخصص في Next.js و React و TypeScript'
-            : 'Full Stack Developer specializing in Next.js, React, and TypeScript',
-          sameAs: [
-            'https://github.com/ahmed-lotfy-dev',
-            'https://linkedin.com/in/ahmed-lotfy-dev',
-            'https://twitter.com/ahmedlotfy_dev',
-          ],
-          skills: ['Next.js', 'React', 'TypeScript', 'Node.js', 'PostgreSQL', 'TailwindCSS'],
-        }}
-      />
-      <StructuredData
         type="WebSite"
         data={{
           name: 'Ahmed Lotfy Portfolio',

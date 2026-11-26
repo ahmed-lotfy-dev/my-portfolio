@@ -1,0 +1,16 @@
+--- a/dist/sourcemap-codec.umd.js
++++ b/dist/sourcemap-codec.umd.js
+@@ -1,6 +1,7 @@
+ var sourcemap_codec_exports = {};
+ __export(sourcemap_codec_exports, {
+   decode: () => decode,
+   decodeGeneratedRanges: () => decodeGeneratedRanges,
+   decodeOriginalScopes: () => decodeOriginalScopes,
+   encode: () => encode,
+   encodeGeneratedRanges: () => encodeGeneratedRanges,
+-  encodeOriginalScopes
++  encodeOriginalScopes,
++  encodeRangeMappings: () => encodeGeneratedRanges
+ });
+ module.exports = __toCommonJS(sourcemap_codec_exports);
+EOF

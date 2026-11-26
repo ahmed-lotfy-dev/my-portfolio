@@ -1,8 +1,8 @@
-# Ahmed Lotfy - Senior Full-Stack Software Engineer
+# Ahmed Lotfy - Full-Stack Software Engineer
 > Building high-performance web and mobile applications with Next.js, React, TypeScript, Node.js, and PostgreSQL.
 
 ## About
-- [Portfolio Home](https://alotfy.site/en): Senior Full-Stack Software Engineer specializing in Next.js, React, TypeScript, Node.js
+- [Portfolio Home](https://alotfy.site/en): Full-Stack Software Engineer specializing in Next.js, React, TypeScript, Node.js
 - [About Ahmed](https://alotfy.site/en/about): Experience, skills, and background
 - [Contact](https://alotfy.site/en/contact): Get in touch for projects and collaboration
 

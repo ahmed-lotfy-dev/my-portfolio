@@ -185,6 +185,37 @@ docker exec <container> node backup-worker/dist/index.js --type=full
 - Modular icon imports to reduce bundle size
 - 1-year CDN caching for static assets
 
+## 🔍 IndexNow Integration
+
+The site uses [IndexNow](https://www.indexnow.org/) for instant indexing on Bing, Yandex, Naver, and Seznam.
+
+### Key File
+- **Location**: `public/3f0a001808a41a791e72eec0ab1dfe42d8bf21497534093cf15c31130d7914c3.txt`
+- **Key Location**: `https://alotfy.site/3f0a001808a41a791e72eec0ab1dfe42d8bf21497534093cf15c31130d7914c3.txt`
+
+### Manual Submission
+```bash
+# Submit all URLs from sitemap
+bun run indexnow:ping
+
+# Or with custom sitemap
+SITEMAP_URL=https://alotfy.site/sitemap.xml bun run indexnow:ping
+```
+
+### Automated Deployment
+Add to your CI/CD pipeline after successful deployment:
+
+```yaml
+# GitHub Actions example
+- name: Submit to IndexNow
+  run: bun run indexnow:ping
+  env:
+    INDEX_NOW_KEY: ${{ secrets.INDEX_NOW_KEY }}
+    SITEMAP_URL: https://alotfy.site/sitemap.xml
+```
+
+The script reads URLs from `https://alotfy.site/sitemap.xml` and submits them to the IndexNow API (used by Bing, Yandex, Naver, Seznam).
+
 ## 🔐 Security
 
 - **Authentication**: Better Auth with secure session management

@@ -10,17 +10,7 @@ Disallow: /api/
 Disallow: /dashboard/
 Allow: /ai-sitemap.json
 
-# Googlebot gets full access (just block junk)
-User-agent: Googlebot
-Allow: /
-Disallow: /cdn-cgi/
-Disallow: /api/
-Disallow: /dashboard/
-Allow: /_next/static/
-Allow: /_next/image/
-Crawl-delay: 1
-
-# AI crawlers - allow content, block static junk
+# AI crawlers - full access to content
 User-agent: GPTBot
 Allow: /
 Disallow: /cdn-cgi/
@@ -39,11 +29,54 @@ Disallow: /cdn-cgi/
 Disallow: /api/
 Allow: /ai-sitemap.json
 
+User-agent: ClaudeBot
+Allow: /
+Disallow: /cdn-cgi/
+Disallow: /api/
+Allow: /ai-sitemap.json
+
+User-agent: PerplexityBot
+Allow: /
+Disallow: /cdn-cgi/
+Disallow: /api/
+Allow: /ai-sitemap.json
+
 User-agent: CCBot
 Allow: /
 Disallow: /cdn-cgi/
 Disallow: /api/
 Allow: /ai-sitemap.json
+
+User-agent: Muse
+Allow: /
+Disallow: /cdn-cgi/
+Disallow: /api/
+Allow: /ai-sitemap.json
+
+User-agent: Instinct
+Allow: /
+Disallow: /cdn-cgi/
+Disallow: /api/
+Allow: /ai-sitemap.json
+
+User-agent: Meta-ExternalAgent
+Allow: /
+Disallow: /cdn-cgi/
+Disallow: /api/
+Allow: /ai-sitemap.json
+
+User-agent: Amazonbot
+Allow: /
+Disallow: /cdn-cgi/
+Disallow: /api/
+Allow: /ai-sitemap.json
+
+# SEO tools - allow access
+User-agent: AhrefsBot
+Allow: /
+
+User-agent: SemrushBot
+Allow: /
 
 # Other search engines
 User-agent: Bingbot
@@ -51,7 +84,6 @@ Allow: /
 Disallow: /cdn-cgi/
 Allow: /_next/static/
 Allow: /_next/image/
-Crawl-delay: 1
 
 User-agent: Applebot
 Allow: /
@@ -65,35 +97,8 @@ Allow: /
 User-agent: LinkedInBot
 Allow: /
 
-# Block known bad crawlers (scrapers, SEO spam tools)
-User-agent: AhrefsBot
-Disallow: /
-
-User-agent: SemrushBot
-Disallow: /
-
-User-agent: MJ12bot
-Disallow: /
-
-User-agent: DotBot
-Disallow: /
-
-User-agent: Bytespider
-Disallow: /
-
 # Sitemaps
-# XML sitemaps only — Google rejects JSON sitemaps in the Sitemaps directive.
-# ai-sitemap.json & llms.txt stay reachable for AI agents, just not listed here.
 Sitemap: ${absoluteUrl("/sitemap.xml")}
-
-# AI content preferences
-Content-Signal: ai-train=no, search=yes, ai-input=yes
-
-# Crawl delay for respectful crawlers
-Crawl-delay: 1
-
-# Clean parameters
-Clean-param: utm_*&ref_
 
 # Preferred domain
 Host: https://alotfy.site

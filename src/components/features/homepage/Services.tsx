@@ -1,4 +1,4 @@
-import { Code2, ShoppingBag, Gauge } from "lucide-react";
+import { Code2, Server, Smartphone } from "lucide-react";
 import Section from "@/src/components/ui/Section";
 import { useTranslations } from "next-intl";
 import { cn } from "@/src/lib/utils";
@@ -9,12 +9,12 @@ const items = [
     key: "webapp",
   },
   {
-    icon: ShoppingBag,
-    key: "ecommerce",
+    icon: Server,
+    key: "backend",
   },
   {
-    icon: Gauge,
-    key: "performance",
+    icon: Smartphone,
+    key: "mobile",
   },
 ];
 

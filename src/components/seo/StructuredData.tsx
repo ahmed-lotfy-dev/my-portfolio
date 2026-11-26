@@ -31,7 +31,7 @@ export default function StructuredData({ type, data }: StructuredDataProps) {
         inLanguage: data.languages,
         author: {
           '@type': 'Person',
-          name: data.authorName,
+          '@id': 'https://alotfy.site/#person',
         },
         ...(data.potentialAction && {
           potentialAction: data.potentialAction,
@@ -50,13 +50,11 @@ export default function StructuredData({ type, data }: StructuredDataProps) {
         dateModified: data.modifiedDate,
         author: {
           '@type': 'Person',
-          name: data.authorName,
-          url: data.authorUrl,
+          '@id': 'https://alotfy.site/#person',
         },
         publisher: {
           '@type': 'Person',
-          name: data.authorName,
-          url: data.authorUrl,
+          '@id': 'https://alotfy.site/#person',
         },
         keywords: data.keywords,
         articleSection: data.categories,
@@ -78,8 +76,7 @@ export default function StructuredData({ type, data }: StructuredDataProps) {
         url: data.url,
         author: {
           '@type': 'Person',
-          name: data.authorName,
-          url: data.authorUrl,
+          '@id': 'https://alotfy.site/#person',
         },
         dateCreated: data.createdDate,
         dateModified: data.modifiedDate,
@@ -153,8 +150,7 @@ export default function StructuredData({ type, data }: StructuredDataProps) {
         }),
         author: {
           '@type': 'Person',
-          name: 'Ahmed Lotfy',
-          url: 'https://alotfy.site',
+          '@id': 'https://alotfy.site/#person',
         },
       }
       break
@@ -170,13 +166,11 @@ export default function StructuredData({ type, data }: StructuredDataProps) {
         dateModified: data.dateModified,
         author: {
           '@type': 'Person',
-          name: data.authorName,
-          url: data.authorUrl,
+          '@id': 'https://alotfy.site/#person',
         },
         publisher: {
           '@type': 'Person',
-          name: data.authorName,
-          url: data.authorUrl,
+          '@id': 'https://alotfy.site/#person',
         },
         keywords: data.keywords,
         inLanguage: data.language,
