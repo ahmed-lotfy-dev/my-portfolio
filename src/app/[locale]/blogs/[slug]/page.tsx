@@ -1,7 +1,7 @@
-import { getBlogPost, getAllBlogPosts, getRelatedPosts } from "@/src/lib/blog";
+import { getBlogPost, getAllBlogPosts, getRelatedPosts, blogPostExistsInLocale } from "@/src/lib/blog";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { routing } from "@/src/i18n/routing";
-import { notFound } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
 import { Calendar, Clock, ArrowLeft, Share2, Tag } from "lucide-react";
@@ -88,8 +88,8 @@ export async function generateMetadata({
     alternates: {
       canonical: `${baseUrl}/${locale}/blogs/${slug}`,
       languages: {
-        en: `${baseUrl}/en/blogs/${slug}`,
-        ar: `${baseUrl}/ar/blogs/${slug}`,
+        en: blogPostExistsInLocale(slug, "en") ? `${baseUrl}/en/blogs/${slug}` : undefined,
+        ar: blogPostExistsInLocale(slug, "ar") ? `${baseUrl}/ar/blogs/${slug}` : undefined,
         "x-default": `${baseUrl}/en/blogs/${slug}`,
       },
     },
@@ -141,7 +141,14 @@ export default async function BlogPostPage({
   const t = await getTranslations("blog");
   const post = getBlogPost(slug, locale);
 
-  if (!post) return notFound();
+  if (!post) {
+    // Check if post exists in other locale and redirect
+    const otherLocale = locale === "en" ? "ar" : "en";
+    if (blogPostExistsInLocale(slug, otherLocale)) {
+      redirect(`/${otherLocale}/blogs/${slug}`);
+    }
+    return notFound();
+  }
 
   const isArabic = locale === "ar";
   const contentHtml = fixLocaleLinks(await markdownToHtml(post.content), locale);

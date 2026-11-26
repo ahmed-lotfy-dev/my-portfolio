@@ -7,45 +7,39 @@
     </linearGradient>
   </defs>
 
-  <!-- AL Monogram — Sora-style geometric letterforms, manually refined -->
-  <!-- A: clean triangular crossbar, sharp apex -->
+  <!-- A: uppercase with sharp apex, clean crossbar -->
   <path d="
-    M178 400
-    L256 88
-    L334 400
-    H292
-    L274 322
-    H238
-    L220 400
-    H178
+    M160 416
+    L256 80
+    L352 416
+    H312
+    L294 336
+    H218
+    L200 416
+    H160
     Z
-    M268 290
-    L256 152
-    L244 290
+    M268 304
+    L256 168
+    L244 304
     H268
+    Z
   " fill="url(#logo-grad)"/>
 
-  <!-- L: clean vertical stroke with horizontal foot -->
+  <!-- L: uppercase vertical with horizontal foot -->
   <path d="
-    M360 400
-    L360 180
-    L460 180
-    L460 156
-    L360 156
-    L360 88
-    L336 88
-    L336 156
-    L256 156
-    L256 180
-    L356 180
-    L356 400
-    L380 400
-    L380 180
-    L456 180
-    L456 156
-    L380 156
-    L380 88
-    L356 88
+    M368 416
+    L368 144
+    L464 144
+    L464 112
+    L368 112
+    L368 80
+    L344 80
+    L344 112
+    L256 112
+    L256 144
+    L352 144
+    L352 416
+    L368 416
     Z
   " fill="url(#logo-grad)"/>
 </svg>

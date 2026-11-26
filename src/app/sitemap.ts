@@ -1,6 +1,6 @@
 import { MetadataRoute } from 'next'
 import projectsData from '@/src/data/projects.json'
-import { getAllBlogPosts } from '@/src/lib/blog'
+import { getAllBlogPosts, blogPostExistsInLocale } from '@/src/lib/blog'
 import fs from 'fs'
 import path from 'path'
 
@@ -96,26 +96,45 @@ export default function sitemap(): MetadataRoute.Sitemap {
     }))
   })
 
-  // Blog posts
+  // Blog posts - include all published posts in each locale
   const enPosts = getAllBlogPosts('en')
   const arPosts = getAllBlogPosts('ar')
-  const arSlugSet = new Set(arPosts.map((p) => p.slug))
 
-  const blogPages: SitemapEntry[] = enPosts
-    .filter((post) => arSlugSet.has(post.slug))
-    .flatMap((post) =>
-      locales.map((locale) => ({
-        url: `${baseUrl}/${locale}/blogs/${post.slug}`,
+  const blogPages: SitemapEntry[] = [
+    ...enPosts.flatMap((post) => {
+      const existsInAr = blogPostExistsInLocale(post.slug, 'ar')
+      return locales
+        .filter((locale) => (locale === 'en') || (locale === 'ar' && existsInAr))
+        .map((locale) => ({
+          url: `${baseUrl}/${locale}/blogs/${post.slug}`,
+          lastModified: new Date(post.date),
+          changeFrequency: 'weekly' as const,
+          priority: 0.85,
+          alternates: {
+            languages: {
+              en: `${baseUrl}/en/blogs/${post.slug}`,
+              ...(existsInAr ? { ar: `${baseUrl}/ar/blogs/${post.slug}` } : {}),
+              "x-default": `${baseUrl}/en/blogs/${post.slug}`,
+            },
+          },
+        }))
+    }),
+    // Add AR-only posts (if any exist)
+    ...arPosts
+      .filter((post) => !blogPostExistsInLocale(post.slug, 'en'))
+      .flatMap((post) => ({
+        url: `${baseUrl}/ar/blogs/${post.slug}`,
         lastModified: new Date(post.date),
         changeFrequency: 'weekly' as const,
         priority: 0.85,
         alternates: {
-          languages: Object.fromEntries(
-            locales.map((l) => [l, `${baseUrl}/${l}/blogs/${post.slug}`])
-          ),
+          languages: {
+            ar: `${baseUrl}/ar/blogs/${post.slug}`,
+            "x-default": `${baseUrl}/en/blogs/${post.slug}`,
+          },
         },
       }))
-    )
+  ]
 
   return dedupe([...staticPages, ...projectPages, ...blogPages])
 }

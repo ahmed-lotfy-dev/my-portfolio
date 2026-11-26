@@ -140,6 +140,16 @@ const nextConfig: NextConfig = {
     ];
   },
 
+  async redirects() {
+    return [
+      // Redirect old project slugs to projects list
+      { source: "/:locale/projects/hi-x", destination: "/:locale/projects", permanent: true },
+      { source: "/:locale/projects/dev-challenges", destination: "/:locale/projects", permanent: true },
+      // Redirect old domain if needed
+      { source: "/:locale/projects/hix", destination: "/:locale/projects", permanent: true },
+    ];
+  },
+
   async headers() {
     const cacheHeaders = { key: "Cache-Control", value: "public, max-age=31536000, immutable" };
     const isDevelopment = process.env.NODE_ENV === "development";

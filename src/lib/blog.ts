@@ -161,6 +161,16 @@ export function getBlogPost(slug: string, locale: string): BlogPostWithContent |
   return post;
 }
 
+export function blogPostExistsInLocale(slug: string, locale: string): boolean {
+  const files = getFilesForLocale(locale);
+  const filePath = files.find((f) => slugify(path.basename(f, ".md")) === slug);
+  if (!filePath) return false;
+  const post = parsePost(filePath);
+  return post.published;
+}
+
+
+
 export function getAllBlogPosts(locale: string): BlogPost[] {
   return getPostsForLocale(locale);
 }
