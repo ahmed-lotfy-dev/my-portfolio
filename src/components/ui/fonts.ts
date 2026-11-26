@@ -1,37 +1,19 @@
-import { Inter, Poppins, Sora, Tajawal, Playfair_Display } from "next/font/google";
+import { Geist, Geist_Mono, Tajawal } from "next/font/google";
 
-export const playfair = Playfair_Display({
+export const geistSans = Geist({
   subsets: ["latin"],
-  variable: "--font-playfair",
-  display: "swap",
-});
-
-// Main body font - preloaded for better LCP
-export const inter = Inter({
-  subsets: ["latin"],
-  variable: "--font-inter",
-  weight: ["400", "500", "600"],
+  variable: "--font-geist-sans",
   display: "swap",
   preload: true,
 });
 
-// Heading font
-export const poppins = Poppins({
+export const geistMono = Geist_Mono({
   subsets: ["latin"],
-  variable: "--font-poppins",
-  weight: ["400", "500", "600", "700"],
-  display: "swap",
-  preload: true,
-});
-
-export const sora = Sora({
-  subsets: ["latin"],
-  variable: "--font-sora",
+  variable: "--font-geist-mono",
   display: "swap",
   preload: false,
 });
 
-// Arabic font with all required weights
 export const tajawal = Tajawal({
   subsets: ["arabic"],
   variable: "--font-tajawal",

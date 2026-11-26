@@ -1,9 +1,8 @@
-import Section from "@/src/components/ui/Section";
 import { getTranslations, getLocale } from "next-intl/server";
 import projectsData from "@/src/data/projects.json";
 import ProjectsClient from "./ProjectsClient";
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight } from "@phosphor-icons/react/dist/ssr";
 
 export default async function Projects() {
   const locale = await getLocale();
@@ -22,30 +21,41 @@ export default async function Projects() {
   };
 
   return (
-    <Section variant="transparent" className="relative overflow-hidden" id="projects">
-      <div className="absolute top-0 left-0 w-[800px] h-[800px] bg-secondary/10 rounded-full blur-[120px] pointer-events-none -translate-y-1/2 -translate-x-1/2" />
-      <div className="container">
-        <div className="text-center mb-16 space-y-4">
-          <h2 className="inline-block px-4 py-1.5 rounded-full bg-primary/10 text-primary text-sm font-medium tracking-wide uppercase border border-primary/20 backdrop-blur-sm">
-            {t("title")}
-          </h2>
-          <p className="text-3xl sm:text-4xl font-bold text-foreground tracking-tight antialiased">
+    <section
+      id="projects"
+      className="relative border-b border-white/[0.07] px-6 py-24 md:px-8 md:py-32"
+    >
+      <div className="mx-auto max-w-6xl">
+        <div className="flex flex-col justify-between gap-8 md:flex-row md:items-end">
+          <div>
+            <p className="eyebrow">{t("label")}</p>
+            <h2 className="mt-5 text-4xl font-semibold leading-[1.05] text-foreground sm:text-5xl">
+              {t("title")}
+            </h2>
+          </div>
+          <p className="max-w-sm text-base leading-relaxed text-muted-foreground md:text-right">
             {t("description")}
           </p>
         </div>
 
-        <ProjectsClient projects={allProjects} locale={locale} t={translations} />
+        <div className="mt-14">
+          <ProjectsClient projects={allProjects} locale={locale} t={translations} />
+        </div>
 
-        <div className="mt-12 text-center">
+        <div className="mt-12">
           <Link
             href={`/${locale}/projects`}
-            className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-primary/30 bg-primary/5 text-primary font-semibold hover:bg-primary/10 hover:border-primary/50 transition-all group"
+            className="group inline-flex items-center gap-2 text-sm font-medium text-foreground transition-colors duration-300 hover:text-primary"
           >
-            View All Projects
-            <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+            {t("view_all")}
+            <ArrowRight
+              size={16}
+              weight="bold"
+              className="transition-transform duration-300 ease-brand group-hover:translate-x-1 rtl:rotate-180"
+            />
           </Link>
         </div>
       </div>
-    </Section>
+    </section>
   );
 }

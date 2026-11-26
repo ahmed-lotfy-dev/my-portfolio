@@ -7,8 +7,8 @@ export default function manifest(): MetadataRoute.Manifest {
     description: "Portfolio of Ahmed Lotfy, a Full Stack Developer specializing in Next.js, React, and Modern Web Technologies.",
     start_url: "/",
     display: "standalone",
-    background_color: "#09090b", // zinc-950
-    theme_color: "#09090b",
+    background_color: "#000000",
+    theme_color: "#000000",
     icons: [
       {
         src: "/as-mark.svg",

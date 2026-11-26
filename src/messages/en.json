@@ -15,27 +15,48 @@
     "settings": "Settings"
   },
   "hero": {
-    "name": "Ahmed Lotfy ",
-    "title": "Full-Stack Developer building fast, reliable web & mobile products",
-    "description": "Full-Stack Developer with 2+ years shipping production apps in React, Next.js, Node.js & TypeScript — open to full-time remote roles.",
+    "name": "Ahmed Lotfy",
+    "title": "I build fast, reliable web and mobile products.",
+    "description": "Full Stack developer with 2+ years shipping production apps in React, Next.js, Node.js and TypeScript. Open to full time remote roles.",
     "book_consultation": "Book a Consultation",
     "resume": "My CV",
-    "view_work": "View my work",
+    "view_work": "See selected work",
     "illustrationAlt": "Full-Stack Developer Portrait",
-    "available_work": "Full-Stack Developer",
+    "available_work": "Available for full time remote roles",
     "consulting_link": "Also available for consulting",
     "cv_modal": {
       "title": "View Resume",
       "description": "How would you like to view the resume?",
       "view_browser": "View in Browser",
       "download": "Download CV"
-    }
+    },
+    "start_conversation": "Start a conversation",
+    "panel": {
+      "index": "Profile / 01",
+      "open": "Open",
+      "based_in": "Based in",
+      "location": "Cairo, Egypt",
+      "timezone": "Timezone",
+      "current": "Current",
+      "current_role": "Senior Software Architect, The Drive Center",
+      "focus": "Focus",
+      "focus_value": "Product engineering"
+    },
+    "stats": {
+      "years_value": "2+",
+      "years_label": "Years shipping",
+      "projects_value": "8",
+      "projects_label": "Production builds",
+      "score_value": "95+",
+      "score_label": "Lighthouse score"
+    },
+    "scroll": "Scroll"
   },
   "tech_stack": {
     "label": "Architecture",
     "title": "Built for Scale",
     "description": "I choose technologies that prioritize performance, type safety, and developer experience.",
-    "footer": "Production Ready • Type Safe • Scalable",
+    "footer": "Production ready · Type safe · Scalable",
     "items": {
       "nextjs": {
         "title": "React & Next.js",
@@ -57,9 +78,9 @@
   },
   "services": {
     "label": "Core Competencies",
-    "title_part1": "Full-Stack",
+    "title_part1": "Full Stack",
     "title_part2": "Capabilities",
-    "description": "Production-ready expertise across the full stack — from architecture to deployment.",
+    "description": "Production ready expertise across the stack, from architecture to deployment.",
     "items": {
       "webapp": {
         "title": "Web Application Architecture",
@@ -151,8 +172,8 @@
     }
   },
   "projects": {
-    "title": "Success Stories",
-    "description": "Recent projects where I delivered tangible business value.",
+    "title": "Projects that shipped",
+    "description": "Production builds, from SaaS platforms to offline first mobile apps.",
     "add-title": "Add Project",
     "add-desc": "Fill in the details below to add a new project",
     "edit-title": "Edit Project",
@@ -205,7 +226,9 @@
       "live_link_invalid": "Please enter a valid live demo URL.",
       "image_link_required": "Project image is required.",
       "categories_required": "At least one category is required."
-    }
+    },
+    "label": "Selected work",
+    "view_all": "View all projects"
   },
   "certificates": {
     "title": "My Certificates",
@@ -254,13 +277,20 @@
     "name": "Ahmed Lotfy",
     "description1": "I am a Full-Stack Software Engineer focused on solving business problems. I specialize in the modern React ecosystem (Next.js, TypeScript) but I place equal emphasis on ROI, performance metrics, and system reliability.",
     "description2": "My path to software engineering is rooted in a deep background in hardware and IT systems. This allows me to architect solutions that are not just code, but robust infrastructure.",
-    "description3": "I'm seeking a full-time remote role as a Full-Stack Developer (React/Next.js/Node.js). Based in Egypt (GMT+2) with proven remote-team experience — I completed the Chingu Voyage program, collaborating in a distributed agile team across time zones to ship a production app. I'm comfortable with async communication, CI/CD pipelines, and distributed code reviews.",
+    "description3": "I'm seeking a full time remote role as a Full Stack Developer (React/Next.js/Node.js). Based in Egypt (GMT+2) with proven remote team experience. I completed the Chingu Voyage program, collaborating in a distributed agile team across time zones to ship a production app. I'm comfortable with async communication, CI/CD pipelines, and distributed code reviews.",
     "description4": "Designed REST APIs documented with Swagger/OpenAPI and added Redis caching for hot reads and sessions. Built CI/CD with GitHub Actions and Docker, deployed via Dokploy. Designed relational schemas in PostgreSQL with Prisma/Drizzle.",
-    "heading": "Solving Complex Problems with <span class=\"bg-linear-to-r from-primary to-secondary bg-clip-text text-transparent italic\">Elegant Design.</span>"
+    "heading": "Solving complex problems with <span class=\"text-primary\">considered design.</span>",
+    "available": "Available for hire",
+    "based": "Cairo, Egypt / GMT+2",
+    "stats": {
+      "experience": "Years experience",
+      "projects": "Projects shipped",
+      "performance": "Lighthouse score"
+    }
   },
   "experience": {
     "title": "Track Record",
-    "description": "A history of delivering results for clients.",
+    "description": "Roles, teams and outcomes from the last three years.",
     "label": "Professional History",
     "heading_part1": "My",
     "heading_part2": "Career",
@@ -297,12 +327,12 @@
   },
   "contact": {
     "title": "Contact",
-    "description": "Open to full-time remote roles as a Full-Stack Developer (React/Next.js/Node.js). Based in Egypt (GMT+2) with proven remote-team experience.",
+    "description": "Open to full time remote roles as a Full Stack Developer (React/Next.js/Node.js). Based in Egypt (GMT+2) with proven remote team experience.",
     "heading_part1": "Open to ",
-    "heading_part2": "full-time remote roles",
+    "heading_part2": "full time remote roles",
     "getInTouch": "Get in Touch",
-    "availability": "I'm currently open to full-time remote roles. The fastest way to reach me is email or WhatsApp.",
-    "info_desc": "Open to full-time remote roles as a Full-Stack Developer (React/Next.js/Node.js). Based in Egypt (GMT+2) with proven remote-team experience (Chingu internship).",
+    "availability": "I'm open to full time remote roles. Email or WhatsApp is the fastest way to reach me.",
+    "info_desc": "Open to full time remote roles as a Full Stack Developer (React/Next.js/Node.js). Based in Egypt (GMT+2) with proven remote team experience (Chingu internship).",
     "email": "Email",
     "phone": "Phone / WhatsApp",
     "send": "Send Message",
@@ -325,7 +355,8 @@
       "subject_min": "Please add a subject for the message.",
       "message_min": "Please add a description for the message.",
       "message_links": "Please write the message without links."
-    }
+    },
+    "success": "Message sent. I will reply within two business days."
   },
   "dashboard": {
     "projects": "Projects",

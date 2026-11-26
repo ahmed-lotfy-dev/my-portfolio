@@ -26,7 +26,7 @@ export default function ProjectCategories({
 
   return (
     <div
-      className={`flex flex-wrap gap-2 mt-auto pt-4 border-t border-border/50 transition-colors ${
+      className={`mt-auto flex flex-wrap gap-2 border-t border-white/[0.08] pt-5 transition-colors ${
         showToggle ? "cursor-pointer hover:bg-muted/10" : ""
       }`}
       onClick={(e) => {
@@ -39,7 +39,7 @@ export default function ProjectCategories({
       {visibleCategories.map((tech, index) => (
         <span
           key={index}
-          className="px-2.5 py-1 text-xs font-medium bg-muted text-muted-foreground rounded-md border border-border capitalize hover:bg-muted/80 transition-colors"
+          className="rounded-md border border-white/[0.08] px-2 py-1 font-mono text-[11px] capitalize tracking-wide text-muted-foreground transition-colors hover:text-foreground"
         >
           {tech}
         </span>
@@ -47,7 +47,7 @@ export default function ProjectCategories({
       {showToggle && (
         <Button
           variant="link"
-          className="p-0 h-auto text-xs text-primary hover:no-underline pointer-events-none"
+          className="pointer-events-none h-auto p-0 text-xs text-primary hover:no-underline"
           tabIndex={-1}
         >
           {isExpanded ? "Show Less" : `+${validCategories.length - limit} More`}

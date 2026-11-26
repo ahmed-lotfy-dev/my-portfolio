@@ -1,60 +1,42 @@
 import { Skeleton } from "@/src/components/ui/skeleton";
-import Section from "@/src/components/ui/Section";
 
 export default function ProjectsSkeleton() {
   return (
-    <Section
-      className="flex flex-col items-center p-4 py-20 border-t border-border/40 bg-background"
+    <section
       id="projects"
+      className="border-b border-white/[0.07] px-6 py-24 md:px-8 md:py-32"
     >
-      <div className="container">
-        {/* Header Skeleton */}
-        <div className="text-center mb-16 space-y-4 flex flex-col items-center">
-          <Skeleton className="h-8 w-32 rounded-full" />
-          <Skeleton className="h-10 w-64 sm:w-96 rounded-lg" />
+      <div className="mx-auto max-w-6xl">
+        <div className="flex flex-col justify-between gap-8 md:flex-row md:items-end">
+          <div className="space-y-5">
+            <Skeleton className="h-3 w-24 rounded-md" />
+            <Skeleton className="h-12 w-64 rounded-lg sm:w-80" />
+          </div>
+          <Skeleton className="h-4 w-full max-w-sm rounded-md" />
         </div>
 
-        {/* Grid Skeleton */}
-        <div className="w-full grid gap-8 grid-cols-[repeat(auto-fit,minmax(320px,1fr))] justify-items-stretch">
+        <div className="mt-14 grid grid-cols-1 gap-4 md:grid-cols-2">
           {[1, 2, 3].map((i) => (
             <div
               key={i}
-              className="flex h-full flex-col justify-between overflow-hidden border border-border bg-card/50 rounded-xl"
+              className={`overflow-hidden rounded-3xl border border-white/[0.07] bg-card ${
+                i === 1 ? "md:col-span-2" : ""
+              }`}
             >
-              {/* Image Skeleton matching h-64 */}
-              <Skeleton className="w-full h-64" />
-
-              <div className="p-6 flex flex-col grow gap-4">
-                <div>
-                  {/* Title */}
-                  <Skeleton className="h-8 w-3/4 mb-2 rounded-md" />
-                  {/* Description (3 lines) */}
-                  <div className="space-y-2">
-                    <Skeleton className="h-4 w-full" />
-                    <Skeleton className="h-4 w-full" />
-                    <Skeleton className="h-4 w-2/3" />
-                  </div>
-                  {/* View Case Study Link */}
-                  <Skeleton className="h-5 w-32 mt-3 rounded-md" />
+              <Skeleton className="aspect-[16/10] w-full" />
+              <div className="space-y-4 p-6 md:p-8">
+                <Skeleton className="h-3 w-10 rounded-md" />
+                <Skeleton className="h-7 w-3/4 rounded-md" />
+                <div className="space-y-2">
+                  <Skeleton className="h-4 w-full" />
+                  <Skeleton className="h-4 w-2/3" />
                 </div>
-
-                {/* Categories */}
-                <div className="flex flex-wrap gap-2 pt-2">
-                  <Skeleton className="h-6 w-16 rounded-full" />
-                  <Skeleton className="h-6 w-20 rounded-full" />
-                  <Skeleton className="h-6 w-14 rounded-full" />
-                </div>
-
-                {/* Buttons */}
-                <div className="flex gap-3 mt-4">
-                  <Skeleton className="flex-1 h-10 rounded-md" />
-                  <Skeleton className="flex-1 h-10 rounded-md" />
-                </div>
+                <Skeleton className="h-10 w-full rounded-lg" />
               </div>
             </div>
           ))}
         </div>
       </div>
-    </Section>
+    </section>
   );
 }

@@ -57,7 +57,7 @@ export default function ContactNotificationEmail({
           <Container className="mx-auto w-full max-w-[560px]">
             {/* Brand header */}
             <Section>
-              <Text className="m-0 text-[13px] font-bold tracking-[0.22em] text-[#60a5fa] uppercase">
+              <Text className="m-0 text-[13px] font-bold tracking-[0.22em] text-[#e8c887] uppercase">
                 Ahmed Lotfy
               </Text>
               <Text className="m-0 mt-1 text-[11px] tracking-[0.14em] text-[#64748b] uppercase">
@@ -94,7 +94,7 @@ export default function ContactNotificationEmail({
                   </Text>
                   <Link
                     href={`mailto:${email}?subject=${encodeURIComponent(`Re: ${subject}`)}`}
-                    className="m-0 mt-1 text-[15px] text-[#60a5fa] no-underline"
+                    className="m-0 mt-1 text-[15px] text-[#e8c887] no-underline"
                   >
                     {email}
                   </Link>
@@ -104,7 +104,7 @@ export default function ContactNotificationEmail({
               <Hr className="my-5 border-[#1e293b]" />
 
               {/* Message body */}
-              <Section className="rounded-md border-l-4 border-[#3b82f6] bg-[#0f172a] p-4">
+              <Section className="rounded-md border-l-4 border-[#d9a657] bg-[#131209] p-4">
                 <Text className="m-0 text-[11px] font-semibold tracking-[0.18em] text-[#94a3b8] uppercase">
                   Message
                 </Text>
@@ -122,7 +122,7 @@ export default function ContactNotificationEmail({
               <Column className="pr-2">
                 <Button
                   href={`mailto:${email}?subject=${encodeURIComponent(`Re: ${subject}`)}`}
-                  className="rounded-md bg-[#3b82f6] px-5 py-3 text-[14px] font-semibold text-white no-underline"
+                  className="rounded-md bg-[#d9a657] px-5 py-3 text-[14px] font-semibold text-white no-underline"
                 >
                   Reply to {name.split(" ")[0]}
                 </Button>

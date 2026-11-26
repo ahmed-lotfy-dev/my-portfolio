@@ -64,7 +64,7 @@ export default function ContactConfirmationEmail({
               alt="Ahmed Lotfy"
               className="rounded-xl"
             />
-            <Text className="m-0 mt-3 text-[13px] font-bold tracking-[0.22em] text-[#60a5fa] uppercase">
+            <Text className="m-0 mt-3 text-[13px] font-bold tracking-[0.22em] text-[#e8c887] uppercase">
               Ahmed Lotfy
             </Text>
             <Text className="m-0 text-[11px] tracking-[0.14em] text-[#64748b] uppercase">
@@ -87,7 +87,7 @@ export default function ContactConfirmationEmail({
                 What you sent
               </Text>
               <Text className="m-0 mt-2 text-[11px] text-[#475569]">{sentAt}</Text>
-              <Section className="mt-2 rounded-md border-l-4 border-[#3b82f6] bg-[#0f172a] p-4">
+              <Section className="mt-2 rounded-md border-l-4 border-[#d9a657] bg-[#131209] p-4">
                 <Text
                   dir="auto"
                   className="m-0 text-[14px] leading-[1.7] whitespace-pre-wrap text-[#e2e8f0]"
@@ -114,7 +114,7 @@ export default function ContactConfirmationEmail({
               </Text>
               <Button
                 href={replyHref}
-                className="mt-4 rounded-md bg-[#3b82f6] px-5 py-3 text-[14px] font-semibold text-white no-underline"
+                className="mt-4 rounded-md bg-[#d9a657] px-5 py-3 text-[14px] font-semibold text-white no-underline"
               >
                 Reply with my phone number
               </Button>
@@ -123,7 +123,7 @@ export default function ContactConfirmationEmail({
             <Hr className="mt-6 border-[#1e293b]" />
             <Text className="m-0 text-[11px] leading-[1.6] text-[#475569]">
               This is an automated confirmation from the contact form at{" "}
-              <span className="text-[#60a5fa]">https://alotfy.site</span>.
+              <span className="text-[#e8c887]">https://alotfy.site</span>.
               <br />
               Sent {sentAt} · You&apos;re receiving this because you submitted
               the form.

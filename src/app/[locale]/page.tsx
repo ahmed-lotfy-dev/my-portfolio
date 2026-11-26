@@ -5,7 +5,6 @@ import Hero from "@/src/components/features/homepage/Hero";
 import About from "@/src/components/features/homepage/About";
 import Services from "@/src/components/features/homepage/Services";
 import Projects from "@/src/components/features/homepage/Projects";
-import { HomeSectionBand } from "@/src/components/features/homepage/HomeSectionBand";
 import ScrollReveal from "@/src/components/shared/ScrollReveal";
 
 const TechStack = nextDynamic(() => import("@/src/components/features/homepage/TechStack"), {
@@ -21,7 +20,6 @@ const Contact = nextDynamic(() => import("@/src/components/features/homepage/Con
 //   loading: () => <div className="min-h-[300px]" />,
 // });
 
-import Container from "@/src/components/ui/Container";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import StructuredData from "@/src/components/seo/StructuredData";
 import { routing } from "@/src/i18n/routing";
@@ -85,7 +83,7 @@ export default async function HomePage({
   setRequestLocale(locale);
 
   return (
-    <main className="font-main min-h-screen bg-background text-foreground">
+    <main id="main" className="font-main min-h-dvh bg-background text-foreground">
       <StructuredData
         type="WebSite"
         data={{
@@ -148,45 +146,32 @@ export default async function HomePage({
 
       <Hero />
 
-      <Container>
-        <div className="space-y-6 py-12 lg:py-20">
-          <ScrollReveal>
-            <div className="snap-section">
-              <HomeSectionBand variant="warm">
-                <Services />
-                <TechStack />
-              </HomeSectionBand>
-            </div>
-          </ScrollReveal>
+      <ScrollReveal>
+        <Services />
+      </ScrollReveal>
 
-          <ScrollReveal delay={0.1}>
-            <div className="snap-section">
-              <HomeSectionBand variant="editorial">
-                <Experience />
-                <Suspense fallback={<ProjectsSkeleton />}>
-                  <Projects />
-                </Suspense>
-              </HomeSectionBand>
-            </div>
-          </ScrollReveal>
+      <ScrollReveal>
+        <TechStack />
+      </ScrollReveal>
 
-          <ScrollReveal delay={0.2}>
-            <div className="snap-section">
-              <HomeSectionBand variant="deep">
-                <About />
-              </HomeSectionBand>
-            </div>
-          </ScrollReveal>
+      <ScrollReveal>
+        <Experience />
+      </ScrollReveal>
 
-          <ScrollReveal delay={0.3}>
-            <div className="snap-section">
-              <HomeSectionBand variant="warm">
-                <Contact />
-              </HomeSectionBand>
-            </div>
-          </ScrollReveal>
-        </div>
-      </Container>
+      <ScrollReveal>
+        <Suspense fallback={<ProjectsSkeleton />}>
+          <Projects />
+        </Suspense>
+      </ScrollReveal>
+
+      <ScrollReveal>
+        <About />
+      </ScrollReveal>
+
+      <ScrollReveal>
+        <Contact />
+      </ScrollReveal>
+
     </main>
   );
 }

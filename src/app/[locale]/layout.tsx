@@ -10,7 +10,7 @@ import { Nav } from "@/src/components/features/homepage/Nav";
 import type { Metadata, Viewport } from "next";
 import { getMessages, setRequestLocale } from "next-intl/server";
 
- import { inter, poppins, sora, tajawal, playfair } from "@/src/components/ui/fonts";
+import { geistSans, geistMono, tajawal } from "@/src/components/ui/fonts";
  const Footer = dynamic(() => import("@/src/components/features/homepage/Footer"), {
    ssr: true,
  });
@@ -30,7 +30,7 @@ export function generateStaticParams() {
 }
 
 export const viewport: Viewport = {
-  themeColor: "#0a0f1a",
+  themeColor: "#000000",
 };
 
 export const metadata: Metadata = {
@@ -123,7 +123,7 @@ export default async function LocaleLayout({ children, params }: Props) {
       lang={locale}
       dir={isArabic ? "rtl" : "ltr"}
       suppressHydrationWarning
-      className="dark scroll-smooth max-h-svh"
+      className={`dark scroll-smooth ${geistSans.variable} ${geistMono.variable} ${isArabic ? tajawal.variable : ""}`}
       data-scroll-behavior="smooth"
     >
       <head>
@@ -135,10 +135,15 @@ export default async function LocaleLayout({ children, params }: Props) {
          <OrganizationSchema />
        </head>
       <body
-        className={`${inter.variable} ${poppins.variable} ${sora.variable} ${playfair.variable} ${isArabic ? tajawal.variable : ""
-          } antialiased font-main`}
+        className="antialiased font-main"
         suppressHydrationWarning
       >
+        <a
+          href="#main"
+          className="sr-only z-[100] rounded-md bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground focus:not-sr-only focus:fixed focus:left-4 focus:top-4"
+        >
+          Skip to content
+        </a>
         <NextIntlClientProvider messages={messages}>
           <FeatureFlagsProvider>
             <WebMcpProvider />
@@ -151,7 +156,7 @@ export default async function LocaleLayout({ children, params }: Props) {
                     uiHost={posthogUiHost}
                   >
                     <MaintenanceGate>
-                      <div className="relative bg-background overflow-x-hidden min-h-screen pb-20 md:pb-0">
+                      <div className="relative bg-background overflow-x-hidden min-h-dvh pb-20 md:pb-0">
                         <Nav />
                         {children}
                         <Footer />
@@ -160,7 +165,7 @@ export default async function LocaleLayout({ children, params }: Props) {
                   </PostHogClient>
                 ) : (
                   <MaintenanceGate>
-                    <div className="relative bg-background overflow-x-hidden min-h-screen pb-20 md:pb-0">
+                    <div className="relative bg-background overflow-x-hidden min-h-dvh pb-20 md:pb-0">
                       <Nav />
                       {children}
                       <Footer />

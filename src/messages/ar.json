@@ -15,27 +15,48 @@
     "settings": "الإعدادات"
   },
   "hero": {
-    "name": "أحمد لطفي ",
-    "title": "مطوّر Full-Stack أبني منتجات ويب وموبايل سريعة وموثوقة",
-    "description": "مطوّر Full-Stack بخبرة تتجاوز سنتين في بناء تطبيقات إنتاجية باستخدام React وNext.js وNode.js وTypeScript — متاح لوظائف بدوام كامل عن بُعد.",
+    "name": "أحمد لطفي",
+    "title": "أبني منتجات ويب وموبايل سريعة وموثوقة.",
+    "description": "مطوّر Full Stack بخبرة تتجاوز سنتين في بناء تطبيقات إنتاجية باستخدام React وNext.js وNode.js وTypeScript. متاح لوظائف بدوام كامل عن بُعد.",
     "book_consultation": "احجز استشارة",
     "resume": "السيرة الذاتية",
-    "view_work": "شاهد أعمالي",
+    "view_work": "شاهد أعمالي المختارة",
     "illustrationAlt": "صورة توضيحية لمطوّر Full-Stack",
-    "available_work": "مطوّر Full-Stack",
+    "available_work": "متاح لوظائف بدوام كامل عن بُعد",
     "consulting_link": "متاح أيضًا لأعمال الاستشارات",
     "cv_modal": {
       "title": "عرض الـ CV",
       "description": "تحب تشوف السيرة الذاتية إزاي؟",
       "view_browser": "افتح في المتتصفح",
       "download": "تحميل السيرة الذاتية"
-    }
+    },
+    "start_conversation": "ابدأ محادثة",
+    "panel": {
+      "index": "الملف / 01",
+      "open": "متاح",
+      "based_in": "مقر الإقامة",
+      "location": "القاهرة، مصر",
+      "timezone": "التوقيت",
+      "current": "الحالي",
+      "current_role": "مهندس برمجيات أول، The Drive Center",
+      "focus": "التركيز",
+      "focus_value": "هندسة المنتجات"
+    },
+    "stats": {
+      "years_value": "2+",
+      "years_label": "سنوات في الإنتاج",
+      "projects_value": "8",
+      "projects_label": "مشاريع منشورة",
+      "score_value": "95+",
+      "score_label": "تقييم Lighthouse"
+    },
+    "scroll": "اسحب"
   },
   "tech_stack": {
     "label": "الهيكلة البرمجية",
     "title": "بنية تتحمل الضغط",
     "description": "بختار التقنيات اللي بتضمن الأداء العالي، الأمان، وقابلية التوسع.",
-    "footer": "جاهز للإنتاج • آمن • قابل للتوسع",
+    "footer": "جاهز للإنتاج · آمن الأنواع · قابل للتوسع",
     "items": {
       "nextjs": {
         "title": "React & Next.js",
@@ -58,8 +79,8 @@
   "services": {
     "label": "كفاءاتي الأساسية",
     "title_part1": "قدرات",
-    "title_part2": " Full-Stack",
-    "description": "خبرة إنتاجية كاملة عبر الـ Stack كاملاً — من المعمارية للنشر.",
+    "title_part2": "Full Stack",
+    "description": "خبرة إنتاجية عبر الـ Stack كاملاً، من المعمارية للنشر.",
     "items": {
       "webapp": {
         "title": "عمارة تطبيقات الويب",
@@ -151,8 +172,8 @@
     }
   },
   "projects": {
-    "title": "قصص نجاح",
-    "description": "مشاريع حديثة قدمت فيها قيمة حقيقية للبيزنس.",
+    "title": "مشاريع وصلت للإنتاج",
+    "description": "مشاريع إنتاجية، من منصات SaaS لتطبيقات موبايل تعمل بدون إنترنت.",
     "add-title": "إضافة مشروع جديد",
     "add-desc": "املأ التفاصيل دي عشان تضيف مشروع جديد.",
     "edit-title": "تعديل المشروع",
@@ -205,7 +226,9 @@
       "live_link_invalid": "رابط الموقع مش صح.",
       "image_link_required": "رابط الصورة مطلوب.",
       "categories_required": "لازم فئة واحدة على الأقل."
-    }
+    },
+    "label": "أعمال مختارة",
+    "view_all": "شاهد كل المشاريع"
   },
   "certificates": {
     "title": "شهاداتي",
@@ -254,13 +277,20 @@
     "name": "أحمد لطفي",
     "description1": "أنا Full-Stack Software Engineer بركز على حل مشاكل البيزنس. بتخصص في الـ React Ecosystem الحديثة (Next.js، TypeScript) بس بهتم بنفس القدر بالـ ROI، ومقاييس الأداء، واستقرار النظام (Reliability).",
     "description2": "خلفيتي في الهاردوير والـ IT بتخليني أبني حلول مش مجرد كود، لكن بنية تحتية قوية.",
-    "description3": "ببحث عن وظيفة بدوام كامل عن بُعد كمطوّر Full-Stack (React/Next.js/Node.js). مقيم في مصر (GMT+2) مع خبرة مثبتة في العمل مع فرق موزعة — أكملت برنامج Chingu Voyage، وتعاونت في فريق Agile موزع عبر مناطق زمنية لنشر تطبيق إنتاجي. مرتاح مع التواصل غير المتزامن، خطوط CI/CD، ومراجعات الكود الموزعة.",
+    "description3": "ببحث عن وظيفة بدوام كامل عن بُعد كمطوّر Full Stack (React/Next.js/Node.js). مقيم في مصر (GMT+2) مع خبرة مثبتة في العمل مع فرق موزعة. أكملت برنامج Chingu Voyage، وتعاونت في فريق Agile موزع عبر مناطق زمنية لنشر تطبيق إنتاجي. مرتاح مع التواصل غير المتزامن، خطوط CI/CD، ومراجعات الكود الموزعة.",
     "description4": "صممت REST APIs موثقة بـ Swagger/OpenAPI وأضفت Redis caching للقراءات الساخنة والجلسات. بنيت CI/CD بـ GitHub Actions و Docker، ونشرت عبر Dokploy. صممت schemas علاقاتية في PostgreSQL باستخدام Prisma/Drizzle.",
-    "heading": "حل المشكلات المعقدة بـ <span class=\"bg-linear-to-r from-primary to-secondary bg-clip-text text-transparent italic\">تصميم أنيق.</span>"
+    "heading": "حل المشكلات المعقدة بـ <span class=\"text-primary\">تصميم مدروس.</span>",
+    "available": "متاح للعمل",
+    "based": "القاهرة، مصر / GMT+2",
+    "stats": {
+      "experience": "سنوات خبرة",
+      "projects": "مشاريع منشورة",
+      "performance": "تقييم Lighthouse"
+    }
   },
   "experience": {
     "title": "سجل النجاح",
-    "description": "تاريخ من تحقيق النتائج للعملاء.",
+    "description": "أدوار وفرق ونتائج من آخر ثلاث سنوات.",
     "label": "الخبرة المهنية",
     "heading_part1": "رحلتي",
     "heading_part2": "المهنية",
@@ -297,12 +327,12 @@
   },
   "contact": {
     "title": "تواصل معايا",
-    "description": "متاح لوظائف بدوام كامل عن بُعد كمطوّر Full-Stack (React/Next.js/Node.js). مقيم في مصر (GMT+2) مع خبرة مثبتة في العمل مع فرق موزعة.",
+    "description": "متاح لوظائف بدوام كامل عن بُعد كمطوّر Full Stack (React/Next.js/Node.js). مقيم في مصر (GMT+2) مع خبرة مثبتة في العمل مع فرق موزعة.",
     "heading_part1": "متاح لـ ",
     "heading_part2": "وظائف بدوام كامل عن بُعد",
     "getInTouch": "تواصل مباشر",
-    "availability": "متاح حاليًا لوظائف بدوام كامل عن بُعد. أسرع طريقة للتواصل معي هي البريد الإلكتروني أو واتساب.",
-    "info_desc": "متاح لوظائف بدوام كامل عن بُعد كمطوّر Full-Stack (React/Next.js/Node.js). مقيم في مصر (GMT+2) مع خبرة مثبتة في العمل مع فرق موزعة (تدريب Chingu).",
+    "availability": "متاح لوظائف بدوام كامل عن بُعد. البريد الإلكتروني أو واتساب أسرع طريقة للتواصل.",
+    "info_desc": "متاح لوظائف بدوام كامل عن بُعد كمطوّر Full Stack (React/Next.js/Node.js). مقيم في مصر (GMT+2) مع خبرة مثبتة في العمل مع فرق موزعة (تدريب Chingu).",
     "email": "الإيميل",
     "phone": "الهاتف / واتساب",
     "send": "إرسال الرسالة",
@@ -325,7 +355,8 @@
       "subject_min": "يا ريت تكتب موضوع للرسالة.",
       "message_min": "يا ريت تكتب وصف للرسالة.",
       "message_links": "يا ريت الرسالة تكون من غير لينكات."
-    }
+    },
+    "success": "تم إرسال الرسالة. هرد عليك خلال يومين عمل."
   },
   "dashboard": {
     "projects": "المشاريع",

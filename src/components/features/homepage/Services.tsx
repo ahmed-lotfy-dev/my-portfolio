@@ -1,75 +1,64 @@
-import { Code2, Server, Smartphone } from "lucide-react";
-import Section from "@/src/components/ui/Section";
+import { Code, Database, DeviceMobile } from "@phosphor-icons/react/dist/ssr";
 import { useTranslations } from "next-intl";
-import { cn } from "@/src/lib/utils";
 
 const items = [
-  {
-    icon: Code2,
-    key: "webapp",
-  },
-  {
-    icon: Server,
-    key: "backend",
-  },
-  {
-    icon: Smartphone,
-    key: "mobile",
-  },
+  { icon: Code, key: "webapp", index: "01" },
+  { icon: Database, key: "backend", index: "02" },
+  { icon: DeviceMobile, key: "mobile", index: "03" },
 ];
 
 export default function Services() {
   const t = useTranslations("services");
 
   return (
-    <Section variant="transparent" className="py-24 sm:py-32 relative overflow-hidden" id="services">
-      {/* Background Decor - Mesh Gradient */}
-      <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-primary/10 rounded-full blur-[120px] pointer-events-none -translate-y-1/2 translate-x-1/2" />
-      <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-secondary/10 rounded-full blur-[100px] pointer-events-none translate-y-1/2 -translate-x-1/2" />
-
-      <div className="container relative mx-auto px-4">
-        {/* Header */}
-        <div className="text-center max-w-2xl mx-auto mb-20">
-          <h2 className="inline-block px-4 py-1.5 rounded-full bg-primary/10 text-primary text-sm font-medium tracking-wide uppercase border border-primary/20 backdrop-blur-sm mb-6 animate-fade-in-up">
-            {t("label")}
-          </h2>
-          <h3 className="text-4xl md:text-5xl font-black tracking-tight text-foreground mb-6 animate-fade-in-up delay-100">
-            {t("title_part1")} <span className="text-primary">{t("title_part2")}</span>
-          </h3>
-          <p className="text-lg text-muted-foreground leading-relaxed animate-fade-in-up delay-200">
+    <section
+      id="services"
+      className="relative border-b border-white/[0.07] px-6 py-24 md:px-8 md:py-32"
+    >
+      <div className="mx-auto max-w-6xl">
+        <div className="grid gap-8 lg:grid-cols-12 lg:items-end">
+          <div className="lg:col-span-7">
+            <p className="eyebrow">{t("label")}</p>
+            <h2 className="mt-5 text-4xl font-semibold leading-[1.05] text-foreground sm:text-5xl">
+              {t("title_part1")}{" "}
+              <span className="text-muted-foreground">{t("title_part2")}</span>
+            </h2>
+          </div>
+          <p className="max-w-md text-base leading-relaxed text-muted-foreground lg:col-span-5 lg:justify-self-end">
             {t("description")}
           </p>
         </div>
 
-        {/* Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="mt-16 grid grid-cols-1 gap-4 lg:grid-cols-12 lg:grid-rows-2">
           {items.map((item, index) => (
             <article
               key={item.key}
-              className={cn(
-                "group relative p-8 rounded-4xl border border-border/50 bg-card/30 backdrop-blur-sm hover:border-primary/50 hover:bg-card/50 transition-all duration-300",
-                "animate-fade-in-up",
-                index === 0 && "delay-300",
-                index === 1 && "delay-400",
-                index === 2 && "delay-500"
-              )}
+              className={`group relative flex flex-col rounded-3xl border border-white/[0.07] bg-card p-8 transition-colors duration-300 ease-brand hover:bg-[#181818] md:p-10 ${
+                index === 0 ? "lg:col-span-7 lg:row-span-2" : "lg:col-span-5"
+              }`}
             >
-              <div className="mb-6 inline-flex p-4 rounded-2xl bg-primary/10 text-primary group-hover:scale-110 transition-transform duration-300">
-                <item.icon className="w-8 h-8" />
+              <div className="flex items-start justify-between">
+                <span className="flex h-11 w-11 items-center justify-center rounded-xl border border-white/[0.08] text-primary">
+                  <item.icon size={20} weight="regular" />
+                </span>
+                <span className="font-mono text-xs tracking-[0.16em] text-muted-foreground/60">
+                  {item.index}
+                </span>
               </div>
 
-              <h4 className="text-2xl font-bold mb-4 text-foreground group-hover:text-primary transition-colors">
-                {t(`items.${item.key}.title`)}
-              </h4>
+              <div className={index === 0 ? "mt-10 lg:mt-16" : "mt-8"}>
+                <h3 className="text-2xl font-semibold text-foreground">
+                  {t(`items.${item.key}.title`)}
+                </h3>
+                <p className="mt-3 max-w-[52ch] text-sm leading-relaxed text-muted-foreground">
+                  {t(`items.${item.key}.description`)}
+                </p>
+              </div>
 
-              <p className="text-muted-foreground mb-8 leading-relaxed">
-                {t(`items.${item.key}.description`)}
-              </p>
-
-              <ul className="space-y-3 mb-8">
+              <ul className={index === 0 ? "mt-8 space-y-3 lg:mt-auto lg:pt-12" : "mt-6 space-y-3"}>
                 {[1, 2, 3].map((i) => (
-                  <li key={i} className="flex items-center gap-2 text-sm text-foreground/80">
-                    <div className="w-1.5 h-1.5 rounded-full bg-primary" />
+                  <li key={i} className="flex items-center gap-3 text-sm text-foreground/75">
+                    <span className="h-px w-4 shrink-0 bg-primary/70" />
                     {t(`items.${item.key}.features.${i}`)}
                   </li>
                 ))}
@@ -78,6 +67,6 @@ export default function Services() {
           ))}
         </div>
       </div>
-    </Section>
+    </section>
   );
 }

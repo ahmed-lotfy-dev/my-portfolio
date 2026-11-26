@@ -21,12 +21,12 @@ export default function Submit({
     <Button
       disabled={pending || disabled}
       {...rest}
-      className={cn("w-full md:w-auto min-w-[200px] rounded-xl font-bold py-6 text-base shadow-lg shadow-primary/10 transition-all active:scale-95 disabled:opacity-70", className)}
+      className={cn("w-full rounded-lg py-2 text-base font-semibold transition-all active:translate-y-px disabled:opacity-70 md:w-auto", className)}
     >
       {pending ? (
         <div className="flex items-center gap-2">
           <div className="w-4 h-4 border-2 border-current border-t-transparent rounded-full animate-spin" />
-          <span>Sending...</span>
+          <span>{btnText}</span>
         </div>
       ) : (
         <div className="flex items-center gap-2">

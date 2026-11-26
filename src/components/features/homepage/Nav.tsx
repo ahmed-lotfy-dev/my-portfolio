@@ -88,9 +88,7 @@ export function Nav({ variant = "floating" }: NavProps) {
         ref={navRef}
         className={cn(
           "z-50 w-full transition-all duration-300",
-          isIntegrated
-            ? "relative px-2 pt-4 sm:px-4 md:pt-6 lg:px-8"
-            : "fixed left-0 right-0 top-0 pt-4 max-md:pt-2 px-4"
+          "fixed left-1/2 top-3 z-50 w-[calc(100%-1.5rem)] max-w-5xl -translate-x-1/2 px-0"
         )}
         variants={isIntegrated ? navContainerVariants : desktopVariant}
         initial={mounted ? (isIntegrated ? "visible" : "hidden") : "visible"}
@@ -99,15 +97,13 @@ export function Nav({ variant = "floating" }: NavProps) {
       >
         <div
           className={cn(
-            "nav-bar container relative mx-auto flex h-16 w-full items-center justify-between transition-all duration-700 md:h-20 px-4 md:px-8 max-w-7xl rounded-[2.5rem]",
-            isIntegrated
-              ? scrollerLayoutStyles(scrolled)
-              : islandLayoutStyles(scrolled)
+            "nav-bar relative mx-auto flex h-16 w-full items-center justify-between rounded-2xl border px-4 transition-all duration-500 ease-brand md:h-[4.25rem] md:px-5",
+            scrolled
+              ? "border-white/[0.12] bg-black/80 backdrop-blur-xl"
+              : "border-white/[0.08] bg-black/55 backdrop-blur-lg"
           )}
         >
-          <div className={cn(
-            "absolute inset-x-12 top-0 h-px bg-linear-to-r from-transparent via-blue-400/30 to-transparent opacity-50 blur-sm"
-          )} />
+
 
           <m.div
             variants={navItemVariants}
@@ -137,12 +133,7 @@ export function Nav({ variant = "floating" }: NavProps) {
             suppressHydrationWarning
           >
             <div className="hidden items-center gap-2 md:flex">
-              <div className={cn(
-                "flex h-[3.4rem] items-center gap-3 rounded-[1.7rem] p-1.5 transition-all duration-500 nav-actions-bar",
-                isIntegrated
-                  ? "bg-blue-950/20 backdrop-blur-md border border-blue-400/10"
-                  : "border border-blue-400/10 bg-slate-950/50 shadow-2xl backdrop-blur-xl"
-              )}>
+              <div className="flex items-center gap-2 rounded-lg border border-white/[0.08] p-1">
                 <LanguageSwitcher />
               </div>
             </div>
@@ -167,23 +158,5 @@ export function Nav({ variant = "floating" }: NavProps) {
         />
       </div>
     </>
-  );
-}
-
-function scrollerLayoutStyles(scrolled: boolean) {
-  return cn(
-    "border transition-all duration-500",
-    scrolled
-      ? "nav-bar-scrolled bg-slate-950/70 shadow-[0_8px_40px_-8px_rgba(59,130,246,0.15)] backdrop-blur-2xl border-blue-400/20 px-6"
-      : "bg-slate-950/20 shadow-xl backdrop-blur-md border-blue-400/10 px-4"
-  );
-}
-
-function islandLayoutStyles(scrolled: boolean) {
-  return cn(
-    "border px-3 transition-all duration-700",
-    scrolled
-      ? "nav-bar-scrolled border-blue-400/25 bg-slate-950/80 shadow-[0_32px_100px_-40px_rgba(0,0,0,1),0_0_30px_-10px_rgba(59,130,246,0.15)] backdrop-blur-3xl"
-      : "border-blue-400/10 bg-slate-950/40 shadow-[0_24px_80px_-40px_rgba(0,0,0,0.9)] backdrop-blur-xl"
   );
 }

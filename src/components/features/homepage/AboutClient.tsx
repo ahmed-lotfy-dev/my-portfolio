@@ -2,88 +2,79 @@
 
 import Image from "next/image";
 import { useTranslations } from "next-intl";
-import { Sparkles, Trophy, Target, Zap } from "lucide-react";
 import { StaticImageData } from "next/image";
+import { MapPin } from "@phosphor-icons/react";
 
 type Props = {
   myImage: StaticImageData;
   isRTL: boolean;
 };
 
+const stats = [
+  { value: "2+", key: "experience" },
+  { value: "8", key: "projects" },
+  { value: "95+", key: "performance" },
+];
+
 export default function AboutClient({ myImage, isRTL }: Props) {
   const t = useTranslations("about");
 
-  const stats = [
-    { icon: Trophy, label: "Experience", value: "2+ Years", color: "text-primary" },
-    { icon: Target, label: "Projects", value: "8 Projects", color: "text-primary-light" },
-    { icon: Zap, label: "Performance", value: "95+ Score", color: "text-primary-dark" },
-  ];
-
   return (
-    <section className="relative overflow-hidden py-24 sm:py-32" id="about">
-      <div className="pointer-events-none absolute top-0 left-0 h-full w-full overflow-hidden">
-        <div className="absolute top-1/4 -left-20 h-80 w-80 rounded-full bg-primary/5 blur-[100px]" />
-        <div className="absolute right-0 bottom-1/4 h-80 w-80 translate-x-1/4 rounded-full bg-secondary/5 blur-[100px]" />
-      </div>
-
-      <div className="container relative mx-auto px-4">
-        <div className="flex flex-col items-center gap-12 lg:flex-row lg:gap-32">
-          <div className="group relative lg:w-5/12">
-            <div className="absolute -inset-4 rounded-[2.5rem] bg-linear-to-r from-primary/15 via-secondary/15 to-primary/15 opacity-40 blur-2xl transition duration-700 group-hover:opacity-60" />
-            <div className="relative overflow-hidden rounded-4xl border border-border/50 bg-card/50 p-3 shadow-2xl">
+    <section
+      id="about"
+      className="relative border-b border-white/[0.07] px-6 py-24 md:px-8 md:py-32"
+    >
+      <div className="mx-auto grid max-w-6xl gap-12 lg:grid-cols-12 lg:gap-16">
+        <div className="lg:col-span-5">
+          <div className="surface p-2">
+            <div className="relative aspect-square overflow-hidden rounded-[1.25rem] bg-[#0c0b08]">
               <Image
                 src={myImage}
-                width={400}
-                height={400}
-                quality={75}
                 alt="Ahmed Lotfy"
-                style={{ width: "auto", height: "auto" }}
-                className={`rounded-2xl transition-transform duration-500 group-hover:scale-[1.01] ${!isRTL ? "-scale-x-100" : ""}`}
+                fill
+                quality={80}
+                sizes="(max-width: 1024px) 100vw, 40vw"
+                className={`object-cover ${isRTL ? "" : "-scale-x-100"}`}
               />
             </div>
-
-            <div className="absolute -top-6 -right-6 hidden items-center gap-3 rounded-2xl border border-border/50 bg-card/80 p-4 shadow-xl backdrop-blur-xl sm:flex">
-              <div className="rounded-lg bg-primary/10 p-2">
-                <Sparkles className="h-5 w-5 text-primary" />
-              </div>
-              <div>
-                <p className="mb-1 text-xs font-bold leading-none tracking-widest text-muted-foreground uppercase">
-                  Status
-                </p>
-                <p className="text-sm font-black leading-none text-foreground">
-                  Available for Hire
-                </p>
-              </div>
-            </div>
           </div>
 
-          <div className="space-y-10 lg:w-1/2">
-            <div className="space-y-4">
-              <span className="inline-block rounded-full border border-primary/20 bg-primary/10 px-4 py-1.5 text-xs font-bold tracking-[0.2em] text-primary uppercase backdrop-blur-sm">
-                {t("title")}
-              </span>
-              <h2 className="text-4xl font-black leading-[1.1] tracking-tight text-foreground md:text-5xl lg:text-6xl" dangerouslySetInnerHTML={{ __html: t("heading") }} />
-            </div>
-
-            <div className="space-y-6 text-lg leading-relaxed text-muted-foreground antialiased">
-              <p>{t("description1")}</p>
-              <p>{t("description2")}</p>
-              <p className="rounded-r-xl border-l-4 border-primary bg-primary/5 py-2 pl-6 font-bold text-foreground/80">
-                {t("description3")}
-              </p>
-              <p>{t("description4")}</p>
-            </div>
-
-            <div className="grid grid-cols-1 gap-6 pt-4 sm:grid-cols-3">
-              {stats.map((stat, idx) => (
-                <div key={idx} className="group rounded-2xl border border-border/50 bg-card/20 p-4 transition-all duration-300 hover:border-primary/30 hover:bg-card/40">
-                  <stat.icon className={`mb-3 h-6 w-6 ${stat.color}`} />
-                  <p className="mb-1 text-2xl font-black text-foreground">{stat.value}</p>
-                  <p className="text-[10px] font-bold tracking-widest text-muted-foreground uppercase">{stat.label}</p>
-                </div>
-              ))}
-            </div>
+          <div className="mt-5 flex items-center justify-between gap-4 px-1">
+            <span className="flex items-center gap-2 text-sm text-foreground/80">
+              <span className="h-1.5 w-1.5 rounded-full bg-primary" />
+              {t("available")}
+            </span>
+            <span className="flex items-center gap-1.5 font-mono text-[11px] tracking-wide text-muted-foreground">
+              <MapPin size={12} weight="bold" />
+              {t("based")}
+            </span>
           </div>
+        </div>
+
+        <div className="lg:col-span-7">
+          <p className="eyebrow">{t("title")}</p>
+          <h2
+            className="mt-5 text-3xl font-semibold leading-[1.12] text-foreground sm:text-4xl md:text-5xl"
+            dangerouslySetInnerHTML={{ __html: t("heading") }}
+          />
+
+          <div className="mt-8 max-w-[65ch] space-y-5 text-base leading-relaxed text-muted-foreground">
+            <p>{t("description1")}</p>
+            <p>{t("description2")}</p>
+            <p className="border-l-2 border-primary/70 py-1 pl-5 text-foreground/85">
+              {t("description3")}
+            </p>
+            <p>{t("description4")}</p>
+          </div>
+
+          <dl className="mt-10 grid grid-cols-3 gap-6 border-t border-white/[0.08] pt-6">
+            {stats.map((stat) => (
+              <div key={stat.key}>
+                <dt className="text-xs leading-snug text-muted-foreground">{t(`stats.${stat.key}`)}</dt>
+                <dd className="tabular mt-1 text-2xl font-semibold text-foreground">{stat.value}</dd>
+              </div>
+            ))}
+          </dl>
         </div>
       </div>
     </section>

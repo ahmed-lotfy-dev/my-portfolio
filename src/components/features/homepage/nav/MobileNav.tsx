@@ -2,7 +2,7 @@
 
 import React from "react";
 import Link from "next/link";
-import { Home, Briefcase, MessageSquare, User, Mail } from "lucide-react";
+import { House, FolderOpen, Article, User, EnvelopeSimple } from "@phosphor-icons/react";
 import { m } from "motion/react";
 import { cn } from "@/src/lib/utils";
 
@@ -19,11 +19,11 @@ type MobileNavProps = {
 };
 
 const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
-  "/": Home,
-  "/projects": Briefcase,
-  "/blogs": MessageSquare,
+  "/": House,
+  "/projects": FolderOpen,
+  "/blogs": Article,
   "/about": User,
-  "/contact": Mail,
+  "/contact": EnvelopeSimple,
 };
 
 export function MobileNav({
@@ -36,13 +36,13 @@ export function MobileNav({
   return (
     <div className="fixed bottom-0 left-0 right-0 z-50 md:hidden">
       {/* Backdrop blur background */}
-      <div className="absolute inset-0 bg-background/80 backdrop-blur-xl border-t border-primary/10" />
+      <div className="absolute inset-0 bg-black/85 backdrop-blur-xl border-t border-white/[0.08]" />
 
       <nav className="relative mx-auto max-w-sm px-2 pb-[env(safe-area-inset-bottom,8px)]">
         <div className="flex items-center justify-around h-16">
           {links.map((link) => {
             const active = isActiveLink(link, normalizedPath, activeSection);
-            const Icon = iconMap[link.href] || Home;
+            const Icon = iconMap[link.href] || House;
             const href = localizeHref(locale, link.href);
 
             return (
@@ -50,27 +50,27 @@ export function MobileNav({
                 key={link.href}
                 href={href}
                 className={cn(
-                  "relative flex flex-col items-center justify-center gap-1 w-14 h-14 rounded-2xl transition-all duration-300",
+                  "relative flex flex-col items-center justify-center gap-1 w-14 h-14 rounded-xl transition-colors duration-300",
                   active
                     ? "text-primary"
-                    : "text-muted-foreground/60 hover:text-muted-foreground"
+                    : "text-muted-foreground hover:text-foreground"
                 )}
               >
                 {active && (
                   <m.div
                     layoutId="bottom-nav-active"
-                    className="absolute inset-0 rounded-2xl bg-primary/10"
+                    className="absolute inset-0 rounded-xl bg-primary/[0.08]"
                     transition={{ type: "spring", stiffness: 400, damping: 30 }}
                   />
                 )}
-                <Icon className={cn("w-5 h-5 relative z-10 transition-transform duration-300", active && "scale-110")} />
-                <span className={cn("text-[10px] font-semibold relative z-10", active && "text-primary")}>
+                <Icon className={cn("h-5 w-5 relative z-10 transition-transform duration-300 ease-brand", active && "scale-105")} />
+                <span className={cn("relative z-10 text-[10px] font-medium", active && "text-primary")}>
                   {t(link.label)}
                 </span>
                 {active && (
                   <m.div
                     layoutId="bottom-nav-indicator"
-                    className="absolute -top-px left-1/2 -translate-x-1/2 w-8 h-0.5 rounded-full bg-primary shadow-[0_0_8px_rgba(59,130,246,0.5)]"
+                    className="absolute -top-px left-1/2 h-0.5 w-6 -translate-x-1/2 rounded-full bg-primary"
                     transition={{ type: "spring", stiffness: 400, damping: 30 }}
                   />
                 )}
